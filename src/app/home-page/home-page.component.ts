@@ -8,6 +8,7 @@ import { Router, RoutesRecognized } from '@angular/router';
 import { filter, pairwise } from 'rxjs/operators';
 import { UserService } from '../services/user.service';
 import { data } from '../data';
+import { FilePath } from '@ionic-native/file-path/ngx';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 
@@ -45,6 +46,7 @@ export class HomePageComponent implements OnInit {
     public _toastService: ToastService,
     public _userService: UserService,
     public event: Events,
+    private filePath: FilePath
   ) {
 
     this.curruetDate = this.curruetDate.split('T')[0];
@@ -73,19 +75,18 @@ export class HomePageComponent implements OnInit {
           }
         }
       });
-    this.homeTownData = this.currentUser.home_town;
-    console.log("homeTown",this.homeTownData)
-    this.event.subscribe("userName", (data) => {
-      console.log(data);
-      this.homeTownData = data.home_town;
-      console.log("homeTown1",this.homeTownData)
-    });
+   
+   
 
-    this.getAllTrips();
+      this.getAllTrips();
 
   }
 
   ngOnInit() {
+
+    this.filePath.resolveNativePath('file:///storage/emulated/0/record1822020173636.mp3')
+  .then(filePath => console.log("filepath",filePath))
+  .catch(err => console.log("errr in filepath",err));
   }
 
   ionViewWillEnter() {
@@ -156,7 +157,7 @@ export class HomePageComponent implements OnInit {
    * Get Current Time
    */
   getCurrentTime() {
-
+    this.homeTownData = this.currentUser.home_town;
     let timeZone = this.timeZoneList[Number(this.homeTownData)]
     // getDateWithUTCOffset(inputTzOffset){
     var now = new Date(); // get the current time

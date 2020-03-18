@@ -93,8 +93,8 @@ export class S3Service {
     console.log("image path and name", image, imageName, fileType);
     return new Promise((resolve, reject) => {
       let date = Date.now();
-     
-      let body, ext, mime, type,key;
+
+      let body, ext, mime, type, key;
       if (image.includes('data:imagedf')) {
         body = image;
         body = Buffer.from(image.replace(/^data:image\/\w+;base64,/, ''), 'base64');
@@ -108,24 +108,28 @@ export class S3Service {
         mime = "video/" + ext,
           type = "vedio"
       } else if (image.includes('data:audio')) {
+        console.log("type audio")
         body = image;
-        body = Buffer.from(image.replace(/^data:audio\/\w+;base64,/, ''), 'base64');
+        // body = Buffer.from(image.replace(/^data:audio\/\w+;base64,/, ''), 'base64');
         ext = image.split(';')[0].split('/')[1] || 'mp3';
         mime = "audio/" + ext,
-       type = fileType,
-       key = "chat/" +  date + '.' + ext;
+          type = fileType,
+          key = "chat/" + date + '.' + ext;
       } else if (fileObject) {
         console.log("file object", fileObject);
         body = fileObject;
         ext = fileObject.type.split('/')[1];
         type = fileType;
         mime = fileObject.type
-       key = "chat/" + imageName + date + '.' + ext;
+        key = "chat/" + imageName + date + '.' + ext;
       }
       console.log("ext", ext)
-     
+      console.log("BODY======>", body)
+      console.log("EXT====>",ext)
+      console.log("key====>",key)
+      console.log("type====>",type)
       // const key = "chat/" + imageName + date + '.' + ext;
-      console.log(body, ext, mime, key, type)
+      // console.log(body, ext, mime, key, type)
       this.s3Putimage({ body, mime: mime, name: imageName, type: type }, key, 'base64', ext).then((result) => { resolve(result); }).catch((err) => { reject(err); });
     })
   }
@@ -134,7 +138,8 @@ export class S3Service {
   s3Putimage(file, key, encoding, ext) {
     console.log("file", file, "key", key, "encoding", encoding)
     return new Promise((resolve, reject) => {
-     
+      AWS.config.accessKeyId = 'AKIAXDGTPD32DD4B2FGV';
+      AWS.config.secretAccessKey = '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';
       AWS.config.region = 'us-east-2';
       AWS.config.signatureVersion = 'v4';
       let s3 = new AWS.S3();
@@ -147,13 +152,6 @@ export class S3Service {
         ContentType: file.mime,
       };
       console.log("params", params)
-      // s3.putObject(params, (err, data) => {
-      //   console.log("Response is", data)
-      //   if(err) {
-      //     reject(err);
-      //   } else {
-      //     resolve(key); }
-      // });
 
       s3.upload(params, function (evt) {
         console.log('Event In evt====>>>>', evt);

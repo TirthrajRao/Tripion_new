@@ -16,6 +16,7 @@ import { File } from '@ionic-native/file/ngx';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Media, MediaObject } from '@ionic-native/media/ngx';
 import { Base64 } from '@ionic-native/base64/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import * as firebase from 'firebase';
@@ -76,6 +77,7 @@ export class AmendmentsComponent implements OnInit {
     public sanitizer: DomSanitizer,
     private media: Media,
     private base64: Base64,
+    private filesPath: FilePath,
 
     private mediaCapture: MediaCapture,
   ) {
@@ -88,6 +90,14 @@ export class AmendmentsComponent implements OnInit {
     this.getMessage();
     console.log("this.chatId", this.chatId)
   }
+
+  // active(){
+  //   console.log("active");
+  // }
+
+  // released(){
+  //   console.log("release")
+  // }
 
   /**
    * Get Messages
@@ -236,22 +246,22 @@ export class AmendmentsComponent implements OnInit {
     //   return wholeDate;
     // }
 
-    var fromNow = moment( this.messagesList[messageIndex].message.date ).fromNow();
+    var fromNow = moment(this.messagesList[messageIndex].message.date).fromNow();
 
-    return moment(  this.messagesList[messageIndex].message.date ).calendar( null, {
-      
-        lastDay:  '[Yesterday]',
-        sameDay:  '[Today]',
-                
-        sameElse: function () {
-            return "[" + fromNow + "]";
-        }
+    return moment(this.messagesList[messageIndex].message.date).calendar(null, {
+
+      lastDay: '[Yesterday]',
+      sameDay: '[Today]',
+
+      sameElse: function () {
+        return "[" + fromNow + "]";
+      }
     });
 
 
   }
 
-  changeDateFormate(date){
+  changeDateFormate(date) {
     return moment(date).format('dddd ,h:mm a')
   }
 
@@ -519,23 +529,12 @@ export class AmendmentsComponent implements OnInit {
     }
   }
 
-  // getTrustedHtml(url) {
-  //   console.log("urllll",url);
-  //   // https://docs.google.com/gview?url={{msg.message.msg.url }}&embedded=true
-  // let fileUrl =   this.sanitizer.bypassSecurityTrustResourceUrl(' https://docs.google.com/gview?url='+url+'&embedded=true')
-  // console.log("file url",fileUrl);
-  // return fileUrl
-  // // if (url.includes('iframe')) {
-  //   //   const newUrl = url.replace(/\\/g, "");
-  //   //   // console.log("new url",newUrl)
-  //   //   return this.sanitizer.bypassSecurityTrustHtml(newUrl);
-  //   // }
-  // }
 
 
   startRecord() {
     console.log("startRecord");
-    const ROOT_DIRECTORY = 'file:///sdcard//';
+    const ROOT_DIRECTORY = this.file.externalRootDirectory;
+    console.log("directory",ROOT_DIRECTORY)
     // const downloadFolderName = 'Download/';
     // this.mediaCapture.captureAudio().then(res => {
     //   console.log("audio file",res)
@@ -564,11 +563,11 @@ export class AmendmentsComponent implements OnInit {
 
   }
 
-  stopRecord() {
-    console.log("stopRecord");
-    this.audio.stopRecord();
+  async stopRecord() {
+    await console.log("stopRecord");
+    await clearInterval(this.timex);
     this.recording = false;
-    clearInterval(this.timex);
+    this.audio.stopRecord();
     // let reader = new FileReader();
     // reader.readAsDataURL(this.filePath);
     // reader.onload = (_event) => {
@@ -578,55 +577,84 @@ export class AmendmentsComponent implements OnInit {
     let data = { name: this.fileName, src: this.filePath, type: 'audio/mp3' };
     console.log("recorded audio", data);
 
-    this.file.readAsArrayBuffer('file:///sdcard//', this.fileName).then((res) => {
-      console.log("res===>",res)
-      try {
-        let blob = new Blob([res], { type: "audio/mp3" });
-        console.log("blob=====", blob)
-      } catch (z) {
-        console.log("errrrr", z)
-        // alert('error al crear blob' + z);
-      }
-    }).catch(err => alert('error al leer el archivo ' + JSON.stringify(err)));
 
+    // var getFileBlob = function (url, cb) {
+    //   var xhr = new XMLHttpRequest();
+    //   xhr.open("GET", url);
+    //   xhr.responseType = "blob";
+    //   xhr.addEventListener('load', function () {
+    //     cb(xhr.response);
+    //   });
+    //   xhr.send();
+    // };
 
+    // var blobToFile = function (blob, name) {
+    //   blob.lastModifiedDate = new Date();
+    //   blob.name = name;
+    //   return blob;
+    // };
 
-    // this.base64.encodeFile(this.filePath).then((base64File: string) => {
-    //   console.log("base64file", base64File);
-    //   var x = base64File.substr(13, base64File.length);
-    //   x = "data:audio/mp3;base64" + x;
-    //   console.log("x---------------", x);
-    // this._s3Service.uploadImage(x, data.name, 'audio').then((res) => {
-    //   console.log("Response", res);
-    //   const messageData: any = {
-    //     message: res,
-    //   }
-    //   console.log("messge response=====>", messageData)
-    //   this.send(messageData, messageData.message.type)
-    // }).catch((err) => {
-    //   console.log("Error is", err);
-    //   this._toastService.presentToast("Internal server error", 'danger')
-    // })
+    // var getFileObject = function (filePathOrUrl, cb) {
+    //   getFileBlob(filePathOrUrl, function (blob) {
+    //     cb(blobToFile(blob, this.fileName));
+    //   });
+    // };
 
-    // }, (err) => {
-    //   console.log(err);
+    // getFileObject(this.filePath, function (fileObject) {
+    //   console.log("fileobject", fileObject);
     // });
 
-    // this._s3Service.uploadImage('', data.name, 'audio', data).then((res) => {
-    //   console.log("Response", res);
-    //   const messageData: any = {
-    //     message: res,
-    //   }
-    //   console.log("messge response=====>",messageData)
-    //   // this.send(messageData, messageData.message.type)
-    // }).catch((err) => {
-    //   console.log("Error is", err);
-    //   this._toastService.presentToast("Internal server error", 'danger')
-    // })
-    // this.audioList.push(data);
-    // localStorage.setItem("audiolist", JSON.stringify(this.audioList));
 
-    // this.getAudioList();
+
+    // this.file.readAsArrayBuffer('file:///sdcard//', this.fileName).then((res) => {
+    //   console.log("res===>", res)
+    //   try {
+    //     let blob = new Blob([res], { type: "audio/mp3" });
+    //     console.log("blob=====", blob)
+    //   } catch (z) {
+    //     console.log("errrrr", z)
+    //     // alert('error al crear blob' + z);
+    //   }
+    // }).catch(err => alert('error al leer el archivo ' + JSON.stringify(err)));
+
+
+
+    this.base64.encodeFile(this.filePath).then((base64File: string) => {
+      // console.log("base64file", base64File);
+      var x = base64File.substr(13, base64File.length);
+      x = "data:audio/mp3;base64" + x;
+      console.log("x---------------", x);
+      this._s3Service.uploadImage(x, data.name, 'audio').then((res) => {
+        console.log("Response", res);
+        const messageData: any = {
+          message: res,
+        }
+        console.log("messge response=====>", messageData)
+        this.send(messageData, messageData.message.type)
+      }).catch((err) => {
+        console.log("Error is", err);
+        this._toastService.presentToast("Internal server error", 'danger')
+      })
+
+      // }, (err) => {
+      //   console.log(err);
+      // });
+
+      // this._s3Service.uploadImage('', data.name, 'audio', data).then((res) => {
+      //   console.log("Response", res);
+      //   const messageData: any = {
+      //     message: res,
+      //   }
+      //   console.log("messge response=====>",messageData)
+      //   // this.send(messageData, messageData.message.type)
+      // }).catch((err) => {
+      //   console.log("Error is", err);
+      //   this._toastService.presentToast("Internal server error", 'danger')
+    })
+
+
+
+
   }
 
   startTimer() {

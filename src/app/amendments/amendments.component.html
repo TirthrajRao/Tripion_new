@@ -86,8 +86,8 @@
                         </div>
                         <div *ngIf="msg.message.message_type == 'file'" class="file-type" (click)="downloadImage(msg.message.msg)">
                             <!-- <i class="fa fa-file-pdf" *ngIf="msg.message.msg.ext=='pdf'"></i> -->
-                            <i class="fa fa-file" *ngIf="msg.message.msg.ext!='pdf'"></i>
-                            <p>{{msg.message.msg.name}}</p>
+                            <!-- <i class="fa fa-file" *ngIf="msg.message.msg.ext!='pdf'"></i> -->
+                            <!-- <p>{{msg.message.msg.name}}</p> -->
                             <div *ngIf="!msg.message.msg.mimeType.includes('image')">
                                 <iframe [src]="'https://docs.google.com/viewerng/viewer?url=' + msg.message.msg.url +'&embedded=true' | safe:'resourceUrl'" frameborder="0">
                                 </iframe>
@@ -152,7 +152,14 @@
                     <div class="audio-record" (press)="startRecord()" (pressup)="stopRecord()">
                         <img src="assets/images/mic.png" />
                     </div>
-                    <!-- (press)="startRecord()" (pressup)="stopRecord()" -->
+                <!--     <button
+  ion-button
+  ion-long-press
+  
+  (longPressed)="active()"
+  (pressEnded)="released()"
+  >record</button>
+                     --><!-- (press)="startRecord()" (pressup)="stopRecord()" -->
                 </div>
             </form>
             <div class="attechments" style="display: none;">

@@ -65,7 +65,6 @@ import { FilePath } from '@ionic-native/file-path/ngx';
 import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
 import { LongPressModule } from 'ionic-long-press';
 import { Base64 } from '@ionic-native/base64/ngx';
-
 import * as Hammer from 'hammerjs';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 

@@ -23,16 +23,17 @@ export class ProfileComponent implements OnInit {
   match = false;
   loading: Boolean = false;
   files: any;
+  homeTownName: any
 
 
   constructor(public _userService: UserService, public _toastService: ToastService, public event: Events) {
     this.editProfileForm = new FormGroup({
       // user_name: new FormControl('', [Validators.required]),
-      first_name: new FormControl('',[Validators.required]),
-      last_name: new FormControl('',[Validators.required]),
+      first_name: new FormControl('', [Validators.required]),
+      last_name: new FormControl('', [Validators.required]),
       dob: new FormControl(''),
       email: new FormControl('', [Validators.email, Validators.required]),
-      phone_number: new FormControl('',[Validators.required,Validators.pattern(/^(\+\d{1,3}[- ]?)?\d{10}$/)]),
+      phone_number: new FormControl('', [Validators.required, Validators.pattern(/^(\+\d{1,3}[- ]?)?\d{10}$/)]),
       home_town: new FormControl('', [Validators.required])
     });
 
@@ -82,17 +83,18 @@ export class ProfileComponent implements OnInit {
     }
     this._userService.getUserProfile(data).subscribe((res: any) => {
       console.log("user profile", res);
+
       this.userData = res.data;
-      const obj ={
+      const obj = {
         profile_pic: res.data.profile_pic,
-        user_name:res.data.user_name,
-        home_town:res.data.home_town
+        user_name: res.data.user_name,
       }
       let timeZone = this.timeZoneList[Number(this.userData.home_town)]
-      this.userData.home_town = timeZone.text
-      console.log("this.userdata",this.userData, this.timeZoneList[timeZone],timeZone)
+      if (timeZone)
+        this.homeTownName = timeZone.text
+      console.log("this.userdata", this.userData, this.timeZoneList[timeZone], timeZone);
       this.event.publish('userName', obj);
-      console.log("timezone lisr",this.timeZoneList)
+      console.log("timezone lisr", this.timeZoneList)
       this.loading = false;
     }, (err) => {
       this._toastService.presentToast(err.error.message, 'danger');
@@ -116,9 +118,10 @@ export class ProfileComponent implements OnInit {
     this.isDisable = true;
     this.loading = true;
     data['id'] = this.curruntUser.id;
-    console.log("after valid",data);
+    console.log("after valid", data);
     this._userService.editUserProfile(data).subscribe((res: any) => {
       console.log("res of edit profile", res);
+      localStorage.setItem('currentUser', JSON.stringify(res.data));
       this.userData = res.data;
       this.isDisable = false;
       this.loading = false;
@@ -201,9 +204,9 @@ export class ProfileComponent implements OnInit {
     this._userService.editUserProfile(data).subscribe((res: any) => {
       console.log("res", res);
       this.userData.profile_pic = res.data.profile_pic;
-      const obj ={
+      const obj = {
         profile_pic: res.data.profile_pic,
-        user_name:res.data.user_name
+        user_name: res.data.user_name
       }
       this.event.publish('userName', obj);
       this.loading = false;
@@ -214,7 +217,7 @@ export class ProfileComponent implements OnInit {
       this._toastService.presentToast(err.error.message, 'danger')
     })
   }
-  opengallery(){
+  opengallery() {
     console.log("========open ====")
   }
 }

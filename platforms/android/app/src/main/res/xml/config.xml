@@ -102,7 +102,7 @@
     <name>Tripion</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework.com" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://192.168.1.32:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -110,11 +110,11 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-intent href="file:///*" />
     <allow-navigation href="http://localhost:8100" sessionid="ed6fe3fd" />
     <allow-navigation href="http://192.168.1.88:8100" sessionid="9faa115d" />
     <allow-navigation href="http://192.168.1.118:8100" sessionid="58f8fa30" />
     <allow-navigation href="http://192.168.1.32:8101" sessionid="09d23063" />
-    <allow-navigation href="http://192.168.1.32:8100" sessionid="c5b16d30" />
     <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application" xmlns:android="http://schemas.android.com/apk/res/android">
         <application android:networkSecurityConfig="@xml/network_security_config" />
     </edit-config>
