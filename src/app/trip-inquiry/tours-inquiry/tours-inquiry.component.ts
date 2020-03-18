@@ -13,7 +13,7 @@ export class ToursInquiryComponent implements OnInit {
   tourForm: FormGroup;
   submitted: Boolean = false;
   status: any = 'Busy';
-  path = 'assets/images/busy.png';
+  path = 'assets/images/02.gif';
   languages = data.language;
   // formData = JSON.parse(localStorage.getItem('form_data'));
 
@@ -88,13 +88,13 @@ export class ToursInquiryComponent implements OnInit {
   changeStatus(e) {
     if (e.target.value >= 0 && e.target.value <= 4) {
       this.status = "Busy"
-      this.path = '../../../assets/images/busy.png'
+      this.path = '../../../assets/images/02.gif'
     } else if (e.target.value > 4 && e.target.value <= 7) {
       this.status = "Average";
-      this.path = '../../../assets/images/average.png'
+      this.path = '../../../assets/images/01-Gif.gif'
     } else if (e.target.value > 7) {
       this.status = "Relaxed"
-      this.path = '../../../assets/images/relaxed.png'
+      this.path = '../../../assets/images/03-Gif.gif'
     }
   }
 

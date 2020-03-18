@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
-import { File } from '@ionic-native/file/ngx'
+import { File } from '@ionic-native/file/ngx';
+import { key } from '../env'
 import * as AWS from 'aws-sdk';
 
 @Injectable({
@@ -138,7 +139,8 @@ export class S3Service {
   s3Putimage(file, key, encoding, ext) {
     console.log("file", file, "key", key, "encoding", encoding)
     return new Promise((resolve, reject) => {
-   
+      AWS.config.accessKeyId = key.accessKeyId;
+      AWS.config.secretAccessKey = key.secretAccessKey;
       AWS.config.region = 'us-east-2';
       AWS.config.signatureVersion = 'v4';
       let s3 = new AWS.S3();
