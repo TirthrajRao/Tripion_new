@@ -138,8 +138,7 @@ export class S3Service {
   s3Putimage(file, key, encoding, ext) {
     console.log("file", file, "key", key, "encoding", encoding)
     return new Promise((resolve, reject) => {
-      AWS.config.accessKeyId = 'AKIAXDGTPD32DD4B2FGV';
-      AWS.config.secretAccessKey = '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';
+   
       AWS.config.region = 'us-east-2';
       AWS.config.signatureVersion = 'v4';
       let s3 = new AWS.S3();
