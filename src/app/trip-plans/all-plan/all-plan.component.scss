@@ -1,0 +1,116 @@
+$purple: #0575E6;
+$blue: #021B79;
+$green: #2FE57C;
+$button_color: #003574;
+.home_text {
+    -webkit-box-pack: center;
+    justify-content: center;
+    height: 100%;
+    align-content: center;
+    display: -webkit-box;
+    display: flex;
+    flex-wrap: wrap;
+    span {
+        color: #fff;
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 46px;
+        margin-left: 20px;
+        font-family: 'Montserrat', sans-serif !important;
+    }
+}
+
+// header css end here 
+// ION content START HERE
+.card {
+    display: flex;
+    margin-bottom: 5px;
+    border-radius: 7px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    .select_plan {
+        margin-top: 3px;
+        ion-checkbox {
+            vertical-align: middle;
+            --background-checked: #A354FD;
+            --border-color-checked: #A354FD;
+            --border-color: #707070;
+            --size: 28px;
+        }
+        ion-label {
+            vertical-align: middle;
+            font-weight: 600;
+            font-size: 18px;
+            outline: none;
+        }
+    }
+    .plan_img {
+        outline: none;
+        i {
+            font-size: 25px;
+            color: #0575E6;
+            margin: 0px 8px;
+        }
+    }
+}
+
+.select_for_continue {
+    padding: 20px 10px;
+    z-index: 11;
+    position: relative;
+    @media(max-height: 750px) {
+        padding: 15px 10px;
+    }
+    p {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 26px;
+    }
+    button {
+        margin-top: 17px;
+        width: 100%;
+        font-weight: 500;
+        padding: 17px 10px;
+        border-radius: 5px;
+        font-size: 16px;
+        background-color: $button_color;
+        outline: none;
+        cursor: pointer;
+        box-shadow: 0px 1px 9px rgba(59, 219, 127, 0.5)
+    }
+}
+
+ion-refresher-content {
+    background-color: #0575E6;
+    --color: white !important;
+}
+
+.select_plan [type=radio]+label:before {
+    height: 24px;
+    width: 24px;
+    border-radius: 2px;
+    border: 2px solid #757575;
+    top: 0;
+}
+
+.select_plan [type=radio]:checked+label:before {
+    background: #A354FD;
+    border-color: #A354FD;
+}
+
+.select_plan [type=radio]:checked+label:after {
+    content: '\2713\0020';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 1.3em;
+    line-height: 0.8;
+    color: #fff;
+    transition: all .2s;
+}
+
+.select_plan [type=radio]+label {
+    padding-left: 40px;
+}

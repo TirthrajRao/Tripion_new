@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar class="toolbar-color1">
+    <ion-row>
+      <ion-col size='2'>
+        <div class="back_icon">
+            <ion-buttons slot="start">
+                <ion-back-button>
+                  <i class="fa fa-angle-left back_icon_white"></i>
+                </ion-back-button>
+            </ion-buttons>
+                 </div>
+      </ion-col>
+      <ion-col size='8'>
+        <div class="middle_sec text-white w-100">
+          <div class="text-center">
+              <i class="far fa-credit-card"></i>
+                      <span>Payment</span>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col size='2'>
+        <div class="icon_sec">
+          <ion-menu-button></ion-menu-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="all_payment_content">
+    <div class="payment_content">
+      <div class="payment_for">
+        <p class="payment_following">Payment for the following</p>
+        <ul class=" text-white ">
+          <li>Hotel Booking - <span class="float-right">15,000</span></li>
+          <li>Flights - <span class="float-right">20,000</span></li>
+          <li>Transfer - <span class="float-right">15,000</span></li>
+        </ul>
+        <p class="payment_total text-white text-center">₹ 50,000</p>
+      </div>
+    </div>
+    <div class="pay_now_button text-center text-white">
+      <button type="submit" routerLink='/home/plan-option'>
+        <ion-img src="../../assets/images/done.png"></ion-img>Pay Now
+      </button>
+    </div>
+  </div>
+</ion-content>

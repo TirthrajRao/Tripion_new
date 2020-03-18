@@ -1,0 +1,51 @@
+$purple: #0575E6;
+$blue: #021B79;
+$green: #2FE57C;
+// content css start here
+.benefits_content {
+    padding: 0px 10px 10px 10px;
+    z-index: 11;
+    position: relative;
+}
+
+.country_name {
+    margin-bottom: 8px;
+    background-color: #fff;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding: 2px 18px;
+    @media(max-height: 750px) {
+        margin-bottom: 5px;
+    }
+    @media(max-height: 600px) {
+        margin-bottom: 2px;
+    }
+    img {
+        height: 46px;
+        width: 65px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+    p {
+        color: #434A5E;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 52px;
+    }
+}
+
+.no-request {
+    position: absolute;
+    top: 35%;
+    left: 0;
+    right: 0;
+}
+
+ion-refresher-content {
+    background-color: #0575E6;
+    --color: white !important;
+}

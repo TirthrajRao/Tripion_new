@@ -1,0 +1,214 @@
+<ion-header>
+    <app-header [cname]="'Profile'"></app-header>
+</ion-header>
+
+<ion-content>
+    <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content refreshingSpinner="circular" pullingIcon="null">
+        </ion-refresher-content>
+    </ion-refresher> -->
+    <div class="profile_content" *ngIf="userData">
+        <div class="rawards_point">
+            <div class="row">
+                <div class="col-3 ">
+                    <div class="profile_img" (click)="file2.click();opengallery()">
+                        <input type="file" #file2 (change)="uploadFile($event)" accept="image/*" hidden="true" style="display:none;">
+                        <label class="profile_and_cover_edit" title="Change Profile"><i class="fa fa-camera"
+                                aria-hidden="true"></i>
+                        </label>
+                        <img [src]="userData.profile_pic" onError="src = '../../assets/images/placeholder.png'" *ngIf="userData.profile_pic" />
+                        <img src="../../assets/images/user.png" *ngIf="!userData.profile_pic">
+                    </div>
+                </div>
+                <div class="col-9 pl-3">
+                    <div class="profile_detail text-white">
+                        <p *ngIf="userData.is_social_login == 1">{{userData.user_name}}</p>
+                        <p *ngIf="userData.is_social_login == 0">{{userData.first_name}} {{userData.last_name}}</p>
+                        <!-- <div class="awrd_img">
+                            <ion-img src="../../assets/images/award.png" class="float-left mr-1"></ion-img>
+                            <span>150</span>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form [formGroup]="editProfileForm">
+            <div class="card">
+                <div class="card_body">
+                    <ion-card>
+                        <ion-card-content>
+                            <div class="user_detail float-left">
+                                <small>First Name</small>
+                                <div>
+                                    <ion-item>
+                                        <ion-input type="text" formControlName="first_name" ngModel="{{userData.first_name ? userData.first_name : ''}}">
+                                        </ion-input>
+                                    </ion-item>
+                                </div>
+                                <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.first_name.errors.required">First Name is required</div>
+                                </div>
+                            </div>
+                        </ion-card-content>
+                    </ion-card>
+                    <ion-card>
+                        <ion-card-content>
+                            <div class="user_detail float-left">
+                                <small>Last Name</small>
+                                <div>
+                                    <ion-item>
+                                        <ion-input type="text" formControlName="last_name" ngModel="{{userData.last_name ? userData.last_name : ''}}">
+                                        </ion-input>
+                                    </ion-item>
+                                </div>
+                                <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.last_name.errors.required">Last Name is required</div>
+                                </div>
+                            </div>
+                        </ion-card-content>
+                    </ion-card>
+                    <ion-card>
+                        <ion-card-content>
+                            <div class="user_detail float-left">
+                                <small>Date of Birth</small>
+                                <div>
+                                    <ion-item>
+                                        <ion-datetime formControlName="dob" placeholder="select birth date" ngModel="{{userData.dob? userData.dob :''}}">
+                                        </ion-datetime>
+                                    </ion-item>
+                                    <!-- <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+                                        <div *ngIf="f.dob.errors.required">Birth Date is required</div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </ion-card-content>
+                    </ion-card>
+                    <ion-card>
+                        <ion-card-content>
+                            <div class="user_detail float-left">
+                                <small>Email</small>
+                                <div>
+                                    <ion-item>
+                                        <ion-input type="text" formControlName="email" ngModel="{{userData.email ? userData.email : ''}}">
+                                        </ion-input>
+                                    </ion-item>
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">Email is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-card-content>
+                    </ion-card>
+                    <ion-card>
+                        <ion-card-content>
+                            <div class="user_detail float-left">
+                                <small>Phone Number</small>
+                                <div>
+                                    <ion-item>
+                                        <ion-input type="text" formControlName="phone_number" ngModel="{{userData.phone_number ? userData.phone_number : ''}}">
+                                        </ion-input>
+                                    </ion-item>
+                                </div>
+                                <div *ngIf="submitted && f.phone_number.errors" class="invalid-feedback">
+                                    <div *ngIf="f.phone_number.errors.required">Phone Number is required</div>
+                                    <div *ngIf="f.phone_number.errors.pattern">Phone Number must be 10 digit</div>
+                                </div>
+                            </div>
+                        </ion-card-content>
+                    </ion-card>
+                    <ion-card *ngIf="userData.social_password">
+                        <ion-card-content>
+                            <div class="user_detail float-left">
+                                <small>Password</small>
+                                <div>
+                                    <ion-item>
+                                        <label>{{userData.social_password}}</label>
+                                    </ion-item>
+                                </div>
+                            </div>
+                        </ion-card-content>
+                    </ion-card>
+                    <ion-card>
+                        <ion-card-content>
+                            <div class="user_detail float-left ">
+                                <small>Select Timezone</small>
+                                <div>
+                                    <ion-item>
+                                        <select id="myselection" formControlName="home_town" class="select-hometown" [(ngModel)]="userData.home_town">
+                                            <option [value]="i" *ngFor="let timeZone of timeZoneList;let i=index">
+                                                {{timeZone.text}}
+                                            </option>
+                                        </select>
+                                    </ion-item>
+                                </div>
+                                <div *ngIf="submitted && f.home_town.errors" class="invalid-feedback">
+                                    <div *ngIf="f.home_town.errors.required">Home Town is required</div>
+
+                                </div>
+                                <!-- <small>Password</small>
+                                <div>
+                                    <ion-item>
+                                        <label>{{userData.social_password}}</label>
+                                    </ion-item>
+                                </div> -->
+                            </div>
+                        </ion-card-content>
+                    </ion-card>
+                    <div class="reset-password-link">
+                        <a class="float-right" id="reset-password" (click)="openRedetPswModal()">Reset Password</a>
+                    </div>
+                </div>
+            </div>
+            <div class="uograde_premium">
+                <button (click)="editUserProfile(editProfileForm.value)" class="btn" [disabled]="isDisable">Save</button>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="loading">
+        <div id="loader-wrapper">
+            <div class="heartbeatloader">
+                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+            </div>
+        </div>
+    </div>
+    <!-- reset password modal  -->
+    <div class="modal_content_with_overlay" id="reset-password-modal" style="display: none;">
+        <div class="modal_body">
+            <div class="modal_content">
+                <h5>Reset Password</h5>
+                <form [formGroup]="resetPswForm">
+                    <!-- <div class="form-group">
+                        <ion-item>
+                            <ion-label position="floating">Old Password</ion-label>
+                            <ion-input type="password" formControlName="old_password"></ion-input>
+                        </ion-item>
+                        <div *ngIf="submitted1 && f1.old_password.errors" class="invalid-feedback">
+                            <div *ngIf="f1.old_password.errors.required">Old Password is required</div>
+                        </div>
+                    </div> -->
+                    <div class="form-group">
+                        <ion-item>
+                            <ion-label position="floating">New Password</ion-label>
+                            <ion-input type="password" formControlName="new_password"></ion-input>
+                        </ion-item>
+                        <div *ngIf="submitted1 && f1.new_password.errors" class="invalid-feedback">
+                            <div *ngIf="f1.new_password.errors.required">New Password is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <ion-item>
+                            <ion-label position="floating">Confirm Password</ion-label>
+                            <ion-input type="password" (ionChange)="comparePassword(resetPswForm)" id="confirmPassword" formControlName="conform_password"></ion-input>
+                        </ion-item>
+                        <div *ngIf="submitted1 && f1. conform_password.errors" class="invalid-feedback">
+                            <div *ngIf="f1. conform_password.errors.required"> Password is required</div>
+                        </div>
+                        <span id="message" [style.color]="match?'green':'red'" style="font-size: 13px;"></span>
+                    </div>
+                    <button type="submit" class="edit_btn btn" (click)="resetPassWord(resetPswForm.value)" [disabled]="isDisable">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</ion-content>

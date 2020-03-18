@@ -1,0 +1,132 @@
+$purple: #0575E6;
+$blue: #021B79;
+$button_color: #003574;
+// ion header css start here
+ion-header ion-toolbar:first-child {
+    --background: #000 !important;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.header-md:after {
+    display: none;
+}
+
+ion-menu-button {
+    --color: #fff !important;
+}
+
+// ion header css end here
+// ion content css start here
+ion-content {
+    --background: #000 !important;
+}
+
+.all_visa_detail {
+    padding: 0px 10px 10px;
+    ion-item {
+        --background: transparent;
+        --padding-start: 0px;
+        --inner-padding-top: 0px;
+        --border-color: rgba(255, 255, 255, 0.48);
+        ion-input {
+            font-size: 18px !important;
+            --color: #fff;
+            --padding-start: 10px;
+        }
+        ion-datetime {
+            --padding-start: 0px !important;
+            color: #fff;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        ion-label {
+            font-size: 14px !important;
+            --color: #fff;
+            font-weight: 600;
+        }
+    }
+}
+
+.card {
+    background: linear-gradient(#E1F5FE, #9FA8DA);
+    padding: 20px 10px 50px 10px;
+    @media(max-height: 800px) {
+        padding: 18px 10px 40px 10px;
+    }
+    @media(max-height: 750px) {
+        padding: 15px 10px 32px 10px;
+    }
+    @media(max-height: 600px) {
+        padding: 12px 10px 25px 10px;
+    }
+    .all_image {
+        height: 100px;
+        position: relative;
+        display: flex;
+    }
+    .remove_image {
+        height: 20px;
+        cursor: pointer;
+    }
+}
+
+// .submit_btn {
+//     padding: 30px 0px;
+//     text-align: center;
+//     button {
+//         width: 80%;
+//         outline: none;
+//         font-size: 18px;
+//         font-weight: 500;
+//         padding: 0px 15px;
+//         line-height: 50px;
+//         text-align: center;
+//         color: #fff;
+//         border-radius: 7px;
+//         background-color: $button_color;
+//         box-shadow: 1px 1px 7px rgba(119, 59, 219, 0.5);
+//         position: relative;
+//         i {
+//             font-size: 24px !important;
+//             line-height: 20px;
+//             margin-right: 20px;
+//         }
+//     }
+// }
+.visa_detail {
+    margin-bottom: 30px;
+    @media(max-height: 812px) {
+        margin-bottom: 25px;
+    }
+    @media(max-height: 750px) {
+        margin-bottom: 20px;
+    }
+    @media(max-height: 600px) {
+        margin-bottom: 15px;
+    }
+    p {
+        font-size: 13px;
+        color: #fff;
+        font-weight: 500;
+        line-height: 33px;
+    }
+    h6 {
+        font-size: 17px;
+        color: #fff;
+        font-weight: 500;
+        line-height: 25px;
+    }
+}
+
+.visa-country {
+    background: transparent !important;
+    border: none !important;
+    color: white !important;
+    padding: 0 !important;
+    outline: none !important;
+    width: 100%;
+    margin-top: 27px !important;
+}

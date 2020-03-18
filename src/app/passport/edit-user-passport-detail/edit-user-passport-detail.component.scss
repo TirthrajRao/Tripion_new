@@ -1,0 +1,124 @@
+$purple: #0575E6;
+$blue: #021B79;
+$button_color: #003574;
+// ion header css start here
+i.back_icon_blue {
+    color: #000;
+    font-size: 28px;
+    line-height: 55px;
+}
+
+ion-header ion-toolbar:first-child {
+    --background: #fff !important;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.header-md:after {
+    display: none;
+}
+
+ion-menu-button {
+    --color: #707070 !important;
+}
+
+.home_text {
+    -webkit-box-pack: center;
+    justify-content: center;
+    height: 100%;
+    align-content: center;
+    display: -webkit-box;
+    display: flex;
+    flex-wrap: wrap;
+    span {
+        color: #000;
+        font-weight: 600;
+        margin-left: 5px;
+        font-size: 22px;
+        line-height: 24px;
+        font-family: 'Montserrat', sans-serif !important;
+    }
+}
+
+// ion header css end here
+// ion content css start here
+ion-content {
+    --background: #fff !important;
+}
+
+.card {
+    margin-top: 15px;
+    border-radius: 4px;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    @media(max-height: 750px) {
+        margin-top: 5px;
+    }
+    .card_header {
+        ion-img {
+            cursor: pointer;
+            width: 25px;
+            float: right;
+            position: absolute;
+            top: 11px;
+            right: 10px;
+        }
+    }
+}
+
+ion-card {
+    margin-inline-start: 0px;
+    width: 100%;
+    margin-inline-end: 0px;
+    margin-bottom: 15px;
+    ion-card-content {
+        display: inline-block;
+        width: 100%;
+        padding: 8px 10px;
+        position: relative;
+        margin-bottom: 12px;
+        margin: 0px;
+        font-family: 'Montserrat', sans-serif !important;
+        ion-img {
+            width: 24px;
+            position: absolute;
+            right: 10px;
+            top: 0;
+            bottom: 0;
+        }
+        .user_detail {
+            width: 100%;
+            small {
+                color: #7F8DAB;
+                font-size: 13px;
+                line-height: 30px;
+            }
+            p {
+                color: #000;
+                font-size: 18px;
+                font-weight: 600;
+            }
+            ion-datetime {
+                padding: 0;
+                color: black;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+.card {
+    background-color: rgba(127, 141, 171, 0.16);
+    padding: 20px 10px 30px 10px;
+    border: none;
+    .all_image {
+        height: 125px;
+        position: relative;
+        display: flex;
+    }
+    .remove_image {
+        height: 20px;
+        cursor: pointer;
+    }
+}

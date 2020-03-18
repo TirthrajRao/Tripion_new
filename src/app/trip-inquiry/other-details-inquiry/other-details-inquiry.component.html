@@ -1,0 +1,143 @@
+<ion-header>
+    <app-header [cname]="'New Trip'"></app-header>
+</ion-header>
+
+<ion-content>
+    <div class="all_content">
+        <form [formGroup]="otherDetailsForm">
+            <div class="services_detail">
+                <p class="ml-3 visa_text">Other Details</p>
+                <div class="general_details">
+                    <div class="general_details_header">
+                        <p>Communication Preference </p>
+                    </div>
+                    <div class="general_details_body">
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="radio" class="mr-2" id="Communication1" value="Whatsapp" formControlName="communicationMode">
+                                <label for="Communication1">Whatsapp</label>
+                            </div>
+                            <div class="col-12">
+                                <input type="radio" class="mr-2" id="Communication2" value="Phone" formControlName="communicationMode">
+                                <label for="Communication2">Phone</label>
+                            </div>
+                            <div class="col-12">
+                                <input type="radio" class="mr-2" id="Communication3" value="Mail" formControlName="communicationMode">
+                                <label for="Communication3">Mail</label>
+                            </div>
+                            <div class="col-12">
+                                <input type="radio" class="mr-2" id="Communication4" value="Visit Us" formControlName="communicationMode">
+                                <label for="Communication4">Visit Us</label>
+                            </div>
+                            <div class="col-12">
+                                <input type="radio" class="mr-2" id="Communication5" value="Message" formControlName="communicationMode">
+                                <label for="Communication5">Message</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="general_details">
+                    <div class="general_details_header">
+                        <p>Budget</p>
+                    </div>
+                    <div class="general_details_body">
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Budget Preference</ion-label>
+                                <ion-select formControlName="budgetPreference">
+                                    <ion-select-option value="Per Person">Per Person</ion-select-option>
+                                    <ion-select-option value="Per Family">Per Family</ion-select-option>
+                                    <ion-select-option value="Per Couple">Per Couple</ion-select-option>
+                                    <ion-select-option value="Per Group">Per Group</ion-select-option>
+                                </ion-select>
+                            </ion-item>
+                            <div *ngIf="submitted && f.budgetPreference.errors" class="invalid-feedback">
+                                <div *ngIf="f.budgetPreference.errors.required">Select Budget Preference</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <ion-item>
+                                    <ion-label position="floating">Budget Amount</ion-label>
+                                    <ion-input type="text" formControlName="budgetAmount"></ion-input>
+                                </ion-item>
+                                <div *ngIf="submitted && f.budgetAmount.errors" class="invalid-feedback">
+                                    <div *ngIf="f.budgetAmount.errors.required">Budget Amount is Required</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="general_details">
+                    <div class="general_details_header">
+                        <p>Mode of Payment</p>
+                    </div>
+                    <div class="general_details_body">
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectPaymentMode($event)" value="Cash">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Cash</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectPaymentMode($event)" value="Cheque">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Cheque</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectPaymentMode($event)" value="Bank Transfer">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Bank Transfer</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectPaymentMode($event)" value="NEFT/RTGS">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">NEFT/RTGS</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectPaymentMode($event)" value="Gpay/Paytm">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Gpay/Paytm</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectPaymentMode($event)" value="Credit/Debit Card"> </ion-checkbox>
+                            <ion-label class="ml-3">Credit/Debit Card</ion-label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="general_details" *ngIf="isTripInquiry">
+                    <div class="general_details_header">
+                        <p>Number of Plans</p>
+                    </div>
+                    <div class="general_details_body">
+                        <!-- <p>Plans</p> -->
+                        <ion-item>
+                            <ion-label position="floating">Plans</ion-label>
+                            <ion-input type="text" (ionChange)="numberOfPlan($event)"></ion-input>
+                        </ion-item>
+                        <div class="total_cost w-100 d-inline-block">
+                            <p class="float-left">Cost</p>
+                            <p class="float-right">₹ {{amount ? amount : 0}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="next_btn" *ngIf="isTripInquiry">
+                <button type="submit" (click)="nextForm(otherDetailsForm.value)">Next<i
+                        class="fas fa-arrow-right"></i></button>
+            </div>
+            <div class="submit_btn" *ngIf="!isTripInquiry">
+                <button type="submit" (click)="submitForm(otherDetailsForm.value)" [disabled]="isDisable"><i class="fas fa-save"></i>Submit</button>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="loading">
+        <div id="loader-wrapper">
+            <div class="heartbeatloader">
+                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+            </div>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,158 @@
+$purple: #0575E6;
+$blue: #021B79;
+// content css start here 
+.plan_option_content {
+    padding: 0px 10px 20px 10px;
+    position: relative;
+    z-index: 11;
+    .card {
+        border: none;
+    }
+    .plan_option_heading {
+        padding: 20px 20px;
+        display: inline-block;
+        cursor: pointer;
+        border-radius: 7px;
+        background-color: #ffffff;
+        @media(max-height: 812px) {
+            padding: 18px 20px;
+        }
+        @media(max-height: 750px) {
+            padding: 15px 20px;
+        }
+        @media(max-height: 600px) {
+            padding: 10px 20px;
+        }
+        span {
+            font-size: 18px;
+            color: #111111;
+            font-weight: 600;
+        }
+        .calendar_img {
+            ion-img {
+                height: 25px;
+                width: 25px;
+            }
+        }
+    }
+    .document_request {
+        display: inline-block;
+        border-radius: 7px;
+        background-color: #ffffff;
+        .card_header {
+            border-bottom: 1px solid #C7CBD6;
+            width: 100%;
+            padding: 10px 12px;
+            @media(max-height: 750px) {
+                padding: 12px;
+            }
+            @media(max-height: 600px) {
+                padding: 7px 12px;
+            }
+            ion-img {
+                height: 28px;
+                width: 22px;
+                float: left;
+                @media(max-height: 750px) {
+                    height: 24px;
+                }
+                @media(max-height: 600px) {
+                    height: 22px;
+                }
+            }
+            span {
+                font-size: 18px;
+                color: #434A5E;
+                margin-left: 10px;
+                font-weight: 500;
+            }
+            .view-doc {
+                background: #20379a;
+                padding: 3px;
+                border-radius: 4px;
+                margin-top: -2px;
+            }
+        }
+        .card_body {
+            padding: 20px 0px;
+            @media(max-height: 750px) {
+                padding: 12px 0px;
+            }
+            .total {
+                color: #434A5E;
+                font-size: 5vw;
+                margin-top: 20px;
+                padding-left: 35px;
+                font-weight: 600;
+                background-color: rgba(88, 75, 221, 0.1);
+            }
+            small {
+                color: #ADB3C4;
+                font-size: 12px;
+                padding: 0px 18px;
+            }
+            ul {
+                margin-top: 15px;
+                width: 80%;
+                padding: 0px 18px;
+            }
+            li {
+                list-style: none;
+                color: #434A5E;
+                font-size: 12px;
+                line-height: 1.8;
+                margin-left: 20px;
+                position: relative;
+                &:after {
+                    content: "";
+                    width: 1px;
+                    height: 80%;
+                    background: #707070;
+                    position: absolute;
+                    left: -18px;
+                    top: 13px;
+                }
+                &:before {
+                    content: "";
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 50%;
+                    border: 1px solid #707070;
+                    position: absolute;
+                    left: -20px;
+                    top: 8px;
+                }
+            }
+             :last-child {
+                &:after {
+                    width: 0px !important;
+                }
+            }
+        }
+        .card_footer {
+            padding: 0px 25px 18px 25px;
+            button {
+                border-radius: 30px;
+                line-height: 46px;
+                color: #ffffff;
+                font-size: 15px;
+                position: relative;
+                width: 100%;
+                font-weight: 500;
+                outline: none;
+                background: -webkit-gradient(linear, left top, right top, from(#0575E6), to(#021B79));
+                background: linear-gradient(to right, #0575E6, #021B79);
+                box-shadow: 2px 1px 3px rgba(129, 59, 219, 0.5);
+                i {
+                    margin-right: 15px;
+                    font-size: 25px;
+                }
+            }
+        }
+    }
+}
+
+ion-refresher-content {
+    background-color: #0575E6;
+    --color: white !important;
+}

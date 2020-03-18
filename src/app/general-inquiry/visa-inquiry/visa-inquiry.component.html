@@ -1,0 +1,265 @@
+<ion-header>
+    <app-header [cname]="'New Visa'"></app-header>
+</ion-header>
+
+<ion-content>
+    <div class="all_content">
+        <form [formGroup]='visaForm'>
+            <div class="services_detail">
+                <p class="ml-3 visa_text">Visa</p>
+                <!-- <div class="general_details">
+                    <div class="general_details_header">
+                        <p>General Details</p>
+                    </div>
+                    <div class="general_details_body">
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Name in Passport</ion-label>
+                                <ion-input type="text" formControlName="pname"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.pname.errors" class="invalid-feedback">
+                                <div *ngIf="f.pname.errors.required">Name is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Passport Number</ion-label>
+                                <ion-input type="text" formControlName="pNumber"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.pNumber.errors" class="invalid-feedback">
+                                <div *ngIf="f.pNumber.errors.required">Passport Number is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Date of Birth</ion-label>
+                                <ion-datetime formControlName="dob"></ion-datetime>
+                            </ion-item>
+                            <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+                                <div *ngIf="f.dob.errors.required">Birthdate is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Place of Birth</ion-label>
+                                <ion-input type="text" formControlName="placeOfBirth"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.placeOfBirth.errors" class="invalid-feedback">
+                                <div *ngIf="f.placeOfBirth.errors.required">Place Of Birth is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Address in Passport</ion-label>
+                                <ion-input type="text" formControlName="paddress"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.paddress.errors" class="invalid-feedback">
+                                <div *ngIf="f.paddress.errors.required">Passport Address is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Duration of Travel</ion-label>
+                                <ion-input type="text" formControlName="duration"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.duration.errors" class="invalid-feedback">
+                                <div *ngIf="f.duration.errors.required">Duration Of Travel is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Intended date of Departure</ion-label>
+                                <ion-datetime formControlName="departureDate" min={{curruntDate}} max="{{nextYear}}"></ion-datetime>
+                            </ion-item>
+                            <div *ngIf="submitted && f.departureDate.errors" class="invalid-feedback">
+                                <div *ngIf="f.departureDate.errors.required">Departure Date is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Intended date of Arrival</ion-label>
+                                <ion-datetime formControlName="intendeDate" min="{{visaForm.value.departureDate? visaForm.value.departureDate: curruntDate}}" max="{{nextYear}}"></ion-datetime>
+                            </ion-item>
+                            <div *ngIf="submitted && f.intendeDate.errors" class="invalid-feedback">
+                                <div *ngIf="f.intendeDate.errors.required">Intended Date is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Passport Valid Until ?</ion-label>
+                                <ion-datetime formControlName="pvalidDate" min="{{curruntDate}}" max="{{nextYear}}"></ion-datetime>
+                            </ion-item>
+                            <div *ngIf="submitted && f.pvalidDate.errors" class="invalid-feedback">
+                                <div *ngIf="f.pvalidDate.errors.required">passport Valid Date is required</div>
+                            </div>
+                        </div>
+                       
+                        <p>Date and Duration Status</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="date1" value="Flexible" formControlName="durationStatus">
+                                <label for="date1">Flexible</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="date2" value="Fixed" formControlName="durationStatus">
+                                <label for="date2">Fixed</label>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="general_details">
+                    <div class="general_details_body">
+                        <!-- <form action="#"> -->
+                        <p>Purpose of Travel</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="Travel1" value="Tourism" formControlName="purposeOfTravel">
+                                <label for="Travel1">Tourism</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="Travel2" value="Business" [checked]="true" formControlName="purposeOfTravel">
+                                <label for="Travel2">Business</label>
+                            </div>
+                            <div class="col-12">
+                                <input type="radio" class="mr-2" id="Travel3" value="Family Reunion / Functions" formControlName="purposeOfTravel">
+                                <label for="Travel3">Family Reunion / Functions</label>
+                            </div>
+                        </div>
+                        <!-- </form> -->
+                    </div>
+                </div>
+
+                <div class="general_details">
+                    <div class="general_details_body">
+                        <!-- <form action="#"> -->
+                        <p>Type of Visa</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="Visa1" formControlName="visaType" value="Business" (change)="selectVisaType($event)">
+                                <label for="Visa1">Business</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="Visa2" formControlName="visaType" value="Student" (change)="selectVisaType($event)">
+                                <label for="Visa2">Student</label>
+                            </div>
+                            <div class="col-12 ">
+                                <input type="radio" class="mr-2" id="Visa3" formControlName="visaType" value="tourist" (change)="selectVisaType($event)">
+                                <label for="Visa3">Tourist</label>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Other</ion-label>
+                                <ion-input type="text" (ionChange)="changeInputValue($event)" id="other-input">
+                                </ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.visaType.errors" class="invalid-feedback">
+                                <div *ngIf="f.visaType.errors.required">Choose one Visa Type</div>
+                            </div>
+                        </div>
+
+                        <!-- </form> -->
+                        <p class="mt-2">Previous Rejections</p>
+                        <!-- <form action="#"> -->
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="rejections1" [(ngModel)]="preRejections" formControlName="preRejections" value="Yes">
+                                <label for="rejections1">Yes</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="rejections2" [(ngModel)]="preRejections" formControlName="preRejections" value="No">
+                                <label for="rejections2">No</label>
+                            </div>
+                        </div>
+                        <div *ngIf="preRejections == 'Yes'">
+                            <ion-item>
+                                <ion-label position="floating">Destination, Duration of Journey</ion-label>
+                                <ion-input type="text" formControlName="preRejectionsDetails"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.preRejectionsDetails.errors" class="invalid-feedback">
+                                <div *ngIf="f.preRejectionsDetails.errors.required">Rejection Details is required</div>
+                            </div>
+                        </div>
+                        <!-- </form> -->
+                    </div>
+                </div>
+
+                <div class="general_details">
+                    <div class="general_details_body">
+                        <!-- <form action="#"> -->
+                        <p>Previous International Travel</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="international1" [(ngModel)]="InternationalTravel" formControlName="InternationalTravel" value="Yes" checked>
+                                <label for="international1">Yes</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="international2" formControlName="InternationalTravel" [(ngModel)]="InternationalTravel" value="No">
+                                <label for="international2">No</label>
+                            </div>
+                        </div>
+                        <div *ngIf="InternationalTravel == 'Yes'">
+                            <ion-item>
+                                <ion-input type="text" placeholder="France - 12 days, USA - 18 days." formControlName="InternationalTravelDetails"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.InternationalTravelDetails.errors" class="invalid-feedback">
+                                <div *ngIf="f.InternationalTravelDetails.errors.required">Travel Details is required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="general_details">
+                    <div class="general_details_body">
+                        <!-- <form action="#"> -->
+                        <p>Sponsor Details</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="sponsor1" [(ngModel)]="sponsor" formControlName="sponsor" value="Yes">
+                                <label for="sponsor1">Yes</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="sponsor2" formControlName="sponsor" [(ngModel)]="sponsor" value="No">
+                                <label for="sponsor2">No</label>
+                            </div>
+                        </div>
+                        <div *ngIf="sponsor == 'Yes'">
+                            <ion-item>
+                                <ion-label position="floating">Occupation</ion-label>
+                                <ion-input type="text" formControlName="sponsorDetail"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.sponsorDetail.errors" class="invalid-feedback">
+                                <div *ngIf="f.sponsorDetail.errors.required">Sponsor Details is required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="general_details">
+                <div class="general_details_header">
+                    <p>Number of Applicants</p>
+                </div>
+
+                <div>
+                    <div class="general_details_body">
+                        <ion-item>
+                            <ion-label position="floating">Applicants</ion-label>
+                            <ion-input type="number" formControlName="applicants"></ion-input>
+                        </ion-item>
+                        <div *ngIf="submitted && f.applicants.errors" class="invalid-feedback">
+                            <div *ngIf="f.applicants.errors.required">Number of Applicants is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="next_btn" *ngIf="formUrl.length">
+                <button type="submit" (click)="nextForm(visaForm.value)">Next<i class="fas fa-arrow-right"></i></button>
+            </div>
+            <!-- <div class="submit_btn" *ngIf="!formUrl.length">
+                <button type="submit" routerLink='/home/home-page'><i class="fas fa-save"></i>Submit</button>
+            </div> -->
+        </form>
+    </div>
+</ion-content>.

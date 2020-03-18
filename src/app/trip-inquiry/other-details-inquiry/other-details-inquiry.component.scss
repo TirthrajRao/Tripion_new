@@ -1,0 +1,40 @@
+$purple: #0575E6;
+$blue  : #021B79;
+$green : #2FE57C;
+$button_color: #003574;
+
+// content css start here
+
+.services_detail {
+    .visa_text {
+        font-weight: 600;
+        font-size  : 20px;
+        color      : #fff;
+        line-height: 42px;
+    }
+}
+
+.select_plan_check {
+    margin-top: 3px;
+    width     : 100%;
+
+    ion-checkbox {
+        vertical-align: middle;
+        --border-color: #7F8DAB;
+    }
+
+    ion-label {
+        vertical-align: middle;
+        font-size     : 14px !important;
+        color         : #7F8DAB;
+        font-weight   : 500;
+    }
+}
+.total_cost{
+    p{
+        color: #000 !important;
+        font-size     : 18px !important;
+        font-weight   : 500;
+        margin-top: 10px;
+    }
+}

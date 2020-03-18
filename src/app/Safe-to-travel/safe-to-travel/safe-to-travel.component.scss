@@ -1,0 +1,59 @@
+$purple: #0575E6;
+$blue  : #021B79;
+$green : #2FE57C;
+
+// content css start here
+.benefits_content {
+    position: relative;
+    z-index : 11;
+    padding : 0px 10px 20px 10px;
+}
+
+.card {
+    margin-bottom: 12px;
+
+    .card_header {
+        border-bottom: 1px solid #C7CBD6;
+        padding      : 10px 12px;
+        width        : 100%;
+        display      : inline-block;
+
+        p {
+            color      : #434A5E;
+            font-weight: 600;
+            line-height: 30px;
+            font-size  : 18px;
+            float      : left;
+        }
+
+        ion-img {
+            width : 32px;
+            height: 28px;
+            float : right;
+        }
+    }
+
+    .card_body {
+        padding: 6px 15px 20px 15px;
+
+        ion-label {
+            font-size  : 14px !important;
+            --color    : #7F8DAB;
+            font-weight: 500;
+        }
+
+        ion-input {
+            --placeholder-color: #707070;
+            font-size          : 14px !important;
+            --color            : #707070;
+            --padding-bottom   : 5px;
+            --placeholder-color: #D9D9D9;
+            font-family        : 'Montserrat', sans-serif !important;
+        }
+
+        ion-item {
+            --padding-start    : 0px;
+            --inner-padding-top: 0px;
+        }
+    }
+}

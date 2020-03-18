@@ -1,0 +1,195 @@
+<ion-header>
+    <app-header [cname]="'New Trip'"></app-header>
+</ion-header>
+
+<ion-content>
+    <div class="all_content">
+        <!-- all services detail form start here  -->
+        <div class="all_service_details">
+            <div class="services_detail">
+                <p class="ml-2">Services</p>
+                <div class="colapse-icon">
+                    <ion-item>
+                        <div class="select_plan">
+                            <ion-checkbox id="visa" (click)="selectGeneralService('visa')"> </ion-checkbox>
+                            <ion-label class="ml-3">Visa</ion-label>
+                        </div>
+                    </ion-item>
+                    <a class="toggle-section" data-toggle="collapse" data-target="#visa-arrow" aria-expanded="false" aria-controls="visa-arrow"> <i class="fa" aria-hidden="true"></i></a>
+                </div>
+                <div class="collapse multi-collapse mb-2" id="visa-arrow">
+                    <div class="card card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                </div>
+                <div class="colapse-icon">
+                    <ion-item>
+                        <div class="select_plan">
+                            <ion-checkbox id="air-tickets" (ionChange)="selectGeneralService( 'air-tickets')">
+                            </ion-checkbox>
+                            <ion-label class="ml-3" for="air-tickets">Air Tickets</ion-label>
+                        </div>
+                    </ion-item>
+                    <a class="toggle-section" data-toggle="collapse" data-target="#air-tickets-arrow" aria-expanded="false" aria-controls="air-tickets-arrow"> <i class="fa" aria-hidden="true"></i></a>
+                </div>
+                <div class="collapse multi-collapse mb-2" id="air-tickets-arrow">
+                    <div class="card card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                </div>
+                <div class="colapse-icon">
+                    <ion-item>
+                        <div class="select_plan">
+                            <ion-checkbox id="passport" (ionChange)="selectOtherServices('passport')"> </ion-checkbox>
+                            <ion-label class="ml-3">Passport</ion-label>
+                        </div>
+                    </ion-item>
+                    <a class="toggle-section" data-toggle="collapse" data-target="#passport-arrow" aria-expanded="false" aria-controls="passport-arrow"> <i class="fa" aria-hidden="true"></i></a>
+                </div>
+                <div class="collapse multi-collapse mb-2" id="passport-arrow">
+                    <div class="card card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                </div>
+            </div>
+            <div class="service_info">
+                <span><i class="fas fa-info"></i></span>
+                <div class="service_info_detail">
+                    <p class="text-center">Please select the services for the tour inquiry.</p>
+                </div>
+            </div>
+            <div class="services_detail">
+                <p class="ml-2">Personalize (Minimum : 3)</p>
+                <div class="select_plan_accomndation">
+                    <div class="colapse-icon">
+                        <ion-item>
+                            <div class="select_plan">
+                                <ion-checkbox id="accomodation" (ionChange)="selectTripServices('accomodation')">
+                                </ion-checkbox>
+                                <ion-label class="ml-3">Accomodation</ion-label>
+                            </div>
+                        </ion-item>
+                        <a class="toggle-section" data-toggle="collapse" data-target="#accomodation-arrow" aria-expanded="false" aria-controls="accomodation-arrow"> <i class="fa" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="collapse multi-collapse mb-2" id="accomodation-arrow">
+                        <div class="card card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                        </div>
+                    </div>
+                    <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> -->
+                </div>
+                <div class="colapse-icon">
+                    <ion-item>
+                        <div class="select_plan">
+                            <ion-checkbox id="tours" (ionChange)="selectTripServices('tours')"> </ion-checkbox>
+                            <ion-label class="ml-3">Tours</ion-label>
+                        </div>
+                    </ion-item>
+
+                    <a class="toggle-section" data-toggle="collapse" data-target="#tour-arrow" aria-expanded="false" aria-controls="tour-arrow"> <i class="fa" aria-hidden="true"></i></a>
+                </div>
+                <div class="collapse multi-collapse mb-2" id="tour-arrow">
+                    <div class="card card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                </div>
+                <div class="colapse-icon">
+                    <ion-item>
+                        <div class="select_plan">
+                            <ion-checkbox checked="false" id="transfers" (ionChange)="selectTripServices('transfers')">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Transfers</ion-label>
+                        </div>
+                    </ion-item>
+                    <a class="toggle-section" data-toggle="collapse" data-target="#transfer-arrow" aria-expanded="false" aria-controls="transfer-arrow"> <i class="fa" aria-hidden="true"></i></a>
+                </div>
+                <div class="collapse multi-collapse mb-2" id="transfer-arrow">
+                    <div class="card card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                </div>
+                <div class="colapse-icon">
+                    <ion-item>
+                        <div class="select_plan">
+                            <ion-checkbox checked="false" id="consulting" (ionChange)="selectOtherServices('consulting')">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Consulting</ion-label>
+                        </div>
+                    </ion-item>
+                    <a class="toggle-section" data-toggle="collapse" data-target="#conslting-arrow" aria-expanded="false" aria-controls="conslting-arrow"> <i class="fa" aria-hidden="true"></i></a>
+                </div>
+                <div class="collapse multi-collapse mb-2" id="conslting-arrow">
+                    <div class="card card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                </div>
+                <div class="colapse-icon">
+                    <ion-item>
+                        <div class="select_plan">
+                            <ion-checkbox id="air-tickets" (ionChange)="selectTripServices('air-tickets')">
+                            </ion-checkbox>
+                            <ion-label class="ml-3" for="air-tickets">Air Tickets</ion-label>
+                        </div>
+                    </ion-item>
+                    <a class="toggle-section" data-toggle="collapse" data-target="#air-tickit-arrow" aria-expanded="false" aria-controls="air-tickit-arrow"> <i class="fa" aria-hidden="true"></i></a>
+                </div>
+                <div class="collapse multi-collapse mb-2" id="air-tickit-arrow">
+                    <div class="card card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                </div>
+                <!-- <div class="select_plan">
+                    <ion-checkbox checked="false" id="other-details" (ionChange)="selectTripServices('other-details')"> </ion-checkbox>
+                    <ion-label class="ml-3" for="other-details">Other Details</ion-label>
+                </div> -->
+                <div class="colapse-icon">
+                    <ion-item>
+                        <div class="select_plan">
+                            <ion-checkbox checked="false" id="insurance" (ionChange)="selectOtherServices('insurance')">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Insurance</ion-label>
+                        </div>
+                    </ion-item>
+                    <a class="toggle-section" data-toggle="collapse" data-target="#insurance-arrow" aria-expanded="false" aria-controls="insurance-arrow"> <i class="fa" aria-hidden="true"></i></a>
+                </div>
+                <div class="collapse multi-collapse mb-2" id="insurance-arrow">
+                    <div class="card card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                </div>
+                <div class="colapse-icon">
+                    <ion-item>
+                        <div class="select_plan">
+                            <ion-checkbox checked="false" id="group-travel" (ionChange)="selectOtherServices('group-travel')"> </ion-checkbox>
+                            <ion-label class="ml-3">Group Travel</ion-label>
+                        </div>
+                    </ion-item>
+                    <a class="toggle-section" data-toggle="collapse" data-target="#group-travel-arrow" aria-expanded="false" aria-controls="group-travel-arrow"> <i class="fa" aria-hidden="true"></i></a>
+                </div>
+                <div class="collapse multi-collapse mb-2" id="group-travel-arrow">
+                    <div class="card card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                </div>
+                <div class="colapse-icon">
+                    <ion-item>
+                        <div class="select_plan">
+                            <ion-checkbox checked="false" id="personal-tour-travel" (ionChange)="selectOtherServices('personal-tour-guide')"> </ion-checkbox>
+                            <ion-label class="ml-3">Personal Tour Guide</ion-label>
+                        </div>
+                    </ion-item>
+                    <a class="toggle-section" data-toggle="collapse" data-target="#personal-tour-arrow" aria-expanded="false" aria-controls="personal-tour-arrow"> <i class="fa" aria-hidden="true"></i></a>
+                </div>
+                <div class="collapse multi-collapse mb-2" id="personal-tour-arrow">
+                    <div class="card card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                </div>
+            </div>
+
+            <div class="next_btn">
+                <button type="submit" (click)="nextForm()">Next<i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </div>
+</ion-content>

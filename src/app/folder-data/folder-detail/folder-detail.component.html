@@ -1,0 +1,27 @@
+<ion-header>
+    <app-header [cname]="folderName"></app-header>
+</ion-header>
+
+<ion-content>
+    <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content refreshingSpinner="circular" pullingIcon="null">
+        </ion-refresher-content>
+    </ion-refresher> -->
+    <div class="all_content" *ngIf="allDocument.length">
+        <div *ngIf="allDocument.length">
+            <app-folder-images [images]="allDocument"></app-folder-images>
+        </div>
+    </div>
+    <div *ngIf="loading">
+        <div *ngIf="loading">
+            <div id="loader-wrapper">
+                <div class="heartbeatloader">
+                    <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!loading && !allDocument.length">
+        <span class="text-white text-center no-request">Empty folder</span>
+    </div>
+</ion-content>

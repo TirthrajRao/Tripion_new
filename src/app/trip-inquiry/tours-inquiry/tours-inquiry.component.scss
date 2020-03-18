@@ -1,0 +1,71 @@
+$purple: #0575E6;
+$blue: #021B79;
+$green: #2FE57C;
+$button_color: #003574;
+// content css start here
+.services_detail {
+    .visa_text {
+        font-weight: 600;
+        font-size: 20px;
+        color: #fff;
+        line-height: 42px;
+    }
+}
+
+.relax_img {
+    ion-img {
+        margin: auto;
+        height: 70px;
+        width: 70px;
+    }
+    h2 {
+        font-size: 17px;
+        font-weight: 500;
+        margin-top: 5px;
+    }
+}
+
+// status bar css start here
+.status_bar {
+    padding: 15px 10px;
+}
+
+.gradient-range {
+    $slider-colors: ((pink, #FA4D88, 0%), (blue, #1f4283, 25%), (red, #a90032, 50%), (green, #61a53e, 100%));
+    $gradient-color: (0deg);
+    @each $color,
+    $rgb,
+    $color-stop in $slider-colors {
+        $gradient-color: append($gradient-color, $rgb $color-stop, comma);
+    }
+    width: 100%;
+    height: 2px;
+    background-color: #FFD429;
+    appearance: none;
+    outline: none;
+    &::-webkit-slider-thumb {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        appearance: none;
+        cursor: grab;
+        transition: border 1s;
+        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.26);
+        z-index: 11111;
+        &:active {
+            cursor: grabbing;
+        }
+    }
+    @each $color,
+    $rgb,
+    $color-stop in $slider-colors {
+        &.#{$color}::-webkit-slider-thumb {
+            background: $rgb;
+        }
+    }
+}
+
+select#myselection {
+    outline: none !important;
+    border: none !important;
+}

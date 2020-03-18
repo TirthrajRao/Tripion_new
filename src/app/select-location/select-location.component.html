@@ -1,0 +1,79 @@
+<ion-header>
+    <ion-toolbar class="toolbar-color1">
+        <ion-row>
+            <ion-col size='2'>
+                <div class="back_icon">
+                    <ion-buttons slot="start">
+                        <ion-back-button>
+                            <i class="fa fa-angle-left back_icon_white"></i>
+                        </ion-back-button>
+                    </ion-buttons>
+                </div>
+            </ion-col>
+            <ion-col size='8'>
+                <div class="middle_sec text-white w-100">
+                    <ion-searchbar type="text" id="searchinput" color="light" placeholder="Search text" clearInput (keyup.enter)="searchLocation()">
+                    </ion-searchbar>
+                </div>
+            </ion-col>
+            <ion-col size="2">
+                <ion-buttons (click)="searchLocation()" class="icon_sec text-white">
+                    <ion-icon name="search" size="large" color="white"></ion-icon>
+                </ion-buttons>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <agm-map [style.height.px]="height/2" [latitude]="lat" [longitude]="lng" (centerChange)="centerChange($event)">
+        <agm-marker [latitude]="markerLat" [longitude]="markerLng" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)">
+        </agm-marker>
+    </agm-map>
+    <div>
+        <div class="card mt-1">
+            <ion-item (click)="sendCurrentLocation()">
+                <div slot="start">
+                    <img src="../../assets/images/current-location.png" style="height: 30px;">
+                </div>
+                <ion-label>
+                    <h2>Send Your Current location</h2>
+                    <!-- <h2>{{cityName}}</h2> -->
+                </ion-label>
+            </ion-item>
+            <ion-item (click)=sendSelectedLocation() *ngIf="isDisplay">
+                <ion-avatar slot="start">
+                    <img src="../../assets/images/location.png">
+                </ion-avatar>
+                <ion-label>
+                    <h2>Send this location</h2>
+                    <h2 *ngIf="cityName">{{cityName}}</h2>
+                </ion-label>
+            </ion-item>
+        </div>
+    </div>
+    <div *ngIf="searchedLocation.length">
+        <div>
+            <ion-list>
+                <ion-list-header>
+                    Locations
+                </ion-list-header>
+
+                <ion-item *ngFor="let location of searchedLocation" (click)=selectLocation(location)>
+                    <ion-avatar slot="start">
+                        <img src="../../assets/images/location.png">
+                    </ion-avatar>
+                    <ion-label>
+                        <h2>{{location.structured_formatting.main_text}}</h2>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+        </div>
+    </div>
+    <!-- <div class="location" *ngIf="isDisplay">
+        <div class="card">
+            
+        </div>
+    </div> -->
+</ion-content>

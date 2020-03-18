@@ -1,0 +1,95 @@
+<ion-header>
+    <app-header [cname]="'New Passport'"></app-header>
+</ion-header>
+<ion-content>
+    <div class="all_content">
+        <form [formGroup]='passportInquiryForm'>
+            <div class="services_detail">
+                <div class="general_details">
+                    <div class="general_details_header">
+                        <p>Passport Inquiry</p>
+                    </div>
+                    <div class="general_details_body">
+
+                        <div class="general_details_body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <input type="radio" class="mr-2" id="seatbelt1" formControlName="passportInquiryType" value="New Passport">
+                                    <label for="seatbelt1">New Passport</label>
+
+                                    <input type="radio" class="mr-2" id="seatbelt2" formControlName="passportInquiryType" value="Renew Passport">
+                                    <label for="seatbelt2">Renew Passport</label>
+                                </div>
+                                <!-- <div class="col-6">
+                                    <input type="radio" class="mr-2" id="seatbelt2" formControlName="passportInquiryType" value="Renew Passport">
+                                    <label for="seatbelt2">Renew Passport</label>
+                                </div> -->
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <!-- <div>
+                            <ion-item>
+                                <ion-label position="floating">First Name</ion-label>
+                                <ion-input type="text" formControlName="firstName"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                                <div *ngIf="f.firstName.errors.required">First name is required</div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Last Name</ion-label>
+                                <ion-input type="text" formControlName="lastName"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                <div *ngIf="f.lastName.errors.required">Last name is required</div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Date of Birth</ion-label>
+                                <ion-datetime formControlName="dob"></ion-datetime>
+                            </ion-item>
+                            <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+                                <div *ngIf="f.dob.errors.required">Birthdate is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">City</ion-label>
+                                <ion-input type="text" formControlName="city"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                                <div *ngIf="f.city.errors.required"> City is required</div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Address</ion-label>
+                                <ion-input type="text" formControlName="address"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                <div *ngIf="f.address.errors.required"> Address is required</div>
+                            </div>
+                        </div> -->
+
+
+                    </div>
+                </div>
+                <div class="next_btn">
+                    <button type="submit" (click)="nextForm(passportInquiryForm.value)"><span *ngIf="formUrl.length">Next</span><span *ngIf="!formUrl.length">Submit</span><i
+              class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</ion-content>

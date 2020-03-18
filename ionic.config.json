@@ -1,0 +1,7 @@
+{
+  "name": "Tripion",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
