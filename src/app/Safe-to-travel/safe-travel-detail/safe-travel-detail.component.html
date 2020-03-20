@@ -19,6 +19,8 @@
             </div>
             <div class="mt-3 text-center text-white view_pdf" *ngIf="details.pdfUrl.image_extension != 'jpg' && details.pdfUrl.image_extension != 'jpeg' && details.pdfUrl.image_extension != 'png'">
                 <i class="fa fa-file-pdf pr-2"></i>
+                  <iframe style="height:230px;cursor: pointer;" class="w-100" [src]='pathToPreview | safe:"resourceUrl"' frameborder="0">
+                </iframe>
                 <span>{{details.pdfUrl.image_name}}</span>
             </div>
         </div>

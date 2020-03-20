@@ -15,6 +15,7 @@ export class SafeTravelDetailComponent implements OnInit {
   fileTransfer: FileTransferObject = this.transfer.create();
   public progress: any;
   downloading: Boolean = false;
+  pathToPreview:any
   constructor(
     public route: ActivatedRoute,
     public router: Router,
@@ -38,6 +39,7 @@ export class SafeTravelDetailComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.details = this.router.getCurrentNavigation().extras.state;
+         this.pathToPreview = "https://docs.google.com/viewerng/viewer?url=" +this.details.pdfUrl.image_url + "&embedded=true"
         console.log("in payment page", this.details)
       }
     });
