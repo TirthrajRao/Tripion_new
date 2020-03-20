@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UploadService } from '../../services/upload.service';
-import { ToastService } from '../../services/toast.service';
+// import { ToastService } from '../../services/toast.service';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
+import {AppComponent} from '../../app.component';
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 import { Url } from 'url';
 import { AlertController } from '@ionic/angular';
@@ -15,10 +16,11 @@ export class FolderImagesComponent implements OnInit {
   loading: Boolean = false;
   constructor(
     public _uploadService: UploadService,
-    public _toastService: ToastService,
+    // public _toastService: ToastService,
     private photoViewer: PhotoViewer,
     private previewAnyFile: PreviewAnyFile,
-    public alertController:AlertController
+    public alertController:AlertController,
+    public appComponent:AppComponent,
   ) { }
 
   ngOnInit() {
@@ -57,7 +59,8 @@ export class FolderImagesComponent implements OnInit {
             }, (err) => {
               console.log(err); 
               this.loading = false;
-              this._toastService.presentToast(err.error.message, 'danger')
+               this.appComponent.errorAlert();
+              // this._toastService.presentToast(err.error.message, 'danger')
             })
           }
         }

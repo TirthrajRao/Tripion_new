@@ -6,6 +6,7 @@ import { ToastService } from '../services/toast.service';
 import * as _ from 'lodash';
 import { AlertController } from '@ionic/angular';
 import {data} from '../data';
+import { AppComponent } from '../app.component';
 declare var $: any;
 
 @Component({
@@ -35,8 +36,9 @@ export class VisaDetailComponent implements OnInit {
     public router: Router,
     public _uploadService: UploadService,
     public _toastService: ToastService,
-    public alertController: AlertController
-  ) {
+    public alertController: AlertController,
+    public appComponent: AppComponent,
+    ) {
     this.editVisaForm = new FormGroup({
       country: new FormControl('', [Validators.required]),
       doc_expiry_date: new FormControl('', [Validators.required])
@@ -96,74 +98,77 @@ export class VisaDetailComponent implements OnInit {
   /**
    * Get visa details
    */
-  getDetails(visaId) {
-    this.loading = true;
-    const obj = {
-      visa_id: visaId,
-      id: this.currentUser.id
-    }
-    this._uploadService.getSingleVisa(obj).subscribe((res: any) => {
-      console.log(res);
-      this.visaDetails = res.data;
-      this.loading = false;
-    }, (err) => {
-      console.log(err);
-      this.loading = false
-      this._toastService.presentToast(err.error.message, 'danger');
-    })
-  }
+   getDetails(visaId) {
+     this.loading = true;
+     const obj = {
+       visa_id: visaId,
+       id: this.currentUser.id
+     }
+     this._uploadService.getSingleVisa(obj).subscribe((res: any) => {
+       console.log(res);
+       this.visaDetails = res.data;
+       this.loading = false;
+     }, (err) => {
+       console.log(err);
+       this.loading = false
+       // this._toastService.presentToast(err.error.message, 'danger');
+        this.appComponent.errorAlert();
+     })
+   }
 
   /**
    * Edit Visa 
    * @param {object} data 
    */
-  async editVisa(data) {
-    this.submitted = true;
-    if (this.editVisaForm.invalid) {
-      return
-    }
-    console.log(data);
-    if (this.visaDetails.image_url.length) {
-      _.forEach(this.visaDetails.image_url, (image) => {
-        this.imageId.push(image.image_id)
-      })
-    } else {
-      const alert = await this.alertController.create({
-        message: 'Please upload visa image',
-        buttons: ['OK']
-      });
-      await alert.present();
-      this.imageId = []
-      return
-    }
-    if (data.doc_expiry_date.includes('T')) {
-      data.doc_expiry_date = data.doc_expiry_date.split("T");
-      const td = data.doc_expiry_date[1].split('.')
-      data.doc_expiry_date = data.doc_expiry_date[0] + ' ' + td[0]
-    }
+   async editVisa(data) {
+     this.submitted = true;
+     if (this.editVisaForm.invalid) {
+       return
+     }
+     console.log(data);
+     if (this.visaDetails.image_url.length) {
+       _.forEach(this.visaDetails.image_url, (image) => {
+         this.imageId.push(image.image_id)
+       })
+     } else {
+       const alert = await this.alertController.create({
+         message: 'Please upload visa image',
+         buttons: ['OK']
+       });
+       await alert.present();
+       this.imageId = []
+       return
+     }
+     if (data.doc_expiry_date.includes('T')) {
+       data.doc_expiry_date = data.doc_expiry_date.split("T");
+       const td = data.doc_expiry_date[1].split('.')
+       data.doc_expiry_date = data.doc_expiry_date[0] + ' ' + td[0]
+     }
 
-    this.isDisable = true;
-    this.loading = true;
-    data['id'] = this.currentUser.id;
-    data['image_type'] = 'visa';
-    data['folder_name'] = 'Passport';
-    data['visa_id'] = this.visaDetails.id;
-    data['attachment_id'] = this.imageId.toString();
-    console.log(data, this.imageId, data.attachment_id);
+     this.isDisable = true;
+     this.loading = true;
+     data['id'] = this.currentUser.id;
+     data['image_type'] = 'visa';
+     data['folder_name'] = 'Passport';
+     data['visa_id'] = this.visaDetails.id;
+     data['attachment_id'] = this.imageId.toString();
+     console.log(data, this.imageId, data.attachment_id);
 
-    this._uploadService.editVisaDetail(data).subscribe((res: any) => {
-      this.isDisable = false;
-      this.loading = false;
-      console.log(res);
-      // res.data.image_url = JSON.stringify(res.data.image_url);
-      this.router.navigate(['/home/user-passport-detail'], { queryParams: { data: JSON.stringify(res.data) } })
-    }, (err) => {
-      this.isDisable = false
-      this.loading = false;
-      console.log(err);
-      this._toastService.presentToast(err.error.message, 'danger');
-    })
-  }
+     this._uploadService.editVisaDetail(data).subscribe((res: any) => {
+       this.isDisable = false;
+       this.loading = false;
+       console.log(res);
+        this.appComponent.sucessAlert("Sucessfully Updated")
+       // res.data.image_url = JSON.stringify(res.data.image_url);
+       this.router.navigate(['/home/user-passport-detail'], { queryParams: { data: JSON.stringify(res.data) } })
+     }, (err) => {
+       this.isDisable = false
+       this.loading = false;
+       console.log(err);
+       // this._toastService.presentToast(err.error.message, 'danger');
+        this.appComponent.errorAlert();
+     })
+   }
 
   /**
   * Remove Image in Edit Passport
@@ -175,23 +180,23 @@ export class VisaDetailComponent implements OnInit {
       header: 'Alert!',
       message: 'Are you sure you want to delete this image?',
       buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Yes',
-          handler: () => {
-            console.log('Confirm Okay');
-            let index = this.visaDetails.image_url.indexOf(data);
-            console.log("index", index);
-            this.visaDetails.image_url.splice(index, 1);
-            console.log(this.visaDetails.image_url);
-          }
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: (blah) => {
+          console.log('Confirm Cancel: blah');
         }
+      }, {
+        text: 'Yes',
+        handler: () => {
+          console.log('Confirm Okay');
+          let index = this.visaDetails.image_url.indexOf(data);
+          console.log("index", index);
+          this.visaDetails.image_url.splice(index, 1);
+          console.log(this.visaDetails.image_url);
+        }
+      }
       ]
     });
 

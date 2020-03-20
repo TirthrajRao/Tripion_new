@@ -3,8 +3,9 @@ import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UploadService } from 'src/app/services/upload.service';
 import { ToastService } from 'src/app/services/toast.service';
-import * as _ from 'lodash';
 import { AlertController } from '@ionic/angular';
+import { AppComponent } from '../../app.component';
+import * as _ from 'lodash';
 declare var $: any;
 
 @Component({
@@ -34,8 +35,9 @@ export class EditUserPassportDetailComponent implements OnInit {
     public router: Router,
     public _uploadService: UploadService,
     public _toastService: ToastService,
-    public alertController: AlertController
-  ) {
+    public alertController: AlertController,
+    public appComponent: AppComponent,
+    ) {
     this.editPassPortForm = new FormGroup({
       name_in_passport: new FormControl('', [Validators.required]),
       doc_expiry_date: new FormControl('', [Validators.required]),
@@ -85,111 +87,113 @@ export class EditUserPassportDetailComponent implements OnInit {
   /**
    * Get Passport Detail
    */
-  getPassportDetails(passportId) {
-    this.loading = true;
-    const obj = {
-      passport_id: passportId,
-      id: this.currentUser.id
-    }
-    console.log(obj)
-    this._uploadService.getSinglePassport(obj).subscribe((res: any) => {
-      console.log(res);
-      this.passportDetail = res.data;
-      this.loading = false;
-    }, (err) => {
-      console.log(err);
-      this.loading = false;
-      this._toastService.presentToast(err.error.message, 'danger');
-    })
-    console.log("passpiort detail", this.passportDetail);
+   getPassportDetails(passportId) {
+     this.loading = true;
+     const obj = {
+       passport_id: passportId,
+       id: this.currentUser.id
+     }
+     console.log(obj)
+     this._uploadService.getSinglePassport(obj).subscribe((res: any) => {
+       console.log(res);
+       this.passportDetail = res.data;
+       this.loading = false;
+     }, (err) => {
+       console.log(err);
+       this.loading = false;
+       this.appComponent.errorAlert();
+       // this._toastService.presentToast(err.error.message, 'danger');
+     })
+     console.log("passpiort detail", this.passportDetail);
 
-  }
+   }
   /**
    * Remove Image in Edit Passport
    * @param {object} data 
    */
-  async removeImage(data) {
+   async removeImage(data) {
 
-    const alert = await this.alertController.create({
-      header: 'Alert!',
-      message: 'Are you sure you want to delete this image?',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-          }
-        }, {
-          text: 'Yes',
-          handler: () => {
-            console.log('Confirm Okay');
-            let index = this.passportDetail.image_url.indexOf(data);
-            console.log("index", index);
-            this.passportDetail.image_url.splice(index, 1);
-            console.log(this.passportDetail.image_url);
-          }
-        }
-      ]
-    });
+     const alert = await this.alertController.create({
+       header: 'Alert!',
+       message: 'Are you sure you want to delete this image?',
+       buttons: [
+       {
+         text: 'Cancel',
+         role: 'cancel',
+         cssClass: 'secondary',
+         handler: (blah) => {
+           console.log('Confirm Cancel: blah');
+         }
+       }, {
+         text: 'Yes',
+         handler: () => {
+           console.log('Confirm Okay');
+           let index = this.passportDetail.image_url.indexOf(data);
+           console.log("index", index);
+           this.passportDetail.image_url.splice(index, 1);
+           console.log(this.passportDetail.image_url);
+         }
+       }
+       ]
+     });
 
-    await alert.present();
-  }
+     await alert.present();
+   }
 
   /**
    * Edit Passport Details
    * @param {object} data 
    */
-  editPassportDetail(data) {
+   editPassportDetail(data) {
 
-    this.submitted = true;
-    if (this.editPassPortForm.invalid) {
-      return
-    }
-    if (this.passportDetail.image_url.length) {
-      _.forEach(this.passportDetail.image_url, (image) => {
-        this.imageId.push(image.image_id)
-      })
-    }
-    // else {
-    //   alert("please select File");
-    //   this.imageId = []
-    //   return
-    // }
-    console.log("date",data.doc_expiry_date)
-    if(data.doc_expiry_date.includes('T')){
-      data.doc_expiry_date = data.doc_expiry_date.split("T");
-      const td = data.doc_expiry_date[1].split('.')
-      data.doc_expiry_date = data.doc_expiry_date[0] + ' ' + td[0]
-    }
-    
-    this.isDisable = true;
-    this.loading = true;
-    data['id'] = this.currentUser.id;
-    data['image_type'] = 'passport';
-    data['folder_name'] = 'Passport';
-    data['passport_id'] = this.passportDetail.id;
-    data['attachment_id'] = this.imageId.toString();
-    console.log("----",data, this.imageId, data.attachment_id);
+     this.submitted = true;
+     if (this.editPassPortForm.invalid) {
+       return
+     }
+     if (this.passportDetail.image_url.length) {
+       _.forEach(this.passportDetail.image_url, (image) => {
+         this.imageId.push(image.image_id)
+       })
+     }
+     // else {
+       //   alert("please select File");
+       //   this.imageId = []
+       //   return
+       // }
+       console.log("date",data.doc_expiry_date)
+       if(data.doc_expiry_date.includes('T')){
+         data.doc_expiry_date = data.doc_expiry_date.split("T");
+         const td = data.doc_expiry_date[1].split('.')
+         data.doc_expiry_date = data.doc_expiry_date[0] + ' ' + td[0]
+       }
 
-    this._uploadService.editPassportDetail(data).subscribe((res: any) => {
-      console.log(res);
-      this.isDisable = false;
-      this.editPassPortForm.reset();
-      this.submitted = false;
-      this.loading = false;
-      this.router.navigate(['home/passports'], { queryParams: res.data });
-      // let navigationExtras:NavigationExtras ={
-      //   state:res.data
-      // }
-      // console.log("===",navigationExtras)
-      // this.router.navigate(['/home/passports'],navigationExtras);
-    }, (err) => {
-      console.log(err);
-      this.isDisable = false;
-      this.loading = false;
-      this._toastService.presentToast(err.error.message, 'danger');
-    })
-  }
-}
+       this.isDisable = true;
+       this.loading = true;
+       data['id'] = this.currentUser.id;
+       data['image_type'] = 'passport';
+       data['folder_name'] = 'Passport';
+       data['passport_id'] = this.passportDetail.id;
+       data['attachment_id'] = this.imageId.toString();
+       console.log("----",data, this.imageId, data.attachment_id);
+
+       this._uploadService.editPassportDetail(data).subscribe((res: any) => {
+         console.log(res);
+         this.isDisable = false;
+         this.editPassPortForm.reset();
+         this.submitted = false;
+         this.loading = false;
+         this.router.navigate(['home/passports'], { queryParams: res.data });
+         // let navigationExtras:NavigationExtras ={
+           //   state:res.data
+           // }
+           // console.log("===",navigationExtras)
+           // this.router.navigate(['/home/passports'],navigationExtras);
+         }, (err) => {
+           console.log(err);
+           this.isDisable = false;
+           this.loading = false;
+           this.appComponent.errorAlert();
+           // this._toastService.presentToast(err.error.message, 'danger');
+         })
+     }
+   }

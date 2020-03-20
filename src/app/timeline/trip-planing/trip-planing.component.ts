@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TripService } from 'src/app/services/trip.service';
-import { ToastService } from 'src/app/services/toast.service';
+// import { ToastService } from 'src/app/services/toast.service';
+import { AppComponent } from '../../app.component';
 import { DatePipe } from '@angular/common'
 import * as _ from 'lodash';
 declare var $: any;
@@ -22,9 +23,10 @@ export class TripPlaningComponent implements OnInit {
   constructor(
     public route: ActivatedRoute,
     public _tripService: TripService,
-    public _toastService: ToastService,
-    public datepipe: DatePipe
-  ) {
+    // public _toastService: ToastService,
+    public datepipe: DatePipe,
+    public appComponent: AppComponent,
+    ) {
     this.route.params.subscribe((params) => {
       this.tripId = params.inquiryId;
     })
@@ -49,22 +51,23 @@ export class TripPlaningComponent implements OnInit {
   /**
    * Get Trip Timeleine
    */
-  getTripTimeline() {
-    this.loading = true;
-    const data = {
-      id: this.currentUser.id,
-      inquiry_id: this.tripId
-    }
-    this._tripService.getTripTimeline(data).subscribe((res: any) => {
-      this.tripTimeline = res.data.timeline;
-      this.tripImage = res.data.featured_image;
-      console.log("===",this.tripImage)
-      this.loading = false;
-      console.log("res of timeline", res);
-    }, (err) => {
-      console.log(err);
-      this._toastService.presentToast(err.error.message, 'danger');
-      this.loading = false;
-    })
-  }
-}
+   getTripTimeline() {
+     this.loading = true;
+     const data = {
+       id: this.currentUser.id,
+       inquiry_id: this.tripId
+     }
+     this._tripService.getTripTimeline(data).subscribe((res: any) => {
+       this.tripTimeline = res.data.timeline;
+       this.tripImage = res.data.featured_image;
+       console.log("===",this.tripImage)
+       this.loading = false;
+       console.log("res of timeline", res);
+     }, (err) => {
+       console.log(err);
+       // this._toastService.presentToast(err.error.message, 'danger');
+       this.appComponent.errorAlert();
+       this.loading = false;
+     })
+   }
+ }

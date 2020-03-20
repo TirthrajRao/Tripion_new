@@ -5,6 +5,7 @@ import { UploadService } from '../../services/upload.service';
 import { ToastService } from '../../services/toast.service';
 import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { AppComponent } from '../../app.component';
 declare var $: any;
 
 @Component({
@@ -30,7 +31,8 @@ export class PassportsComponent implements OnInit {
     public _toastService: ToastService,
     public _userService: UserService,
     public router: Router,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public appComponent: AppComponent,
   ) {
     this.addPassportForm = new FormGroup({
       name_in_passport: new FormControl('', [Validators.required]),
@@ -156,10 +158,12 @@ export class PassportsComponent implements OnInit {
       this.addPassportForm.reset();
       this.submitted = false;
       this.loading = false;
-      this.allPassport.push(res.data)
+      this.appComponent.sucessAlert("Passport Added Sucessfully");
+      this.allPassport.unshift(res.data);
     }, (err) => {
       console.log(err);
-      this._toastService.presentToast(err.error.message, 'danger');
+      // this._toastService.presentToast(err.error.message, 'danger');
+       this.appComponent.errorAlert();
       this.isDisable = false;
       this.loading = false;
     })
@@ -182,7 +186,8 @@ export class PassportsComponent implements OnInit {
       this.loading = false;
     }, (err) => {
       console.log(err);
-      this._toastService.presentToast(err.error.message, 'danger');
+       this.appComponent.errorAlert();
+      // this._toastService.presentToast(err.error.message, 'danger');
       this.loading = false;
     })
   }

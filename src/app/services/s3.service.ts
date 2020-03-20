@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { File } from '@ionic-native/file/ngx';
-import { key } from '../env'
+import { Awskey } from '../env'
 import * as AWS from 'aws-sdk';
 
 @Injectable({
@@ -23,7 +23,7 @@ export class S3Service {
     private filePath: FilePath,
     public file: File,
 
-  ) { }
+  ) { console.log(".................",Awskey)}
 
   /**
    * get image from camera and gallary
@@ -90,7 +90,7 @@ export class S3Service {
   /**
    * upload image to s3
    */
-  uploadImage(image, imageName, fileType, fileObject?) {
+  uploadImage(image, imageName, fileType, fileObject) {
     console.log("image path and name", image, imageName, fileType);
     return new Promise((resolve, reject) => {
       let date = Date.now();
@@ -108,11 +108,12 @@ export class S3Service {
         ext = image.split(';')[0].split('/')[1] || 'mp4';
         mime = "video/" + ext,
           type = "vedio"
-      } else if (image.includes('data:audio')) {
-        console.log("type audio")
+      } else if (image.includes('mp3')) {
+        console.log("type audio ??????????????????????")
         body = image;
+        console.log(">>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<",body)
         // body = Buffer.from(image.replace(/^data:audio\/\w+;base64,/, ''), 'base64');
-        ext = image.split(';')[0].split('/')[1] || 'mp3';
+        ext = 'mp3';
         mime = "audio/" + ext,
           type = fileType,
           key = "chat/" + date + '.' + ext;
@@ -137,10 +138,11 @@ export class S3Service {
 
 
   s3Putimage(file, key, encoding, ext) {
+    console.log(",,,,,,,", Awskey)
     console.log("file", file, "key", key, "encoding", encoding)
     return new Promise((resolve, reject) => {
-      AWS.config.accessKeyId = key.accessKeyId;
-      AWS.config.secretAccessKey = key.secretAccessKey;
+      AWS.config.accessKeyId = Awskey.accessKeyId;
+      AWS.config.secretAccessKey = Awskey.secretAccessKey;
       AWS.config.region = 'us-east-2';
       AWS.config.signatureVersion = 'v4';
       let s3 = new AWS.S3();
@@ -150,7 +152,7 @@ export class S3Service {
         Bucket: 'tripion-testing',
         Key: key,
         ACL: "public-read",
-        ContentType: file.mime,
+        ContentType: 'audio/webm',
       };
       console.log("params", params)
 

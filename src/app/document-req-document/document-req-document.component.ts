@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TripService } from '../services/trip.service';
 import { ToastService } from '../services/toast.service';
 import { ActivatedRoute } from '@angular/router';
+import {AppComponent} from '../app.component';
 
 @Component({
   selector: 'app-document-req-document',
@@ -15,9 +16,10 @@ export class DocumentReqDocumentComponent implements OnInit {
   loading: Boolean = true;
   constructor(
     public _tripService: TripService,
-    public _toastService: ToastService,
-    public route: ActivatedRoute
-  ) {
+    // public _toastService: ToastService,
+    public route: ActivatedRoute,
+    public appComponent:AppComponent,
+    ) {
     this.route.params.subscribe((param) => {
       this.tripId = param.tripId
     })
@@ -44,20 +46,21 @@ export class DocumentReqDocumentComponent implements OnInit {
    * Get document request of trip
    * @param {Number} tripId 
    */
-  getDocumentRequest(tripId) {
-    this.loading = true;
-    const data = {
-      id: this.currentUser.id,
-      inquiry_id: tripId
-    }
-    this._tripService.getDocumentReq(data).subscribe((res: any) => {
-      console.log("res of doc req", res);
-      this.documentList = res.data;
-      this.loading = false;
-    }, (err) => {
-      console.log(err);
-      this._toastService.presentToast(err.error.message, 'danger');
-      this.loading = false;
-    })
-  }
-}
+   getDocumentRequest(tripId) {
+     this.loading = true;
+     const data = {
+       id: this.currentUser.id,
+       inquiry_id: tripId
+     }
+     this._tripService.getDocumentReq(data).subscribe((res: any) => {
+       console.log("res of doc req", res);
+       this.documentList = res.data;
+       this.loading = false;
+     }, (err) => {
+       console.log(err);
+       this.appComponent.errorAlert();
+       // this._toastService.presentToast(err.error.message, 'danger');
+       this.loading = false;
+     })
+   }
+ }

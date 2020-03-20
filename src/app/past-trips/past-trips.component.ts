@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastService } from '../services/toast.service';
 import { TripService } from '../services/trip.service';
 import { UserService } from '../services/user.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-past-trips',
@@ -16,7 +17,8 @@ export class PastTripsComponent implements OnInit {
   constructor(
     public _toastService: ToastService,
     public _tripService: TripService,
-    public _userService: UserService
+    public _userService: UserService,
+    public appComponent: AppComponent,
   ) { }
 
   ngOnInit() {
@@ -44,7 +46,8 @@ export class PastTripsComponent implements OnInit {
       this.loading = false;
     }, (err) => {
       console.log(err);
-      this._toastService.presentToast(err.error.message, 'danger');
+      // this._toastService.presentToast(err.error.message, 'danger');
+      this.appComponent.errorAlert();
       this.loading = false;
     })
   }

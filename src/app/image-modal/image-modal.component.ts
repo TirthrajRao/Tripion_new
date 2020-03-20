@@ -6,7 +6,7 @@ import { AmendmentsComponent } from '../amendments/amendments.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
 import { ToastService } from '../services/toast.service';
-
+import {AppComponent} from '../app.component';
 @Component({
   selector: 'app-image-modal',
   templateUrl: './image-modal.component.html',
@@ -33,8 +33,9 @@ export class ImageModalComponent implements OnInit {
     public route: ActivatedRoute,
     public sanitizer: DomSanitizer,
     private document: DocumentViewer,
-    public _toastService: ToastService
-  ) {
+    public _toastService: ToastService,
+     public appComponent:AppComponent
+    ) {
 
     this.imagePath = navParams.get('image');
     this.fileObjectData = navParams.get('fileObject');
@@ -43,9 +44,9 @@ export class ImageModalComponent implements OnInit {
     this.platform.backButton.subscribe(() => {
       console.log("this.router", this.router)
       // if (this.router.url === '/home/home-page' || this.router.url === '/login') {
-      //   navigator['app'].exitApp();
-      // }
-    })
+        //   navigator['app'].exitApp();
+        // }
+      })
     console.log("file object data", this.fileObjectData, this.fileType)
   }
 
@@ -63,31 +64,32 @@ export class ImageModalComponent implements OnInit {
   /**
    * Upload Image
    */
-  uploadImage() {
-    this.loading = true;
-    let imageName;
-    imageName = this.fileObjectData[0].name;
-    this._s3Service.uploadImage(this.imagePath, imageName, this.fileType, this.fileObjectData[0]).then((res) => {
-      console.log("Response", res);
-      this.loading = false;
-      this.modalCtrl.dismiss({
-        'dismissed': true,
-        'data': res
-      });
-      this.itemPicturesStoreURL = res;
-    }).catch((err) => {
-      console.log("Error is", err);
-      this.loading = false;
-      this._toastService.presentToast('Internal server error', 'danger')
-    })
-  }
+   uploadImage() {
+     this.loading = true;
+     let imageName;
+     imageName = this.fileObjectData[0].name;
+     this._s3Service.uploadImage(this.imagePath, imageName, this.fileType, this.fileObjectData[0]).then((res) => {
+       console.log("Response", res);
+       this.loading = false;
+       this.modalCtrl.dismiss({
+         'dismissed': true,
+         'data': res
+       });
+       this.itemPicturesStoreURL = res;
+     }).catch((err) => {
+       console.log("Error is", err);
+       this.loading = false;
+        this.appComponent.errorAlert();
+       // this._toastService.presentToast('Internal server error', 'danger')
+     })
+   }
 
 
-  viewDocument() {
-    const options: DocumentViewerOptions = {
-      title: 'My PDF'
-    }
-    console.log("option", options)
-    this.document.viewDocument(this.imagePath, 'application/pdf', options)
-  }
-}
+   viewDocument() {
+     const options: DocumentViewerOptions = {
+       title: 'My PDF'
+     }
+     console.log("option", options)
+     this.document.viewDocument(this.imagePath, 'application/pdf', options)
+   }
+ }

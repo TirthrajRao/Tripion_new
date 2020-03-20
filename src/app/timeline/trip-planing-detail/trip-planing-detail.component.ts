@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TripService } from 'src/app/services/trip.service';
-import { ToastService } from 'src/app/services/toast.service';
+import { TripService } from '../../services/trip.service';
+import { ToastService } from '../../services/toast.service';
+import { AppComponent } from '../../app.component';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { DatePipe } from '@angular/common';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
@@ -34,6 +35,7 @@ export class TripPlaningDetailComponent implements OnInit {
     private transfer: FileTransfer,
     private file: File,
     private fileOpener: FileOpener,
+    public appComponent: AppComponent,
   ) {
     this.route.params.subscribe((params) => {
       this.tripId = params.inquiryId;
@@ -94,7 +96,8 @@ export class TripPlaningDetailComponent implements OnInit {
     }, (err) => {
       console.log(err);
       this.loading = false;
-      this._toastService.presentToast(err.error.message, 'danger');
+      // this._toastService.presentToast(err.error.message, 'danger');
+      this.appComponent.errorAlert();
     })
   }
 

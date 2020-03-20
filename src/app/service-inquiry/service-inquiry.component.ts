@@ -15,7 +15,10 @@ export class ServiceInquiryComponent implements OnInit {
   categoryList = JSON.parse(localStorage.getItem('categoryList'));
   selectedFormCategory: any = [];
   otherServices: any = [];
-  constructor(public route: Router, public alertController: AlertController) { }
+  constructor(
+    public route: Router, 
+    public alertController: AlertController
+    ) { }
 
   ngOnInit() {
     console.log("category List", this.categoryList);
@@ -40,65 +43,75 @@ export class ServiceInquiryComponent implements OnInit {
      let services = []
      services.push(...this.tripServices,...this.otherServices)
      console.log("this.tripService",services,this.tripServices)
-     if (services.length < 3 && services.length > 0) {
-       const alert = await this.alertController.create({
-         subHeader: 'Trip Inquiry',
-         message: 'you have to select atleast three service',
-         buttons: ['OK']
-       });
-       await alert.present();
-       return;
-     }
-     
-
-
-
-     this.checkBoxValue = this.generalServices.concat(this.tripServices);
-     this.checkBoxValue = this.checkBoxValue.concat(this.otherServices);
-     this.storeSelectedFormCategory();
-     if (this.checkBoxValue.length > 1) {
-       this.checkBoxValue.unshift('general-detail');
-       this.checkBoxValue.push('other-details');
-       if (this.checkBoxValue.includes('passport')) {
-         console.log("passport selected");
-         let index = this.checkBoxValue.indexOf('passport')
-         console.log("index", index)
-         let cutOut = this.checkBoxValue.splice(index, 1)[0];
-         console.log("cutout", cutOut)// cut the element at index 'from'
-         this.checkBoxValue.splice(0, 0, cutOut);
+     if(services.length)
+       if (services.length < 3 ) {
+         const alert = await this.alertController.create({
+           subHeader: 'Trip Inquiry',
+           message: 'you have to select atleast three service',
+           buttons: ['OK']
+         });
+         await alert.present();
+         return;
        }
-       console.log("this ==>", this.checkBoxValue, this.generalServices,this.selectedFormCategory);
-       localStorage.setItem('formId', JSON.stringify(this.checkBoxValue));
-       localStorage.setItem('selectedFormCategory', JSON.stringify(this.selectedFormCategory))
-       console.log("--------------")
-       const formRoute = this.checkBoxValue[0];
-       if (this.checkBoxValue.length) {
-         console.log("---i if", this.tripServices, this.generalServices)
-         this.route.navigate(['/home/' + formRoute])
-       }
-     } else if (this.checkBoxValue.length == 1) {
-       console.log("one");
-       let formRoute;
-       if (!this.checkBoxValue.includes('passport')) {
-         console.log("not passport");
+       
+
+
+
+       this.checkBoxValue = this.generalServices.concat(this.tripServices);
+       // this.checkBoxValue = this.checkBoxValue.concat(this.otherServices);
+       this.storeSelectedFormCategory();
+       if (this.checkBoxValue.length > 1) {
          this.checkBoxValue.unshift('general-detail');
          this.checkBoxValue.push('other-details');
-         formRoute = this.checkBoxValue[0];
+         if (this.checkBoxValue.includes('passport')) {
+           console.log("passport selected");
+           let index = this.checkBoxValue.indexOf('passport')
+           console.log("index", index)
+           let cutOut = this.checkBoxValue.splice(index, 1)[0];
+           console.log("cutout", cutOut)// cut the element at index 'from'
+           this.checkBoxValue.splice(0, 0, cutOut);
+         }
+         console.log("this ==>", this.checkBoxValue, this.generalServices,this.selectedFormCategory);
          localStorage.setItem('formId', JSON.stringify(this.checkBoxValue));
          localStorage.setItem('selectedFormCategory', JSON.stringify(this.selectedFormCategory))
-         this.route.navigate(['/home/' + formRoute])
-       } else {
-         formRoute = this.checkBoxValue[0]
-         localStorage.setItem('formId', JSON.stringify(this.checkBoxValue));
+         console.log("--------------")
+         const formRoute = this.checkBoxValue[0];
+         if (this.checkBoxValue.length) {
+           console.log("---i if", this.tripServices, this.generalServices)
+           this.route.navigate(['/home/' + formRoute])
+         }
+       } else if (this.checkBoxValue.length == 1) {
+         console.log("one");
+         let formRoute;
+         if (!this.checkBoxValue.includes('passport')) {
+           console.log("not passport");
+           this.checkBoxValue.unshift('general-detail');
+           this.checkBoxValue.push('other-details');
+           formRoute = this.checkBoxValue[0];
+           localStorage.setItem('formId', JSON.stringify(this.checkBoxValue));
+           localStorage.setItem('selectedFormCategory', JSON.stringify(this.selectedFormCategory))
+           this.route.navigate(['/home/' + formRoute])
+         } else {
+           formRoute = this.checkBoxValue[0]
+           localStorage.setItem('formId', JSON.stringify(this.checkBoxValue));
+           localStorage.setItem('selectedFormCategory', JSON.stringify(this.selectedFormCategory))
+           this.route.navigate(['/home/' + formRoute])
+         }
+       } else if(this.otherServices.length) {
+         console.log("in othet",this.otherServices.length)
+         let formRoute;
+         // this.checkBoxValue = this.checkBoxValue.concat(this.otherServices);
+         // this.checkBoxValue.unshift('general-detail');
+         // formRoute = this.checkBoxValue[0]
+         // localStorage.setItem('formId', JSON.stringify(this.checkBoxValue));
          localStorage.setItem('selectedFormCategory', JSON.stringify(this.selectedFormCategory))
-         this.route.navigate(['/home/' + formRoute])
+         this.route.navigate(['/home/general-detail'])
+       }else{
+         alert('Please select services')
        }
-     } else {
-       alert('Please select services')
+
+
      }
-
-
-   }
 
   /**
    * store selected form category

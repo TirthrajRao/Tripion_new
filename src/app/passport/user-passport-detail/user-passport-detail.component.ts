@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { AlertController } from '@ionic/angular';
 import { data} from '../../data';
+import { AppComponent } from '../../app.component';
 import * as _ from 'lodash';
 declare var $: any;
 
@@ -37,7 +38,8 @@ export class UserPassportDetailComponent implements OnInit {
     public route: ActivatedRoute,
     public router: Router,
     private photoViewer: PhotoViewer,
-    public alertController: AlertController
+    public alertController: AlertController,
+    public appComponent: AppComponent,
   ) {
     this.addVisaForm = new FormGroup({
       passport_id_for_visa: new FormControl('', [Validators.required]),
@@ -203,7 +205,8 @@ export class UserPassportDetailComponent implements OnInit {
       this.allPassport = res.data;
     }, (err) => {
       console.log(err);
-      this._toastService.presentToast(err.error.message, 'danger');
+      // this._toastService.presentToast(err.error.message, 'danger');
+      this.appComponent.errorAlert();
     })
   }
 
@@ -272,7 +275,8 @@ export class UserPassportDetailComponent implements OnInit {
       this.isDisable = false;
       this.submitted = false;
       this.loading = false;
-      this._toastService.presentToast(err.error.message, 'danger');
+      // this._toastService.presentToast(err.error.message, 'danger');
+      this.appComponent.errorAlert();
     })
   }
 

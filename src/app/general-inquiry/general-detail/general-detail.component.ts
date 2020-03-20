@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TripService } from '../../services/trip.service';
 import {data} from '../../data';
+import {AppComponent} from '../../app.component';
 declare const $:any;
 
 @Component({
@@ -18,11 +19,18 @@ export class GeneralDetailComponent implements OnInit {
   curruntDate: string = new Date().toISOString();
   nextYear;
   submitted:Boolean = false;
+  formData = JSON.parse(localStorage.getItem('form_data'));
+  isTripInquiry: any = JSON.parse(localStorage.getItem('isTripInquiry'))
+  currentUser = JSON.parse(localStorage.getItem('currentUser'))
+  selectedFormCategory = JSON.parse(localStorage.getItem('selectedFormCategory'));
+  isDisable: Boolean = false;
+  loading: Boolean = false;
   constructor(
     public route: Router,
-    public _tripService: TripService
-  ) {
-console.log("countries",this.counries)
+    public _tripService: TripService,
+     public appComponent:AppComponent,
+    ) {
+    console.log("countries",this.counries)
     this.generalDetailsForm = new FormGroup({
       pname: new FormControl('', [Validators.required]),
       pNumber: new FormControl('', [Validators.required, Validators.pattern('^(?!^0+$)[a-zA-Z0-9]{8,20}$')]),
@@ -70,42 +78,79 @@ console.log("countries",this.counries)
    * get next form
    * @param {Object} data 
    */
-  nextForm(data) {
-    console.log("data in next forrm", data)
-    this.submitted = true;
+   nextForm(data) {
+     console.log("data in next forrm", data)
+     this.submitted = true;
 
-    if (this.generalDetailsForm.invalid) {
-      return
-    }
+     if (this.generalDetailsForm.invalid) {
+       return
+     }
 
-    data.dob = data.dob.split("T");
-    const fd = data.dob[1].split('.')
-    data.dob = data.dob[0] + ' ' + fd[0];
+     data.dob = data.dob.split("T");
+     const fd = data.dob[1].split('.')
+     data.dob = data.dob[0] + ' ' + fd[0];
 
-    data.departureDate = data.departureDate.split("T");
-    const fd1 = data.departureDate[1].split('.')
-    data.departureDate = data.departureDate[0] + ' ' + fd1[0];
+     data.departureDate = data.departureDate.split("T");
+     const fd1 = data.departureDate[1].split('.')
+     data.departureDate = data.departureDate[0] + ' ' + fd1[0];
 
-    data.intendeDate = data.intendeDate.split("T");
-    const fd2 = data.intendeDate[1].split('.')
-    data.intendeDate = data.intendeDate[0] + ' ' + fd2[0];
+     data.intendeDate = data.intendeDate.split("T");
+     const fd2 = data.intendeDate[1].split('.')
+     data.intendeDate = data.intendeDate[0] + ' ' + fd2[0];
 
-    data.pvalidDate = data.pvalidDate.split("T");
-    const fd3 = data.pvalidDate[1].split('.')
-    data.pvalidDate = data.pvalidDate[0] + ' ' + fd3[0];
+     data.pvalidDate = data.pvalidDate.split("T");
+     const fd3 = data.pvalidDate[1].split('.')
+     data.pvalidDate = data.pvalidDate[0] + ' ' + fd3[0];
 
-    console.log("data", data)
-    this.storeFormData(data);
-    this.route.navigate(['/home/' + this.formUrl[0]])
-  }
+     console.log("data", data)
+     if (this.formUrl.length) {
+       console.log("this.formUrl",this.formUrl)
+       this.storeFormData(data);
+       this.route.navigate(['/home/' + this.formUrl[0]])
+     } else{
+       if (!this.currentUser.email) {
+         alert('Please add your email in your Profile');
+         return;
+       } else{
+         let formObject = [{"general-detail":data}]
+         const obj = {
+           id: this.currentUser.id,
+           email: this.currentUser.email,
+           form_category: this.selectedFormCategory.toString(),
+           form_data: JSON.stringify(formObject)
+         }
+         console.log(obj);
+         this.isDisable = true;
+         this.loading = true;
+         this._tripService.addInquiry(obj).subscribe((res: any) => {
+           this.isDisable = false;
+           this.loading = false;
+           console.log("inquiry form res", res);
+           localStorage.removeItem('form_data');
+           localStorage.removeItem('selectedFormCategory');
+           // this._toastService.presentToast(res.message, 'success');
+           this.appComponent.sucessAlert("Your Inquiry has been Added Successfully");
+           this.route.navigate(['/home']);
+         }, (err) => {
+           this.isDisable = false;
+           this.loading = false;
+           console.log(err);
+           localStorage.removeItem('form_data');
+           localStorage.removeItem('selectedFormCategory');
+         })
+       }
+       
+     }
 
-  // Store form data
-  storeFormData(data) {
-    console.log("data", data)
-    const obj = {
-      "general-detail": data
-    }
-    this._tripService.storeFormData(obj);
-  }
+   }
 
-}
+   // Store form data
+   storeFormData(data) {
+     console.log("data", data)
+     const obj = {
+       "general-detail": data
+     }
+     this._tripService.storeFormData(obj);
+   }
+
+ }

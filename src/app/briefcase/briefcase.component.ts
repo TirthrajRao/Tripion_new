@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UploadService } from '../services/upload.service';
-import { ToastService } from '../services/toast.service';
-declare const $:any;
+// import { ToastService } from '../services/toast.service';
+import { AppComponent } from '../app.component';
+declare const $: any;
 @Component({
   selector: 'app-briefcase',
   templateUrl: './briefcase.component.html',
@@ -16,7 +17,8 @@ export class BriefcaseComponent implements OnInit {
 
   constructor(
     public _uploadService: UploadService,
-    public _toastService: ToastService
+    // public _toastService: ToastService,
+    public appComponent: AppComponent,
   ) { }
 
   ngOnInit() {
@@ -52,7 +54,8 @@ export class BriefcaseComponent implements OnInit {
       this.loading = false;
     }, (err) => {
       console.log(err);
-     this._toastService.presentToast(err.error.message,'danger');
+      this.appComponent.errorAlert()
+      // this._toastService.presentToast(err.error.message,'danger');
       this.loading = false;
     })
   }

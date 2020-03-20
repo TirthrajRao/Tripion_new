@@ -130,10 +130,18 @@
                     </div>
                 </div>
                 <div class="next_btn">
-                    <button type="submit" (click)="nextForm(generalDetailsForm.value)">Next<i
-              class="fas fa-arrow-right"></i></button>
+                    <button type="submit" (click)="nextForm(generalDetailsForm.value)"  [disabled]="isDisable"><span *ngIf="formUrl.length">Next</span><span *ngIf="!formUrl.length">Submit</span><i
+                      class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
         </form>
+    </div>
+
+    <div *ngIf="loading">
+        <div id="loader-wrapper">
+            <div class="heartbeatloader">
+                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+            </div>
+        </div>
     </div>
 </ion-content>
