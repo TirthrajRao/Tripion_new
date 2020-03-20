@@ -4,7 +4,7 @@ import { Router, NavigationExtras ,ActivatedRoute} from '@angular/router';
 import { ToastService } from '../../services/toast.service';
 import { AlertController } from '@ionic/angular';
 import { AppComponent } from '../../app.component';
-
+declare const $:any
 @Component({
   selector: 'app-safe-travel',
   templateUrl: './safe-travel.component.html',
@@ -89,14 +89,17 @@ export class SafeTravelComponent implements OnInit {
        };
        this.router.navigate(['/home/safe-travel-detail'], navigationExtras);
      }else{
-       const alert = await this.alertController.create({
+       $('.success_alert_box1').fadeIn().addClass('animate');
+       setTimeout(()=>{
+         $('.success_alert_box1').hide().removeClass('animate');
+       },2500)
+       // const alert = await this.alertController.create({
+         //   message: 'Your inquiry status : "Pending" !',
+         //   buttons: ['OK']
+         // });
 
-         message: 'Your inquiry status : "Pending" !',
-         buttons: ['OK']
-       });
+         // await alert.present();
+       }
 
-       await alert.present();
      }
-
    }
- }

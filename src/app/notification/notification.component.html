@@ -41,7 +41,12 @@
             </div>
         </div>
         <div class="loader" *ngIf="!loading && !allNotifications.length">
-            <span class="text-center no-request">There are no notification</span>
+            <div class="message-icon">
+            <img src="../../assets/images/message.svg">
+        </div>
+        <div class="notification-text">
+            <span class="text-center no-request">No Notification found <br> right now</span>
+        </div>
         </div>
     </div>
 </ion-content>
