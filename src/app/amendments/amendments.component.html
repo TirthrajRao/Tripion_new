@@ -41,7 +41,7 @@
                             <!-- <i class="fa fa-file-pdf" aria-hidden="true" *ngIf="msg.message.msg.ext=='pdf'"></i> -->
                             <!-- <i class="fa fa-file" aria-hidden="true" *ngIf="msg.message.msg.ext!='pdf'"></i> -->
 
-                            <div *ngIf="!msg.message.msg.mimeType.includes('image')">
+                            <div *ngIf="!msg.message.msg.mimeType.includes('image')" class="holds-the-iframe">
                                 <iframe [src]="'https://docs.google.com/viewerng/viewer?url=' + msg.message.msg.url +'&embedded=true' | safe:'resourceUrl'" frameborder="0">
                                 </iframe>
                                 <p>{{msg.message.msg.name}}</p>
@@ -88,7 +88,7 @@
                             <!-- <i class="fa fa-file-pdf" *ngIf="msg.message.msg.ext=='pdf'"></i> -->
                             <!-- <i class="fa fa-file" *ngIf="msg.message.msg.ext!='pdf'"></i> -->
                             <!-- <p>{{msg.message.msg.name}}</p> -->
-                            <div *ngIf="!msg.message.msg.mimeType.includes('image')">
+                            <div *ngIf="!msg.message.msg.mimeType.includes('image')" class="holds-the-iframe">
                                 <iframe [src]="'https://docs.google.com/viewerng/viewer?url=' + msg.message.msg.url +'&embedded=true' | safe:'resourceUrl'" frameborder="0">
                                 </iframe>
                                 <p>{{msg.message.msg.name}}</p>
