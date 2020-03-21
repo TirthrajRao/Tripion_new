@@ -19,3 +19,32 @@ $button_color: #003574;
     line-height: 22px;
     margin-top : 10px;
 }
+div.plist{
+    color: #7F8DAB !important;
+  
+}
+.passengers-details{
+    width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #7f8dab6e;
+    margin-top: 7px
+}
+.icon-button{
+    border: 2px solid #d2d6dd;  
+    border-radius: 15px;
+    padding: 1px 5px;
+    width: 80px;
+}
+.icons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    i{
+        font-size: 12px;
+       opacity:0.6
+    }
+}
