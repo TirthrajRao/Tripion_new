@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "967474164440",
+    "firebase_url": "https://tripion-21324.firebaseio.com",
+    "project_id": "tripion-21324",
+    "storage_bucket": "tripion-21324.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967474164440:android:ad04407d46180764af9dad",
+        "android_client_info": {
+          "package_name": "io.ionic.tripion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "967474164440-52cn0nlqs98jv6m8h67ga2j7bq1di1l7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLaVcmUvb2dfuhVKvWaCVsxhhEOvW0KCY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "967474164440-52cn0nlqs98jv6m8h67ga2j7bq1di1l7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

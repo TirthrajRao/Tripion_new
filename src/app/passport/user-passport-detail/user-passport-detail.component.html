@@ -1,0 +1,176 @@
+<ion-header>
+    <ion-toolbar class="toolbar-color1">
+        <ion-row>
+            <ion-col size='2'>
+                <div class="back_icon">
+                    <ion-buttons slot="start">
+                        <ion-back-button>
+                            <i class="fa fa-angle-left back_icon_white"></i>
+                        </ion-back-button>
+                    </ion-buttons>
+                </div>
+            </ion-col>
+            <ion-col size='8'>
+                <div class="middle_sec text-white w-100">
+                    <div class="text-center">
+                        <ion-img src="../../assets/images/9.png"></ion-img>
+                        <span>{{passportDetail.nameInPassport}}</span>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col size='2'>
+                <div class="icon_sec">
+                    <ion-menu-button></ion-menu-button>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content refreshingSpinner="circular" pullingIcon="null">
+        </ion-refresher-content>
+    </ion-refresher> -->
+    <div class="all_content">
+        <div *ngIf="visaList.length">
+            <div *ngFor="let visa of visaList">
+                <div class="card" *ngIf=" visa.image_url.length">
+                    <div class="card_header w-100">
+
+
+                        <div class="edit_icon" routerLink="/home/visa-detail/{{visa.id}}">
+                            <ion-img src="../../assets/images/pencil.png">
+                            </ion-img>
+                        </div>
+                        <p class="texr-center">{{visa.country}}</p>
+                    </div>
+                    <div class="card_body">
+                        <div class="card_detail w-100">
+                            <p class="float-left visa_number">Visa Number : {{visa.visa_number}}</p>
+                            <div class="float-right valid_date">
+                                <small> Valid Up To :
+                                </small>
+                                <p>{{visa.doc_expiry_date |date}}</p>
+                            </div>
+                            <div class="passport_image">
+                                <div class="passport_slider">
+                                    <div *ngFor="let img of visa.image_url">
+                                        <div class="passport_slide">
+                                            <ion-img [src]="img.image_url || '../../../assets/images/placeholder.png'" (click)="previewImage(img.image_url)" (load)="loaded = true" [ngClass]="{'img-loaded':loaded}" [hidden]="loaded"></ion-img>
+                                            <ion-spinner [ngClass]="{'center':true}" [hidden]="!loaded"></ion-spinner>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!loading && !visaList.length">
+            <span class="text-white text-center no-request">There are no visa added yet</span>
+        </div>
+        <div class="add_button">
+            <a href="javascript:void(0);" id="add-visa">
+                <img src="../../assets/images/plus.png">
+            </a>
+        </div>
+    </div>
+
+    <div *ngIf="loading">
+        <div id="loader-wrapper">
+            <div class="heartbeatloader">
+                <ion-img class="svgdraw" src="../../../assets/images/loader.gif"></ion-img>
+            </div>
+        </div>
+    </div>
+    <div class="modal_content_with_overlay" id="add-visa-modal" style="display: none;">
+        <div class="modal_body">
+            <form [formGroup]="addVisaForm">
+                <div class="modal_header">
+                    <p class="text-center">Add Visa</p>
+                </div>
+                <div class="modal_content">
+                    <div>
+                        <ion-item>
+                            <ion-label position="floating">Passport</ion-label>
+                            <ion-select formControlName="passport_id_for_visa">
+                                <span *ngFor="let passport of allPassport">
+                                    <ion-select-option value="{{passport.id}}">
+                                        {{passport.name_in_passport}}</ion-select-option>
+                                </span>
+                            </ion-select>
+                        </ion-item>
+                        <div *ngIf="submitted && f.passport_id_for_visa.errors" class="invalid-feedback">
+                            <div *ngIf="f.passport_id_for_visa.errors.required">Passport is required</div>
+                        </div>
+                    </div>
+                    <div>
+                        <!-- <ion-item>
+                            <ion-label position="floating">Country</ion-label>
+                            <ion-input type="text" formControlName="country"></ion-input>
+                        </ion-item> -->
+                        <ion-item class="select2">
+                            <ion-label>Select country</ion-label>
+                            <select id="myselection" class="form-control w-100" formControlName="country">
+                                <option [value]="country.name" *ngFor="let country of counries"> {{country.name}}
+                                </option>
+                            </select>
+                        </ion-item>
+                        <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                            <div *ngIf="f.country.errors.required">Country is required</div>
+                        </div>
+                    </div>
+                    <div>
+                        <ion-item>
+                            <ion-label position="floating">Date of Expiry</ion-label>
+                            <ion-datetime formControlName="doc_expiry_date" min="{{curruntDate}}" max="{{nextYear}}">
+                            </ion-datetime>
+                        </ion-item>
+                        <div *ngIf="submitted && f.doc_expiry_date.errors" class="invalid-feedback">
+                            <div *ngIf="f.doc_expiry_date.errors.required">Expiery Date is required</div>
+                        </div>
+                    </div>
+                    <div>
+                        <ion-item>
+                            <ion-label position="floating">Visa Number</ion-label>
+                            <ion-input type="text" formControlName="visa_number"></ion-input>
+                        </ion-item>
+                        <div *ngIf="submitted && f.visa_number.errors" class="invalid-feedback">
+                            <div *ngIf="f.visa_number.errors.required">Visa Number is required</div>
+                            <div *ngIf="f.visa_number.errors.pattern">Visa Number is not valid</div>
+                        </div>
+                    </div>
+                    <div class="select_files">
+                        <input type="file" class="form-control" formControlName="profile_image" id="visafile" style="display: none;" (change)="selectFile($event)" multiple accept="image/* ,.doc ,.pdf">
+                        <label class="text-center" for="visafile">
+                            <i class="far fa-copy"></i>
+                            Select from Files
+                        </label>
+
+                    </div>
+                    <div *ngIf="submitted && f.profile_image.errors" class="invalid-feedback">
+                        <div *ngIf="f.profile_image.errors.required">File is required</div>
+                    </div>
+
+                    <div class="selected_image_preview" *ngIf="urls.length">
+                        <ul>
+                            <li *ngFor="let img of urls">
+                                <ion-img [src]="img.url" *ngIf="img.type"></ion-img>
+                                <span *ngIf="!img.type">{{img.imageName}}</span>
+                                <div (click)=removeImage(img) class="mt-2">
+                                    <ion-img src="assets/images/remove.png" class="remove_image"></ion-img>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="make_folder">
+                        <button (click)="addVisa(addVisaForm.value)" class="btn" [disabled]="isDisable"><i
+                                class="fas fa-plus"></i>Add Visa</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,110 @@
+<ion-header>
+    <app-header [cname]="'Safe to Travel ?'"></app-header>
+</ion-header>
+
+<ion-content>
+    <div class="benefits_content">
+        <form [formGroup]="safeToTravelForm">
+            <div class="card">
+                <div class="card_header w-100">
+                    <p>Country</p>
+                    <ion-img src="../../assets/images/s1.png"></ion-img>
+                </div>
+                <div class="card_body">
+                    <ion-item>
+                        <ion-label position="floating">Country to travel ?</ion-label>
+                        <select id="myselection" class="form-control" formControlName="countryName" (change)="changeCountry($event)">
+                            <option [value]="country.name" *ngFor="let country of countries" > {{country.name}}
+                            </option>
+                        </select>
+                        <!-- <ion-input type="text" formControlName="countryName"></ion-input> -->
+                    </ion-item>
+                    <div *ngIf="submitted && f.countryName.errors" class="invalid-feedback">
+                        <div *ngIf="f.countryName.errors.required">Country Name is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_header w-100">
+                    <ion-img src="../../assets/images/s2.png"></ion-img>
+                    <p>Passengers</p>
+                </div>
+                <div class="card_body">
+                    <div>
+                        <ion-item>
+                            <ion-label position="floating">Infants</ion-label>
+                            <ion-input type="number" formControlName="infantsPassengers" min='0'></ion-input>
+                        </ion-item>
+                        <div *ngIf="submitted && f.infantsPassengers.errors" class="invalid-feedback">
+                            <div *ngIf="f.infantsPassengers.errors.required">Infants Passengers is required</div>
+                        </div>
+                    </div>
+                    <div>
+                        <ion-item>
+                            <ion-label position="floating">Children</ion-label>
+                            <ion-input type="number" formControlName="childrenPassengers" min='0'></ion-input>
+                        </ion-item>
+                        <div *ngIf="submitted && f.childrenPassengers.errors" class="invalid-feedback">
+                            <div *ngIf="f.childrenPassengers.errors.required">Children Passengers is required</div>
+                        </div>
+                    </div>
+                    <div>
+                        <ion-item>
+                            <ion-label position="floating">Adults</ion-label>
+                            <ion-input type="number" formControlName="adultsPassengers" min='0'></ion-input>
+                        </ion-item>
+                        <div *ngIf="submitted && f.adultsPassengers.errors" class="invalid-feedback">
+                            <div *ngIf="f.adultsPassengers.errors.required">Adults Passengers is required</div>
+                        </div>
+                    </div>
+                    <div>
+                        <ion-item>
+                            <ion-label position="floating">Senior Citizens</ion-label>
+                            <ion-input type="number" formControlName="seniorPassengers" min='0'></ion-input>
+                        </ion-item>
+                        <div *ngIf="submitted && f.seniorPassengers.errors" class="invalid-feedback">
+                            <div *ngIf="f.seniorPassengers.errors.required">Senior Citizens Passengers is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_header w-100">
+                    <p>Dates</p>
+                    <ion-img src="../../assets/images/s3.png"></ion-img>
+                </div>
+                <div class="card_body">
+                    <div>
+                        <ion-item>
+                            <ion-label position="floating">From</ion-label>
+                            <ion-datetime formControlName="fromDate" min="{{curruntDate}}" max="{{nextYear}}"></ion-datetime>
+                        </ion-item>
+                        <div *ngIf="submitted && f.fromDate.errors" class="invalid-feedback">
+                            <div *ngIf="f.fromDate.errors.required">From Date is required</div>
+                        </div>
+                    </div>
+                    <div>
+                        <ion-item>
+                            <ion-label position="floating">To</ion-label>
+                            <ion-datetime formControlName="toDate" max="{{nextYear}}" min={{safeToTravelForm.value.fromDate}}></ion-datetime>
+                        </ion-item>
+                        <div *ngIf="submitted && f.toDate.errors" class="invalid-feedback">
+                            <div *ngIf="f.toDate.errors.required">To Date is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="submit_btn">
+                <button type="submit" (click)="addSafeToTravelReq(safeToTravelForm.value)" class="btn" [disabled]="isDisable"><i
+                        class="fas fa-save"></i>Submit</button>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="loading">
+        <div id="loader-wrapper">
+            <div class="heartbeatloader">
+                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+            </div>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,89 @@
+<ion-header>
+    <app-header [cname]="'Documents'"></app-header>
+</ion-header>
+
+<ion-content>
+    <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content refreshingSpinner="circular" pullingIcon="null">
+        </ion-refresher-content>
+    </ion-refresher> -->
+    <div class="document_content image_preview" *ngIf="allImage.length">
+        <ion-img [src]="allImage[0].image_url" *ngIf="!previewImag.length"></ion-img>
+        <ion-slides [options]="slideOpts" *ngIf="previewImag.length" pager="true">
+            <ion-slide *ngFor="let img of previewImag.reverse()">
+                <ion-img [src]="img.image_url"></ion-img>
+            </ion-slide>
+        </ion-slides>
+    </div>
+    <div class="document_content">
+        <div class="row all-img m-0 " *ngIf="allImage.length">
+            <div class="col-4 img-icon p-0" *ngFor="let photo of allImage" style="cursor: pointer;" (click)="selectDocument(photo)">
+
+                <div class="single_img">
+                    <div class="single_img_div">
+                        <img [src]="photo.image_url || '../../assets/images/placeholder.png'" class="image-{{photo.id}}" style="opacity: 1;" *ngIf="photo.image_extension == 'png' || photo.image_extension == 'jpg'  || photo.image_extension == 'jpeg'" />
+                    </div>
+                    <div class="single_img_div">
+                        <span *ngIf="photo.image_extension != 'png' && photo.image_extension != 'jpg'  && photo.image_extension != 'jpeg'">{{photo.image_name}}</span>
+                    </div>
+                    <ion-icon name="checkmark" class="checkmark-icon-{{photo.id}}"></ion-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="documentId.length" class="send_button" (click)="sendDocument()">
+        <ion-icon ios="ios-send" md="md-send"></ion-icon>
+    </div>
+    <div class="add_button" id="open-modal">
+        <a href="javascript:void(0);">
+            <img src="../../assets/images/plus.png">
+        </a>
+    </div>
+    <div class="modal_content_with_overlay" id="folder-modal" style="display: none;">
+        <div class="modal_body">
+            <div class="modal_content">
+                <ion-item>
+                    <div class="single_folder" id="upload-documents">
+                        <input type="file" #file style="display: none;" (change)="selectOtherFile($event)" accept="image/*, .doc ,.pdf ,.xlsx" multiple>
+                        <span (click)="file.click()" style="cursor: pointer;"><i class="fas fa-upload mr-2"></i>Upload
+                            New
+                            Document</span>
+                    </div>
+                </ion-item>
+                <div class="upload_file_progress" *ngFor="let image of urls">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="uploded_image">
+                                <ion-img [src]="image.url"></ion-img>
+                            </div>
+                        </div>
+                        <div class="col-7 p-0">
+                            <p class="file_name">{{image.imageName}}</p>
+                        </div>
+                    </div>
+                </div>
+                <ion-item>
+                    <div class="single_folder" routerLink='/home/passports' *ngIf="isVisiblePassport">
+                        <span style="cursor: pointer;"><i class="fas fa-passport mr-2"></i>New Passport</span>
+                    </div>
+                </ion-item>
+                <div class="finish_button" *ngIf="urls.length">
+                    <button type="submit" class="btn" (click)="uploadDocument()" [disabled]="isDisable">
+                        <ion-img src="../../assets/images/finish.png"></ion-img>
+                        Add to gallery
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="loading">
+        <div id="loader-wrapper">
+            <div class="heartbeatloader">
+                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+            </div>
+        </div>
+    </div>
+
+</ion-content>

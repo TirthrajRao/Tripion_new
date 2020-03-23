@@ -1,0 +1,61 @@
+.image_folder_detail {
+    width: 100%;
+    padding: 18px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    position: relative;
+    cursor: pointer;
+    @media(max-height: 812px) {
+        padding: 13px;
+    }
+    @media(max-height: 750px) {
+        padding: 8px;
+    }
+    @media(max-height: 600px) {
+        padding: 6px;
+    }
+    i.fas.fa-folder {
+        float: left;
+        color: #003574;
+        font-size: 42px;
+    }
+    .image_detail {
+        border-radius: 7px;
+        display: inline-block;
+        width: 100%;
+        ion-img {
+            width: 56px;
+        }
+        a,
+        p {
+            font-weight: 600;
+            font-size: 16px;
+            color: #000;
+            padding-left: 15px;
+            line-height: 31px;
+        }
+    }
+}
+
+.reason p {
+    font-size: 12px;
+    margin-top: 15px;
+}
+
+.image {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    margin-right: 10px;
+    float: left;
+    outline: none;
+    img {
+        max-width: 100%;
+        min-width: 100%;
+        max-height: 100%;
+        min-height: 100%;
+        border-radius: 8px;
+        object-fit: cover;
+        /* border: 1px solid; */
+    }
+}

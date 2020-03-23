@@ -1,0 +1,327 @@
+<ion-header>
+    <app-header [cname]="'New Trip'"></app-header>
+</ion-header>
+
+<ion-content>
+    <div class="all_content">
+        <form [formGroup]="airTickitForm">
+            <div class="services_detail">
+                <p class="ml-3 visa_text">Air Tickets</p>
+                <div class="general_details">
+                    <div class="general_details_header">
+                        <img src="assets/images/passanger.png">
+                        <p>Passengers</p>
+                    </div>
+                    <div class="general_details_body">
+                        <div class="passengers-details">
+                            <div class="plist">Infants</div>
+                            <div class="icon-button">
+                                <div class="icons">
+                                    <i class="fa fa-minus" aria-hidden="true" (click)="decrement('infants')"></i>
+                                    <span>{{infantsPassengers}}</span>
+                                    <i class="fa fa-plus" aria-hidden="true" (click)="increment('infants')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="passengers-details">
+                            <div class="plist">Children</div>
+                            <div class="icon-button">
+                                <div class="icons">
+                                    <i class="fa fa-minus" aria-hidden="true" (click)="decrement('children')"></i>
+                                    <span>{{childrenPassengers}}</span>
+                                    <i class="fa fa-plus" aria-hidden="true" (click)="increment('children')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="passengers-details">
+                            <div class="plist">Adults</div>
+                            <div class="icon-button">
+                                <div class="icons">
+                                    <i class="fa fa-minus" aria-hidden="true" (click)="decrement('adults')"></i>
+                                    <span>{{adultsPassengers}}</span>
+                                    <i class="fa fa-plus" aria-hidden="true" (click)="increment('adults')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="passengers-details">
+                            <div class="plist">Senior Citizens</div>
+                            <div class="icon-button">
+                                <div class="icons">
+                                    <i class="fa fa-minus" aria-hidden="true" (click)="decrement('senior')"></i>
+                                    <span>{{seniorPassengers}}</span>
+                                    <i class="fa fa-plus" aria-hidden="true" (click)="increment('senior')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div>
+                            <ion-item>
+                                <ion-label position="floating">Infants</ion-label>
+                                <ion-input type="number" formControlName="infantsPassenger"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.infantsPassenger.errors" class="invalid-feedback">
+                                <div *ngIf="f.infantsPassenger.errors.required">Number of Infants Passengers is required
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Children</ion-label>
+                                <ion-input type="number" formControlName="childrenPassenger"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.childrenPassenger.errors" class="invalid-feedback">
+                                <div *ngIf="f.childrenPassenger.errors.required">Number of Children Passengers is
+                                    required
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Adults</ion-label>
+                                <ion-input type="number" formControlName="adultsPassenger"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.adultsPassenger.errors" class="invalid-feedback">
+                                <div *ngIf="f.adultsPassenger.errors.required">Number of Adults Passengers is required
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Senior Citizens</ion-label>
+                                <ion-input type="number" formControlName="seniorPassenger"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.seniorPassenger.errors" class="invalid-feedback">
+                                <div *ngIf="f.seniorPassenger.errors.required">Number of Senior Passengers is required
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="row">
+                        <div class="col-3 text-center pl-4">
+                            <img src="assets/images/infants.png" style="height: 35px;">
+                            <p>{{infantsPassengers}}</p>
+                        </div>
+                        <div class="col-3 text-center">
+                            <img src="assets/images/children.svg" style="height: 46px;margin-top:-4px;">
+                            <p style="margin-top: -7px;">{{childrenPassengers}}</p>
+                        </div>
+                        <div class="col-3 text-center">
+                            <img src="assets/images/adults.png" style="height: 33px;margin-top: 4px;">
+                            <p>{{adultsPassengers}}</p>
+                        </div>
+                        <div class="col-3 text-center">
+                            <img src="assets/images/seniorcityzens.png" style="height: 33px;
+                            margin-top: 2px;">
+                            <p>{{seniorPassengers}}</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="general_details">
+                    <div class="general_details_header">
+                        <img src="assets/images/jounry.png">
+                        <p>Journey Type</p>
+                    </div>
+                    <div class="general_details_body">
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="Journey1" formControlName="journeyType"
+                                    value="Round Trip">
+                                <label for="Journey1">Round Trip</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="Journey2" value="One Way"
+                                    formControlName="journeyType">
+                                <label for="Journey2">One Way</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="general_details">
+                    <div class="general_details_header">
+                        <img src="assets/images/flight-tire.png">
+                        <p>Flight Tier Prefernece</p>
+                    </div>
+                    <div class="general_details_body">
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="Tire1" value="Economy"
+                                    formControlName="flightTirePreference">
+                                <label for="Tire1">Economy</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="Tire2" value="Business Class"
+                                    formControlName="flightTirePreference">
+                                <label for="Tire2">Business Class</label>
+                            </div>
+                            <div class="col-12">
+                                <input type="radio" class="mr-2" id="Tire3" value="First Class"
+                                    formControlName="flightTirePreference">
+                                <label for="Tire3">First Class</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="general_details">
+                    <div class="general_details_header">
+                        <img src="assets/images/flight-tire.png">
+                        <p>Flight Seat Preference</p>
+                    </div>
+                    <div class="general_details_body">
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="Flight1" value="Aisle"
+                                    formControlName="flightSeatPreferences" (change)="selectVisaType($event)">
+                                <label for="Flight1">Aisle</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="Flight2" value="Middle"
+                                    formControlName="flightSeatPreferences" (change)="selectVisaType($event)">
+                                <label for="Flight2">Middle</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="Flight3" value="Window"
+                                    formControlName="flightSeatPreferences" (change)="selectVisaType($event)">
+                                <label for="Flight3">Window</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="Flight4" value="Emergency Exit Row"
+                                    formControlName="flightSeatPreferences" (change)="selectVisaType($event)">
+                                <label for="Flight4">Emergency Exit Row</label>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Other</ion-label>
+                                <ion-input type="text" (ionInput)="changeInputValue($event)" id="other-input">
+                                </ion-input>
+                            </ion-item>
+                        </div>
+                        <div *ngIf="submitted && f.flightSeatPreferences.errors" class="invalid-feedback">
+                            <div *ngIf="f.flightSeatPreferences.errors.required">Choose one Flight Seat Preference</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="general_details">
+                    <div class="general_details_header">
+                        <img src="assets/images/flight-meal.png">
+                        <p>In-Flight Meal</p>
+                    </div>
+                    <div class="general_details_body">
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Meal</ion-label>
+                                <ion-select formControlName="inFlightMeal" multiple="true">
+                                    <ion-select-option value="Veg Hindu Meal">Veg Hindu Meal</ion-select-option>
+                                    <ion-select-option value="Veg Vegan">Veg Vegan</ion-select-option>
+                                    <ion-select-option value="Veg Jain">Veg Jain</ion-select-option>
+                                    <ion-select-option value="Veg Lacto-ovo meal">Veg Lacto-ovo meal
+                                    </ion-select-option>
+                                    <ion-select-option value="Veg Oriental">Veg Oriental</ion-select-option>
+                                    <ion-select-option value="Infant Meal">Infant Meal</ion-select-option>
+                                    <ion-select-option value="Child Meal">Child Meal</ion-select-option>
+                                    <ion-select-option value="Diabetic meal">Diabetic meal</ion-select-option>
+                                    <ion-select-option value="Fruit Platter">Fruit Platter</ion-select-option>
+                                    <ion-select-option value="Gluten Intolerant Meal">Gluten Intolerant Meal
+                                    </ion-select-option>
+                                    <ion-select-option value="Kosher Meal">Kosher Meal</ion-select-option>
+                                    <ion-select-option value="Hindu Non-veg">Hindu Non-veg</ion-select-option>
+                                </ion-select>
+                            </ion-item>
+                            <div *ngIf="submitted && f.inFlightMeal.errors" class="invalid-feedback">
+                                <div *ngIf="f.inFlightMeal.errors.required">Select Flight Meal</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="general_details">
+                    <div class="general_details_header">
+                        <img src="assets/images/jounry.png">
+                        <p>Airline Preference</p>
+                    </div>
+                    <div class="general_details_body">
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Airline Preference</ion-label>
+                                <ion-input type="text" formControlName="airlinePreference"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.airlinePreference.errors" class="invalid-feedback">
+                                <div *ngIf="f.airlinePreference.errors.required">Airline Preference is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="general_details">
+                    <div class="general_details_header">
+                        <img src="assets/images/flight-tire.png">
+                        <p>Seat Belt Extender</p>
+                    </div>
+                    <div class="general_details_body">
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="seatbelt1" formControlName="seatBeltExtender"
+                                    value="Yes">
+                                <label for="seatbelt1">Yes</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="seatbelt2" formControlName="seatBeltExtender"
+                                    value="No">
+                                <label for="seatbelt2">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="general_details">
+                    <div class="general_details_header">
+                        <img src="assets/images/wheelchair.png">
+                        <p>Wheel Chair Assistance</p>
+                    </div>
+                    <div class="general_details_body">
+
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="Wheelchair1" formControlName="wheelChairAssistance"
+                                    value="Yes">
+                                <label for="Wheelchair1">Yes</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="Wheelchair2" formControlName="wheelChairAssistance"
+                                    value="No">
+                                <label for="Wheelchair2">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="general_details" *ngIf="isSelected == 'true'">
+                    <div class="general_details_header">
+                        <p>Number of Quotes</p>
+                    </div>
+                    <div class="general_details_body">
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Other</ion-label>
+                                <ion-input type="text"></ion-input>
+                            </ion-item>
+                        </div>
+                        <!-- <h1 class="text-center error_msg">Only visible if Air Tickets Standalone Inquiry</h1> -->
+                    </div>
+                </div>
+
+            </div>
+            <div class="next_btn" *ngIf="formUrl.length">
+                <button type="submit" (click)="nextForm(airTickitForm.value)">Next<i
+                        class="fas fa-arrow-right"></i></button>
+            </div>
+            <!-- <div class="submit_btn" *ngIf="!formUrl.length">
+                <button type="submit" routerLink='/home/home-page'><i class="fas fa-save"></i>Submit</button>
+            </div> -->
+        </form>
+    </div>
+</ion-content>

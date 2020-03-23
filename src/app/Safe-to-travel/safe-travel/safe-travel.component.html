@@ -1,0 +1,48 @@
+<ion-header>
+    <app-header [cname]="'Safe to Travel'"></app-header>
+</ion-header>
+
+<ion-content>
+    <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content refreshingSpinner="circular" pullingIcon="null">
+        </ion-refresher-content>
+    </ion-refresher> -->
+    <div class="benefits_content" *ngIf="safeToTravelRes.length">
+        <div *ngFor="let travelres of safeToTravelRes">
+            <div class="country_name w-100" (click)="getDetails(travelres)" *ngIf="travelres.safe_to_travel">
+                <p class="float-left">{{travelres.safe_to_travel}}</p>
+                <img src="../../assets/images/location.png" class="float-right">
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!loading && !safeToTravelRes.length">
+        <span class="text-white text-center no-request">There are no responses yet. Click the button below to request for Safe to Travel</span>
+    </div>
+    <div class="add_button">
+        <a href="javascript:void(0);" routerLink='/home/safe-to-travel'>
+            <img src="../../assets/images/plus.png">
+        </a>
+    </div>
+    <div *ngIf="loading">
+        <div id="loader-wrapper">
+            <div class="heartbeatloader">
+                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+            </div>
+        </div>
+    </div>
+
+    <div class="success_alert_box1" style="display: none;">
+        <div class="alert_box_content">
+          <div class="alert_box_text">
+             <div class="alert_box_image">
+              <img src="../../assets/images/safetravel.png" alt="image icon">
+          </div>
+          <p>
+            We are working<br>
+            we will revert soon !!
+        </p>
+    </div>
+
+</div>
+</div>
+</ion-content>

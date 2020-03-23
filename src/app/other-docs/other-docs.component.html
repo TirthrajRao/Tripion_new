@@ -1,0 +1,109 @@
+<ion-header>
+    <app-header [cname]="'Other Docs'"></app-header>
+</ion-header>
+
+<ion-content>
+    <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content refreshingSpinner="circular" pullingIcon="null">
+        </ion-refresher-content>
+    </ion-refresher> -->
+    <div class="all_content">
+        <div *ngIf="folderList.length">
+            <div class="card folder_detail" *ngFor="let folder of folderList;let i =index" routerLink='/home/pictures/{{folder}}'>
+                <ion-img [src]="getRandomImgeIcon(i)"></ion-img>
+                <p>{{folder}}</p>
+            </div>
+        </div>
+        <div *ngIf="!loading && !folderList.length">
+            <span class="text-white text-center no-request">There are no Folder Yet</span>
+        </div>
+        <div class="add_button" (click)="openModal()">
+            <a>
+                <img src="../../assets/images/plus.png">
+            </a>
+        </div>
+    </div>
+
+    <!-- modal  -->
+    <div class="modal_content_with_overlay" id="new-modal" style="display: none;">
+        <div class="modal_body">
+            <div class="create_folder">
+                <!-- <div class="single_folder" id="upload-documents">
+                    <a href="javascript:void(0);"><i class="fas fa-upload mr-2"></i>Upload New Document</a>
+                </div> -->
+                <div class="single_folder" id="open-folder">
+                    <a href="javascript:void(0);"><i class="fas fa-plus mr-2"></i>New Folder</a>
+                </div>
+                <div class="single_folder" routerLink='/home/passports'>
+                    <a href="javascript:void(0);"><i class="fas fa-passport mr-2"></i>New Passport</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal for  create new folder  -->
+    <div class="modal_content_with_overlay" id="folder-modal" style="display: none;">
+        <div class="modal_body">
+            <div class="modal_header">
+                <p class="text-center">Folder Title</p>
+            </div>
+            <div class="modal_content">
+                <form [formGroup]="createFolderForm">
+                    <div>
+                        <ion-item>
+                            <ion-label position="floating">Title</ion-label>
+                            <ion-input type="text" formControlName="folder_name"></ion-input>
+                        </ion-item>
+                        <div *ngIf="submitted && f.folder_name.errors" class="invalid-feedback">
+                            <div *ngIf="f.folder_name.errors.required">Folder Name is required</div>
+                            <div *ngIf="f.folder_name.errors.pattern">Folder Name is not valid</div>
+                        </div>
+                    </div>
+                    <div class="make_folder">
+                        <button type="submit" class="btn" (click)="createFolder(createFolderForm.value)" [disabled]="isDisable"><i
+                                class="fas fa-plus"></i>Make Folder</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="loading">
+        <div id="loader-wrapper">
+            <div class="heartbeatloader">
+                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal for  upload new documents  -->
+
+    <!-- <div class="modal_content_with_overlay" id="add-documents" style="display: none;">
+        <div class="modal_body">
+            <div class="modal_header">
+                <p class="text-center">Add New Document</p>
+            </div>
+            <div class="modal_content">
+                <div class="select_files">
+                    <input type="file" class="form-control" id="file" (change)="selectFile($event)" style="display: none;" multiple accept="image/png, image/jpeg, image/jpg ,.doc ,.pdf">
+                    <label class="text-center" for="file">
+                        <i class="far fa-copy"></i>
+                        Select from Files
+                    </label>
+                </div>
+                <span class="text-danger" *ngIf="message">{{message}}</span>
+                <div class="selected_image" *ngIf="urls.length">
+                    <div class="row">
+                        <div class="col-4" *ngFor="let url of urls">
+                            <ion-img [src]="url.imgUrl" *ngIf="url.type=='img'"></ion-img>
+                            <span *ngIf="url.type !='img'">{{url.name}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="make_folder">
+                    <button type="submit" (click)="uploadDocument()" [disabled]="isDisable"><i class="fas fa-plus"></i>Upload Documents</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</ion-content>

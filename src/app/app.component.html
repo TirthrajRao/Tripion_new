@@ -1,0 +1,36 @@
+<ion-app>
+  <ion-router-outlet></ion-router-outlet>
+
+  <!-- Success alert -->
+  <div class="success_alert_box" style="display: none;">
+    <div class="alert_box_content">
+      <div class="alert_box_text">
+        <h4 *ngIf="!title">Thanks !!</h4>
+        <h4 *ngIf="title">{{title}}</h4>
+        <p>
+         {{message}}
+       </p>
+     </div>
+     <div class="alert_box_image">
+      <img src="../../assets/images/success.png" alt="image icon">
+    </div>
+  </div>
+</div>
+
+<!-- Error Alert -->
+<div class="error_alert_box" style="display: none;">
+  <div class="alert_box_content">
+    <div class="alert_box_text">
+      <h4>Oopps !!</h4>
+      <p>
+        <span>A BOO-BOO HAPPENS</span>
+        <br> something went wrong
+      </p>
+    </div>
+    <div class="alert_box_image">
+      <img src="assets/images/cross.png" alt="image icon">
+    </div>
+  </div>
+</div>
+
+</ion-app>

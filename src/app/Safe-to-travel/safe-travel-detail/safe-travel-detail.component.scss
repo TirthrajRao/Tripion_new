@@ -1,0 +1,81 @@
+$purple: #0575E6;
+$blue: #021B79;
+$green: #2FE57C;
+// content css start here
+.benefits_content {
+    padding: 0px 10px;
+    position: relative;
+    z-index: 11;
+}
+
+.card {
+    .card_header {
+        border-bottom: 1px solid #C7CBD6;
+        padding: 12px 15px;
+        @media(max-height: 750px) {
+            padding: 7px 15px;
+        }
+        @media(max-height: 600px) {
+            padding: 4px 12px;
+        }
+        p {
+            color: #434A5E;
+            font-weight: 600;
+            line-height: 2;
+            font-size: 18px;
+        }
+    }
+    .card_body {
+        padding: 15px 15px 25px 15px;
+        @media(max-height: 750px) {
+            padding: 12px 15px 20px 15px;
+        }
+        @media(max-height: 600px) {
+            padding: 10px 15px 15px 15px;
+        }
+        p {
+            color: #707070;
+            font-weight: 600;
+            line-height: 26px;
+            text-align: center;
+            font-size: 15px;
+        }
+    }
+}
+
+.download_report {
+    padding: 30px;
+    @media(max-height: 600px) {
+        padding: 15px 30px;
+    }
+    button {
+        border-radius: 30px;
+        line-height: 46px;
+        color: #ffffff;
+        font-size: 15px;
+        position: relative;
+        width: 100%;
+        font-weight: 500;
+        outline: none;
+        background: linear-gradient(to right, $purple, $blue);
+        box-shadow: 2px 1px 3px rgba(129, 59, 219, 0.5);
+        i {
+            margin-right: 15px;
+            font-size: 25px;
+            margin-top: 10px;
+        }
+    }
+}
+
+ion-refresher-content {
+    background-color: #0575E6;
+    --color: white !important;
+}
+
+.view_pdf {
+    font-size: 20px;
+}
+
+.holds-the-iframe {
+  background:url('../../../assets/images/pdfloader.gif') center center no-repeat;
+}

@@ -1,0 +1,57 @@
+<ion-header>
+    <app-header [cname]="folderName"></app-header>
+</ion-header>
+
+<ion-content>
+    <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">                                                                                                                                                                                                                                                                                                                                               </ion-refresher> -->
+    <div class="all_content">
+        <div *ngIf="allImages.length">
+            <app-folder-images [images]="allImages"></app-folder-images>
+        </div>
+        <div class="add_button" id="upload-pictures">
+            <a href="javascript:void(0);">
+                <img src="../../assets/images/plus.png">
+            </a>
+        </div>
+    </div>
+    <div *ngIf="loading">
+        <div id="loader-wrapper">
+            <div class="heartbeatloader">
+                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!loading && !allImages.length">
+        <span class="text-white text-center no-request">Empty folder</span>
+    </div>
+    <!-- add pictures modal open here  -->
+    <div class="modal_content_with_overlay" id="add-pictures" style="display: none;">
+        <div class="modal_body">
+            <div class="modal_header">
+                <p class="text-center">Add Pictures</p>
+            </div>
+            <div class="modal_content">
+                <div class="select_files">
+                    <input type="file" class="form-control" #file (change)="selectFile($event)" style="display: none;" accept="image/* ,.pdf ,.doc" multiple>
+                    <label class="text-center" (click)="file.click()">
+                        <i class="far fa-copy"></i>
+                        Select from Files
+                    </label>
+                </div>
+                <span class="text-danger" *ngIf="message">{{message}}</span>
+                <div *ngIf="urls.length">
+                    <div class="row">
+                        <div class="col-4 selected_image" *ngFor="let img of urls">
+                            <ion-img [src]="img.url" *ngIf="img.type"></ion-img>
+                            <span *ngIf="!img.type">{{img.imageName}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="make_folder">
+                    <button type="submit" class="btn" (click)="uploadImage()" [disabled]="isDisable"><i
+                            class="fas fa-plus"></i>Upload Pictures</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

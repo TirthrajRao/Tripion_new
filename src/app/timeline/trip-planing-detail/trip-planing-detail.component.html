@@ -1,0 +1,96 @@
+<ion-content>
+    <div class="trip_content">
+        <div class="header_sec" [style.background-image]="tripImage ?'url('+tripImage+')': 'url(../../../assets/images/header.png)'">
+            <i class="fa fa-angle-left back_icon_white" (click)="goBack()"></i>
+            <div class="header_text">
+                <h3>The Trip Planing</h3>
+                <p>Trip Details
+                </p>
+            </div>
+
+        </div>
+        <div class="all_trip_content" *ngIf="timelineDayDetail">
+            <p class="text-white timeline_day"> Day {{timelineDayDetail.itinerary_day}}</p>
+            <div class="trip_plan_top">
+                <div class="trip_plan">
+                    <ion-card>
+                        <ion-card-content>
+                            <div class="card_header w-100 d-inline-block ">
+                                <h3 class="float-left">{{timelineDayDetail.itinerary_title}}</h3>
+                                <p class="float-right"><i class="far fa-calendar-minus"></i>{{timelineDayDetail.itinerary_date}}</p>
+                            </div>
+                            <div class="card_body">
+                                <p class="mt-1">{{timelineDayDetail.itinerary_content}}</p>
+                            </div>
+                            <div *ngFor="let detail of timelineDayDetail.itinerary_details">
+                                <div class="trip_drescription mt-3">
+                                    <div class="trip_drescription_header">
+                                        <i class="far fa-clock"></i>
+                                        <div class="top_sec">
+                                            <h5>Trip Starts From </h5>
+                                            <small>{{detail.time}}</small>
+                                        </div>
+                                    </div>
+                                    <!-- <h6>Van Gogh Museum</h6> -->
+                                    <p>{{detail.des}}</p>
+                                    <div class="trip_drescription_image">
+                                        <div class="row" *ngIf="detail.attachment && detail.attachment.length">
+                                            <div class="col-6" *ngFor="let img of detail.attachment;let i=index">
+                                                <div *ngIf="i < 2">
+                                                    <div class="trip_img" (click)="previewImage(img.image_url);" *ngIf="img.image_extension == 'jpeg' || img.image_extension == 'png' || img.image_extension == 'jpg'">
+                                                        <img [src]="img.image_url" (click)="downloadPdf(img.image_url,img.image_name,img.mime_type,img.image_extension)">
+                                                    </div>
+
+                                                    <div class="trip_img" *ngIf="img.image_extension != 'jpeg' && img.image_extension != 'png' && img.image_extension != 'jpg'" (click)="downloadPdf(img.image_url,img.image_name,img.mime_type)">
+                                                        <span>{{img.image_name}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="view_more" *ngIf="detail.attachment.length >2" id="view-more" (click)="openModal(detail.attachment)">
+                                        <a>View More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </ion-card-content>
+                    </ion-card>
+                </div>
+            </div>
+            <!-- <div class="trip_status">
+                <div class="day_one" [ngClass]="{'day_one1': '2020-01-14' > '2020-03-15'}">
+                <div>
+                    <p> Day {{timelineDayDetail.itinerary_day}}</p>
+                </div>
+            </div> -->
+        </div>
+        <div *ngIf="loading">
+            <div id="loader-wrapper">
+                <div class="heartbeatloader">
+                    <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal of View More Image -->
+    <div class="modal_content_with_overlay" id="view-img-modal" style="display: none;">
+        <div class="modal_body">
+            <div class="modal_content">
+                <div class="trip_drescription_image">
+                    <div class="row">
+                        <div class="col-6" *ngFor="let img of images">
+                            <div class="trip_img" (click)="previewImage(img)" *ngIf="img.image_extension == 'jpeg' || img.image_extension == 'png' || img.image_extension == 'jpg'">
+                                <img [src]="img.image_url" (click)="downloadPdf(img.image_url,img.image_name,img.mime_type)">
+                            </div>
+                            <div class="trip_img" *ngIf="img.image_extension != 'jpeg' && img.image_extension != 'png' && img.image_extension != 'jpg'" (click)="downloadPdf(img.image_url,img.image_name,img.mime_type)">
+                                <span>{{img.image_name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

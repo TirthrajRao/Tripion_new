@@ -1,0 +1,221 @@
+$purple: #0575E6;
+$blue: #021B79;
+$green: #2FE57C;
+// header css start here 
+.upload_img {
+    background: linear-gradient(#0575E6, #021B79);
+    ion-img {
+        height: 120px;
+        width: 120px;
+        margin: auto;
+    }
+}
+
+// header css end here 
+// content css start here
+ion-content {
+    --background: #fff !important;
+}
+
+.document_content {
+    position: relative;
+    z-index: 11;
+    // top: 50%
+}
+
+.image_preview {
+    height: 250px;
+    ion-img {
+        height: 250px;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+ion-slides {
+    height: 230px;
+}
+
+.back_color {
+    background-color: #707070;
+}
+
+.select_files {
+    padding: 18px 30px 10px 30px;
+    background-image: url('../../assets/images/Untitled-1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: auto;
+    button {
+        width: 100%;
+        color: #fff;
+        background-color: $blue;
+        padding: 0px 10px;
+        line-height: 50px;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 5px;
+        position: relative;
+        outline: none;
+        cursor: pointer;
+        box-shadow: 2px 2px 3px rgba(129, 59, 219, 0.5);
+        i {
+            font-size: 25px;
+            margin-right: 15px;
+        }
+    }
+    .or_text {
+        color: #fff;
+        padding: 10px 0px;
+        text-transform: uppercase;
+        font-size: 15px;
+        font-weight: 500;
+    }
+    label {
+        width: 100%;
+        color: #fff;
+        background: linear-gradient(to right, $purple, $blue);
+        padding: 0px 10px;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 5px;
+        line-height: 50px;
+        position: relative;
+        cursor: pointer;
+        box-shadow: 2px 2px 3px rgba(129, 59, 219, 0.5);
+        i {
+            font-size: 25px;
+            margin-right: 15px;
+        }
+    }
+}
+
+.finish_button {
+    padding: 30px;
+    button {
+        border-radius: 30px;
+        line-height: 46px;
+        color: #ffffff;
+        font-size: 15px;
+        position: relative;
+        width: 100%;
+        font-weight: 500;
+        outline: none;
+        background: -webkit-gradient(linear, left top, right top, from(#0575E6), to(#021B79));
+        background: linear-gradient(to right, #0575E6, #021B79);
+        box-shadow: 2px 1px 3px rgba(129, 59, 219, 0.5);
+        ion-img {
+            margin-right: 15px;
+            display: inline-block;
+            width: 24px;
+        }
+    }
+}
+
+.upload_file_progress {
+    padding: 15px 15px 0px 15px;
+    border-bottom: 1px solid #C7CBD6;
+    .progress_bar {
+        p {
+            font-size: 14px;
+            color: #434A5E;
+            font-weight: 400;
+        }
+        h6 {
+            font-size: 9px;
+            color: #434A5E;
+            margin-top: 10px;
+        }
+    }
+    .uploded_image {
+        height: 75px;
+        width: 48px;
+    }
+    .progress_design {
+        ion-img {
+            height: 25px;
+            width: 25px;
+        }
+        span {
+            font-size: 10px;
+            color: #434A5E;
+        }
+    }
+}
+
+.create_folder {
+    position: fixed;
+    bottom: 90px;
+    right: 35px;
+    border-radius: 5px;
+    padding: 8px 0px;
+    background-color: #FFFFFF;
+    transition: 5s;
+    @media(max-height: 600px) {
+        padding: 5px 0px;
+    }
+    .single_folder {
+        padding: 5px 6px;
+        cursor: pointer;
+        @media(max-height: 600px) {
+            padding: 3px 5px;
+        }
+        @media (max-height: 600px) {
+            padding: 1px 5px;
+        }
+        a {
+            color: #707070;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+    }
+}
+
+.send_button {
+    border-radius: 50%;
+    background-color: #3c75e6;
+    position: fixed;
+    bottom: 91px;
+    right: 24px;
+    height: 48px;
+    width: 48px;
+    z-index: 111;
+    cursor: pointer;
+    text-align: center;
+    line-height: 57px;
+    color: white;
+    font-size: 25px;
+    ion-icon {
+        margin-left: 7px;
+    }
+}
+
+.all-img {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.single_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    width: 100%;
+    padding: 3px;
+    position: relative;
+}
+
+.single_img_div {
+    height: 130px;
+    object-fit: cover;
+}
+
+.single_img_div img {
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 100%;
+    min-height: 100%;
+}

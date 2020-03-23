@@ -1,0 +1,37 @@
+// ALL CONTENT CSS START HERE
+
+ion-content {
+    --background: #6e49b9 !important;
+    opacity     : 0.8;
+}
+
+.explore_deals {
+    padding: 15px;
+
+    .explore_text {
+        font-size: 14px;
+        margin-top: -16px;
+        margin-bottom: 18px;
+        letter-spacing: 1px;
+    }
+
+    .card {
+        padding: 40px 6px;
+        border-radius: 10px;
+        background-color: #fff;
+
+        .deal_details {
+            ion-img {
+                height: 40px;
+                width : 40px;
+                margin: auto;
+            }
+
+            p {
+                margin-top: 10px;
+                font-size : 14px;
+            }
+        }
+    }
+}
+// i want xd of it. if you have then share

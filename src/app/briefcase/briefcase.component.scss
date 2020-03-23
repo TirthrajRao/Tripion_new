@@ -1,0 +1,84 @@
+$purple: #0575E6;
+$blue: #021B79;
+$green: #2FE57C;
+// content css start here
+.doc_details {
+    cursor: pointer;
+    margin-bottom: 35px;
+    @media(max-height: 812px) {
+        margin-bottom: 22px;
+    }
+    @media(max-height: 600px) {
+        margin-bottom: 16px;
+    }
+    .doc_img {
+        padding: 20px 5px;
+        border-radius: 10px;
+        @media(max-height: 750px) {
+            padding: 15px 5px;
+        }
+        ion-img {
+            height: 65px;
+        }
+        p {
+            text-align: center;
+            font-weight: 600;
+            margin-top: 20px;
+            line-height: 21px;
+            font-size: 19px;
+        }
+    }
+}
+
+.folder_detail {
+    width: 100%;
+    padding: 18px;
+    border-radius: 9px;
+    display: inline-block;
+    margin-bottom: 10px;
+    position: relative;
+    cursor: pointer;
+    @media(max-height: 812px) {
+        padding: 14px;
+    }
+    @media(max-height: 750px) {
+        padding: 12px;
+    }
+    @media(max-height: 600px) {
+        padding: 8px;
+    }
+    ion-img {
+        width: 42px;
+        float: left;
+        position: absolute;
+        left: 13px;
+        top: 0;
+        bottom: 0;
+        @media(max-height: 750px) {
+            width: 38px;
+        }
+        @media(max-height: 600px) {
+            width: 35px;
+        }
+    }
+    p {
+        font-weight: 600;
+        font-size: 19px;
+        margin-left: 60px;
+        line-height: 30px;
+        text-transform: capitalize;
+        @media(max-height: 600px) {
+            line-height: 26px;
+        }
+    }
+}
+
+.no_folder {
+    display: flex;
+    justify-content: center;
+}
+
+ion-refresher-content {
+    background-color: #0575E6;
+    --color: white !important;
+}

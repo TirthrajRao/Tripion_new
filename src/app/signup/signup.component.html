@@ -1,0 +1,93 @@
+<ion-header>
+    <ion-toolbar class="toolbar-color1">
+        <ion-row>
+            <ion-col size='2'>
+                <div class="back_icon">
+                    <ion-buttons slot="start">
+                        <ion-back-button>
+                            <i class="fa fa-angle-left back_icon_white"></i>
+                        </ion-back-button>
+                    </ion-buttons>
+                </div>
+            </ion-col>
+            <ion-col size='8'>
+                <div class="middle_sec text-center text-white">
+                    <span>Sign Up</span>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="login_form_page">
+        <div class="login">
+            <!-- <h4 class="login_header">Sign Up</h4> -->
+            <form class="login_form" [formGroup]='signUpForm'>
+                <div class="form-group">
+                    <input type="text" formControlName="first_name" class="form-control" id="fname" placeholder="Enter First Name">
+                    <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                        <div *ngIf="f.first_name.errors.required">Firstname is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" formControlName="last_name" class="form-control" id="lname" placeholder="Enter Last Name">
+                    <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                        <div *ngIf="f.last_name.errors.required">Lastname is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" formControlName="username" class="form-control" id="uname" placeholder="Enter User Name">
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Username is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="email" formControlName="email" class="form-control" id="email" placeholder="Enter Email">
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.email">Email is invalid</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="number" formControlName="phone_number" class="form-control" id="number" placeholder="Enter Mobile number">
+                    <div *ngIf="submitted && f.phone_number.errors" class="invalid-feedback">
+                        <div *ngIf="f.phone_number.errors.required">Phone number is required</div>
+                        <div *ngIf="f.phone_number.errors.maxLength">Phone Number must be 10 digit</div>
+                        <div *ngIf="f.phone_number.errors.minLength">Phone Number must be 10 digit</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <ion-datetime placeholder="Select birth date" class="form-control" formControlName="dob">
+                    </ion-datetime>
+                    <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+                        <div *ngIf="f.dob.errors.required">Birthdate is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="password" formControlName="password" class="form-control" id="password" placeholder="Enter Password">
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
+                </div>
+                <div class="form-group register-select">
+                    <ion-label>Select Timezone</ion-label>
+                    <select id="myselection" class="form-control" formControlName="home_town" (change)="changeCountry($event)">
+                        <option [value]="i" *ngFor="let timeZone of timeZoneList;let i = index" > {{timeZone.text}}
+                        </option>
+                    </select>
+                    <div *ngIf="submitted && f.home_town.errors" class="invalid-feedback">
+                        <div *ngIf="f.home_town.errors.required">Select Your Timezone</div>
+                    </div>
+                </div>
+                <button type="submit" class="login_btn btn" (click)="signUpUser(signUpForm.value)" [disabled]="isDisable">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    <div *ngIf="loading">
+        <div id="loader-wrapper">
+            <div class="heartbeatloader">
+                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+            </div>
+        </div>
+    </div>
+</ion-content>

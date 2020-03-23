@@ -1,0 +1,31 @@
+<ion-header>
+    <app-header [cname]="details.frequent_flight"></app-header>
+</ion-header>
+
+<ion-content>
+    <div class="all_content" *ngIf="details">
+        <div class="card">
+            <div class="card_header w-100">
+                <p class="float-left">Details</p>
+            </div>
+            <div class="card_body text-center">
+                <!-- <div class="row">
+                    <div class="col-4">
+                        <p>User name</p>
+                    </div>
+                    <div class="col-8">
+                        <p>{{details.flight_user}}</p>
+                    </div>
+                </div> -->
+
+                <p class="mt-3">User name : {{details.flight_user}}</p>
+                <p class="mt-3">Password : {{details.flight_password}}</p>
+                <p class="mt-3"> Points : {{details.flight_points}} </p>
+                <!-- <p>Password: pass#321!</p> -->
+            </div>
+        </div>
+        <div class="last_update text-center">
+            <p>Last Updated : {{details.updated_date | date}}</p>
+        </div>
+    </div>
+</ion-content>

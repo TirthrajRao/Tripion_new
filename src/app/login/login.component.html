@@ -1,0 +1,78 @@
+<ion-content>
+    <div class="login_form_page">
+        <div class="login">
+            <h4 class="login_header">Login</h4>
+            <form class="login_form" [formGroup]='loginForm'>
+                <div class="form-group">
+                    <input type="text" class="form-control" formControlName="username" id="email" placeholder="Enter Email" required />
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Email is required</div>
+                        <div *ngIf="f.username.errors.email">Email is invalid</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" formControlName="password" id="password" placeholder="Enter Password">
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
+                </div>
+                <button type="submit" class="login_btn btn" (click)="loginUser(loginForm.value)" [disabled]="isDisable">Login</button>
+                <div class="sign_up_link">
+                    <a href="#" class="float-left" routerLink='/signup'>Create new account?</a>
+                    <a class="float-right" id="forgot-psw">Forgot Password?</a>
+                </div>
+                <div class="or_section">OR</div>
+                <div class="social_media_login">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="facebook_login">
+                                <button href="#" class="facebook_btn btn" (click)="facebookLogin()" [disabled]="isDisable"><i
+                                        class="fab fa-facebook-f"></i>Facebook
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="google_login">
+                                <button class="google_btn btn" (click)="googleLogin()" [disabled]="isDisable"><i class="fab fa-google"></i>
+                                    Google</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div *ngIf="loading">
+        <div id="loader-wrapper">
+            <div class="heartbeatloader">
+                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal_content_with_overlay" id="forgot-password" style="display: none;">
+        <div class="modal_body">
+            <div class="modal_content">
+                <h5>Forgot Password</h5>
+                <form [formGroup]='forgotPswForm'>
+                    <div class="form-group">
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Enter Email</ion-label>
+                                <ion-input type="email" formControlName="email"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submmitedFPsw && fpsw.email.errors" class="invalid-feedback">
+                                <div *ngIf="fpsw.email.errors.required">Email is required</div>
+                                <div *ngIf="fpsw.email.errors.email">Email is invalid</div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="submit_btn">
+                    <button type="submit" (click)="forgotPassword(forgotPswForm.value)" [disabled]="isDisable">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

@@ -1,0 +1,30 @@
+ion-content {
+    --background: #fff !important;
+}
+
+.document_content {
+    position: relative;
+    z-index: 11;
+    // top: 50%
+}
+
+.single_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    width: 100%;
+    padding: 10px;
+}
+
+.single_img_div {
+    height: 130px;
+    object-fit: cover;
+}
+
+.single_img_div img {
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 100%;
+    min-height: 100%;
+}

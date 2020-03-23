@@ -1,0 +1,120 @@
+<ion-header>
+    <app-header [cname]="'Passports'"></app-header>
+</ion-header>
+
+<ion-content>
+    <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content refreshingSpinner="circular" pullingIcon="null">
+        </ion-refresher-content>
+    </ion-refresher> -->
+    <div class="all_content">
+        <div *ngIf="allPassport.length">
+            <div *ngFor="let passport of allPassport">
+                <!-- <div class="user_details" *ngIf="passport.image_url.length"> -->
+                <div class="user_details">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="user_name" (click)="movePassportDetailPage(passport)">
+                                <p>{{passport.name_in_passport}}</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="valid_date_info w-100">
+                                <div class="edit_icon" routerLink="/home/edit-user-passport-detail/{{passport.id}}">
+                                    <!-- <p class="text-white">Visa</p> -->
+                                    <ion-img src="../../assets/images/edit_icon.png" class="float-left"></ion-img>
+                                </div>
+                                <div class="valid_date float-right">
+                                    <small> Valid Up To :
+                                    </small>
+                                    <p>{{passport.doc_expiry_date |date}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="!loading && !allPassport.length">
+            <span class="text-center no-request">There are no added passport yet</span>
+        </div>
+        <div class="add_button">
+            <a href="javascript:void(0);" id="add-password">
+                <img src="assets/images/plus.png">
+            </a>
+        </div>
+    </div>
+    <div *ngIf="loading">
+        <div id="loader-wrapper">
+            <div class="heartbeatloader">
+                <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
+            </div>
+        </div>
+    </div>
+    <!-- add passport modal start here -->
+    <div class="modal_content_with_overlay" id="add-passport-modal" style="display: none;">
+        <div class="modal_body">
+            <div class="modal_header">
+                <p class="text-center">Add Passport</p>
+            </div>
+            <div class="modal_content">
+                <form [formGroup]="addPassportForm">
+                    <div>
+                        <ion-item>
+                            <ion-label position="floating">Name in Passport</ion-label>
+                            <ion-input type="text" formControlName="name_in_passport"></ion-input>
+                        </ion-item>
+                        <div *ngIf="submitted && f.name_in_passport.errors" class="invalid-feedback">
+                            <div *ngIf="f.name_in_passport.errors.required">Name is required</div>
+                        </div>
+                    </div>
+                    <div>
+                        <ion-item>
+                            <ion-label position="floating">Passport Number</ion-label>
+                            <ion-input type="text" formControlName="passport_number"></ion-input>
+                        </ion-item>
+                        <div *ngIf="submitted && f.passport_number.errors" class="invalid-feedback">
+                            <div *ngIf="f.passport_number.errors.required">Passport Number is required</div>
+                            <div *ngIf="f.passport_number.errors.pattern">Passport Number is not valid</div>
+                        </div>
+                    </div>
+                    <div>
+                        <ion-item>
+                            <ion-label position="floating">Date of Expiry</ion-label>
+                            <ion-datetime formControlName="doc_expiry_date" min="{{curruntDate}}" max="{{nextYear}}">
+                            </ion-datetime>
+                        </ion-item>
+                        <div *ngIf="submitted && f.doc_expiry_date.errors" class="invalid-feedback">
+                            <div *ngIf="f.doc_expiry_date.errors.required">Passport Expiery date is required</div>
+                        </div>
+                    </div>
+                    <div class="select_files">
+                        <p>Pictures of the Passport</p>
+                        <input type="file" class="form-control" id="file" formControlName="profile_image" style="display: none;" (change)="selectFile($event)" multiple accept="image/*, .doc ,.pdf">
+                        <label class="text-center" for="file">
+                            <i class="far fa-copy"></i>
+                            Select from Files
+                        </label>
+                        <div *ngIf="submitted && f.profile_image.errors" class="invalid-feedback">
+                            <div *ngIf="f.profile_image.errors.required">please select passport</div>
+                        </div>
+                    </div>
+                    <div class="selected_image_preview" *ngIf="urls.length">
+                        <ul>
+                            <li *ngFor="let url of urls">
+                                <ion-img [src]="url.imgUrl" *ngIf="url.type=='img'"></ion-img>
+                                <span *ngIf="url.type !='img'">{{url.name}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="make_folder">
+                        <button (click)="addPassport(addPassportForm.value)" class="btn" [disabled]="isDisable"><i
+                                class="fas fa-plus"></i>Add
+                            Passport</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</ion-content>

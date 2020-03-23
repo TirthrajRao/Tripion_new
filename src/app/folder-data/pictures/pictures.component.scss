@@ -1,0 +1,24 @@
+$purple: #0575E6;
+$blue: #021B79;
+$green: #2FE57C;
+$button_color: #003574;
+// content css start here
+.image_folder_detail {
+    i.fas.fa-folder {
+        float: left;
+        color: #003574;
+        font-size: 42px;
+    }
+}
+
+.no-request {
+    position: absolute;
+    top: 35%;
+    left: 0;
+    right: 0;
+}
+
+ion-refresher-content {
+    background-color: #0575E6;
+    --color: white !important;
+}

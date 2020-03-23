@@ -1,0 +1,128 @@
+$purple      : #0575E6;
+$blue        : #021B79;
+$green       : #2FE57C;
+$button_color: #003574;
+
+
+// ion header css start here
+button.button-native.sc-ion-back-button-ios {
+    display: none;
+}
+
+.back_icon_purple {
+    color      : #804EE8;
+    font-size  : 28px;
+    line-height: 55px;
+}
+
+ion-header ion-toolbar:first-child {
+    --background   : #fff !important;
+    height         : 80px;
+    justify-content: center;
+    align-items    : center;
+    display        : flex;
+}
+
+.header-md:after {
+    display: none;
+}
+
+ion-menu-button {
+    --color: #AA55FF !important;
+}
+
+.home_text {
+    color      : #AA55FF !important;
+    font-size  : 24px;
+    font-weight: 600;
+    line-height: 30px;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+// ion header css end here
+
+// content css start here
+ion-content {
+    --background: #fff !important;
+}
+
+.card {
+   margin-bottom: 30px;
+    box-shadow: 0 3px 1px -2px #F2EEEE, 0 2px 2px 0 #F2EEEE, 0 1px 5px 0 #F2EEEE;
+    border    : none;
+
+    .card_header {
+        border-bottom: 1px solid #C7CBD6;
+        padding      : 12px 15px;
+
+        @media(max-height: 750px) {
+            padding: 10px 12px;
+        }
+
+        @media(max-height: 600px) {
+            padding: 7px 10px;
+        }
+
+        ion-img {
+            height      : 25px;
+            width       : 25px;
+            float       : left;
+            margin-right: 15px;
+        }
+
+        p {
+            color      : #434A5E;
+            font-weight: 600;
+            line-height: 26px;
+        }
+    }
+
+    .card_body {
+        padding: 15px;
+
+        @media(max-height: 750px) {
+            padding: 12px 15px;
+        }
+
+        @media(max-height: 600px) {
+            padding: 9px 15px;
+        }
+
+        p {
+            color      : #707070;
+            font-weight: 600;
+            line-height: 1.8;
+            text-align : center;
+            margin-top : 15px;
+            font-size  : 15px;
+        }
+
+        h3 {
+            color    : #434A5E;
+            font-size: 20px;
+        }
+    }
+
+    .card_footer {
+        padding: 0px 22px 22px 22px;
+
+        button {
+            border-radius: 30px;
+            line-height  : 46px;
+            color        : #ffffff;
+            font-size    : 15px;
+            position     : relative;
+            width        : 100%;
+            font-weight  : 500;
+            outline      : none;
+            background   : -webkit-gradient(linear, left top, right top, from(#0575E6), to(#021B79));
+            background   : linear-gradient(to right, #0575E6, #021B79);
+            box-shadow   : 2px 1px 3px rgba(129, 59, 219, 0.5);
+
+            i {
+                margin-right: 15px;
+                font-size   : 25px;
+            }
+        }
+    }
+}

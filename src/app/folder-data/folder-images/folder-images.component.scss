@@ -1,0 +1,40 @@
+.image_folder_detail {
+    padding: 18px;
+    border-radius: 9px;
+    margin-bottom: 10px;
+    align-items: center;
+    @media(max-height: 812px) {
+        padding: 13px;
+    }
+    @media(max-height: 750px) {
+        padding: 8px;
+    }
+    @media(max-height: 600px) {
+        padding: 6px;
+    }
+    a,
+    p {
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 16px;
+        color: #000;
+        display: inline-block;
+        margin-top: 8px;
+    }
+    .image_detail {
+        height: 70px;
+        width: 100%;
+        ion-img {
+            max-width: 100%;
+            min-height: 100%;
+            max-height: 100%;
+            min-width: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+​ .remove_image {
+    height: 20px;
+    margin-top: 10px;
+}

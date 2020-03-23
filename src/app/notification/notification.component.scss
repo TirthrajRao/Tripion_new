@@ -1,0 +1,132 @@
+// header css start
+.header_sec {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.header {
+    height: 140px;
+    background-image: url(../../assets/images/header.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    i {
+        margin-left: 10px;
+        margin-top: 6px;
+    }
+}
+
+.header_text {
+    padding-right: 25px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    display: inline-block;
+    .text {
+        float: right;
+        p {
+            font-size: 14px;
+            line-height: 36px;
+        }
+        h3 {
+            font-size: 34px;
+        }
+    }
+    img {
+        height: 32px;
+        width: 40px;
+        float: left;
+        margin-right: 5px;
+        margin-top: 5px;
+    }
+}
+
+// header css end
+// content css start 
+ion-content {
+    --background: #fff !important;
+    &:after {
+        display: none;
+    }
+}
+
+.card {
+    width: 100%;
+    border-radius: 0px;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border: none;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 0 20px 12px -12px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+.left-part {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    .left-image {
+        height: 65px;
+        width: 65px;
+        overflow: hidden;
+        border-radius: 50%;
+        float: left;
+        img {
+            max-width: 100%;
+            min-width: 100%;
+            max-height: 100%;
+            min-height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+.right-sec {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    button {
+        background-color: #03389C;
+        border-radius: 6px;
+        padding: 10px 15px;
+        text-align: center;
+        font-size: 12px;
+        color: #fff;
+        outline: none;
+        border: none;
+        font-weight: 500;
+    }
+}
+
+.text-content {
+    padding-left: 10px;
+    small {
+        color: #043DA3;
+        font-size: 12px;
+        font-weight: 500;
+    }
+    p {
+        color: #5A5E63;
+        font-weight: 700;
+        line-height: 18px;
+    }
+}
+
+.message-icon{
+      width: 85px;
+    height: 50px;
+    position: relative;
+    right: 0;
+    left: 0;
+    margin: auto;
+   
+}
+.notification-text{
+    position: absolute;
+    width: 100%;
+    margin-top: 65px;
+}

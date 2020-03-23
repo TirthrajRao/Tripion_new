@@ -1,0 +1,262 @@
+$purple: #0575E6;
+$blue: #021B79;
+$green: #2FE57C;
+$button_color: #003574;
+// content css end here
+.profile_content {
+    padding: 0px 10px;
+    position: relative;
+    z-index: 11;
+}
+
+.rawards_point {
+    padding: 25px 15px 10px 15px;
+    @media(max-height: 600px) {
+        padding: 12px 15px 5px 15px;
+    }
+    ion-img {
+        width: 100px;
+        float: left;
+        @media(max-height: 600px) {
+            width: 85px;
+        }
+    }
+    // span {
+    //     font-size: 60px;
+    //     font-weight: 600;
+    //     color: #fff;
+    //     line-height: 95px;
+    // }
+}
+
+.card {
+    margin-top: 15px;
+    border-radius: 4px;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    @media(max-height: 750px) {
+        margin-top: 5px;
+    }
+    .card_header {
+        p {
+            color: #434A5E;
+            font-size: 17px;
+            font-weight: 600;
+            padding: 15px;
+            line-height: 20px;
+            border-bottom: 1px solid #C7CBD6;
+        }
+        ion-img {
+            cursor: pointer;
+            width: 25px;
+            float: right;
+            position: absolute;
+            top: 11px;
+            right: 10px;
+        }
+    }
+    .card_body {
+        padding: 5px 0px 20px 0px;
+        // ion-card {
+        //     margin: 15px 10px 0px 10px !important;
+        // }
+        // ion-card-content {
+        //     width: 100%;
+        //     display: inline-block;
+        //     font-family: 'Montserrat', sans-serif !important;
+        //     .personal_detail {
+        //         width: 85%;
+        //         float: left;
+        //         p {
+        //             color: #7F8DAB;
+        //             font-size: 14px;
+        //             line-height: 27px;
+        //         }
+        //         h6 {
+        //             font-size: 17px;
+        //             color: #000;
+        //             font-weight: 600;
+        //         }
+        //     }
+        //     ion-img {
+        //         cursor: pointer;
+        //         width: 25px;
+        //         float: right;
+        //         position: absolute;
+        //         top: 0;
+        //         bottom: 0;
+        //         right: 10px;
+        //     }
+        // }
+        ion-card {
+            margin-inline-start: 0px;
+            width: 100%;
+            margin-inline-end: 0px;
+            margin-bottom: 15px;
+            ion-card-content {
+                display: inline-block;
+                width: 100%;
+                padding: 8px 10px;
+                position: relative;
+                margin-bottom: 12px;
+                margin: 0px;
+                font-family: 'Montserrat', sans-serif !important;
+                ion-img {
+                    width: 24px;
+                    position: absolute;
+                    right: 10px;
+                    top: 0;
+                    bottom: 0;
+                }
+                .user_detail {
+                    width: 100%;
+                    small {
+                        color: #7F8DAB;
+                        font-size: 13px;
+                        line-height: 30px;
+                    }
+                    p {
+                        color: #000;
+                        font-size: 18px;
+                        font-weight: 600;
+                    }
+                    ion-datetime {
+                        padding: 0;
+                        color: black;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.uograde_premium {
+    padding: 40px 30px;
+    @media(max-height: 750px) {
+        padding: 28px 30px;
+    }
+    @media(max-height: 600px) {
+        padding: 20px 30px;
+    }
+    button {
+        border-radius: 9px;
+        cursor: pointer;
+        line-height: 54px;
+        color: #ffffff;
+        font-size: 16px;
+        position: relative;
+        width: 100%;
+        font-weight: 600;
+        outline: none;
+        background: $button_color;
+        box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.5);
+        i {
+            margin-right: 15px;
+            font-size: 25px;
+            color: #FFF700;
+        }
+    }
+}
+
+.edit_btn {
+    background-color: #003574;
+    padding: 0px 10px;
+    line-height: 35px;
+    font-size: 16px;
+    font-weight: 500;
+    width: auto;
+    border-radius: 5px;
+    box-shadow: 1px 2px 6px rgba(119, 59, 219, 0.5);
+    outline: none;
+    position: relative;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.reset-password-link {
+    a {
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        margin: 10px 10px -12px 0;
+        background: #193573;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 3px;
+    }
+}
+
+.profile_detail {
+    p {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 44px;
+        text-transform: capitalize;
+    }
+    .awrd_img {
+        display: inline-block;
+        font-size: 10px;
+        font-weight: 900;
+        color: $blue;
+        background-color: #fff;
+        padding: 3px 10px;
+        border-radius: 30px;
+        ion-img {
+            height: 12px;
+            width: 12px;
+            margin: 1px 0;
+        }
+    }
+}
+
+.profile_img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    position: relative;
+    img {
+        border: 0;
+        border-radius: 50%;
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 100%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+}
+
+ion-refresher-content {
+    background-color: #0575E6;
+    --color: white !important;
+}
+
+.profile_img label.profile_and_cover_edit {
+    position: absolute;
+    right: -1px;
+    bottom: 1px;
+    background-color: white;
+    text-align: center;
+    color: #396fdd;
+    padding: 1px;
+    border-radius: 50%;
+    font-size: 11px;
+    margin: 0;
+    line-height: 19px;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    width: 20px;
+    height: 20px;
+    box-shadow: 0px 0px 15px -3px #000;
+}
+
+.select-hometown {
+    background: white !important;
+    border: none !important;
+    outline: none !important;
+    width: 100% !important;
+}

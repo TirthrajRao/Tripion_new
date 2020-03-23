@@ -1,0 +1,147 @@
+<ion-header>
+    <app-header [cname]="'New Trip'"></app-header>
+</ion-header>
+<ion-content>
+    <div class="all_content">
+        <form [formGroup]='generalDetailsForm'>
+            <div class="services_detail">
+                <div class="general_details">
+                    <div class="general_details_header">
+                        <p>General Details</p>
+                    </div>
+                    <div class="general_details_body">
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Name in Passport</ion-label>
+                                <ion-input type="text" formControlName="pname"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.pname.errors" class="invalid-feedback">
+                                <div *ngIf="f.pname.errors.required">Name is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Passport Number</ion-label>
+                                <ion-input type="text" formControlName="pNumber"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.pNumber.errors" class="invalid-feedback">
+                                <div *ngIf="f.pNumber.errors.required">Passport Number is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Date of Birth</ion-label>
+                                <ion-datetime formControlName="dob"></ion-datetime>
+                            </ion-item>
+                            <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+                                <div *ngIf="f.dob.errors.required">Birthdate is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Place of Birth</ion-label>
+                                <ion-input type="text" formControlName="placeOfBirth"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.placeOfBirth.errors" class="invalid-feedback">
+                                <div *ngIf="f.placeOfBirth.errors.required">Place Of Birth is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Address in Passport</ion-label>
+                                <ion-input type="text" formControlName="paddress"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.paddress.errors" class="invalid-feedback">
+                                <div *ngIf="f.paddress.errors.required">Passport Address is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Duration of Travel</ion-label>
+                                <ion-input type="text" formControlName="duration"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.duration.errors" class="invalid-feedback">
+                                <div *ngIf="f.duration.errors.required">Duration Of Travel is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Destination Country</ion-label>
+                                <select id="myselection" class="form-control w-100" formControlName="desinationCountry" class="general-details-form">
+                  <option value="Not Fixed"> Not Fixed
+                  </option>
+                  <option [value]="country.name" *ngFor="let country of counries"> {{country.name}}
+                  </option>
+                </select>
+                            </ion-item>
+                            <div *ngIf="submitted && f.desinationCountry.errors" class="invalid-feedback">
+                                <div *ngIf="f.desinationCountry.errors.required">Country is required</div>
+                            </div>
+                        </div>
+                        <div *ngIf="generalDetailsForm.value.desinationCountry != 'Not Fixed' ">
+                            <ion-item>
+                                <ion-label position="floating">Destination Place</ion-label>
+                                <ion-input type="text" formControlName="placeName"></ion-input>
+                            </ion-item>
+                            <!-- <div *ngIf="submitted && f.desinationCountry.errors" class="invalid-feedback">
+                              <div *ngIf="f.desinationCountry.errors.required">Country is required</div>
+                          </div> -->
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Passport Valid Until </ion-label>
+                                <ion-datetime formControlName="pvalidDate" min="{{curruntDate}}" max="{{nextYear}}"></ion-datetime>
+                            </ion-item>
+                            <div *ngIf="submitted && f.pvalidDate.errors" class="invalid-feedback">
+                                <div *ngIf="f.pvalidDate.errors.required">passport Valid Date is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Intended date of Departure</ion-label>
+                                <ion-datetime formControlName="departureDate" min={{curruntDate}} max="{{generalDetailsForm.value.pvalidDate? generalDetailsForm.value.pvalidDate: nextYear}}"></ion-datetime>
+                            </ion-item>
+                            <div *ngIf="submitted && f.departureDate.errors" class="invalid-feedback">
+                                <div *ngIf="f.departureDate.errors.required">Departure Date is required</div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Intended date of Arrival</ion-label>
+                                <ion-datetime formControlName="intendeDate" min="{{generalDetailsForm.value.departureDate? generalDetailsForm.value.departureDate: curruntDate}}" max="{{generalDetailsForm.value.pvalidDate? generalDetailsForm.value.pvalidDate: nextYear}}">
+                                </ion-datetime>
+                            </ion-item>
+                            <div *ngIf="submitted && f.intendeDate.errors" class="invalid-feedback">
+                                <div *ngIf="f.intendeDate.errors.required">Intended Date is required</div>
+                            </div>
+                        </div>
+
+                        <p>Date and Duration Status</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="date1" value="Flexible" formControlName="durationStatus">
+                                <label for="date1">Flexible</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="date2" value="Fixed" formControlName="durationStatus">
+                                <label for="date2">Fixed</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="next_btn">
+                    <button type="submit" (click)="nextForm(generalDetailsForm.value)"  [disabled]="isDisable"><span *ngIf="formUrl.length">Next</span><span *ngIf="!formUrl.length">Submit</span><i
+                      class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div *ngIf="loading">
+        <div id="loader-wrapper">
+            <div class="heartbeatloader">
+                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+            </div>
+        </div>
+    </div>
+</ion-content>

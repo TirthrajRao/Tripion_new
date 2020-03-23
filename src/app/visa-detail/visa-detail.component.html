@@ -1,0 +1,77 @@
+<ion-header>
+    <app-header *ngIf="visaDetails" [cname]="visaDetails.country"></app-header>
+</ion-header>
+
+<ion-content>
+    <div class="all_content">
+        <form [formGroup]="editVisaForm">
+            <div *ngIf="visaDetails">
+                <div class="all_visa_detail">
+                    <div>
+                        <!-- <ion-item>
+                            <ion-label position="floating">Country</ion-label>
+                            <ion-input type="text" formControlName="country" [(ngModel)]="visaDetails.country">
+                            </ion-input>
+                        </ion-item> -->
+                        <ion-item>
+                            <ion-label position="floating">Country</ion-label>
+                            <select id="myselection" class="form-control w-100" formControlName="country" [(ngModel)]="visaDetails.country" class="visa-country">
+                                <option style="color: black;" [value]="country.name" *ngFor="let country of counries"> {{country.name}} 
+                                </option>
+                            </select>
+                        </ion-item>
+                        <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                            <div *ngIf="f.country.errors.required">Country name is required</div>
+                        </div>
+                    </div>
+                    <div>
+                        <ion-item>
+                            <ion-label position="floating">Date of Expiry</ion-label>
+                            <ion-datetime displayFormat="MM/DD/YYYY" formControlName="doc_expiry_date" [(ngModel)]="visaDetails.doc_expiry_date" min="{{curruntDate}}" max="{{nextYear}}">
+                            </ion-datetime>
+                        </ion-item>
+                        <div *ngIf="submitted && f.doc_expiry_date.errors" class="invalid-feedback">
+                            <div *ngIf="f.doc_expiry_date.errors.required">Expiery Date is required</div>
+                        </div>
+                    </div>
+                    <div class="visa_detail">
+                        <p>Visa Number</p>
+                        <h6>{{visaDetails.visa_number}}</h6>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="row">
+                        <div class="col-4" *ngFor="let doc of visaDetails.image_url">
+                            <div class="all_image" *ngIf="doc.image_extension == 'png' || doc.image_extension == 'jpg' || doc.image_extension == 'jpeg'">
+                                <ion-img [src]="doc.image_url" class="visa_image "></ion-img>
+                            </div>
+                            <div *ngIf="doc.image_extension != 'png' && doc.image_extension != 'jpeg' && doc.image_extension != 'jpg' ">
+                                <a href="{{doc.image_url}}" download>{{doc.image_name}}</a>
+                            </div>
+                            <div (click)=removeImage(doc) class="mt-2">
+                                <ion-img src="../../assets/images/remove.png " class="remove_image "></ion-img>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="submit_btn">
+                    <button type="submit" (click)="editVisa(editVisaForm.value)" class="btn" [disabled]="isDisable"><i
+                            class="fas fa-save "></i>Save</button>
+                </div>
+            </div>
+            <div class="add_button" id="add-visa" (click)="moveDocumentPage()">
+                <a href="javascript:void(0);">
+                    <img src="../../assets/images/plus.png">
+                </a>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="loading">
+        <div id="loader-wrapper">
+            <div class="heartbeatloader">
+                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+            </div>
+        </div>
+    </div>
+</ion-content>

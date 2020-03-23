@@ -1,0 +1,139 @@
+// header css start
+.header_text {
+    padding: 30px 25px;
+    color: #fff;
+    text-align: right;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    display: inline-block;
+    font-family: "Montserrat", sans-serif !important;
+    .text {
+        float: right;
+        p {
+            font-size: 14px;
+            line-height: 36px;
+        }
+        h3 {
+            font-size: 34px;
+        }
+    }
+    img {
+        height: 42px;
+        width: 40px;
+        float: left;
+        margin-right: 5px;
+    }
+}
+
+.header_sec {
+    height: 250px;
+    display: block !important;
+    --background: unset !important;
+    display: flex;
+    background-image: url(../../assets/images/header.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    i {
+        margin-left: 10px;
+        margin-top: -6px;
+    }
+}
+
+// header css end
+// content css start 
+ion-content {
+    --background: #fff !important;
+    &:after {
+        display: none;
+    }
+}
+
+.card {
+    border-radius: 0px;
+    padding: 12px 4px;
+    margin-bottom: 8px;
+    border: none;
+    box-shadow: 0 20px 12px -12px rgba(0, 0, 0, 0.2);
+    .left-image {
+        height: 85px;
+        width: 85px;
+        overflow: hidden;
+        border-radius: 18px;
+        float: left;
+        img {
+            max-width: 100%;
+            min-width: 100%;
+            max-height: 100%;
+            min-height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+.right-sec {
+    display: inline-block;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    i {
+        font-size: 18px;
+        position: absolute;
+        top: 30%;
+        color: #3468D6;
+    }
+    .date-title {
+        padding-left: 20px;
+        small {
+            color: #5A5E63;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        p {
+            color: #043DA3;
+            font-size: 12px;
+            font-weight: 500;
+        }
+    }
+}
+
+.text-content {
+    padding-left: 10px;
+    display: inline-block;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    img {
+        height: 25px;
+        position: absolute;
+        top: 28%;
+    }
+    .main-text {
+        padding-left: 25px;
+        small {
+            color: #5A5E63;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        p {
+            color: #043DA3;
+            font-weight: 700;
+            font-size: 15px;
+        }
+    }
+}
+
+.no-trips {
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    // height: 100%;
+    // width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    text-align: center;
+}

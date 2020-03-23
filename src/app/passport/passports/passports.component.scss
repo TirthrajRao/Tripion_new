@@ -1,0 +1,110 @@
+$purple: #0575E6;
+$blue: #021B79;
+$green: #2FE57C;
+$button_color: #003574;
+// header css start here 
+i.back_icon_blue {
+    color: $blue;
+    font-size: 28px;
+    line-height: 55px;
+}
+
+button.button-native.sc-ion-back-button-ios {
+    display: none;
+}
+
+ion-header ion-toolbar:first-child {
+    --background: #fff !important;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.header-md:after {
+    display: none;
+}
+
+.middle_sec {
+    span {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 25px;
+        color: #003574 !important;
+    }
+}
+
+ion-menu-button {
+    --color: #003574;
+}
+
+// content css start here
+ion-content {
+    --background: #fff !important;
+}
+
+.all_content {
+    padding: 0px 10px 15px 10px;
+    position: relative;
+    z-index: 11;
+}
+
+.user_details {
+    background: linear-gradient($purple, $blue) !important;
+    border-radius: 7px;
+    padding: 17px 13px 20px 13px;
+    position: relative;
+    margin-top: 18px;
+    @media(max-height: 600px) {
+        padding: 10px 13px 12px 13px;
+    }
+    .user_name {
+        outline: none;
+        p {
+            font-weight: 600;
+            color: #fff;
+            line-height: 35px;
+            font-size: 16px;
+            cursor: pointer;
+            text-transform: capitalize;
+        }
+    }
+    .valid_date_info {
+        display: inline-block;
+        .edit_icon {
+            // margin-top: 7px;
+            // float: left;
+            ion-img {
+                width: 27px;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+            }
+            // p {
+            //     font-size: 15px;
+            //     font-weight: 600;
+            // }
+        }
+        .valid_date {
+            small {
+                font-size: 8px;
+                color: #fff;
+                margin-left: 8px;
+                font-weight: 500;
+            }
+            p {
+                font-size: 12px;
+                color: #fff;
+                font-weight: 500;
+                line-height: 5px;
+            }
+        }
+    }
+}
+
+.no-request {
+    position: fixed;
+    top: 46%;
+    left: 0;
+    right: 0;
+}

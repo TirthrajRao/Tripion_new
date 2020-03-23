@@ -1,0 +1,205 @@
+<ion-header>
+    <app-header [cname]="'New Trip'"></app-header>
+</ion-header>
+
+<ion-content>
+    <div class="all_content">
+        <form [formGroup]="accomodationForm">
+            <div class="services_detail">
+                <p class="ml-3 visa_text">Accomodation</p>
+                <div class="general_details">
+                    <div class="general_details_body">
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Accomodation Type</ion-label>
+                                <ion-select formControlName="accomodationType">
+                                    <ion-select-option value="Hotels">Hotels</ion-select-option>
+                                    <ion-select-option value="Guesthouses">Guesthouses</ion-select-option>
+                                    <ion-select-option value="Apartments">Apartments</ion-select-option>
+                                    <ion-select-option value="Resorts">Resorts</ion-select-option>
+                                    <ion-select-option value="Ski Chalets">Ski Chalets</ion-select-option>
+                                </ion-select>
+                            </ion-item>
+                            <div *ngIf="submitted && f.accomodationType.errors" class="invalid-feedback">
+                                <div *ngIf="f.accomodationType.errors.required">Select Accomodation Type</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <ion-item>
+                                    <ion-label position="floating">Room Category Preference</ion-label>
+                                    <ion-select formControlName="roomCategoryPreference">
+                                        <ion-select-option value="Queen Room">Queen Room</ion-select-option>
+                                        <ion-select-option value="Single Room">Single Room</ion-select-option>
+                                        <ion-select-option value="Double Room">Double Room</ion-select-option>
+                                        <ion-select-option value="Quad Room">Quad Room</ion-select-option>
+                                        <ion-select-option value="King Room">King Room</ion-select-option>
+                                        <ion-select-option value="Twin Room">Twin Room</ion-select-option>
+                                        <ion-select-option value="Triple Room">Triple Room</ion-select-option>
+                                        <ion-select-option value="Studio Room">Studio Room</ion-select-option>
+                                    </ion-select>
+                                </ion-item>
+                            </div>
+                            <div *ngIf="submitted && f.roomCategoryPreference.errors" class="invalid-feedback">
+                                <div *ngIf="f.roomCategoryPreference.errors.required">Select Accomodation Type</div>
+                            </div>
+                        </div>
+                        <!-- <div class="row"> -->
+                            <div class="smoke-icon">
+                                <p >Smoking Room</p>
+                                <img src="assets/images/smok.png">
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="radio" class="mr-2" id="Smoking1" formControlName="smokingRoom"
+                                        value="Yes">
+                                    <label for="Smoking1">Yes</label>
+                                </div>
+                                <div class="col-6">
+                                    <input type="radio" class="mr-2" id="Smoking2" formControlName="smokingRoom"
+                                        value="No">
+                                    <label for="Smoking2">No</label>
+                                </div>
+                            </div>
+                            <div class="smoke-icon">
+                                <p >Wheelchair Accessible</p>
+                                <img src="assets/images/wheelchair1.png">
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="radio" class="mr-2" id="Accessible1"
+                                        formControlName="wheelchairAccessible" value="Yes">
+                                    <label for="Accessible1">Yes</label>
+                                </div>
+                                <div class="col-6">
+                                    <input type="radio" class="mr-2" id="Accessible2"
+                                        formControlName="wheelchairAccessible" value="No">
+                                    <label for="Accessible2">No</label>
+                                </div>
+                            </div>
+                        <!-- </div> -->
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Any Special Requirement?</ion-label>
+                                <ion-input type="text" formControlName="specialRequest"></ion-input>
+                            </ion-item>
+                            <!-- <div *ngIf="submitted && f.specialRequest.errors" class="invalid-feedback">
+                                <div *ngIf="f.specialRequest.errors.required">Please Enter Any Special Request</div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="general_details">
+                    <div class="general_details_header">
+                        <img src="assets/images/flight-meal.png">
+                        <p>Meal Plans</p>
+                    </div>
+                    <div class="general_details_body">
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="radio" class="mr-2" id="Plans1" formControlName="mealPlan"
+                                    value="CP ( Continental Plan ) - Only Breakfast">
+                                <label for="Plans1">CP ( Continental Plan ) - Only Breakfast</label>
+                            </div>
+                            <div class="col-12">
+                                <input type="radio" class="mr-2" id="Plans2" formControlName="mealPlan"
+                                    value="AP ( American Plan ) - All Meals">
+                                <label for="Plans2">AP ( American Plan ) - All Meals</label>
+                            </div>
+                            <div class="col-12">
+                                <input type="radio" class="mr-2" id="Plans3" formControlName="mealPlan"
+                                    value="MAP - Breakfast & 1 Major Meal">
+                                <label for="Plans3">MAP - Breakfast & 1 Major Meal</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="general_details">
+                    <div class="general_details_header">
+                        <img src="assets/images/culinary.png">
+                        <p>Culinary Preferrence</p>
+                    </div>
+                    <div class="general_details_body">
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="radio" class="mr-2" id="Culinary1" formControlName="culinaryPreferrence"
+                                    value="Vegetarian">
+                                <label for="Culinary1">Vegetarian</label>
+                            </div>
+                            <div class="col-12">
+                                <input type="radio" class="mr-2" id="Culinary2" formControlName="culinaryPreferrence"
+                                    value="Vegan">
+                                <label for="Culinary2">Vegan</label>
+                            </div>
+                            <div class="col-12">
+                                <input type="radio" class="mr-2" id="Culinary3" formControlName="culinaryPreferrence"
+                                    value="Gluten & Lactose Free">
+                                <label for="Culinary3">Gluten & Lactose Free</label>
+                            </div>
+                            <div class="col-12">
+                                <input type="radio" class="mr-2" id="Culinary4" formControlName="culinaryPreferrence"
+                                    value="Non Veg">
+                                <label for="Culinary4">Non Veg</label>
+                            </div>
+                            <div class="col-12">
+                                <input type="radio" class="mr-2" id="Culinary5" formControlName="culinaryPreferrence"
+                                    value="Jain ( Only where available )">
+                                <label for="Culinary5">Jain ( Only where available )</label>
+                            </div>
+                            <div class="col-12">
+                                <input type="radio" class="mr-2" id="Culinary6" formControlName="culinaryPreferrence"
+                                    value="Other">
+                                <label for="Culinary6">Other</label>
+                            </div>
+                        </div>
+                        <ion-item>
+                            <ion-label position="floating">Any Special Requirement?</ion-label>
+                            <ion-input type="text" formControlName="culinarySpecialRequest"></ion-input>
+                        </ion-item>
+                    </div>
+                </div>
+
+                <div class="general_details" formArrayName="rooms"
+                    *ngFor="let room of accomodationForm.controls.rooms?.value; let i = index">
+                    <div [formGroupName]="i">
+                        <div class="general_details_header w-100 d-inline-block">
+                            <p class="float-left">Room - {{i + 1}}</p>
+                            <i class="fas fa-minus-circle float-right" (click)="deleteRoom(i)"></i>
+                        </div>
+                        <div class="general_details_body pt-0">
+                            <ion-item>
+                                <ion-label position="floating">Infants</ion-label>
+                                <ion-input type="number" formControlName="infants" min=0></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label position="floating">Children</ion-label>
+                                <ion-input type="number" formControlName="children" min=0></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label position="floating">Adults</ion-label>
+                                <ion-input type="number" formControlName="adults" min=0></ion-input>
+                            </ion-item>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="add_room_btn text-center">
+                    <button type="submit" (click)="addRoom()"><i class="fas fa-plus-circle"></i>Add Room</button>
+                </div>
+                <div *ngIf="submitted && f.rooms.errors" class="invalid-feedback">
+                    <div *ngIf="f.rooms.errors.required">Room is required</div>
+                </div>
+
+            </div>
+            <div class="next_btn" *ngIf="formUrl.length">
+                <button type="submit" (click)="nextForm(accomodationForm.value)">Next<i
+                        class="fas fa-arrow-right"></i></button>
+            </div>
+            <div class="submit_btn" *ngIf="!formUrl.length">
+                <button type="submit" routerLink="/home/home-page"><i class="fas fa-save"></i>Submit</button>
+            </div>
+        </form>
+    </div>
+</ion-content>

@@ -1,0 +1,59 @@
+$purple: #0575E6;
+$blue  : #021B79;
+$green : #2FE57C;
+$button_color: #003574;
+
+// content css start here
+.services_detail {
+    .visa_text {
+        font-weight: 600;
+        font-size  : 20px;
+        color      : #fff;
+        line-height: 42px;
+    }
+}
+
+.error_msg {
+    color      : red;
+    font-size  : 13px;
+    line-height: 22px;
+    margin-top : 10px;
+}
+div.plist{
+    color: #7F8DAB !important;
+  
+}
+.passengers-details{
+    width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #7f8dab6e;
+    margin-top: 7px
+}
+.icon-button{
+    border: 2px solid #d2d6dd;  
+    border-radius: 15px;
+    padding: 1px 5px;
+    width: 80px;
+}
+.icons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    i{
+        font-size: 12px;
+       opacity:0.6
+    }
+}
+.general_details_header{
+    display: flex;
+    p{
+        margin: auto 5px;
+    }
+    img{
+        height: 40px;
+    }
+}

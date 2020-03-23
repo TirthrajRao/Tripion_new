@@ -1,0 +1,44 @@
+<ion-header>
+    <app-header [cname]="'Briefcase'"></app-header>
+</ion-header>
+
+<ion-content>
+    <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content refreshingSpinner="circular" pullingIcon="null">
+        </ion-refresher-content>
+    </ion-refresher> -->
+    <div class="all_content">
+        <div class="doc_details">
+            <div class="row">
+                <div class="col-6">
+                    <div class="doc_img card w-100" routerLink='/home/passports'>
+                        <ion-img src="../../assets/images/pass_icon.png"></ion-img>
+                        <p>Passports</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="doc_img card" routerLink='/home/other-docs'>
+                        <ion-img src="../../assets/images/doc3.png"></ion-img>
+                        <p>Other Docs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="allFolder.length">
+            <div class="card folder_detail" *ngFor="let folder of allFolder;let i= index" routerLink='/home/folder-detail/{{folder}}'>
+                <ion-img [src]="getRandomImgeIcon(i)"></ion-img>
+                <p>{{folder}}</p>
+            </div>
+        </div>
+        <div *ngIf="loading">
+            <div id="loader-wrapper">
+                <div class="heartbeatloader">
+                    <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!loading && !allFolder.length" class="no_folder">
+            <span class="text-white text-center ">No Trip Folder</span>
+        </div>
+    </div>
+</ion-content>

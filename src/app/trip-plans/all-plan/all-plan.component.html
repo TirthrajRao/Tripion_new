@@ -1,0 +1,58 @@
+<ion-header *ngIf="allPlans.length">
+    <app-header [cname]="allPlans[0].inquiry_name"></app-header>
+</ion-header>
+<ion-header *ngIf="!allPlans.length">
+    <app-header [cname]="'Plans'"></app-header>
+</ion-header>
+<ion-content>
+    <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content refreshingSpinner="circular" pullingIcon="null">
+        </ion-refresher-content>
+    </ion-refresher> -->
+    <div class="all_content" *ngIf="allPlans.length">
+        <form [formGroup]="sendPlanForm">
+            <div *ngFor="let plan of allPlans; let i= index">
+                <div class="card w-100">
+                    <div>
+                        <div class="select_plan float-left">
+                            <input type="radio" class="mr-2" id="plan{{i}}" formControlName="plan_id" value="{{plan.plan_id}}">
+                            <label for="plan{{i}}" [innerHtml]="plan.plan_name"></label>
+                        </div>
+                    </div>
+                    <div class="plan_img float-right" routerLink="/home/plan-option-detail/{{plan.plan_id}}">
+                        <!-- <i class="fas fa-info"></i> -->
+                        <ion-img src="../../assets/images/plane.png"></ion-img>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="submitted && f.plan_id.errors" class="invalid-feedback">
+                <div *ngIf="f.plan_id.errors.required" style="font-weight: 600;">Select Plan</div>
+            </div>
+            <div *ngIf="!allPlans.length" class="loader">
+                <ion-img src="assets/images/loader.gif"></ion-img>
+            </div>
+            <div class="select_for_continue" *ngIf="planSlected != 1">
+                <p class="text-center text-white">Choose one of the following to continue
+                </p>
+                <button type="submit" class="text-center text-white btn" [disabled]="isDisable" (click)="sendPlan(sendPlanForm.value)">Book with
+                    us</button>
+                <button type="submit" class="text-center text-white btn" [disabled]="isDisable" routerLink='/home/plan-option'>Book with 3rd Party
+                    apps</button>
+                <button type="submit" class="text-center text-white btn" [disabled]="isDisable" routerLink='/home/plan-option'>Do things your
+                    way</button>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="!allPlans.length && !loading">
+        <span class="text-white text-center no-request">
+            No Plan
+        </span>
+    </div>
+    <div *ngIf="loading">
+        <div id="loader-wrapper">
+            <div class="heartbeatloader">
+                <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
+            </div>
+        </div>
+    </div>
+</ion-content>
