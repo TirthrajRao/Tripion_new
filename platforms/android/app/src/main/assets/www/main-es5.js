@@ -447,11 +447,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-<<<<<<< HEAD
 module.exports = "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n\n  <!-- Success alert -->\n  <div class=\"success_alert_box\" style=\"display: none;\">\n    <div class=\"alert_box_content\">\n      <div class=\"alert_box_text\">\n        <h4 *ngIf=\"!title\">Thanks !!</h4>\n        <h4 *ngIf=\"title\">{{title}}</h4>\n        <p>\n         {{message}}\n       </p>\n     </div>\n     <div class=\"alert_box_image\">\n      <img src=\"../../assets/images/success.png\" alt=\"image icon\">\n    </div>\n  </div>\n</div>\n\n<!-- Error Alert -->\n<div class=\"error_alert_box\" style=\"display: none;\">\n  <div class=\"alert_box_content\">\n    <div class=\"alert_box_text\">\n      <h4>Oopps !!</h4>\n      <p>\n        <span>A BOO-BOO HAPPENS</span>\n        <br> something went wrong\n      </p>\n    </div>\n    <div class=\"alert_box_image\">\n      <img src=\"assets/images/cross.png\" alt=\"image icon\">\n    </div>\n  </div>\n</div>\n\n</ion-app>\n"
-=======
-module.exports = "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app>\n"
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
 
 /***/ }),
 
@@ -544,11 +540,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-<<<<<<< HEAD
 module.exports = "* {\n  box-sizing: border-box; }\n\n.success_alert_box, .error_alert_box {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  margin: auto;\n  background-color: rgba(0, 0, 0, 0.4);\n  -ms-flex-align: center;\n  display: -webkit-box;\n  display: flex;\n  overflow: hidden;\n  z-index: 9999; }\n\n.alert_box_content {\n  background-color: #fff;\n  border-radius: 15px;\n  padding: 20px;\n  width: 280px;\n  position: relative;\n  margin: auto;\n  display: table;\n  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.5);\n  text-align: center;\n  -webkit-transition: all 0.4s;\n  transition: all 0.4s;\n  top: 100%; }\n\n.animate .alert_box_content {\n  top: 0; }\n\n.alert_box_image img {\n  height: 60px;\n  width: 60px;\n  opacity: 0;\n  -webkit-transform: scale(4);\n          transform: scale(4);\n  -webkit-transition: all 0.2s;\n  transition: all 0.2s;\n  -webkit-transition-delay: 0.4s;\n          transition-delay: 0.4s; }\n\n.animate .alert_box_image img {\n  opacity: 1;\n  -webkit-transform: scale(1);\n          transform: scale(1); }\n\n.alert_box_text {\n  margin-bottom: -30px; }\n\n.alert_box_text h4 {\n  margin: 0;\n  color: #434A5E;\n  font-size: 24px;\n  padding-bottom: 15px; }\n\n.alert_box_text p {\n  margin: 0;\n  color: #7F8DAB;\n  font-size: 18px;\n  line-height: 24px; }\n\n.alert_box_text p span {\n  text-transform: uppercase; }\n\n.alert_box_image {\n  top: 50px;\n  position: relative; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi92YXIvd3d3L2h0bWwvVHJpcGlvbl9uZXcvc3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDQyxzQkFBc0IsRUFBQTs7QUFFdkI7RUFDSSxlQUFlO0VBQ2YsTUFBTTtFQUNOLFNBQVM7RUFDVCxPQUFPO0VBQ1AsUUFBUTtFQUNSLFlBQVk7RUFDWixvQ0FBb0M7RUFDcEMsc0JBQXNCO0VBQ3RCLG9CQUFhO0VBQWIsYUFBYTtFQUNiLGdCQUFnQjtFQUNoQixhQUFhLEVBQUE7O0FBRWpCO0VBQ0ksc0JBQXNCO0VBQ3RCLG1CQUFtQjtFQUNuQixhQUFhO0VBQ2IsWUFBWTtFQUNaLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osY0FBYztFQUNkLDRDQUE0QztFQUM1QyxrQkFBa0I7RUFDbEIsNEJBQW9CO0VBQXBCLG9CQUFvQjtFQUNwQixTQUFTLEVBQUE7O0FBRWI7RUFDQyxNQUFNLEVBQUE7O0FBRVA7RUFDSSxZQUFZO0VBQ1osV0FBVztFQUNYLFVBQVU7RUFDViwyQkFBbUI7VUFBbkIsbUJBQW1CO0VBQ25CLDRCQUFvQjtFQUFwQixvQkFBb0I7RUFDcEIsOEJBQXNCO1VBQXRCLHNCQUFzQixFQUFBOztBQUUxQjtFQUNDLFVBQVU7RUFDViwyQkFBbUI7VUFBbkIsbUJBQW1CLEVBQUE7O0FBRXBCO0VBQ0Msb0JBQW9CLEVBQUE7O0FBRXJCO0VBQ0ksU0FBUztFQUNULGNBQWM7RUFDZCxlQUFlO0VBQ2Ysb0JBQW9CLEVBQUE7O0FBRXhCO0VBQ0ksU0FBUztFQUNULGNBQWM7RUFDZCxlQUFlO0VBQ2YsaUJBQWlCLEVBQUE7O0FBRXJCO0VBQ0kseUJBQXlCLEVBQUE7O0FBRTdCO0VBQ0ksU0FBUztFQUNULGtCQUFrQixFQUFBIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiKntcblx0Ym94LXNpemluZzogYm9yZGVyLWJveDtcbn1cbi5zdWNjZXNzX2FsZXJ0X2JveCwgLmVycm9yX2FsZXJ0X2JveCB7XG4gICAgcG9zaXRpb246IGZpeGVkO1xuICAgIHRvcDogMDtcbiAgICBib3R0b206IDA7XG4gICAgbGVmdDogMDtcbiAgICByaWdodDogMDtcbiAgICBtYXJnaW46IGF1dG87XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLCAwLCAwLCAwLjQpO1xuICAgIC1tcy1mbGV4LWFsaWduOiBjZW50ZXI7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xuICAgIHotaW5kZXg6IDk5OTk7XG59XG4uYWxlcnRfYm94X2NvbnRlbnQge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XG4gICAgYm9yZGVyLXJhZGl1czogMTVweDtcbiAgICBwYWRkaW5nOiAyMHB4O1xuICAgIHdpZHRoOiAyODBweDtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWFyZ2luOiBhdXRvO1xuICAgIGRpc3BsYXk6IHRhYmxlO1xuICAgIGJveC1zaGFkb3c6IDBweCAyMHB4IDMwcHggcmdiYSgwLCAwLCAwLCAwLjUpO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICB0cmFuc2l0aW9uOiBhbGwgMC40cztcbiAgICB0b3A6IDEwMCU7XG59XG4uYW5pbWF0ZSAuYWxlcnRfYm94X2NvbnRlbnR7XG5cdHRvcDogMDtcbn1cbi5hbGVydF9ib3hfaW1hZ2UgaW1nIHtcbiAgICBoZWlnaHQ6IDYwcHg7XG4gICAgd2lkdGg6IDYwcHg7XG4gICAgb3BhY2l0eTogMDtcbiAgICB0cmFuc2Zvcm06IHNjYWxlKDQpO1xuICAgIHRyYW5zaXRpb246IGFsbCAwLjJzO1xuICAgIHRyYW5zaXRpb24tZGVsYXk6IDAuNHM7XG59XG4uYW5pbWF0ZSAuYWxlcnRfYm94X2ltYWdlIGltZ3tcblx0b3BhY2l0eTogMTtcblx0dHJhbnNmb3JtOiBzY2FsZSgxKTtcbn1cbi5hbGVydF9ib3hfdGV4dHtcblx0bWFyZ2luLWJvdHRvbTogLTMwcHg7XG59XG4uYWxlcnRfYm94X3RleHQgaDQge1xuICAgIG1hcmdpbjogMDtcbiAgICBjb2xvcjogIzQzNEE1RTtcbiAgICBmb250LXNpemU6IDI0cHg7XG4gICAgcGFkZGluZy1ib3R0b206IDE1cHg7XG59XG4uYWxlcnRfYm94X3RleHQgcCB7XG4gICAgbWFyZ2luOiAwO1xuICAgIGNvbG9yOiAjN0Y4REFCO1xuICAgIGZvbnQtc2l6ZTogMThweDtcbiAgICBsaW5lLWhlaWdodDogMjRweDtcbn1cbi5hbGVydF9ib3hfdGV4dCBwIHNwYW4ge1xuICAgIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7XG59XG4uYWxlcnRfYm94X2ltYWdlIHtcbiAgICB0b3A6IDUwcHg7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xufSJdfQ== */"
-=======
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyJ9 */"
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
 
 /***/ }),
 
@@ -735,7 +727,6 @@ var AppComponent = /** @class */ (function () {
             console.log("err", err);
         });
     };
-<<<<<<< HEAD
     /**
      *Sucess Alert
      */
@@ -758,8 +749,6 @@ var AppComponent = /** @class */ (function () {
             $('.error_alert_box').hide().removeClass('animate');
         }, 2000);
     };
-=======
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
     AppComponent.ctorParameters = function () { return [
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
         { type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"] },
@@ -22055,11 +22044,7 @@ var AuthGuard = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-<<<<<<< HEAD
 module.exports = "ion-content:after {\n  padding-bottom: 100vh !important; }\n\n.login_form_page {\n  z-index: 11;\n  padding: 10px;\n  height: 100vh;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  position: relative; }\n\n.login_form_page:after {\n    content: \" \";\n    position: absolute;\n    background: #003574; }\n\n.login_form_page .login_header {\n    text-align: center;\n    font-size: 40px;\n    font-weight: 600;\n    color: #fff;\n    margin-bottom: 25px; }\n\n.login_form {\n  width: 300px;\n  background-color: #fff;\n  border-radius: 8px;\n  padding: 18px;\n  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5); }\n\n.login_form .login_btn {\n    background-color: #003574;\n    padding: 0px 10px;\n    font-size: 16px;\n    line-height: 50px;\n    font-weight: 500;\n    width: 100%;\n    border-radius: 5px;\n    box-shadow: 1px 2px 6px rgba(119, 59, 219, 0.5);\n    outline: none;\n    position: relative;\n    color: #fff;\n    cursor: pointer; }\n\n.form-control {\n  font-size: 14px;\n  border: none;\n  border-radius: 5px;\n  height: 50px;\n  font-weight: 500;\n  color: #000;\n  background-color: #15207f12; }\n\n::-webkit-input-placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n::-moz-placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n::-ms-input-placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n::placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n:-ms-input-placeholder {\n  /* Internet Explorer 10-11 */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n::-ms-input-placeholder {\n  /* Microsoft Edge */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n.sign_up_link {\n  margin: 15px 0px;\n  width: 100%;\n  display: inline-block; }\n\n.sign_up_link a {\n    font-size: 12px;\n    color: #000;\n    font-weight: 500;\n    cursor: pointer;\n    text-decoration: none; }\n\n.or_section {\n  position: relative;\n  font-size: 12px;\n  text-align: center;\n  color: #888a91;\n  font-weight: 500; }\n\n.or_section:after {\n    position: absolute;\n    background: #888a91;\n    content: \"\";\n    height: 1px;\n    width: 42%;\n    top: 8px;\n    right: 0px; }\n\n.or_section:before {\n    position: absolute;\n    background: #888a91;\n    content: \"\";\n    height: 1px;\n    width: 42%;\n    top: 8px;\n    left: 0px; }\n\n.social_media_login {\n  margin-top: 15px; }\n\n.social_media_login button {\n    cursor: pointer;\n    border: 2px solid #003574;\n    color: #003574;\n    font-size: 15px;\n    font-weight: 900;\n    border-radius: 5px;\n    width: 100%;\n    background-color: #fff;\n    padding: 10px 4px;\n    outline: none; }\n\n.social_media_login button i {\n      padding-right: 10px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi92YXIvd3d3L2h0bWwvVHJpcGlvbl9uZXcvc3JjL2FwcC9sb2dpbi9sb2dpbi5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUVRLGdDQUFnQyxFQUFBOztBQUl4QztFQUNJLFdBQVc7RUFDWCxhQUFhO0VBQ2IsYUFBYTtFQUNiLG9CQUFhO0VBQWIsYUFBYTtFQUNiLHdCQUF1QjtVQUF2Qix1QkFBdUI7RUFDdkIseUJBQW1CO1VBQW5CLG1CQUFtQjtFQUNuQixrQkFBa0IsRUFBQTs7QUFQdEI7SUFTUSxZQUFZO0lBQ1osa0JBQWtCO0lBQ2xCLG1CQUFtQixFQUFBOztBQVgzQjtJQWNRLGtCQUFrQjtJQUNsQixlQUFlO0lBQ2YsZ0JBQWdCO0lBQ2hCLFdBQVc7SUFDWCxtQkFBbUIsRUFBQTs7QUFJM0I7RUFDSSxZQUFZO0VBQ1osc0JBQXNCO0VBQ3RCLGtCQUFrQjtFQUNsQixhQUFhO0VBQ2IsMENBQTBDLEVBQUE7O0FBTDlDO0lBT1EseUJBQXlCO0lBQ3pCLGlCQUFpQjtJQUNqQixlQUFlO0lBQ2YsaUJBQWlCO0lBQ2pCLGdCQUFnQjtJQUNoQixXQUFXO0lBQ1gsa0JBQWtCO0lBQ2xCLCtDQUErQztJQUMvQyxhQUFhO0lBQ2Isa0JBQWtCO0lBQ2xCLFdBQVc7SUFDWCxlQUFlLEVBQUE7O0FBSXZCO0VBQ0ksZUFBZTtFQUNmLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsWUFBWTtFQUNaLGdCQUFnQjtFQUNoQixXQUFXO0VBQ1gsMkJBQTJCLEVBQUE7O0FBRy9CO0VBQ0kseUNBQUE7RUFDQSxnQkFBZ0I7RUFDaEIsV0FBVztFQUNYLGVBQWUsRUFBQTs7QUFKbkI7RUFDSSx5Q0FBQTtFQUNBLGdCQUFnQjtFQUNoQixXQUFXO0VBQ1gsZUFBZSxFQUFBOztBQUpuQjtFQUNJLHlDQUFBO0VBQ0EsZ0JBQWdCO0VBQ2hCLFdBQVc7RUFDWCxlQUFlLEVBQUE7O0FBSm5CO0VBQ0kseUNBQUE7RUFDQSxnQkFBZ0I7RUFDaEIsV0FBVztFQUNYLGVBQWUsRUFBQTs7QUFHbkI7RUFDSSw0QkFBQTtFQUNBLGdCQUFnQjtFQUNoQixXQUFXO0VBQ1gsZUFBZSxFQUFBOztBQUduQjtFQUNJLG1CQUFBO0VBQ0EsZ0JBQWdCO0VBQ2hCLFdBQVc7RUFDWCxlQUFlLEVBQUE7O0FBR25CO0VBQ0ksZ0JBQWdCO0VBQ2hCLFdBQVc7RUFDWCxxQkFBcUIsRUFBQTs7QUFIekI7SUFLUSxlQUFlO0lBQ2YsV0FBVztJQUNYLGdCQUFnQjtJQUNoQixlQUFlO0lBQ2YscUJBQXFCLEVBQUE7O0FBSTdCO0VBQ0ksa0JBQWtCO0VBQ2xCLGVBQWU7RUFDZixrQkFBa0I7RUFDbEIsY0FBYztFQUNkLGdCQUFnQixFQUFBOztBQUxwQjtJQU9RLGtCQUFrQjtJQUNsQixtQkFBbUI7SUFDbkIsV0FBVztJQUNYLFdBQVc7SUFDWCxVQUFVO0lBQ1YsUUFBUTtJQUNSLFVBQVUsRUFBQTs7QUFibEI7SUFnQlEsa0JBQWtCO0lBQ2xCLG1CQUFtQjtJQUNuQixXQUFXO0lBQ1gsV0FBVztJQUNYLFVBQVU7SUFDVixRQUFRO0lBQ1IsU0FBUyxFQUFBOztBQUlqQjtFQUNJLGdCQUFnQixFQUFBOztBQURwQjtJQUdRLGVBQWU7SUFDZix5QkFBeUI7SUFDekIsY0FBYztJQUNkLGVBQWU7SUFDZixnQkFBZ0I7SUFDaEIsa0JBQWtCO0lBQ2xCLFdBQVc7SUFDWCxzQkFBc0I7SUFDdEIsaUJBQWlCO0lBQ2pCLGFBQWEsRUFBQTs7QUFackI7TUFjWSxtQkFBbUIsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2xvZ2luL2xvZ2luLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gYWxsIGNzcyBzdGFydCBoZXJlIFxuaW9uLWNvbnRlbnQge1xuICAgICY6YWZ0ZXIge1xuICAgICAgICBwYWRkaW5nLWJvdHRvbTogMTAwdmggIWltcG9ydGFudDtcbiAgICB9XG59XG5cbi5sb2dpbl9mb3JtX3BhZ2Uge1xuICAgIHotaW5kZXg6IDExO1xuICAgIHBhZGRpbmc6IDEwcHg7XG4gICAgaGVpZ2h0OiAxMDB2aDtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgICY6YWZ0ZXIge1xuICAgICAgICBjb250ZW50OiBcIiBcIjtcbiAgICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgICBiYWNrZ3JvdW5kOiAjMDAzNTc0O1xuICAgIH1cbiAgICAubG9naW5faGVhZGVyIHtcbiAgICAgICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgICAgICBmb250LXNpemU6IDQwcHg7XG4gICAgICAgIGZvbnQtd2VpZ2h0OiA2MDA7XG4gICAgICAgIGNvbG9yOiAjZmZmO1xuICAgICAgICBtYXJnaW4tYm90dG9tOiAyNXB4O1xuICAgIH1cbn1cblxuLmxvZ2luX2Zvcm0ge1xuICAgIHdpZHRoOiAzMDBweDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xuICAgIGJvcmRlci1yYWRpdXM6IDhweDtcbiAgICBwYWRkaW5nOiAxOHB4O1xuICAgIGJveC1zaGFkb3c6IDJweCAycHggN3B4IHJnYmEoMCwgMCwgMCwgMC41KTtcbiAgICAubG9naW5fYnRuIHtcbiAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogIzAwMzU3NDtcbiAgICAgICAgcGFkZGluZzogMHB4IDEwcHg7XG4gICAgICAgIGZvbnQtc2l6ZTogMTZweDtcbiAgICAgICAgbGluZS1oZWlnaHQ6IDUwcHg7XG4gICAgICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gICAgICAgIHdpZHRoOiAxMDAlO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA1cHg7XG4gICAgICAgIGJveC1zaGFkb3c6IDFweCAycHggNnB4IHJnYmEoMTE5LCA1OSwgMjE5LCAwLjUpO1xuICAgICAgICBvdXRsaW5lOiBub25lO1xuICAgICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICAgIGNvbG9yOiAjZmZmO1xuICAgICAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgfVxufVxuXG4uZm9ybS1jb250cm9sIHtcbiAgICBmb250LXNpemU6IDE0cHg7XG4gICAgYm9yZGVyOiBub25lO1xuICAgIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgICBoZWlnaHQ6IDUwcHg7XG4gICAgZm9udC13ZWlnaHQ6IDUwMDtcbiAgICBjb2xvcjogIzAwMDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMTUyMDdmMTI7XG59XG5cbjo6cGxhY2Vob2xkZXIge1xuICAgIC8qIENocm9tZSwgRmlyZWZveCwgT3BlcmEsIFNhZmFyaSAxMC4xKyAqL1xuICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gICAgY29sb3I6ICMwMDA7XG4gICAgZm9udC1zaXplOiAxNHB4O1xufVxuXG46LW1zLWlucHV0LXBsYWNlaG9sZGVyIHtcbiAgICAvKiBJbnRlcm5ldCBFeHBsb3JlciAxMC0xMSAqL1xuICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gICAgY29sb3I6ICMwMDA7XG4gICAgZm9udC1zaXplOiAxNHB4O1xufVxuXG46Oi1tcy1pbnB1dC1wbGFjZWhvbGRlciB7XG4gICAgLyogTWljcm9zb2Z0IEVkZ2UgKi9cbiAgICBmb250LXdlaWdodDogNTAwO1xuICAgIGNvbG9yOiAjMDAwO1xuICAgIGZvbnQtc2l6ZTogMTRweDtcbn1cblxuLnNpZ25fdXBfbGluayB7XG4gICAgbWFyZ2luOiAxNXB4IDBweDtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgYSB7XG4gICAgICAgIGZvbnQtc2l6ZTogMTJweDtcbiAgICAgICAgY29sb3I6ICMwMDA7XG4gICAgICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICAgIH1cbn1cblxuLm9yX3NlY3Rpb24ge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBmb250LXNpemU6IDEycHg7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGNvbG9yOiAjODg4YTkxO1xuICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gICAgJjphZnRlciB7XG4gICAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICAgICAgYmFja2dyb3VuZDogIzg4OGE5MTtcbiAgICAgICAgY29udGVudDogXCJcIjtcbiAgICAgICAgaGVpZ2h0OiAxcHg7XG4gICAgICAgIHdpZHRoOiA0MiU7XG4gICAgICAgIHRvcDogOHB4O1xuICAgICAgICByaWdodDogMHB4O1xuICAgIH1cbiAgICAmOmJlZm9yZSB7XG4gICAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICAgICAgYmFja2dyb3VuZDogIzg4OGE5MTtcbiAgICAgICAgY29udGVudDogXCJcIjtcbiAgICAgICAgaGVpZ2h0OiAxcHg7XG4gICAgICAgIHdpZHRoOiA0MiU7XG4gICAgICAgIHRvcDogOHB4O1xuICAgICAgICBsZWZ0OiAwcHg7XG4gICAgfVxufVxuXG4uc29jaWFsX21lZGlhX2xvZ2luIHtcbiAgICBtYXJnaW4tdG9wOiAxNXB4O1xuICAgIGJ1dHRvbiB7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgYm9yZGVyOiAycHggc29saWQgIzAwMzU3NDtcbiAgICAgICAgY29sb3I6ICMwMDM1NzQ7XG4gICAgICAgIGZvbnQtc2l6ZTogMTVweDtcbiAgICAgICAgZm9udC13ZWlnaHQ6IDkwMDtcbiAgICAgICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgICAgICB3aWR0aDogMTAwJTtcbiAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcbiAgICAgICAgcGFkZGluZzogMTBweCA0cHg7XG4gICAgICAgIG91dGxpbmU6IG5vbmU7XG4gICAgICAgIGkge1xuICAgICAgICAgICAgcGFkZGluZy1yaWdodDogMTBweDtcbiAgICAgICAgfVxuICAgIH1cbn0iXX0= */"
-=======
-module.exports = "ion-content:after {\n  padding-bottom: 100vh !important; }\n\n.login_form_page {\n  z-index: 11;\n  padding: 10px;\n  height: 100vh;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  position: relative; }\n\n.login_form_page:after {\n    content: \" \";\n    position: absolute;\n    background: #003574; }\n\n.login_form_page .login_header {\n    text-align: center;\n    font-size: 40px;\n    font-weight: 600;\n    color: #fff;\n    margin-bottom: 25px; }\n\n.login_form {\n  width: 300px;\n  background-color: #fff;\n  border-radius: 8px;\n  padding: 18px;\n  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5); }\n\n.login_form .login_btn {\n    background-color: #003574;\n    padding: 0px 10px;\n    font-size: 16px;\n    line-height: 50px;\n    font-weight: 500;\n    width: 100%;\n    border-radius: 5px;\n    box-shadow: 1px 2px 6px rgba(119, 59, 219, 0.5);\n    outline: none;\n    position: relative;\n    color: #fff;\n    cursor: pointer; }\n\n.form-control {\n  font-size: 14px;\n  border: none;\n  border-radius: 5px;\n  height: 50px;\n  font-weight: 500;\n  color: #000;\n  background-color: #15207f12; }\n\n::-webkit-input-placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n::-moz-placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n::-ms-input-placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n::placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n:-ms-input-placeholder {\n  /* Internet Explorer 10-11 */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n::-ms-input-placeholder {\n  /* Microsoft Edge */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n.sign_up_link {\n  margin: 15px 0px;\n  width: 100%;\n  display: inline-block; }\n\n.sign_up_link a {\n    font-size: 12px;\n    color: #000;\n    font-weight: 500;\n    cursor: pointer;\n    text-decoration: none; }\n\n.or_section {\n  position: relative;\n  font-size: 12px;\n  text-align: center;\n  color: #888a91;\n  font-weight: 500; }\n\n.or_section:after {\n    position: absolute;\n    background: #888a91;\n    content: \"\";\n    height: 1px;\n    width: 42%;\n    top: 8px;\n    right: 0px; }\n\n.or_section:before {\n    position: absolute;\n    background: #888a91;\n    content: \"\";\n    height: 1px;\n    width: 42%;\n    top: 8px;\n    left: 0px; }\n\n.social_media_login {\n  margin-top: 15px; }\n\n.social_media_login button {\n    cursor: pointer;\n    border: 2px solid #003574;\n    color: #003574;\n    font-size: 15px;\n    font-weight: 900;\n    border-radius: 5px;\n    width: 100%;\n    background-color: #fff;\n    padding: 10px 4px;\n    outline: none; }\n\n.social_media_login button i {\n      padding-right: 10px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi92YXIvd3d3L2h0bWwva29tYWwvdHJpcGlvbkFwcC9zcmMvYXBwL2xvZ2luL2xvZ2luLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBRVEsZ0NBQWdDLEVBQUE7O0FBSXhDO0VBQ0ksV0FBVztFQUNYLGFBQWE7RUFDYixhQUFhO0VBQ2Isb0JBQWE7RUFBYixhQUFhO0VBQ2Isd0JBQXVCO1VBQXZCLHVCQUF1QjtFQUN2Qix5QkFBbUI7VUFBbkIsbUJBQW1CO0VBQ25CLGtCQUFrQixFQUFBOztBQVB0QjtJQVNRLFlBQVk7SUFDWixrQkFBa0I7SUFDbEIsbUJBQW1CLEVBQUE7O0FBWDNCO0lBY1Esa0JBQWtCO0lBQ2xCLGVBQWU7SUFDZixnQkFBZ0I7SUFDaEIsV0FBVztJQUNYLG1CQUFtQixFQUFBOztBQUkzQjtFQUNJLFlBQVk7RUFDWixzQkFBc0I7RUFDdEIsa0JBQWtCO0VBQ2xCLGFBQWE7RUFDYiwwQ0FBMEMsRUFBQTs7QUFMOUM7SUFPUSx5QkFBeUI7SUFDekIsaUJBQWlCO0lBQ2pCLGVBQWU7SUFDZixpQkFBaUI7SUFDakIsZ0JBQWdCO0lBQ2hCLFdBQVc7SUFDWCxrQkFBa0I7SUFDbEIsK0NBQStDO0lBQy9DLGFBQWE7SUFDYixrQkFBa0I7SUFDbEIsV0FBVztJQUNYLGVBQWUsRUFBQTs7QUFJdkI7RUFDSSxlQUFlO0VBQ2YsWUFBWTtFQUNaLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osZ0JBQWdCO0VBQ2hCLFdBQVc7RUFDWCwyQkFBMkIsRUFBQTs7QUFHL0I7RUFDSSx5Q0FBQTtFQUNBLGdCQUFnQjtFQUNoQixXQUFXO0VBQ1gsZUFBZSxFQUFBOztBQUpuQjtFQUNJLHlDQUFBO0VBQ0EsZ0JBQWdCO0VBQ2hCLFdBQVc7RUFDWCxlQUFlLEVBQUE7O0FBSm5CO0VBQ0kseUNBQUE7RUFDQSxnQkFBZ0I7RUFDaEIsV0FBVztFQUNYLGVBQWUsRUFBQTs7QUFKbkI7RUFDSSx5Q0FBQTtFQUNBLGdCQUFnQjtFQUNoQixXQUFXO0VBQ1gsZUFBZSxFQUFBOztBQUduQjtFQUNJLDRCQUFBO0VBQ0EsZ0JBQWdCO0VBQ2hCLFdBQVc7RUFDWCxlQUFlLEVBQUE7O0FBR25CO0VBQ0ksbUJBQUE7RUFDQSxnQkFBZ0I7RUFDaEIsV0FBVztFQUNYLGVBQWUsRUFBQTs7QUFHbkI7RUFDSSxnQkFBZ0I7RUFDaEIsV0FBVztFQUNYLHFCQUFxQixFQUFBOztBQUh6QjtJQUtRLGVBQWU7SUFDZixXQUFXO0lBQ1gsZ0JBQWdCO0lBQ2hCLGVBQWU7SUFDZixxQkFBcUIsRUFBQTs7QUFJN0I7RUFDSSxrQkFBa0I7RUFDbEIsZUFBZTtFQUNmLGtCQUFrQjtFQUNsQixjQUFjO0VBQ2QsZ0JBQWdCLEVBQUE7O0FBTHBCO0lBT1Esa0JBQWtCO0lBQ2xCLG1CQUFtQjtJQUNuQixXQUFXO0lBQ1gsV0FBVztJQUNYLFVBQVU7SUFDVixRQUFRO0lBQ1IsVUFBVSxFQUFBOztBQWJsQjtJQWdCUSxrQkFBa0I7SUFDbEIsbUJBQW1CO0lBQ25CLFdBQVc7SUFDWCxXQUFXO0lBQ1gsVUFBVTtJQUNWLFFBQVE7SUFDUixTQUFTLEVBQUE7O0FBSWpCO0VBQ0ksZ0JBQWdCLEVBQUE7O0FBRHBCO0lBR1EsZUFBZTtJQUNmLHlCQUF5QjtJQUN6QixjQUFjO0lBQ2QsZUFBZTtJQUNmLGdCQUFnQjtJQUNoQixrQkFBa0I7SUFDbEIsV0FBVztJQUNYLHNCQUFzQjtJQUN0QixpQkFBaUI7SUFDakIsYUFBYSxFQUFBOztBQVpyQjtNQWNZLG1CQUFtQixFQUFBIiwiZmlsZSI6InNyYy9hcHAvbG9naW4vbG9naW4uY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBhbGwgY3NzIHN0YXJ0IGhlcmUgXG5pb24tY29udGVudCB7XG4gICAgJjphZnRlciB7XG4gICAgICAgIHBhZGRpbmctYm90dG9tOiAxMDB2aCAhaW1wb3J0YW50O1xuICAgIH1cbn1cblxuLmxvZ2luX2Zvcm1fcGFnZSB7XG4gICAgei1pbmRleDogMTE7XG4gICAgcGFkZGluZzogMTBweDtcbiAgICBoZWlnaHQ6IDEwMHZoO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgJjphZnRlciB7XG4gICAgICAgIGNvbnRlbnQ6IFwiIFwiO1xuICAgICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICAgIGJhY2tncm91bmQ6ICMwMDM1NzQ7XG4gICAgfVxuICAgIC5sb2dpbl9oZWFkZXIge1xuICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgICAgIGZvbnQtc2l6ZTogNDBweDtcbiAgICAgICAgZm9udC13ZWlnaHQ6IDYwMDtcbiAgICAgICAgY29sb3I6ICNmZmY7XG4gICAgICAgIG1hcmdpbi1ib3R0b206IDI1cHg7XG4gICAgfVxufVxuXG4ubG9naW5fZm9ybSB7XG4gICAgd2lkdGg6IDMwMHB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XG4gICAgYm9yZGVyLXJhZGl1czogOHB4O1xuICAgIHBhZGRpbmc6IDE4cHg7XG4gICAgYm94LXNoYWRvdzogMnB4IDJweCA3cHggcmdiYSgwLCAwLCAwLCAwLjUpO1xuICAgIC5sb2dpbl9idG4ge1xuICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDAzNTc0O1xuICAgICAgICBwYWRkaW5nOiAwcHggMTBweDtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICBsaW5lLWhlaWdodDogNTBweDtcbiAgICAgICAgZm9udC13ZWlnaHQ6IDUwMDtcbiAgICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICAgIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgICAgICAgYm94LXNoYWRvdzogMXB4IDJweCA2cHggcmdiYSgxMTksIDU5LCAyMTksIDAuNSk7XG4gICAgICAgIG91dGxpbmU6IG5vbmU7XG4gICAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICAgICAgY29sb3I6ICNmZmY7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICB9XG59XG5cbi5mb3JtLWNvbnRyb2wge1xuICAgIGZvbnQtc2l6ZTogMTRweDtcbiAgICBib3JkZXI6IG5vbmU7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIGhlaWdodDogNTBweDtcbiAgICBmb250LXdlaWdodDogNTAwO1xuICAgIGNvbG9yOiAjMDAwO1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMxNTIwN2YxMjtcbn1cblxuOjpwbGFjZWhvbGRlciB7XG4gICAgLyogQ2hyb21lLCBGaXJlZm94LCBPcGVyYSwgU2FmYXJpIDEwLjErICovXG4gICAgZm9udC13ZWlnaHQ6IDUwMDtcbiAgICBjb2xvcjogIzAwMDtcbiAgICBmb250LXNpemU6IDE0cHg7XG59XG5cbjotbXMtaW5wdXQtcGxhY2Vob2xkZXIge1xuICAgIC8qIEludGVybmV0IEV4cGxvcmVyIDEwLTExICovXG4gICAgZm9udC13ZWlnaHQ6IDUwMDtcbiAgICBjb2xvcjogIzAwMDtcbiAgICBmb250LXNpemU6IDE0cHg7XG59XG5cbjo6LW1zLWlucHV0LXBsYWNlaG9sZGVyIHtcbiAgICAvKiBNaWNyb3NvZnQgRWRnZSAqL1xuICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gICAgY29sb3I6ICMwMDA7XG4gICAgZm9udC1zaXplOiAxNHB4O1xufVxuXG4uc2lnbl91cF9saW5rIHtcbiAgICBtYXJnaW46IDE1cHggMHB4O1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICBhIHtcbiAgICAgICAgZm9udC1zaXplOiAxMnB4O1xuICAgICAgICBjb2xvcjogIzAwMDtcbiAgICAgICAgZm9udC13ZWlnaHQ6IDUwMDtcbiAgICAgICAgY3Vyc29yOiBwb2ludGVyO1xuICAgICAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XG4gICAgfVxufVxuXG4ub3Jfc2VjdGlvbiB7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIGZvbnQtc2l6ZTogMTJweDtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgY29sb3I6ICM4ODhhOTE7XG4gICAgZm9udC13ZWlnaHQ6IDUwMDtcbiAgICAmOmFmdGVyIHtcbiAgICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgICBiYWNrZ3JvdW5kOiAjODg4YTkxO1xuICAgICAgICBjb250ZW50OiBcIlwiO1xuICAgICAgICBoZWlnaHQ6IDFweDtcbiAgICAgICAgd2lkdGg6IDQyJTtcbiAgICAgICAgdG9wOiA4cHg7XG4gICAgICAgIHJpZ2h0OiAwcHg7XG4gICAgfVxuICAgICY6YmVmb3JlIHtcbiAgICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgICBiYWNrZ3JvdW5kOiAjODg4YTkxO1xuICAgICAgICBjb250ZW50OiBcIlwiO1xuICAgICAgICBoZWlnaHQ6IDFweDtcbiAgICAgICAgd2lkdGg6IDQyJTtcbiAgICAgICAgdG9wOiA4cHg7XG4gICAgICAgIGxlZnQ6IDBweDtcbiAgICB9XG59XG5cbi5zb2NpYWxfbWVkaWFfbG9naW4ge1xuICAgIG1hcmdpbi10b3A6IDE1cHg7XG4gICAgYnV0dG9uIHtcbiAgICAgICAgY3Vyc29yOiBwb2ludGVyO1xuICAgICAgICBib3JkZXI6IDJweCBzb2xpZCAjMDAzNTc0O1xuICAgICAgICBjb2xvcjogIzAwMzU3NDtcbiAgICAgICAgZm9udC1zaXplOiAxNXB4O1xuICAgICAgICBmb250LXdlaWdodDogOTAwO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA1cHg7XG4gICAgICAgIHdpZHRoOiAxMDAlO1xuICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xuICAgICAgICBwYWRkaW5nOiAxMHB4IDRweDtcbiAgICAgICAgb3V0bGluZTogbm9uZTtcbiAgICAgICAgaSB7XG4gICAgICAgICAgICBwYWRkaW5nLXJpZ2h0OiAxMHB4O1xuICAgICAgICB9XG4gICAgfVxufSJdfQ== */"
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
 
 /***/ }),
 
@@ -22082,11 +22067,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic-native/google-plus/ngx */ "./node_modules/@ionic-native/google-plus/ngx/index.js");
 /* harmony import */ var _ionic_native_facebook_ngx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ionic-native/facebook/ngx */ "./node_modules/@ionic-native/facebook/ngx/index.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-<<<<<<< HEAD
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../app.component */ "./src/app/app.component.ts");
 
-=======
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
 
 
 
@@ -22097,21 +22079,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LoginComponent = /** @class */ (function () {
-<<<<<<< HEAD
     function LoginComponent(_userServices, _toastServices, googlePlus, router, fb, http, appComponent) {
-=======
-    function LoginComponent(_userServices, _toastServices, googlePlus, router, fb, http) {
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
         this._userServices = _userServices;
         this._toastServices = _toastServices;
         this.googlePlus = googlePlus;
         this.router = router;
         this.fb = fb;
         this.http = http;
-<<<<<<< HEAD
         this.appComponent = appComponent;
-=======
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
         this.submitted = false;
         this.isDisable = false;
         this.submmitedFPsw = false;
@@ -22163,23 +22138,15 @@ var LoginComponent = /** @class */ (function () {
                 // this._toastServices.presentToast(err.error.message, 'danger')
             });
             _this.loading = false;
-<<<<<<< HEAD
             // this._toastServices.presentToast(res.message, 'success');
             _this.appComponent.sucessAlert("Login Sucessfully");
-=======
-            _this._toastServices.presentToast(res.message, 'success');
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
             _this.router.navigate(['/home']);
             _this.loginForm.reset();
             _this.submitted = false;
         }, function (err) {
             console.log("err in login", err);
-<<<<<<< HEAD
             _this.appComponent.errorAlert();
             // this._toastServices.presentToast(err.error.message, 'danger');
-=======
-            _this._toastServices.presentToast(err.error.message, 'danger');
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
             _this.isDisable = false;
             _this.loading = false;
         });
@@ -22208,34 +22175,22 @@ var LoginComponent = /** @class */ (function () {
                 }, function (err) {
                     console.log("errr", err);
                 });
-<<<<<<< HEAD
                 _this.appComponent.sucessAlert("Login Sucessfully");
                 // this._toastServices.presentToast(res.message, 'success');
-=======
-                _this._toastServices.presentToast(res.message, 'success');
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
                 _this.loading = false;
                 _this.isDisable = false;
                 _this.router.navigate(['/home']);
             }, function (err) {
-<<<<<<< HEAD
                 // this._toastServices.presentToast(err.error.message, 'danger');
                 _this.appComponent.errorAlert();
-=======
-                _this._toastServices.presentToast(err.error.message, 'danger');
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
                 console.log("err in google login", err);
                 _this.loading = false;
                 _this.isDisable = false;
             });
         })
             .catch(function (err) {
-<<<<<<< HEAD
             // this._toastServices.presentToast("Error in Google Login", 'danger')
             _this.appComponent.errorAlert();
-=======
-            _this._toastServices.presentToast("Error in Google Login", 'danger');
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
             console.error("err", err);
             _this.loading = false;
         });
@@ -22279,22 +22234,14 @@ var LoginComponent = /** @class */ (function () {
                                         _this.loading = false;
                                         _this.isDisable = false;
                                     });
-<<<<<<< HEAD
                                     _this.appComponent.sucessAlert("Login Sucessfully");
                                     // this._toastServices.presentToast(res.message, 'success');
-=======
-                                    _this._toastServices.presentToast(res.message, 'success');
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
                                     _this.loading = false;
                                     _this.isDisable = false;
                                     _this.router.navigate(['/home']);
                                 }, function (err) {
-<<<<<<< HEAD
                                     // this._toastServices.presentToast(err.error.message, 'danger');
                                     _this.appComponent.errorAlert();
-=======
-                                    _this._toastServices.presentToast(err.error.message, 'danger');
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
                                     console.log("err in fb login", err);
                                     _this.loading = false;
                                     _this.isDisable = false;
@@ -22310,12 +22257,8 @@ var LoginComponent = /** @class */ (function () {
             console.error("err", err);
             _this.loading = false;
             _this.isDisable = false;
-<<<<<<< HEAD
             // this._toastServices.presentToast("Error in facebook Login", 'danger')
             _this.appComponent.errorAlert();
-=======
-            _this._toastServices.presentToast("Error in facebook Login", 'danger');
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
         });
     };
     LoginComponent.prototype.fetchFacebookData = function (accessToken) {
@@ -22341,12 +22284,8 @@ var LoginComponent = /** @class */ (function () {
             $("#forgot-password").fadeOut();
         }, function (err) {
             console.log("err in f psw", err);
-<<<<<<< HEAD
             // this._toastServices.presentToast(err.error.message, 'danger');
             _this.appComponent.errorAlert();
-=======
-            _this._toastServices.presentToast(err.error.message, 'danger');
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
             _this.loading = false;
             _this.isDisable = false;
             $("#forgot-password").fadeOut();
@@ -22370,12 +22309,8 @@ var LoginComponent = /** @class */ (function () {
         { type: _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_6__["GooglePlus"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
         { type: _ionic_native_facebook_ngx__WEBPACK_IMPORTED_MODULE_7__["Facebook"] },
-<<<<<<< HEAD
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClient"] },
         { type: _app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"] }
-=======
-        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClient"] }
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
     ]; };
     LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -22388,12 +22323,8 @@ var LoginComponent = /** @class */ (function () {
             _ionic_native_google_plus_ngx__WEBPACK_IMPORTED_MODULE_6__["GooglePlus"],
             _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
             _ionic_native_facebook_ngx__WEBPACK_IMPORTED_MODULE_7__["Facebook"],
-<<<<<<< HEAD
             _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClient"],
             _app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]])
-=======
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClient"]])
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -22709,11 +22640,7 @@ var UserService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-<<<<<<< HEAD
 module.exports = "ion-content:after {\n  padding-bottom: 100vh !important; }\n\n.login_form_page {\n  z-index: 11;\n  padding: 10px;\n  height: 100%;\n  position: relative;\n  margin: 15px 0px; }\n\n.login_form_page:after {\n    content: \" \";\n    position: absolute;\n    background: #003574; }\n\n.login_form_page .login_header {\n    text-align: center;\n    font-size: 40px;\n    font-weight: 600;\n    color: #fff;\n    margin-bottom: 25px; }\n\n.login_form_page ion-datetime {\n    color: black;\n    line-height: 35px; }\n\n.login_form {\n  width: 300px;\n  background-color: #fff;\n  border-radius: 8px;\n  padding: 18px;\n  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5);\n  margin: auto; }\n\n.login_form .login_btn {\n    background-color: #003574;\n    padding: 0px 10px;\n    font-size: 16px;\n    line-height: 50px;\n    font-weight: 500;\n    width: 100%;\n    border-radius: 5px;\n    box-shadow: 1px 2px 6px rgba(119, 59, 219, 0.5);\n    outline: none;\n    position: relative;\n    color: #fff;\n    cursor: pointer; }\n\n.form-control {\n  font-size: 14px;\n  border: none;\n  border-radius: 5px;\n  height: 50px;\n  font-weight: 500;\n  color: #000;\n  background-color: #15207f12; }\n\n::-webkit-input-placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n::-moz-placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n::-ms-input-placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n::placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n:-ms-input-placeholder {\n  /* Internet Explorer 10-11 */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n::-ms-input-placeholder {\n  /* Microsoft Edge */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\nspan.select2.select2-container.select2-container--default {\n  width: 100% !important; }\n\n#locationField,\n#controls {\n  position: relative;\n  width: 480px; }\n\n#autocomplete {\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  width: 99%; }\n\n.label {\n  text-align: right;\n  font-weight: bold;\n  width: 100px;\n  color: #303030;\n  font-family: \"Roboto\"; }\n\n#address {\n  border: 1px solid #000090;\n  background-color: #f0f9ff;\n  width: 480px;\n  padding-right: 2px; }\n\n#address td {\n  font-size: 10pt; }\n\n.field {\n  width: 99%; }\n\n.slimField {\n  width: 80px; }\n\n.wideField {\n  width: 200px; }\n\n#locationField {\n  height: 20px;\n  margin-bottom: 2px; }\n\n#map {\n  height: 100%; }\n\n/* Optional: Makes the sample page fill the window. */\n\nhtml,\nbody {\n  height: 100%;\n  margin: 0;\n  padding: 0; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi92YXIvd3d3L2h0bWwvVHJpcGlvbl9uZXcvc3JjL2FwcC9zaWdudXAvc2lnbnVwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBRVEsZ0NBQWdDLEVBQUE7O0FBSXhDO0VBQ0ksV0FBVztFQUNYLGFBQWE7RUFDYixZQUFZO0VBSVosa0JBQWtCO0VBQ2xCLGdCQUFnQixFQUFBOztBQVJwQjtJQVVRLFlBQVk7SUFDWixrQkFBa0I7SUFDbEIsbUJBQW1CLEVBQUE7O0FBWjNCO0lBZVEsa0JBQWtCO0lBQ2xCLGVBQWU7SUFDZixnQkFBZ0I7SUFDaEIsV0FBVztJQUNYLG1CQUFtQixFQUFBOztBQW5CM0I7SUFzQlEsWUFBWTtJQUNaLGlCQUFpQixFQUFBOztBQUl6QjtFQUNJLFlBQVk7RUFDWixzQkFBc0I7RUFDdEIsa0JBQWtCO0VBQ2xCLGFBQWE7RUFDYiwwQ0FBMEM7RUFDMUMsWUFBWSxFQUFBOztBQU5oQjtJQVFRLHlCQUF5QjtJQUN6QixpQkFBaUI7SUFDakIsZUFBZTtJQUNmLGlCQUFpQjtJQUNqQixnQkFBZ0I7SUFDaEIsV0FBVztJQUNYLGtCQUFrQjtJQUNsQiwrQ0FBK0M7SUFDL0MsYUFBYTtJQUNiLGtCQUFrQjtJQUNsQixXQUFXO0lBQ1gsZUFBZSxFQUFBOztBQUl2QjtFQUNJLGVBQWU7RUFDZixZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixnQkFBZ0I7RUFDaEIsV0FBVztFQUNYLDJCQUEyQixFQUFBOztBQUc5QjtFQUNHLHlDQUFBO0VBQ0EsZ0JBQWdCO0VBQ2hCLFdBQVc7RUFDWCxlQUFlLEVBQUE7O0FBSmxCO0VBQ0cseUNBQUE7RUFDQSxnQkFBZ0I7RUFDaEIsV0FBVztFQUNYLGVBQWUsRUFBQTs7QUFKbEI7RUFDRyx5Q0FBQTtFQUNBLGdCQUFnQjtFQUNoQixXQUFXO0VBQ1gsZUFBZSxFQUFBOztBQUpsQjtFQUNHLHlDQUFBO0VBQ0EsZ0JBQWdCO0VBQ2hCLFdBQVc7RUFDWCxlQUFlLEVBQUE7O0FBR2xCO0VBQ0csNEJBQUE7RUFDQSxnQkFBZ0I7RUFDaEIsV0FBVztFQUNYLGVBQWUsRUFBQTs7QUFHbEI7RUFDRyxtQkFBQTtFQUNBLGdCQUFnQjtFQUNoQixXQUFXO0VBQ1gsZUFBZSxFQUFBOztBQUduQjtFQUNJLHNCQUFxQixFQUFBOztBQUd6Qjs7RUFFSSxrQkFBa0I7RUFDbEIsWUFBWSxFQUFBOztBQUdoQjtFQUNJLGtCQUFrQjtFQUNsQixRQUFRO0VBQ1IsU0FBUztFQUNULFVBQVUsRUFBQTs7QUFHZDtFQUNJLGlCQUFpQjtFQUNqQixpQkFBaUI7RUFDakIsWUFBWTtFQUNaLGNBQWM7RUFDZCxxQkFBcUIsRUFBQTs7QUFHekI7RUFDSSx5QkFBeUI7RUFDekIseUJBQXlCO0VBQ3pCLFlBQVk7RUFDWixrQkFBa0IsRUFBQTs7QUFHdEI7RUFDSSxlQUFlLEVBQUE7O0FBR25CO0VBQ0ksVUFBVSxFQUFBOztBQUdkO0VBQ0ksV0FBVyxFQUFBOztBQUdmO0VBQ0ksWUFBWSxFQUFBOztBQUdoQjtFQUNJLFlBQVk7RUFDWixrQkFBa0IsRUFBQTs7QUFHdEI7RUFDSSxZQUFZLEVBQUE7O0FBSWhCLHFEQUFBOztBQUVBOztFQUVJLFlBQVk7RUFDWixTQUFTO0VBQ1QsVUFBVSxFQUFBIiwiZmlsZSI6InNyYy9hcHAvc2lnbnVwL3NpZ251cC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi8vIGFsbCBjc3Mgc3RhcnQgaGVyZSBcbmlvbi1jb250ZW50IHtcbiAgICAmOmFmdGVyIHtcbiAgICAgICAgcGFkZGluZy1ib3R0b206IDEwMHZoICFpbXBvcnRhbnQ7XG4gICAgfVxufVxuXG4ubG9naW5fZm9ybV9wYWdlIHtcbiAgICB6LWluZGV4OiAxMTtcbiAgICBwYWRkaW5nOiAxMHB4O1xuICAgIGhlaWdodDogMTAwJTtcbiAgICAvLyBkaXNwbGF5OiBmbGV4O1xuICAgIC8vIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIC8vIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIG1hcmdpbjogMTVweCAwcHg7XG4gICAgJjphZnRlciB7XG4gICAgICAgIGNvbnRlbnQ6IFwiIFwiO1xuICAgICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICAgIGJhY2tncm91bmQ6ICMwMDM1NzQ7XG4gICAgfVxuICAgIC5sb2dpbl9oZWFkZXIge1xuICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgICAgIGZvbnQtc2l6ZTogNDBweDtcbiAgICAgICAgZm9udC13ZWlnaHQ6IDYwMDtcbiAgICAgICAgY29sb3I6ICNmZmY7XG4gICAgICAgIG1hcmdpbi1ib3R0b206IDI1cHg7XG4gICAgfVxuICAgIGlvbi1kYXRldGltZSB7XG4gICAgICAgIGNvbG9yOiBibGFjaztcbiAgICAgICAgbGluZS1oZWlnaHQ6IDM1cHg7XG4gICAgfVxufVxuXG4ubG9naW5fZm9ybSB7XG4gICAgd2lkdGg6IDMwMHB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XG4gICAgYm9yZGVyLXJhZGl1czogOHB4O1xuICAgIHBhZGRpbmc6IDE4cHg7XG4gICAgYm94LXNoYWRvdzogMnB4IDJweCA3cHggcmdiYSgwLCAwLCAwLCAwLjUpO1xuICAgIG1hcmdpbjogYXV0bztcbiAgICAubG9naW5fYnRuIHtcbiAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogIzAwMzU3NDtcbiAgICAgICAgcGFkZGluZzogMHB4IDEwcHg7XG4gICAgICAgIGZvbnQtc2l6ZTogMTZweDtcbiAgICAgICAgbGluZS1oZWlnaHQ6IDUwcHg7XG4gICAgICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gICAgICAgIHdpZHRoOiAxMDAlO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA1cHg7XG4gICAgICAgIGJveC1zaGFkb3c6IDFweCAycHggNnB4IHJnYmEoMTE5LCA1OSwgMjE5LCAwLjUpO1xuICAgICAgICBvdXRsaW5lOiBub25lO1xuICAgICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICAgIGNvbG9yOiAjZmZmO1xuICAgICAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgfVxufVxuXG4uZm9ybS1jb250cm9sIHtcbiAgICBmb250LXNpemU6IDE0cHg7XG4gICAgYm9yZGVyOiBub25lO1xuICAgIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgICBoZWlnaHQ6IDUwcHg7XG4gICAgZm9udC13ZWlnaHQ6IDUwMDtcbiAgICBjb2xvcjogIzAwMDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMTUyMDdmMTI7XG59XG5cbiA6OnBsYWNlaG9sZGVyIHtcbiAgICAvKiBDaHJvbWUsIEZpcmVmb3gsIE9wZXJhLCBTYWZhcmkgMTAuMSsgKi9cbiAgICBmb250LXdlaWdodDogNTAwO1xuICAgIGNvbG9yOiAjMDAwO1xuICAgIGZvbnQtc2l6ZTogMTRweDtcbn1cblxuIDotbXMtaW5wdXQtcGxhY2Vob2xkZXIge1xuICAgIC8qIEludGVybmV0IEV4cGxvcmVyIDEwLTExICovXG4gICAgZm9udC13ZWlnaHQ6IDUwMDtcbiAgICBjb2xvcjogIzAwMDtcbiAgICBmb250LXNpemU6IDE0cHg7XG59XG5cbiA6Oi1tcy1pbnB1dC1wbGFjZWhvbGRlciB7XG4gICAgLyogTWljcm9zb2Z0IEVkZ2UgKi9cbiAgICBmb250LXdlaWdodDogNTAwO1xuICAgIGNvbG9yOiAjMDAwO1xuICAgIGZvbnQtc2l6ZTogMTRweDtcbn1cblxuc3Bhbi5zZWxlY3QyLnNlbGVjdDItY29udGFpbmVyLnNlbGVjdDItY29udGFpbmVyLS1kZWZhdWx0IHtcbiAgICB3aWR0aDogMTAwJSFpbXBvcnRhbnQ7XG59XG5cbiNsb2NhdGlvbkZpZWxkLFxuI2NvbnRyb2xzIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgd2lkdGg6IDQ4MHB4O1xufVxuXG4jYXV0b2NvbXBsZXRlIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgdG9wOiAwcHg7XG4gICAgbGVmdDogMHB4O1xuICAgIHdpZHRoOiA5OSU7XG59XG5cbi5sYWJlbCB7XG4gICAgdGV4dC1hbGlnbjogcmlnaHQ7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gICAgd2lkdGg6IDEwMHB4O1xuICAgIGNvbG9yOiAjMzAzMDMwO1xuICAgIGZvbnQtZmFtaWx5OiBcIlJvYm90b1wiO1xufVxuXG4jYWRkcmVzcyB7XG4gICAgYm9yZGVyOiAxcHggc29saWQgIzAwMDA5MDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjBmOWZmO1xuICAgIHdpZHRoOiA0ODBweDtcbiAgICBwYWRkaW5nLXJpZ2h0OiAycHg7XG59XG5cbiNhZGRyZXNzIHRkIHtcbiAgICBmb250LXNpemU6IDEwcHQ7XG59XG5cbi5maWVsZCB7XG4gICAgd2lkdGg6IDk5JTtcbn1cblxuLnNsaW1GaWVsZCB7XG4gICAgd2lkdGg6IDgwcHg7XG59XG5cbi53aWRlRmllbGQge1xuICAgIHdpZHRoOiAyMDBweDtcbn1cblxuI2xvY2F0aW9uRmllbGQge1xuICAgIGhlaWdodDogMjBweDtcbiAgICBtYXJnaW4tYm90dG9tOiAycHg7XG59XG5cbiNtYXAge1xuICAgIGhlaWdodDogMTAwJTtcbn1cblxuXG4vKiBPcHRpb25hbDogTWFrZXMgdGhlIHNhbXBsZSBwYWdlIGZpbGwgdGhlIHdpbmRvdy4gKi9cblxuaHRtbCxcbmJvZHkge1xuICAgIGhlaWdodDogMTAwJTtcbiAgICBtYXJnaW46IDA7XG4gICAgcGFkZGluZzogMDtcbn0iXX0= */"
-=======
-module.exports = "ion-content:after {\n  padding-bottom: 100vh !important; }\n\n.login_form_page {\n  z-index: 11;\n  padding: 10px;\n  height: 100%;\n  position: relative;\n  margin: 15px 0px; }\n\n.login_form_page:after {\n    content: \" \";\n    position: absolute;\n    background: #003574; }\n\n.login_form_page .login_header {\n    text-align: center;\n    font-size: 40px;\n    font-weight: 600;\n    color: #fff;\n    margin-bottom: 25px; }\n\n.login_form_page ion-datetime {\n    color: black;\n    line-height: 35px; }\n\n.login_form {\n  width: 300px;\n  background-color: #fff;\n  border-radius: 8px;\n  padding: 18px;\n  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5);\n  margin: auto; }\n\n.login_form .login_btn {\n    background-color: #003574;\n    padding: 0px 10px;\n    font-size: 16px;\n    line-height: 50px;\n    font-weight: 500;\n    width: 100%;\n    border-radius: 5px;\n    box-shadow: 1px 2px 6px rgba(119, 59, 219, 0.5);\n    outline: none;\n    position: relative;\n    color: #fff;\n    cursor: pointer; }\n\n.form-control {\n  font-size: 14px;\n  border: none;\n  border-radius: 5px;\n  height: 50px;\n  font-weight: 500;\n  color: #000;\n  background-color: #15207f12; }\n\n::-webkit-input-placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n::-moz-placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n::-ms-input-placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n::placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n:-ms-input-placeholder {\n  /* Internet Explorer 10-11 */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\n::-ms-input-placeholder {\n  /* Microsoft Edge */\n  font-weight: 500;\n  color: #000;\n  font-size: 14px; }\n\nspan.select2.select2-container.select2-container--default {\n  width: 100% !important; }\n\n#locationField,\n#controls {\n  position: relative;\n  width: 480px; }\n\n#autocomplete {\n  position: absolute;\n  top: 0px;\n  left: 0px;\n  width: 99%; }\n\n.label {\n  text-align: right;\n  font-weight: bold;\n  width: 100px;\n  color: #303030;\n  font-family: \"Roboto\"; }\n\n#address {\n  border: 1px solid #000090;\n  background-color: #f0f9ff;\n  width: 480px;\n  padding-right: 2px; }\n\n#address td {\n  font-size: 10pt; }\n\n.field {\n  width: 99%; }\n\n.slimField {\n  width: 80px; }\n\n.wideField {\n  width: 200px; }\n\n#locationField {\n  height: 20px;\n  margin-bottom: 2px; }\n\n#map {\n  height: 100%; }\n\n/* Optional: Makes the sample page fill the window. */\n\nhtml,\nbody {\n  height: 100%;\n  margin: 0;\n  padding: 0; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi92YXIvd3d3L2h0bWwva29tYWwvdHJpcGlvbkFwcC9zcmMvYXBwL3NpZ251cC9zaWdudXAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFFUSxnQ0FBZ0MsRUFBQTs7QUFJeEM7RUFDSSxXQUFXO0VBQ1gsYUFBYTtFQUNiLFlBQVk7RUFJWixrQkFBa0I7RUFDbEIsZ0JBQWdCLEVBQUE7O0FBUnBCO0lBVVEsWUFBWTtJQUNaLGtCQUFrQjtJQUNsQixtQkFBbUIsRUFBQTs7QUFaM0I7SUFlUSxrQkFBa0I7SUFDbEIsZUFBZTtJQUNmLGdCQUFnQjtJQUNoQixXQUFXO0lBQ1gsbUJBQW1CLEVBQUE7O0FBbkIzQjtJQXNCUSxZQUFZO0lBQ1osaUJBQWlCLEVBQUE7O0FBSXpCO0VBQ0ksWUFBWTtFQUNaLHNCQUFzQjtFQUN0QixrQkFBa0I7RUFDbEIsYUFBYTtFQUNiLDBDQUEwQztFQUMxQyxZQUFZLEVBQUE7O0FBTmhCO0lBUVEseUJBQXlCO0lBQ3pCLGlCQUFpQjtJQUNqQixlQUFlO0lBQ2YsaUJBQWlCO0lBQ2pCLGdCQUFnQjtJQUNoQixXQUFXO0lBQ1gsa0JBQWtCO0lBQ2xCLCtDQUErQztJQUMvQyxhQUFhO0lBQ2Isa0JBQWtCO0lBQ2xCLFdBQVc7SUFDWCxlQUFlLEVBQUE7O0FBSXZCO0VBQ0ksZUFBZTtFQUNmLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsWUFBWTtFQUNaLGdCQUFnQjtFQUNoQixXQUFXO0VBQ1gsMkJBQTJCLEVBQUE7O0FBRzlCO0VBQ0cseUNBQUE7RUFDQSxnQkFBZ0I7RUFDaEIsV0FBVztFQUNYLGVBQWUsRUFBQTs7QUFKbEI7RUFDRyx5Q0FBQTtFQUNBLGdCQUFnQjtFQUNoQixXQUFXO0VBQ1gsZUFBZSxFQUFBOztBQUpsQjtFQUNHLHlDQUFBO0VBQ0EsZ0JBQWdCO0VBQ2hCLFdBQVc7RUFDWCxlQUFlLEVBQUE7O0FBSmxCO0VBQ0cseUNBQUE7RUFDQSxnQkFBZ0I7RUFDaEIsV0FBVztFQUNYLGVBQWUsRUFBQTs7QUFHbEI7RUFDRyw0QkFBQTtFQUNBLGdCQUFnQjtFQUNoQixXQUFXO0VBQ1gsZUFBZSxFQUFBOztBQUdsQjtFQUNHLG1CQUFBO0VBQ0EsZ0JBQWdCO0VBQ2hCLFdBQVc7RUFDWCxlQUFlLEVBQUE7O0FBR25CO0VBQ0ksc0JBQXFCLEVBQUE7O0FBR3pCOztFQUVJLGtCQUFrQjtFQUNsQixZQUFZLEVBQUE7O0FBR2hCO0VBQ0ksa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixTQUFTO0VBQ1QsVUFBVSxFQUFBOztBQUdkO0VBQ0ksaUJBQWlCO0VBQ2pCLGlCQUFpQjtFQUNqQixZQUFZO0VBQ1osY0FBYztFQUNkLHFCQUFxQixFQUFBOztBQUd6QjtFQUNJLHlCQUF5QjtFQUN6Qix5QkFBeUI7RUFDekIsWUFBWTtFQUNaLGtCQUFrQixFQUFBOztBQUd0QjtFQUNJLGVBQWUsRUFBQTs7QUFHbkI7RUFDSSxVQUFVLEVBQUE7O0FBR2Q7RUFDSSxXQUFXLEVBQUE7O0FBR2Y7RUFDSSxZQUFZLEVBQUE7O0FBR2hCO0VBQ0ksWUFBWTtFQUNaLGtCQUFrQixFQUFBOztBQUd0QjtFQUNJLFlBQVksRUFBQTs7QUFJaEIscURBQUE7O0FBRUE7O0VBRUksWUFBWTtFQUNaLFNBQVM7RUFDVCxVQUFVLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9zaWdudXAvc2lnbnVwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLy8gYWxsIGNzcyBzdGFydCBoZXJlIFxuaW9uLWNvbnRlbnQge1xuICAgICY6YWZ0ZXIge1xuICAgICAgICBwYWRkaW5nLWJvdHRvbTogMTAwdmggIWltcG9ydGFudDtcbiAgICB9XG59XG5cbi5sb2dpbl9mb3JtX3BhZ2Uge1xuICAgIHotaW5kZXg6IDExO1xuICAgIHBhZGRpbmc6IDEwcHg7XG4gICAgaGVpZ2h0OiAxMDAlO1xuICAgIC8vIGRpc3BsYXk6IGZsZXg7XG4gICAgLy8ganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgLy8gYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWFyZ2luOiAxNXB4IDBweDtcbiAgICAmOmFmdGVyIHtcbiAgICAgICAgY29udGVudDogXCIgXCI7XG4gICAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICAgICAgYmFja2dyb3VuZDogIzAwMzU3NDtcbiAgICB9XG4gICAgLmxvZ2luX2hlYWRlciB7XG4gICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICAgICAgZm9udC1zaXplOiA0MHB4O1xuICAgICAgICBmb250LXdlaWdodDogNjAwO1xuICAgICAgICBjb2xvcjogI2ZmZjtcbiAgICAgICAgbWFyZ2luLWJvdHRvbTogMjVweDtcbiAgICB9XG4gICAgaW9uLWRhdGV0aW1lIHtcbiAgICAgICAgY29sb3I6IGJsYWNrO1xuICAgICAgICBsaW5lLWhlaWdodDogMzVweDtcbiAgICB9XG59XG5cbi5sb2dpbl9mb3JtIHtcbiAgICB3aWR0aDogMzAwcHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcbiAgICBib3JkZXItcmFkaXVzOiA4cHg7XG4gICAgcGFkZGluZzogMThweDtcbiAgICBib3gtc2hhZG93OiAycHggMnB4IDdweCByZ2JhKDAsIDAsIDAsIDAuNSk7XG4gICAgbWFyZ2luOiBhdXRvO1xuICAgIC5sb2dpbl9idG4ge1xuICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDAzNTc0O1xuICAgICAgICBwYWRkaW5nOiAwcHggMTBweDtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICBsaW5lLWhlaWdodDogNTBweDtcbiAgICAgICAgZm9udC13ZWlnaHQ6IDUwMDtcbiAgICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICAgIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgICAgICAgYm94LXNoYWRvdzogMXB4IDJweCA2cHggcmdiYSgxMTksIDU5LCAyMTksIDAuNSk7XG4gICAgICAgIG91dGxpbmU6IG5vbmU7XG4gICAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICAgICAgY29sb3I6ICNmZmY7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICB9XG59XG5cbi5mb3JtLWNvbnRyb2wge1xuICAgIGZvbnQtc2l6ZTogMTRweDtcbiAgICBib3JkZXI6IG5vbmU7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIGhlaWdodDogNTBweDtcbiAgICBmb250LXdlaWdodDogNTAwO1xuICAgIGNvbG9yOiAjMDAwO1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMxNTIwN2YxMjtcbn1cblxuIDo6cGxhY2Vob2xkZXIge1xuICAgIC8qIENocm9tZSwgRmlyZWZveCwgT3BlcmEsIFNhZmFyaSAxMC4xKyAqL1xuICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gICAgY29sb3I6ICMwMDA7XG4gICAgZm9udC1zaXplOiAxNHB4O1xufVxuXG4gOi1tcy1pbnB1dC1wbGFjZWhvbGRlciB7XG4gICAgLyogSW50ZXJuZXQgRXhwbG9yZXIgMTAtMTEgKi9cbiAgICBmb250LXdlaWdodDogNTAwO1xuICAgIGNvbG9yOiAjMDAwO1xuICAgIGZvbnQtc2l6ZTogMTRweDtcbn1cblxuIDo6LW1zLWlucHV0LXBsYWNlaG9sZGVyIHtcbiAgICAvKiBNaWNyb3NvZnQgRWRnZSAqL1xuICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gICAgY29sb3I6ICMwMDA7XG4gICAgZm9udC1zaXplOiAxNHB4O1xufVxuXG5zcGFuLnNlbGVjdDIuc2VsZWN0Mi1jb250YWluZXIuc2VsZWN0Mi1jb250YWluZXItLWRlZmF1bHQge1xuICAgIHdpZHRoOiAxMDAlIWltcG9ydGFudDtcbn1cblxuI2xvY2F0aW9uRmllbGQsXG4jY29udHJvbHMge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICB3aWR0aDogNDgwcHg7XG59XG5cbiNhdXRvY29tcGxldGUge1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB0b3A6IDBweDtcbiAgICBsZWZ0OiAwcHg7XG4gICAgd2lkdGg6IDk5JTtcbn1cblxuLmxhYmVsIHtcbiAgICB0ZXh0LWFsaWduOiByaWdodDtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICB3aWR0aDogMTAwcHg7XG4gICAgY29sb3I6ICMzMDMwMzA7XG4gICAgZm9udC1mYW1pbHk6IFwiUm9ib3RvXCI7XG59XG5cbiNhZGRyZXNzIHtcbiAgICBib3JkZXI6IDFweCBzb2xpZCAjMDAwMDkwO1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmMGY5ZmY7XG4gICAgd2lkdGg6IDQ4MHB4O1xuICAgIHBhZGRpbmctcmlnaHQ6IDJweDtcbn1cblxuI2FkZHJlc3MgdGQge1xuICAgIGZvbnQtc2l6ZTogMTBwdDtcbn1cblxuLmZpZWxkIHtcbiAgICB3aWR0aDogOTklO1xufVxuXG4uc2xpbUZpZWxkIHtcbiAgICB3aWR0aDogODBweDtcbn1cblxuLndpZGVGaWVsZCB7XG4gICAgd2lkdGg6IDIwMHB4O1xufVxuXG4jbG9jYXRpb25GaWVsZCB7XG4gICAgaGVpZ2h0OiAyMHB4O1xuICAgIG1hcmdpbi1ib3R0b206IDJweDtcbn1cblxuI21hcCB7XG4gICAgaGVpZ2h0OiAxMDAlO1xufVxuXG5cbi8qIE9wdGlvbmFsOiBNYWtlcyB0aGUgc2FtcGxlIHBhZ2UgZmlsbCB0aGUgd2luZG93LiAqL1xuXG5odG1sLFxuYm9keSB7XG4gICAgaGVpZ2h0OiAxMDAlO1xuICAgIG1hcmdpbjogMDtcbiAgICBwYWRkaW5nOiAwO1xufSJdfQ== */"
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
 
 /***/ }),
 
@@ -22731,15 +22658,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/user.service */ "./src/app/services/user.service.ts");
-<<<<<<< HEAD
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../data */ "./src/app/data.ts");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../app.component */ "./src/app/app.component.ts");
-=======
-/* harmony import */ var _services_toast_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/toast.service */ "./src/app/services/toast.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../data */ "./src/app/data.ts");
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
 
 
 
@@ -22753,28 +22674,17 @@ var Port = /** @class */ (function () {
     return Port;
 }());
 var SignupComponent = /** @class */ (function () {
-<<<<<<< HEAD
     function SignupComponent(_userService, 
     // public _toastServices: ToastService,
     router, appComponent) {
         this._userService = _userService;
         this.router = router;
         this.appComponent = appComponent;
-=======
-    function SignupComponent(_userService, _toastServices, router) {
-        this._userService = _userService;
-        this._toastServices = _toastServices;
-        this.router = router;
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
         this.submitted = false;
         this.isDisable = false;
         this.loading = false;
         this.counries = [];
-<<<<<<< HEAD
         this.timeZoneList = _data__WEBPACK_IMPORTED_MODULE_5__["data"].timeZone;
-=======
-        this.timeZoneList = _data__WEBPACK_IMPORTED_MODULE_6__["data"].timeZone;
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
         this.signUpForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
             first_name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]),
             last_name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]),
@@ -22823,7 +22733,6 @@ var SignupComponent = /** @class */ (function () {
             console.log("register user", res);
             _this.isDisable = false;
             _this.loading = false;
-<<<<<<< HEAD
             _this._userService.sendDeviceToken().subscribe(function (response) {
                 console.log("res of devicedata in login", response);
             }, function (err) {
@@ -22838,26 +22747,13 @@ var SignupComponent = /** @class */ (function () {
             _this.loading = false;
             // this._toastServices.presentToast(err.error.message, 'danger');
             _this.appComponent.errorAlert();
-=======
-            _this._toastServices.presentToast(res.message, 'success');
-            _this.router.navigate(['/login']);
-        }, function (err) {
-            _this.isDisable = false;
-            _this.loading = false;
-            _this._toastServices.presentToast(err.error.message, 'danger');
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
             console.log("err in register", err);
         });
     };
     SignupComponent.ctorParameters = function () { return [
         { type: _services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"] },
-<<<<<<< HEAD
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] },
         { type: _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"] }
-=======
-        { type: _services_toast_service__WEBPACK_IMPORTED_MODULE_4__["ToastService"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
     ]; };
     SignupComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -22865,13 +22761,9 @@ var SignupComponent = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./signup.component.html */ "./node_modules/raw-loader/index.js!./src/app/signup/signup.component.html"),
             styles: [__webpack_require__(/*! ./signup.component.scss */ "./src/app/signup/signup.component.scss")]
         }),
-<<<<<<< HEAD
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
             _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]])
-=======
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"], _services_toast_service__WEBPACK_IMPORTED_MODULE_4__["ToastService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
     ], SignupComponent);
     return SignupComponent;
 }());
@@ -22941,11 +22833,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 module.exports = __webpack_require__(/*! /var/www/html/Tripion_new/src/main.ts */"./src/main.ts");
-=======
-module.exports = __webpack_require__(/*! /var/www/html/komal/tripionApp/src/main.ts */"./src/main.ts");
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
 
 
 /***/ })

@@ -15174,17 +15174,10 @@ window.__Zone_disable_customElements = true;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 __webpack_require__(/*! /var/www/html/Tripion_new/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js");
 __webpack_require__(/*! /var/www/html/Tripion_new/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-jit-polyfills.js");
 __webpack_require__(/*! /var/www/html/Tripion_new/src/polyfills.ts */"./src/polyfills.ts");
 module.exports = __webpack_require__(/*! /var/www/html/Tripion_new/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
-=======
-__webpack_require__(/*! /var/www/html/komal/tripionApp/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-polyfills.js");
-__webpack_require__(/*! /var/www/html/komal/tripionApp/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es5-jit-polyfills.js");
-__webpack_require__(/*! /var/www/html/komal/tripionApp/src/polyfills.ts */"./src/polyfills.ts");
-module.exports = __webpack_require__(/*! /var/www/html/komal/tripionApp/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
->>>>>>> 750c8c0ff704001a70ae3257402177c3b553b726
 
 
 /***/ })

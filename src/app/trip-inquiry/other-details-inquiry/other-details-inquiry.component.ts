@@ -105,6 +105,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
          "other-detail": data
        }
        this._tripService.storeFormData(object);
+       console.log("form data",localStorage.getItem('form_data'))
        const obj = {
          id: this.currentUser.id,
          email: this.userData.email,
