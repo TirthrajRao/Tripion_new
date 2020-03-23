@@ -95,14 +95,13 @@ $button_color: #003574;
     }
 }
 
-[data-toggle="collapse"] .fa:before {
+[data-toggle="collapse"] .fa:before {  
     content: "\f139";
-    // content: "\f13a"
-}
-
-[data-toggle="collapse"].collapsed .fa:before {
+  }
+  
+  [data-toggle="collapse"].collapsed .fa:before {
     content: "\f13a";
-}
+  }
 
 .all_service_details {
     .toggle-section {

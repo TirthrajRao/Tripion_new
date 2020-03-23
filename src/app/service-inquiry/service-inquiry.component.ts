@@ -61,7 +61,7 @@ export class ServiceInquiryComponent implements OnInit {
        // this.checkBoxValue = this.checkBoxValue.concat(this.otherServices);
        this.storeSelectedFormCategory();
        if (this.checkBoxValue.length > 1) {
-        //  this.checkBoxValue.unshift('general-detail');
+         this.checkBoxValue.unshift('general-detail');
          this.checkBoxValue.push('other-details');
          if (this.checkBoxValue.includes('passport')) {
            console.log("passport selected");
@@ -73,6 +73,7 @@ export class ServiceInquiryComponent implements OnInit {
          }
          console.log("this ==>", this.checkBoxValue, this.generalServices,this.selectedFormCategory);
          localStorage.setItem('formId', JSON.stringify(this.checkBoxValue));
+         localStorage.setItem('selectedForm',JSON.stringify(this.checkBoxValue))
          localStorage.setItem('selectedFormCategory', JSON.stringify(this.selectedFormCategory))
          console.log("--------------")
          const formRoute = this.checkBoxValue[0];
@@ -85,15 +86,17 @@ export class ServiceInquiryComponent implements OnInit {
          let formRoute;
          if (!this.checkBoxValue.includes('passport')) {
            console.log("not passport");
-          //  this.checkBoxValue.unshift('general-detail');
+           this.checkBoxValue.unshift('general-detail');
            this.checkBoxValue.push('other-details');
            formRoute = this.checkBoxValue[0];
            localStorage.setItem('formId', JSON.stringify(this.checkBoxValue));
+           localStorage.setItem('selectedForm',JSON.stringify(this.checkBoxValue));
            localStorage.setItem('selectedFormCategory', JSON.stringify(this.selectedFormCategory))
            this.route.navigate(['/home/' + formRoute])
          } else {
            formRoute = this.checkBoxValue[0]
            localStorage.setItem('formId', JSON.stringify(this.checkBoxValue));
+           localStorage.setItem('selectedForm',JSON.stringify(this.checkBoxValue))
            localStorage.setItem('selectedFormCategory', JSON.stringify(this.selectedFormCategory))
            this.route.navigate(['/home/' + formRoute])
          }
@@ -104,7 +107,8 @@ export class ServiceInquiryComponent implements OnInit {
          // this.checkBoxValue.unshift('general-detail');
          // formRoute = this.checkBoxValue[0]
          // localStorage.setItem('formId', JSON.stringify(this.checkBoxValue));
-         localStorage.setItem('selectedFormCategory', JSON.stringify(this.selectedFormCategory))
+         localStorage.setItem('selectedFormCategory', JSON.stringify(this.selectedFormCategory));
+         localStorage.setItem('selectedForm',JSON.stringify(this.checkBoxValue));
          this.route.navigate(['/home/general-detail'])
        }else{
          alert('Please select services')
