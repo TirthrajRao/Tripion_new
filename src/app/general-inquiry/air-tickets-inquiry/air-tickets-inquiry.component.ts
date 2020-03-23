@@ -61,7 +61,6 @@ export class AirTicketsInquiryComponent implements OnInit {
     this._tripService.storeFormData(obj);
     this.route.navigate(['/home/' + this.formUrl[0]])
   }
-
   changeInputValue(e) {
     console.log(e.target.value)
     this.airTickitForm.controls.flightSeatPreferences.setValue(e.target.value);
