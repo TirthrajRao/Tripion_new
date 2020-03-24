@@ -90,15 +90,16 @@ export class SafeTravelComponent implements OnInit {
        this.router.navigate(['/home/safe-travel-detail'], navigationExtras);
      }else{
        $('.success_alert_box1').fadeIn().addClass('animate');
-       setTimeout(()=>{
-         $('.success_alert_box1').hide().removeClass('animate');
-       },2500)
-       // const alert = await this.alertController.create({
-         //   message: 'Your inquiry status : "Pending" !',
-         //   buttons: ['OK']
-         // });
-
-         // await alert.present();
+       $('.success_alert_box1').click(function(){
+        $(this).hide().removeClass('animate');
+      });
+      $('.success_alert_box1 .alert_box_content').click(function(event){
+        event.stopPropagation();
+      });
+      //  setTimeout(()=>{
+      //    $('.success_alert_box1').hide().removeClass('animate');
+      //  },2500)
+       
        }
 
      }

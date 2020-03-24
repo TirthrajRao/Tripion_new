@@ -703,8 +703,8 @@ let AppComponent = class AppComponent {
         });
     }
     /**
-  * Get Country List
-  */
+    * Get Country List
+    */
     getCountryList() {
         this._userService.getCountryList().subscribe((res) => {
             //  console.log("country list", res);
@@ -722,9 +722,15 @@ let AppComponent = class AppComponent {
         this.title = otherMsg;
         console.log("in sucessAlert", msg);
         $('.success_alert_box').fadeIn().addClass('animate');
-        setTimeout(() => {
-            $('.success_alert_box').hide().removeClass('animate');
-        }, 2000);
+        $('.success_alert_box').click(function () {
+            $(this).hide().removeClass('animate');
+        });
+        $('.success_alert_box .alert_box_content').click(function (event) {
+            event.stopPropagation();
+        });
+        // setTimeout(() => {
+        //   $('.success_alert_box').hide().removeClass('animate');
+        // }, 2000)
     }
     /**
      *Error Alert
@@ -732,9 +738,15 @@ let AppComponent = class AppComponent {
     errorAlert() {
         console.log("in errorAlert");
         $('.error_alert_box').fadeIn().addClass('animate');
-        setTimeout(() => {
-            $('.error_alert_box').hide().removeClass('animate');
-        }, 2000);
+        $('.error_alert_box').click(function () {
+            $(this).hide().removeClass('animate');
+        });
+        $(' .error_alert_box .alert_box_content').click(function (event) {
+            event.stopPropagation();
+        });
+        // setTimeout(() => {
+        //   $('.error_alert_box').hide().removeClass('animate');
+        // }, 2000)
     }
 };
 AppComponent.ctorParameters = () => [
@@ -22151,7 +22163,13 @@ let LoginComponent = class LoginComponent {
                 // this._toastServices.presentToast(res.message, 'success');
                 this.loading = false;
                 this.isDisable = false;
-                this.router.navigate(['/home']);
+                if (res.data.home_town) {
+                    this.router.navigate(['/home']);
+                }
+                else {
+                    console.log("in else");
+                    this.router.navigate(['/home/profile']);
+                }
             }, (err) => {
                 // this._toastServices.presentToast(err.error.message, 'danger');
                 this.appComponent.errorAlert();
@@ -22165,6 +22183,7 @@ let LoginComponent = class LoginComponent {
             this.appComponent.errorAlert();
             console.error("err", err);
             this.loading = false;
+            this.isDisable = false;
         });
     }
     /**
@@ -22204,7 +22223,13 @@ let LoginComponent = class LoginComponent {
                     // this._toastServices.presentToast(res.message, 'success');
                     this.loading = false;
                     this.isDisable = false;
-                    this.router.navigate(['/home']);
+                    if (res.data.home_town) {
+                        this.router.navigate(['/home']);
+                    }
+                    else {
+                        console.log("in else");
+                        this.router.navigate(['/home/profile']);
+                    }
                 }, (err) => {
                     // this._toastServices.presentToast(err.error.message, 'danger');
                     this.appComponent.errorAlert();
@@ -22242,6 +22267,7 @@ let LoginComponent = class LoginComponent {
             this.loading = false;
             this.isDisable = false;
             $("#forgot-password").fadeOut();
+            this.appComponent.sucessAlert("Please Check your mail");
         }, (err) => {
             console.log("err in f psw", err);
             // this._toastServices.presentToast(err.error.message, 'danger');
@@ -22649,6 +22675,9 @@ let SignupComponent = class SignupComponent {
      */
     signUpUser(data) {
         this.submitted = true;
+        data.dob = data.dob.split("T");
+        const td = data.dob[1].split('.');
+        data.dob = data.dob[0] + ' ' + td[0];
         console.log(data);
         if (this.signUpForm.invalid) {
             return;

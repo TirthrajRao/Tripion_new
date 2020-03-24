@@ -715,8 +715,8 @@ var AppComponent = /** @class */ (function () {
         });
     };
     /**
-  * Get Country List
-  */
+    * Get Country List
+    */
     AppComponent.prototype.getCountryList = function () {
         var _this = this;
         this._userService.getCountryList().subscribe(function (res) {
@@ -735,9 +735,15 @@ var AppComponent = /** @class */ (function () {
         this.title = otherMsg;
         console.log("in sucessAlert", msg);
         $('.success_alert_box').fadeIn().addClass('animate');
-        setTimeout(function () {
-            $('.success_alert_box').hide().removeClass('animate');
-        }, 2000);
+        $('.success_alert_box').click(function () {
+            $(this).hide().removeClass('animate');
+        });
+        $('.success_alert_box .alert_box_content').click(function (event) {
+            event.stopPropagation();
+        });
+        // setTimeout(() => {
+        //   $('.success_alert_box').hide().removeClass('animate');
+        // }, 2000)
     };
     /**
      *Error Alert
@@ -745,9 +751,15 @@ var AppComponent = /** @class */ (function () {
     AppComponent.prototype.errorAlert = function () {
         console.log("in errorAlert");
         $('.error_alert_box').fadeIn().addClass('animate');
-        setTimeout(function () {
-            $('.error_alert_box').hide().removeClass('animate');
-        }, 2000);
+        $('.error_alert_box').click(function () {
+            $(this).hide().removeClass('animate');
+        });
+        $(' .error_alert_box .alert_box_content').click(function (event) {
+            event.stopPropagation();
+        });
+        // setTimeout(() => {
+        //   $('.error_alert_box').hide().removeClass('animate');
+        // }, 2000)
     };
     AppComponent.ctorParameters = function () { return [
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
@@ -22179,7 +22191,13 @@ var LoginComponent = /** @class */ (function () {
                 // this._toastServices.presentToast(res.message, 'success');
                 _this.loading = false;
                 _this.isDisable = false;
-                _this.router.navigate(['/home']);
+                if (res.data.home_town) {
+                    _this.router.navigate(['/home']);
+                }
+                else {
+                    console.log("in else");
+                    _this.router.navigate(['/home/profile']);
+                }
             }, function (err) {
                 // this._toastServices.presentToast(err.error.message, 'danger');
                 _this.appComponent.errorAlert();
@@ -22193,6 +22211,7 @@ var LoginComponent = /** @class */ (function () {
             _this.appComponent.errorAlert();
             console.error("err", err);
             _this.loading = false;
+            _this.isDisable = false;
         });
     };
     /**
@@ -22238,7 +22257,13 @@ var LoginComponent = /** @class */ (function () {
                                     // this._toastServices.presentToast(res.message, 'success');
                                     _this.loading = false;
                                     _this.isDisable = false;
-                                    _this.router.navigate(['/home']);
+                                    if (res.data.home_town) {
+                                        _this.router.navigate(['/home']);
+                                    }
+                                    else {
+                                        console.log("in else");
+                                        _this.router.navigate(['/home/profile']);
+                                    }
                                 }, function (err) {
                                     // this._toastServices.presentToast(err.error.message, 'danger');
                                     _this.appComponent.errorAlert();
@@ -22282,6 +22307,7 @@ var LoginComponent = /** @class */ (function () {
             _this.loading = false;
             _this.isDisable = false;
             $("#forgot-password").fadeOut();
+            _this.appComponent.sucessAlert("Please Check your mail");
         }, function (err) {
             console.log("err in f psw", err);
             // this._toastServices.presentToast(err.error.message, 'danger');
@@ -22722,6 +22748,9 @@ var SignupComponent = /** @class */ (function () {
     SignupComponent.prototype.signUpUser = function (data) {
         var _this = this;
         this.submitted = true;
+        data.dob = data.dob.split("T");
+        var td = data.dob[1].split('.');
+        data.dob = data.dob[0] + ' ' + td[0];
         console.log(data);
         if (this.signUpForm.invalid) {
             return;

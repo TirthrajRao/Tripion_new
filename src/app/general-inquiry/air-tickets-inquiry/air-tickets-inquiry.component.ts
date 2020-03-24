@@ -29,10 +29,10 @@ export class AirTicketsInquiryComponent implements OnInit {
     this.isSelected = localStorage.getItem('selectOnlyAirTickits');
 
     this.airTickitForm = new FormGroup({
-      infantsPassenger: new FormControl('', [Validators.required]),
-      childrenPassenger: new FormControl('', [Validators.required]),
-      adultsPassenger: new FormControl('', [Validators.required]),
-      seniorPassenger: new FormControl('', [Validators.required]),
+      infantsPassenger: new FormControl('0', [Validators.required]),
+      childrenPassenger: new FormControl('0', [Validators.required]),
+      adultsPassenger: new FormControl('0', [Validators.required]),
+      seniorPassenger: new FormControl('0', [Validators.required]),
       journeyType: new FormControl('Round Trip'),
       flightTirePreference: new FormControl('Economy'),
       flightSeatPreferences: new FormControl('Aisle', [Validators.required]),

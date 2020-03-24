@@ -72,10 +72,15 @@ export class SignupComponent implements OnInit {
    */
    signUpUser(data) {
      this.submitted = true;
+     data.dob = data.dob.split("T");
+     const td = data.dob[1].split('.')
+     data.dob = data.dob[0] + ' ' + td[0];
+       
      console.log(data);
      if (this.signUpForm.invalid) {
        return;
      }
+
      console.log("data", data)
      this.isDisable = true;
      this.loading = true;

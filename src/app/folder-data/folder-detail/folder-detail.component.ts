@@ -51,11 +51,12 @@ export class FolderDetailComponent implements OnInit {
        id: this.currentUser.id,
        folder_name: this.folderName
      }
+    
      this._uploadService.getFolderData(obj).subscribe((res: any) => {
+      // this._uploadService.getAllFolder(obj).subscribe((res:any)=>{
        console.log("folder img", res);
        this.allDocument = res.data;
        this.loading = false;
-        this.appComponent.errorAlert();
      }, (err) => {
        console.log(err);
        // this._toastService.presentToast(err.error.message, 'danger');

@@ -152,3 +152,59 @@ ion-content {
     height: 21px;
     width: 21px;
 }
+
+
+.success_alert_box2 {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    -ms-flex-align: center;
+    display: flex;
+    overflow: hidden;
+    z-index: 9999;
+}
+.alert_box_content {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    width: 280px;
+    position: relative;
+    margin: auto;
+    display: table;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    transition: all 0.4s;
+    top: 100%;
+}
+
+.animate .alert_box_content{
+    top: 0;
+}
+.alert_box_image img {
+    height: 60px;
+    width: 60px;
+ 
+}
+
+
+.alert_box_text p {
+    margin: 15px;
+    color: #7F8DAB;
+    font-size: 18px;
+    line-height: 24px;
+}
+.alert_box_text p span {
+    text-transform: uppercase;
+}
+
+.next_btn {
+padding: 0;
+    button{
+        width: 30%;
+        padding: 10px 21px;
+    }
+}

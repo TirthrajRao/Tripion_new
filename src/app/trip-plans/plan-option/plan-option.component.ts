@@ -94,7 +94,8 @@ export class PlanOptionComponent implements OnInit {
        state: {
          documentList: this.tripDetail.requested_docs,
          tripId: this.tripId,
-         tripName: this.tripDetail.inquiry_name
+         tripName: this.tripDetail.inquiry_name,
+         planName:this.tripDetail.plans[0].plan_name
        }
      };
      this.router.navigate(['/home/document'], navigationExtras);

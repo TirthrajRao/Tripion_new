@@ -8,7 +8,8 @@
     </ion-refresher> -->
     <div class="all_content" *ngIf="documentList.length">
         <div class="card image_folder_detail" *ngFor="let document of documentList">
-            <div class="image_detail" *ngIf="document.image_extension == 'png' || document.image_extension == 'jpg' || document.image_extension == 'jpeg'">
+            <div class="image_detail"
+                *ngIf="document.image_extension == 'png' || document.image_extension == 'jpg' || document.image_extension == 'jpeg'">
                 <div class="image">
                     <img [src]="document.image_url || '../../assets/images/placeholder.png'">
                 </div>
@@ -18,11 +19,15 @@
                     <p *ngIf="document.reason_to_reject">{{document.reason_to_reject}}</p>
                 </div>
             </div>
-            <div class="image_detail" *ngIf="document.image_extension != 'png' && document.image_extension != 'jpg' && document.image_extension != 'jpeg'">
+            <div class="image_detail"
+                *ngIf="document.image_extension != 'png' && document.image_extension != 'jpg' && document.image_extension != 'jpeg'">
                 <ion-img src="../../assets/images/doc.png"></ion-img>
                 <span>{{document.image_name}}</span>
             </div>
         </div>
+    </div>
+    <div *ngIf="!documentList.length && !loading">
+        <span class="text-white text-center no-request">No Uploaded Documents</span>
     </div>
     <div *ngIf="loading">
         <div id="loader-wrapper">

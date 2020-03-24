@@ -12,6 +12,7 @@ import { FilePath } from '@ionic-native/file-path/ngx';
 import { AppComponent } from '../app.component';
 import * as _ from 'lodash';
 import * as moment from 'moment';
+declare const $: any;
 
 @Component({
   selector: 'app-home-page',
@@ -70,7 +71,7 @@ export class HomePageComponent implements OnInit {
           this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
           // console.log("urllllll", e[0].urlAfterRedirects);
           this.previousUrl = e[0].urlAfterRedirects;
-          if (this.previousUrl.includes('other-details') || this.previousUrl.includes('login') || this.previousUrl.includes('general-detail')) {
+          if (this.previousUrl.includes('other-details') || this.previousUrl.includes('login') || this.previousUrl.includes('general-detail') || this.previousUrl.includes('signup')) {
             console.log("in if");
             this.allTrips = []
             this.getAllTrips();
@@ -86,9 +87,6 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
 
-    this.filePath.resolveNativePath('file:///storage/emulated/0/record1822020173636.mp3')
-      .then(filePath => console.log("filepath", filePath))
-      .catch(err => console.log("errr in filepath", err));
   }
 
   ionViewWillEnter() {
@@ -98,15 +96,43 @@ export class HomePageComponent implements OnInit {
     this.refreshIntervalId = setInterval(() => {
       this.getCurrentTime();
     }, 10000);
+
     this.getCurrentLatLong();
     this.getCurrentTime();
     this.getNotificationCount();
   }
 
   ionViewDidLeave() {
+    console.log("view did leave")
     clearInterval(this.refreshIntervalId);
   }
 
+  checkUserProfile() {
+    console.log("curruent user data", this.currentUser);
+    if (!this.currentUser.home_town || !this.currentUser.email) {
+      // alert("complete your profile")
+      $('.success_alert_box2').fadeIn().addClass('animate');
+      // $('.success_alert_box2').click(function () {
+      //   $(this).hide().removeClass('animate');
+      // });
+      // $('.success_alert_box2 .alert_box_content').click(function (event) {
+      //   event.stopPropagation();
+      // });
+    }
+  }
+
+  /**
+   * navigate to complete their profile
+   */
+  completeProfile() {
+    this.router.navigate(['/home/profile']);
+    $('.success_alert_box2').hide().removeClass('animate');
+  }
+
+
+  /**
+   * Get notification count
+   */
   getNotificationCount() {
     const data = {
       id: this.currentUser.id
@@ -159,19 +185,26 @@ export class HomePageComponent implements OnInit {
    * Get Current Time
    */
   getCurrentTime() {
+    console.log("in currunt time func", this.currentUser)
     this.homeTownData = this.currentUser.home_town;
-    let timeZone = this.timeZoneList[Number(this.homeTownData)]
-    // getDateWithUTCOffset(inputTzOffset){
-    var now = new Date(); // get the current time
+    console.log("hometoendata", this.homeTownData);
+    if (this.homeTownData) {
+      console.log("in if", this.homeTownData)
+      let timeZone = this.timeZoneList[Number(this.homeTownData)]
+      console.log("timezone", timeZone, timeZone.offset)
+      // getDateWithUTCOffset(inputTzOffset){
+      var now = new Date(); // get the current time
 
-    var currentTzOffset = -now.getTimezoneOffset() / 60 // in hours, i.e. -4 in NY
-    var deltaTzOffset = timeZone.offset - currentTzOffset; // timezone diff
+      var currentTzOffset = -now.getTimezoneOffset() / 60 // in hours, i.e. -4 in NY
+      var deltaTzOffset = timeZone.offset - currentTzOffset; // timezone diff
 
-    var nowTimestamp = now.getTime(); // get the number of milliseconds since unix epoch 
-    var deltaTzOffsetMilli = deltaTzOffset * 1000 * 60 * 60; // convert hours to milliseconds (tzOffsetMilli*1000*60*60)
-    var outputDate = new Date(nowTimestamp + deltaTzOffsetMilli) // your new Date object with the timezone offset applied.
-    this.currentTime = moment(outputDate).format('hh:mm')
-    console.log("time", this.currentTime)
+      var nowTimestamp = now.getTime(); // get the number of milliseconds since unix epoch 
+      var deltaTzOffsetMilli = deltaTzOffset * 1000 * 60 * 60; // convert hours to milliseconds (tzOffsetMilli*1000*60*60)
+      var outputDate = new Date(nowTimestamp + deltaTzOffsetMilli) // your new Date object with the timezone offset applied.
+      this.currentTime = moment(outputDate).format('hh:mm')
+      console.log("time", this.currentTime)
+
+    }
 
 
     // this._userService.getHomeTownTime(this.currentUser.home_town).subscribe((res: any) => {
@@ -232,6 +265,7 @@ export class HomePageComponent implements OnInit {
       this.allTrips = res.data;
       console.log(this.allTrips);
       // this.upCommingTripData();
+      this.checkUserProfile();
       this.loading = false;
     }, (err) => {
       this.appComponent.errorAlert();
@@ -257,7 +291,7 @@ export class HomePageComponent implements OnInit {
           console.log("in elseeeeeeee")
           if (data.status[0] == "Ongoing" && data.timeline_date) {
             console.log("ingoing trip", data.status[0]);
-            this.router.navigate(['home/trip-planing/'+ data.inquiry_id])
+            this.router.navigate(['home/trip-planing/' + data.inquiry_id])
           } else {
             console.log("in else")
             this.router.navigate(['/home/plan-option/' + data.inquiry_id]);

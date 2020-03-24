@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
   userData;
   editProfileForm: FormGroup;
   resetPswForm: FormGroup;
-  submitted: boolean = false;
+  submitted: boolean = true;
   submitted1: boolean = false;
   isDisable: Boolean = false;
   match = false;
@@ -95,12 +95,6 @@ export class ProfileComponent implements OnInit {
          profile_pic: res.data.profile_pic,
          user_name: res.data.user_name,
        }
-       let timeZone = this.timeZoneList[Number(this.userData.home_town)]
-       if (timeZone)
-         this.homeTownName = timeZone.text
-       console.log("this.userdata", this.userData, this.timeZoneList[timeZone], timeZone);
-       this.event.publish('userName', obj);
-       console.log("timezone lisr", this.timeZoneList)
        this.loading = false;
      }, (err) => {
        // this._toastService.presentToast(err.error.message, 'danger');

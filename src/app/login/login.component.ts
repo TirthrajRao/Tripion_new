@@ -113,7 +113,13 @@ export class LoginComponent implements OnInit {
          // this._toastServices.presentToast(res.message, 'success');
          this.loading = false;
          this.isDisable = false;
-         this.router.navigate(['/home']);
+         if(res.data.home_town){
+          this.router.navigate(['/home']);
+        }else{
+          console.log("in else")
+          this.router.navigate(['/home/profile'])
+        }
+        
        }, (err) => {
          // this._toastServices.presentToast(err.error.message, 'danger');
          this.appComponent.errorAlert();
@@ -127,6 +133,7 @@ export class LoginComponent implements OnInit {
        this.appComponent.errorAlert();
        console.error("err", err);
        this.loading = false;
+       this.isDisable = false
      });
    }
 
@@ -167,7 +174,12 @@ export class LoginComponent implements OnInit {
            // this._toastServices.presentToast(res.message, 'success');
            this.loading = false;
            this.isDisable = false;
-           this.router.navigate(['/home']);
+           if(res.data.home_town){
+             this.router.navigate(['/home']);
+           }else{
+             console.log("in else")
+             this.router.navigate(['/home/profile'])
+           }
          }, (err) => {
            // this._toastServices.presentToast(err.error.message, 'danger');
            this.appComponent.errorAlert();
@@ -205,6 +217,7 @@ export class LoginComponent implements OnInit {
        this.loading = false;
        this.isDisable = false;
        $("#forgot-password").fadeOut();
+       this.appComponent.sucessAlert("Please Check your mail")
      }, (err) => {
        console.log("err in f psw", err);
        // this._toastServices.presentToast(err.error.message, 'danger');

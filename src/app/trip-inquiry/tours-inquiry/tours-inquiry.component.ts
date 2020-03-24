@@ -69,6 +69,16 @@ export class ToursInquiryComponent implements OnInit {
       return
     }
     console.log(data);
+      if(data.itineraryPace >= 0 && data.itineraryPace <=4){
+        console.log("relaxed")
+        data.itineraryPace = 'Relaxed'
+      } else if (data.itineraryPace > 4 && data.itineraryPace <= 7) {
+        console.log("avarage")
+        data.itineraryPace = 'Avarage';
+      } else if (data.itineraryPace > 7) {
+        console.log("busy");
+        data.itineraryPace = 'Busy';
+      }
     this.storeFormData(data)
     this.route.navigate(['/home/' + this.formUrl[0]])
   }
@@ -86,12 +96,13 @@ export class ToursInquiryComponent implements OnInit {
    * @param {object} e 
    */
   changeStatus(e) {
+    console.log(e.target.value)
     if (e.target.value >= 0 && e.target.value <= 4) {
       this.status = "Releaxed"
-      this.path = '../../../assets/images/03-Gif.gif'
+      this.path = '../../../assets/images/03-Gif.gif';
     } else if (e.target.value > 4 && e.target.value <= 7) {
       this.status = "Average";
-      this.path = '../../../assets/images/01-Gif.gif'
+      this.path = '../../../assets/images/01-Gif.gif';
     } else if (e.target.value > 7) {
       this.status = "Busy"
       this.path = '../../../assets/images/02.gif'

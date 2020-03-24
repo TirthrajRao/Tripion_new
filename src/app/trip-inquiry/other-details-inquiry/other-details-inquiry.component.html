@@ -128,13 +128,16 @@
                     </div>
                 </div>
             </div>
-            <div class="next_btn" *ngIf="isTripInquiry">
+            <div class="submit_btn" >
+                <button type="submit" (click)="submitForm(otherDetailsForm.value)" [disabled]="isDisable"><i class="fas fa-save"></i>Submit</button>
+            </div>
+            <!-- <div class="next_btn" *ngIf="isTripInquiry">
                 <button type="submit" (click)="nextForm(otherDetailsForm.value)">Next<i
                         class="fas fa-arrow-right"></i></button>
             </div>
             <div class="submit_btn" *ngIf="!isTripInquiry">
                 <button type="submit" (click)="submitForm(otherDetailsForm.value)" [disabled]="isDisable"><i class="fas fa-save"></i>Submit</button>
-            </div>
+            </div> -->
         </form>
     </div>
     <div *ngIf="loading">

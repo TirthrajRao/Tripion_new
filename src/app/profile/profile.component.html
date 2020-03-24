@@ -134,7 +134,7 @@
                                 <small>Select Timezone</small>
                                 <div>
                                     <ion-item>
-                                        <select id="myselection" formControlName="home_town" class="select-hometown" [(ngModel)]="homeTownName">
+                                        <select id="myselection" formControlName="home_town" class="select-hometown" ngModel="{{userData.home_town ? userData.home_town : ''}}" >
                                             <option [value]="i" *ngFor="let timeZone of timeZoneList;let i=index">
                                                 {{timeZone.text}}
                                             </option>
