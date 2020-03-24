@@ -619,6 +619,11 @@
     //         padding: 8px 0px !important;
     //     }
     // }
+
+   
+
+
+
     .select2-container {
         position: absolute;
         left: 0;
@@ -641,7 +646,8 @@
     }
     
     span#select2-myselection-container {
-        padding: 10px !important;
+        // padding-left:  !important;
+        // padding: 10px 0px !important;
     }
     
     span.select2-selection__placeholder {
@@ -654,7 +660,7 @@
         position: relative;
         height: 49px;
         .select2-container--default .select2-selection--single {
-            background-color: #edeff6 !important;
+            background-color: #efeff6 !important;
             border: none !important;
             outline: none;
             height: 49px !important;
@@ -666,8 +672,15 @@
             color: black !important;
             position: absolute;
             top: 10px;
-            margin-left: 12px;
+            // margin-left: 12px;
             padding-top: -10px;
+            font-size: 15px !important;
+        }
+        .select2-selection__rendered{
+            padding: 10px !important;
+            font-size: 13px !important;
+            color: black !important;
+            font-weight: 500 !important;
         }
         // span#select2-myselection-container {
         //     color: black;
@@ -677,6 +690,29 @@
         //     top: 10px;
         //     margin-left: 12px;
         // }
+    }
+
+.visa-country{
+    .select2-container .select2-selection--single .select2-selection__rendered {
+        color: #888d9b !important;
+           padding-left: 0px !important;
+          
+       }
+}
+
+    .general-details-form{
+        .select2-selection__rendered {
+            padding:10px 0px !important;
+        }
+        .select2-container .select2-selection--single .select2-selection__rendered {
+         color: #888d9b !important;
+            padding-left: 0px !important;
+           
+        }
+        .select2-selection__arrow{
+            display: none;
+        }
+       
     }
     
     .quotation-content {

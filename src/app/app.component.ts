@@ -7,9 +7,7 @@ import { Router } from '@angular/router';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { ToastService } from './services/toast.service';
-import { Observable } from 'rxjs';
 import 'rxjs/add/observable/fromEvent';
-import { JsonPipe } from '@angular/common';
 import * as firebase from 'firebase';
 declare const $: any;
 
@@ -65,7 +63,6 @@ export class AppComponent {
       this.statusBar.backgroundColorByHexString('#0575E6');
       this.splashScreen.hide();
       this.menuRadius(); // call menuRadius method
-      this.getTimeZoneList();
       this.getCountryList();
     });
     firebase.initializeApp(config);
@@ -157,17 +154,6 @@ export class AppComponent {
 
 
 
-  /**
-   * Get TimeZone List
-   */
-  getTimeZoneList() {
-    this._userService.getTimeZoneList().subscribe((res: any) => {
-      // console.log("timezone===>", res);
-      localStorage.setItem('timeZones', JSON.stringify(res))
-    }, err => {
-      console.log("errr=====>", err)
-    })
-  }
 
   /**
   * Get Country List

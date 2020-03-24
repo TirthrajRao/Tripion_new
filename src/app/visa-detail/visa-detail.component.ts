@@ -51,11 +51,16 @@ export class VisaDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.getDetails(this.visaId);
     this.nextYearCount();;
     this.getSelectedImages();
   }
 
+
+  ionViewWillEnter(){
+    
+  }
   get f() { return this.editVisaForm.controls }
   // Count next 12 year for expiry date of passport
   nextYearCount() {
@@ -108,6 +113,7 @@ export class VisaDetailComponent implements OnInit {
        console.log(res);
        this.visaDetails = res.data;
        this.loading = false;
+       
      }, (err) => {
        console.log(err);
        this.loading = false

@@ -106,14 +106,14 @@
                             <div *ngIf="f.passport_id_for_visa.errors.required">Passport is required</div>
                         </div>
                     </div>
-                    <div>
+                    <div class="visa-country">
                         <!-- <ion-item>
                             <ion-label position="floating">Country</ion-label>
                             <ion-input type="text" formControlName="country"></ion-input>
                         </ion-item> -->
                         <ion-item class="select2">
                             <ion-label>Select country</ion-label>
-                            <select id="myselection" class="form-control w-100" formControlName="country">
+                            <select id="myselection" class="form-control w-100 " formControlName="country">
                                 <option [value]="country.name" *ngFor="let country of counries"> {{country.name}}
                                 </option>
                             </select>

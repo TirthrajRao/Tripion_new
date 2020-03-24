@@ -60,7 +60,6 @@ export class UserPassportDetailComponent implements OnInit {
     $(document).ready(function () {
       $('#myselection').select2({
         placeholder: "Country",
-        allowClear: true
       });
     });
     $('#myselection').on('select2:select', (e) => {
