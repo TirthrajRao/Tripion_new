@@ -608,7 +608,6 @@ let AppComponent = class AppComponent {
             this.statusBar.backgroundColorByHexString('#0575E6');
             this.splashScreen.hide();
             this.menuRadius(); // call menuRadius method
-            this.getTimeZoneList();
             this.getCountryList();
         });
         firebase__WEBPACK_IMPORTED_MODULE_11__["initializeApp"](config);
@@ -691,17 +690,6 @@ let AppComponent = class AppComponent {
     //     this.hide = true;
     //   });
     // }
-    /**
-     * Get TimeZone List
-     */
-    getTimeZoneList() {
-        this._userService.getTimeZoneList().subscribe((res) => {
-            // console.log("timezone===>", res);
-            localStorage.setItem('timeZones', JSON.stringify(res));
-        }, err => {
-            console.log("errr=====>", err);
-        });
-    }
     /**
     * Get Country List
     */
@@ -22124,7 +22112,7 @@ let LoginComponent = class LoginComponent {
             });
             this.loading = false;
             // this._toastServices.presentToast(res.message, 'success');
-            this.appComponent.sucessAlert("Login Sucessfully");
+            this.appComponent.sucessAlert("Login Sucessfully", "Welcome");
             this.router.navigate(['/home']);
             this.loginForm.reset();
             this.submitted = false;
@@ -22159,7 +22147,7 @@ let LoginComponent = class LoginComponent {
                 }, err => {
                     console.log("errr", err);
                 });
-                this.appComponent.sucessAlert("Login Sucessfully");
+                this.appComponent.sucessAlert("Login Sucessfully", "Welcome");
                 // this._toastServices.presentToast(res.message, 'success');
                 this.loading = false;
                 this.isDisable = false;
@@ -22219,7 +22207,7 @@ let LoginComponent = class LoginComponent {
                         this.loading = false;
                         this.isDisable = false;
                     });
-                    this.appComponent.sucessAlert("Login Sucessfully");
+                    this.appComponent.sucessAlert("Login Sucessfully", "Welcome");
                     // this._toastServices.presentToast(res.message, 'success');
                     this.loading = false;
                     this.isDisable = false;

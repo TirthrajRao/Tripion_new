@@ -619,7 +619,6 @@ var AppComponent = /** @class */ (function () {
             _this.statusBar.backgroundColorByHexString('#0575E6');
             _this.splashScreen.hide();
             _this.menuRadius(); // call menuRadius method
-            _this.getTimeZoneList();
             _this.getCountryList();
         });
         firebase__WEBPACK_IMPORTED_MODULE_11__["initializeApp"](config);
@@ -703,17 +702,6 @@ var AppComponent = /** @class */ (function () {
     //     this.hide = true;
     //   });
     // }
-    /**
-     * Get TimeZone List
-     */
-    AppComponent.prototype.getTimeZoneList = function () {
-        this._userService.getTimeZoneList().subscribe(function (res) {
-            // console.log("timezone===>", res);
-            localStorage.setItem('timeZones', JSON.stringify(res));
-        }, function (err) {
-            console.log("errr=====>", err);
-        });
-    };
     /**
     * Get Country List
     */
@@ -22151,7 +22139,7 @@ var LoginComponent = /** @class */ (function () {
             });
             _this.loading = false;
             // this._toastServices.presentToast(res.message, 'success');
-            _this.appComponent.sucessAlert("Login Sucessfully");
+            _this.appComponent.sucessAlert("Login Sucessfully", "Welcome");
             _this.router.navigate(['/home']);
             _this.loginForm.reset();
             _this.submitted = false;
@@ -22187,7 +22175,7 @@ var LoginComponent = /** @class */ (function () {
                 }, function (err) {
                     console.log("errr", err);
                 });
-                _this.appComponent.sucessAlert("Login Sucessfully");
+                _this.appComponent.sucessAlert("Login Sucessfully", "Welcome");
                 // this._toastServices.presentToast(res.message, 'success');
                 _this.loading = false;
                 _this.isDisable = false;
@@ -22253,7 +22241,7 @@ var LoginComponent = /** @class */ (function () {
                                         _this.loading = false;
                                         _this.isDisable = false;
                                     });
-                                    _this.appComponent.sucessAlert("Login Sucessfully");
+                                    _this.appComponent.sucessAlert("Login Sucessfully", "Welcome");
                                     // this._toastServices.presentToast(res.message, 'success');
                                     _this.loading = false;
                                     _this.isDisable = false;

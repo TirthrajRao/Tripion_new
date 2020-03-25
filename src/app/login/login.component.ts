@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
        })
        this.loading = false;
        // this._toastServices.presentToast(res.message, 'success');
-       this.appComponent.sucessAlert("Login Sucessfully")
+       this.appComponent.sucessAlert("Login Sucessfully","Welcome")
        this.router.navigate(['/home']);
        this.loginForm.reset();
        this.submitted = false;
@@ -109,7 +109,7 @@ export class LoginComponent implements OnInit {
          }, err => {
            console.log("errr", err)
          })
-          this.appComponent.sucessAlert("Login Sucessfully")
+          this.appComponent.sucessAlert("Login Sucessfully","Welcome")
          // this._toastServices.presentToast(res.message, 'success');
          this.loading = false;
          this.isDisable = false;
@@ -170,7 +170,7 @@ export class LoginComponent implements OnInit {
              this.loading = false;
              this.isDisable = false
            });
-            this.appComponent.sucessAlert("Login Sucessfully")
+            this.appComponent.sucessAlert("Login Sucessfully","Welcome")
            // this._toastServices.presentToast(res.message, 'success');
            this.loading = false;
            this.isDisable = false;

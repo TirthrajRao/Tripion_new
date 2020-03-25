@@ -14,9 +14,11 @@ export class AccomodationInquiryComponent implements OnInit {
   submitted: Boolean = false;
   roomsArray: any = [];
   room: any;
+
+
   // formData = JSON.parse(localStorage.getItem('form_data'));
 
-  constructor(public route: Router, private fb: FormBuilder,public _tripService:TripService) {
+  constructor(public route: Router, private fb: FormBuilder, public _tripService: TripService) {
     this.formUrl = JSON.parse(localStorage.getItem('formId'));
     this.formUrl.splice(0, 1)
     localStorage.setItem('formId', JSON.stringify(this.formUrl));
@@ -30,7 +32,7 @@ export class AccomodationInquiryComponent implements OnInit {
       mealPlan: new FormControl('CP ( Continental Plan ) - Only Breakfast'),
       culinaryPreferrence: new FormControl('Vegetarian'),
       culinarySpecialRequest: new FormControl(''),
-      rooms: this.fb.array([],[Validators.required]),
+      rooms: this.fb.array([], [Validators.required]),
     })
     this.room = this.accomodationForm.controls.rooms as FormArray;
   }
@@ -50,9 +52,9 @@ export class AccomodationInquiryComponent implements OnInit {
 
   // Store form data
   storeFormData(data) {
-    console.log("accomodation data",data);
-    const obj={
-      'accomodation':data
+    console.log("accomodation data", data);
+    const obj = {
+      'accomodation': data
     }
     this._tripService.storeFormData(obj);
   }
@@ -61,6 +63,8 @@ export class AccomodationInquiryComponent implements OnInit {
    * Add Rooms
    */
   addRoom() {
+    
+    console.log("all rooms", this.accomodationForm.value.rooms)
     this.room.push(this.fb.group({
       infants: '0',
       children: '0',
@@ -74,5 +78,30 @@ export class AccomodationInquiryComponent implements OnInit {
    */
   deleteRoom(index) {
     this.room.removeAt(index)
+  }
+
+
+
+  decrement(type, index) {
+    if (type == "infants") {
+      if (this.accomodationForm.value.rooms[index].infants > 0)
+        this.accomodationForm.value.rooms[index].infants--;
+    } else if (type == "children") {
+      if (this.accomodationForm.value.rooms[index].children > 0)
+        this.accomodationForm.value.rooms[index].children--;
+    } else if (type == 'adults') {
+      if (this.accomodationForm.value.rooms[index].adults > 0)
+        this.accomodationForm.value.rooms[index].adults--;
+    }
+  }
+
+  increment(type, index) {
+    if (type == "infants") {
+      this.accomodationForm.value.rooms[index].infants++
+    } else if (type == "children") {
+      this.accomodationForm.value.rooms[index].children++
+    } else if (type == 'adults') {
+      this.accomodationForm.value.rooms[index].adults++
+    }
   }
 }

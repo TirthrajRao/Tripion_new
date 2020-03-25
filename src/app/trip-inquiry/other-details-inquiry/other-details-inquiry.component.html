@@ -1,5 +1,5 @@
 <ion-header>
-    <app-header [cname]="'New Trip'"></app-header>
+    <app-header [cname]="'Other Details'"></app-header>
 </ion-header>
 
 <ion-content>
@@ -13,28 +13,59 @@
                         <p>Communication Preference </p>
                     </div>
                     <div class="general_details_body">
-                        <div class="row">
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectCommunicationMode($event)" value="Whatsapp">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Whatsapp</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectCommunicationMode($event)" value="Phone">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Phone</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectCommunicationMode($event)" value="Mail">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Mail</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectCommunicationMode($event)" value="Visit Us">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Visit Us</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectCommunicationMode($event)" value="Message">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Message</ion-label>
+                        </div>
+
+                        <!-- <div class="row">
                             <div class="col-12">
-                                <input type="radio" class="mr-2" id="Communication1" value="Whatsapp" formControlName="communicationMode">
+                                <input type="radio" class="mr-2" id="Communication1" value="Whatsapp"
+                                    formControlName="communicationMode">
                                 <label for="Communication1">Whatsapp</label>
                             </div>
                             <div class="col-12">
-                                <input type="radio" class="mr-2" id="Communication2" value="Phone" formControlName="communicationMode">
+                                <input type="radio" class="mr-2" id="Communication2" value="Phone"
+                                    formControlName="communicationMode">
                                 <label for="Communication2">Phone</label>
                             </div>
                             <div class="col-12">
-                                <input type="radio" class="mr-2" id="Communication3" value="Mail" formControlName="communicationMode">
+                                <input type="radio" class="mr-2" id="Communication3" value="Mail"
+                                    formControlName="communicationMode">
                                 <label for="Communication3">Mail</label>
                             </div>
                             <div class="col-12">
-                                <input type="radio" class="mr-2" id="Communication4" value="Visit Us" formControlName="communicationMode">
+                                <input type="radio" class="mr-2" id="Communication4" value="Visit Us"
+                                    formControlName="communicationMode">
                                 <label for="Communication4">Visit Us</label>
                             </div>
                             <div class="col-12">
-                                <input type="radio" class="mr-2" id="Communication5" value="Message" formControlName="communicationMode">
+                                <input type="radio" class="mr-2" id="Communication5" value="Message"
+                                    formControlName="communicationMode">
                                 <label for="Communication5">Message</label>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
@@ -104,7 +135,8 @@
                             <ion-label class="ml-3">Gpay/Paytm</ion-label>
                         </div>
                         <div class="select_plan_check">
-                            <ion-checkbox checked="false" (ionChange)="selectPaymentMode($event)" value="Credit/Debit Card"> </ion-checkbox>
+                            <ion-checkbox checked="false" (ionChange)="selectPaymentMode($event)"
+                                value="Credit/Debit Card"> </ion-checkbox>
                             <ion-label class="ml-3">Credit/Debit Card</ion-label>
                         </div>
                     </div>
@@ -119,8 +151,12 @@
                         <!-- <p>Plans</p> -->
                         <ion-item>
                             <ion-label position="floating">Plans</ion-label>
-                            <ion-input type="text" (ionChange)="numberOfPlan($event)"></ion-input>
+                            <ion-input type="text" (ionChange)="numberOfPlan($event)" formControlName="numberOfPlans"
+                                [required]="isTripInquiry"></ion-input>
                         </ion-item>
+                        <div *ngIf="submitted && f.numberOfPlans.errors" class="invalid-feedback">
+                            <div *ngIf="f.numberOfPlans.errors.required">Number of plans is Required</div>
+                        </div>
                         <div class="total_cost w-100 d-inline-block">
                             <p class="float-left">Cost</p>
                             <p class="float-right">₹ {{amount ? amount : 0}}</p>
@@ -128,16 +164,17 @@
                     </div>
                 </div>
             </div>
-            <div class="submit_btn" >
+            <!-- <div class="submit_btn" >
                 <button type="submit" (click)="submitForm(otherDetailsForm.value)" [disabled]="isDisable"><i class="fas fa-save"></i>Submit</button>
-            </div>
-            <!-- <div class="next_btn" *ngIf="isTripInquiry">
+            </div> -->
+            <div class="next_btn" *ngIf="isTripInquiry">
                 <button type="submit" (click)="nextForm(otherDetailsForm.value)">Next<i
                         class="fas fa-arrow-right"></i></button>
             </div>
             <div class="submit_btn" *ngIf="!isTripInquiry">
-                <button type="submit" (click)="submitForm(otherDetailsForm.value)" [disabled]="isDisable"><i class="fas fa-save"></i>Submit</button>
-            </div> -->
+                <button type="submit" (click)="submitForm(otherDetailsForm.value)" [disabled]="isDisable"><i
+                        class="fas fa-save"></i>Submit</button>
+            </div>
         </form>
     </div>
     <div *ngIf="loading">

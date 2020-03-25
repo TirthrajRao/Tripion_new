@@ -1,5 +1,5 @@
 <ion-header>
-    <app-header [cname]="'New Trip'"></app-header>
+    <app-header [cname]="'Accomodation'"></app-header>
 </ion-header>
 
 <ion-content>
@@ -45,42 +45,41 @@
                             </div>
                         </div>
                         <!-- <div class="row"> -->
-                            <div class="smoke-icon">
-                                <p >Smoking Room</p>
-                                <img src="assets/images/smok.png">
+                        <div class="smoke-icon">
+                            <p>Smoking Room</p>
+                            <img src="assets/images/smok.png">
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="Smoking1" formControlName="smokingRoom"
+                                    value="Yes">
+                                <label for="Smoking1">Yes</label>
                             </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <input type="radio" class="mr-2" id="Smoking1" formControlName="smokingRoom"
-                                        value="Yes">
-                                    <label for="Smoking1">Yes</label>
-                                </div>
-                                <div class="col-6">
-                                    <input type="radio" class="mr-2" id="Smoking2" formControlName="smokingRoom"
-                                        value="No">
-                                    <label for="Smoking2">No</label>
-                                </div>
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="Smoking2" formControlName="smokingRoom" value="No">
+                                <label for="Smoking2">No</label>
                             </div>
-                            <div class="smoke-icon">
-                                <p >Wheelchair Accessible</p>
-                                <img src="assets/images/wheelchair1.png">
+                        </div>
+                        <div class="smoke-icon">
+                            <p>Wheelchair Accessible</p>
+                            <img src="assets/images/wheelchair1.png">
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="Accessible1" formControlName="wheelchairAccessible"
+                                    value="Yes">
+                                <label for="Accessible1">Yes</label>
                             </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <input type="radio" class="mr-2" id="Accessible1"
-                                        formControlName="wheelchairAccessible" value="Yes">
-                                    <label for="Accessible1">Yes</label>
-                                </div>
-                                <div class="col-6">
-                                    <input type="radio" class="mr-2" id="Accessible2"
-                                        formControlName="wheelchairAccessible" value="No">
-                                    <label for="Accessible2">No</label>
-                                </div>
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="Accessible2" formControlName="wheelchairAccessible"
+                                    value="No">
+                                <label for="Accessible2">No</label>
                             </div>
+                        </div>
                         <!-- </div> -->
                         <div>
                             <ion-item>
-                                <ion-label position="floating">Any Special Requirement?</ion-label>
+                                <ion-label position="floating">Any Special Requirement</ion-label>
                                 <ion-input type="text" formControlName="specialRequest"></ion-input>
                             </ion-item>
                             <!-- <div *ngIf="submitted && f.specialRequest.errors" class="invalid-feedback">
@@ -155,7 +154,7 @@
                             </div>
                         </div>
                         <ion-item>
-                            <ion-label position="floating">Any Special Requirement?</ion-label>
+                            <ion-label position="floating">Any Special Requirement</ion-label>
                             <ion-input type="text" formControlName="culinarySpecialRequest"></ion-input>
                         </ion-item>
                     </div>
@@ -163,12 +162,12 @@
 
                 <div class="general_details" formArrayName="rooms"
                     *ngFor="let room of accomodationForm.controls.rooms?.value; let i = index">
-                    <div [formGroupName]="i">
+                    <div>
                         <div class="general_details_header w-100 d-inline-block">
                             <p class="float-left">Room - {{i + 1}}</p>
                             <i class="fas fa-minus-circle float-right" (click)="deleteRoom(i)"></i>
                         </div>
-                        <div class="general_details_body pt-0">
+                        <!-- <div class="general_details_body pt-0">
                             <ion-item>
                                 <ion-label position="floating">Infants</ion-label>
                                 <ion-input type="number" formControlName="infants" min=0></ion-input>
@@ -181,6 +180,54 @@
                                 <ion-label position="floating">Adults</ion-label>
                                 <ion-input type="number" formControlName="adults" min=0></ion-input>
                             </ion-item>
+                        </div> -->
+                        <div class="general_details_body">
+                            <div class="passengers-details">
+                                <div class="plist">Infants</div>
+                                <p></p>
+                                <div class="icon-button">
+                                    <div class="icons">
+                                        <i class="fa fa-minus" aria-hidden="true" (click)="decrement('infants',i)"></i>
+                                        <span>{{room.infants}}</span>
+                                        <i class="fa fa-plus" aria-hidden="true" (click)="increment('infants',i)"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="passengers-details">
+                                <div class="plist">Children</div>
+                                <div class="icon-button">
+                                    <div class="icons">
+                                        <i class="fa fa-minus" aria-hidden="true" (click)="decrement('children',i)"></i>
+                                        <span>{{room.children}}</span>
+                                        <i class="fa fa-plus" aria-hidden="true" (click)="increment('children',i)"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="passengers-details">
+                                <div class="plist">Adults</div>
+                                <div class="icon-button">
+                                    <div class="icons">
+                                        <i class="fa fa-minus" aria-hidden="true" (click)="decrement('adults',i)"></i>
+                                        <span>{{room.adults}}</span>
+                                        <i class="fa fa-plus" aria-hidden="true" (click)="increment('adults',i)"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 text-center pl-4">
+                                <img src="assets/images/infants.png" style="height: 35px;">
+                                <p>{{room.infants}}</p>
+                            </div>
+                            <div class="col-4 text-center">
+                                <img src="assets/images/children.svg" style="height: 46px;margin-top:-4px;">
+                                <p style="margin-top: -7px;">{{room.children}}</p>
+                            </div>
+                            <div class="col-4 text-center">
+                                <img src="assets/images/adults.png" style="height: 33px;margin-top: 4px;">
+                                <p>{{room.adults}}</p>
+                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -17,6 +17,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
   otherDetailsForm: FormGroup;
   submitted: Boolean = false;
   paymentModeArray: any = [];
+  communicationModeArray:any = [];
   amount: any;
   formData = JSON.parse(localStorage.getItem('form_data'));
   isTripInquiry: any = JSON.parse(localStorage.getItem('isTripInquiry'))
@@ -36,7 +37,8 @@ export class OtherDetailsInquiryComponent implements OnInit {
       communicationMode: new FormControl(''),
       budgetPreference: new FormControl('', [Validators.required]),
       budgetAmount: new FormControl('', [Validators.required]),
-      paymentMode: new FormControl('')
+      paymentMode: new FormControl(''),
+      numberOfPlans:new FormControl('')
     })
     // this.getUserDetail();
   }
@@ -75,17 +77,49 @@ export class OtherDetailsInquiryComponent implements OnInit {
     //   return
     // }
     console.log(data);
-    let navigationExtras: NavigationExtras = {
-      state: {
-        type: 'Upfront',
-        amount: this.amount
+
+    this.submitted = true;
+    if (this.otherDetailsForm.invalid) {
+      return;
+    }
+    if (!this.currentUser.email) {
+      alert('Please add your email in your Profile');
+      return;
+    } else {
+      console.log(this.formData);
+      const object = {
+        "other-detail": data
       }
-    };
-    console.log(this.formData);
-    localStorage.removeItem('form_data');
-    this.route.navigate(['/home/premium-account'], navigationExtras)
-    // this.route.navigate(['/home/payment'])
-    // this.route.navigate(['/home/' + this.formUrl[0]])
+      this._tripService.storeFormData(object)
+      let formData = JSON.parse(localStorage.getItem('form_data'))
+      console.log("form data", JSON.parse(localStorage.getItem('form_data')));
+      console.log("selected form", JSON.parse(localStorage.getItem('selectedForm')))
+      let formObject = {};
+      _.forEach(JSON.parse(localStorage.getItem('selectedForm')), (form, index) => {
+        formObject[index+1] = form
+      })
+      const selectedForms = {
+        "selected-forms": formObject
+      }
+      console.log("formobject", formObject, selectedForms);
+      formData.unshift(selectedForms);
+      localStorage.setItem('form_data', JSON.stringify(formData));
+
+      let navigationExtras: NavigationExtras = {
+        state: {
+          type: 'Upfront',
+          amount: this.amount
+        }
+      };
+      console.log(this.formData);
+      // localStorage.removeItem('form_data');
+      this.route.navigate(['/home/premium-account'], navigationExtras)
+      // this.route.navigate(['/home/payment'])
+      // this.route.navigate(['/home/' + this.formUrl[0]])
+    }
+
+
+    
   }
 
   /**
@@ -164,6 +198,18 @@ export class OtherDetailsInquiryComponent implements OnInit {
     }
     console.log(this.paymentModeArray);
     this.otherDetailsForm.controls.paymentMode.setValue(this.paymentModeArray);
+  }
+
+
+  selectCommunicationMode(e){
+    if (!this.communicationModeArray.includes(e.detail.value)) {
+      this.communicationModeArray.push(e.detail.value);
+    } else {
+      var index = this.communicationModeArray.indexOf(e.detail.value);
+      this.communicationModeArray.splice(index, 1);
+    }
+    console.log(this.communicationModeArray);
+    this.otherDetailsForm.controls.communicationMode.setValue(this.communicationModeArray);
   }
 
   /**

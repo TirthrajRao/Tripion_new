@@ -71,16 +71,14 @@ export class HomePageComponent implements OnInit {
           this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
           // console.log("urllllll", e[0].urlAfterRedirects);
           this.previousUrl = e[0].urlAfterRedirects;
-          if (this.previousUrl.includes('other-details') || this.previousUrl.includes('login') || this.previousUrl.includes('general-detail') || this.previousUrl.includes('signup')) {
+          if (this.previousUrl.includes('other-details') || this.previousUrl.includes('login') || this.previousUrl.includes('general-detail') || this.previousUrl.includes('signup') || this.previousUrl.includes('premium-account')
+          ) {
             console.log("in if");
             this.allTrips = []
             this.getAllTrips();
           }
         }
       });
-
-
-
     this.getAllTrips();
 
   }
@@ -97,9 +95,9 @@ export class HomePageComponent implements OnInit {
       this.getCurrentTime();
     }, 10000);
 
+    this.getNotificationCount();
     this.getCurrentLatLong();
     this.getCurrentTime();
-    this.getNotificationCount();
   }
 
   ionViewDidLeave() {
