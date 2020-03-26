@@ -91,7 +91,11 @@
                     </div>
                     <div class="select_files">
                         <p>Pictures of the Passport</p>
-                        <input type="file" class="form-control" id="file" formControlName="profile_image" style="display: none;" (change)="selectFile($event)" multiple accept="image/*, .doc ,.pdf">
+                        <!-- <input type="file" class="form-control" id="file" formControlName="profile_image"
+                            style="display: none;" (change)="selectFile($event)" multiple accept=" 
+                        text/plain, application/pdf, image/*,.doc,.docx,.pdf"> -->
+                        <input type="file" class="form-control" id="file" formControlName="profile_image"
+                            style="display: none;" (change)="selectFile($event)" multiple >
                         <label class="text-center" for="file">
                             <i class="far fa-copy"></i>
                             Select from Files

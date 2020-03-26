@@ -22684,7 +22684,7 @@ let SignupComponent = class SignupComponent {
                 // this._toastServices.presentToast(err.error.message, 'danger')
             });
             // this._toastServices.presentToast(res.message, 'success')
-            this.appComponent.sucessAlert("Rgisterd Sucessfully");
+            this.appComponent.sucessAlert("Registered Sucessfully");
             this.router.navigate(['/home']);
         }, (err) => {
             this.isDisable = false;

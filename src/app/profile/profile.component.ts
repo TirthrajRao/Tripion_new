@@ -199,6 +199,7 @@ export class ProfileComponent implements OnInit {
 
    uploadFile(e) {
      // this.loading = true;
+     this.loading = true;
      console.log("eee", e.target.files);
      this.files = e.target.files;
      let data = new FormData();

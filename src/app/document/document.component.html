@@ -44,7 +44,9 @@
             <div class="modal_content">
                 <ion-item>
                     <div class="single_folder" id="upload-documents">
-                        <input type="file" #file style="display: none;" (change)="selectOtherFile($event)" accept="image/*, .doc ,.pdf ,.xlsx" multiple>
+                        <input type="file" #file style="display: none;" (change)="selectOtherFile($event)" accept=
+                        "application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
+                        text/plain, application/pdf, image/*" multiple>
                         <span (click)="file.click()" style="cursor: pointer;"><i class="fas fa-upload mr-2"></i>Upload
                             New
                             Document</span>

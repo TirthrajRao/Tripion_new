@@ -105,7 +105,7 @@ export class PicturesComponent implements OnInit {
        this.isDisable = false;
        this.loading = false;
        this.urls = [];
-        this.appComponent.sucessAlert("Your File has been Successfully Uploaded");
+        this.appComponent.sucessAlert("File Successfully Uploaded");
      }, (err) => {
        console.log(err);
        this.isDisable = false;

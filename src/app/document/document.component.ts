@@ -220,7 +220,7 @@ export class DocumentComponent implements OnInit {
       this.previewImag = [];
       this.loading = false;
       console.log("res of send document", res);
-      this.appComponent.sucessAlert("Your File has been Successfully Uploaded")
+      this.appComponent.sucessAlert("File Successfully Uploaded")
       // this._toastService.presentToast(res.message, 'success')
     }, (err) => {
       console.log(err);

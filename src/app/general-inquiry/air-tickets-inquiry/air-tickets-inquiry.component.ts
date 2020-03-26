@@ -29,17 +29,17 @@ export class AirTicketsInquiryComponent implements OnInit {
     this.isSelected = localStorage.getItem('selectOnlyAirTickits');
 
     this.airTickitForm = new FormGroup({
-      infantsPassenger: new FormControl('0', [Validators.required]),
-      childrenPassenger: new FormControl('0', [Validators.required]),
-      adultsPassenger: new FormControl('0', [Validators.required]),
-      seniorPassenger: new FormControl('0', [Validators.required]),
-      journeyType: new FormControl('Round Trip'),
-      flightTirePreference: new FormControl('Economy'),
-      flightSeatPreferences: new FormControl('Aisle', [Validators.required]),
-      inFlightMeal: new FormControl('', [Validators.required]),
-      airlinePreference: new FormControl('', [Validators.required]),
-      seatBeltExtender: new FormControl('Yes'),
-      wheelChairAssistance: new FormControl('Yes')
+      infants_passenger: new FormControl('0', [Validators.required]),
+      children_passenger: new FormControl('0', [Validators.required]),
+      adults_passenger: new FormControl('0', [Validators.required]),
+      senior_passenger: new FormControl('0', [Validators.required]),
+      journey_type: new FormControl('Round Trip'),
+      flightTire_preference: new FormControl('Economy'),
+      flightSeat_preferences: new FormControl('Aisle', [Validators.required]),
+      in_flight_meal: new FormControl('', [Validators.required]),
+      airline_preference: new FormControl('', [Validators.required]),
+      seat_belt_extender: new FormControl('Yes'),
+      wheelChair_assistance: new FormControl('Yes')
     })
 
   }
@@ -63,12 +63,12 @@ export class AirTicketsInquiryComponent implements OnInit {
   }
   changeInputValue(e) {
     console.log(e.target.value)
-    this.airTickitForm.controls.flightSeatPreferences.setValue(e.target.value);
+    this.airTickitForm.controls.flightSeat_preferences.setValue(e.target.value);
   }
 
   selectVisaType(e) {
     $('#other-input').val("");
-    this.airTickitForm.controls.flightSeatPreferences.setValue(e.target.value);
+    this.airTickitForm.controls.flightSeat_preferences.setValue(e.target.value);
   }
 
   decrement(type) {
@@ -76,19 +76,19 @@ export class AirTicketsInquiryComponent implements OnInit {
     if (type == "infants") {
       if (this.infantsPassengers)
         this.infantsPassengers--;
-        this.airTickitForm.controls.infantsPassenger.setValue(this.infantsPassengers)
+        this.airTickitForm.controls.infants_passenger.setValue(this.infantsPassengers)
     } else if (type == "children") {
       if (this.childrenPassengers)
         this.childrenPassengers--;
-        this.airTickitForm.controls.childrenPassenger.setValue(this.childrenPassengers)
+        this.airTickitForm.controls.children_passenger.setValue(this.childrenPassengers)
     } else if (type == 'adults') {
       if (this.adultsPassengers)
         this.adultsPassengers--;
-        this.airTickitForm.controls.adultsPassenger.setValue(this.adultsPassengers)
+        this.airTickitForm.controls.adults_passenger.setValue(this.adultsPassengers)
     } else if (type == 'senior') {
       if (this.seniorPassengers)
         this.seniorPassengers--;
-        this.airTickitForm.controls.seniorPassenger.setValue(this.seniorPassengers)
+        this.airTickitForm.controls.senior_passenger.setValue(this.seniorPassengers)
     }
   }
 
@@ -96,16 +96,16 @@ export class AirTicketsInquiryComponent implements OnInit {
     console.log("type in inc", type)
     if (type == "infants") {
       this.infantsPassengers++;
-      this.airTickitForm.controls.infantsPassenger.setValue(this.infantsPassengers)
+      this.airTickitForm.controls.infants_passenger.setValue(this.infantsPassengers)
     } else if (type == "children") {
       this.childrenPassengers++;
-      this.airTickitForm.controls.childrenPassenger.setValue(this.childrenPassengers)
+      this.airTickitForm.controls.children_passenger.setValue(this.childrenPassengers)
     } else if (type == 'adults') {
       this.adultsPassengers++;
-      this.airTickitForm.controls.adultsPassenger.setValue(this.adultsPassengers)
+      this.airTickitForm.controls.adults_passenger.setValue(this.adultsPassengers)
     } else if (type == 'senior') {
       this.seniorPassengers++;
-      this.airTickitForm.controls.seniorPassenger.setValue(this.seniorPassengers)
+      this.airTickitForm.controls.senior_passenger.setValue(this.seniorPassengers)
     }
   }
 }

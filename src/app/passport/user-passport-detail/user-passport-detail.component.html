@@ -143,7 +143,8 @@
                         </div>
                     </div>
                     <div class="select_files">
-                        <input type="file" class="form-control" formControlName="profile_image" id="visafile" style="display: none;" (change)="selectFile($event)" multiple accept="image/* ,.doc ,.pdf">
+                        <!-- <input type="file" class="form-control" formControlName="profile_image" id="visafile" style="display: none;" (change)="selectFile($event)" multiple accept="image/* ,.doc ,.pdf"> -->
+                        <input type="file" class="form-control" formControlName="profile_image" id="visafile" style="display: none;" (change)="selectFile($event)" multiple >
                         <label class="text-center" for="visafile">
                             <i class="far fa-copy"></i>
                             Select from Files

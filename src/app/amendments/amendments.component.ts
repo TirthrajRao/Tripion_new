@@ -643,6 +643,7 @@ export class AmendmentsComponent implements OnInit {
         ia[i] = byteString.charCodeAt(i);
       }
       var blob = new Blob([ia], { type: 'image/jpeg' });
+      console.log("blob====>",blob)
       // var file = new File([blob], "image.jpg");
 
       // console.log("file=====>",file)

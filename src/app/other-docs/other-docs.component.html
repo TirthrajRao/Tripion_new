@@ -52,7 +52,7 @@
                     <div>
                         <ion-item>
                             <ion-label position="floating">Title</ion-label>
-                            <ion-input type="text" formControlName="folder_name"></ion-input>
+                            <ion-input type="text" class="pt-2" formControlName="folder_name"></ion-input>
                         </ion-item>
                         <div *ngIf="submitted && f.folder_name.errors" class="invalid-feedback">
                             <div *ngIf="f.folder_name.errors.required">Folder Name is required</div>

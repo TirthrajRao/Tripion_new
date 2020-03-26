@@ -32,7 +32,8 @@
             </div>
             <div class="modal_content">
                 <div class="select_files">
-                    <input type="file" class="form-control" #file (change)="selectFile($event)" style="display: none;" accept="image/* ,.pdf ,.doc" multiple>
+                    <!-- <input type="file" class="form-control" #file (change)="selectFile($event)" style="display: none;" accept="image/* ,.pdf ,.doc" multiple> -->
+                    <input type="file" class="form-control" #file (change)="selectFile($event)" style="display: none;"  multiple>
                     <label class="text-center" (click)="file.click()">
                         <i class="far fa-copy"></i>
                         Select from Files
@@ -49,7 +50,7 @@
                 </div>
                 <div class="make_folder">
                     <button type="submit" class="btn" (click)="uploadImage()" [disabled]="isDisable"><i
-                            class="fas fa-plus"></i>Upload Pictures</button>
+                            class="fas fa-plus"></i>Upload Files</button>
                 </div>
             </div>
         </div>

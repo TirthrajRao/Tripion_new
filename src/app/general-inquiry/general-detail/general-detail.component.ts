@@ -32,18 +32,18 @@ export class GeneralDetailComponent implements OnInit {
     ) {
     // console.log("countries",this.counries)
     this.generalDetailsForm = new FormGroup({
-      pname: new FormControl('', [Validators.required]),
-      pNumber: new FormControl('', [Validators.required, Validators.pattern('^(?!^0+$)[a-zA-Z0-9]{8,20}$')]),
+      name_in_passport: new FormControl('', [Validators.required]),
+      pssport_number: new FormControl('', [Validators.required, Validators.pattern('^(?!^0+$)[a-zA-Z0-9]{8,20}$')]),
       dob: new FormControl('', Validators.required),
-      placeOfBirth: new FormControl('', [Validators.required]),
-      paddress: new FormControl('', [Validators.required]),
+      place_of_birth: new FormControl('', [Validators.required]),
+      address_in_passport: new FormControl('', [Validators.required]),
       duration: new FormControl('', [Validators.required]),
-      desinationCountry:new FormControl('',[Validators.required]),
-      placeName:new FormControl(''),
-      departureDate: new FormControl('', [Validators.required]),
-      intendeDate: new FormControl('', [Validators.required]),
-      pvalidDate: new FormControl('', [Validators.required]),
-      durationStatus: new FormControl('Flexible'),
+      desination_country:new FormControl('',[Validators.required]),
+      place_name:new FormControl(''),
+      departure_date: new FormControl('', [Validators.required]),
+      intende_date: new FormControl('', [Validators.required]),
+      passport_valid_date: new FormControl('', [Validators.required]),
+      duration_status: new FormControl('Flexible'),
     })
   }
 
@@ -60,7 +60,7 @@ export class GeneralDetailComponent implements OnInit {
     });
 
     $('#myselection').on('select2:select', (e) => {
-      this.generalDetailsForm.controls.desinationCountry.setValue(e.params.data.id);
+      this.generalDetailsForm.controls.desination_country.setValue(e.params.data.id);
       console.log("data", this.generalDetailsForm.value);
     });
 
@@ -90,17 +90,17 @@ export class GeneralDetailComponent implements OnInit {
      const fd = data.dob[1].split('.')
      data.dob = data.dob[0] + ' ' + fd[0];
 
-     data.departureDate = data.departureDate.split("T");
-     const fd1 = data.departureDate[1].split('.')
-     data.departureDate = data.departureDate[0] + ' ' + fd1[0];
+     data.departure_date = data.departure_date.split("T");
+     const fd1 = data.departure_date[1].split('.')
+     data.departure_date = data.departure_date[0] + ' ' + fd1[0];
 
-     data.intendeDate = data.intendeDate.split("T");
-     const fd2 = data.intendeDate[1].split('.')
-     data.intendeDate = data.intendeDate[0] + ' ' + fd2[0];
+     data.intende_date = data.intende_date.split("T");
+     const fd2 = data.intende_date[1].split('.')
+     data.intende_date = data.intende_date[0] + ' ' + fd2[0];
 
-     data.pvalidDate = data.pvalidDate.split("T");
-     const fd3 = data.pvalidDate[1].split('.')
-     data.pvalidDate = data.pvalidDate[0] + ' ' + fd3[0];
+     data.passport_valid_date = data.passport_valid_date.split("T");
+     const fd3 = data.passport_valid_date[1].split('.')
+     data.passport_valid_date = data.passport_valid_date[0] + ' ' + fd3[0];
 
      console.log("data", data)
      if (this.formUrl.length) {

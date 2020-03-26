@@ -78,25 +78,25 @@
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Budget Preference</ion-label>
-                                <ion-select formControlName="budgetPreference">
+                                <ion-select formControlName="budget_preference">
                                     <ion-select-option value="Per Person">Per Person</ion-select-option>
                                     <ion-select-option value="Per Family">Per Family</ion-select-option>
                                     <ion-select-option value="Per Couple">Per Couple</ion-select-option>
                                     <ion-select-option value="Per Group">Per Group</ion-select-option>
                                 </ion-select>
                             </ion-item>
-                            <div *ngIf="submitted && f.budgetPreference.errors" class="invalid-feedback">
-                                <div *ngIf="f.budgetPreference.errors.required">Select Budget Preference</div>
+                            <div *ngIf="submitted && f.budget_preference.errors" class="invalid-feedback">
+                                <div *ngIf="f.budget_preference.errors.required">Select Budget Preference</div>
                             </div>
                         </div>
                         <div>
                             <div>
                                 <ion-item>
                                     <ion-label position="floating">Budget Amount</ion-label>
-                                    <ion-input type="text" formControlName="budgetAmount"></ion-input>
+                                    <ion-input type="text" formControlName="budget_amount"></ion-input>
                                 </ion-item>
-                                <div *ngIf="submitted && f.budgetAmount.errors" class="invalid-feedback">
-                                    <div *ngIf="f.budgetAmount.errors.required">Budget Amount is Required</div>
+                                <div *ngIf="submitted && f.budget_amount.errors" class="invalid-feedback">
+                                    <div *ngIf="f.budget_amount.errors.required">Budget Amount is Required</div>
                                 </div>
                             </div>
                         </div>
@@ -151,11 +151,11 @@
                         <!-- <p>Plans</p> -->
                         <ion-item>
                             <ion-label position="floating">Plans</ion-label>
-                            <ion-input type="text" (ionChange)="numberOfPlan($event)" formControlName="numberOfPlans"
+                            <ion-input type="text" (ionChange)="numberOfPlan($event)" formControlName="number_of_plans"
                                 [required]="isTripInquiry"></ion-input>
                         </ion-item>
-                        <div *ngIf="submitted && f.numberOfPlans.errors" class="invalid-feedback">
-                            <div *ngIf="f.numberOfPlans.errors.required">Number of plans is Required</div>
+                        <div *ngIf="submitted && f.number_of_plans.errors" class="invalid-feedback">
+                            <div *ngIf="f.number_of_plans.errors.required">Number of plans is Required</div>
                         </div>
                         <div class="total_cost w-100 d-inline-block">
                             <p class="float-left">Cost</p>

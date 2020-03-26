@@ -34,11 +34,11 @@ export class OtherDetailsInquiryComponent implements OnInit {
     public appComponent: AppComponent,
   ) {
     this.otherDetailsForm = new FormGroup({
-      communicationMode: new FormControl(''),
-      budgetPreference: new FormControl('', [Validators.required]),
-      budgetAmount: new FormControl('', [Validators.required]),
-      paymentMode: new FormControl(''),
-      numberOfPlans:new FormControl('')
+      communication_mode: new FormControl(''),
+      budget_preference: new FormControl('', [Validators.required]),
+      budget_amount: new FormControl('', [Validators.required]),
+      payment_mode: new FormControl(''),
+      number_of_plans:new FormControl('')
     })
     // this.getUserDetail();
   }
@@ -169,7 +169,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
          console.log("inquiry form res", res);
          localStorage.removeItem('form_data');
          localStorage.removeItem('selectedFormCategory');
-          this.appComponent.sucessAlert("Inquiry Added Sucessfully")
+          this.appComponent.sucessAlert("Form Submitted Sucessfully")
          // this._toastService.presentToast(res.message, 'success')
          this.route.navigate(['/home']);
        }, (err) => {
@@ -197,7 +197,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
       this.paymentModeArray.splice(index, 1);
     }
     console.log(this.paymentModeArray);
-    this.otherDetailsForm.controls.paymentMode.setValue(this.paymentModeArray);
+    this.otherDetailsForm.controls.payment_mode.setValue(this.paymentModeArray);
   }
 
 
@@ -209,7 +209,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
       this.communicationModeArray.splice(index, 1);
     }
     console.log(this.communicationModeArray);
-    this.otherDetailsForm.controls.communicationMode.setValue(this.communicationModeArray);
+    this.otherDetailsForm.controls.communication_mode.setValue(this.communicationModeArray);
   }
 
   /**

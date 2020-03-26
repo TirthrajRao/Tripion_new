@@ -23,11 +23,11 @@ export class ToursInquiryComponent implements OnInit {
     localStorage.setItem('formId', JSON.stringify(this.formUrl));
   
     this.tourForm = new FormGroup({
-      tourBasis: new FormControl('', [Validators.required]),
+      tour_basis: new FormControl('', [Validators.required]),
       language: new FormControl('',[Validators.required]),
       duration: new FormControl('',[Validators.required]),
-      specialReq: new FormControl(''),
-      itineraryPace: new FormControl('0')
+      special_request: new FormControl(''),
+      itinerary_pace: new FormControl('0')
     })
   }
 
@@ -69,15 +69,15 @@ export class ToursInquiryComponent implements OnInit {
       return
     }
     console.log(data);
-      if(data.itineraryPace >= 0 && data.itineraryPace <=4){
+      if(data.itinerary_pace >= 0 && data.itinerary_pace <=4){
         console.log("relaxed")
-        data.itineraryPace = 'Relaxed'
-      } else if (data.itineraryPace > 4 && data.itineraryPace <= 7) {
+        data.itinerary_pace = 'Relaxed'
+      } else if (data.itinerary_pace > 4 && data.itinerary_pace <= 7) {
         console.log("avarage")
-        data.itineraryPace = 'Avarage';
-      } else if (data.itineraryPace > 7) {
+        data.itinerary_pace = 'Avarage';
+      } else if (data.itinerary_pace > 7) {
         console.log("busy");
-        data.itineraryPace = 'Busy';
+        data.itinerary_pace = 'Busy';
       }
     this.storeFormData(data)
     this.route.navigate(['/home/' + this.formUrl[0]])

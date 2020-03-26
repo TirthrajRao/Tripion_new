@@ -23,20 +23,20 @@ export class TransferInquiryComponent implements OnInit {
     this.getFormUrl()
     
     this.transferForm = new FormGroup({
-      fromDate: new FormControl('', [Validators.required]),
-      toDate: new FormControl('', [Validators.required]),
+      from_date: new FormControl('', [Validators.required]),
+      to_date: new FormControl('', [Validators.required]),
       transferBasis: new FormControl('Private'),
-      TransferBasisSpecialReq: new FormControl(''),
+      transfer_basis_special_request: new FormControl(''),
       meal: new FormControl(''),
-      seatPreference: new FormControl(''),
+      seat_preference: new FormControl(''),
       tyre: new FormControl(''),
       air: new FormControl(''),
-      chaufferCarType: new FormControl(''),
-      selfDriveCarType: new FormControl(''),
-      suggestRental: new FormControl(''),
-      cabinCategory: new FormControl(''),
-      shoreExcrusion: new FormControl(''),
-      cityCards: new FormControl('No', [Validators.required])
+      chauffer_car_type: new FormControl(''),
+      selfdrive_car_type: new FormControl(''),
+      suggest_rental: new FormControl(''),
+      cabin_category: new FormControl(''),
+      shore_excrusion: new FormControl(''),
+      city_cards: new FormControl('No', [Validators.required])
     });
 
   }
@@ -73,6 +73,15 @@ export class TransferInquiryComponent implements OnInit {
   nextForm(data) {
     console.log(data)
     this.submitted = true;
+
+    data.from_date = data.from_date.split("T");
+    const fd = data.from_date[1].split('.')
+    data.from_date = data.from_date[0] + ' ' + fd[0];
+
+    data.to_date = data.to_date.split("T");
+    const fd1 = data.to_date[1].split('.')
+    data.to_date = data.to_date[0] + ' ' + fd1[0];
+
     if (this.transferForm.invalid) {
       return
     }

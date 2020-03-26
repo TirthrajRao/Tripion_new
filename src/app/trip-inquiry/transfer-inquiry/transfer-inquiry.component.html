@@ -12,19 +12,19 @@
                         <div>
                             <ion-item>
                                 <ion-label position="floating">From</ion-label>
-                                <ion-datetime formControlName="fromDate" min="{{curruntDate}}" max={{nextYear}}></ion-datetime>
+                                <ion-datetime formControlName="from_date" min="{{curruntDate}}" max={{nextYear}}></ion-datetime>
                             </ion-item>
-                            <div *ngIf="submitted && f.fromDate.errors" class="invalid-feedback">
-                                <div *ngIf="f.fromDate.errors.required">From Date is Required</div>
+                            <div *ngIf="submitted && f.from_date.errors" class="invalid-feedback">
+                                <div *ngIf="f.from_date.errors.required">From Date is Required</div>
                             </div>
                         </div>
                         <div>
                             <ion-item>
                                 <ion-label position="floating">To</ion-label>
-                                <ion-datetime formControlName="toDate" min="{{transferForm.value.fromDate}}" max="{{nextYear}}"></ion-datetime>
+                                <ion-datetime formControlName="to_date" min="{{transferForm.value.from_date}}" max="{{nextYear}}"></ion-datetime>
                             </ion-item>
-                            <div *ngIf="submitted && f.toDate.errors" class="invalid-feedback">
-                                <div *ngIf="f.toDate.errors.required">To Date is Required</div>
+                            <div *ngIf="submitted && f.to_date.errors" class="invalid-feedback">
+                                <div *ngIf="f.to_date.errors.required">To Date is Required</div>
                             </div>
                         </div>
                         <p class="mt-2">Transfer Basis</p>
@@ -40,7 +40,7 @@
                         </div>
                         <ion-item>
                             <ion-label position="floating">Any Special Requirement</ion-label>
-                            <ion-input type="text" formControlName="TransferBasisSpecialReq"></ion-input>
+                            <ion-input type="text" formControlName="transfer_basis_special_request"></ion-input>
                         </ion-item>
                     </div>
                 </div>
@@ -68,15 +68,15 @@
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Seat Preference</ion-label>
-                                <ion-select formControlName="seatPreference">
+                                <ion-select formControlName="seat_preference">
                                     <ion-select-option value="Window">Window</ion-select-option>
                                     <!-- <ion-select-option value="Front">Front</ion-select-option>
                                     <ion-select-option value="Back">Back</ion-select-option> -->
                                     <ion-select-option value="aisle">aisle</ion-select-option>
                                 </ion-select>
                             </ion-item>
-                            <!-- <div *ngIf="submitted && f.seatPreference.errors" class="invalid-feedback">
-                                <div *ngIf="f.seatPreference.errors.required">Select Seat Preference</div>
+                            <!-- <div *ngIf="submitted && f.seat_preference.errors" class="invalid-feedback">
+                                <div *ngIf="f.seat_preference.errors.required">Select Seat Preference</div>
                             </div> -->
                         </div>
                         <div>
@@ -126,7 +126,7 @@
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Car Type</ion-label>
-                                <ion-select formControlName="chaufferCarType">
+                                <ion-select formControlName="chauffer_car_type">
                                     <!-- <ion-select-option value="Chauffer1">
                                         Intermediate Car</ion-select-option>
                                     <ion-select-option value="Luxury Car">Luxury Car</ion-select-option>
@@ -151,8 +151,8 @@
 
                                 </ion-select>
                             </ion-item>
-                            <!-- <div *ngIf="submitted && f.chaufferCarType.errors" class="invalid-feedback">
-                                <div *ngIf="f.chaufferCarType.errors.required">Select Car Type</div>
+                            <!-- <div *ngIf="submitted && f.chauffer_car_type.errors" class="invalid-feedback">
+                                <div *ngIf="f.chauffer_car_type.errors.required">Select Car Type</div>
                             </div> -->
                         </div>
                     </div>
@@ -166,7 +166,7 @@
                     <div class="general_details_body">
                         <ion-item>
                             <ion-label position="floating">Car Type</ion-label>
-                            <ion-select formControlName="selfDriveCarType">
+                            <ion-select formControlName="selfdrive_car_type">
                                 <!-- <ion-select-option value="Chauffer1">
                                     Intermediate Car</ion-select-option>
                                 <ion-select-option value="Luxury Car">Luxury Car</ion-select-option>
@@ -190,11 +190,11 @@
                                 <ion-select-option value="Luxury Car"> Luxury Car</ion-select-option>
                             </ion-select>
                         </ion-item>
-                        <!-- <div *ngIf="submitted && f.selfDriveCarType.errors" class="invalid-feedback">
-                                <div *ngIf="f.selfDriveCarType.errors.required">Select Car Type</div>
+                        <!-- <div *ngIf="submitted && f.selfdrive_car_type.errors" class="invalid-feedback">
+                                <div *ngIf="f.selfdrive_car_type.errors.required">Select Car Type</div>
                             </div> -->
                         <div class="select_plan_check mt-2">
-                            <ion-checkbox checked="false" formControlName="suggestRental"> </ion-checkbox>
+                            <ion-checkbox checked="false" formControlName="suggest_rental"> </ion-checkbox>
                             <ion-label class="ml-3">Suggest Rental</ion-label>
                         </div>
 
@@ -210,21 +210,21 @@
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Cabin Category</ion-label>
-                                <ion-select formControlName="cabinCategory">
+                                <ion-select formControlName="cabin_category">
                                     <ion-select-option value="Inside">Inside</ion-select-option>
                                     <ion-select-option value="Outside">Outside</ion-select-option>
                                     <ion-select-option value="Balcony">Balcony</ion-select-option>
                                     <ion-select-option value="Suite">Suite</ion-select-option>
                                 </ion-select>
                             </ion-item>
-                            <!-- <div *ngIf="submitted && f.cabinCategory.errors" class="invalid-feedback">
-                                <div *ngIf="f.cabinCategory.errors.required">Select Cabin Category</div>
+                            <!-- <div *ngIf="submitted && f.cabin_category.errors" class="invalid-feedback">
+                                <div *ngIf="f.cabin_category.errors.required">Select Cabin Category</div>
                             </div> -->
                         </div>
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Shore Excrusion</ion-label>
-                                <ion-select formControlName="shoreExcrusion">
+                                <ion-select formControlName="shore_excrusion">
                                     <ion-select-option value="Adventure">Adventure</ion-select-option>
                                     <ion-select-option value="Swimming">Swimming</ion-select-option>
                                     <ion-select-option value="Motorcoach">Motorcoach</ion-select-option>
@@ -232,8 +232,8 @@
                                     <ion-select-option value="Sight-seeing">Sight-seeing</ion-select-option>
                                 </ion-select>
                             </ion-item>
-                            <!-- <div *ngIf="submitted && f.shoreExcrusion.errors" class="invalid-feedback">
-                                <div *ngIf="f.shoreExcrusion.errors.required">Select Shore Excrusion</div>
+                            <!-- <div *ngIf="submitted && f.shore_excrusion.errors" class="invalid-feedback">
+                                <div *ngIf="f.shore_excrusion.errors.required">Select Shore Excrusion</div>
                             </div> -->
                         </div>
                     </div>
@@ -248,11 +248,11 @@
                         <!-- <p class="mt-2">Transfer Basis</p> -->
                         <div class="row mt-2">
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="cityCards1" formControlName="cityCards" value="Yes">
+                                <input type="radio" class="mr-2" id="cityCards1" formControlName="city_cards" value="Yes">
                                 <label for="cityCards1">Yes</label>
                             </div>
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="cityCards2" formControlName="cityCards" value="No">
+                                <input type="radio" class="mr-2" id="cityCards2" formControlName="city_cards" value="No">
                                 <label for="cityCards2">No</label>
                             </div>
                         </div>
@@ -263,8 +263,8 @@
                           
                         </ion-item> -->
 
-                        <div *ngIf="submitted && f.cityCards.errors" class="invalid-feedback">
-                            <div *ngIf="f.cityCards.errors.required">City Cards Required</div>
+                        <div *ngIf="submitted && f.city_cards.errors" class="invalid-feedback">
+                            <div *ngIf="f.city_cards.errors.required">City Cards Required</div>
                         </div>
                     </div>
                 </div>

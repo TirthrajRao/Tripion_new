@@ -30,7 +30,7 @@ export class FrequentFlyerComponent implements OnInit {
       flight_name: new FormControl('', [Validators.required]),
       user_name: new FormControl('', [Validators.required]),
       password:new FormControl('',[Validators.required]),
-      points:new FormControl('',[Validators.required])
+      points:new FormControl('')
     });
 
     this.getFfpResponse();

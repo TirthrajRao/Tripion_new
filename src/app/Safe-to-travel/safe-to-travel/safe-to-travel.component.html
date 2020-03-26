@@ -30,7 +30,7 @@
                     <p>Passengers</p>
                 </div>
                 <div class="card_body">
-                    <div>
+                    <!-- <div>
                         <ion-item>
                             <ion-label position="floating">Infants</ion-label>
                             <ion-input type="number" formControlName="infantsPassengers" min='0'></ion-input>
@@ -65,6 +65,110 @@
                         <div *ngIf="submitted && f.seniorPassengers.errors" class="invalid-feedback">
                             <div *ngIf="f.seniorPassengers.errors.required">Senior Citizens Passengers is required</div>
                         </div>
+                    </div> -->
+
+                     <div class="general_details_body">
+                        <div class="passengers-details">
+                            <div class="plist">Infants</div>
+                            <div class="icon-button">
+                                <div class="icons">
+                                    <i class="fa fa-minus" aria-hidden="true" (click)="decrement('infants')"></i>
+                                    <span>{{infantsPassengers}}</span>
+                                    <i class="fa fa-plus" aria-hidden="true" (click)="increment('infants')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="passengers-details">
+                            <div class="plist">Children</div>
+                            <div class="icon-button">
+                                <div class="icons">
+                                    <i class="fa fa-minus" aria-hidden="true" (click)="decrement('children')"></i>
+                                    <span>{{childrenPassengers}}</span>
+                                    <i class="fa fa-plus" aria-hidden="true" (click)="increment('children')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="passengers-details">
+                            <div class="plist">Adults</div>
+                            <div class="icon-button">
+                                <div class="icons">
+                                    <i class="fa fa-minus" aria-hidden="true" (click)="decrement('adults')"></i>
+                                    <span>{{adultsPassengers}}</span>
+                                    <i class="fa fa-plus" aria-hidden="true" (click)="increment('adults')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="passengers-details">
+                            <div class="plist">Senior Citizens</div>
+                            <div class="icon-button">
+                                <div class="icons">
+                                    <i class="fa fa-minus" aria-hidden="true" (click)="decrement('senior')"></i>
+                                    <span>{{seniorPassengers}}</span>
+                                    <i class="fa fa-plus" aria-hidden="true" (click)="increment('senior')"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div>
+                            <ion-item>
+                                <ion-label position="floating">Infants</ion-label>
+                                <ion-input type="number" formControlName="infantsPassenger"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.infantsPassenger.errors" class="invalid-feedback">
+                                <div *ngIf="f.infantsPassenger.errors.required">Number of Infants Passengers is required
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Children</ion-label>
+                                <ion-input type="number" formControlName="childrenPassenger"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.childrenPassenger.errors" class="invalid-feedback">
+                                <div *ngIf="f.childrenPassenger.errors.required">Number of Children Passengers is
+                                    required
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Adults</ion-label>
+                                <ion-input type="number" formControlName="adultsPassenger"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.adultsPassenger.errors" class="invalid-feedback">
+                                <div *ngIf="f.adultsPassenger.errors.required">Number of Adults Passengers is required
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Senior Citizens</ion-label>
+                                <ion-input type="number" formControlName="seniorPassenger"></ion-input>
+                            </ion-item>
+                            <div *ngIf="submitted && f.seniorPassenger.errors" class="invalid-feedback">
+                                <div *ngIf="f.seniorPassenger.errors.required">Number of Senior Passengers is required
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-3 text-center pl-4">
+                            <img src="assets/images/infants.png" style="height: 35px;">
+                            <p>{{infantsPassengers}}</p>
+                        </div>
+                        <div class="col-3 text-center">
+                            <img src="assets/images/children.svg" style="height: 46px;margin-top:-4px;">
+                            <p style="margin-top: -7px;">{{childrenPassengers}}</p>
+                        </div>
+                        <div class="col-3 text-center">
+                            <img src="assets/images/adults.png" style="height: 33px;margin-top: 4px;">
+                            <p>{{adultsPassengers}}</p>
+                        </div>
+                        <div class="col-3 text-center">
+                            <img src="assets/images/seniorcityzens.png" style="height: 33px;
+                            margin-top: 2px;">
+                            <p>{{seniorPassengers}}</p>
+                        </div>
+
                     </div>
                 </div>
             </div>

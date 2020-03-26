@@ -64,7 +64,7 @@ export class ServiceInquiryComponent implements OnInit {
     // this.checkBoxValue = this.checkBoxValue.concat(this.otherServices);
     this.storeSelectedFormCategory();
     if (this.checkBoxValue.length > 1) {
-      this.checkBoxValue.unshift('general-detail');
+      // this.checkBoxValue.unshift('general-detail');
       this.checkBoxValue.push('other-details');
       this.selectedForm.unshift('general-detail')
       this.selectedForm.push('other-details')
@@ -91,7 +91,7 @@ export class ServiceInquiryComponent implements OnInit {
       let formRoute;
       if (!this.checkBoxValue.includes('passport')) {
         console.log("not passport");
-        this.checkBoxValue.unshift('general-detail');
+        // this.checkBoxValue.unshift('general-detail');
         this.checkBoxValue.push('other-details');
         this.selectedForm.unshift('general-detail')
         this.selectedForm.push('other-details')

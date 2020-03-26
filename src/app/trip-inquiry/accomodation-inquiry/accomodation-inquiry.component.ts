@@ -24,14 +24,14 @@ export class AccomodationInquiryComponent implements OnInit {
     localStorage.setItem('formId', JSON.stringify(this.formUrl));
 
     this.accomodationForm = this.fb.group({
-      accomodationType: new FormControl('', [Validators.required]),
-      roomCategoryPreference: new FormControl('', [Validators.required]),
-      smokingRoom: new FormControl('No'),
-      wheelchairAccessible: new FormControl('No'),
-      specialRequest: new FormControl(''),
-      mealPlan: new FormControl('CP ( Continental Plan ) - Only Breakfast'),
-      culinaryPreferrence: new FormControl('Vegetarian'),
-      culinarySpecialRequest: new FormControl(''),
+      accomodation_type: new FormControl('', [Validators.required]),
+      room_category_preference: new FormControl('', [Validators.required]),
+      smoking_room: new FormControl('No'),
+      wheelchair_accessible: new FormControl('No'),
+      special_request: new FormControl(''),
+      meal_plan: new FormControl('CP ( Continental Plan ) - Only Breakfast'),
+      culinary_preferrence: new FormControl('Vegetarian'),
+      culinary_special_request: new FormControl(''),
       rooms: this.fb.array([], [Validators.required]),
     })
     this.room = this.accomodationForm.controls.rooms as FormArray;

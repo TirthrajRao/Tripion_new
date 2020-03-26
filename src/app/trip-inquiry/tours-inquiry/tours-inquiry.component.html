@@ -12,13 +12,13 @@
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Tour Basis</ion-label>
-                                <ion-select formControlName="tourBasis">
+                                <ion-select formControlName="tour_basis">
                                     <ion-select-option value="Private">Private</ion-select-option>
                                     <ion-select-option value="Sharing">Sharing</ion-select-option>
                                 </ion-select>
                             </ion-item>
-                            <div *ngIf="submitted && f.tourBasis.errors" class="invalid-feedback">
-                                <div *ngIf="f.tourBasis.errors.required">Select Tour Basis</div>
+                            <div *ngIf="submitted && f.tour_basis.errors" class="invalid-feedback">
+                                <div *ngIf="f.tour_basis.errors.required">Select Tour Basis</div>
                             </div>
                         </div>
                         <div>
@@ -49,10 +49,10 @@
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Any Special Request </ion-label>
-                                <ion-input type="text" formControlName="specialReq"></ion-input>
+                                <ion-input type="text" formControlName="special_request"></ion-input>
                             </ion-item>
-                            <!-- <div *ngIf="submitted && f.specialReq.errors" class="invalid-feedback">
-                                <div *ngIf="f.specialReq.errors.required">Please Enter Special Request</div>
+                            <!-- <div *ngIf="submitted && f.special_request.errors" class="invalid-feedback">
+                                <div *ngIf="f.special_request.errors.required">Please Enter Special Request</div>
                             </div> -->
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                             <ion-img [src]="path"></ion-img>
                             <h2 class="text-center">{{status}}</h2>
                             <div class="status_bar">
-                                <input type="range" class="gradient-range" value="0" min="0" max="10" formControlName="itineraryPace" (input)="changeStatus($event)" />
+                                <input type="range" class="gradient-range" value="0" min="0" max="10" formControlName="itinerary_pace" (input)="changeStatus($event)" />
                             </div>
                             <!-- <div class="status_bar">
                                 <input type="range" class="gradient-range" value="0" min="0" max="100" />

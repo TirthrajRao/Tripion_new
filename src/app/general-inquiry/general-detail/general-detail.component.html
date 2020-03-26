@@ -13,19 +13,19 @@
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Name in Passport</ion-label>
-                                <ion-input type="text" formControlName="pname"></ion-input>
+                                <ion-input type="text" formControlName="name_in_passport"></ion-input>
                             </ion-item>
-                            <div *ngIf="submitted && f.pname.errors" class="invalid-feedback">
-                                <div *ngIf="f.pname.errors.required">Name is required</div>
+                            <div *ngIf="submitted && f.name_in_passport.errors" class="invalid-feedback">
+                                <div *ngIf="f.name_in_passport.errors.required">Name is required</div>
                             </div>
                         </div>
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Passport Number</ion-label>
-                                <ion-input type="text" formControlName="pNumber"></ion-input>
+                                <ion-input type="text" formControlName="pssport_number"></ion-input>
                             </ion-item>
-                            <div *ngIf="submitted && f.pNumber.errors" class="invalid-feedback">
-                                <div *ngIf="f.pNumber.errors.required">Passport Number is required</div>
+                            <div *ngIf="submitted && f.pssport_number.errors" class="invalid-feedback">
+                                <div *ngIf="f.pssport_number.errors.required">Passport Number is required</div>
                             </div>
                         </div>
                         <div>
@@ -40,19 +40,19 @@
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Place of Birth</ion-label>
-                                <ion-input type="text" formControlName="placeOfBirth"></ion-input>
+                                <ion-input type="text" formControlName="place_of_birth"></ion-input>
                             </ion-item>
-                            <div *ngIf="submitted && f.placeOfBirth.errors" class="invalid-feedback">
-                                <div *ngIf="f.placeOfBirth.errors.required">Place Of Birth is required</div>
+                            <div *ngIf="submitted && f.place_of_birth.errors" class="invalid-feedback">
+                                <div *ngIf="f.place_of_birth.errors.required">Place Of Birth is required</div>
                             </div>
                         </div>
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Address in Passport</ion-label>
-                                <ion-input type="text" formControlName="paddress"></ion-input>
+                                <ion-input type="text" formControlName="address_in_passport"></ion-input>
                             </ion-item>
-                            <div *ngIf="submitted && f.paddress.errors" class="invalid-feedback">
-                                <div *ngIf="f.paddress.errors.required">Passport Address is required</div>
+                            <div *ngIf="submitted && f.address_in_passport.errors" class="invalid-feedback">
+                                <div *ngIf="f.address_in_passport.errors.required">Passport Address is required</div>
                             </div>
                         </div>
                         <div>
@@ -67,7 +67,7 @@
                         <div class="general-details-form">
                             <ion-item>
                                 <ion-label position="floating">Destination Country</ion-label>
-                                <select id="myselection" class="form-control w-100 " formControlName="desinationCountry"
+                                <select id="myselection" class="form-control w-100 " formControlName="desination_country"
                                     >
                                     <option value="Not Fixed"> Not Fixed
                                     </option>
@@ -75,50 +75,50 @@
                                     </option>
                                 </select>
                             </ion-item>
-                            <div *ngIf="submitted && f.desinationCountry.errors" class="invalid-feedback">
-                                <div *ngIf="f.desinationCountry.errors.required">Country is required</div>
+                            <div *ngIf="submitted && f.desination_country.errors" class="invalid-feedback">
+                                <div *ngIf="f.desination_country.errors.required">Country is required</div>
                             </div>
                         </div>
-                        <div *ngIf="generalDetailsForm.value.desinationCountry != 'Not Fixed' ">
+                        <div *ngIf="generalDetailsForm.value.desination_country != 'Not Fixed' ">
                             <ion-item>
                                 <ion-label position="floating">Destination Place</ion-label>
-                                <ion-input type="text" formControlName="placeName"></ion-input>
+                                <ion-input type="text" formControlName="place_name"></ion-input>
                             </ion-item>
-                            <!-- <div *ngIf="submitted && f.desinationCountry.errors" class="invalid-feedback">
-                              <div *ngIf="f.desinationCountry.errors.required">Country is required</div>
+                            <!-- <div *ngIf="submitted && f.desination_country.errors" class="invalid-feedback">
+                              <div *ngIf="f.desination_country.errors.required">Country is required</div>
                           </div> -->
                         </div>
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Passport Valid Until </ion-label>
-                                <ion-datetime formControlName="pvalidDate" min="{{curruntDate}}" max="{{nextYear}}">
+                                <ion-datetime formControlName="passport_valid_date" min="{{curruntDate}}" max="{{nextYear}}">
                                 </ion-datetime>
                             </ion-item>
-                            <div *ngIf="submitted && f.pvalidDate.errors" class="invalid-feedback">
-                                <div *ngIf="f.pvalidDate.errors.required">passport Valid Date is required</div>
+                            <div *ngIf="submitted && f.passport_valid_date.errors" class="invalid-feedback">
+                                <div *ngIf="f.passport_valid_date.errors.required">passport Valid Date is required</div>
                             </div>
                         </div>
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Intended date of Departure</ion-label>
-                                <ion-datetime formControlName="departureDate" min={{curruntDate}}
-                                    max="{{generalDetailsForm.value.pvalidDate? generalDetailsForm.value.pvalidDate: nextYear}}">
+                                <ion-datetime formControlName="departure_date" min={{curruntDate}}
+                                    max="{{generalDetailsForm.value.passport_valid_date? generalDetailsForm.value.passport_valid_date: nextYear}}">
                                 </ion-datetime>
                             </ion-item>
-                            <div *ngIf="submitted && f.departureDate.errors" class="invalid-feedback">
-                                <div *ngIf="f.departureDate.errors.required">Departure Date is required</div>
+                            <div *ngIf="submitted && f.departure_date.errors" class="invalid-feedback">
+                                <div *ngIf="f.departure_date.errors.required">Departure Date is required</div>
                             </div>
                         </div>
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Intended date of Arrival</ion-label>
-                                <ion-datetime formControlName="intendeDate"
-                                    min="{{generalDetailsForm.value.departureDate? generalDetailsForm.value.departureDate: curruntDate}}"
-                                    max="{{generalDetailsForm.value.pvalidDate? generalDetailsForm.value.pvalidDate: nextYear}}">
+                                <ion-datetime formControlName="intende_date"
+                                    min="{{generalDetailsForm.value.departure_date? generalDetailsForm.value.departure_date: curruntDate}}"
+                                    max="{{generalDetailsForm.value.passport_valid_date? generalDetailsForm.value.passport_valid_date: nextYear}}">
                                 </ion-datetime>
                             </ion-item>
-                            <div *ngIf="submitted && f.intendeDate.errors" class="invalid-feedback">
-                                <div *ngIf="f.intendeDate.errors.required">Intended Date is required</div>
+                            <div *ngIf="submitted && f.intende_date.errors" class="invalid-feedback">
+                                <div *ngIf="f.intende_date.errors.required">Intended Date is required</div>
                             </div>
                         </div>
 
@@ -126,12 +126,12 @@
                         <div class="row">
                             <div class="col-6">
                                 <input type="radio" class="mr-2" id="date1" value="Flexible"
-                                    formControlName="durationStatus">
+                                    formControlName="duration_status">
                                 <label for="date1">Flexible</label>
                             </div>
                             <div class="col-6">
                                 <input type="radio" class="mr-2" id="date2" value="Fixed"
-                                    formControlName="durationStatus">
+                                    formControlName="duration_status">
                                 <label for="date2">Fixed</label>
                             </div>
                         </div>

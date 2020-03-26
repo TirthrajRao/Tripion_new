@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TripService } from '../../services/trip.service';
 import { ToastService } from '../../services/toast.service';
 import { Router } from '@angular/router';
-import {AppComponent} from '../../app.component';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-passport-inquiry',
@@ -16,15 +16,16 @@ export class PassportInquiryComponent implements OnInit {
   passportInquiryForm: FormGroup;
   submitted: Boolean = false;
   formUrl: any = [];
+  loading: Boolean = false;
   selectedFormCategory = JSON.parse(localStorage.getItem('selectedFormCategory'));
   constructor(
     public _tripService: TripService,
     public route: Router,
     public _toastService: ToastService,
-    public appComponent:AppComponent,
-    ) {
+    public appComponent: AppComponent,
+  ) {
     this.passportInquiryForm = new FormGroup({
-      passportInquiryType: new FormControl('New Passport'),
+      passport_inquiry_type: new FormControl('New Passport'),
       // firstName: new FormControl('', [Validators.required]),
       // lastName: new FormControl('', [Validators.required]),
       // dob: new FormControl('', [Validators.required]),
@@ -53,21 +54,22 @@ export class PassportInquiryComponent implements OnInit {
   nextForm(data) {
     console.log("data in next forrm", data)
     this.submitted = true;
-
-
+    
     if (this.passportInquiryForm.invalid) {
       return
     }
-    let formObject = [{"passport":JSON.stringify(data)}]
+    this.loading = true;
+    let formObject = [{ "passport": JSON.stringify(data) }]
     const obj = {
       email: this.currentUser.email,
       id: this.currentUser.id,
-      form_data: formObject,
+      form_data: JSON.stringify(formObject),
       form_category: this.selectedFormCategory.toString(),
     }
     console.log("object", obj)
     this._tripService.addPassportForm(obj).subscribe((res: any) => {
       console.log("passport res", res);
+      this.loading = false;
       // this._toastService.presentToast(res.message, 'success')
       this.appComponent.sucessAlert("Your Inquiry has been Added Successfully");
       if (this.formUrl.length) {
@@ -77,8 +79,9 @@ export class PassportInquiryComponent implements OnInit {
       }
     }, err => {
       console.log("err", err);
+      this.loading = false;
       // this._toastService.presentToast(err.error.message, 'danger')
-       this.appComponent.errorAlert();
+      this.appComponent.errorAlert();
     })
     // this.storeFormData(data);
 

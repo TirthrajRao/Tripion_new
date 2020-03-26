@@ -71,7 +71,7 @@ export class HomePageComponent implements OnInit {
           this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
           // console.log("urllllll", e[0].urlAfterRedirects);
           this.previousUrl = e[0].urlAfterRedirects;
-          if (this.previousUrl.includes('other-details') || this.previousUrl.includes('login') || this.previousUrl.includes('general-detail') || this.previousUrl.includes('signup') || this.previousUrl.includes('premium-account')
+          if (this.previousUrl.includes('other-details') || this.previousUrl.includes('login') || this.previousUrl.includes('general-detail') || this.previousUrl.includes('signup') || this.previousUrl.includes('premium-account') || this.previousUrl.includes('passport') || this.previousUrl.includes('all-plan')
           ) {
             console.log("in if");
             this.allTrips = []

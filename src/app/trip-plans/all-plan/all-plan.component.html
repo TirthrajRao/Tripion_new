@@ -20,8 +20,8 @@
                         </div>
                     </div>
                     <div class="plan_img float-right" routerLink="/home/plan-option-detail/{{plan.plan_id}}">
-                        <!-- <i class="fas fa-info"></i> -->
-                        <ion-img src="../../assets/images/plane.png"></ion-img>
+                        <i class="fas fa-info"></i>
+                        <!-- <ion-img src="../../assets/images/plane.png"></ion-img> -->
                     </div>
                 </div>
             </div>
@@ -38,15 +38,21 @@
                     us</button>
                 <button type="submit" class="text-center text-white btn" [disabled]="isDisable" routerLink='/home/plan-option'>Book with 3rd Party
                     apps</button>
-                <button type="submit" class="text-center text-white btn" [disabled]="isDisable" routerLink='/home/plan-option'>Do things your
+                <button type="submit" class="text-center text-white btn" [disabled]="isDisable" (click)="DoThingsYourWay()">Do things your
                     way</button>
             </div>
         </form>
     </div>
     <div *ngIf="!allPlans.length && !loading">
-        <span class="text-white text-center no-request">
-            No Plan
-        </span>
+        <div style="margin-top: 40%;">
+            <div class="message-icon">
+                <img src="assets/images/safetravel.png">
+            </div>
+            <div class="notification-text">
+                <span class="text-center no-request text-white"> We are working<br>
+                    will revert soon !!</span>
+            </div>
+        </div>
     </div>
     <div *ngIf="loading">
         <div id="loader-wrapper">

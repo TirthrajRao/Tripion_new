@@ -165,4 +165,10 @@ export class TripService {
   addPassportForm(data){
     return this.http.post(config.baseApiUrl + 'submit-form', data);
   }
+/**
+ * Trip payment
+ */
+  tripPayment(data){
+    return this.http.post(config.baseApiUrl + 'pay-now', data);
+  }
 }

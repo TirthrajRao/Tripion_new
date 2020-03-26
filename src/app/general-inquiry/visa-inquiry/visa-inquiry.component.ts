@@ -15,8 +15,8 @@ export class VisaInquiryComponent implements OnInit {
   isChecked: Boolean = true;
   inputValue: any;
   sponsor = 'Yes';
-  preRejections = 'Yes';
-  InternationalTravel = 'Yes';
+  previous_rejections = 'Yes';
+  international_travel = 'Yes';
   curruntDate: string = new Date().toISOString();
   // formData = JSON.parse(localStorage.getItem('form_data'));
   nextYear;
@@ -33,14 +33,14 @@ export class VisaInquiryComponent implements OnInit {
       // intendeDate: new FormControl('', [Validators.required]),
       // pvalidDate: new FormControl('', [Validators.required]),
       // durationStatus: new FormControl('Flexible'),
-      purposeOfTravel: new FormControl('Business'),
-      visaType: new FormControl('Business', [Validators.required]),
-      preRejections: new FormControl('Yes'),
-      preRejectionsDetails: new FormControl('', [Validators.required]),
-      InternationalTravel: new FormControl('Yes'),
-      InternationalTravelDetails: new FormControl('', [Validators.required]),
+      purpose_of_travel: new FormControl('Business'),
+      visa_type: new FormControl('Business', [Validators.required]),
+      previous_rejections: new FormControl('Yes'),
+      previous_rejections_details: new FormControl('', [Validators.required]),
+      international_travel: new FormControl('Yes'),
+      international_travel_details: new FormControl('', [Validators.required]),
       sponsor: new FormControl('Yes'),
-      sponsorDetail: new FormControl('', [Validators.required]),
+      sponsor_detail: new FormControl('', [Validators.required]),
       applicants: new FormControl('', [Validators.required])
     })
   }
@@ -59,12 +59,12 @@ export class VisaInquiryComponent implements OnInit {
    */
   nextForm(data) {
     console.log("data in next forrm", data)
-    if (data.preRejections == 'No')
-      this.visaForm.controls.preRejectionsDetails.setValue('No');
-    if (data.InternationalTravel == 'No')
-      this.visaForm.controls.InternationalTravelDetails.setValue('No');
+    if (data.previous_rejections == 'No')
+      this.visaForm.controls.previous_rejections_details.setValue('No');
+    if (data.international_travel == 'No')
+      this.visaForm.controls.international_travel_details.setValue('No');
     if (data.sponsor == 'No')
-      this.visaForm.controls.sponsorDetail.setValue('No');
+      this.visaForm.controls.sponsor_detail.setValue('No');
     console.log(data)
     this.submitted = true;
     if (this.visaForm.invalid) {
@@ -72,9 +72,9 @@ export class VisaInquiryComponent implements OnInit {
     }
     console.log("data", data)
     this.storeFormData(data);
-    this.visaForm.controls.preRejectionsDetails.setValue('');
-    this.visaForm.controls.InternationalTravelDetails.setValue('');
-    this.visaForm.controls.sponsorDetail.setValue('');
+    this.visaForm.controls.previous_rejections_details.setValue('');
+    this.visaForm.controls.international_travel_details.setValue('');
+    this.visaForm.controls.sponsor_detail.setValue('');
     this.route.navigate(['/home/' + this.formUrl[0]])
   }
 
@@ -88,12 +88,12 @@ export class VisaInquiryComponent implements OnInit {
   }
 
   changeInputValue(e) {
-    this.visaForm.controls.visaType.setValue(e.target.value);
+    this.visaForm.controls.visa_type.setValue(e.target.value);
   }
 
   selectVisaType(e) {
     $('#other-input').val("");
-    this.visaForm.controls.visaType.setValue(e.target.value);
+    this.visaForm.controls.visa_type.setValue(e.target.value);
   }
 
   nextYearCount() {

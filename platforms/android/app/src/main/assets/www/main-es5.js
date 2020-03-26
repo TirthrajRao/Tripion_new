@@ -22757,7 +22757,7 @@ var SignupComponent = /** @class */ (function () {
                 // this._toastServices.presentToast(err.error.message, 'danger')
             });
             // this._toastServices.presentToast(res.message, 'success')
-            _this.appComponent.sucessAlert("Rgisterd Sucessfully");
+            _this.appComponent.sucessAlert("Registered Sucessfully");
             _this.router.navigate(['/home']);
         }, function (err) {
             _this.isDisable = false;

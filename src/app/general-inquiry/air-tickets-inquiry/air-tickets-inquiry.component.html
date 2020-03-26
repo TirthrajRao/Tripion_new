@@ -125,13 +125,13 @@
                     <div class="general_details_body">
                         <div class="row">
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="Journey1" formControlName="journeyType"
+                                <input type="radio" class="mr-2" id="Journey1" formControlName="journey_type"
                                     value="Round Trip">
                                 <label for="Journey1">Round Trip</label>
                             </div>
                             <div class="col-6">
                                 <input type="radio" class="mr-2" id="Journey2" value="One Way"
-                                    formControlName="journeyType">
+                                    formControlName="journey_type">
                                 <label for="Journey2">One Way</label>
                             </div>
                         </div>
@@ -147,17 +147,17 @@
                         <div class="row">
                             <div class="col-6">
                                 <input type="radio" class="mr-2" id="Tire1" value="Economy"
-                                    formControlName="flightTirePreference">
+                                    formControlName="flightTire_preference">
                                 <label for="Tire1">Economy</label>
                             </div>
                             <div class="col-6">
                                 <input type="radio" class="mr-2" id="Tire2" value="Business Class"
-                                    formControlName="flightTirePreference">
+                                    formControlName="flightTire_preference">
                                 <label for="Tire2">Business Class</label>
                             </div>
                             <div class="col-12">
                                 <input type="radio" class="mr-2" id="Tire3" value="First Class"
-                                    formControlName="flightTirePreference">
+                                    formControlName="flightTire_preference">
                                 <label for="Tire3">First Class</label>
                             </div>
                         </div>
@@ -173,22 +173,22 @@
                         <div class="row">
                             <div class="col-6">
                                 <input type="radio" class="mr-2" id="Flight1" value="Aisle"
-                                    formControlName="flightSeatPreferences" (change)="selectVisaType($event)">
+                                    formControlName="flightSeat_preferences" (change)="selectVisaType($event)">
                                 <label for="Flight1">Aisle</label>
                             </div>
                             <div class="col-6">
                                 <input type="radio" class="mr-2" id="Flight2" value="Middle"
-                                    formControlName="flightSeatPreferences" (change)="selectVisaType($event)">
+                                    formControlName="flightSeat_preferences" (change)="selectVisaType($event)">
                                 <label for="Flight2">Middle</label>
                             </div>
                             <div class="col-6">
                                 <input type="radio" class="mr-2" id="Flight3" value="Window"
-                                    formControlName="flightSeatPreferences" (change)="selectVisaType($event)">
+                                    formControlName="flightSeat_preferences" (change)="selectVisaType($event)">
                                 <label for="Flight3">Window</label>
                             </div>
                             <div class="col-6">
                                 <input type="radio" class="mr-2" id="Flight4" value="Emergency Exit Row"
-                                    formControlName="flightSeatPreferences" (change)="selectVisaType($event)">
+                                    formControlName="flightSeat_preferences" (change)="selectVisaType($event)">
                                 <label for="Flight4">Emergency Exit Row</label>
                             </div>
                         </div>
@@ -199,8 +199,8 @@
                                 </ion-input>
                             </ion-item>
                         </div>
-                        <div *ngIf="submitted && f.flightSeatPreferences.errors" class="invalid-feedback">
-                            <div *ngIf="f.flightSeatPreferences.errors.required">Choose one Flight Seat Preference</div>
+                        <div *ngIf="submitted && f.flightSeat_preferences.errors" class="invalid-feedback">
+                            <div *ngIf="f.flightSeat_preferences.errors.required">Choose one Flight Seat Preference</div>
                         </div>
                     </div>
                 </div>
@@ -214,7 +214,7 @@
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Meal</ion-label>
-                                <ion-select formControlName="inFlightMeal" multiple="true">
+                                <ion-select formControlName="in_flight_meal" multiple="true">
                                     <ion-select-option value="Veg Hindu Meal">Veg Hindu Meal</ion-select-option>
                                     <ion-select-option value="Veg Vegan">Veg Vegan</ion-select-option>
                                     <ion-select-option value="Veg Jain">Veg Jain</ion-select-option>
@@ -231,8 +231,8 @@
                                     <ion-select-option value="Hindu Non-veg">Hindu Non-veg</ion-select-option>
                                 </ion-select>
                             </ion-item>
-                            <div *ngIf="submitted && f.inFlightMeal.errors" class="invalid-feedback">
-                                <div *ngIf="f.inFlightMeal.errors.required">Select Flight Meal</div>
+                            <div *ngIf="submitted && f.in_flight_meal.errors" class="invalid-feedback">
+                                <div *ngIf="f.in_flight_meal.errors.required">Select Flight Meal</div>
                             </div>
                         </div>
                     </div>
@@ -247,10 +247,10 @@
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Airline Preference</ion-label>
-                                <ion-input type="text" formControlName="airlinePreference"></ion-input>
+                                <ion-input type="text" formControlName="airline_preference"></ion-input>
                             </ion-item>
-                            <div *ngIf="submitted && f.airlinePreference.errors" class="invalid-feedback">
-                                <div *ngIf="f.airlinePreference.errors.required">Airline Preference is required
+                            <div *ngIf="submitted && f.airline_preference.errors" class="invalid-feedback">
+                                <div *ngIf="f.airline_preference.errors.required">Airline Preference is required
                                 </div>
                             </div>
                         </div>
@@ -264,12 +264,12 @@
                     <div class="general_details_body">
                         <div class="row">
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="seatbelt1" formControlName="seatBeltExtender"
+                                <input type="radio" class="mr-2" id="seatbelt1" formControlName="seat_belt_extender"
                                     value="Yes">
                                 <label for="seatbelt1">Yes</label>
                             </div>
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="seatbelt2" formControlName="seatBeltExtender"
+                                <input type="radio" class="mr-2" id="seatbelt2" formControlName="seat_belt_extender"
                                     value="No">
                                 <label for="seatbelt2">No</label>
                             </div>
@@ -286,12 +286,12 @@
 
                         <div class="row">
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="Wheelchair1" formControlName="wheelChairAssistance"
+                                <input type="radio" class="mr-2" id="Wheelchair1" formControlName="wheelChair_assistance"
                                     value="Yes">
                                 <label for="Wheelchair1">Yes</label>
                             </div>
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="Wheelchair2" formControlName="wheelChairAssistance"
+                                <input type="radio" class="mr-2" id="Wheelchair2" formControlName="wheelChair_assistance"
                                     value="No">
                                 <label for="Wheelchair2">No</label>
                             </div>

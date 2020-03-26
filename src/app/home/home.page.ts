@@ -117,7 +117,7 @@ export class HomePage {
     this._tripService.getFormCategoryList().subscribe((res: any) => {
       localStorage.setItem('categoryList', JSON.stringify(res.data))
     }, (err) => {
-      this._toastService.presentToast(err.error.message, 'danger');
+      // this._toastService.presentToast(err.error.message, 'danger');
       console.log(err);
     })
   }

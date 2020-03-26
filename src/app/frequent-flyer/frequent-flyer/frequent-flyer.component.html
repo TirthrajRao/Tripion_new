@@ -43,7 +43,7 @@
                 <form [formGroup]="addFfpReqForm">
                     <div>
                         <ion-item>
-                            <ion-label position="floating">Flight name</ion-label>
+                            <ion-label position="floating">Airline name</ion-label>
                             <ion-input type="text" formControlName="flight_name"></ion-input>
                         </ion-item>
                         <div *ngIf="submitted && f.flight_name.errors" class="invalid-feedback">
@@ -73,9 +73,9 @@
                             <ion-label position="floating">Points</ion-label>
                             <ion-input type="text" formControlName="points"></ion-input>
                         </ion-item>
-                        <div *ngIf="submitted && f.points.errors" class="invalid-feedback">
+                        <!-- <div *ngIf="submitted && f.points.errors" class="invalid-feedback">
                             <div *ngIf="f.points.errors.required">Points is required</div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="make_folder">
                         <button (click)="addFfpRequest(addFfpReqForm.value)" class="btn" [disabled]="isDisable"><i class="fas fa-plus"></i>Add

@@ -9,7 +9,8 @@
     <div class="document_content">
         <div>
             <div class="submit_btn select_files">
-                <input type="file" #file1 style="display: none;" (change)="selectOtherFile($event)" accept="image/*, .doc ,.pdf" multiple>
+                <!-- <input type="file" #file1 style="display: none;" (change)="selectOtherFile($event)" accept="image/*, .doc ,.pdf" multiple> -->
+                <input type="file" #file1 style="display: none;" (change)="selectOtherFile($event)"  multiple>  
                 <button (click)="file1.click()">Add new Document</button>
             </div>
             <div *ngIf="urls && urls.length">

@@ -16,7 +16,8 @@
             </div>
         </div>
         <div class="notification_content" *ngIf="allNotifications.length">
-            <div class="card" *ngFor="let notification of allNotifications" routerLink="/home/plan-option/{{notification.inquiry_id}}">
+            <div class="card" *ngFor="let notification of allNotifications"
+                routerLink="/home/plan-option/{{notification.inquiry_id}}">
                 <div class="left-part float-left">
                     <!-- <div class="left-image">
                         <img src="../../assets/images/profile1.png">
@@ -42,11 +43,11 @@
         </div>
         <div class="loader" *ngIf="!loading && !allNotifications.length">
             <div class="message-icon">
-            <img src="../../assets/images/message.svg">
-        </div>
-        <div class="notification-text">
-            <span class="text-center no-request">No Notification found <br> right now</span>
-        </div>
+                <img src="../../assets/images/message.svg">
+            </div>
+            <div class="notification-text">
+                <span class="text-center no-request">No Notification found <br> right now</span>
+            </div>
         </div>
     </div>
 </ion-content>

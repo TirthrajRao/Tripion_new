@@ -14,7 +14,7 @@
                         <div class="general_details_body">
                             <div class="row">
                                 <div class="col-12">
-                                    <input type="radio" class="mr-2" id="seatbelt1" formControlName="passportInquiryType" value="New Passport">
+                                    <input type="radio" class="mr-2" id="seatbelt1" formControlName="passport_inquiry_type" value="New Passport">
                                     <label for="seatbelt1">New Passport</label>
 
                                 </div>
@@ -22,11 +22,11 @@
                             <div class="row">
                                 <div class="col-12">
                                  
-                                    <input type="radio" class="mr-2" id="seatbelt2" formControlName="passportInquiryType" value="Renew Passport">
+                                    <input type="radio" class="mr-2" id="seatbelt2" formControlName="passport_inquiry_type" value="Renew Passport">
                                     <label for="seatbelt2">Renew Passport</label>
                                 </div>
                                 <!-- <div class="col-6">
-                                    <input type="radio" class="mr-2" id="seatbelt2" formControlName="passportInquiryType" value="Renew Passport">
+                                    <input type="radio" class="mr-2" id="seatbelt2" formControlName="passport_inquiry_type" value="Renew Passport">
                                     <label for="seatbelt2">Renew Passport</label>
                                 </div> -->
                                 
@@ -97,5 +97,11 @@
           </div>
           </form>
       </div>
-
+      <div *ngIf="loading">
+        <div id="loader-wrapper">
+            <div class="heartbeatloader">
+                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+            </div>
+        </div>
+    </div>
   </ion-content>

@@ -114,15 +114,15 @@
                         <p>Purpose of Travel</p>
                         <div class="row">
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="Travel1" value="Tourism" formControlName="purposeOfTravel">
+                                <input type="radio" class="mr-2" id="Travel1" value="Tourism" formControlName="purpose_of_travel">
                                 <label for="Travel1">Tourism</label>
                             </div>
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="Travel2" value="Business" [checked]="true" formControlName="purposeOfTravel">
+                                <input type="radio" class="mr-2" id="Travel2" value="Business" [checked]="true" formControlName="purpose_of_travel">
                                 <label for="Travel2">Business</label>
                             </div>
                             <div class="col-12">
-                                <input type="radio" class="mr-2" id="Travel3" value="Family Reunion / Functions" formControlName="purposeOfTravel">
+                                <input type="radio" class="mr-2" id="Travel3" value="Family Reunion / Functions" formControlName="purpose_of_travel">
                                 <label for="Travel3">Family Reunion / Functions</label>
                             </div>
                         </div>
@@ -136,15 +136,15 @@
                         <p>Type of Visa</p>
                         <div class="row">
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="Visa1" formControlName="visaType" value="Business" (change)="selectVisaType($event)">
+                                <input type="radio" class="mr-2" id="Visa1" formControlName="visa_type" value="Business" (change)="selectVisaType($event)">
                                 <label for="Visa1">Business</label>
                             </div>
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="Visa2" formControlName="visaType" value="Student" (change)="selectVisaType($event)">
+                                <input type="radio" class="mr-2" id="Visa2" formControlName="visa_type" value="Student" (change)="selectVisaType($event)">
                                 <label for="Visa2">Student</label>
                             </div>
                             <div class="col-12 ">
-                                <input type="radio" class="mr-2" id="Visa3" formControlName="visaType" value="tourist" (change)="selectVisaType($event)">
+                                <input type="radio" class="mr-2" id="Visa3" formControlName="visa_type" value="tourist" (change)="selectVisaType($event)">
                                 <label for="Visa3">Tourist</label>
                             </div>
                         </div>
@@ -154,8 +154,8 @@
                                 <ion-input type="text" (ionChange)="changeInputValue($event)" id="other-input">
                                 </ion-input>
                             </ion-item>
-                            <div *ngIf="submitted && f.visaType.errors" class="invalid-feedback">
-                                <div *ngIf="f.visaType.errors.required">Choose one Visa Type</div>
+                            <div *ngIf="submitted && f.visa_type.errors" class="invalid-feedback">
+                                <div *ngIf="f.visa_type.errors.required">Choose one Visa Type</div>
                             </div>
                         </div>
 
@@ -164,21 +164,21 @@
                         <!-- <form action="#"> -->
                         <div class="row">
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="rejections1" [(ngModel)]="preRejections" formControlName="preRejections" value="Yes">
+                                <input type="radio" class="mr-2" id="rejections1" [(ngModel)]="previous_rejections" formControlName="previous_rejections" value="Yes">
                                 <label for="rejections1">Yes</label>
                             </div>
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="rejections2" [(ngModel)]="preRejections" formControlName="preRejections" value="No">
+                                <input type="radio" class="mr-2" id="rejections2" [(ngModel)]="previous_rejections" formControlName="previous_rejections" value="No">
                                 <label for="rejections2">No</label>
                             </div>
                         </div>
-                        <div *ngIf="preRejections == 'Yes'">
+                        <div *ngIf="previous_rejections == 'Yes'">
                             <ion-item>
                                 <ion-label position="floating">Destination, Duration of Journey</ion-label>
-                                <ion-input type="text" formControlName="preRejectionsDetails"></ion-input>
+                                <ion-input type="text" formControlName="previous_rejections_details"></ion-input>
                             </ion-item>
-                            <div *ngIf="submitted && f.preRejectionsDetails.errors" class="invalid-feedback">
-                                <div *ngIf="f.preRejectionsDetails.errors.required">Rejection Details is required</div>
+                            <div *ngIf="submitted && f.previous_rejections_details.errors" class="invalid-feedback">
+                                <div *ngIf="f.previous_rejections_details.errors.required">Rejection Details is required</div>
                             </div>
                         </div>
                         <!-- </form> -->
@@ -191,20 +191,20 @@
                         <p>Previous International Travel</p>
                         <div class="row">
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="international1" [(ngModel)]="InternationalTravel" formControlName="InternationalTravel" value="Yes" checked>
+                                <input type="radio" class="mr-2" id="international1" [(ngModel)]="international_travel" formControlName="international_travel" value="Yes" checked>
                                 <label for="international1">Yes</label>
                             </div>
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="international2" formControlName="InternationalTravel" [(ngModel)]="InternationalTravel" value="No">
+                                <input type="radio" class="mr-2" id="international2" formControlName="international_travel" [(ngModel)]="international_travel" value="No">
                                 <label for="international2">No</label>
                             </div>
                         </div>
-                        <div *ngIf="InternationalTravel == 'Yes'">
+                        <div *ngIf="international_travel == 'Yes'">
                             <ion-item>
-                                <ion-input type="text" placeholder="France - 12 days, USA - 18 days." formControlName="InternationalTravelDetails"></ion-input>
+                                <ion-input type="text" placeholder="France - 12 days, USA - 18 days." formControlName="international_travel_details"></ion-input>
                             </ion-item>
-                            <div *ngIf="submitted && f.InternationalTravelDetails.errors" class="invalid-feedback">
-                                <div *ngIf="f.InternationalTravelDetails.errors.required">Travel Details is required</div>
+                            <div *ngIf="submitted && f.international_travel_details.errors" class="invalid-feedback">
+                                <div *ngIf="f.international_travel_details.errors.required">Travel Details is required</div>
                             </div>
                         </div>
                     </div>
@@ -228,10 +228,10 @@
                         <div *ngIf="sponsor == 'Yes'">
                             <ion-item>
                                 <ion-label position="floating">Occupation</ion-label>
-                                <ion-input type="text" formControlName="sponsorDetail"></ion-input>
+                                <ion-input type="text" formControlName="sponsor_detail"></ion-input>
                             </ion-item>
-                            <div *ngIf="submitted && f.sponsorDetail.errors" class="invalid-feedback">
-                                <div *ngIf="f.sponsorDetail.errors.required">Sponsor Details is required</div>
+                            <div *ngIf="submitted && f.sponsor_detail.errors" class="invalid-feedback">
+                                <div *ngIf="f.sponsor_detail.errors.required">Sponsor Details is required</div>
                             </div>
                         </div>
                     </div>

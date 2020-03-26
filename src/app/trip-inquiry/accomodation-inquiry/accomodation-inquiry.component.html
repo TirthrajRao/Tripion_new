@@ -12,7 +12,7 @@
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Accomodation Type</ion-label>
-                                <ion-select formControlName="accomodationType">
+                                <ion-select formControlName="accomodation_type">
                                     <ion-select-option value="Hotels">Hotels</ion-select-option>
                                     <ion-select-option value="Guesthouses">Guesthouses</ion-select-option>
                                     <ion-select-option value="Apartments">Apartments</ion-select-option>
@@ -20,15 +20,15 @@
                                     <ion-select-option value="Ski Chalets">Ski Chalets</ion-select-option>
                                 </ion-select>
                             </ion-item>
-                            <div *ngIf="submitted && f.accomodationType.errors" class="invalid-feedback">
-                                <div *ngIf="f.accomodationType.errors.required">Select Accomodation Type</div>
+                            <div *ngIf="submitted && f.accomodation_type.errors" class="invalid-feedback">
+                                <div *ngIf="f.accomodation_type.errors.required">Select Accomodation Type</div>
                             </div>
                         </div>
                         <div>
                             <div>
                                 <ion-item>
                                     <ion-label position="floating">Room Category Preference</ion-label>
-                                    <ion-select formControlName="roomCategoryPreference">
+                                    <ion-select formControlName="room_category_preference">
                                         <ion-select-option value="Queen Room">Queen Room</ion-select-option>
                                         <ion-select-option value="Single Room">Single Room</ion-select-option>
                                         <ion-select-option value="Double Room">Double Room</ion-select-option>
@@ -40,8 +40,8 @@
                                     </ion-select>
                                 </ion-item>
                             </div>
-                            <div *ngIf="submitted && f.roomCategoryPreference.errors" class="invalid-feedback">
-                                <div *ngIf="f.roomCategoryPreference.errors.required">Select Accomodation Type</div>
+                            <div *ngIf="submitted && f.room_category_preference.errors" class="invalid-feedback">
+                                <div *ngIf="f.room_category_preference.errors.required">Select Accomodation Type</div>
                             </div>
                         </div>
                         <!-- <div class="row"> -->
@@ -51,12 +51,12 @@
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="Smoking1" formControlName="smokingRoom"
+                                <input type="radio" class="mr-2" id="Smoking1" formControlName="smoking_room"
                                     value="Yes">
                                 <label for="Smoking1">Yes</label>
                             </div>
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="Smoking2" formControlName="smokingRoom" value="No">
+                                <input type="radio" class="mr-2" id="Smoking2" formControlName="smoking_room" value="No">
                                 <label for="Smoking2">No</label>
                             </div>
                         </div>
@@ -66,12 +66,12 @@
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="Accessible1" formControlName="wheelchairAccessible"
+                                <input type="radio" class="mr-2" id="Accessible1" formControlName="wheelchair_accessible"
                                     value="Yes">
                                 <label for="Accessible1">Yes</label>
                             </div>
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="Accessible2" formControlName="wheelchairAccessible"
+                                <input type="radio" class="mr-2" id="Accessible2" formControlName="wheelchair_accessible"
                                     value="No">
                                 <label for="Accessible2">No</label>
                             </div>
@@ -80,7 +80,7 @@
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Any Special Requirement</ion-label>
-                                <ion-input type="text" formControlName="specialRequest"></ion-input>
+                                <ion-input type="text" formControlName="special_request"></ion-input>
                             </ion-item>
                             <!-- <div *ngIf="submitted && f.specialRequest.errors" class="invalid-feedback">
                                 <div *ngIf="f.specialRequest.errors.required">Please Enter Any Special Request</div>
@@ -97,17 +97,17 @@
                     <div class="general_details_body">
                         <div class="row">
                             <div class="col-12">
-                                <input type="radio" class="mr-2" id="Plans1" formControlName="mealPlan"
+                                <input type="radio" class="mr-2" id="Plans1" formControlName="meal_plan"
                                     value="CP ( Continental Plan ) - Only Breakfast">
                                 <label for="Plans1">CP ( Continental Plan ) - Only Breakfast</label>
                             </div>
                             <div class="col-12">
-                                <input type="radio" class="mr-2" id="Plans2" formControlName="mealPlan"
+                                <input type="radio" class="mr-2" id="Plans2" formControlName="meal_plan"
                                     value="AP ( American Plan ) - All Meals">
                                 <label for="Plans2">AP ( American Plan ) - All Meals</label>
                             </div>
                             <div class="col-12">
-                                <input type="radio" class="mr-2" id="Plans3" formControlName="mealPlan"
+                                <input type="radio" class="mr-2" id="Plans3" formControlName="meal_plan"
                                     value="MAP - Breakfast & 1 Major Meal">
                                 <label for="Plans3">MAP - Breakfast & 1 Major Meal</label>
                             </div>
@@ -123,39 +123,39 @@
                     <div class="general_details_body">
                         <div class="row">
                             <div class="col-12">
-                                <input type="radio" class="mr-2" id="Culinary1" formControlName="culinaryPreferrence"
+                                <input type="radio" class="mr-2" id="Culinary1" formControlName="culinary_preferrence"
                                     value="Vegetarian">
                                 <label for="Culinary1">Vegetarian</label>
                             </div>
                             <div class="col-12">
-                                <input type="radio" class="mr-2" id="Culinary2" formControlName="culinaryPreferrence"
+                                <input type="radio" class="mr-2" id="Culinary2" formControlName="culinary_preferrence"
                                     value="Vegan">
                                 <label for="Culinary2">Vegan</label>
                             </div>
                             <div class="col-12">
-                                <input type="radio" class="mr-2" id="Culinary3" formControlName="culinaryPreferrence"
+                                <input type="radio" class="mr-2" id="Culinary3" formControlName="culinary_preferrence"
                                     value="Gluten & Lactose Free">
                                 <label for="Culinary3">Gluten & Lactose Free</label>
                             </div>
                             <div class="col-12">
-                                <input type="radio" class="mr-2" id="Culinary4" formControlName="culinaryPreferrence"
+                                <input type="radio" class="mr-2" id="Culinary4" formControlName="culinary_preferrence"
                                     value="Non Veg">
                                 <label for="Culinary4">Non Veg</label>
                             </div>
                             <div class="col-12">
-                                <input type="radio" class="mr-2" id="Culinary5" formControlName="culinaryPreferrence"
+                                <input type="radio" class="mr-2" id="Culinary5" formControlName="culinary_preferrence"
                                     value="Jain ( Only where available )">
                                 <label for="Culinary5">Jain ( Only where available )</label>
                             </div>
                             <div class="col-12">
-                                <input type="radio" class="mr-2" id="Culinary6" formControlName="culinaryPreferrence"
+                                <input type="radio" class="mr-2" id="Culinary6" formControlName="culinary_preferrence"
                                     value="Other">
                                 <label for="Culinary6">Other</label>
                             </div>
                         </div>
                         <ion-item>
                             <ion-label position="floating">Any Special Requirement</ion-label>
-                            <ion-input type="text" formControlName="culinarySpecialRequest"></ion-input>
+                            <ion-input type="text" formControlName="culinary_special_request"></ion-input>
                         </ion-item>
                     </div>
                 </div>

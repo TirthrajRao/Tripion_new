@@ -22,7 +22,10 @@ export class SafeToTravelComponent implements OnInit {
   formCategory: any;
   loading: Boolean = false;
   countries = data.countries;
-
+  infantsPassengers: any = 0;
+  childrenPassengers: any = 0;
+  adultsPassengers: any = 0;
+  seniorPassengers: any = 0;
   constructor(
     public _tripServive: TripService,
     public router: Router,
@@ -109,7 +112,7 @@ export class SafeToTravelComponent implements OnInit {
        this.isDisable = false;
        this.loading = false;
        // this._toastService.presentToast(res.message, 'success');
-       this.appComponent.sucessAlert("Added Sucessfully")
+       this.appComponent.sucessAlert("Requested Sucessfully")
        let navigationExtras: NavigationExtras = {
          state: {
            safe_to_pdf: [],
@@ -127,5 +130,43 @@ export class SafeToTravelComponent implements OnInit {
        this.loading = false;
      })
    }
+
+   decrement(type) {
+    console.log("type in dec", type);
+    if (type == "infants") {
+      if (this.infantsPassengers)
+        this.infantsPassengers--;
+        this.safeToTravelForm.controls.infantsPassengers.setValue(this.infantsPassengers)
+    } else if (type == "children") {
+      if (this.childrenPassengers)
+        this.childrenPassengers--;
+        this.safeToTravelForm.controls.childrenPassengers.setValue(this.childrenPassengers)
+    } else if (type == 'adults') {
+      if (this.adultsPassengers)
+        this.adultsPassengers--;
+        this.safeToTravelForm.controls.adultsPassengers.setValue(this.adultsPassengers)
+    } else if (type == 'senior') {
+      if (this.seniorPassengers)
+        this.seniorPassengers--;
+        this.safeToTravelForm.controls.seniorPassenger.setValue(this.seniorPassengers)
+    }
+  }
+
+  increment(type) {
+    console.log("type in inc", type)
+    if (type == "infants") {
+      this.infantsPassengers++;
+      this.safeToTravelForm.controls.infantsPassengers.setValue(this.infantsPassengers)
+    } else if (type == "children") {
+      this.childrenPassengers++;
+      this.safeToTravelForm.controls.childrenPassengers.setValue(this.childrenPassengers)
+    } else if (type == 'adults') {
+      this.adultsPassengers++;
+      this.safeToTravelForm.controls.adultsPassengers.setValue(this.adultsPassengers)
+    } else if (type == 'senior') {
+      this.seniorPassengers++;
+      this.safeToTravelForm.controls.seniorPassengers.setValue(this.seniorPassengers)
+    }
+  }
 
  }
