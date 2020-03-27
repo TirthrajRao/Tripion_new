@@ -14,6 +14,7 @@
                     <img [src]="document.image_url || '../../assets/images/placeholder.png'">
                 </div>
                 <div class="detail">
+                    <p *ngIf="document.admin_approved_image == 0" style="color: yellow;">Pending</p>
                     <p *ngIf="document.admin_approved_image == 1" class="text-success">Approved</p>
                     <p *ngIf="document.admin_approved_image == 2" class="text-danger">Reject</p>
                     <p *ngIf="document.reason_to_reject">{{document.reason_to_reject}}</p>

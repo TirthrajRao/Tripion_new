@@ -105,7 +105,8 @@ export class FrequentFlyerComponent implements OnInit {
      this._tripService.addFFPRequest(data).subscribe((res: any) => {
        console.log(res);
        // this._toastService.presentToast(res.message, 'success');
-       this.appComponent.sucessAlert("Added Successfully");
+     this.FFPResponse = res.data;
+      //  this.appComponent.sucessAlert("Added Successfully");
        this.isDisable = false;
        this.loading = false;
        $('#add-passport-modal').fadeOut();

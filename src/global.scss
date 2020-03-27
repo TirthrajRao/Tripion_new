@@ -555,6 +555,7 @@
         top: 35%;
         left: 0;
         right: 0;
+        font-size: 20px;
     }
     
     .img-icon {
@@ -622,7 +623,14 @@
 
    
 
-
+.safe-to-travel{
+    .select2-container {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 18px;
+    }
+}
 
     .select2-container {
         position: absolute;

@@ -87,6 +87,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
       return;
     } else {
       console.log(this.formData);
+      data['total_plan_payment'] =  this.amount
       const object = {
         "other-detail": data
       }
@@ -136,6 +137,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
       return;
     } else {
       console.log(this.formData);
+      data['total_plan_payment'] =  this.amount
       const object = {
         "other-detail": data
       }

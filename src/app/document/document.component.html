@@ -44,9 +44,10 @@
             <div class="modal_content">
                 <ion-item>
                     <div class="single_folder" id="upload-documents">
-                        <input type="file" #file style="display: none;" (change)="selectOtherFile($event)" accept=
+                        <!-- <input type="file" #file style="display: none;" (change)="selectOtherFile($event)" accept=
                         "application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
-                        text/plain, application/pdf, image/*" multiple>
+                        text/plain, application/pdf, image/*" multiple> -->
+                        <input type="file" #file style="display: none;" (change)="selectOtherFile($event)"  multiple>
                         <span (click)="file.click()" style="cursor: pointer;"><i class="fas fa-upload mr-2"></i>Upload
                             New
                             Document</span>
@@ -64,11 +65,11 @@
                         </div>
                     </div>
                 </div>
-                <ion-item>
+                <!-- <ion-item>
                     <div class="single_folder" routerLink='/home/passports' *ngIf="isVisiblePassport">
                         <span style="cursor: pointer;"><i class="fas fa-passport mr-2"></i>New Passport</span>
                     </div>
-                </ion-item>
+                </ion-item> -->
                 <div class="finish_button" *ngIf="urls.length">
                     <button type="submit" class="btn" (click)="uploadDocument()" [disabled]="isDisable">
                         <ion-img src="../../assets/images/finish.png"></ion-img>

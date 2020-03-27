@@ -94,6 +94,7 @@ export class PlanOptionComponent implements OnInit {
       this.tripDetail = res.data;
       this.loading = false;
       console.log(this.tripDetail);
+      // this.tripDetail.payment.payment_request = []
       if (res.data.requested_docs.length)
         this.notApproveDoc = res.data.requested_docs.filter(function (obj) { return res.data.approved_docs.indexOf(obj) == -1; });
       console.log("not approved doc", this.notApproveDoc);
@@ -112,15 +113,30 @@ export class PlanOptionComponent implements OnInit {
    * Move to Select Document page
    */
   selectDocument() {
-    let navigationExtras: NavigationExtras = {
-      state: {
-        documentList: this.tripDetail.requested_docs,
-        tripId: this.tripId,
-        tripName: this.tripDetail.inquiry_name,
-        planName: this.tripDetail.plans[0].plan_name
-      }
-    };
-    this.router.navigate(['/home/document'], navigationExtras);
+    if(this.tripDetail.plans.length){
+      let navigationExtras: NavigationExtras = {
+     
+        state: {
+          documentList: this.tripDetail.requested_docs,
+          tripId: this.tripId,
+          tripName: this.tripDetail.inquiry_name,
+          planName: this.tripDetail.plans[0].plan_name
+        }
+      };
+      this.router.navigate(['/home/document'], navigationExtras);
+    } else{
+      let navigationExtras: NavigationExtras = {
+     
+        state: {
+          documentList: this.tripDetail.requested_docs,
+          tripId: this.tripId,
+          tripName: this.tripDetail.inquiry_name,
+          // planName: this.tripDetail.plans[0].plan_name
+        }
+      };
+      this.router.navigate(['/home/document'], navigationExtras);
+    }
+    
   }
 
 

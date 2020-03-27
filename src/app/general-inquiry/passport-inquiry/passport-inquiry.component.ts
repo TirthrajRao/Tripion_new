@@ -59,7 +59,7 @@ export class PassportInquiryComponent implements OnInit {
       return
     }
     this.loading = true;
-    let formObject = [{ "passport": JSON.stringify(data) }]
+    let formObject = [{ "passport": data }]
     const obj = {
       email: this.currentUser.email,
       id: this.currentUser.id,
@@ -71,7 +71,7 @@ export class PassportInquiryComponent implements OnInit {
       console.log("passport res", res);
       this.loading = false;
       // this._toastService.presentToast(res.message, 'success')
-      this.appComponent.sucessAlert("Your Inquiry has been Added Successfully");
+      this.appComponent.sucessAlert("Form Submitted Successfully");
       if (this.formUrl.length) {
         this.route.navigate(['/home/' + this.formUrl[0]])
       } else {
