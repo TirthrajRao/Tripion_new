@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { AlertController } from '@ionic/angular';
-import { data} from '../../data';
+import { data } from '../../data';
 import { AppComponent } from '../../app.component';
 import * as _ from 'lodash';
 declare var $: any;
@@ -31,6 +31,7 @@ export class UserPassportDetailComponent implements OnInit {
   isDisable: Boolean = false;
   previousUrl;
   counries = data.countries;
+  loaded:Boolean = false;
   constructor(
     public _uploadService: UploadService,
     public _toastService: ToastService,
@@ -64,7 +65,7 @@ export class UserPassportDetailComponent implements OnInit {
     });
     $('#myselection').on('select2:select', (e) => {
       this.addVisaForm.controls.country.setValue(e.params.data.text);
-      console.log("data",this.addVisaForm.value);
+      console.log("data", this.addVisaForm.value);
     });
 
   }
@@ -75,11 +76,11 @@ export class UserPassportDetailComponent implements OnInit {
     this.previousUrl = this._userService.getPreviousUrl;
     let visa;
     this.route.queryParams.subscribe((param) => {
-    //  param.image_url =  JSON.parse(param.image_url);
+      //  param.image_url =  JSON.parse(param.image_url);
       console.log("param=====", JSON.parse(param.data))
 
       visa = JSON.parse(param.data)
-     
+
     })
     let index = this.visaList.findIndex(x => x.id == visa.id);
     this.visaList[index] = visa;
@@ -103,9 +104,10 @@ export class UserPassportDetailComponent implements OnInit {
     $('#add-visa-modal .modal_body').click(function (event) {
       event.stopPropagation();
     });
-    $('#add-visa-modal').click( () =>{
+    $('#add-visa-modal').click(() => {
       $('#add-visa-modal').fadeOut();
       this.addVisaForm.reset();
+      this.submitted = false;
       this.files = '';
       this.urls = []
     });
@@ -215,7 +217,7 @@ export class UserPassportDetailComponent implements OnInit {
   */
   selectFile(e) {
     console.log("===", e.target.files);
-    this.files =  Array.from(e.target.files)
+    this.files = Array.from(e.target.files)
     // var newFileList = Array.from(event.target.files);
     for (let i = 0; i < this.files.length; i++) {
       let reader = new FileReader();
@@ -240,7 +242,7 @@ export class UserPassportDetailComponent implements OnInit {
    */
   addVisa(data) {
     this.submitted = true;
-    console.log("data",data)
+    console.log("data", data)
     if (this.addVisaForm.invalid) {
       return
     }
@@ -260,6 +262,7 @@ export class UserPassportDetailComponent implements OnInit {
     formData.append('folder_name', 'Passport');
     formData.append('image_type', 'visa');
     formData.append('id', this.currentUser.id);
+    console.log("forms=================>", this.addVisaForm.value)
     this._uploadService.addVisa(formData).subscribe((res: any) => {
       this.isDisable = false;
       console.log(res);
@@ -269,6 +272,7 @@ export class UserPassportDetailComponent implements OnInit {
       this.submitted = false;
       this.loading = false;
       this.urls = [];
+      $('.select2-selection__rendered').text('Country');
     }, (err) => {
       console.log(err);
       this.isDisable = false;
@@ -281,10 +285,10 @@ export class UserPassportDetailComponent implements OnInit {
 
 
 
-   /**
-   * Image pop up
-   * @param {URL} img
-   */
+  /**
+  * Image pop up
+  * @param {URL} img
+  */
   previewImage(img) {
     console.log(img)
     this.photoViewer.show(img)
@@ -294,44 +298,52 @@ export class UserPassportDetailComponent implements OnInit {
   * Remove Image in Edit Passport
   * @param {object} data 
   */
- async removeImage(data) {
-console.log(data);
-console.log("file===",this.files,"urllll",this.urls);
-console.log("this.file",typeof this.files[0])
-  const alert = await this.alertController.create({
-    header: 'Alert!',
-    message: 'Are you sure you want to delete this image?',
-    buttons: [
-      {
-        text: 'Cancel',
-        role: 'cancel',
-        cssClass: 'secondary',
-        handler: (blah) => {
-          console.log('Confirm Cancel: blah');
-        }
-      }, {
-        text: 'Yes',
-        handler: () => {
-          console.log('Confirm Okay');
-          let index = this.urls.indexOf(data);
-          console.log("index",index);
-          this.urls.splice(index,1);
-          // var files1 = [].slice.call( this.files );
+  async removeImage(data) {
+    console.log(data);
+    console.log("file===", this.files, "urllll", this.urls);
+    console.log("this.file", typeof this.files[0])
+    const alert = await this.alertController.create({
+      header: 'Alert!',
+      message: 'Are you sure you want to delete this image?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            console.log('Confirm Okay');
+            let index = this.urls.indexOf(data);
+            console.log("index", index);
+            this.urls.splice(index, 1);
+            // var files1 = [].slice.call( this.files );
 
-          _.forEach(this.files,(file,i)=>{
-            console.log("))",file.name)
-            if(file.name==data.imageName){
-              console.log("======",file,  '-----',this.files[i])
-              delete this.files[i]
-              // files1.splice( i, 1 );
-            }
-          })
-          console.log("update file",this.files)
+            _.forEach(this.files, (file, i) => {
+              console.log("))", file.name)
+              if (file.name == data.imageName) {
+                console.log("======", file, '-----', this.files[i])
+                delete this.files[i]
+                // files1.splice( i, 1 );
+              }
+            })
+            console.log("update file", this.files)
+          }
         }
-      }
-    ]
-  });
+      ]
+    });
 
-  await alert.present();
-}
+    await alert.present();
+  }
+
+  loadImag(){
+    console.log("this.loadded",this.loaded)
+  }
+  callThisFunctionAfterImageLoaded(){
+    console.log("loaded")
+  }
+
 }

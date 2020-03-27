@@ -211,8 +211,13 @@ ion-slides {
 .single_img_div {
     height: 130px;
     object-fit: cover;
+   
+  
 }
-
+.backgroung-img{
+    background:url('../../assets/images/imgloader.gif') center center no-repeat;
+    background-size: 50px 50px;
+}
 .single_img_div img {
     max-width: 100%;
     min-width: 100%;

@@ -4,7 +4,7 @@ import { TripService } from '../../services/trip.service';
 import { ToastService } from '../../services/toast.service';
 import { Router } from '@angular/router';
 import { AppComponent } from '../../app.component';
-
+import * as _ from 'lodash';
 @Component({
   selector: 'app-passport-inquiry',
   templateUrl: './passport-inquiry.component.html',
@@ -17,7 +17,7 @@ export class PassportInquiryComponent implements OnInit {
   submitted: Boolean = false;
   formUrl: any = [];
   loading: Boolean = false;
-  selectedFormCategory = JSON.parse(localStorage.getItem('selectedFormCategory'));
+  selectedFormCategory;
   constructor(
     public _tripService: TripService,
     public route: Router,
@@ -42,6 +42,13 @@ export class PassportInquiryComponent implements OnInit {
     localStorage.setItem('formId', JSON.stringify(this.formUrl));
 
     console.log("caegory list", this.categoryList);
+    _.forEach(this.categoryList, (category) => {
+
+      if (category.slug == 'passport') {
+        this.selectedFormCategory = category.id
+      }
+
+    })
 
   }
 
@@ -54,7 +61,7 @@ export class PassportInquiryComponent implements OnInit {
   nextForm(data) {
     console.log("data in next forrm", data)
     this.submitted = true;
-    
+
     if (this.passportInquiryForm.invalid) {
       return
     }
@@ -71,7 +78,7 @@ export class PassportInquiryComponent implements OnInit {
       console.log("passport res", res);
       this.loading = false;
       // this._toastService.presentToast(res.message, 'success')
-      this.appComponent.sucessAlert("Form Submitted Successfully");
+      this.appComponent.sucessAlert("Your Inquiry Submmited We have sent you the mail");
       if (this.formUrl.length) {
         this.route.navigate(['/home/' + this.formUrl[0]])
       } else {

@@ -60,6 +60,7 @@ export class ServiceInquiryComponent implements OnInit {
 
     this.checkBoxValue = this.generalServices.concat(this.tripServices);
     this.selectedForm = services.concat(this.generalServices);
+
     console.log("selected form---------------------------------", this.selectedForm)
     // this.checkBoxValue = this.checkBoxValue.concat(this.otherServices);
     this.storeSelectedFormCategory();
@@ -73,8 +74,13 @@ export class ServiceInquiryComponent implements OnInit {
         let index = this.checkBoxValue.indexOf('passport')
         console.log("index", index)
         let cutOut = this.checkBoxValue.splice(index, 1)[0];
-        console.log("cutout", cutOut)// cut the element at index 'from'
+        // this.selectedForm.splice(index, 1);
+       
+        console.log("cutout", cutOut,this.selectedForm)// cut the element at index 'from'
         this.checkBoxValue.splice(0, 0, cutOut);
+       
+        this.selectedForm.splice(this.selectedForm.indexOf('passport'),1)
+        console.log("this.selecteed form",this.selectedForm)
       }
       console.log("this ==>", this.checkBoxValue, this.generalServices, this.selectedFormCategory);
       localStorage.setItem('formId', JSON.stringify(this.checkBoxValue));
@@ -101,7 +107,8 @@ export class ServiceInquiryComponent implements OnInit {
         localStorage.setItem('selectedFormCategory', JSON.stringify(this.selectedFormCategory))
         this.route.navigate(['/home/' + formRoute])
       } else {
-        formRoute = this.checkBoxValue[0]
+        formRoute = this.checkBoxValue[0];
+        this.selectedForm.splice(0, 1)
         localStorage.setItem('formId', JSON.stringify(this.checkBoxValue));
         localStorage.setItem('selectedForm', JSON.stringify(this.selectedForm))
         localStorage.setItem('selectedFormCategory', JSON.stringify(this.selectedFormCategory))
@@ -132,8 +139,10 @@ export class ServiceInquiryComponent implements OnInit {
     console.log("===================", this.generalServices, this.otherServices)
     _.forEach(this.categoryList, (category) => {
       _.forEach(this.generalServices, (service) => {
-        if (service == category.slug) {
-          this.selectedFormCategory.push(category.id)
+        if (service != 'passport') {
+          if (service == category.slug) {
+            this.selectedFormCategory.push(category.id)
+          }
         }
       })
     })

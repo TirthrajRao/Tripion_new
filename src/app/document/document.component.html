@@ -20,7 +20,7 @@
             <div class="col-4 img-icon p-0" *ngFor="let photo of allImage" style="cursor: pointer;" (click)="selectDocument(photo)">
 
                 <div class="single_img">
-                    <div class="single_img_div">
+                    <div class="single_img_div backgroung-img">
                         <img [src]="photo.image_url || '../../assets/images/placeholder.png'" class="image-{{photo.id}}" style="opacity: 1;" *ngIf="photo.image_extension == 'png' || photo.image_extension == 'jpg'  || photo.image_extension == 'jpeg'" />
                     </div>
                     <div class="single_img_div">

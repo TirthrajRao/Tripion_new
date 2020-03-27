@@ -57,8 +57,9 @@
                                 <div class="passport_slider">
                                     <div *ngFor="let img of visa.image_url">
                                         <div class="passport_slide">
-                                            <ion-img [src]="img.image_url || '../../../assets/images/placeholder.png'" (click)="previewImage(img.image_url)" (load)="loaded = true" [ngClass]="{'img-loaded':loaded}" [hidden]="loaded"></ion-img>
-                                            <ion-spinner [ngClass]="{'center':true}" [hidden]="!loaded"></ion-spinner>
+                                            <!-- <ion-img [src]="img.image_url || '../../../assets/images/placeholder.png'" (click)="previewImage(img.image_url)" (load)="loaded = true" [ngClass]="{'img-loaded':loaded}" [hidden]="loaded"></ion-img>
+                                            <ion-spinner [ngClass]="{'center':true}" [hidden]="!loaded"></ion-spinner> -->
+                                            <ion-img [src]="img.image_url || '../../../assets/images/placeholder.png'" (click)="previewImage(img.image_url)" ></ion-img>
                                         </div>
                                     </div>
                                 </div>
@@ -135,7 +136,7 @@
                     <div>
                         <ion-item>
                             <ion-label position="floating">Visa Number</ion-label>
-                            <ion-input type="text" formControlName="visa_number"></ion-input>
+                            <ion-input type="text" formControlName="visa_number" class="mt-1"></ion-input>
                         </ion-item>
                         <div *ngIf="submitted && f.visa_number.errors" class="invalid-feedback">
                             <div *ngIf="f.visa_number.errors.required">Visa Number is required</div>
