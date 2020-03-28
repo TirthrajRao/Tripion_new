@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TripService } from '../../services/trip.service';
-import {data} from '../../data'
+import { data } from '../../data'
 @Component({
   selector: 'app-tours-inquiry',
   templateUrl: './tours-inquiry.component.html',
@@ -19,13 +19,13 @@ export class ToursInquiryComponent implements OnInit {
 
   constructor(public route: Router, public _tripService: TripService) {
     this.formUrl = JSON.parse(localStorage.getItem('formId'));
-    this.formUrl.splice(0, 1);
-    localStorage.setItem('formId', JSON.stringify(this.formUrl));
-  
+    // this.formUrl.splice(0, 1);
+    // localStorage.setItem('formId', JSON.stringify(this.formUrl));
+
     this.tourForm = new FormGroup({
       tour_basis: new FormControl('', [Validators.required]),
-      language: new FormControl('',[Validators.required]),
-      duration: new FormControl('',[Validators.required]),
+      language: new FormControl('', [Validators.required]),
+      duration: new FormControl('', [Validators.required]),
       special_request: new FormControl(''),
       itinerary_pace: new FormControl('0')
     })
@@ -68,25 +68,26 @@ export class ToursInquiryComponent implements OnInit {
     if (this.tourForm.invalid) {
       return
     }
+    this.checkLocalStorageData();
     console.log(data);
-      if(data.itinerary_pace >= 0 && data.itinerary_pace <=4){
-        console.log("relaxed")
-        data.itinerary_pace = 'Relaxed'
-      } else if (data.itinerary_pace > 4 && data.itinerary_pace <= 7) {
-        console.log("avarage")
-        data.itinerary_pace = 'Avarage';
-      } else if (data.itinerary_pace > 7) {
-        console.log("busy");
-        data.itinerary_pace = 'Busy';
-      }
+    if (data.itinerary_pace >= 0 && data.itinerary_pace <= 4) {
+      console.log("relaxed")
+      data.itinerary_pace = 'Relaxed'
+    } else if (data.itinerary_pace > 4 && data.itinerary_pace <= 7) {
+      console.log("avarage")
+      data.itinerary_pace = 'Avarage';
+    } else if (data.itinerary_pace > 7) {
+      console.log("busy");
+      data.itinerary_pace = 'Busy';
+    }
     this.storeFormData(data)
     this.route.navigate(['/home/' + this.formUrl[0]])
   }
 
   // Store form data
   storeFormData(data) {
-    const obj={
-      "tours":data
+    const obj = {
+      "tours": data
     }
     this._tripService.storeFormData(obj);
   }
@@ -106,6 +107,39 @@ export class ToursInquiryComponent implements OnInit {
     } else if (e.target.value > 7) {
       this.status = "Busy"
       this.path = '../../../assets/images/02.gif'
+    }
+  }
+
+
+  /**
+   * Check and store data in local storage
+   */
+  checkLocalStorageData() {
+    this.formUrl = JSON.parse(localStorage.getItem('formId'));
+    if (this.formUrl[0] == 'tours') {
+      this.formUrl.splice(0, 1);
+      localStorage.setItem('formId', JSON.stringify(this.formUrl));
+    }
+    console.log("local storage form data", JSON.parse(localStorage.getItem('form_data')));
+    const localStorageFormData = JSON.parse(localStorage.getItem('form_data'))
+    let index;
+    if (localStorageFormData.length) {
+      let result;
+      localStorageFormData.some((o, i) => {
+        console.log(i, o);
+        if (o.tours) {
+          result = true
+          index = i;
+        }
+      })
+      console.log("result====>", result, index);
+      if (result) {
+        localStorageFormData.splice(index, 1)
+      }
+      console.log("index of tours in localstorage", localStorageFormData);
+      // if (localStorageFormData.length) {
+      localStorage.setItem('form_data', JSON.stringify(localStorageFormData))
+      // }
     }
   }
 

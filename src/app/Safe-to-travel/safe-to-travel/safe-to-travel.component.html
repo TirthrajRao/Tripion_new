@@ -12,7 +12,7 @@
                 </div>
                 <div class="card_body safe-to-travel">
                     <ion-item>
-                        <ion-label position="floating">Country to travel ?</ion-label>
+                        <ion-label position="floating" style="margin-bottom: 16px;">Country to travel</ion-label>
                         <select id="myselection" class="form-control" formControlName="countryName" (change)="changeCountry($event)">
                             <option [value]="country.name" *ngFor="let country of countries" > {{country.name}}
                             </option>

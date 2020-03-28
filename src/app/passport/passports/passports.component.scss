@@ -43,6 +43,10 @@ ion-content {
     --background: #fff !important;
 }
 
+ion-input{
+    --padding-bottom:0px !important
+}
+
 .all_content {
     padding: 0px 10px 15px 10px;
     position: relative;

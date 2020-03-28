@@ -51,7 +51,7 @@ export class PremiumAccountPaymentComponent implements OnInit {
       console.log("inquiry form res", res);
       localStorage.removeItem('form_data');
       localStorage.removeItem('selectedFormCategory');
-      this.appComponent.sucessAlert("Form Submitted Sucessfully")
+      this.appComponent.sucessAlert("We got your money","WooW")
       // this._toastService.presentToast(res.message, 'success')
       this.router.navigate(['/home']);
     }, (err) => {

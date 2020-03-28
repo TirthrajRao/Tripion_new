@@ -23,7 +23,9 @@ export class PlanOptionComponent implements OnInit {
   loading: Boolean = false;
   notApproveDoc: any = [];
   pathToPreview: any;
+  pathToPreview1: any;
   previousUrl;
+  passportFiles: any = [];
   constructor(
     public route: ActivatedRoute,
     public _tripService: TripService,
@@ -41,23 +43,23 @@ export class PlanOptionComponent implements OnInit {
     });
 
     router.events
-    .pipe(
-      filter(event => event instanceof RoutesRecognized),
-      pairwise()
-    )
-    .subscribe((e: any) => {
-      console.log("eeee", e);
-      if (e[1].urlAfterRedirects.includes('plan-option') ) {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        // console.log("urllllll", e[0].urlAfterRedirects);
-        this.previousUrl = e[0].urlAfterRedirects;
-        if (this.previousUrl.includes('payment') 
-        ) {
-          console.log("in if");
-          this.getSingleTripDetail(this.tripId);
+      .pipe(
+        filter(event => event instanceof RoutesRecognized),
+        pairwise()
+      )
+      .subscribe((e: any) => {
+        console.log("eeee", e);
+        if (e[1].urlAfterRedirects.includes('plan-option')) {
+          this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+          // console.log("urllllll", e[0].urlAfterRedirects);
+          this.previousUrl = e[0].urlAfterRedirects;
+          if (this.previousUrl.includes('payment')
+          ) {
+            console.log("in if");
+            this.getSingleTripDetail(this.tripId);
+          }
         }
-      }
-    });
+      });
 
   }
 
@@ -98,7 +100,9 @@ export class PlanOptionComponent implements OnInit {
       if (res.data.requested_docs.length)
         this.notApproveDoc = res.data.requested_docs.filter(function (obj) { return res.data.approved_docs.indexOf(obj) == -1; });
       console.log("not approved doc", this.notApproveDoc);
-      this.pathToPreview = "https://docs.google.com/viewerng/viewer?url=" + this.tripDetail.passport_doc.image_url + "&embedded=true"
+      this.pathToPreview = "https://docs.google.com/viewerng/viewer?url=" + this.tripDetail.passport_doc.image_url + "&embedded=true";
+      if (this.tripDetail.is_passport == 1)
+        this.getDocumentRequest(this.tripDetail.inquiry_id);
       // https://docs.google.com/viewerng/viewer?url=https://testing-platinum-rail-services.s3.ap-south-1.amazonaws.com/passport-1-1584351271687.xlsx
     }, (err) => {
       // this._toastService.presentToast(err.error.message, 'danger');
@@ -113,30 +117,17 @@ export class PlanOptionComponent implements OnInit {
    * Move to Select Document page
    */
   selectDocument() {
-    if(this.tripDetail.plans.length){
-      let navigationExtras: NavigationExtras = {
-     
-        state: {
-          documentList: this.tripDetail.requested_docs,
-          tripId: this.tripId,
-          tripName: this.tripDetail.inquiry_name,
-          planName: this.tripDetail.plans[0].plan_name
-        }
-      };
-      this.router.navigate(['/home/document'], navigationExtras);
-    } else{
-      let navigationExtras: NavigationExtras = {
-     
-        state: {
-          documentList: this.tripDetail.requested_docs,
-          tripId: this.tripId,
-          tripName: this.tripDetail.inquiry_name,
-          // planName: this.tripDetail.plans[0].plan_name
-        }
-      };
-      this.router.navigate(['/home/document'], navigationExtras);
-    }
-    
+
+    let navigationExtras: NavigationExtras = {
+      state: {
+        documentList: this.tripDetail.requested_docs,
+        tripId: this.tripId,
+        tripName: this.tripDetail.inquiry_name,
+        planName: this.tripDetail.plans.length ? this.tripDetail.plans[0].plan_name : 'passport_forms'
+      }
+    };
+    console.log("navigation", navigationExtras)
+    this.router.navigate(['/home/document'], navigationExtras);
   }
 
 
@@ -144,54 +135,38 @@ export class PlanOptionComponent implements OnInit {
     let navigationExtras: NavigationExtras = {
       state: {
         data: JSON.stringify(this.tripDetail.payment.payment_request),
-        total:this.tripDetail.payment.total_amount,
-        tripId:this.tripDetail.inquiry_id
+        total: this.tripDetail.payment.total_amount,
+        tripId: this.tripDetail.inquiry_id
       }
     };
     console.log("navigation", navigationExtras)
     this.router.navigate(['/home/payment'], navigationExtras);
   }
-  // downloadFile(data){
-  //   console.log("file=====>",data);
 
-  //   // this.downloading = true;
-  //   const ROOT_DIRECTORY = 'file:///sdcard//';
-  //   const downloadFolderName = 'Download/';
 
-  //   this.file.checkFile(ROOT_DIRECTORY + downloadFolderName, data.image_name).then((isExist) => {
-  //     this.openFile(ROOT_DIRECTORY + downloadFolderName + data.image_name);
-  //   }).catch((notexist) => {
-  //     console.log("nonexist")
-  //     //create dir
-  //     this.file.createDir(ROOT_DIRECTORY, downloadFolderName, true)
-  //       .then((entries) => {
-  //         //Download file
-  //         this._toastService.presentToast("Downloading.....", 'success')
-  //         this.fileTransfer.download(data.image_url, ROOT_DIRECTORY + downloadFolderName + '/' + data.image_name).then((entry) => {
-  //           // this.downloading = false;
-  //           console.log('download complete: ' + entry.toURL());
-  //           this._toastService.presentToast("Download Completed", 'success');
-  //           this.openFile(entry.nativeURL);
-  //         }, (error) => {
-  //           console.log("error", error);
-  //           this._toastService.presentToast('Error in dowloading', 'danger');
-  //         })
-  //       }).catch((error) => {
-  //         console.log("erorr", error);
-  //         this._toastService.presentToast('Error in dowloading', 'danger')
-  //       });
-  //   })
-  // }
-
-  // /**
-  //  * Open File
-  //  */
-  // openFile(url) {
-  //   console.log(url);
-  //   this.fileOpener.showOpenWithDialog(url, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-  //     .then(() => console.log('File is opened'))
-  //     .catch(e => console.log('Error opening file', e));
-
-  // }
+  /**
+  * Get document request of trip
+  * @param {Number} tripId 
+  */
+  getDocumentRequest(tripId) {
+    this.loading = true;
+    const data = {
+      id: this.currentUser.id,
+      inquiry_id: tripId
+    }
+    this._tripService.getDocumentReq(data).subscribe((res: any) => {
+      this.loading = false;
+      console.log("res of doc req", res);
+      this.passportFiles = res.data;
+      if (this.passportFiles.length) {
+        this.pathToPreview1 = "https://docs.google.com/viewerng/viewer?url=" + res.data[res.data.length - 1].image_url + "&embedded=true";
+      }
+    }, (err) => {
+      console.log(err);
+      this.appComponent.errorAlert();
+      // this._toastService.presentToast(err.error.message, 'danger');
+      this.loading = false;
+    })
+  }
 
 }

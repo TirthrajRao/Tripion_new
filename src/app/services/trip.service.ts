@@ -16,10 +16,10 @@ export class TripService {
    */
   storeFormData(data) {
     console.log("formData", data);
+    const formRes = [];
     this.formData = JSON.parse(localStorage.getItem('form_data'));
     if (this.formData) {
       console.log(this.formData);
-      const formRes = [];
       if (this.formData.length) {
         formRes.push(...this.formData, data);
       } else {
@@ -28,7 +28,8 @@ export class TripService {
       console.log(formRes)
       localStorage.setItem('form_data', JSON.stringify(formRes))
     } else {
-      localStorage.setItem("form_data", JSON.stringify(data));
+      formRes.push( data)
+      localStorage.setItem("form_data", JSON.stringify(formRes));
     }
   }
 
@@ -170,5 +171,13 @@ export class TripService {
  */
   tripPayment(data){
     return this.http.post(config.baseApiUrl + 'pay-now', data);
+  }
+
+  /**
+   * Do things your way
+   * @param {object} data 
+   */
+  doThingYourWay(data){
+    return this.http.post(config.baseApiUrl + 'book-with-other',data)
   }
 }

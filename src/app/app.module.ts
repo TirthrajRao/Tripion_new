@@ -22,6 +22,7 @@ import { FilePath } from '@ionic-native/file-path/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Media } from '@ionic-native/media/ngx';
 import { MediaCapture } from '@ionic-native/media-capture/ngx';
+
 // import { SafePipe } from './safe.pipe';
 
 

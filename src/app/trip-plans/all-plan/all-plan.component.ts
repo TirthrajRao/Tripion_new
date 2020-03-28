@@ -19,6 +19,7 @@ export class AllPlanComponent implements OnInit {
   planSlected;
   loading: Boolean = false;
   isDisable: Boolean = false;
+  formId;
   constructor(
     public route: ActivatedRoute,
     public _tripService: TripService,
@@ -32,6 +33,13 @@ export class AllPlanComponent implements OnInit {
     this.sendPlanForm = new FormGroup({
       plan_id: new FormControl('', [Validators.required])
     })
+    this.route
+      .queryParams
+      .subscribe(params => {
+        console.log("formId=====", params, params.formId)
+        this.formId = params.formId
+      });
+
   }
 
   ngOnInit() {
@@ -73,7 +81,7 @@ export class AllPlanComponent implements OnInit {
       this.loading = false;
       console.log("all palans", this.allPlans);
       //  if (this.allPlans.length == 1) {
-      _.forEach(this.allPlans, (plan,index) => {
+      _.forEach(this.allPlans, (plan, index) => {
         console.log("plan", plan);
         if (plan.plan_selected == 1) {
           this.planSlected = 1;
@@ -127,11 +135,26 @@ export class AllPlanComponent implements OnInit {
   }
 
 
-  DoThingsYourWay(){
-    this.appComponent.sucessAlert("We will see you soon");
-    setTimeout(()=>{
-
+  DoThingsYourWay() {
+    this.loading = true;
+    this.isDisable = true;
+    const obj = {
+      id: this.currentUser.id,
+      inquiry_id: this.inquiryId,
+      form_id:this.formId
+    }
+    this._tripService.doThingYourWay(obj).subscribe((res: any) => {
+      console.log("res of terminate", res);
+      this.loading = false;
+      this.isDisable = false;
+      this.appComponent.sucessAlert("We will see you soon");
       this.router.navigate(['/home/home-page'])
-    },500)
+    }, err => {
+      console.log("err in terminate", err);
+      this.loading = false;
+      this.isDisable = false;
+      this.appComponent.errorAlert();
+    })
+
   }
 }

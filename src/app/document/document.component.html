@@ -57,7 +57,8 @@
                     <div class="row">
                         <div class="col-3">
                             <div class="uploded_image">
-                                <ion-img [src]="image.url"></ion-img>
+                                <ion-img [src]="image.url" *ngIf="image.type"></ion-img>
+                                <ion-img src="assets/images/doc.png" *ngIf="!image.type" style="height: 33px;"></ion-img>
                             </div>
                         </div>
                         <div class="col-7 p-0">

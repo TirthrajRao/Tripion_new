@@ -78,7 +78,7 @@ export class PassportInquiryComponent implements OnInit {
       console.log("passport res", res);
       this.loading = false;
       // this._toastService.presentToast(res.message, 'success')
-      this.appComponent.sucessAlert("Your Inquiry Submmited We have sent you the mail");
+      this.appComponent.sucessAlert("Your Inquiry Submmited!! We have sent you the mail");
       if (this.formUrl.length) {
         this.route.navigate(['/home/' + this.formUrl[0]])
       } else {

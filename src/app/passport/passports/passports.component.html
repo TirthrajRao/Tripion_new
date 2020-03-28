@@ -63,7 +63,7 @@
                     <div>
                         <ion-item>
                             <ion-label position="floating">Name in Passport</ion-label>
-                            <ion-input type="text" formControlName="name_in_passport"></ion-input>
+                            <ion-input type="text"  formControlName="name_in_passport"></ion-input>
                         </ion-item>
                         <div *ngIf="submitted && f.name_in_passport.errors" class="invalid-feedback">
                             <div *ngIf="f.name_in_passport.errors.required">Name is required</div>
@@ -72,7 +72,7 @@
                     <div>
                         <ion-item>
                             <ion-label position="floating">Passport Number</ion-label>
-                            <ion-input type="text" formControlName="passport_number"></ion-input>
+                            <ion-input type="text"  formControlName="passport_number"></ion-input>
                         </ion-item>
                         <div *ngIf="submitted && f.passport_number.errors" class="invalid-feedback">
                             <div *ngIf="f.passport_number.errors.required">Passport Number is required</div>

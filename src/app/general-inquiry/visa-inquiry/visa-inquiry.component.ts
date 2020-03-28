@@ -23,16 +23,6 @@ export class VisaInquiryComponent implements OnInit {
 
   constructor(public route: Router, public _tripService: TripService) {
     this.visaForm = new FormGroup({
-      // pname: new FormControl('', [Validators.required]),
-      // pNumber: new FormControl('', [Validators.required, Validators.pattern('^(?!^0+$)[a-zA-Z0-9]{8,20}$')]),
-      // dob: new FormControl('', Validators.required),
-      // placeOfBirth: new FormControl('', [Validators.required]),
-      // paddress: new FormControl('', [Validators.required]),
-      // duration: new FormControl('', [Validators.required]),
-      // departureDate: new FormControl('', [Validators.required]),
-      // intendeDate: new FormControl('', [Validators.required]),
-      // pvalidDate: new FormControl('', [Validators.required]),
-      // durationStatus: new FormControl('Flexible'),
       purpose_of_travel: new FormControl('Business'),
       visa_type: new FormControl('Business', [Validators.required]),
       previous_rejections: new FormControl('Yes'),
@@ -47,8 +37,8 @@ export class VisaInquiryComponent implements OnInit {
 
   ngOnInit() {
     this.formUrl = JSON.parse(localStorage.getItem('formId'));
-    this.formUrl.splice(0, 1);
-    localStorage.setItem('formId', JSON.stringify(this.formUrl));
+    // this.formUrl.splice(0, 1);
+    // localStorage.setItem('formId', JSON.stringify(this.formUrl));
     this.nextYearCount()
   }
   get f() { return this.visaForm.controls; }
@@ -60,16 +50,17 @@ export class VisaInquiryComponent implements OnInit {
   nextForm(data) {
     console.log("data in next forrm", data)
     if (data.previous_rejections == 'No')
-      this.visaForm.controls.previous_rejections_details.setValue('No');
+    this.visaForm.controls.previous_rejections_details.setValue('No');
     if (data.international_travel == 'No')
-      this.visaForm.controls.international_travel_details.setValue('No');
+    this.visaForm.controls.international_travel_details.setValue('No');
     if (data.sponsor == 'No')
-      this.visaForm.controls.sponsor_detail.setValue('No');
+    this.visaForm.controls.sponsor_detail.setValue('No');
     console.log(data)
     this.submitted = true;
     if (this.visaForm.invalid) {
       return
     }
+    this.checkLocalStorageData();
     console.log("data", data)
     this.storeFormData(data);
     this.visaForm.controls.previous_rejections_details.setValue('');
@@ -100,5 +91,38 @@ export class VisaInquiryComponent implements OnInit {
     this.nextYear = this.curruntDate.split("-")[0];
     this.nextYear = this.nextYear++;
     this.nextYear = this.nextYear + +11;
+  }
+
+
+  /**
+  * Check and store data in local storage
+  */
+  checkLocalStorageData() {
+    this.formUrl = JSON.parse(localStorage.getItem('formId'));
+    if (this.formUrl[0] == 'visa') {
+      this.formUrl.splice(0, 1);
+      localStorage.setItem('formId', JSON.stringify(this.formUrl));
+    }
+    console.log("local storage form data", JSON.parse(localStorage.getItem('form_data')));
+    const localStorageFormData = JSON.parse(localStorage.getItem('form_data'))
+    let index;
+    if (localStorageFormData.length) {
+      let result;
+      localStorageFormData.some((o, i) => {
+        console.log(i, o);
+        if (o.visa) {
+          result = true
+          index = i;
+        }
+      })
+      console.log("result====>", result, index);
+      if (result) {
+        localStorageFormData.splice(index, 1)
+      }
+      console.log("index of visa in localstorage", localStorageFormData);
+      // if (localStorageFormData.length) {
+      localStorage.setItem('form_data', JSON.stringify(localStorageFormData))
+      // }
+    }
   }
 }

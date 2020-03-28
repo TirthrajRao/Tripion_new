@@ -17,7 +17,7 @@
                 <p>{{img.image_name}}</p>
             </div>
             <div *ngIf="img.image_extension != 'png' && img.image_extension != 'jpg' && img.image_extension != 'jpeg'">
-                <a href="{{img.image_url}}" download>{{img.image_name}}</a>
+                <a href="{{img.image_url}}">{{img.image_name}}</a>
             </div>
         </div>
         <div class="col-2">

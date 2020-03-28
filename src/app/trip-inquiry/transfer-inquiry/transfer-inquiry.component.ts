@@ -13,15 +13,15 @@ export class TransferInquiryComponent implements OnInit {
   formUrl: any = [];
   transferForm: FormGroup;
   submitted: Boolean = false;
-  airArray: any=[];
+  airArray: any = [];
   nextYear;
   curruntDate: string = new Date().toISOString();
   // formData = JSON.parse(localStorage.getItem('form_data'));
 
-  constructor(public route: Router,public _tripService:TripService) {
+  constructor(public route: Router, public _tripService: TripService) {
 
     this.getFormUrl()
-    
+
     this.transferForm = new FormGroup({
       from_date: new FormControl('', [Validators.required]),
       to_date: new FormControl('', [Validators.required]),
@@ -41,7 +41,7 @@ export class TransferInquiryComponent implements OnInit {
 
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.getNextYear()
   }
 
@@ -50,17 +50,17 @@ export class TransferInquiryComponent implements OnInit {
   /**
    * get Form url for next form
    */
-  getFormUrl(){
+  getFormUrl() {
     this.formUrl = JSON.parse(localStorage.getItem('formId'));
-    this.formUrl.splice(0, 1);
-    localStorage.setItem('formId', JSON.stringify(this.formUrl));
-    console.log(this.formUrl);
+    // this.formUrl.splice(0, 1);
+    // localStorage.setItem('formId', JSON.stringify(this.formUrl));
+    // console.log(this.formUrl);
   }
 
   /**
    * Get next year for datepicker
    */
-  getNextYear(){
+  getNextYear() {
     this.nextYear = this.curruntDate.split("-")[0];
     this.nextYear = this.nextYear++;
     this.nextYear = this.nextYear + +2;
@@ -85,15 +85,16 @@ export class TransferInquiryComponent implements OnInit {
     if (this.transferForm.invalid) {
       return
     }
+    this.checkLocalStorageData();
     this.storeFormData(data);
     console.log(data)
     this.route.navigate(['/home/' + this.formUrl[0]])
   }
 
-   // Store form data
-   storeFormData(data) {
-    const obj={
-      "transfer":data
+  // Store form data
+  storeFormData(data) {
+    const obj = {
+      "transfer": data
     }
     this._tripService.storeFormData(obj);
   }
@@ -113,4 +114,36 @@ export class TransferInquiryComponent implements OnInit {
     this.transferForm.controls.air.setValue(this.airArray);
   }
 
+
+  /**
+   * Check and store data in local storage
+   */
+  checkLocalStorageData() {
+    this.formUrl = JSON.parse(localStorage.getItem('formId'));
+    if (this.formUrl[0] == 'transfers') {
+      this.formUrl.splice(0, 1);
+      localStorage.setItem('formId', JSON.stringify(this.formUrl));
+    }
+    console.log("local storage form data", JSON.parse(localStorage.getItem('form_data')));
+    const localStorageFormData = JSON.parse(localStorage.getItem('form_data'))
+    let index;
+    if (localStorageFormData.length) {
+      let result;
+      localStorageFormData.some((o, i) => {
+        console.log(i, o);
+        if (o.transfer) {
+          result = true
+          index = i;
+        }
+      })
+      console.log("result====>", result, index);
+      if (result) {
+        localStorageFormData.splice(index, 1)
+      }
+      console.log("index of transfer in localstorage", localStorageFormData);
+      // if (localStorageFormData.length) {
+      localStorage.setItem('form_data', JSON.stringify(localStorageFormData))
+      // }
+    }
+  }
 }

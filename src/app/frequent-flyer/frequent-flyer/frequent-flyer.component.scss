@@ -8,7 +8,9 @@ $button_color: #003574;
     z-index: 11;
     position: relative;
 }
-
+ion-input{
+    --padding-bottom:0px !important
+}
 .country_name {
     margin-bottom: 8px;
     background-color: #fff;

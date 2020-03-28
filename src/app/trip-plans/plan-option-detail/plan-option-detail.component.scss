@@ -38,6 +38,8 @@ $blue: #021B79;
 
 .plan_images_slide {
     height: 250px;
+    background:url('../../../assets/images/imgloader.gif') center center no-repeat;
+    background-size: 50px 50px;
     img {
         max-width: 100%;
         min-width: 100%;

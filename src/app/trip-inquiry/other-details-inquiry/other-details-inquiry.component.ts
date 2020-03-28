@@ -17,7 +17,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
   otherDetailsForm: FormGroup;
   submitted: Boolean = false;
   paymentModeArray: any = [];
-  communicationModeArray:any = [];
+  communicationModeArray: any = [];
   amount: any;
   formData = JSON.parse(localStorage.getItem('form_data'));
   isTripInquiry: any = JSON.parse(localStorage.getItem('isTripInquiry'))
@@ -38,7 +38,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
       budget_preference: new FormControl('', [Validators.required]),
       budget_amount: new FormControl('', [Validators.required]),
       payment_mode: new FormControl(''),
-      number_of_plans:new FormControl('')
+      number_of_plans: new FormControl('')
     })
     // this.getUserDetail();
   }
@@ -52,8 +52,8 @@ export class OtherDetailsInquiryComponent implements OnInit {
   // Get Form Url For next form
   getFormUrl() {
     this.formUrl = JSON.parse(localStorage.getItem('formId'));
-    this.formUrl.splice(0, 1);
-    localStorage.setItem('formId', JSON.stringify(this.formUrl));
+    // this.formUrl.splice(0, 1);
+    // localStorage.setItem('formId', JSON.stringify(this.formUrl));
   }
   /**
    * Get User Details
@@ -71,7 +71,14 @@ export class OtherDetailsInquiryComponent implements OnInit {
       console.log("err", err);
     })
   }
+
+
   nextForm(data) {
+    this.formUrl = JSON.parse(localStorage.getItem('formId'));
+    if (this.formUrl[0] == 'other-details') {
+      this.formUrl.splice(0, 1);
+      localStorage.setItem('formId', JSON.stringify(this.formUrl));
+    }
     this.submitted = true;
     // if (this.otherDetailsForm.invalid) {
     //   return
@@ -82,14 +89,15 @@ export class OtherDetailsInquiryComponent implements OnInit {
     if (this.otherDetailsForm.invalid) {
       return;
     }
+    this.checkLocalStorageData();
     if (!this.currentUser.email) {
       alert('Please add your email in your Profile');
       return;
     } else {
       console.log(this.formData);
-      data['total_plan_payment'] =  this.amount
+      data['total_plan_payment'] = this.amount
       const object = {
-        "other-detail": data
+        "other_detail": data
       }
       this._tripService.storeFormData(object)
       let formData = JSON.parse(localStorage.getItem('form_data'))
@@ -97,18 +105,30 @@ export class OtherDetailsInquiryComponent implements OnInit {
       console.log("selected form", JSON.parse(localStorage.getItem('selectedForm')))
       let formObject = {};
       _.forEach(JSON.parse(localStorage.getItem('selectedForm')), (form, index) => {
-        formObject[index+1] = form
+        formObject[index + 1] = form
       })
       const selectedForms = {
-        "selected-forms": formObject
+        "selected_forms": formObject
       }
       console.log("formobject", formObject, selectedForms);
-      formData.unshift(selectedForms);
+      let localStorageFormData = JSON.parse(localStorage.getItem('form_data'))
+      let result, index;
+      localStorageFormData.some((o, i) => {
+        console.log(i, o);
+        if (o.selected_forms) {
+          result = true
+          index = i;
+        }
+      })
+      console.log("result====>", result, index);
+      if (!result) {
+        console.log("not result")
+        formData.unshift(selectedForms);
+      }
       localStorage.setItem('form_data', JSON.stringify(formData));
-
       let navigationExtras: NavigationExtras = {
         state: {
-          type: 'Upfront',
+          type: 'Number of plan - ' + data.number_of_plans,
           amount: this.amount
         }
       };
@@ -120,7 +140,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
     }
 
 
-    
+
   }
 
   /**
@@ -132,25 +152,27 @@ export class OtherDetailsInquiryComponent implements OnInit {
     if (this.otherDetailsForm.invalid) {
       return;
     }
+    this.checkLocalStorageData();
     if (!this.currentUser.email) {
       alert('Please add your email in your Profile');
       return;
     } else {
       console.log(this.formData);
-      data['total_plan_payment'] =  this.amount
+      data['total_plan_payment'] = this.amount
       const object = {
-        "other-detail": data
+        "other_detail": data
       }
+
       this._tripService.storeFormData(object)
       let formData = JSON.parse(localStorage.getItem('form_data'))
       console.log("form data", JSON.parse(localStorage.getItem('form_data')));
       console.log("selected form", JSON.parse(localStorage.getItem('selectedForm')))
       let formObject = {};
       _.forEach(JSON.parse(localStorage.getItem('selectedForm')), (form, index) => {
-        formObject[index+1] = form
+        formObject[index + 1] = form
       })
       const selectedForms = {
-        "selected-forms": formObject
+        "selected_forms": formObject
       }
       console.log("formobject", formObject, selectedForms);
       formData.unshift(selectedForms);
@@ -163,25 +185,25 @@ export class OtherDetailsInquiryComponent implements OnInit {
         form_data: localStorage.getItem('form_data')
       }
       console.log(obj);
-       this.isDisable = true;
-       this.loading = true;
-       this._tripService.addInquiry(obj).subscribe((res: any) => {
-         this.isDisable = false;
-         this.loading = false;
-         console.log("inquiry form res", res);
-         localStorage.removeItem('form_data');
-         localStorage.removeItem('selectedFormCategory');
-          this.appComponent.sucessAlert("Form Submitted Sucessfully")
-         // this._toastService.presentToast(res.message, 'success')
-         this.route.navigate(['/home']);
-       }, (err) => {
-         this.appComponent.errorAlert();
-         this.isDisable = false;
-         this.loading = false;
-         console.log(err);
-         localStorage.removeItem('form_data');
-         localStorage.removeItem('selectedFormCategory');
-       })
+      this.isDisable = true;
+      this.loading = true;
+      this._tripService.addInquiry(obj).subscribe((res: any) => {
+        this.isDisable = false;
+        this.loading = false;
+        console.log("inquiry form res", res);
+        localStorage.removeItem('form_data');
+        localStorage.removeItem('selectedFormCategory');
+        this.appComponent.sucessAlert("Form Submitted Sucessfully")
+        // this._toastService.presentToast(res.message, 'success')
+        this.route.navigate(['/home']);
+      }, (err) => {
+        this.appComponent.errorAlert();
+        this.isDisable = false;
+        this.loading = false;
+        console.log(err);
+        localStorage.removeItem('form_data');
+        localStorage.removeItem('selectedFormCategory');
+      })
     }
 
 
@@ -203,7 +225,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
   }
 
 
-  selectCommunicationMode(e){
+  selectCommunicationMode(e) {
     if (!this.communicationModeArray.includes(e.detail.value)) {
       this.communicationModeArray.push(e.detail.value);
     } else {
@@ -225,6 +247,39 @@ export class OtherDetailsInquiryComponent implements OnInit {
       console.log(this.amount)
     } else {
       this.amount = 0;
+    }
+  }
+
+  /**
+   * Check and store data in local storage
+   */
+  checkLocalStorageData() {
+    this.formUrl = JSON.parse(localStorage.getItem('formId'));
+    if (this.formUrl[0] == 'other-details') {
+      this.formUrl.splice(0, 1);
+      localStorage.setItem('formId', JSON.stringify(this.formUrl));
+    }
+    console.log("local storage form data", JSON.parse(localStorage.getItem('form_data')));
+    const localStorageFormData = JSON.parse(localStorage.getItem('form_data'))
+    let index;
+    if (localStorageFormData.length) {
+      let result;
+      localStorageFormData.some((o, i) => {
+        console.log(i, o);
+        if (o.other_detail) {
+          result = true
+          index = i;
+        }
+      })
+      console.log("result====>", result, index);
+      if (result) {
+        localStorageFormData.splice(index, 1)
+      }
+
+      console.log("index of other_detail in localstorage", localStorageFormData);
+      // if (localStorageFormData.length) {
+      localStorage.setItem('form_data', JSON.stringify(localStorageFormData))
+      // }
     }
   }
 

@@ -1,4 +1,4 @@
-$purple: #0575E6;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        $purple: #0575E6;
 $blue: #021B79;
 // ion header css start here
 ion-header ion-toolbar:first-child {
@@ -28,7 +28,7 @@ ion-menu-button {
     span {
         color: #000;
         font-weight: 600;
-        margin-left: 5px;
+        margin-left: 7%;
         font-size: 24px;
         line-height: 24px;
         font-family: 'Montserrat', sans-serif !important;
@@ -136,6 +136,7 @@ ion-content {
     position: absolute;
     left: 0;
     right: 0;
+    font-size: 22px;
 }
 
 .footer_img {

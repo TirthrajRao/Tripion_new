@@ -66,7 +66,7 @@
                         </div>
                         <div class="general-details-form">
                             <ion-item>
-                                <ion-label position="floating">Destination Country</ion-label>
+                                <ion-label position="floating" style="margin-bottom: 18px;">Destination Country</ion-label>
                                 <select id="myselection" class="form-control w-100 " formControlName="desination_country"
                                     >
                                     <option value="Not Fixed"> Not Fixed
@@ -81,7 +81,7 @@
                         </div>
                         <div *ngIf="generalDetailsForm.value.desination_country != 'Not Fixed' ">
                             <ion-item>
-                                <ion-label position="floating">Destination Place</ion-label>
+                                <ion-label position="floating" >Destination Place</ion-label>
                                 <ion-input type="text" formControlName="place_name"></ion-input>
                             </ion-item>
                             <!-- <div *ngIf="submitted && f.desination_country.errors" class="invalid-feedback">

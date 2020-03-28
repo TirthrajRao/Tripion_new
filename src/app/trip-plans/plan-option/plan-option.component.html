@@ -18,6 +18,37 @@
                 <ion-img src="assets/images/plane.png"></ion-img>
             </div>
         </div>
+        <div class="document_request card w-100 mt-2" *ngIf="tripDetail.is_passport == 1">
+            <div class="card_header">
+                <span>Passport Form</span>
+            </div>
+            <div class="card_body ml-2 mr-2 holds-the-iframe">
+
+                <iframe style="height:230px;cursor: pointer;" class="w-100" [src]='pathToPreview | safe:"resourceUrl"'
+                    frameborder="0">
+                </iframe>
+
+            </div>
+            <div class="card_footer w-100">
+                <button type="submit" (click)="selectDocument()">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    Upload Documents
+                </button>
+            </div>
+        </div>
+
+        <div class="document_request card w-100 mt-2" *ngIf="passportFiles.length">
+            <div class="card_header">
+                <span>Uploaded Passport Form </span>
+            </div>
+            <div class="card_body ml-2 mr-2 holds-the-iframe">
+                <iframe style="height:230px;cursor: pointer;" class="w-100" [src]='pathToPreview1 | safe:"resourceUrl"'
+                    frameborder="0">
+                </iframe>
+            </div>
+        </div>
+
+
         <div class="document_request card w-100 mt-2" *ngIf="tripDetail.requested_docs.length">
             <div class="card_header">
                 <ion-img src="assets/images/doc.png"></ion-img>
@@ -71,24 +102,7 @@
                 </ul>
             </div>
         </div>
-        <div class="document_request card w-100 mt-2" *ngIf="tripDetail.is_passport == 1">
-            <div class="card_header">
-                <span>Passport Form</span>
-            </div>
-            <div class="card_body ml-2 mr-2 holds-the-iframe">
-
-                <iframe style="height:230px;cursor: pointer;" class="w-100" [src]='pathToPreview | safe:"resourceUrl"'
-                    frameborder="0">
-                </iframe>
-
-            </div>
-            <div class="card_footer w-100">
-                <button type="submit" (click)="selectDocument()">
-                    <i class="fas fa-cloud-upload-alt"></i>
-                    Upload Documents
-                </button>
-            </div>
-        </div>
+      
         <div style="margin-top: 40%;"
             *ngIf="!tripDetail.payment.payment_request.length && !tripDetail.requested_docs.length  && tripDetail.is_passport != 1 ">
             <span class="text-center text-white no-req">We are Working on it <br>will revert soon!!</span>

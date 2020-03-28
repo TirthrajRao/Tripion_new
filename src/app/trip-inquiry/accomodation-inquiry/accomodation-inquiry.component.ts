@@ -45,6 +45,7 @@ export class AccomodationInquiryComponent implements OnInit {
     if (this.accomodationForm.invalid) {
       return
     }
+    this.checkLocalStorageData();
     this.storeFormData(data);
     console.log(data);
     this.route.navigate(['/home/' + this.formUrl[0]])
@@ -63,7 +64,7 @@ export class AccomodationInquiryComponent implements OnInit {
    * Add Rooms
    */
   addRoom() {
-    
+
     console.log("all rooms", this.accomodationForm.value.rooms)
     this.room.push(this.fb.group({
       infants: '0',
@@ -102,6 +103,38 @@ export class AccomodationInquiryComponent implements OnInit {
       this.accomodationForm.value.rooms[index].children++
     } else if (type == 'adults') {
       this.accomodationForm.value.rooms[index].adults++
+    }
+  }
+
+  /**
+   * Check and store data in local storage
+   */
+  checkLocalStorageData() {
+    this.formUrl = JSON.parse(localStorage.getItem('formId'));
+    if (this.formUrl[0] == 'visa') {
+      this.formUrl.splice(0, 1);
+      localStorage.setItem('formId', JSON.stringify(this.formUrl));
+    }
+    console.log("local storage form data", JSON.parse(localStorage.getItem('form_data')));
+    const localStorageFormData = JSON.parse(localStorage.getItem('form_data'))
+    let index;
+    if (localStorageFormData.length) {
+      let result;
+      localStorageFormData.some((o, i) => {
+        console.log(i, o);
+        if (o.accomodation) {
+          result = true
+          index = i;
+        }
+      })
+      console.log("result====>", result, index);
+      if (result) {
+        localStorageFormData.splice(index, 1)
+      }
+      console.log("index of accomodation in localstorage", localStorageFormData);
+      // if (localStorageFormData.length) {
+      localStorage.setItem('form_data', JSON.stringify(localStorageFormData))
+      // }
     }
   }
 }

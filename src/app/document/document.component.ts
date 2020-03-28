@@ -135,6 +135,9 @@ export class DocumentComponent implements OnInit {
         url: e.target.result,
         imageName: image_name
       }
+      if (file.type == 'image/png' || file.type == 'image/jpeg' || file.type == 'image/jpg') {
+        obj['type'] = 'image'
+      }
       // if (file.size > 2000000) {
       //   obj['maxSize'] = "File too big to upload. MAX SIZE = 2 MB"
       // }

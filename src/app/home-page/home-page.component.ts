@@ -4,7 +4,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { HttpClient } from '@angular/common/http';
 import { TripService } from '../services/trip.service';
 import { ToastService } from '../services/toast.service';
-import { Router, RoutesRecognized } from '@angular/router';
+import { Router, RoutesRecognized, NavigationExtras } from '@angular/router';
 import { filter, pairwise } from 'rxjs/operators';
 import { UserService } from '../services/user.service';
 import { data } from '../data';
@@ -200,7 +200,7 @@ export class HomePageComponent implements OnInit {
       var deltaTzOffsetMilli = deltaTzOffset * 1000 * 60 * 60; // convert hours to milliseconds (tzOffsetMilli*1000*60*60)
       var outputDate = new Date(nowTimestamp + deltaTzOffsetMilli) // your new Date object with the timezone offset applied.
       this.currentTime = moment(outputDate).format('hh:mm')
-      console.log("time", this.currentTime)
+      // console.log("time", this.currentTime)
 
     }
 
@@ -278,13 +278,13 @@ export class HomePageComponent implements OnInit {
    * @param {Number} inquiryId 
    */
   getPlanOption(data) {
-    console.log("inquiryid", data);
+    console.log("inquiryid", data,data.form_id);
     if (data.list_of_inquiry.includes('Safe to travel')) {
       this.router.navigate(['/home/safe-travel']);
     } else {
       if (!data.is_direct) {
         if (data.plan_selected == 0) {
-          this.router.navigate(['/home/all-plan/' + data.inquiry_id]);
+          this.router.navigate(['/home/all-plan/' + data.inquiry_id] ,{ queryParams: { formId: data.form_id } });
         } else {
           console.log("in elseeeeeeee")
           if (data.status[0] == "Ongoing" && data.timeline_date) {
