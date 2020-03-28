@@ -170,7 +170,7 @@ export class LoginComponent implements OnInit {
              this.loading = false;
              this.isDisable = false
            });
-            this.appComponent.sucessAlert("Login Sucessfully","Welcome")
+            this.appComponent.sucessAlert("Login Sucessfull","Welcome")
            // this._toastServices.presentToast(res.message, 'success');
            this.loading = false;
            this.isDisable = false;

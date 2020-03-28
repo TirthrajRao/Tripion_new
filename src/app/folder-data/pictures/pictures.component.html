@@ -5,10 +5,16 @@
 <ion-content>
     <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">                                                                                                                                                                                                                                                                                                                                               </ion-refresher> -->
     <div class="all_content">
+        <div *ngIf="folderList.length">
+            <div class="card folder_detail" *ngFor="let folder of folderList;let i =index" routerLink='/home/inner-folder/{{folder}}'>
+                <ion-img [src]="getRandomImgeIcon(i)"></ion-img>
+                <p>{{folder}}</p>
+            </div>
+        </div>
         <div *ngIf="allImages.length">
             <app-folder-images [images]="allImages"></app-folder-images>
         </div>
-        <div class="add_button" id="upload-pictures">
+        <div class="add_button" id="upload-pictures" (click)="openModal()">
             <a href="javascript:void(0);">
                 <img src="../../assets/images/plus.png">
             </a>
@@ -25,7 +31,7 @@
         <span class="text-white text-center no-request">Empty folder</span>
     </div>
     <!-- add pictures modal open here  -->
-    <div class="modal_content_with_overlay" id="add-pictures" style="display: none;">
+    <div class="modal_content_with_overlay" id="add-picturess" style="display: none;">
         <div class="modal_body">
             <div class="modal_header">
                 <p class="text-center">Add Pictures</p>
@@ -52,6 +58,49 @@
                     <button type="submit" class="btn" (click)="uploadImage()" [disabled]="isDisable"><i
                             class="fas fa-plus"></i>Upload Files</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal_content_with_overlay" id="add-pictures" style="display: none;">
+        <div class="modal_body">
+            <div class="create_folder">
+                <div class="single_folder" id="upload-documents">
+                    <a href="javascript:void(0);"><i class="fas fa-upload mr-2"></i>Upload New Files</a>
+                </div>
+                <div class="single_folder" id="open-folderr">
+                    <a href="javascript:void(0);"><i class="fas fa-plus mr-2"></i>New Folder</a>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+
+     <!-- modal for  create new folder  -->
+     <div class="modal_content_with_overlay" id="add-Pictures" style="display: none;">
+        <div class="modal_body">
+            <div class="modal_header">
+                <p class="text-center">Folder Title</p>
+            </div>
+            <div class="modal_content">
+                <form [formGroup]="createFolderForm">
+                    <div>
+                        <ion-item>
+                            <ion-label position="floating">Title</ion-label>
+                            <ion-input type="text" class="pt-2" formControlName="folder_name"></ion-input>
+                        </ion-item>
+                        <div *ngIf="submitted && f.folder_name.errors" class="invalid-feedback">
+                            <div *ngIf="f.folder_name.errors.required">Folder Name is required</div>
+                            <div *ngIf="f.folder_name.errors.pattern">Folder Name is not valid</div>
+                        </div>
+                    </div>
+                    <div class="make_folder">
+                        <button type="submit" class="btn" (click)="createFolder(createFolderForm.value)" [disabled]="isDisable"><i
+                                class="fas fa-plus"></i>Make Folder</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

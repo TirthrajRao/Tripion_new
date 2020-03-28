@@ -76,6 +76,9 @@ $green: #2FE57C;
 .no_folder {
     display: flex;
     justify-content: center;
+    span{
+        font-size: 22px;
+    }
 }
 
 ion-refresher-content {

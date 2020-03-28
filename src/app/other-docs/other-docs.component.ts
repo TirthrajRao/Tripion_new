@@ -113,8 +113,9 @@ export class OtherDocsComponent implements OnInit {
        console.log(res);
        this.isDisable = false;
        this.loading = false;
-       $('#folder-modal').fadeOut();
        this.createFolderForm.reset();
+       this.submitted = false;
+       $('#folder-modal').fadeOut();
        this.getFolderData();
      }, (err) => {
        console.log(err);

@@ -20,8 +20,8 @@ export class AccomodationInquiryComponent implements OnInit {
 
   constructor(public route: Router, private fb: FormBuilder, public _tripService: TripService) {
     this.formUrl = JSON.parse(localStorage.getItem('formId'));
-    this.formUrl.splice(0, 1)
-    localStorage.setItem('formId', JSON.stringify(this.formUrl));
+    // this.formUrl.splice(0, 1)
+    // localStorage.setItem('formId', JSON.stringify(this.formUrl));
 
     this.accomodationForm = this.fb.group({
       accomodation_type: new FormControl('', [Validators.required]),
@@ -111,7 +111,7 @@ export class AccomodationInquiryComponent implements OnInit {
    */
   checkLocalStorageData() {
     this.formUrl = JSON.parse(localStorage.getItem('formId'));
-    if (this.formUrl[0] == 'visa') {
+    if (this.formUrl[0] == 'accomodation') {
       this.formUrl.splice(0, 1);
       localStorage.setItem('formId', JSON.stringify(this.formUrl));
     }

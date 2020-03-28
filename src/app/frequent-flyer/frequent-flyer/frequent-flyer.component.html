@@ -11,7 +11,7 @@
         <div *ngFor="let ffp of FFPResponse">
             <div class="country_name w-100" (click)="getDetails(ffp)" *ngIf="ffp">
                 <p class="float-left" *ngIf="ffp.frequent_flight">{{ffp.frequent_flight}}</p>
-                <!-- <img *ngIf="!ffp.flight_image" src="../../assets/images/f1.png" class="float-right"> -->
+                <img *ngIf="!ffp.flight_image" src="/assets/images/placeholder.png"class="float-right">
                 <img *ngIf="ffp.flight_image" src="{{ffp.flight_image || '../../../assets/images/placeholder.png'}}" class="float-right">
             </div>
         </div>

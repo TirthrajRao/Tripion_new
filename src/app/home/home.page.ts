@@ -14,7 +14,7 @@ export class HomePage {
   currentUser: any;
   userName: any;
   menuPages: any;
-  profilePic:any;
+  profilePic: any;
   constructor(
     private menu: MenuController,
     public _userService: UserService,
@@ -24,14 +24,7 @@ export class HomePage {
   ) {
     this._userService.currentUser.subscribe(x => this.currentUser = x);
     this.getFormCategoryList();
-    const data = JSON.parse(localStorage.getItem('currentUser'));
-    this.userName = data.user_name;
-    this.profilePic = data.profile_pic
-    this.event.subscribe("userName", (data) => {
-      console.log(data);
-      this.userName = data.user_name;
-      this.profilePic = data.profile_pic
-    });
+
     this.menuPages = [
       {
         title: 'Home',
@@ -78,14 +71,17 @@ export class HomePage {
   }
   ionViewWillEnter() {
     console.log("in home page enter")
-    // $(document).ready(function () {
-    //   console.log("in home page")
-    //   $(window).on('load resize', function () {
-        var menuHeight = $(".menu_content").innerHeight();
-        var listLength = $(".menu_content").find(".menu_list").length;
-        $(".menu_content .menu_list").css({ 'line-height': (menuHeight / listLength) + 'px' });
-    //   });
-    // });
+    var menuHeight = $(".menu_content").innerHeight();
+    var listLength = $(".menu_content").find(".menu_list").length;
+    $(".menu_content .menu_list").css({ 'line-height': (menuHeight / listLength) + 'px' });
+    const data = JSON.parse(localStorage.getItem('currentUser'));
+    this.userName = data.user_name;
+    this.profilePic = data.profile_pic
+    this.event.subscribe("userName", (data) => {
+      console.log(data);
+      this.userName = data.user_name;
+      this.profilePic = data.profile_pic
+    });
   }
   /**
    * Close side menu

@@ -23,7 +23,8 @@ $blue: #021B79;
         position: absolute;
         content: "";
         height: 2px;
-        width: 85%;
+        // width: 85%;
+        width: 99.80%;
         background: #fff;
         bottom: -20px;
     }
@@ -151,7 +152,9 @@ $blue: #021B79;
 }
 
 ion-menu {
-    --background: transparent !important;
+    // --background: transparent !important;
+    --background: #5897fb78 !important;
+    --width:92% !important
 }
 
 .menu {

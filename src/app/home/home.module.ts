@@ -67,6 +67,7 @@ import { LongPressModule } from 'ionic-long-press';
 import { Base64 } from '@ionic-native/base64/ngx';
 import * as Hammer from 'hammerjs';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { InnerFolderComponent } from '../folder-data/inner-folder/inner-folder.component';
 
 import { MediaCapture } from '@ionic-native/media-capture/ngx';
 import { Media } from '@ionic-native/media/ngx';
@@ -271,6 +272,10 @@ export class IonicGestureConfig extends HammerGestureConfig {
             path: 'location',
             component: SelectLocationComponent
           },
+          {
+            path:'inner-folder/:foldername',
+            component:InnerFolderComponent
+          }
           // {
           //   path:'send-image',
           //   component:ImageModalComponent
@@ -331,6 +336,7 @@ export class IonicGestureConfig extends HammerGestureConfig {
     SelectLocationComponent,
     ImageModalComponent,
     SafePipe,
+    InnerFolderComponent
   ],
   providers: [
     FileTransfer,
