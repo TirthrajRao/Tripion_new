@@ -106,7 +106,7 @@ export class PlanOptionComponent implements OnInit {
       // https://docs.google.com/viewerng/viewer?url=https://testing-platinum-rail-services.s3.ap-south-1.amazonaws.com/passport-1-1584351271687.xlsx
     }, (err) => {
       // this._toastService.presentToast(err.error.message, 'danger');
-      this.appComponent.errorAlert();
+      this.appComponent.errorAlert(err.error.message);
       console.log(err);
       this.loading = false;
     })
@@ -163,7 +163,7 @@ export class PlanOptionComponent implements OnInit {
       }
     }, (err) => {
       console.log(err);
-      this.appComponent.errorAlert();
+      this.appComponent.errorAlert(err.error.message);
       // this._toastService.presentToast(err.error.message, 'danger');
       this.loading = false;
     })

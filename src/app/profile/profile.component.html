@@ -67,7 +67,7 @@
                             </div>
                         </ion-card-content>
                     </ion-card>
-                    <ion-card>
+                    <!-- <ion-card>
                         <ion-card-content>
                             <div class="user_detail float-left">
                                 <small>Date of Birth</small>
@@ -76,13 +76,11 @@
                                         <ion-datetime formControlName="dob" placeholder="select birth date" ngModel="{{userData.dob? userData.dob :''}}">
                                         </ion-datetime>
                                     </ion-item>
-                                    <!-- <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
-                                        <div *ngIf="f.dob.errors.required">Birth Date is required</div>
-                                    </div> -->
+                                   
                                 </div>
                             </div>
                         </ion-card-content>
-                    </ion-card>
+                    </ion-card> -->
                     <ion-card>
                         <ion-card-content>
                             <div class="user_detail float-left">
@@ -128,7 +126,7 @@
                             </div>
                         </ion-card-content>
                     </ion-card>
-                    <ion-card>
+                    <!-- <ion-card>
                         <ion-card-content>
                             <div class="user_detail float-left ">
                                 <small>Select Timezone</small>
@@ -145,15 +143,9 @@
                                     <div *ngIf="f.home_town.errors.required">Home Town is required</div>
 
                                 </div>
-                                <!-- <small>Password</small>
-                                <div>
-                                    <ion-item>
-                                        <label>{{userData.social_password}}</label>
-                                    </ion-item>
-                                </div> -->
                             </div>
                         </ion-card-content>
-                    </ion-card>
+                    </ion-card> -->
                     <div class="reset-password-link">
                         <a class="float-right" id="reset-password" (click)="openRedetPswModal()">Reset Password</a>
                     </div>

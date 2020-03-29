@@ -120,7 +120,7 @@ export class OtherDocsComponent implements OnInit {
      }, (err) => {
        console.log(err);
        // this._toastService.presentToast(err.error.message, 'danger');
-       this.appComponent.errorAlert();
+       this.appComponent.errorAlert(err.error.message);
        this.isDisable = false;
        this.loading = false;
      })
@@ -142,7 +142,7 @@ export class OtherDocsComponent implements OnInit {
      }, (err) => {
        console.log(err);
        this.loading = false;
-       this.appComponent.errorAlert();
+       this.appComponent.errorAlert(err.error.message);
        // this._toastService.presentToast(err.error.message, 'danger')
      })
    }

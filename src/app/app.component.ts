@@ -30,6 +30,7 @@ export class AppComponent {
   currentUser = JSON.parse(localStorage.getItem('currentUser'));
   message: any;
   title: any;
+  errMessage: any;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -176,10 +177,10 @@ export class AppComponent {
     this.title = otherMsg
     console.log("in sucessAlert", msg)
     $('.success_alert_box').fadeIn().addClass('animate');
-    $('.success_alert_box').click(function(){
+    $('.success_alert_box').click(function () {
       $(this).hide().removeClass('animate');
     });
-    $('.success_alert_box .alert_box_content').click(function(event){
+    $('.success_alert_box .alert_box_content').click(function (event) {
       event.stopPropagation();
     });
     // setTimeout(() => {
@@ -190,13 +191,14 @@ export class AppComponent {
   /** 
    *Error Alert
    */
-  errorAlert() {
-    console.log("in errorAlert")
+  errorAlert(message?) {
+    console.log("in errorAlert", message);
+    this.errMessage = message
     $('.error_alert_box').fadeIn().addClass('animate');
-    $('.error_alert_box').click(function(){
+    $('.error_alert_box').click(function () {
       $(this).hide().removeClass('animate');
     });
-    $(' .error_alert_box .alert_box_content').click(function(event){
+    $(' .error_alert_box .alert_box_content').click(function (event) {
       event.stopPropagation();
     });
     // setTimeout(() => {

@@ -97,7 +97,7 @@ export class TripPlaningDetailComponent implements OnInit {
       console.log(err);
       this.loading = false;
       // this._toastService.presentToast(err.error.message, 'danger');
-      this.appComponent.errorAlert();
+      this.appComponent.errorAlert(err.error.message);
     })
   }
 

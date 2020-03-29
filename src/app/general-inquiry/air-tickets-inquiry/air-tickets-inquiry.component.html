@@ -18,7 +18,11 @@
                             <div class="icon-button">
                                 <div class="icons">
                                     <i class="fa fa-minus" aria-hidden="true" (click)="decrement('infants')"></i>
-                                    <span>{{infantsPassengers}}</span>
+                                    <!-- <span>{{infantsPassengers}}</span> -->
+                                    <span>
+                                        <ion-input type="number" formControlName="infants_passenger"
+                                            [(ngModel)]="infantsPassenger" min='0'></ion-input>
+                                    </span>
                                     <i class="fa fa-plus" aria-hidden="true" (click)="increment('infants')"></i>
                                 </div>
                             </div>
@@ -28,7 +32,11 @@
                             <div class="icon-button">
                                 <div class="icons">
                                     <i class="fa fa-minus" aria-hidden="true" (click)="decrement('children')"></i>
-                                    <span>{{childrenPassengers}}</span>
+                                    <!-- <span>{{childrenPassengers}}</span> -->
+                                    <span>
+                                        <ion-input type="number" formControlName="children_passenger"
+                                            [(ngModel)]="childrenPassenger" min='0'></ion-input>
+                                    </span>
                                     <i class="fa fa-plus" aria-hidden="true" (click)="increment('children')"></i>
                                 </div>
                             </div>
@@ -38,7 +46,11 @@
                             <div class="icon-button">
                                 <div class="icons">
                                     <i class="fa fa-minus" aria-hidden="true" (click)="decrement('adults')"></i>
-                                    <span>{{adultsPassengers}}</span>
+                                    <!-- <span>{{adultsPassengers}}</span> -->
+                                    <span>
+                                        <ion-input type="number" formControlName="adults_passenger"
+                                            [(ngModel)]="adultsPassenger" min='0'></ion-input>
+                                    </span>
                                     <i class="fa fa-plus" aria-hidden="true" (click)="increment('adults')"></i>
                                 </div>
                             </div>
@@ -48,7 +60,11 @@
                             <div class="icon-button">
                                 <div class="icons">
                                     <i class="fa fa-minus" aria-hidden="true" (click)="decrement('senior')"></i>
-                                    <span>{{seniorPassengers}}</span>
+                                    <!-- <span>{{seniorPassengers}}</span> -->
+                                    <span>
+                                        <ion-input type="number" formControlName="senior_passenger"
+                                            [(ngModel)]="seniorPassenger" min='0'></ion-input>
+                                    </span>
                                     <i class="fa fa-plus" aria-hidden="true" (click)="increment('senior')"></i>
                                 </div>
                             </div>
@@ -98,20 +114,20 @@
                     <div class="row">
                         <div class="col-3 text-center pl-4">
                             <img src="assets/images/infants.png" style="height: 35px;">
-                            <p>{{infantsPassengers}}</p>
+                            <p>{{infantsPassenger}}</p>
                         </div>
                         <div class="col-3 text-center">
                             <img src="assets/images/children.svg" style="height: 46px;margin-top:-4px;">
-                            <p style="margin-top: -7px;">{{childrenPassengers}}</p>
+                            <p style="margin-top: -7px;">{{childrenPassenger}}</p>
                         </div>
                         <div class="col-3 text-center">
                             <img src="assets/images/adults.png" style="height: 33px;margin-top: 4px;">
-                            <p>{{adultsPassengers}}</p>
+                            <p>{{adultsPassenger}}</p>
                         </div>
                         <div class="col-3 text-center">
                             <img src="assets/images/seniorcityzens.png" style="height: 33px;
                             margin-top: 2px;">
-                            <p>{{seniorPassengers}}</p>
+                            <p>{{seniorPassenger}}</p>
                         </div>
 
                     </div>

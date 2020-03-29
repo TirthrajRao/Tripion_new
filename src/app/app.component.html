@@ -22,10 +22,11 @@
   <div class="alert_box_content">
     <div class="alert_box_text">
       <h4>Oopps !!</h4>
-      <p>
+      <div>
         <span>A BOO-BOO HAPPENS</span>
-        <br> something went wrong
-      </p>
+        <p *ngIf="!errMessage" > something went wrong</p>
+        <p *ngIf="errMessage" >{{errMessage}}</p>
+      </div>
     </div>
     <div class="alert_box_image">
       <img src="assets/images/cross.png" alt="image icon">

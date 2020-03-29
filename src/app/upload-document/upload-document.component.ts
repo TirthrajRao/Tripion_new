@@ -67,7 +67,7 @@ export class UploadDocumentComponent implements OnInit {
      }, (err) => {
        console.log(err);
        // this._toastService.presentToast(err.error.message, 'danger');
-       this.appComponent.errorAlert();
+       this.appComponent.errorAlert(err.error.message);
        this.loading = false;
      })
    }
@@ -124,7 +124,7 @@ export class UploadDocumentComponent implements OnInit {
        this.isDisable = false;
        this.loading = false;
        // this._toastService.presentToast(err.error.message, 'danger')
-       this.appComponent.errorAlert();
+       this.appComponent.errorAlert(err.error.message);
      })
    }
 

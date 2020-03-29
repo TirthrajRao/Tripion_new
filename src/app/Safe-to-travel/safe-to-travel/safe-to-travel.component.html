@@ -13,8 +13,9 @@
                 <div class="card_body safe-to-travel">
                     <ion-item>
                         <ion-label position="floating" style="margin-bottom: 16px;">Country to travel</ion-label>
-                        <select id="myselection" class="form-control" formControlName="countryName" (change)="changeCountry($event)">
-                            <option [value]="country.name" *ngFor="let country of countries" > {{country.name}}
+                        <select id="myselection" class="form-control" formControlName="countryName"
+                            (change)="changeCountry($event)">
+                            <option [value]="country.name" *ngFor="let country of countries"> {{country.name}}
                             </option>
                         </select>
                         <!-- <ion-input type="text" formControlName="countryName"></ion-input> -->
@@ -67,13 +68,17 @@
                         </div>
                     </div> -->
 
-                     <div class="general_details_body">
+                    <div class="general_details_body">
                         <div class="passengers-details">
                             <div class="plist">Infants</div>
                             <div class="icon-button">
                                 <div class="icons">
                                     <i class="fa fa-minus" aria-hidden="true" (click)="decrement('infants')"></i>
-                                    <span>{{infantsPassengers}}</span>
+                                    <!-- <span>{{infantsPassengers}}</span> -->
+                                    <span>
+                                        <ion-input type="number" formControlName="infantsPassengers"
+                                            [(ngModel)]="infantsPassengers" min='0'></ion-input>
+                                    </span>
                                     <i class="fa fa-plus" aria-hidden="true" (click)="increment('infants')"></i>
                                 </div>
                             </div>
@@ -83,7 +88,11 @@
                             <div class="icon-button">
                                 <div class="icons">
                                     <i class="fa fa-minus" aria-hidden="true" (click)="decrement('children')"></i>
-                                    <span>{{childrenPassengers}}</span>
+                                    <!-- <span>{{childrenPassengers}}</span> -->
+                                    <span>
+                                        <ion-input type="number" formControlName="childrenPassengers"
+                                            [(ngModel)]="childrenPassengers" min='0'></ion-input>
+                                    </span>
                                     <i class="fa fa-plus" aria-hidden="true" (click)="increment('children')"></i>
                                 </div>
                             </div>
@@ -93,7 +102,11 @@
                             <div class="icon-button">
                                 <div class="icons">
                                     <i class="fa fa-minus" aria-hidden="true" (click)="decrement('adults')"></i>
-                                    <span>{{adultsPassengers}}</span>
+                                    <!-- <span>{{adultsPassengers}}</span> -->
+                                    <span>
+                                        <ion-input type="number" formControlName="adultsPassengers"
+                                            [(ngModel)]="adultsPassengers" min='0'></ion-input>
+                                    </span>
                                     <i class="fa fa-plus" aria-hidden="true" (click)="increment('adults')"></i>
                                 </div>
                             </div>
@@ -103,7 +116,11 @@
                             <div class="icon-button">
                                 <div class="icons">
                                     <i class="fa fa-minus" aria-hidden="true" (click)="decrement('senior')"></i>
-                                    <span>{{seniorPassengers}}</span>
+                                    <!-- <span>{{seniorPassengers}}</span> -->
+                                    <span>
+                                        <ion-input type="number" formControlName="seniorPassengers"
+                                            [(ngModel)]="seniorPassengers" min='0'></ion-input>
+                                    </span>
                                     <i class="fa fa-plus" aria-hidden="true" (click)="increment('senior')"></i>
                                 </div>
                             </div>
@@ -181,7 +198,8 @@
                     <div>
                         <ion-item>
                             <ion-label position="floating">From</ion-label>
-                            <ion-datetime formControlName="fromDate" min="{{curruntDate}}" max="{{nextYear}}"></ion-datetime>
+                            <ion-datetime formControlName="fromDate" min="{{curruntDate}}" max="{{nextYear}}">
+                            </ion-datetime>
                         </ion-item>
                         <div *ngIf="submitted && f.fromDate.errors" class="invalid-feedback">
                             <div *ngIf="f.fromDate.errors.required">From Date is required</div>
@@ -190,7 +208,8 @@
                     <div>
                         <ion-item>
                             <ion-label position="floating">To</ion-label>
-                            <ion-datetime formControlName="toDate" max="{{nextYear}}" min={{safeToTravelForm.value.fromDate}}></ion-datetime>
+                            <ion-datetime formControlName="toDate" max="{{nextYear}}"
+                                min={{safeToTravelForm.value.fromDate}}></ion-datetime>
                         </ion-item>
                         <div *ngIf="submitted && f.toDate.errors" class="invalid-feedback">
                             <div *ngIf="f.toDate.errors.required">To Date is required</div>
@@ -199,8 +218,8 @@
                 </div>
             </div>
             <div class="submit_btn">
-                <button type="submit" (click)="addSafeToTravelReq(safeToTravelForm.value)" class="btn" [disabled]="isDisable"><i
-                        class="fas fa-save"></i>Submit</button>
+                <button type="submit" (click)="addSafeToTravelReq(safeToTravelForm.value)" class="btn"
+                    [disabled]="isDisable"><i class="fas fa-save"></i>Submit</button>
             </div>
         </form>
     </div>

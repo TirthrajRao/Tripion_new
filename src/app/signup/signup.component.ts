@@ -41,8 +41,8 @@ export class SignupComponent implements OnInit {
       phone_number: new FormControl('', [Validators.required, Validators.maxLength(10), Validators.minLength(10)]),
       password: new FormControl('', [Validators.required]),
       username: new FormControl('', [Validators.required]),
-      dob: new FormControl('', [Validators.required]),
-      home_town: new FormControl('', [Validators.required])
+      // dob: new FormControl('', [Validators.required]),
+      // home_town: new FormControl('', [Validators.required])
     });
 
     console.log("timezones",this.timeZoneList)
@@ -72,9 +72,9 @@ export class SignupComponent implements OnInit {
    */
    signUpUser(data) {
      this.submitted = true;
-     data.dob = data.dob.split("T");
-     const td = data.dob[1].split('.')
-     data.dob = data.dob[0] + ' ' + td[0];
+    //  data.dob = data.dob.split("T");
+    //  const td = data.dob[1].split('.')
+    //  data.dob = data.dob[0] + ' ' + td[0];
        
      console.log(data);
      if (this.signUpForm.invalid) {
@@ -101,7 +101,7 @@ export class SignupComponent implements OnInit {
        this.isDisable = false;
        this.loading = false;
        // this._toastServices.presentToast(err.error.message, 'danger');
-       this.appComponent.errorAlert();
+       this.appComponent.errorAlert(err.error.message);
        console.log("err in register", err)
      })
    }

@@ -7,7 +7,7 @@
         <form [formGroup]="editVisaForm">
             <div *ngIf="visaDetails">
                 <div class="all_visa_detail">
-                    <div>
+                    <div class="mb-3">
                         <!-- <ion-item>
                             <ion-label position="floating">Country</ion-label>
                             <ion-input type="text" formControlName="country" [(ngModel)]="visaDetails.country">
@@ -24,7 +24,7 @@
                             <div *ngIf="f.country.errors.required">Country name is required</div>
                         </div>
                     </div>
-                    <div>
+                    <div class="mb-3">
                         <ion-item>
                             <ion-label position="floating">Date of Expiry</ion-label>
                             <ion-datetime displayFormat="MM/DD/YYYY" formControlName="doc_expiry_date" [(ngModel)]="visaDetails.doc_expiry_date" min="{{curruntDate}}" max="{{nextYear}}">

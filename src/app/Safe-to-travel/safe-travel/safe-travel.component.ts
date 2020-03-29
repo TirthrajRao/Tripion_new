@@ -68,7 +68,7 @@ export class SafeTravelComponent implements OnInit {
      }, (err) => {
        console.log("err", err);
        // this._toastService.presentToast(err.error.message, 'danger');
-       this.appComponent.errorAlert();
+       this.appComponent.errorAlert(err.error.message);
        this.loading = false;
      })
    }

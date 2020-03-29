@@ -15,6 +15,7 @@ export class HomePage {
   userName: any;
   menuPages: any;
   profilePic: any;
+  currentUserData:any
   constructor(
     private menu: MenuController,
     public _userService: UserService,
@@ -74,13 +75,15 @@ export class HomePage {
     var menuHeight = $(".menu_content").innerHeight();
     var listLength = $(".menu_content").find(".menu_list").length;
     $(".menu_content .menu_list").css({ 'line-height': (menuHeight / listLength) + 'px' });
-    const data = JSON.parse(localStorage.getItem('currentUser'));
-    this.userName = data.user_name;
-    this.profilePic = data.profile_pic
+    this.currentUserData =  JSON.parse(localStorage.getItem('currentUser'));
+    console.log("curruntuser data",this.currentUserData)
+    this.userName = this.currentUserData.user_name;
+    this.profilePic = this.currentUserData.profile_pic
     this.event.subscribe("userName", (data) => {
       console.log(data);
-      this.userName = data.user_name;
-      this.profilePic = data.profile_pic
+      this.currentUserData = data;
+      // this.userName = data.user_name;
+      // this.profilePic = data.profile_pic
     });
   }
   /**

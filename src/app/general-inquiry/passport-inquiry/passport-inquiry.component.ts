@@ -88,7 +88,7 @@ export class PassportInquiryComponent implements OnInit {
       console.log("err", err);
       this.loading = false;
       // this._toastService.presentToast(err.error.message, 'danger')
-      this.appComponent.errorAlert();
+      this.appComponent.errorAlert(err.error.message);
     })
     // this.storeFormData(data);
 

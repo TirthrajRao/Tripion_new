@@ -163,7 +163,7 @@ export class PassportsComponent implements OnInit {
     }, (err) => {
       console.log(err);
       // this._toastService.presentToast(err.error.message, 'danger');
-       this.appComponent.errorAlert();
+       this.appComponent.errorAlert(err.error.message);
       this.isDisable = false;
       this.loading = false;
     })
@@ -186,7 +186,7 @@ export class PassportsComponent implements OnInit {
       this.loading = false;
     }, (err) => {
       console.log(err);
-       this.appComponent.errorAlert();
+       this.appComponent.errorAlert(err.error.message);
       // this._toastService.presentToast(err.error.message, 'danger');
       this.loading = false;
     })

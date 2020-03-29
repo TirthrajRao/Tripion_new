@@ -266,7 +266,7 @@ export class HomePageComponent implements OnInit {
       this.checkUserProfile();
       this.loading = false;
     }, (err) => {
-      this.appComponent.errorAlert();
+      this.appComponent.errorAlert(err.error.message);
       // this._toastService.presentToast(err.error.message, 'danger');
       console.log(err);
       this.loading = false;

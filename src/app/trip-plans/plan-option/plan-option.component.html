@@ -9,6 +9,8 @@
     </ion-refresher> -->
     <div class="plan_option_content" *ngIf="tripDetail">
         <!-- <div class="card plan_option_heading  w-100 " routerLink='/home/all-plan/{{tripDetail.inquiry_id}}' *ngIf="tripDetail.plans.length"> -->
+
+        <!-- DISPLAY SELECTED PLAN -->
         <div class="card plan_option_heading  w-100 " routerLink='/home/plan-option-detail/{{tripDetail.plans[0].id}}'
             *ngIf="tripDetail.plans.length">
             <!-- <span class="float-left" [innerHTML]="tripDetail.plans[0].plan_name"></span> -->
@@ -18,18 +20,21 @@
                 <ion-img src="assets/images/plane.png"></ion-img>
             </div>
         </div>
-        <div class="document_request card w-100 mt-2" *ngIf="tripDetail.is_passport == 1">
-            <div class="card_header">
-                <span>Passport Form</span>
-            </div>
-            <div class="card_body ml-2 mr-2 holds-the-iframe">
 
+        <!-- DISPLAY PASSPORT FORM -->
+        <div class="document_request card w-100 mt-2" *ngIf="tripDetail.is_passport == 1">
+            <div class="card_header colapse-icon">
+                <span>Passport Form</span>
+                <a class="toggle-section collapsed collapsed float-right mt-1" data-toggle="collapse"
+                    data-target="#passport-arrow" aria-expanded="false" aria-controls="passport-arrow"> <i class="fa"
+                        aria-hidden="true"></i></a>
+            </div>
+            <div class="card_body ml-2 mr-2 holds-the-iframe collapse multi-collapse mb-2" id="passport-arrow">
                 <iframe style="height:230px;cursor: pointer;" class="w-100" [src]='pathToPreview | safe:"resourceUrl"'
                     frameborder="0">
                 </iframe>
-
             </div>
-            <div class="card_footer w-100">
+            <div class="card_footer w-100 mt-2">
                 <button type="submit" (click)="selectDocument()">
                     <i class="fas fa-cloud-upload-alt"></i>
                     Upload Documents
@@ -37,18 +42,22 @@
             </div>
         </div>
 
+        <!-- DISPLAY UPLOADED  PASSPORT FORM -->
         <div class="document_request card w-100 mt-2" *ngIf="passportFiles.length">
-            <div class="card_header">
+            <div class="card_header colapse-icon">
                 <span>Uploaded Passport Form </span>
+                <a class="toggle-section collapsed collapsed float-right mt-1" data-toggle="collapse"
+                    data-target="#UPLOAD-passport-arrow" aria-expanded="false" aria-controls="UPLOAD-passport-arrow"> <i class="fa"
+                        aria-hidden="true"></i></a>
             </div>
-            <div class="card_body ml-2 mr-2 holds-the-iframe">
+            <div class="card_body ml-2 mr-2 holds-the-iframe collapse multi-collapse mb-2" id="UPLOAD-passport-arrow">
                 <iframe style="height:230px;cursor: pointer;" class="w-100" [src]='pathToPreview1 | safe:"resourceUrl"'
                     frameborder="0">
                 </iframe>
             </div>
         </div>
 
-
+        <!-- DISPLAY DOCUMENT REQUEST -->
         <div class="document_request card w-100 mt-2" *ngIf="tripDetail.requested_docs.length">
             <div class="card_header">
                 <ion-img src="assets/images/doc.png"></ion-img>
@@ -71,6 +80,9 @@
                 </button>
             </div>
         </div>
+
+
+        <!-- DISPLAY PAYMENT REQUEST -->
         <div class="document_request card w-100 mt-3" *ngIf="tripDetail.payment.payment_request.length">
             <div class="card_header">
                 <ion-img src="../../assets/images/money.png"></ion-img><span>Payment Request</span>
@@ -90,6 +102,8 @@
                 </button>
             </div>
         </div>
+
+        <!-- DISPLAY PAYMENT ACKNOQWLDGMENT -->
         <div class="document_request card w-100 mt-3" *ngIf="tripDetail.payment.payment_success.length">
             <div class="card_header">
                 <ion-img src="../../assets/images/money.png"></ion-img><span>Payment Acknowledgement</span>
@@ -98,15 +112,19 @@
                 <small>Payment for the Following</small>
                 <ul class="">
                     <li *ngFor="let payment of tripDetail.payment.payment_success">{{payment.title}} - <span
-                            class="float-right">{{payment.payment_amount}}  </span></li>
+                            class="float-right">{{payment.payment_amount}} </span></li>
                 </ul>
             </div>
         </div>
-      
+
+
+
         <div style="margin-top: 40%;"
             *ngIf="!tripDetail.payment.payment_request.length && !tripDetail.requested_docs.length  && tripDetail.is_passport != 1 ">
             <span class="text-center text-white no-req">We are Working on it <br>will revert soon!!</span>
         </div>
+
+
         <div style="margin-top: 40%;"
             *ngIf="!tripDetail.payment.payment_request.length && !tripDetail.requested_docs.length && !tripDetail.plans.length && tripDetail.is_passport != 1 ">
             <!-- <span class="text-center text-white no-request">No Data</span> -->
@@ -119,6 +137,8 @@
             </div>
         </div>
     </div>
+
+
     <div *ngIf="loading">
         <div id="loader-wrapper">
             <div class="heartbeatloader">

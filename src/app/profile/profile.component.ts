@@ -37,10 +37,10 @@ export class ProfileComponent implements OnInit {
       // user_name: new FormControl('', [Validators.required]),
       first_name: new FormControl('', [Validators.required]),
       last_name: new FormControl('', [Validators.required]),
-      dob: new FormControl(''),
+      // dob: new FormControl(''),
       email: new FormControl('', [Validators.email, Validators.required]),
       phone_number: new FormControl('', [Validators.required, Validators.pattern(/^(\+\d{1,3}[- ]?)?\d{10}$/)]),
-      home_town: new FormControl('', [Validators.required])
+      // home_town: new FormControl('', [Validators.required])
     });
 
     this.resetPswForm = new FormGroup({
@@ -98,7 +98,7 @@ export class ProfileComponent implements OnInit {
        this.loading = false;
      }, (err) => {
        // this._toastService.presentToast(err.error.message, 'danger');
-       this.appComponent.errorAlert();
+       this.appComponent.errorAlert(err.error.message);
        console.log("err", err);
        this.loading = false;
      })
@@ -126,12 +126,14 @@ export class ProfileComponent implements OnInit {
        this.userData = res.data;
        this.isDisable = false;
        this.loading = false;
+       this.event.publish('userName', res.data);
        // this._toastService.presentToast(res.message, 'success');
-        this.appComponent.sucessAlert("Sucessfully Updated")
+        this.appComponent.sucessAlert("Sucessfully Updated");
+        
      }, (err) => {
        console.log("err in edit profile", err);
        // this._toastService.presentToast(err.error.message, 'danger');
-       this.appComponent.errorAlert();
+       this.appComponent.errorAlert(err.error.message);
        this.isDisable = false;
        this.loading = false;
      })
@@ -189,7 +191,7 @@ export class ProfileComponent implements OnInit {
         this.appComponent.sucessAlert("Password Reset Sucessfully")
      }, (err) => {
        // this._toastService.presentToast(err.error.message, 'danger');
-        this.appComponent.errorAlert();
+        this.appComponent.errorAlert(err.error.message);
        console.log("err", err);
        this.isDisable = false;
        this.loading = false;
@@ -210,18 +212,21 @@ export class ProfileComponent implements OnInit {
      this._userService.editUserProfile(data).subscribe((res: any) => {
        console.log("res", res);
        this.userData.profile_pic = res.data.profile_pic;
-       const obj = {
-         profile_pic: res.data.profile_pic,
-         user_name: res.data.user_name
-       }
-       this.event.publish('userName', obj);
+      //  const obj = {
+      //    profile_pic: res.data.profile_pic,
+      //    user_name: res.data.user_name,
+      //    first_name:res.data.first_name,
+      //    last_name:res.data.last_name
+      //  }
+      localStorage.setItem('currentUser', JSON.stringify(res.data));
+       this.event.publish('userName', res.data);
        this.loading = false;
        this.files = "";
      }, (err) => {
        console.log(err);
        this.loading = false;
        // this._toastService.presentToast(err.error.message, 'danger')
-        this.appComponent.errorAlert();
+        this.appComponent.errorAlert(err.error.message);
      })
    }
    

@@ -73,13 +73,13 @@ export class LoginComponent implements OnInit {
        })
        this.loading = false;
        // this._toastServices.presentToast(res.message, 'success');
-       this.appComponent.sucessAlert("Login Sucessfully","Welcome")
+       this.appComponent.sucessAlert("Login Sucessfull","Welcome")
        this.router.navigate(['/home']);
        this.loginForm.reset();
        this.submitted = false;
      }, (err) => {
        console.log("err in login", err);
-       this.appComponent.errorAlert();
+       this.appComponent.errorAlert(err.error.message);
        // this._toastServices.presentToast(err.error.message, 'danger');
        this.isDisable = false;
        this.loading = false;
@@ -109,7 +109,7 @@ export class LoginComponent implements OnInit {
          }, err => {
            console.log("errr", err)
          })
-          this.appComponent.sucessAlert("Login Sucessfully","Welcome")
+          this.appComponent.sucessAlert("Login Sucessfull","Welcome")
          // this._toastServices.presentToast(res.message, 'success');
          this.loading = false;
          this.isDisable = false;
@@ -122,7 +122,7 @@ export class LoginComponent implements OnInit {
         
        }, (err) => {
          // this._toastServices.presentToast(err.error.message, 'danger');
-         this.appComponent.errorAlert();
+         this.appComponent.errorAlert(err.error.message);
          console.log("err in google login", err);
          this.loading = false;
          this.isDisable = false;
@@ -130,7 +130,7 @@ export class LoginComponent implements OnInit {
      })
      .catch((err) => {
        // this._toastServices.presentToast("Error in Google Login", 'danger')
-       this.appComponent.errorAlert();
+       this.appComponent.errorAlert("Error in Google Login");
        console.error("err", err);
        this.loading = false;
        this.isDisable = false
@@ -182,7 +182,7 @@ export class LoginComponent implements OnInit {
            }
          }, (err) => {
            // this._toastServices.presentToast(err.error.message, 'danger');
-           this.appComponent.errorAlert();
+           this.appComponent.errorAlert(err.error.message);
            console.log("err in fb login", err);
            this.loading = false;
            this.isDisable = false;
@@ -194,7 +194,7 @@ export class LoginComponent implements OnInit {
        this.loading = false;
        this.isDisable = false;
        // this._toastServices.presentToast("Error in facebook Login", 'danger')
-       this.appComponent.errorAlert();
+       this.appComponent.errorAlert("Error in Facebook Login");
      });
    }
    fetchFacebookData(accessToken) {
@@ -221,7 +221,7 @@ export class LoginComponent implements OnInit {
      }, (err) => {
        console.log("err in f psw", err);
        // this._toastServices.presentToast(err.error.message, 'danger');
-       this.appComponent.errorAlert();
+       this.appComponent.errorAlert(err.error.message);
        this.loading = false;
        this.isDisable = false;
        $("#forgot-password").fadeOut();

@@ -56,7 +56,7 @@ export class PaymentComponent implements OnInit {
       console.log("err in payment", err);
       this.loading = false;
       this.isDisable = false;
-      this.appComponant.errorAlert();
+      this.appComponant.errorAlert(err.error.message);
     })
   }
 

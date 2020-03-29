@@ -68,7 +68,13 @@ div.plist{
    align-items: center;
     padding-bottom: 7px;
     border-bottom: 1px solid #7f8dab6e;
-    margin-top: 7px
+    margin-top: 7px;
+    ion-input{
+      --padding-top: 3px;
+    --padding-end: 0;
+    --padding-start: 17px;
+    color: black;
+    }
 }
 .icon-button{
     border: 2px solid #d2d6dd;  

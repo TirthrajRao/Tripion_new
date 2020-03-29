@@ -118,7 +118,7 @@ export class VisaDetailComponent implements OnInit {
        console.log(err);
        this.loading = false
        // this._toastService.presentToast(err.error.message, 'danger');
-        this.appComponent.errorAlert();
+        this.appComponent.errorAlert(err.error.message);
      })
    }
 
@@ -172,7 +172,7 @@ export class VisaDetailComponent implements OnInit {
        this.loading = false;
        console.log(err);
        // this._toastService.presentToast(err.error.message, 'danger');
-        this.appComponent.errorAlert();
+        this.appComponent.errorAlert(err.error.message);
      })
    }
 

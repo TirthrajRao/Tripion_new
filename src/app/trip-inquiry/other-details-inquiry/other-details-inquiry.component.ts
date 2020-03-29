@@ -67,7 +67,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
       this.userData = res.data;
     }, (err) => {
       // this._toastService.presentToast(err.error.message, 'danger');
-      this.appComponent.errorAlert();
+      this.appComponent.errorAlert(err.error.message);
       console.log("err", err);
     })
   }
@@ -197,7 +197,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
         // this._toastService.presentToast(res.message, 'success')
         this.route.navigate(['/home']);
       }, (err) => {
-        this.appComponent.errorAlert();
+        this.appComponent.errorAlert(err.error.message);
         this.isDisable = false;
         this.loading = false;
         console.log(err);

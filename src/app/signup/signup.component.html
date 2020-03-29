@@ -56,20 +56,20 @@
                         <div *ngIf="f.phone_number.errors.minLength">Phone Number must be 10 digit</div>
                     </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <ion-datetime placeholder="Select birth date" class="form-control" formControlName="dob">
                     </ion-datetime>
                     <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
                         <div *ngIf="f.dob.errors.required">Birthdate is required</div>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <input type="password" formControlName="password" class="form-control" id="password" placeholder="Enter Password">
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                         <div *ngIf="f.password.errors.required">Password is required</div>
                     </div>
                 </div>
-                <div class="form-group register-select">
+                <!-- <div class="form-group register-select">
                     <ion-label>Select Timezone</ion-label>
                     <select id="myselection" class="form-control" formControlName="home_town" (change)="changeCountry($event)">
                         <option [value]="i" *ngFor="let timeZone of timeZoneList;let i = index" > {{timeZone.text}}
@@ -78,7 +78,7 @@
                     <div *ngIf="submitted && f.home_town.errors" class="invalid-feedback">
                         <div *ngIf="f.home_town.errors.required">Select Your Timezone</div>
                     </div>
-                </div>
+                </div> -->
                 <button type="submit" class="login_btn btn" (click)="signUpUser(signUpForm.value)" [disabled]="isDisable">Sign Up</button>
             </form>
         </div>

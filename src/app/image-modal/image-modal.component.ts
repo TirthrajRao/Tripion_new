@@ -79,7 +79,7 @@ export class ImageModalComponent implements OnInit {
      }).catch((err) => {
        console.log("Error is", err);
        this.loading = false;
-        this.appComponent.errorAlert();
+        this.appComponent.errorAlert(err.error.message);
        // this._toastService.presentToast('Internal server error', 'danger')
      })
    }

@@ -86,7 +86,7 @@ export class QuotationsComponent implements OnInit {
      }, (err) => {
        console.log(err);
        // this._toastService.presentToast(err.error.message, 'danger');
-       this.appComponent.errorAlert();
+       this.appComponent.errorAlert(err.error.message);
        this.loading = false;
      })
    }
@@ -115,7 +115,7 @@ export class QuotationsComponent implements OnInit {
            this._toastService.presentToast("Downloading.....", 'success')
            this.fileTransfer.download(url, ROOT_DIRECTORY + downloadFolderName + '/' + name + '.'+ext).then((entry) => {
              console.log('download complete: ' + entry.toURL());
-             this._toastService.presentToast("Download Completed", 'success');
+            //  this._toastService.presentToast("Download Completed", 'success');
              this.openFile(entry.nativeURL, mimeType);
            }, (error) => {
              console.log("error", error);

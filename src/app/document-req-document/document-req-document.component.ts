@@ -58,7 +58,7 @@ export class DocumentReqDocumentComponent implements OnInit {
        this.loading = false;
      }, (err) => {
        console.log(err);
-       this.appComponent.errorAlert();
+       this.appComponent.errorAlert(err.error.message);
        // this._toastService.presentToast(err.error.message, 'danger');
        this.loading = false;
      })

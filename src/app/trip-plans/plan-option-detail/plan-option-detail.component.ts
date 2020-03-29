@@ -75,7 +75,7 @@ export class PlanOptionDetailComponent implements OnInit {
        }, 1)
      }, (err) => {
        // this._toastService.presentToast(err.error.message, 'danger');
-       this.appComponent.errorAlert();
+       this.appComponent.errorAlert(err.error.message);
        console.log(err);
        this.loading = false;
      })

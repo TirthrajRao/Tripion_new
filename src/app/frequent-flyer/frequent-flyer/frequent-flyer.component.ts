@@ -82,7 +82,7 @@ export class FrequentFlyerComponent implements OnInit {
       // this.FFPResponse.push({'flight_detail':'','flight_image':'','flight_points':'','frequent_flight':'','updated_date':''})
       this.loading = false;
     }, (err) => {
-      this.appComponent.errorAlert();
+      this.appComponent.errorAlert(err.error.message);
       // this._toastService.presentToast(err.error.message, 'danger');
       console.log(err);
       this.loading = false;
@@ -113,7 +113,7 @@ export class FrequentFlyerComponent implements OnInit {
        this.addFfpReqForm.reset();
        this.submitted = false;
      }, (err) => {
-       this.appComponent.errorAlert();
+       this.appComponent.errorAlert(err.error.message);
        // this._toastService.presentToast(err.error.message, 'danger');
        console.log(err);
        this.loading = false;

@@ -55,7 +55,7 @@ export class PremiumAccountPaymentComponent implements OnInit {
       // this._toastService.presentToast(res.message, 'success')
       this.router.navigate(['/home']);
     }, (err) => {
-      this.appComponent.errorAlert();
+      this.appComponent.errorAlert(err.error.message);
       this.isDisable = false;
       this.loading = false;
       console.log(err);
