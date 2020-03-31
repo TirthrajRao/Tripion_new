@@ -447,7 +447,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n\n  <!-- Success alert -->\n  <div class=\"success_alert_box\" style=\"display: none;\">\n    <div class=\"alert_box_content\">\n      <div class=\"alert_box_text\">\n        <h4 *ngIf=\"!title\">Thanks !!</h4>\n        <h4 *ngIf=\"title\">{{title}}</h4>\n        <p>\n         {{message}}\n       </p>\n     </div>\n     <div class=\"alert_box_image\">\n      <img src=\"../../assets/images/success.png\" alt=\"image icon\">\n    </div>\n  </div>\n</div>\n\n<!-- Error Alert -->\n<div class=\"error_alert_box\" style=\"display: none;\">\n  <div class=\"alert_box_content\">\n    <div class=\"alert_box_text\">\n      <h4>Oopps !!</h4>\n      <p>\n        <span>A BOO-BOO HAPPENS</span>\n        <br> something went wrong\n      </p>\n    </div>\n    <div class=\"alert_box_image\">\n      <img src=\"assets/images/cross.png\" alt=\"image icon\">\n    </div>\n  </div>\n</div>\n\n</ion-app>\n"
+module.exports = "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n\n  <!-- Success alert -->\n  <div class=\"success_alert_box\" style=\"display: none;\">\n    <div class=\"alert_box_content\">\n      <div class=\"alert_box_text\">\n        <h4 *ngIf=\"!title\">Thanks !!</h4>\n        <h4 *ngIf=\"title\">{{title}}</h4>\n        <p>\n         {{message}}\n       </p>\n     </div>\n     <div class=\"alert_box_image\">\n      <img src=\"../../assets/images/success.png\" alt=\"image icon\">\n    </div>\n  </div>\n</div>\n\n<!-- Error Alert -->\n<div class=\"error_alert_box\" style=\"display: none;\">\n  <div class=\"alert_box_content\">\n    <div class=\"alert_box_text\">\n      <h4>Oopps !!</h4>\n      <div>\n        <span>A BOO-BOO HAPPENS</span>\n        <p *ngIf=\"!errMessage\" > something went wrong</p>\n        <p *ngIf=\"errMessage\" >{{errMessage}}</p>\n      </div>\n    </div>\n    <div class=\"alert_box_image\">\n      <img src=\"assets/images/cross.png\" alt=\"image icon\">\n    </div>\n  </div>\n</div>\n\n</ion-app>\n"
 
 /***/ }),
 
@@ -469,7 +469,7 @@ module.exports = "<ion-content>\n    <div class=\"login_form_page\">\n        <d
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n    <ion-toolbar class=\"toolbar-color1\">\n        <ion-row>\n            <ion-col size='2'>\n                <div class=\"back_icon\">\n                    <ion-buttons slot=\"start\">\n                        <ion-back-button>\n                            <i class=\"fa fa-angle-left back_icon_white\"></i>\n                        </ion-back-button>\n                    </ion-buttons>\n                </div>\n            </ion-col>\n            <ion-col size='8'>\n                <div class=\"middle_sec text-center text-white\">\n                    <span>Sign Up</span>\n                </div>\n            </ion-col>\n        </ion-row>\n    </ion-toolbar>\n</ion-header>\n<ion-content>\n    <div class=\"login_form_page\">\n        <div class=\"login\">\n            <!-- <h4 class=\"login_header\">Sign Up</h4> -->\n            <form class=\"login_form\" [formGroup]='signUpForm'>\n                <div class=\"form-group\">\n                    <input type=\"text\" formControlName=\"first_name\" class=\"form-control\" id=\"fname\" placeholder=\"Enter First Name\">\n                    <div *ngIf=\"submitted && f.first_name.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.first_name.errors.required\">Firstname is required</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <input type=\"text\" formControlName=\"last_name\" class=\"form-control\" id=\"lname\" placeholder=\"Enter Last Name\">\n                    <div *ngIf=\"submitted && f.last_name.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.last_name.errors.required\">Lastname is required</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <input type=\"text\" formControlName=\"username\" class=\"form-control\" id=\"uname\" placeholder=\"Enter User Name\">\n                    <div *ngIf=\"submitted && f.username.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.username.errors.required\">Username is required</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <input type=\"email\" formControlName=\"email\" class=\"form-control\" id=\"email\" placeholder=\"Enter Email\">\n                    <div *ngIf=\"submitted && f.email.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.email.errors.required\">Email is required</div>\n                        <div *ngIf=\"f.email.errors.email\">Email is invalid</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <input type=\"number\" formControlName=\"phone_number\" class=\"form-control\" id=\"number\" placeholder=\"Enter Mobile number\">\n                    <div *ngIf=\"submitted && f.phone_number.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.phone_number.errors.required\">Phone number is required</div>\n                        <div *ngIf=\"f.phone_number.errors.maxLength\">Phone Number must be 10 digit</div>\n                        <div *ngIf=\"f.phone_number.errors.minLength\">Phone Number must be 10 digit</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <ion-datetime placeholder=\"Select birth date\" class=\"form-control\" formControlName=\"dob\">\n                    </ion-datetime>\n                    <div *ngIf=\"submitted && f.dob.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.dob.errors.required\">Birthdate is required</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <input type=\"password\" formControlName=\"password\" class=\"form-control\" id=\"password\" placeholder=\"Enter Password\">\n                    <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.password.errors.required\">Password is required</div>\n                    </div>\n                </div>\n                <div class=\"form-group register-select\">\n                    <ion-label>Select Timezone</ion-label>\n                    <select id=\"myselection\" class=\"form-control\" formControlName=\"home_town\" (change)=\"changeCountry($event)\">\n                        <option [value]=\"i\" *ngFor=\"let timeZone of timeZoneList;let i = index\" > {{timeZone.text}}\n                        </option>\n                    </select>\n                    <div *ngIf=\"submitted && f.home_town.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.home_town.errors.required\">Select Your Timezone</div>\n                    </div>\n                </div>\n                <button type=\"submit\" class=\"login_btn btn\" (click)=\"signUpUser(signUpForm.value)\" [disabled]=\"isDisable\">Sign Up</button>\n            </form>\n        </div>\n    </div>\n    <div *ngIf=\"loading\">\n        <div id=\"loader-wrapper\">\n            <div class=\"heartbeatloader\">\n                <ion-img class=\"svgdraw\" src=\"../../assets/images/loader.gif\"></ion-img>\n            </div>\n        </div>\n    </div>\n</ion-content>"
+module.exports = "<ion-header>\n    <ion-toolbar class=\"toolbar-color1\">\n        <ion-row>\n            <ion-col size='2'>\n                <div class=\"back_icon\">\n                    <ion-buttons slot=\"start\">\n                        <ion-back-button>\n                            <i class=\"fa fa-angle-left back_icon_white\"></i>\n                        </ion-back-button>\n                    </ion-buttons>\n                </div>\n            </ion-col>\n            <ion-col size='8'>\n                <div class=\"middle_sec text-center text-white\">\n                    <span>Sign Up</span>\n                </div>\n            </ion-col>\n        </ion-row>\n    </ion-toolbar>\n</ion-header>\n<ion-content>\n    <div class=\"login_form_page\">\n        <div class=\"login\">\n            <!-- <h4 class=\"login_header\">Sign Up</h4> -->\n            <form class=\"login_form\" [formGroup]='signUpForm'>\n                <div class=\"form-group\">\n                    <input type=\"text\" formControlName=\"first_name\" class=\"form-control\" id=\"fname\" placeholder=\"Enter First Name\">\n                    <div *ngIf=\"submitted && f.first_name.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.first_name.errors.required\">Firstname is required</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <input type=\"text\" formControlName=\"last_name\" class=\"form-control\" id=\"lname\" placeholder=\"Enter Last Name\">\n                    <div *ngIf=\"submitted && f.last_name.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.last_name.errors.required\">Lastname is required</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <input type=\"text\" formControlName=\"username\" class=\"form-control\" id=\"uname\" placeholder=\"Enter User Name\">\n                    <div *ngIf=\"submitted && f.username.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.username.errors.required\">Username is required</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <input type=\"email\" formControlName=\"email\" class=\"form-control\" id=\"email\" placeholder=\"Enter Email\">\n                    <div *ngIf=\"submitted && f.email.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.email.errors.required\">Email is required</div>\n                        <div *ngIf=\"f.email.errors.email\">Email is invalid</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <input type=\"number\" formControlName=\"phone_number\" class=\"form-control\" id=\"number\" placeholder=\"Enter Mobile number\">\n                    <div *ngIf=\"submitted && f.phone_number.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.phone_number.errors.required\">Phone number is required</div>\n                        <div *ngIf=\"f.phone_number.errors.pattern\">Phone Number must be 10 digit</div>\n                    </div>\n                </div>\n                <!-- <div class=\"form-group\">\n                    <ion-datetime placeholder=\"Select birth date\" class=\"form-control\" formControlName=\"dob\">\n                    </ion-datetime>\n                    <div *ngIf=\"submitted && f.dob.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.dob.errors.required\">Birthdate is required</div>\n                    </div>\n                </div> -->\n                <div class=\"form-group\">\n                    <input type=\"password\" formControlName=\"password\" class=\"form-control\" id=\"password\" placeholder=\"Enter Password\">\n                    <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.password.errors.required\">Password is required</div>\n                    </div>\n                </div>\n                <!-- <div class=\"form-group register-select\">\n                    <ion-label>Select Timezone</ion-label>\n                    <select id=\"myselection\" class=\"form-control\" formControlName=\"home_town\" (change)=\"changeCountry($event)\">\n                        <option [value]=\"i\" *ngFor=\"let timeZone of timeZoneList;let i = index\" > {{timeZone.text}}\n                        </option>\n                    </select>\n                    <div *ngIf=\"submitted && f.home_town.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.home_town.errors.required\">Select Your Timezone</div>\n                    </div>\n                </div> -->\n                <button type=\"submit\" class=\"login_btn btn\" (click)=\"signUpUser(signUpForm.value)\" [disabled]=\"isDisable\">Sign Up</button>\n            </form>\n        </div>\n    </div>\n    <div *ngIf=\"loading\">\n        <div id=\"loader-wrapper\">\n            <div class=\"heartbeatloader\">\n                <ion-img class=\"svgdraw\" src=\"../../assets/images/loader.gif\"></ion-img>\n            </div>\n        </div>\n    </div>\n</ion-content>"
 
 /***/ }),
 
@@ -540,7 +540,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "* {\n  box-sizing: border-box; }\n\n.success_alert_box, .error_alert_box {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  margin: auto;\n  background-color: rgba(0, 0, 0, 0.4);\n  -ms-flex-align: center;\n  display: -webkit-box;\n  display: flex;\n  overflow: hidden;\n  z-index: 9999; }\n\n.alert_box_content {\n  background-color: #fff;\n  border-radius: 15px;\n  padding: 20px;\n  width: 280px;\n  position: relative;\n  margin: auto;\n  display: table;\n  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.5);\n  text-align: center;\n  -webkit-transition: all 0.4s;\n  transition: all 0.4s;\n  top: 100%; }\n\n.animate .alert_box_content {\n  top: 0; }\n\n.alert_box_image img {\n  height: 60px;\n  width: 60px;\n  opacity: 0;\n  -webkit-transform: scale(4);\n          transform: scale(4);\n  -webkit-transition: all 0.2s;\n  transition: all 0.2s;\n  -webkit-transition-delay: 0.4s;\n          transition-delay: 0.4s; }\n\n.animate .alert_box_image img {\n  opacity: 1;\n  -webkit-transform: scale(1);\n          transform: scale(1); }\n\n.alert_box_text {\n  margin-bottom: -30px; }\n\n.alert_box_text h4 {\n  margin: 0;\n  color: #434A5E;\n  font-size: 24px;\n  padding-bottom: 15px; }\n\n.alert_box_text p {\n  margin: 0;\n  color: #7F8DAB;\n  font-size: 18px;\n  line-height: 24px; }\n\n.alert_box_text p span {\n  text-transform: uppercase; }\n\n.alert_box_image {\n  top: 50px;\n  position: relative; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi92YXIvd3d3L2h0bWwvVHJpcGlvbl9uZXcvc3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDQyxzQkFBc0IsRUFBQTs7QUFFdkI7RUFDSSxlQUFlO0VBQ2YsTUFBTTtFQUNOLFNBQVM7RUFDVCxPQUFPO0VBQ1AsUUFBUTtFQUNSLFlBQVk7RUFDWixvQ0FBb0M7RUFDcEMsc0JBQXNCO0VBQ3RCLG9CQUFhO0VBQWIsYUFBYTtFQUNiLGdCQUFnQjtFQUNoQixhQUFhLEVBQUE7O0FBRWpCO0VBQ0ksc0JBQXNCO0VBQ3RCLG1CQUFtQjtFQUNuQixhQUFhO0VBQ2IsWUFBWTtFQUNaLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osY0FBYztFQUNkLDRDQUE0QztFQUM1QyxrQkFBa0I7RUFDbEIsNEJBQW9CO0VBQXBCLG9CQUFvQjtFQUNwQixTQUFTLEVBQUE7O0FBRWI7RUFDQyxNQUFNLEVBQUE7O0FBRVA7RUFDSSxZQUFZO0VBQ1osV0FBVztFQUNYLFVBQVU7RUFDViwyQkFBbUI7VUFBbkIsbUJBQW1CO0VBQ25CLDRCQUFvQjtFQUFwQixvQkFBb0I7RUFDcEIsOEJBQXNCO1VBQXRCLHNCQUFzQixFQUFBOztBQUUxQjtFQUNDLFVBQVU7RUFDViwyQkFBbUI7VUFBbkIsbUJBQW1CLEVBQUE7O0FBRXBCO0VBQ0Msb0JBQW9CLEVBQUE7O0FBRXJCO0VBQ0ksU0FBUztFQUNULGNBQWM7RUFDZCxlQUFlO0VBQ2Ysb0JBQW9CLEVBQUE7O0FBRXhCO0VBQ0ksU0FBUztFQUNULGNBQWM7RUFDZCxlQUFlO0VBQ2YsaUJBQWlCLEVBQUE7O0FBRXJCO0VBQ0kseUJBQXlCLEVBQUE7O0FBRTdCO0VBQ0ksU0FBUztFQUNULGtCQUFrQixFQUFBIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiKntcblx0Ym94LXNpemluZzogYm9yZGVyLWJveDtcbn1cbi5zdWNjZXNzX2FsZXJ0X2JveCwgLmVycm9yX2FsZXJ0X2JveCB7XG4gICAgcG9zaXRpb246IGZpeGVkO1xuICAgIHRvcDogMDtcbiAgICBib3R0b206IDA7XG4gICAgbGVmdDogMDtcbiAgICByaWdodDogMDtcbiAgICBtYXJnaW46IGF1dG87XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLCAwLCAwLCAwLjQpO1xuICAgIC1tcy1mbGV4LWFsaWduOiBjZW50ZXI7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xuICAgIHotaW5kZXg6IDk5OTk7XG59XG4uYWxlcnRfYm94X2NvbnRlbnQge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XG4gICAgYm9yZGVyLXJhZGl1czogMTVweDtcbiAgICBwYWRkaW5nOiAyMHB4O1xuICAgIHdpZHRoOiAyODBweDtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWFyZ2luOiBhdXRvO1xuICAgIGRpc3BsYXk6IHRhYmxlO1xuICAgIGJveC1zaGFkb3c6IDBweCAyMHB4IDMwcHggcmdiYSgwLCAwLCAwLCAwLjUpO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICB0cmFuc2l0aW9uOiBhbGwgMC40cztcbiAgICB0b3A6IDEwMCU7XG59XG4uYW5pbWF0ZSAuYWxlcnRfYm94X2NvbnRlbnR7XG5cdHRvcDogMDtcbn1cbi5hbGVydF9ib3hfaW1hZ2UgaW1nIHtcbiAgICBoZWlnaHQ6IDYwcHg7XG4gICAgd2lkdGg6IDYwcHg7XG4gICAgb3BhY2l0eTogMDtcbiAgICB0cmFuc2Zvcm06IHNjYWxlKDQpO1xuICAgIHRyYW5zaXRpb246IGFsbCAwLjJzO1xuICAgIHRyYW5zaXRpb24tZGVsYXk6IDAuNHM7XG59XG4uYW5pbWF0ZSAuYWxlcnRfYm94X2ltYWdlIGltZ3tcblx0b3BhY2l0eTogMTtcblx0dHJhbnNmb3JtOiBzY2FsZSgxKTtcbn1cbi5hbGVydF9ib3hfdGV4dHtcblx0bWFyZ2luLWJvdHRvbTogLTMwcHg7XG59XG4uYWxlcnRfYm94X3RleHQgaDQge1xuICAgIG1hcmdpbjogMDtcbiAgICBjb2xvcjogIzQzNEE1RTtcbiAgICBmb250LXNpemU6IDI0cHg7XG4gICAgcGFkZGluZy1ib3R0b206IDE1cHg7XG59XG4uYWxlcnRfYm94X3RleHQgcCB7XG4gICAgbWFyZ2luOiAwO1xuICAgIGNvbG9yOiAjN0Y4REFCO1xuICAgIGZvbnQtc2l6ZTogMThweDtcbiAgICBsaW5lLWhlaWdodDogMjRweDtcbn1cbi5hbGVydF9ib3hfdGV4dCBwIHNwYW4ge1xuICAgIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7XG59XG4uYWxlcnRfYm94X2ltYWdlIHtcbiAgICB0b3A6IDUwcHg7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xufSJdfQ== */"
+module.exports = "* {\n  box-sizing: border-box; }\n\n.success_alert_box, .error_alert_box {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  margin: auto;\n  background-color: rgba(0, 0, 0, 0.4);\n  -ms-flex-align: center;\n  display: -webkit-box;\n  display: flex;\n  overflow: hidden;\n  z-index: 9999; }\n\n.alert_box_content {\n  background-color: #fff;\n  border-radius: 15px;\n  padding: 20px;\n  width: 280px;\n  position: relative;\n  margin: auto;\n  display: table;\n  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.5);\n  text-align: center;\n  -webkit-transition: all 0.4s;\n  transition: all 0.4s;\n  top: 100%; }\n\n.animate .alert_box_content {\n  top: 0; }\n\n.alert_box_image img {\n  height: 60px;\n  width: 60px;\n  opacity: 0;\n  -webkit-transform: scale(4);\n          transform: scale(4);\n  -webkit-transition: all 0.2s;\n  transition: all 0.2s;\n  -webkit-transition-delay: 0.4s;\n          transition-delay: 0.4s; }\n\n.animate .alert_box_image img {\n  opacity: 1;\n  -webkit-transform: scale(1);\n          transform: scale(1); }\n\n.alert_box_text {\n  margin-bottom: -30px; }\n\n.alert_box_text h4 {\n  margin: 0;\n  color: #434A5E;\n  font-size: 24px;\n  padding-bottom: 15px; }\n\n.alert_box_text p, div {\n  margin: 0;\n  color: #7F8DAB;\n  font-size: 18px;\n  line-height: 24px; }\n\n.alert_box_text p span {\n  text-transform: uppercase; }\n\n.alert_box_image {\n  top: 50px;\n  position: relative; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi92YXIvd3d3L2h0bWwvVHJpcGlvbl9uZXcvc3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDQyxzQkFBc0IsRUFBQTs7QUFFdkI7RUFDSSxlQUFlO0VBQ2YsTUFBTTtFQUNOLFNBQVM7RUFDVCxPQUFPO0VBQ1AsUUFBUTtFQUNSLFlBQVk7RUFDWixvQ0FBb0M7RUFDcEMsc0JBQXNCO0VBQ3RCLG9CQUFhO0VBQWIsYUFBYTtFQUNiLGdCQUFnQjtFQUNoQixhQUFhLEVBQUE7O0FBRWpCO0VBQ0ksc0JBQXNCO0VBQ3RCLG1CQUFtQjtFQUNuQixhQUFhO0VBQ2IsWUFBWTtFQUNaLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osY0FBYztFQUNkLDRDQUE0QztFQUM1QyxrQkFBa0I7RUFDbEIsNEJBQW9CO0VBQXBCLG9CQUFvQjtFQUNwQixTQUFTLEVBQUE7O0FBRWI7RUFDQyxNQUFNLEVBQUE7O0FBRVA7RUFDSSxZQUFZO0VBQ1osV0FBVztFQUNYLFVBQVU7RUFDViwyQkFBbUI7VUFBbkIsbUJBQW1CO0VBQ25CLDRCQUFvQjtFQUFwQixvQkFBb0I7RUFDcEIsOEJBQXNCO1VBQXRCLHNCQUFzQixFQUFBOztBQUUxQjtFQUNDLFVBQVU7RUFDViwyQkFBbUI7VUFBbkIsbUJBQW1CLEVBQUE7O0FBRXBCO0VBQ0Msb0JBQW9CLEVBQUE7O0FBRXJCO0VBQ0ksU0FBUztFQUNULGNBQWM7RUFDZCxlQUFlO0VBQ2Ysb0JBQW9CLEVBQUE7O0FBRXhCO0VBQ0ksU0FBUztFQUNULGNBQWM7RUFDZCxlQUFlO0VBQ2YsaUJBQWlCLEVBQUE7O0FBRXJCO0VBQ0kseUJBQXlCLEVBQUE7O0FBRTdCO0VBQ0ksU0FBUztFQUNULGtCQUFrQixFQUFBIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiKntcblx0Ym94LXNpemluZzogYm9yZGVyLWJveDtcbn1cbi5zdWNjZXNzX2FsZXJ0X2JveCwgLmVycm9yX2FsZXJ0X2JveCB7XG4gICAgcG9zaXRpb246IGZpeGVkO1xuICAgIHRvcDogMDtcbiAgICBib3R0b206IDA7XG4gICAgbGVmdDogMDtcbiAgICByaWdodDogMDtcbiAgICBtYXJnaW46IGF1dG87XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLCAwLCAwLCAwLjQpO1xuICAgIC1tcy1mbGV4LWFsaWduOiBjZW50ZXI7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xuICAgIHotaW5kZXg6IDk5OTk7XG59XG4uYWxlcnRfYm94X2NvbnRlbnQge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XG4gICAgYm9yZGVyLXJhZGl1czogMTVweDtcbiAgICBwYWRkaW5nOiAyMHB4O1xuICAgIHdpZHRoOiAyODBweDtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWFyZ2luOiBhdXRvO1xuICAgIGRpc3BsYXk6IHRhYmxlO1xuICAgIGJveC1zaGFkb3c6IDBweCAyMHB4IDMwcHggcmdiYSgwLCAwLCAwLCAwLjUpO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICB0cmFuc2l0aW9uOiBhbGwgMC40cztcbiAgICB0b3A6IDEwMCU7XG59XG4uYW5pbWF0ZSAuYWxlcnRfYm94X2NvbnRlbnR7XG5cdHRvcDogMDtcbn1cbi5hbGVydF9ib3hfaW1hZ2UgaW1nIHtcbiAgICBoZWlnaHQ6IDYwcHg7XG4gICAgd2lkdGg6IDYwcHg7XG4gICAgb3BhY2l0eTogMDtcbiAgICB0cmFuc2Zvcm06IHNjYWxlKDQpO1xuICAgIHRyYW5zaXRpb246IGFsbCAwLjJzO1xuICAgIHRyYW5zaXRpb24tZGVsYXk6IDAuNHM7XG59XG4uYW5pbWF0ZSAuYWxlcnRfYm94X2ltYWdlIGltZ3tcblx0b3BhY2l0eTogMTtcblx0dHJhbnNmb3JtOiBzY2FsZSgxKTtcbn1cbi5hbGVydF9ib3hfdGV4dHtcblx0bWFyZ2luLWJvdHRvbTogLTMwcHg7XG59XG4uYWxlcnRfYm94X3RleHQgaDQge1xuICAgIG1hcmdpbjogMDtcbiAgICBjb2xvcjogIzQzNEE1RTtcbiAgICBmb250LXNpemU6IDI0cHg7XG4gICAgcGFkZGluZy1ib3R0b206IDE1cHg7XG59XG4uYWxlcnRfYm94X3RleHQgcCAsZGl2e1xuICAgIG1hcmdpbjogMDtcbiAgICBjb2xvcjogIzdGOERBQjtcbiAgICBmb250LXNpemU6IDE4cHg7XG4gICAgbGluZS1oZWlnaHQ6IDI0cHg7XG59XG4uYWxlcnRfYm94X3RleHQgcCBzcGFuIHtcbiAgICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xufVxuLmFsZXJ0X2JveF9pbWFnZSB7XG4gICAgdG9wOiA1MHB4O1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbn0iXX0= */"
 
 /***/ }),
 
@@ -736,8 +736,9 @@ var AppComponent = /** @class */ (function () {
     /**
      *Error Alert
      */
-    AppComponent.prototype.errorAlert = function () {
-        console.log("in errorAlert");
+    AppComponent.prototype.errorAlert = function (message) {
+        console.log("in errorAlert", message);
+        this.errMessage = message;
         $('.error_alert_box').fadeIn().addClass('animate');
         $('.error_alert_box').click(function () {
             $(this).hide().removeClass('animate');
@@ -22139,13 +22140,13 @@ var LoginComponent = /** @class */ (function () {
             });
             _this.loading = false;
             // this._toastServices.presentToast(res.message, 'success');
-            _this.appComponent.sucessAlert("Login Sucessfully", "Welcome");
+            _this.appComponent.sucessAlert("Login Sucessfull", "Welcome");
             _this.router.navigate(['/home']);
             _this.loginForm.reset();
             _this.submitted = false;
         }, function (err) {
             console.log("err in login", err);
-            _this.appComponent.errorAlert();
+            _this.appComponent.errorAlert(err.error.message);
             // this._toastServices.presentToast(err.error.message, 'danger');
             _this.isDisable = false;
             _this.loading = false;
@@ -22175,7 +22176,7 @@ var LoginComponent = /** @class */ (function () {
                 }, function (err) {
                     console.log("errr", err);
                 });
-                _this.appComponent.sucessAlert("Login Sucessfully", "Welcome");
+                _this.appComponent.sucessAlert("Login Sucessfull", "Welcome");
                 // this._toastServices.presentToast(res.message, 'success');
                 _this.loading = false;
                 _this.isDisable = false;
@@ -22188,7 +22189,7 @@ var LoginComponent = /** @class */ (function () {
                 }
             }, function (err) {
                 // this._toastServices.presentToast(err.error.message, 'danger');
-                _this.appComponent.errorAlert();
+                _this.appComponent.errorAlert(err.error.message);
                 console.log("err in google login", err);
                 _this.loading = false;
                 _this.isDisable = false;
@@ -22196,7 +22197,7 @@ var LoginComponent = /** @class */ (function () {
         })
             .catch(function (err) {
             // this._toastServices.presentToast("Error in Google Login", 'danger')
-            _this.appComponent.errorAlert();
+            _this.appComponent.errorAlert("Error in Google Login");
             console.error("err", err);
             _this.loading = false;
             _this.isDisable = false;
@@ -22241,7 +22242,7 @@ var LoginComponent = /** @class */ (function () {
                                         _this.loading = false;
                                         _this.isDisable = false;
                                     });
-                                    _this.appComponent.sucessAlert("Login Sucessfully", "Welcome");
+                                    _this.appComponent.sucessAlert("Login Sucessfull", "Welcome");
                                     // this._toastServices.presentToast(res.message, 'success');
                                     _this.loading = false;
                                     _this.isDisable = false;
@@ -22254,7 +22255,7 @@ var LoginComponent = /** @class */ (function () {
                                     }
                                 }, function (err) {
                                     // this._toastServices.presentToast(err.error.message, 'danger');
-                                    _this.appComponent.errorAlert();
+                                    _this.appComponent.errorAlert(err.error.message);
                                     console.log("err in fb login", err);
                                     _this.loading = false;
                                     _this.isDisable = false;
@@ -22271,7 +22272,7 @@ var LoginComponent = /** @class */ (function () {
             _this.loading = false;
             _this.isDisable = false;
             // this._toastServices.presentToast("Error in facebook Login", 'danger')
-            _this.appComponent.errorAlert();
+            _this.appComponent.errorAlert("Error in Facebook Login");
         });
     };
     LoginComponent.prototype.fetchFacebookData = function (accessToken) {
@@ -22299,7 +22300,7 @@ var LoginComponent = /** @class */ (function () {
         }, function (err) {
             console.log("err in f psw", err);
             // this._toastServices.presentToast(err.error.message, 'danger');
-            _this.appComponent.errorAlert();
+            _this.appComponent.errorAlert(err.error.message);
             _this.loading = false;
             _this.isDisable = false;
             $("#forgot-password").fadeOut();
@@ -22528,6 +22529,8 @@ var UserService = /** @class */ (function () {
         };
         return this.http.post(_config___WEBPACK_IMPORTED_MODULE_3__["config"].baseApiUrl + 'off-notification', data).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (res) {
             localStorage.removeItem('currentUser');
+            localStorage.removeItem("temprature");
+            localStorage.removeItem("time");
             _this.router.navigate(['/login'], { clearHistory: true });
             _this.currentUserSubject.next(null);
             return res;
@@ -22629,6 +22632,9 @@ var UserService = /** @class */ (function () {
             return res;
         }));
     };
+    UserService.prototype.getTime = function (lat, lng) {
+        return this.http.get('https://api.timezonedb.com/v2.1/get-time-zone?key=S3GVRR1XTRO9&format=json&by=position&lat=' + lat + '&lng=' + lng);
+    };
     UserService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] },
@@ -22703,11 +22709,9 @@ var SignupComponent = /** @class */ (function () {
             first_name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]),
             last_name: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]),
             email: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email]),
-            phone_number: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].maxLength(10), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(10)]),
+            phone_number: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].pattern(/^(\+\d{1,3}[- ]?)?\d{10}$/)]),
             password: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]),
             username: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]),
-            dob: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]),
-            home_town: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required])
         });
         console.log("timezones", this.timeZoneList);
     }
@@ -22736,9 +22740,9 @@ var SignupComponent = /** @class */ (function () {
     SignupComponent.prototype.signUpUser = function (data) {
         var _this = this;
         this.submitted = true;
-        data.dob = data.dob.split("T");
-        var td = data.dob[1].split('.');
-        data.dob = data.dob[0] + ' ' + td[0];
+        //  data.dob = data.dob.split("T");
+        //  const td = data.dob[1].split('.')
+        //  data.dob = data.dob[0] + ' ' + td[0];
         console.log(data);
         if (this.signUpForm.invalid) {
             return;
@@ -22763,7 +22767,7 @@ var SignupComponent = /** @class */ (function () {
             _this.isDisable = false;
             _this.loading = false;
             // this._toastServices.presentToast(err.error.message, 'danger');
-            _this.appComponent.errorAlert();
+            _this.appComponent.errorAlert(err.error.message);
             console.log("err in register", err);
         });
     };

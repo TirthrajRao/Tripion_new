@@ -12,6 +12,8 @@ import { FilePath } from '@ionic-native/file-path/ngx';
 import { AppComponent } from '../app.component';
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import { NativeGeocoderOptions, NativeGeocoderResult, NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+import { citydata } from '../city';
 declare const $: any;
 
 @Component({
@@ -40,6 +42,10 @@ export class HomePageComponent implements OnInit {
   notificationCount: any;
   timeZoneList = data.timeZone;
   homeTownData: any;
+  allCites = citydata.city;
+  tempratureIndex = localStorage.getItem('temprature');
+  timeIndex = localStorage.getItem('time')
+  tempratureCity: any;
   constructor(
     private geolocation: Geolocation,
     public http: HttpClient,
@@ -49,7 +55,8 @@ export class HomePageComponent implements OnInit {
     public _userService: UserService,
     public event: Events,
     private filePath: FilePath,
-    public appComponent: AppComponent
+    public appComponent: AppComponent,
+    private nativeGeocoder: NativeGeocoder,
   ) {
 
     this.curruetDate = this.curruetDate.split('T')[0];
@@ -81,23 +88,64 @@ export class HomePageComponent implements OnInit {
       });
     this.getAllTrips();
 
+    console.log("citylist", this.allCites[0])
+
   }
 
   ngOnInit() {
+    $(document).ready(function () {
+      $('#myselection1').select2({
+        // placeholder: "Select Timezone",
+      });
+    });
 
+    $('#myselection1').on('select2:select', (e) => {
+      console.log(this.allCites[e.params.data.id]);
+      localStorage.setItem("temprature", e.params.data.id)
+      const data = this.allCites[e.params.data.id];
+      console.log("this.temprature text", this.tempratureCity)
+      this.getWeather(data.lat, data.lng)
+    });
+
+    $(document).ready(function () {
+      $('#myselection2').select2({
+        // placeholder: "Select Timezone",
+      });
+    });
+    $('#myselection2').on('select2:select', (e) => {
+      console.log(this.allCites[e.params.data.id]);
+      this.getTime(this.allCites[e.params.data.id].lat,this.allCites[e.params.data.id].lng);
+      const data = this.allCites[e.params.data.id];
+      localStorage.setItem("time", e.params.data.id)
+      this.getTime(data.lat, data.lng)
+      // localStorage.setItem("temprature", e.params.data.id)
+      // const data = this.allCites[e.params.data.id];
+      // this.tempratureCity = null;
+      // console.log("this.temprature text", this.tempratureCity)
+      // this.getWeather(data.lat, data.lng)
+    });
   }
 
   ionViewWillEnter() {
-    console.log("in enter");
+    console.log("in enter", this.tempratureIndex);
+
+    if (this.tempratureIndex && this.tempratureIndex != '0') {
+      this.getWeather(this.allCites[this.tempratureIndex].lat, this.allCites[this.tempratureIndex].lng)
+    }
+    if(this.timeIndex && this.timeIndex !='0'){
+      this.getTime(this.allCites[this.timeIndex].lat, this.allCites[this.timeIndex].lng)
+    }
+
     // this.notificationCount = this._userService.notiFicationCounts;
     // console.log("notification count=======>",this.notificationCount)
     this.refreshIntervalId = setInterval(() => {
-      this.getCurrentTime();
+      // this.getCurrentTime();
+      this.getTime(this.allCites[this.timeIndex].lat, this.allCites[this.timeIndex].lng)
     }, 10000);
 
     this.getNotificationCount();
     this.getCurrentLatLong();
-    this.getCurrentTime();
+    // this.getCurrentTime();
   }
 
   ionViewDidLeave() {
@@ -107,7 +155,7 @@ export class HomePageComponent implements OnInit {
 
   checkUserProfile() {
     console.log("curruent user data", this.currentUser);
-    if (!this.currentUser.home_town || !this.currentUser.email) {
+    if (!this.currentUser.email) {
       // alert("complete your profile")
       $('.success_alert_box2').fadeIn().addClass('animate');
       // $('.success_alert_box2').click(function () {
@@ -127,6 +175,17 @@ export class HomePageComponent implements OnInit {
     $('.success_alert_box2').hide().removeClass('animate');
   }
 
+  getTime(lat,lng){
+    console.log("in time",lat,lng);
+    this._userService.getTime(lat,lng).subscribe((res:any)=>{
+      console.log("time in api=======>",res);
+      this.currentTime = res.formatted;
+      this.currentTime = moment(this.currentTime).format('hh:mm')
+        console.log("time", this.currentTime)
+    },err=>{
+      console.log("errrrrrr",err)
+    })
+  }
 
   /**
    * Get notification count
@@ -183,26 +242,29 @@ export class HomePageComponent implements OnInit {
    * Get Current Time
    */
   getCurrentTime() {
-    console.log("in currunt time func", this.currentUser)
-    this.homeTownData = this.currentUser.home_town;
-    console.log("hometoendata", this.homeTownData);
-    if (this.homeTownData) {
-      console.log("in if", this.homeTownData)
-      let timeZone = this.timeZoneList[Number(this.homeTownData)]
-      console.log("timezone", timeZone, timeZone.offset)
-      // getDateWithUTCOffset(inputTzOffset){
-      var now = new Date(); // get the current time
 
-      var currentTzOffset = -now.getTimezoneOffset() / 60 // in hours, i.e. -4 in NY
-      var deltaTzOffset = timeZone.offset - currentTzOffset; // timezone diff
+    this.currentTime = new Date().toISOString();
+    this.currentTime = moment.utc(this.currentTime).local().format();
+    // console.log("in currunt time func", this.currentUser)
+    // this.homeTownData = this.currentUser.home_town;
+    // console.log("hometoendata", this.homeTownData);
+    // if (this.homeTownData) {
+    //   console.log("in if", this.homeTownData)
+    //   let timeZone = this.timeZoneList[Number(this.homeTownData)]
+    //   console.log("timezone", timeZone, timeZone.offset)
+    //   // getDateWithUTCOffset(inputTzOffset){
+    //   var now = new Date(); // get the current time
 
-      var nowTimestamp = now.getTime(); // get the number of milliseconds since unix epoch 
-      var deltaTzOffsetMilli = deltaTzOffset * 1000 * 60 * 60; // convert hours to milliseconds (tzOffsetMilli*1000*60*60)
-      var outputDate = new Date(nowTimestamp + deltaTzOffsetMilli) // your new Date object with the timezone offset applied.
-      this.currentTime = moment(outputDate).format('hh:mm')
-      // console.log("time", this.currentTime)
+    //   var currentTzOffset = -now.getTimezoneOffset() / 60 // in hours, i.e. -4 in NY
+    //   var deltaTzOffset = timeZone.offset - currentTzOffset; // timezone diff
 
-    }
+    //   var nowTimestamp = now.getTime(); // get the number of milliseconds since unix epoch 
+    //   var deltaTzOffsetMilli = deltaTzOffset * 1000 * 60 * 60; // convert hours to milliseconds (tzOffsetMilli*1000*60*60)
+    //   var outputDate = new Date(nowTimestamp + deltaTzOffsetMilli) // your new Date object with the timezone offset applied.
+    //   this.currentTime = moment(outputDate).format('hh:mm')
+    //   // console.log("time", this.currentTime)
+
+    // }
 
 
     // this._userService.getHomeTownTime(this.currentUser.home_town).subscribe((res: any) => {
@@ -228,6 +290,30 @@ export class HomePageComponent implements OnInit {
       this.latitude = resp.coords.latitude;
       this.longitude = resp.coords.longitude;
       this.getLocation(this.latitude, this.longitude)
+      const obj = {
+        city: "Rajkot",
+        lat: this.latitude,
+        lng: this.longitude,
+        country: "hjh"
+      }
+      this.allCites[0] = obj;
+      if (this.tempratureIndex == '0') {
+        this.getWeather(this.allCites[0].lat, this.allCites[0].lng)
+      } else if (!this.tempratureIndex) {
+        localStorage.setItem("temprature", '0');
+        this.tempratureIndex = localStorage.getItem('temprature')
+        this.getWeather(this.allCites[0].lat, this.allCites[0].lng)
+      }
+
+      if(this.timeIndex == '0'){
+        this.getTime(this.allCites[0].lat, this.allCites[0].lng)
+      }else if (!this.timeIndex) {
+        localStorage.setItem("time", '0');
+        this.timeIndex = localStorage.getItem('time')
+        this.getTime(this.allCites[0].lat, this.allCites[0].lng)
+      }
+      console.log("this.alllllllcity", this.allCites);
+
     }).catch((error) => {
       console.log('Error getting location', error);
     });
@@ -240,6 +326,48 @@ export class HomePageComponent implements OnInit {
    */
   getLocation(lat, long) {
     console.log("lat long", lat, long);
+    let options: NativeGeocoderOptions = {
+      useLocale: true,
+      maxResults: 1
+    };
+    this.nativeGeocoder.reverseGeocode(lat, long, options)
+      .then((result: NativeGeocoderResult[]) => {
+        console.log("location", result[0].locality);
+        this.cityName = result[0].locality;
+        // this.tempratureCity = result[0].locality;
+        console.log("cityname", this.cityName);
+        const obj = {
+          city: this.cityName,
+          lat: this.latitude,
+          lng: this.longitude,
+          country: "hjh"
+        }
+        this.allCites[0] = obj;
+        if (this.tempratureIndex == '0') {
+          this.getWeather(this.allCites[0].lat, this.allCites[0].lng)
+        } else if (!this.tempratureIndex) {
+          localStorage.setItem("temprature", '0');
+          this.tempratureIndex = localStorage.getItem('temprature')
+          this.getWeather(this.allCites[0].lat, this.allCites[0].lng)
+        }
+        if (this.timeIndex == '0') {
+          this.getWeather(this.allCites[0].lat, this.allCites[0].lng)
+        } else if (!this.timeIndex) {
+          localStorage.setItem("time", '0');
+          this.timeIndex = localStorage.getItem('time')
+          this.getWeather(this.allCites[0].lat, this.allCites[0].lng)
+        }
+      })
+      .catch((error: any) => {
+        console.log("err get in cityname", error);
+      });
+    if (!this.tempratureIndex)
+      this.getWeather(lat, long)
+
+  }
+
+  getWeather(lat, long) {
+    console.log("weather la long", lat, long)
     this._userService.getWeather(lat, long).subscribe((res: any) => {
       console.log("===weather res===", res);
       this.temperature = ((5 / 9) * (res.data.temperature - 32)).toFixed(0);
@@ -248,8 +376,6 @@ export class HomePageComponent implements OnInit {
       console.log(err)
     })
   }
-
-
 
   /**
    * Get All Trips
@@ -278,13 +404,13 @@ export class HomePageComponent implements OnInit {
    * @param {Number} inquiryId 
    */
   getPlanOption(data) {
-    console.log("inquiryid", data,data.form_id);
+    console.log("inquiryid", data, data.form_id);
     if (data.list_of_inquiry.includes('Safe to travel')) {
       this.router.navigate(['/home/safe-travel']);
     } else {
       if (!data.is_direct) {
         if (data.plan_selected == 0) {
-          this.router.navigate(['/home/all-plan/' + data.inquiry_id] ,{ queryParams: { formId: data.form_id } });
+          this.router.navigate(['/home/all-plan/' + data.inquiry_id], { queryParams: { formId: data.form_id } });
         } else {
           console.log("in elseeeeeeee")
           if (data.status[0] == "Ongoing" && data.timeline_date) {

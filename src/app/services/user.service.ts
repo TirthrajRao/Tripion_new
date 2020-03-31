@@ -112,6 +112,8 @@ sendMessageToAmmendments(data){
     return this.http.post(config.baseApiUrl + 'off-notification', data).pipe(
       map(res => {
         localStorage.removeItem('currentUser');
+        localStorage.removeItem("temprature");
+        localStorage.removeItem("time");
         this.router.navigate(['/login'], { clearHistory: true } as NavigationExtras);
         this.currentUserSubject.next(null);
         return res;
@@ -224,6 +226,10 @@ sendMessageToAmmendments(data){
         this.notificationCountSubject.next({ "notification": res.data });
         return res;
       }))
+  }
+
+  getTime(lat,lng){
+    return this.http.get('https://api.timezonedb.com/v2.1/get-time-zone?key=S3GVRR1XTRO9&format=json&by=position&lat='+lat+'&lng='+lng);
   }
 
 }

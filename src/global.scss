@@ -734,6 +734,35 @@
             height: auto !important;
         }
     }
-
-
+.temprature-select{
+    .select2-container{
+        left: unset !important;
+        right: unset !important;
+        width: 35% !important;
+        margin-top: 8px;
+    }
+    .select2-selection__rendered{
+        font-weight: 600;
+        color: black !important;
+        font-size: 18px;
+    }
+    .select2-selection__arrow{
+        display: none;
+    }
     
+}
+.time-select{
+    .select2-container{
+        left: unset !important;
+        // right: unset !important;
+        width: 35% !important;
+    }
+    .select2-selection__rendered{
+        font-weight: 600;
+        color: black !important;
+        font-size: 18px;
+    }
+    .select2-selection__arrow{
+        display: none;
+    }
+}

@@ -44,7 +44,7 @@ ion-content {
 
 .wether {
     display: inline-block;
-    padding: 5px 25px 0px 25px;
+    padding: 5px 25px 0px 0px;
     .wether_image {
         ion-img {
             height: 90px;
@@ -54,10 +54,12 @@ ion-content {
         span {
             font-size: 19px;
             font-weight: 600;
+            margin-top: 8px;
         }
     }
     .city_name {
         text-align: center;
+        margin-top: 9px;
         ion-img {
             height: 30px;
         }
@@ -208,4 +210,20 @@ padding: 0;
         width: 30%;
         padding: 10px 21px;
     }
+}
+
+.city-name{
+    font-size: 19px;
+    font-weight: 600;
+    outline: none !important;
+    box-shadow:none
+}
+.dropdown-toggle::after {
+    display: none !important;
+    
+}
+.temprature-text{
+    position: absolute;
+    top: 30px;
+    margin-left: 8px;
 }

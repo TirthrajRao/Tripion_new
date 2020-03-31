@@ -177,7 +177,7 @@ export class IonicGestureConfig extends HammerGestureConfig {
             component: FrequentFlyerComponent
           },
           {
-            path: 'frequent-flyer-detail',
+            path: 'frequent-flyer-detail/:index',
             component: FrequentFlyerDetailComponent
           },
           {

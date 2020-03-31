@@ -86,16 +86,17 @@ export class SafeToTravelComponent implements OnInit {
   addSafeToTravelReq(data) {
     console.log(data)
     this.submitted = true;
+   
+    data.fromDate = data.fromDate.split("T")[0];
+    // const fd = data.fromDate[1].split('.')
+    // data.fromDate = data.fromDate[0] + ' ' + fd[0];
+
+    data.toDate = data.toDate.split("T")[0];
+    // const td = data.toDate[1].split('.')
+    // data.toDate = data.toDate[0] + ' ' + td[0]
     if (this.safeToTravelForm.invalid) {
       return
     }
-    data.fromDate = data.fromDate.split("T");
-    const fd = data.fromDate[1].split('.')
-    data.fromDate = data.fromDate[0] + ' ' + fd[0];
-
-    data.toDate = data.toDate.split("T");
-    const td = data.toDate[1].split('.')
-    data.toDate = data.toDate[0] + ' ' + td[0]
     const safeData = [{
       'safe_to_travel': data
     }]

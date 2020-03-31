@@ -25,7 +25,6 @@ export class FrequentFlyerComponent implements OnInit {
     public appComponent:AppComponent,
     ) {
 
-
     this.addFfpReqForm = new FormGroup({
       flight_name: new FormControl('', [Validators.required]),
       user_name: new FormControl('', [Validators.required]),
@@ -51,8 +50,10 @@ export class FrequentFlyerComponent implements OnInit {
      $('#add-passport-modal .modal_body').click(function (event) {
        event.stopPropagation();
      });
-     $('#add-passport-modal').click(function () {
-       $(this).fadeOut();
+     $('#add-passport-modal').click(()=> {
+       $('#add-passport-modal').fadeOut();
+       this.addFfpReqForm.reset();
+       this.submitted = false;
      });
    }
 
@@ -125,12 +126,13 @@ export class FrequentFlyerComponent implements OnInit {
    * Get Details of FFp Response
    * @param {Object} data 
    */
-   getDetails(data) {
-     console.log(data);
+   getDetails(data,index) {
+     console.log(data,index);
+    //  data['index_arr'] = index 
      let navigationExtras: NavigationExtras = {
        state: data
      };
 
-     this.router.navigate(['/home/frequent-flyer-detail'], navigationExtras);
+     this.router.navigate(['/home/frequent-flyer-detail/'+index], navigationExtras);
    }
  }

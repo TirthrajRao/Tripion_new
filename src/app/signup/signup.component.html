@@ -52,8 +52,7 @@
                     <input type="number" formControlName="phone_number" class="form-control" id="number" placeholder="Enter Mobile number">
                     <div *ngIf="submitted && f.phone_number.errors" class="invalid-feedback">
                         <div *ngIf="f.phone_number.errors.required">Phone number is required</div>
-                        <div *ngIf="f.phone_number.errors.maxLength">Phone Number must be 10 digit</div>
-                        <div *ngIf="f.phone_number.errors.minLength">Phone Number must be 10 digit</div>
+                        <div *ngIf="f.phone_number.errors.pattern">Phone Number must be 10 digit</div>
                     </div>
                 </div>
                 <!-- <div class="form-group">

@@ -8,8 +8,8 @@
         </ion-refresher-content>
     </ion-refresher> -->
     <div class="benefits_content" *ngIf="FFPResponse.length">
-        <div *ngFor="let ffp of FFPResponse">
-            <div class="country_name w-100" (click)="getDetails(ffp)" *ngIf="ffp">
+        <div *ngFor="let ffp of FFPResponse; let i = index">
+            <div class="country_name w-100" (click)="getDetails(ffp,i)" *ngIf="ffp">
                 <p class="float-left" *ngIf="ffp.frequent_flight">{{ffp.frequent_flight}}</p>
                 <img *ngIf="!ffp.flight_image" src="/assets/images/placeholder.png"class="float-right">
                 <img *ngIf="ffp.flight_image" src="{{ffp.flight_image || '../../../assets/images/placeholder.png'}}" class="float-right">

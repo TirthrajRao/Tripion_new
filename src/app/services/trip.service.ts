@@ -73,6 +73,10 @@ export class TripService {
     return this.http.post(config.baseApiUrl + 'add-flight', data)
   }
 
+  editFFPRequest(data){
+    return this.http.post(config.baseApiUrl + 'update-flight', data)
+  }
+
   /**
    * Get FFP responces
    * @param {Object} data 

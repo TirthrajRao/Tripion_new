@@ -26,18 +26,39 @@
         <div class="wether w-100 ">
             <div class="wether_image float-left ">
                 <!-- <ion-img src="{{temperatureIcon}} " *ngIf="temperatureIcon "></ion-img> -->
+
+
                 <ion-img src="../../assets/images/wether.png "></ion-img>
-                <span *ngIf="temperature ">{{temperature}}°C
+
+                <div class="temprature-select" >
+                    <select id="myselection1" class="form-control w-100" [(ngModel)]="this.tempratureIndex" >
+                        <option style="color: black;" [value]="i" *ngFor="let city of allCites;let i=  index">
+                            {{city.city}}
+                        </option>  
+                    </select>
+                    <!-- <span *ngIf="!tempratureCity && !tempratureIndex" style="position: absolute;">Rajkot</span> -->
+                    <span *ngIf="tempratureCity && !tempratureIndex" style="position: absolute;">{{tempratureCity}}</span>
+                </div>
+               
+                <span *ngIf="temperature " class="temprature-text">{{temperature}}°C
                 </span>
-                <span *ngIf="!temperature ">14°C
+                <span *ngIf="!temperature " class="temprature-text">14°C
                 </span>
+
+
             </div>
-            <div class="city_name float-right ">
-                <!-- <p *ngIf="cityName ">{{cityName}}</p> -->
-                <!-- <p *ngIf="!cityName ">Rajkot</p> -->
-                <ion-img src="../../assets/images/clock.png "></ion-img>
-                <p *ngIf="currentTime">{{currentTime }}</p>
+            <div class="city_name float-right time-select">
+                <!-- <p *ngIf="cityName">{{cityName}}</p> -->
+                <select id="myselection2" class="form-control w-100" [(ngModel)]="this.tempratureIndex" >
+                    <option style="color: black;" [value]="i" *ngFor="let city of allCites;let i=  index">
+                        {{city.city}}
+                    </option>  
+                </select>
+                <!-- <p *ngIf="!cityName">Rajkot</p> -->
+              
+                <p *ngIf="currentTime" style="position: absolute;margin-top: 25px;right: 15%;">{{currentTime}}</p>
                 <p *ngIf="!currentTime">4:47</p>
+
             </div>
         </div>
         <div class="home_details " *ngIf="allTrips.length ">
@@ -77,8 +98,8 @@
                     <img src="../../assets/images/safetravel.png" alt="image icon">
                 </div> -->
                 <p>
-                  Please Complete <br>
-                  Your Profile
+                    Please Complete <br>
+                    Your Profile
                 </p>
                 <div class="next_btn">
                     <button type="submit" (click)="completeProfile()">Ok</button>
