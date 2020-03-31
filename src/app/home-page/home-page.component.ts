@@ -114,7 +114,7 @@ export class HomePageComponent implements OnInit {
     });
     $('#myselection2').on('select2:select', (e) => {
       console.log(this.allCites[e.params.data.id]);
-      this.getTime(this.allCites[e.params.data.id].lat,this.allCites[e.params.data.id].lng);
+      this.getTime(this.allCites[e.params.data.id].lat, this.allCites[e.params.data.id].lng);
       const data = this.allCites[e.params.data.id];
       localStorage.setItem("time", e.params.data.id)
       this.getTime(data.lat, data.lng)
@@ -128,11 +128,13 @@ export class HomePageComponent implements OnInit {
 
   ionViewWillEnter() {
     console.log("in enter", this.tempratureIndex);
-
+   
+    this.tempratureIndex = localStorage.getItem('temprature');
+   
     if (this.tempratureIndex && this.tempratureIndex != '0') {
       this.getWeather(this.allCites[this.tempratureIndex].lat, this.allCites[this.tempratureIndex].lng)
     }
-    if(this.timeIndex && this.timeIndex !='0'){
+    if (this.timeIndex && this.timeIndex != '0') {
       this.getTime(this.allCites[this.timeIndex].lat, this.allCites[this.timeIndex].lng)
     }
 
@@ -140,6 +142,8 @@ export class HomePageComponent implements OnInit {
     // console.log("notification count=======>",this.notificationCount)
     this.refreshIntervalId = setInterval(() => {
       // this.getCurrentTime();
+      this.timeIndex = localStorage.getItem('time');
+      // console.log("this.timeindex",this.timeIndex)
       this.getTime(this.allCites[this.timeIndex].lat, this.allCites[this.timeIndex].lng)
     }, 10000);
 
@@ -175,15 +179,15 @@ export class HomePageComponent implements OnInit {
     $('.success_alert_box2').hide().removeClass('animate');
   }
 
-  getTime(lat,lng){
-    console.log("in time",lat,lng);
-    this._userService.getTime(lat,lng).subscribe((res:any)=>{
-      console.log("time in api=======>",res);
+  getTime(lat, lng) {
+    console.log("in time", lat, lng);
+    this._userService.getTime(lat, lng).subscribe((res: any) => {
+      // console.log("time in api=======>", res);
       this.currentTime = res.formatted;
       this.currentTime = moment(this.currentTime).format('hh:mm')
-        console.log("time", this.currentTime)
-    },err=>{
-      console.log("errrrrrr",err)
+      console.log("time", this.currentTime)
+    }, err => {
+      console.log("errrrrrr", err)
     })
   }
 
@@ -305,9 +309,10 @@ export class HomePageComponent implements OnInit {
         this.getWeather(this.allCites[0].lat, this.allCites[0].lng)
       }
 
-      if(this.timeIndex == '0'){
+      if (this.timeIndex == '0') {
         this.getTime(this.allCites[0].lat, this.allCites[0].lng)
-      }else if (!this.timeIndex) {
+      } else if (!this.timeIndex) {
+        console.log("in else")
         localStorage.setItem("time", '0');
         this.timeIndex = localStorage.getItem('time')
         this.getTime(this.allCites[0].lat, this.allCites[0].lng)

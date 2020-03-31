@@ -95,7 +95,7 @@ export class SignupComponent implements OnInit {
          // this._toastServices.presentToast(err.error.message, 'danger')
        })
        // this._toastServices.presentToast(res.message, 'success')
-       this.appComponent.sucessAlert("Registered Sucessfully")
+       this.appComponent.sucessAlert("Register Successful")
        this.router.navigate(['/home']);
      }, (err) => {
        this.isDisable = false;

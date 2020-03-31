@@ -117,7 +117,7 @@ export class GeneralDetailComponent implements OnInit {
           localStorage.removeItem('form_data');
           localStorage.removeItem('selectedFormCategory');
           // this._toastService.presentToast(res.message, 'success');
-          this.appComponent.sucessAlert("Your Inquiry has been Added Successfully");
+          this.appComponent.sucessAlert("Inquiry Submitted Successfully","Awesome");
           this.route.navigate(['/home']);
         }, (err) => {
           this.isDisable = false;
@@ -185,26 +185,26 @@ export class GeneralDetailComponent implements OnInit {
    */
   changeDateFormate(data) {
     if (data.dob.includes("T")) {
-      data.dob = data.dob.split("T");
-      const fd = data.dob[1].split('.')
-      data.dob = data.dob[0] + ' ' + fd[0];
+      data.dob = data.dob.split("T")[0];
+      // const fd = data.dob[1].split('.')
+      // data.dob = data.dob[0] + ' ' + fd[0];
     }
 
     if (data.departure_date.includes("T")) {
-      data.departure_date = data.departure_date.split("T");
-      const fd1 = data.departure_date[1].split('.')
-      data.departure_date = data.departure_date[0] + ' ' + fd1[0];
+      data.departure_date = data.departure_date.split("T")[0];
+      // const fd1 = data.departure_date[1].split('.')
+      // data.departure_date = data.departure_date[0] + ' ' + fd1[0];
     }
 
     if (data.intende_date.includes("T")) {
-      data.intende_date = data.intende_date.split("T");
-      const fd2 = data.intende_date[1].split('.')
-      data.intende_date = data.intende_date[0] + ' ' + fd2[0];
+      data.intende_date = data.intende_date.split("T")[0];
+      // const fd2 = data.intende_date[1].split('.')
+      // data.intende_date = data.intende_date[0] + ' ' + fd2[0];
     }
     if (data.passport_valid_date.includes("T")) {
-      data.passport_valid_date = data.passport_valid_date.split("T");
-      const fd3 = data.passport_valid_date[1].split('.')
-      data.passport_valid_date = data.passport_valid_date[0] + ' ' + fd3[0];
+      data.passport_valid_date = data.passport_valid_date.split("T")[0];
+      // const fd3 = data.passport_valid_date[1].split('.')
+      // data.passport_valid_date = data.passport_valid_date[0] + ' ' + fd3[0];
     }
     return data
   }

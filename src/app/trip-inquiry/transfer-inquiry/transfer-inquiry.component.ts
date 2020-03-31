@@ -74,13 +74,13 @@ export class TransferInquiryComponent implements OnInit {
     console.log(data)
     this.submitted = true;
 
-    data.from_date = data.from_date.split("T");
-    const fd = data.from_date[1].split('.')
-    data.from_date = data.from_date[0] + ' ' + fd[0];
+    data.from_date = data.from_date.split("T")[0];
+    // const fd = data.from_date[1].split('.')
+    // data.from_date = data.from_date[0] + ' ' + fd[0];
 
-    data.to_date = data.to_date.split("T");
-    const fd1 = data.to_date[1].split('.')
-    data.to_date = data.to_date[0] + ' ' + fd1[0];
+    data.to_date = data.to_date.split("T")[0];
+    // const fd1 = data.to_date[1].split('.')
+    // data.to_date = data.to_date[0] + ' ' + fd1[0];
 
     if (this.transferForm.invalid) {
       return

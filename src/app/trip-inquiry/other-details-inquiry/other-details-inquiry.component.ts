@@ -128,7 +128,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
       localStorage.setItem('form_data', JSON.stringify(formData));
       let navigationExtras: NavigationExtras = {
         state: {
-          type: 'Number of plan - ' + data.number_of_plans,
+          type: 'Number of plan ' + ' * ' + data.number_of_plans,
           amount: this.amount
         }
       };
@@ -193,7 +193,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
         console.log("inquiry form res", res);
         localStorage.removeItem('form_data');
         localStorage.removeItem('selectedFormCategory');
-        this.appComponent.sucessAlert("Form Submitted Sucessfully")
+        this.appComponent.sucessAlert("Form Successfully Submitted")
         // this._toastService.presentToast(res.message, 'success')
         this.route.navigate(['/home']);
       }, (err) => {

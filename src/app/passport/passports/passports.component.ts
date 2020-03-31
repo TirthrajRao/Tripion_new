@@ -128,9 +128,9 @@ export class PassportsComponent implements OnInit {
    * @param {object} formData 
    */
   addPassport(formData) {
-    formData.doc_expiry_date = formData.doc_expiry_date.split("T");
-    const td = formData.doc_expiry_date[1].split('.')
-    formData.doc_expiry_date = formData.doc_expiry_date[0] + ' ' + td[0];
+    formData.doc_expiry_date = formData.doc_expiry_date.split("T")[0];
+    // const td = formData.doc_expiry_date[1].split('.')
+    // formData.doc_expiry_date = formData.doc_expiry_date[0] + ' ' + td[0];
       
     this.submitted = true;
     if (this.addPassportForm.invalid) {
@@ -158,7 +158,7 @@ export class PassportsComponent implements OnInit {
       this.addPassportForm.reset();
       this.submitted = false;
       this.loading = false;
-      this.appComponent.sucessAlert("Passport Added Sucessfully");
+      this.appComponent.sucessAlert("Passport Successfully Added");
       this.allPassport.unshift(res.data);
     }, (err) => {
       console.log(err);

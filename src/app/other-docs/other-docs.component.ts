@@ -43,16 +43,6 @@ export class OtherDocsComponent implements OnInit {
     });
   }
 
-  openModal() {
-    $('#new-modal').fadeIn();
-    $('#new-modal .modal_body').click(function (event) {
-      event.stopPropagation();
-    });
-    $('#new-modal').click( () =>{
-      $('#new-modal').fadeOut();
-    });
-  }
-
   // modal for create new folfer
   openCreateFolderModal() {
     $('#open-folder').click(function () {

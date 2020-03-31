@@ -128,7 +128,7 @@ export class ProfileComponent implements OnInit {
        this.loading = false;
        this.event.publish('userName', res.data);
        // this._toastService.presentToast(res.message, 'success');
-        this.appComponent.sucessAlert("Sucessfully Updated");
+        this.appComponent.sucessAlert("Update Successful");
         
      }, (err) => {
        console.log("err in edit profile", err);
@@ -188,7 +188,7 @@ export class ProfileComponent implements OnInit {
        this.isDisable = false;
        this.loading = false;
        // this._toastService.presentToast(res.message, 'success');
-        this.appComponent.sucessAlert("Password Reset Sucessfully")
+        this.appComponent.sucessAlert("Password Reset Successful")
      }, (err) => {
        // this._toastService.presentToast(err.error.message, 'danger');
         this.appComponent.errorAlert(err.error.message);

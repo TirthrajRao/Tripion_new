@@ -131,6 +131,9 @@ export class PlanOptionComponent implements OnInit {
   }
 
 
+  /**
+   * Redirect to payment page
+   */
   payNow() {
     let navigationExtras: NavigationExtras = {
       state: {

@@ -1,7 +1,8 @@
 <ion-content fullscreen>
     <div class="img-preview" *ngIf="imagePath">
-        <img src="{{imagePath}}" *ngIf="fileType == 'image'" />
-        <video controls="controls" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline" class="videoPlayer" *ngIf="fileType == 'video'">
+        <img src="{{imagePath}}" *ngIf="fileType == 'image'" onError="src = 'assets/images/placeholder.png'" />
+        <video controls="controls" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline"
+            class="videoPlayer" *ngIf="fileType == 'video'">
             <source src="{{imagePath}}" type="video/mp4" />
         </video>
         <div *ngIf="fileType == 'file'">
@@ -15,6 +16,21 @@
             <ion-icon ios="ios-send" md="md-send" [color]="white"></ion-icon>
         </div>
     </div>
+
+    <div class="error_alert_box2" style="display: none;">
+        <div class="alert_box_content">
+            <div class="alert_box_text">
+                <h4>Oopps !!</h4>
+                <div>
+                    <span>A BOO-BOO HAPPENS</span>
+                    <p> something went wrong</p>
+                </div>
+            </div>
+            <div class="alert_box_image">
+                <img src="assets/images/cross.png" alt="image icon">
+            </div>
+        </div>
+    </div>
     <div *ngIf="loading">
         <div id="loader-wrapper">
             <div class="heartbeatloader">
@@ -22,4 +38,6 @@
             </div>
         </div>
     </div>
+
+
 </ion-content>

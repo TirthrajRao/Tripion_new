@@ -162,9 +162,9 @@ export class EditUserPassportDetailComponent implements OnInit {
        // }
        console.log("date",data.doc_expiry_date)
        if(data.doc_expiry_date.includes('T')){
-         data.doc_expiry_date = data.doc_expiry_date.split("T");
-         const td = data.doc_expiry_date[1].split('.')
-         data.doc_expiry_date = data.doc_expiry_date[0] + ' ' + td[0]
+         data.doc_expiry_date = data.doc_expiry_date.split("T")[0];
+        //  const td = data.doc_expiry_date[1].split('.')
+        //  data.doc_expiry_date = data.doc_expiry_date[0] + ' ' + td[0]
        }
 
        this.isDisable = true;

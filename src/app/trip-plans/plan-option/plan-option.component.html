@@ -68,9 +68,12 @@
                 <span>Document Request</span>
             </div>
             <div class="card_body">
-                <small>List of Required Documents</small>
-                <ul>
+                <small *ngIf="notApproveDoc.length">List of Required Documents</small>
+                <ul *ngIf="notApproveDoc.length">
                     <li *ngFor="let document of notApproveDoc">{{document}}</li>
+                </ul>
+                <ul *ngIf="!notApproveDoc.length">
+                    <li>All documents are approved</li>
                 </ul>
             </div>
             <div class="card_footer w-100">
@@ -120,7 +123,7 @@
 
 
         <div style="margin-top: 40%;"
-            *ngIf="!tripDetail.payment.payment_request.length && !tripDetail.requested_docs.length  && tripDetail.is_passport != 1 ">
+            *ngIf="!tripDetail.payment.payment_request.length && !tripDetail.requested_docs.length  && tripDetail.is_passport != 1 && !tripDetail.payment.payment_success.length ">
             <span class="text-center text-white no-req">We are Working on it <br>will revert soon!!</span>
         </div>
 

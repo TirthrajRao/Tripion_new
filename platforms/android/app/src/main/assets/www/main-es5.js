@@ -22140,7 +22140,7 @@ var LoginComponent = /** @class */ (function () {
             });
             _this.loading = false;
             // this._toastServices.presentToast(res.message, 'success');
-            _this.appComponent.sucessAlert("Login Sucessfull", "Welcome");
+            _this.appComponent.sucessAlert("Login Successful", "Welcome");
             _this.router.navigate(['/home']);
             _this.loginForm.reset();
             _this.submitted = false;
@@ -22176,7 +22176,7 @@ var LoginComponent = /** @class */ (function () {
                 }, function (err) {
                     console.log("errr", err);
                 });
-                _this.appComponent.sucessAlert("Login Sucessfull", "Welcome");
+                _this.appComponent.sucessAlert("Login Successful", "Welcome");
                 // this._toastServices.presentToast(res.message, 'success');
                 _this.loading = false;
                 _this.isDisable = false;
@@ -22242,7 +22242,7 @@ var LoginComponent = /** @class */ (function () {
                                         _this.loading = false;
                                         _this.isDisable = false;
                                     });
-                                    _this.appComponent.sucessAlert("Login Sucessfull", "Welcome");
+                                    _this.appComponent.sucessAlert("Login Successful", "Welcome");
                                     // this._toastServices.presentToast(res.message, 'success');
                                     _this.loading = false;
                                     _this.isDisable = false;
@@ -22296,7 +22296,7 @@ var LoginComponent = /** @class */ (function () {
             _this.loading = false;
             _this.isDisable = false;
             $("#forgot-password").fadeOut();
-            _this.appComponent.sucessAlert("Please Check your mail");
+            _this.appComponent.sucessAlert("Please Check the mail");
         }, function (err) {
             console.log("err in f psw", err);
             // this._toastServices.presentToast(err.error.message, 'danger');
@@ -22761,7 +22761,7 @@ var SignupComponent = /** @class */ (function () {
                 // this._toastServices.presentToast(err.error.message, 'danger')
             });
             // this._toastServices.presentToast(res.message, 'success')
-            _this.appComponent.sucessAlert("Registered Sucessfully");
+            _this.appComponent.sucessAlert("Register Successful");
             _this.router.navigate(['/home']);
         }, function (err) {
             _this.isDisable = false;

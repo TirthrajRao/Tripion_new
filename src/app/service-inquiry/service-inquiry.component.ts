@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import * as _ from 'lodash';
-
+declare const $: any;
 @Component({
   selector: 'app-service-inquiry',
   templateUrl: './service-inquiry.component.html',
@@ -46,17 +46,21 @@ export class ServiceInquiryComponent implements OnInit {
     console.log("this.tripService", services, this.tripServices)
     if (services.length)
       if (services.length < 3) {
-        const alert = await this.alertController.create({
-          subHeader: 'Trip Inquiry',
-          message: 'you have to select atleast three service',
-          buttons: ['OK']
+        $('.error_alert_box3').fadeIn().addClass('animate');
+        $('.error_alert_box3').click(function () {
+          $(this).hide().removeClass('animate');
         });
-        await alert.present();
+        $(' .error_alert_box3 .alert_box_content').click(function (event) {
+          event.stopPropagation();
+        });
+        // const alert = await this.alertController.create({
+        //   subHeader: 'Trip Inquiry',
+        //   message: 'you have to select atleast three service',
+        //   buttons: ['OK']
+        // });
+        // await alert.present();
         return;
       }
-
-
-
 
     this.checkBoxValue = this.generalServices.concat(this.tripServices);
     this.selectedForm = services.concat(this.generalServices);
@@ -75,12 +79,12 @@ export class ServiceInquiryComponent implements OnInit {
         console.log("index", index)
         let cutOut = this.checkBoxValue.splice(index, 1)[0];
         // this.selectedForm.splice(index, 1);
-       
-        console.log("cutout", cutOut,this.selectedForm)// cut the element at index 'from'
+
+        console.log("cutout", cutOut, this.selectedForm)// cut the element at index 'from'
         this.checkBoxValue.splice(0, 0, cutOut);
-       
-        this.selectedForm.splice(this.selectedForm.indexOf('passport'),1)
-        console.log("this.selecteed form",this.selectedForm)
+
+        this.selectedForm.splice(this.selectedForm.indexOf('passport'), 1)
+        console.log("this.selecteed form", this.selectedForm)
       }
       console.log("this ==>", this.checkBoxValue, this.generalServices, this.selectedFormCategory);
       localStorage.setItem('formId', JSON.stringify(this.checkBoxValue));

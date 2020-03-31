@@ -68,7 +68,7 @@ export class FrequentFlyerDetailComponent implements OnInit {
     });
     $('#edit-passport-modal').click(() => {
       $('#edit-passport-modal').fadeOut();
-      this.editFfpReqForm.reset();
+      // this.editFfpReqForm.reset();
       this.submitted = false;
     });
   }
@@ -87,13 +87,15 @@ export class FrequentFlyerDetailComponent implements OnInit {
     this.loading = true;
     data['id'] = this.currentUser.id;
     data['index_arr'] = this.ffpIndex;
+    data['flight_image_id'] = this.details.flight_image_id;
+    data['updated_date'] = this.details.updated_date;
     console.log(data);
     this._tripService.editFFPRequest(data).subscribe((res: any) => {
       console.log(res);
       // this._toastService.presentToast(res.message, 'success');
       this.details = res.data;
       console.log(this.details)
-       this.appComponent.sucessAlert("Update Successfully");
+       this.appComponent.sucessAlert("Update Successful");
       this.isDisable = false;
       this.loading = false;
       $('#edit-passport-modal').fadeOut();

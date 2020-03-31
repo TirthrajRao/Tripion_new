@@ -35,3 +35,70 @@ ion-content::after {
     //     margin-left: 7px;
     // }
 }
+
+*{
+	box-sizing: border-box;
+}
+ .error_alert_box2 {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    -ms-flex-align: center;
+    display: flex;
+    overflow: hidden;
+    z-index: 9999;
+}
+.alert_box_content {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    width: 280px;
+    position: relative;
+    margin: auto;
+    display: table;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    transition: all 0.4s;
+    top: 100%;
+}
+.animate .alert_box_content{
+	top: 0;
+}
+.alert_box_image img {
+    height: 60px;
+    width: 60px;
+    opacity: 0;
+    transform: scale(4);
+    transition: all 0.2s;
+    transition-delay: 0.4s;
+}
+.animate .alert_box_image img{
+	opacity: 1;
+	transform: scale(1);
+}
+.alert_box_text{
+	margin-bottom: -30px;
+}
+.alert_box_text h4 {
+    // margin: 0;
+    color: #434A5E;
+    font-size: 24px;
+    padding-bottom: 15px;
+}
+.alert_box_text p ,div{
+    // margin: 0;
+    color: #7F8DAB;
+    font-size: 18px;
+    line-height: 24px;
+}
+.alert_box_text p span {
+    text-transform: uppercase;
+}
+.alert_box_image {
+    top: 50px;
+    position: relative;
+}

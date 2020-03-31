@@ -26,7 +26,6 @@ import { MediaCapture } from '@ionic-native/media-capture/ngx';
 // import { SafePipe } from './safe.pipe';
 
 
-
 @NgModule({
 
   declarations: [

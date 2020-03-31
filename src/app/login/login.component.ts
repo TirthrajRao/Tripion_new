@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
        })
        this.loading = false;
        // this._toastServices.presentToast(res.message, 'success');
-       this.appComponent.sucessAlert("Login Sucessfull","Welcome")
+       this.appComponent.sucessAlert("Login Successful","Welcome")
        this.router.navigate(['/home']);
        this.loginForm.reset();
        this.submitted = false;
@@ -109,7 +109,7 @@ export class LoginComponent implements OnInit {
          }, err => {
            console.log("errr", err)
          })
-          this.appComponent.sucessAlert("Login Sucessfull","Welcome")
+          this.appComponent.sucessAlert("Login Successful","Welcome")
          // this._toastServices.presentToast(res.message, 'success');
          this.loading = false;
          this.isDisable = false;
@@ -170,7 +170,7 @@ export class LoginComponent implements OnInit {
              this.loading = false;
              this.isDisable = false
            });
-            this.appComponent.sucessAlert("Login Sucessfull","Welcome")
+            this.appComponent.sucessAlert("Login Successful","Welcome")
            // this._toastServices.presentToast(res.message, 'success');
            this.loading = false;
            this.isDisable = false;
@@ -217,7 +217,7 @@ export class LoginComponent implements OnInit {
        this.loading = false;
        this.isDisable = false;
        $("#forgot-password").fadeOut();
-       this.appComponent.sucessAlert("Please Check your mail")
+       this.appComponent.sucessAlert("Please Check the mail")
      }, (err) => {
        console.log("err in f psw", err);
        // this._toastServices.presentToast(err.error.message, 'danger');

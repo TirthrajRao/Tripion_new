@@ -146,9 +146,9 @@ export class VisaDetailComponent implements OnInit {
        return
      }
      if (data.doc_expiry_date.includes('T')) {
-       data.doc_expiry_date = data.doc_expiry_date.split("T");
-       const td = data.doc_expiry_date[1].split('.')
-       data.doc_expiry_date = data.doc_expiry_date[0] + ' ' + td[0]
+       data.doc_expiry_date = data.doc_expiry_date.split("T")[0];
+      //  const td = data.doc_expiry_date[1].split('.')
+      //  data.doc_expiry_date = data.doc_expiry_date[0] + ' ' + td[0]
      }
 
      this.isDisable = true;
@@ -164,7 +164,7 @@ export class VisaDetailComponent implements OnInit {
        this.isDisable = false;
        this.loading = false;
        console.log(res);
-        this.appComponent.sucessAlert("Sucessfully Updated")
+        this.appComponent.sucessAlert("Update Successful")
        // res.data.image_url = JSON.stringify(res.data.image_url);
        this.router.navigate(['/home/user-passport-detail'], { queryParams: { data: JSON.stringify(res.data) } })
      }, (err) => {

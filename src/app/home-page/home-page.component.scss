@@ -43,8 +43,12 @@ ion-content {
 }
 
 .wether {
-    display: inline-block;
-    padding: 5px 25px 0px 0px;
+    // display: inline-block;
+    // padding: 5px 25px 0px 0px;
+    padding: 5px 35px 0px 0px;
+   
+    display: flex;
+    justify-content: space-between;
     .wether_image {
         ion-img {
             height: 90px;
@@ -58,7 +62,8 @@ ion-content {
         }
     }
     .city_name {
-        text-align: center;
+        // text-align: center;
+        text-align: right;
         margin-top: 9px;
         ion-img {
             height: 30px;

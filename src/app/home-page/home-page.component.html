@@ -30,35 +30,36 @@
 
                 <ion-img src="../../assets/images/wether.png "></ion-img>
 
-                <div class="temprature-select" >
-                    <select id="myselection1" class="form-control w-100" [(ngModel)]="this.tempratureIndex" >
+                <div class="temprature-select">
+                    <select id="myselection1" class="form-control w-100" [(ngModel)]="this.tempratureIndex">
                         <option style="color: black;" [value]="i" *ngFor="let city of allCites;let i=  index">
                             {{city.city}}
-                        </option>  
+                        </option>
                     </select>
                     <!-- <span *ngIf="!tempratureCity && !tempratureIndex" style="position: absolute;">Rajkot</span> -->
-                    <span *ngIf="tempratureCity && !tempratureIndex" style="position: absolute;">{{tempratureCity}}</span>
+                    <span *ngIf="tempratureCity && !tempratureIndex"
+                        style="position: absolute;">{{tempratureCity}}</span>
                 </div>
-               
+
                 <span *ngIf="temperature " class="temprature-text">{{temperature}}°C
                 </span>
-                <span *ngIf="!temperature " class="temprature-text">14°C
-                </span>
+                <!-- <span *ngIf="!temperature " class="temprature-text">14°C
+                </span> -->
 
 
             </div>
             <div class="city_name float-right time-select">
                 <!-- <p *ngIf="cityName">{{cityName}}</p> -->
-                <select id="myselection2" class="form-control w-100" [(ngModel)]="this.tempratureIndex" >
+                <select id="myselection2" class="form-control w-100" [(ngModel)]="this.timeIndex">
                     <option style="color: black;" [value]="i" *ngFor="let city of allCites;let i=  index">
                         {{city.city}}
-                    </option>  
+                    </option>
                 </select>
-                <!-- <p *ngIf="!cityName">Rajkot</p> -->
-              
-                <p *ngIf="currentTime" style="position: absolute;margin-top: 25px;right: 15%;">{{currentTime}}</p>
+                <p *ngIf="currentTime" style="    position: absolute;
+                margin-top: 25px;
+                right: 20px;
+                width: 150px;">{{currentTime}}</p>
                 <p *ngIf="!currentTime">4:47</p>
-
             </div>
         </div>
         <div class="home_details " *ngIf="allTrips.length ">

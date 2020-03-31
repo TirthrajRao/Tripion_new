@@ -22113,7 +22113,7 @@ let LoginComponent = class LoginComponent {
             });
             this.loading = false;
             // this._toastServices.presentToast(res.message, 'success');
-            this.appComponent.sucessAlert("Login Sucessfull", "Welcome");
+            this.appComponent.sucessAlert("Login Successful", "Welcome");
             this.router.navigate(['/home']);
             this.loginForm.reset();
             this.submitted = false;
@@ -22148,7 +22148,7 @@ let LoginComponent = class LoginComponent {
                 }, err => {
                     console.log("errr", err);
                 });
-                this.appComponent.sucessAlert("Login Sucessfull", "Welcome");
+                this.appComponent.sucessAlert("Login Successful", "Welcome");
                 // this._toastServices.presentToast(res.message, 'success');
                 this.loading = false;
                 this.isDisable = false;
@@ -22208,7 +22208,7 @@ let LoginComponent = class LoginComponent {
                         this.loading = false;
                         this.isDisable = false;
                     });
-                    this.appComponent.sucessAlert("Login Sucessfull", "Welcome");
+                    this.appComponent.sucessAlert("Login Successful", "Welcome");
                     // this._toastServices.presentToast(res.message, 'success');
                     this.loading = false;
                     this.isDisable = false;
@@ -22256,7 +22256,7 @@ let LoginComponent = class LoginComponent {
             this.loading = false;
             this.isDisable = false;
             $("#forgot-password").fadeOut();
-            this.appComponent.sucessAlert("Please Check your mail");
+            this.appComponent.sucessAlert("Please Check the mail");
         }, (err) => {
             console.log("err in f psw", err);
             // this._toastServices.presentToast(err.error.message, 'danger');
@@ -22688,7 +22688,7 @@ let SignupComponent = class SignupComponent {
                 // this._toastServices.presentToast(err.error.message, 'danger')
             });
             // this._toastServices.presentToast(res.message, 'success')
-            this.appComponent.sucessAlert("Registered Sucessfully");
+            this.appComponent.sucessAlert("Register Successful");
             this.router.navigate(['/home']);
         }, (err) => {
             this.isDisable = false;
