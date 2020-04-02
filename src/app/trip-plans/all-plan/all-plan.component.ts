@@ -123,7 +123,7 @@ export class AllPlanComponent implements OnInit {
         }
       })
       // this._toastService.presentToast(res.message,'success');
-      this.appComponent.sucessAlert("Thanks for choosing plan!!", "Hive Five!!")
+      this.appComponent.sucessAlert("Thanks for choosing the plan!!", "Hive Five!!")
       this.router.navigate(['home/plan-option/' + this.inquiryId]);
     }, (err) => {
       console.log(err);

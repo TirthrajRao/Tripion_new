@@ -116,7 +116,7 @@ export class SafeToTravelComponent implements OnInit {
       this.isDisable = false;
       this.loading = false;
       // this._toastService.presentToast(res.message, 'success');
-      this.appComponent.sucessAlert("Request Successful")
+      this.appComponent.sucessAlert("Request Submitted")
       let navigationExtras: NavigationExtras = {
         state: {
           safe_to_pdf: [],

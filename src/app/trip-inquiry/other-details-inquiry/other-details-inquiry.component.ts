@@ -193,7 +193,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
         console.log("inquiry form res", res);
         localStorage.removeItem('form_data');
         localStorage.removeItem('selectedFormCategory');
-        this.appComponent.sucessAlert("Form Successfully Submitted")
+        this.appComponent.sucessAlert("Form Submitted")
         // this._toastService.presentToast(res.message, 'success')
         this.route.navigate(['/home']);
       }, (err) => {

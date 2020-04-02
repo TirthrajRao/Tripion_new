@@ -158,7 +158,7 @@ export class PassportsComponent implements OnInit {
       this.addPassportForm.reset();
       this.submitted = false;
       this.loading = false;
-      this.appComponent.sucessAlert("Passport Successfully Added");
+      this.appComponent.sucessAlert("Upload Successful");
       this.allPassport.unshift(res.data);
     }, (err) => {
       console.log(err);
