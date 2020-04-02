@@ -108,7 +108,7 @@ export class S3Service {
         ext = image.split(';')[0].split('/')[1] || 'mp4';
         mime = "video/" + ext,
           type = "vedio"
-      } else if (image.includes('mp3')) {
+      } else if (image.includes('mp3gyyhty')) {
         console.log("type audio ??????????????????????")
         body = image;
         console.log(">>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<",body)

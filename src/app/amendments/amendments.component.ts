@@ -93,14 +93,6 @@ export class AmendmentsComponent implements OnInit {
     console.log("this.chatId", this.chatId)
   }
 
-  // active(){
-  //   console.log("active");
-  // }
-
-  // released(){
-  //   console.log("release")
-  // }
-
   /**
    * Get Messages
    */
@@ -220,34 +212,7 @@ export class AmendmentsComponent implements OnInit {
    * @param {Number} messageIndex
    */
   getMessageDate(messageIndex: number): string {
-    // let dateToday = new Date().toDateString();
-    // let longDateYesterday = new Date();
-    // longDateYesterday.setDate(new Date().getDate() - 1);
-    // let dateYesterday = longDateYesterday.toDateString();
-    // let today = dateToday.slice(0, dateToday.length - 5);
-    // let yesterday = dateYesterday.slice(0, dateToday.length - 5);
-
-    // const wholeDate = new Date(
-    //   this.messagesList[messageIndex].message.date
-    // ).toDateString();
-
-    // this.messageDateString = wholeDate.slice(0, wholeDate.length - 5);
-    // if (
-    //   new Date(this.messagesList[messageIndex].message.date).getFullYear() ===
-    //   new Date().getFullYear()
-    // ) {
-    //   if (this.messageDateString === today) {
-    //     return "Today";
-    //   } else if (this.messageDateString === yesterday) {
-    //     return "Yesterday";
-    //   } else {
-    //     // console.log("message string", this.messageDateString)
-    //     return this.messageDateString;
-    //   }
-    // } else {
-    //   return wholeDate;
-    // }
-
+   
     var fromNow = moment(this.messagesList[messageIndex].message.date).fromNow();
 
     return moment(this.messagesList[messageIndex].message.date).calendar(null, {
@@ -501,9 +466,13 @@ export class AmendmentsComponent implements OnInit {
     this.fileOpener.showOpenWithDialog(url, mimeType)
       .then(() => console.log('File is opened'))
       .catch(e => console.log('Error opening file', e));
-
   }
 
+  /**
+   * Select files
+   * @param {object} e 
+   * @param {string} type 
+   */
   selectFile(e, type) {
     console.log("file data", e.target.files);
     this.files = e.target.files;
@@ -533,29 +502,15 @@ export class AmendmentsComponent implements OnInit {
   }
 
 
-
+  /**
+   * Start audio recording
+   */
   startRecord() {
     console.log("startRecord");
     console.log("this.file", this.file)
     const ROOT_DIRECTORY = this.file.externalRootDirectory;
     console.log("directory", ROOT_DIRECTORY)
-    // const downloadFolderName = 'Download/';
-    // this.mediaCapture.captureAudio().then(res => {
-    //   console.log("audio file",res)
-    //   // this.storeMediaFiles(res);
-    // }, (err: CaptureError) => console.error('err',err));
-    // if (this.platform.is('ios')) {
-    //   this.fileName = 'record'+new Date().getDate()+new Date().getMonth()+new Date().getFullYear()+new Date().getHours()+new Date().getMinutes()+new Date().getSeconds()+'.3gp';
-    //   this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + this.fileName;
-    //   this.audio = this.media.create(this.filePath);
-    // } else if (this.platform.is('android')) {
-    //   this.fileName = 'record'+new Date().getDate()+new Date().getMonth()+new Date().getFullYear()+new Date().getHours()+new Date().getMinutes()+new Date().getSeconds()+'.mp3';
-    //  console.log("this.filename",this.fileName)
-    //   this.filePath = this.file.externalDataDirectory.replace(/file:\/\//g, '') + this.fileName;
-    //   console.log("this.filename",this.filePath)
-    //   this.audio = this.media.create(this.filePath);
-    //   console.log("this.audio",this.audio)
-    // }
+
     this.recording = true;
     this.startTimer();
     this.fileName = 'record' + new Date().getDate() + new Date().getMonth() + new Date().getFullYear() + new Date().getHours() + new Date().getMinutes() + new Date().getSeconds() + '.mp3';
@@ -566,114 +521,52 @@ export class AmendmentsComponent implements OnInit {
     this.audio.startRecord();
   }
 
+  /**
+   * stop audio recording
+   */
   async stopRecord() {
+    console.log("stop record")
     await clearInterval(this.timex);
     this.recording = false;
     console.log("this.audio", this.audio);
     this.audio.stopRecord();
 
-    this.audio.play();
-    this.audio.setVolume(0.8);
 
-    let duration = this.audio.getDuration();
-    console.log("duration", duration);
-    // let reader = new FileReader();
-    // reader.readAsDataURL(this.filePath);
-    // reader.onload = (_event) => {
-    //   this.urls = reader.result
-    // }
-    //   console.log("url", this.urls)
     let data = { name: this.fileName, src: this.filePath, type: 'audio/mp3' };
     console.log("recorded audio", data);
 
-
-    // var getFileBlob = function (url, cb) {
-    //   var xhr = new XMLHttpRequest();
-    //   xhr.open("GET", url);
-    //   xhr.responseType = "blob";
-    //   xhr.addEventListener('load', function () {
-    //     cb(xhr.response);
-    //   });
-    //   xhr.send();
-    // };
-
-    // var blobToFile = function (blob, name) {
-    //   blob.lastModifiedDate = new Date();
-    //   blob.name = name;
-    //   return blob;
-    // };
-
-    // var getFileObject = function (filePathOrUrl, cb) {
-    //   getFileBlob(filePathOrUrl, function (blob) {
-    //     cb(blobToFile(blob, this.fileName));
-    //   });
-    // };
-
-    // getFileObject(this.filePath, function (fileObject) {
-    //   console.log("fileobject", fileObject);
-    // });
-
-
-
-    // this.file.readAsArrayBuffer('file:///sdcard//', this.fileName).then((res) => {
-    //   console.log("res===>", res)
-    //   try {
-    //     let blob = new Blob([res], { type: "audio/mp3" });
-    //     console.log("blob=====", blob)
-    //   } catch (z) {
-    //     console.log("errrrr", z)
-    //     // alert('error al crear blob' + z);
-    //   }
-    // }).catch(err => alert('error al leer el archivo ' + JSON.stringify(err)));
-
-
+    // conver base64
     this.base64.encodeFile(data.src).then((base64File: string) => {
       // console.log("base64file", base64File);
       var x = base64File.substr(13, base64File.length);
       x = "data:audio/mp3;base64" + x;
       console.log("x---------------", x);
 
-
-
-
+      //conver base64 to blob
       var byteString = atob(x.split(',')[1]);
       var ab = new ArrayBuffer(byteString.length);
       var ia = new Uint8Array(ab);
       for (var i = 0; i < byteString.length; i++) {
         ia[i] = byteString.charCodeAt(i);
       }
-      var blob = new Blob([ia], { type: 'image/jpeg' });
-      console.log("blob====>",blob)
-      // var file = new File([blob], "image.jpg");
+      var blob = new Blob([ia], { type: 'audio/mp3' });
+      console.log("blob====>", blob)
 
-      // console.log("file=====>",file)
-      // this._s3Service.uploadImage(data.src, data.name, 'audio', x).then((res) => {
-      //   console.log("Response", res);
-      //   const messageData: any = {
-      //     message: res,
-      //   }
-      //   console.log("messge response=====>", messageData)
-      //   this.send(messageData, messageData.message.type)
-      // }).catch((err) => {
-      //   console.log("Error is", err);
-      //   this.appComponent.errorAlert()
-      //   // this._toastService.presentToast("Internal server error", 'danger')
-      // })
-
-      // }, (err) => {
-      //   console.log(err);
-      // });
-
-      // this._s3Service.uploadImage('', data.name, 'audio', data).then((res) => {
-      //   console.log("Response", res);
-      //   const messageData: any = {
-      //     message: res,
-      //   }
-      //   console.log("messge response=====>",messageData)
-      //   // this.send(messageData, messageData.message.type)
-      // }).catch((err) => {
-      //   console.log("Error is", err);
-      //   this._toastService.presentToast("Internal server error", 'danger')
+      this._s3Service.uploadImage(data.src, data.name, 'audio', blob).then((res) => {
+        this.loading = true;
+        console.log("Response", res);
+        const messageData: any = {
+          message: res,
+        }
+        console.log("messge response=====>", messageData)
+        this.send(messageData, messageData.message.type)
+        this.loading = false;
+      }).catch((err) => {
+        console.log("Error is", err);
+        this.loading = false;
+        this.appComponent.errorAlert()
+        // this._toastService.presentToast("Internal server error", 'danger')
+      })
     })
 
 
@@ -684,7 +577,7 @@ export class AmendmentsComponent implements OnInit {
   startTimer() {
     var hours = 0;
     var mins = 0;
-    var seconds = 0;
+    var seconds:any = 0;
 
     this.timex = setInterval(() => {
       seconds++;
@@ -695,21 +588,18 @@ export class AmendmentsComponent implements OnInit {
           mins = 0; hours++;
           if (hours < 10) { $("#hours").text('0' + hours + ':') } else $("#hours").text(hours + ':');
         }
-
         if (mins < 10) {
           $("#mins").text('0' + mins + ':');
         }
         else $("#mins").text(mins + ':');
       }
       if (seconds < 10) {
-        console.log("seconds", '0' + seconds)
-        $("#seconds").text('0' + seconds);
+        seconds = '0' + seconds;
+        console.log("seconds", '0' + seconds,"----",seconds)
+        $("#seconds").text(seconds);
       } else {
         $("#seconds").text(seconds);
       }
-
-      // this.startTimer();
-      console.log("timer", $("#seconds").text(seconds).val())
     }, 1000);
 
   }

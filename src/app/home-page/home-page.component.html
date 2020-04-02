@@ -17,7 +17,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
     <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
         <ion-refresher-content refreshingSpinner="circular" pullingIcon="null">
         </ion-refresher-content>
@@ -31,7 +31,7 @@
                 <ion-img src="../../assets/images/wether.png "></ion-img>
 
                 <div class="temprature-select">
-                    <select id="myselection1" class="form-control w-100" [(ngModel)]="this.tempratureIndex">
+                    <select id="myselection1" class="form-control w-100 temp" [(ngModel)]="this.tempratureIndex" >
                         <option style="color: black;" [value]="i" *ngFor="let city of allCites;let i=  index">
                             {{city.city}}
                         </option>
@@ -50,7 +50,7 @@
             </div>
             <div class="city_name float-right time-select">
                 <!-- <p *ngIf="cityName">{{cityName}}</p> -->
-                <select id="myselection2" class="form-control w-100" [(ngModel)]="this.timeIndex">
+                <select id="myselection2" class="form-control w-100" [(ngModel)]="this.timeIndex" >
                     <option style="color: black;" [value]="i" *ngFor="let city of allCites;let i=  index">
                         {{city.city}}
                     </option>
@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="home_details " *ngIf="allTrips.length ">
-            <div *ngFor="let trip of allTrips ">
+            <div *ngFor="let trip of allTrips " >
                 <div class="card text-white mb-2 " (click)="getPlanOption(trip) ">
                     <div class="card_content w-100 ">
                         <div class="country_details float-left ">

@@ -72,6 +72,7 @@ import { InnerFolderComponent } from '../folder-data/inner-folder/inner-folder.c
 import { MediaCapture } from '@ionic-native/media-capture/ngx';
 import { Media } from '@ionic-native/media/ngx';
 import { SafePipe } from '.././safe.pipe';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
 
 export class IonicGestureConfig extends HammerGestureConfig {
   buildHammer(element: HTMLElement) {
@@ -97,6 +98,7 @@ export class IonicGestureConfig extends HammerGestureConfig {
     ReactiveFormsModule,
     RoundProgressModule,
     LongPressModule,
+    NgxDocViewerModule,
     RouterModule.forChild([
       {
         path: '',
@@ -272,8 +274,8 @@ export class IonicGestureConfig extends HammerGestureConfig {
             component: SelectLocationComponent
           },
           {
-            path:'inner-folder/:foldername',
-            component:InnerFolderComponent
+            path: 'inner-folder/:foldername',
+            component: InnerFolderComponent
           },
           // {
           //   path:'send-image',
@@ -351,7 +353,7 @@ export class IonicGestureConfig extends HammerGestureConfig {
     GoogleMaps,
     Camera,
     FilePath,
-    DocumentViewer, 
+    DocumentViewer,
     Base64,
     {
       provide: HAMMER_GESTURE_CONFIG,

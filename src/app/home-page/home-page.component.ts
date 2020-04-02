@@ -14,6 +14,7 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import { NativeGeocoderOptions, NativeGeocoderResult, NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { citydata } from '../city';
+// import * as cities from 'all-the-cities'
 declare const $: any;
 
 @Component({
@@ -42,10 +43,12 @@ export class HomePageComponent implements OnInit {
   notificationCount: any;
   timeZoneList = data.timeZone;
   homeTownData: any;
-  allCites = citydata.city;
+  allCites = [];
+  // allCites = citydata.city;
   tempratureIndex = localStorage.getItem('temprature');
   timeIndex = localStorage.getItem('time')
   tempratureCity: any;
+  cityRefreshInterval: any;
   constructor(
     private geolocation: Geolocation,
     public http: HttpClient,
@@ -58,7 +61,7 @@ export class HomePageComponent implements OnInit {
     public appComponent: AppComponent,
     private nativeGeocoder: NativeGeocoder,
   ) {
-
+    // console.log("all cities using npm-----/>", cities)
     this.curruetDate = this.curruetDate.split('T')[0];
     console.log("currentdate", this.curruetDate);
 
@@ -88,12 +91,41 @@ export class HomePageComponent implements OnInit {
       });
     this.getAllTrips();
 
-    console.log("citylist", this.allCites[0])
-
   }
 
+
   ngOnInit() {
+    // $(document).ready(()=>{
+    //   console.log("document ready");
+    //   setTimeout(()=>{
+    const cityList = citydata.city;
+    _.forEach(cityList, (city, index) => {
+      if (index <= 1500) {
+        this.allCites.push(city)
+      } else {
+        return false
+      }
+    });
+setTimeout(()=>{
+
+  this.cityRefreshInterval = setInterval(() => {
+    const cityLength = this.allCites.length + 1500
+    for (let i = this.allCites.length - 1; i < cityLength; i++) {
+      if (i < cityList.length
+        ) {
+          this.allCites.push(cityList[i]);
+        } else {
+          console.log("in else", this.allCites, i);
+          clearInterval(this.cityRefreshInterval);
+        }
+      }
+      // )
+      console.log("all  city after push", this.allCites)
+    }, 1800)
+  },1500)
+
     $(document).ready(function () {
+
       $('#myselection1').select2({
         // placeholder: "Select Timezone",
       });
@@ -103,7 +135,18 @@ export class HomePageComponent implements OnInit {
       console.log(this.allCites[e.params.data.id]);
       localStorage.setItem("temprature", e.params.data.id)
       const data = this.allCites[e.params.data.id];
-      console.log("this.temprature text", this.tempratureCity)
+      localStorage.setItem("tempratureData",JSON.stringify(data));
+      // const cityLength = this.allCites.length + 10
+      // _.forEach(cityList, (city, index) => {
+      //   console.log("index ", index, this.allCites.length - 1)
+      //   if (index > this.allCites.length - 1) {
+      //     if (index < cityLength) {
+      //       console.log("inner if", index, cityLength)
+      //       this.allCites.push(city);
+      //     }
+      //   }
+      // })
+      // console.log("all  city after push", this.allCites)
       this.getWeather(data.lat, data.lng)
     });
 
@@ -117,25 +160,38 @@ export class HomePageComponent implements OnInit {
       this.getTime(this.allCites[e.params.data.id].lat, this.allCites[e.params.data.id].lng);
       const data = this.allCites[e.params.data.id];
       localStorage.setItem("time", e.params.data.id)
+      localStorage.setItem("timeData",JSON.stringify(data));
       this.getTime(data.lat, data.lng)
-      // localStorage.setItem("temprature", e.params.data.id)
-      // const data = this.allCites[e.params.data.id];
-      // this.tempratureCity = null;
-      // console.log("this.temprature text", this.tempratureCity)
-      // this.getWeather(data.lat, data.lng)
     });
   }
 
+
+
+
   ionViewWillEnter() {
     console.log("in enter", this.tempratureIndex);
-   
+
     this.tempratureIndex = localStorage.getItem('temprature');
-   
+
     if (this.tempratureIndex && this.tempratureIndex != '0') {
-      this.getWeather(this.allCites[this.tempratureIndex].lat, this.allCites[this.tempratureIndex].lng)
+      if (this.allCites[this.tempratureIndex]) {
+        console.log("---------",this.allCites[this.tempratureIndex])
+        this.getWeather(this.allCites[this.tempratureIndex].lat, this.allCites[this.tempratureIndex].lng)
+      } else{
+        console.log("in else",JSON.parse(localStorage.getItem('tempratureData')));
+        const data  = JSON.parse(localStorage.getItem('tempratureData'))
+        this.getWeather(data.lat, data.lng)
+      }
     }
+
     if (this.timeIndex && this.timeIndex != '0') {
-      this.getTime(this.allCites[this.timeIndex].lat, this.allCites[this.timeIndex].lng)
+      if (this.allCites[this.timeIndex]) {
+        this.getTime(this.allCites[this.timeIndex].lat, this.allCites[this.timeIndex].lng)
+      } else{
+        console.log("in else",JSON.parse(localStorage.getItem('timeData')));
+        const data  = JSON.parse(localStorage.getItem('timeData'))
+        this.getTime(data.lat, data.lng)
+      }
     }
 
     // this.notificationCount = this._userService.notiFicationCounts;
@@ -158,7 +214,6 @@ export class HomePageComponent implements OnInit {
   }
 
   checkUserProfile() {
-    console.log("curruent user data", this.currentUser);
     if (!this.currentUser.email) {
       // alert("complete your profile")
       $('.success_alert_box2').fadeIn().addClass('animate');
@@ -180,12 +235,12 @@ export class HomePageComponent implements OnInit {
   }
 
   getTime(lat, lng) {
-    console.log("in time", lat, lng);
+    // console.log("in time", lat, lng);
     this._userService.getTime(lat, lng).subscribe((res: any) => {
       // console.log("time in api=======>", res);
       this.currentTime = res.formatted;
       this.currentTime = moment(this.currentTime).format('hh:mm')
-      console.log("time", this.currentTime)
+      // console.log("time", this.currentTime)
     }, err => {
       console.log("errrrrrr", err)
     })

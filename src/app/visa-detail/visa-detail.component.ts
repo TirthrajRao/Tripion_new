@@ -48,6 +48,18 @@ export class VisaDetailComponent implements OnInit {
       this.visaId = param.visaId;
       console.log("visaId", this.visaId)
     })
+
+    $(document).ready(function () {
+      $('#myselection3').select2({
+        // placeholder: "Select Timezone",
+      });
+    });
+
+    $('#myselection3').on('select2:select', (e) => {
+      console.log(e.params.data.id)
+      // this.signUpForm.controls.home_town.setValue(e.params.data.id);
+      // console.log("data", this.signUpForm.value);
+    });
   }
 
   ngOnInit() {
