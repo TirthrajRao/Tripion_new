@@ -11,10 +11,10 @@ $green: #2FE57C;
 .country_name {
     margin-bottom: 8px;
     background-color: #fff;
-    display: inline-block;
+    // display: inline-block;
     cursor: pointer;
     position: relative;
-    padding: 2px 18px;
+    // padding: 2px 18px;
     @media(max-height: 750px) {
         margin-bottom: 5px;
     }
@@ -35,7 +35,7 @@ $green: #2FE57C;
         font-size: 16px;
         font-weight: 600;
         line-height: 52px;
-        margin-left: 10px;
+        // margin-left: 10px;
         text-transform: capitalize;
     }
 }
@@ -113,3 +113,7 @@ ion-refresher-content {
     top: 50px;
     position: relative;
 }*/
+.row{
+    margin-right: unset !important; 
+    margin-left: unset !important;
+}

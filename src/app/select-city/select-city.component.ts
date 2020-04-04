@@ -20,7 +20,8 @@ export class SelectCityComponent implements OnInit {
   latitude: any;
   longitude: any;
   cityName: any;
-
+  isVisible: Boolean = true;
+  noResult: Boolean = false;
   constructor(
     public route: ActivatedRoute,
     private geolocation: Geolocation,
@@ -67,10 +68,10 @@ export class SelectCityComponent implements OnInit {
   }
 
   /**
-    * Get Location Name using lat,long and temprature
-    * @param {number} lat 
-    * @param {number} long 
-    */
+   * Get Location Name using lat,long and temprature
+   * @param {number} lat 
+   * @param {number} long 
+   */
   getLocation(lat, long) {
     console.log("lat long", lat, long);
     let options: NativeGeocoderOptions = {
@@ -102,7 +103,7 @@ export class SelectCityComponent implements OnInit {
   getCityList() {
     this.cityList = []
     console.log("call")
-    for (let i = 0; i <= 200; i++) {
+    for (let i = 0; i <= 70; i++) {
       this.cityList.push(this.allCity[i])
     }
   }
@@ -115,7 +116,7 @@ export class SelectCityComponent implements OnInit {
     setTimeout(() => {
       console.log('Done');
       event.target.complete();
-      this.appendItems(200);
+      this.appendItems(70);
       if (this.allCity.length < this.allCity.length) {
         event.target.disabled = true;
       }
@@ -133,7 +134,7 @@ export class SelectCityComponent implements OnInit {
   appendItems(number) {
     console.log('length is', number);
     console.log(this.cityList, this.allCity)
-    const cityLength = this.cityList.length + 200
+    const cityLength = this.cityList.length + 70
     for (let i = this.cityList.length; i <= cityLength; i++) {
       if (i < this.allCity.length) {
         this.cityList.push(this.allCity[i])
@@ -146,12 +147,14 @@ export class SelectCityComponent implements OnInit {
    * @param {string} searchbar 
    */
   getItems(searchbar) {
+    this.isVisible = false;
     console.log("value", searchbar.target.value)
     var q = searchbar.target.value;
     // if the value is an empty string don't filter the items
     if (q.trim() == '') {
       console.log("------");
-      this.searchedResult = []
+      this.searchedResult = [];
+      this.isVisible = true
       this.getCityList();
       return;
     }
@@ -162,7 +165,12 @@ export class SelectCityComponent implements OnInit {
       }
       return false;
     })
-
+    if (!this.searchedResult.length) {
+      this.noResult = true;
+      // this.isVisible = true;
+    } else {
+      this.noResult = false;
+    }
     console.log("searched item", this.searchedResult);
     this.searchedCityList = [];
     for (let i = 0; i <= 20; i++) {
@@ -204,10 +212,10 @@ export class SelectCityComponent implements OnInit {
     }
   }
 
-/**
- * Store Selected Data
- * @param {object} data 
- */
+  /**
+   * Store Selected Data
+   * @param {object} data 
+   */
   storeSelectedData(data) {
     console.log("data and type", data, this.type);
     if (this.type == "temperature") {

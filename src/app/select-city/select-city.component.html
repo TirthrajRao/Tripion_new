@@ -11,17 +11,19 @@
                 </div>
             </ion-col>
             <ion-col size='8'>
-                <div class="middle_sec text-center text-white">
+                <!-- <div class="middle_sec text-center text-white">
                     <span>Select City</span>
-                </div>
+                </div> -->
+                <ion-input placeholder="Search" (ionInput)="getItems($event)"></ion-input>
+                <ion-icon name="search"></ion-icon>
             </ion-col>
         </ion-row>
     </ion-toolbar>
 </ion-header>
 <ion-content>
     <div class=" all_content">
-        <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-        <div *ngIf="!searchedResult.length">
+        <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> -->
+        <div *ngIf="isVisible">
             <ion-list>
                 <ion-item *ngFor="let data of cityList" (click)="storeSelectedData(data)">
                     {{data.city}}
@@ -32,21 +34,19 @@
                 </ion-infinite-scroll-content>
             </ion-infinite-scroll>
         </div>
-        <div *ngIf="searchedResult.length" class="ab">
-            <ion-list>
+        <div class="ab">
+            <ion-list *ngIf="searchedResult.length">
                 <ion-item *ngFor="let data of searchedCityList" (click)="storeSelectedData(data)">
                     {{data.city}}
                 </ion-item>
             </ion-list>
-            <ion-infinite-scroll threshold="100px" (ionInfinite)="loadSearchResultData($event)">
+            <ion-list *ngIf="noResult" class="p-2">
+                No Search Result
+            </ion-list>
+            <ion-infinite-scroll threshold="100px" (ionInfinite)="loadSearchResultData($event)" *ngIf="searchedResult.length">
                 <ion-infinite-scroll-content loadingSpinner="circles" loadingText="Loading more data...">
                 </ion-infinite-scroll-content>
             </ion-infinite-scroll>
         </div>
-        <!-- <ion-list>
-            <ion-item *ngFor="let data of allCity">
-                {{data.city}}
-            </ion-item>
-        </ion-list> -->
     </div>
 </ion-content>

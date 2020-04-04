@@ -1,4 +1,22 @@
-ion-searchbar{
+ion-searchbar {
     padding-inline-start: 0px;
     padding-inline-end: 0px;
+}
+ion-header {
+    ion-input {
+        border-bottom: 1px solid white;
+        width: 123%;
+        color: white;
+        --padding-start: 22px;
+        --padding-bottom: 5px;
+        --placeholder-opacity:1
+    }
+    ion-icon {
+        position: absolute;
+        left: 0px;
+        top: 17px;
+        color: white;
+        font-size: 22px;
+    }
+   
 }

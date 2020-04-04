@@ -9,9 +9,23 @@
     </ion-refresher> -->
     <div class="benefits_content" *ngIf="safeToTravelRes.length">
         <div *ngFor="let travelres of safeToTravelRes">
-            <div class="country_name w-100" (click)="getDetails(travelres)" *ngIf="travelres.safe_to_travel">
+            <!-- <div class="country_name w-100" (click)="getDetails(travelres)" *ngIf="travelres.safe_to_travel">
                 <p class="float-left">{{travelres.safe_to_travel}}</p>
+                <p *ngIf="travelres.safe_to_response" class="text-center">Responded</p>
+                <p *ngIf="!travelres.safe_to_response" class="text-center">Pending</p>
                 <img src="assets/images/location.png" class="float-right">
+            </div> -->
+            <div class="row country_name" (click)="getDetails(travelres)" *ngIf="travelres.safe_to_travel">
+                <div class="col-5">
+                    <p>{{travelres.safe_to_travel}}</p>
+                </div>
+                <div class="col-5">
+                    <p *ngIf="travelres.safe_to_response" >Responded</p>
+                    <p *ngIf="!travelres.safe_to_response" class="text-danger">Pending</p>
+                </div>
+                <div class="col-2">
+                    <img src="assets/images/location.png">
+                </div>
             </div>
         </div>
     </div>
