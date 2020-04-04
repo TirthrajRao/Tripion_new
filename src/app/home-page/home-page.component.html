@@ -33,8 +33,8 @@
                         </option>
                     </select> -->
                     <p class="temp-city" (click)="selectCity('temperature')">{{tempratureCity}}</p>
-                    <span *ngIf="tempratureCity && !tempratureIndex"
-                        style="position: absolute;">{{tempratureCity}}</span>
+                    <!-- <span *ngIf="tempratureCity && !tempratureIndex"
+                        style="position: absolute;">{{tempratureCity}}</span> -->
                 </div>
 
                 <span *ngIf="temperature " class="temprature-text">{{temperature}}°C

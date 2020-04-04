@@ -1,27 +1,33 @@
 <ion-content>
     <div class="login_form_page">
         <div class="login">
-            <h4 class="login_header">Login</h4>
+            <img src="assets/images/logo.png" class="mt-5">
+            <p class="login_header">Login</p>
             <form class="login_form" [formGroup]='loginForm'>
-                <div class="form-group">
-                    <input type="text" class="form-control" formControlName="username" id="email" placeholder="Enter Email" required />
+                <div class="form-group mb-4" style="position: relative;">
+                    <!-- <i class="fa fa-envelope email-icon" aria-hidden="true" ></i> -->
+                    <img src="assets/images/mail.png" class="email-icon"/>
+                    <input type="text" class="form-control" formControlName="username" id="email" placeholder="Email" required />
                     <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                         <div *ngIf="f.username.errors.required">Email is required</div>
                         <div *ngIf="f.username.errors.email">Email is invalid</div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" formControlName="password" id="password" placeholder="Enter Password">
+                <div class="form-group mb-4" style="position: relative;">
+                    <!-- <i class="fa fa-lock" aria-hidden="true"></i> -->
+                    <img src="assets/images/lock.png" class="fa-lock">
+                    <ion-icon [name]="passwordIcon" (click)="showHide()" class="eye-icon"></ion-icon>
+                    <input [type]="passwordType"  class="form-control" formControlName="password" id="password" placeholder="Password">  
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                         <div *ngIf="f.password.errors.required">Password is required</div>
                     </div>
                 </div>
                 <button type="submit" class="login_btn btn" (click)="loginUser(loginForm.value)" [disabled]="isDisable">Login</button>
-                <div class="sign_up_link">
-                    <a href="#" class="float-left" routerLink='/signup'>Create new account?</a>
-                    <a class="float-right" id="forgot-psw">Forgot Password?</a>
+                <div class="sign_up_link text-center">
+                    <!-- <a href="#" class="float-left" routerLink='/signup'>Create new account?</a> -->
+                    <a id="forgot-psw">Forgot Your Password?</a>
                 </div>
-                <div class="or_section">OR</div>
+                <div class="or_section">or connect with</div>
                 <div class="social_media_login">
                     <div class="row">
                         <div class="col-6">
@@ -33,11 +39,15 @@
                         </div>
                         <div class="col-6">
                             <div class="google_login">
-                                <button class="google_btn btn" (click)="googleLogin()" [disabled]="isDisable"><i class="fab fa-google"></i>
+                                <button class="google_btn btn" (click)="googleLogin()" [disabled]="isDisable"><img src="assets/images/google.png" >
                                     Google</button>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="sign_up_link text-center">
+                    <a href="#" routerLink='/signup'>Create new account? <span class="text-white"> Sign Up</span></a>
+                    <!-- <a id="forgot-psw">Forgot Your Password?</a> -->
                 </div>
             </form>
         </div>

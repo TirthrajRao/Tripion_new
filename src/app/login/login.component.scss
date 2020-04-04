@@ -1,8 +1,10 @@
-// all css start here 
+// all css start here
 ion-content {
     &:after {
         padding-bottom: 100vh !important;
     }
+    // --background:#024185;
+    // --background:url('../../assets/images/green.png');
 }
 
 .login_form_page {
@@ -13,6 +15,8 @@ ion-content {
     justify-content: center;
     align-items: center;
     position: relative;
+    background: url("../../assets/images/balckground.png") center center no-repeat;
+    background-size: 100% 100%;
     &:after {
         content: " ";
         position: absolute;
@@ -20,32 +24,39 @@ ion-content {
     }
     .login_header {
         text-align: center;
-        font-size: 40px;
+        font-size: 25px;
         font-weight: 600;
         color: #fff;
-        margin-bottom: 25px;
+        // margin-bottom: 25px;
     }
 }
 
 .login_form {
     width: 300px;
-    background-color: #fff;
+    // background-color: #fff;
     border-radius: 8px;
     padding: 18px;
-    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5);
+    padding-top: 10px;
+    margin: auto;
+    // box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5);
     .login_btn {
-        background-color: #003574;
+        // background-color: #003574;
+        // box-shadow: 1px 2px 6px rgba(86, 84, 88, 0.5);
+        background-color: #0461ce;
         padding: 0px 10px;
         font-size: 16px;
-        line-height: 50px;
+        line-height: 40px;
         font-weight: 500;
         width: 100%;
-        border-radius: 5px;
-        // box-shadow: 1px 2px 6px rgba(86, 84, 88, 0.5);
+        border-radius: 7px;
         outline: none;
         position: relative;
         color: #fff;
         cursor: pointer;
+    }
+    input {
+        padding-left: 38px;
+        height: 42px;
     }
 }
 
@@ -55,28 +66,31 @@ ion-content {
     border-radius: 5px;
     height: 50px;
     font-weight: 500;
-    color: #000;
-    background-color: #15207f12;
+    // color: #000;
+    color: #878787;
+    background: #d9e7ec;
+
+    // background-color: #15207f12;
 }
 
 ::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
     font-weight: 500;
-    color: #000;
+    color: #878787;
     font-size: 14px;
 }
 
 :-ms-input-placeholder {
     /* Internet Explorer 10-11 */
     font-weight: 500;
-    color: #000;
+    color: #878787;
     font-size: 14px;
 }
 
 ::-ms-input-placeholder {
     /* Microsoft Edge */
     font-weight: 500;
-    color: #000;
+    color: #878787;
     font-size: 14px;
 }
 
@@ -86,7 +100,7 @@ ion-content {
     display: inline-block;
     a {
         font-size: 12px;
-        color: #000;
+        color: #d1d1d1;
         font-weight: 500;
         cursor: pointer;
         text-decoration: none;
@@ -97,11 +111,11 @@ ion-content {
     position: relative;
     font-size: 12px;
     text-align: center;
-    color: #888a91;
+    color: #d1d1d1;
     font-weight: 500;
     &:after {
         position: absolute;
-        background: #888a91;
+        // background: #888a91;
         content: "";
         height: 1px;
         width: 42%;
@@ -110,7 +124,7 @@ ion-content {
     }
     &:before {
         position: absolute;
-        background: #888a91;
+        // background: #888a91;
         content: "";
         height: 1px;
         width: 42%;
@@ -120,20 +134,70 @@ ion-content {
 }
 
 .social_media_login {
-    margin-top: 15px;
-    button {
-        cursor: pointer;
-        border: 2px solid #003574;
-        color: #003574;
-        font-size: 15px;
-        font-weight: 900;
-        border-radius: 5px;
-        width: 100%;
-        background-color: #fff;
-        padding: 10px 4px;
-        outline: none;
-        i {
-            padding-right: 10px;
+    margin-top: 8px;
+    .facebook_login {
+        button {
+            cursor: pointer;
+            border: 2px solid #003574;
+            color: white;
+            font-size: 15px;
+            font-weight: 900;
+            border-radius: 7px;
+            width: 100%;
+            background-color: #4267b2;
+            padding: 8px 4px;
+            outline: none;
+            i {
+                padding-right: 10px;
+            }
         }
     }
+    .google_login {
+        button {
+            cursor: pointer;
+            border: 2px solid #003574;
+            color: #78859a;
+            font-size: 15px;
+            font-weight: 900;
+            border-radius: 7px;
+            width: 100%;
+            background-color: #fff;
+            padding: 8px 4px;
+            outline: none;
+            // i {
+            //     padding-right: 10px;
+            // }
+            img {
+                height: 19px;
+                margin-top: -2px;
+                margin-right: 2px;
+            }
+        }
+    }
+}
+.email-icon {
+    position: absolute;
+    left: 10px;
+    height: 15px;
+    display: block;
+    top: 14px;
+    bottom: 0;
+    // margin: auto;
+}
+.fa-lock {
+    left: 7px;
+    position: absolute;
+    height: 18px;
+    display: block;
+    top: 14px;
+    bottom: 0;
+    // margin: auto;
+}
+.eye-icon {
+    position: absolute;
+    right: 7px;
+    bottom: 0;
+    top: 14px;
+    color: #878787;
+    // margin: auto;
 }

@@ -199,10 +199,16 @@ export class HomePageComponent implements OnInit {
     // }
 
     this.refreshIntervalId = setInterval(() => {
+
       this.timeIndex = localStorage.getItem('time');
-      this.timeData = JSON.parse(localStorage.getItem('timeData'))
-      this.timeCity = this.timeData.city;
-      this.getTime(this.timeData.lat, this.timeData.lng)
+      if (this.timeData) {
+        this.timeData = JSON.parse(localStorage.getItem('timeData'))
+        this.timeCity = this.timeData.city;
+        this.getTime(this.timeData.lat, this.timeData.lng)
+      } else {
+
+      }
+
       // this.getTime(this.allCites[this.timeIndex].lat, this.allCites[this.timeIndex].lng)
     }, 10000);
 
@@ -371,12 +377,14 @@ export class HomePageComponent implements OnInit {
           lng: this.longitude,
           country: "hjh"
         }
-
+        console.log("object", obj)
         if (!this.tempratureData) {
+          console.log("in if of temp", obj)
           this.tempratureCity = obj.city
           this.getWeather(obj.lat, obj.lng)
         }
         if (!this.timeData) {
+          console.log("in if of time", obj)
           this.timeCity = obj.city
           this.getTime(obj.lat, obj.lng)
         }

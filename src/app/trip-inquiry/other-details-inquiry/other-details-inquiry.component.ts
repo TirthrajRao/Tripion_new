@@ -129,7 +129,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
       localStorage.setItem('form_data', JSON.stringify(formData));
       let navigationExtras: NavigationExtras = {
         state: {
-          type: 'Number of plan ' + ' * ' + data.number_of_plans,
+          type: 'Total no. of Plans ' + ' - ' + data.number_of_plans,
           amount: this.amount
         }
       };

@@ -63,7 +63,7 @@
                     <ion-img src="assets/images/archive.png"
                         routerLink="/home/view-document-req/{{tripDetail.inquiry_id}}" style="outline: none;"></ion-img>
                 </div>
-                <span>Document Request</span>
+                <span>Requested Document</span>
             </div>
             <div class="card_body">
                 <small *ngIf="notApproveDoc.length">List of Required Documents</small>
@@ -86,7 +86,7 @@
         <!-- DISPLAY PAYMENT REQUEST -->
         <div class="document_request card w-100 mt-3" *ngIf="tripDetail.payment.payment_request.length">
             <div class="card_header">
-                <ion-img src="assets/images/money.png"></ion-img><span>Payment Request</span>
+                <ion-img src="assets/images/money.png"></ion-img><span>Requested Payment</span>
             </div>
             <div class="card_body w-100">
                 <small>Payment for the Following</small>

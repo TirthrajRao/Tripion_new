@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
   isDisable: Boolean = false;
   submmitedFPsw: boolean = false;
   loading: Boolean = false;
+  passwordType: string = 'password';
+  passwordIcon: string = 'eye-off';
   constructor(
     public _userServices: UserService,
     public _toastServices: ToastService,
@@ -49,6 +51,14 @@ export class LoginComponent implements OnInit {
 
   get f() { return this.loginForm.controls; }
   get fpsw() { return this.forgotPswForm.controls; }
+
+  /**
+   * Show hide password
+   */
+  showHide() {
+    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+  }
 
   /**
    * user Login
