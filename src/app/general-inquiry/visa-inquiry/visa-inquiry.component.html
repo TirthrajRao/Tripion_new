@@ -9,7 +9,6 @@
                 <p class="ml-3 visa_text">Visa</p>
                 <div class="general_details">
                     <div class="general_details_body">
-                        <!-- <form action="#"> -->
                         <p>Purpose of Travel</p>
                         <div class="row">
                             <div class="col-6">
@@ -25,13 +24,11 @@
                                 <label for="Travel3">Family Reunion / Functions</label>
                             </div>
                         </div>
-                        <!-- </form> -->
                     </div>
                 </div>
 
                 <div class="general_details">
                     <div class="general_details_body">
-                        <!-- <form action="#"> -->
                         <p>Type of Visa</p>
                         <div class="row">
                             <div class="col-6">
@@ -58,9 +55,7 @@
                             </div>
                         </div>
 
-                        <!-- </form> -->
                         <p class="mt-2">Previous Rejections</p>
-                        <!-- <form action="#"> -->
                         <div class="row">
                             <div class="col-6">
                                 <input type="radio" class="mr-2" id="rejections1" [(ngModel)]="previous_rejections" formControlName="previous_rejections" value="Yes">
@@ -80,13 +75,11 @@
                                 <div *ngIf="f.previous_rejections_details.errors.required">Rejection Details is required</div>
                             </div>
                         </div>
-                        <!-- </form> -->
                     </div>
                 </div>
 
                 <div class="general_details">
                     <div class="general_details_body">
-                        <!-- <form action="#"> -->
                         <p>Previous International Travel</p>
                         <div class="row">
                             <div class="col-6">
@@ -112,7 +105,6 @@
 
                 <div class="general_details">
                     <div class="general_details_body">
-                        <!-- <form action="#"> -->
                         <p>Sponsor Details</p>
                         <div class="row">
                             <div class="col-6">
@@ -156,9 +148,6 @@
             <div class="next_btn" *ngIf="formUrl.length">
                 <button type="submit" (click)="nextForm(visaForm.value)">Next<i class="fas fa-arrow-right"></i></button>
             </div>
-            <!-- <div class="submit_btn" *ngIf="!formUrl.length">
-                <button type="submit" routerLink='/home/home-page'><i class="fas fa-save"></i>Submit</button>
-            </div> -->
         </form>
     </div>
 </ion-content>.

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UploadService } from '../services/upload.service';
-// import { ToastService } from '../services/toast.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 import * as _ from 'lodash';
@@ -32,7 +31,6 @@ export class DocumentComponent implements OnInit {
   constructor(
     private transfer: FileTransfer,
     public _uploadService: UploadService,
-    // public _toastService: ToastService,
     public route: ActivatedRoute,
     public router: Router,
     public appComponent: AppComponent,
@@ -138,9 +136,6 @@ export class DocumentComponent implements OnInit {
       if (file.type == 'image/png' || file.type == 'image/jpeg' || file.type == 'image/jpg') {
         obj['type'] = 'image'
       }
-      // if (file.size > 2000000) {
-      //   obj['maxSize'] = "File too big to upload. MAX SIZE = 2 MB"
-      // }
       this.urls.push(obj);
     }
     reader.readAsDataURL(file);
@@ -156,13 +151,10 @@ export class DocumentComponent implements OnInit {
     if (this.files.length) {
       console.log("=========this.s", this.files)
       for (let i = 0; i < this.files.length; i++) {
-        // if (this.files[i].size < 2000000) {
         data.append('profile_image[]', this.files[i]);
-        // }
       }
     }
     data.append('id', this.currentUser.id);
-    //  data.append('folder_name', this.details.tripName);
     data.append('folder_name', this.details.planName);
     data.append('image_type', 'other')
     console.log(data)
@@ -178,7 +170,6 @@ export class DocumentComponent implements OnInit {
       this.isDisable = false;
       this.loading = false;
       this.appComponent.errorAlert(err.error.message);
-      // this._toastService.presentToast(err.error.message, 'danger');
     })
   }
 
@@ -224,12 +215,11 @@ export class DocumentComponent implements OnInit {
       this.loading = false;
       console.log("res of send document", res);
       this.appComponent.sucessAlert("Files Successfully Uploaded")
-      // this._toastService.presentToast(res.message, 'success')
     }, (err) => {
       console.log(err);
       this.loading = false;
       this.appComponent.errorAlert(err.error.message);
-      // this._toastService.presentToast(err.error.message, 'danger')
     })
   }
+
 }

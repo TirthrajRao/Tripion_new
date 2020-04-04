@@ -46,14 +46,11 @@ export class TripPlaningDetailComponent implements OnInit {
   ngOnInit() {
     console.log("trip id and day", this.tripId, this.day);
     this.getDayDetails();
-    // this.curruntDate = this.datepipe.transform(this.curruntDate, 'dd MMM yyyy');
     console.log("currunt date", this.curruntDate);
   }
 
   // open modal for add passport
   openModal(data) {
-    // this.images = data;
-    // this.images = data.splice(0, 2);
     this.images = [];
     _.forEach(data, (img, index) => {
       if (index >= 2)
@@ -96,7 +93,6 @@ export class TripPlaningDetailComponent implements OnInit {
     }, (err) => {
       console.log(err);
       this.loading = false;
-      // this._toastService.presentToast(err.error.message, 'danger');
       this.appComponent.errorAlert(err.error.message);
     })
   }
@@ -105,18 +101,12 @@ export class TripPlaningDetailComponent implements OnInit {
   /**
   * Doenload report
   */
-  downloadPdf(url, name, mimeType,ext) {
+  downloadPdf(url, name, mimeType, ext) {
     console.log("===enter====", name)
     const ROOT_DIRECTORY = 'file:///sdcard//';
     const downloadFolderName = 'Download/';
-    // this.fileTransfer.onProgress((progressEvent) => {
-    //   console.log("progressevent",progressEvent);
-    //   var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
-    //   this.progress = perc;
-    //   console.log("progress in perc",this.progress)
-    // });
-    this.file.checkFile(ROOT_DIRECTORY + downloadFolderName,  name+'.'+ext).then((isExist) => {
-      this.openFile(ROOT_DIRECTORY + downloadFolderName +  name+'.'+ext, mimeType);
+    this.file.checkFile(ROOT_DIRECTORY + downloadFolderName, name + '.' + ext).then((isExist) => {
+      this.openFile(ROOT_DIRECTORY + downloadFolderName + name + '.' + ext, mimeType);
     }).catch((notexist) => {
       console.log("nonexist")
       //create dir
@@ -124,9 +114,8 @@ export class TripPlaningDetailComponent implements OnInit {
         .then((entries) => {
           //Download file
           this._toastService.presentToast("Downloading.....", 'success')
-          this.fileTransfer.download(url, ROOT_DIRECTORY + downloadFolderName + '/' + name+'.'+ext).then((entry) => {
+          this.fileTransfer.download(url, ROOT_DIRECTORY + downloadFolderName + '/' + name + '.' + ext).then((entry) => {
             console.log('download complete: ' + entry.toURL());
-            this._toastService.presentToast("Download Completed", 'success');
             this.openFile(entry.nativeURL, mimeType);
           }, (error) => {
             console.log("error", error);

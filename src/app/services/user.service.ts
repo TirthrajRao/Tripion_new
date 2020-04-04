@@ -114,6 +114,8 @@ sendMessageToAmmendments(data){
         localStorage.removeItem('currentUser');
         localStorage.removeItem("temprature");
         localStorage.removeItem("time");
+        localStorage.removeItem('tempratureData');
+        localStorage.removeItem('timeData');
         this.router.navigate(['/login'], { clearHistory: true } as NavigationExtras);
         this.currentUserSubject.next(null);
         return res;

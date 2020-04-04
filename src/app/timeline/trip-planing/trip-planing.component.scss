@@ -20,7 +20,6 @@
     display: block !important;
     --background: unset !important;
     display: flex;
-    // background-image: url(../../../assets/images/header.png);
     background-size: cover;
     background-repeat: no-repeat;
     i {
@@ -111,9 +110,6 @@ ion-content {
     border: 1px solid #95C5FF !important;
 }
 
-// .timeline .event:last-child:after {
-//     border: 1px dashed #95C5FF;
-// }
 .timeline1 .event:after {
     left: 0.15px;
     content: "";
@@ -144,9 +140,7 @@ ion-content {
     top: 50px;
 }
 
-// .event:first-child .custom_card:before {
-//     box-shadow: 0 0 0 6px #95C5FF;
-// }
+
 .card1:before {
     position: absolute;
     box-shadow: 0 0 0 6px #95C5FF !important;

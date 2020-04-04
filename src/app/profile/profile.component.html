@@ -16,18 +16,14 @@
                         <label class="profile_and_cover_edit" title="Change Profile"><i class="fa fa-camera"
                                 aria-hidden="true"></i>
                         </label>
-                        <img [src]="userData.profile_pic" onError="src = '../../assets/images/placeholder.png'" *ngIf="userData.profile_pic" />
-                        <img src="../../assets/images/user.png" *ngIf="!userData.profile_pic">
+                        <img [src]="userData.profile_pic" onError="src = 'assets/images/placeholder.png'" *ngIf="userData.profile_pic" />
+                        <img src="assets/images/user.png" *ngIf="!userData.profile_pic">
                     </div>
                 </div>
                 <div class="col-9 pl-3">
                     <div class="profile_detail text-white">
                         <p *ngIf="userData.is_social_login == 1">{{userData.user_name}}</p>
                         <p *ngIf="userData.is_social_login == 0">{{userData.first_name}} {{userData.last_name}}</p>
-                        <!-- <div class="awrd_img">
-                            <ion-img src="../../assets/images/award.png" class="float-left mr-1"></ion-img>
-                            <span>150</span>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -159,7 +155,7 @@
     <div *ngIf="loading">
         <div id="loader-wrapper">
             <div class="heartbeatloader">
-                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+                <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
             </div>
         </div>
     </div>

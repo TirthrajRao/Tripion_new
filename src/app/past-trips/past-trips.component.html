@@ -6,7 +6,7 @@
                 <ion-menu-button class="float-right"></ion-menu-button>
             </div>
             <div class="header_text">
-                <img src="../../assets/images/travel.png">
+                <img src="assets/images/travel.png">
                 <div class="text">
                     <h3>Past Trips </h3>
                     <p>Details Of Trips Taken </p>
@@ -19,11 +19,11 @@
                     <div class="row">
                         <div class="col-9">
                             <div class="left-image">
-                                <img src="../../assets/images/past1.png" *ngIf="!trip.image">
-                                <img [src]="trip.image" *ngIf="trip.image">
+                                <img src="assets/images/past1.png" *ngIf="!trip.image">
+                                <img [src]="trip.image" onError="src = 'assets/images/placeholder.png'" *ngIf="trip.image">
                             </div>
                             <div class="text-content">
-                                <img src="../../assets/images/t_icon.png">
+                                <img src="assets/images/t_icon.png">
                                 <div class="main-text">
                                     <small>Trip Taken For</small>
                                     <p>{{trip.inquiry_name}}</p>
@@ -46,7 +46,7 @@
         <div *ngIf="loading">
             <div id="loader-wrapper">
                 <div class="heartbeatloader">
-                    <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+                    <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
                 </div>
             </div>
         </div>

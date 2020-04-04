@@ -11,7 +11,7 @@
         <div *ngFor="let travelres of safeToTravelRes">
             <div class="country_name w-100" (click)="getDetails(travelres)" *ngIf="travelres.safe_to_travel">
                 <p class="float-left">{{travelres.safe_to_travel}}</p>
-                <img src="../../assets/images/location.png" class="float-right">
+                <img src="assets/images/location.png" class="float-right">
             </div>
         </div>
     </div>
@@ -21,13 +21,13 @@
     </div>
     <div class="add_button">
         <a href="javascript:void(0);" routerLink='/home/safe-to-travel'>
-            <img src="../../assets/images/plus.png">
+            <img src="assets/images/plus.png">
         </a>
     </div>
     <div *ngIf="loading">
         <div id="loader-wrapper">
             <div class="heartbeatloader">
-                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+                <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
             </div>
         </div>
     </div>
@@ -36,14 +36,13 @@
         <div class="alert_box_content">
             <div class="alert_box_text">
                 <div class="alert_box_image">
-                    <img src="../../assets/images/safetravel.png" alt="image icon">
+                    <img src="assets/images/safetravel.png" alt="image icon">
                 </div>
                 <p>
                     We are working<br>
                     will revert soon !!
                 </p>
             </div>
-
         </div>
     </div>
 </ion-content>

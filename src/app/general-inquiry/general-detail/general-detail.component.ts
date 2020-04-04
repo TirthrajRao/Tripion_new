@@ -30,32 +30,42 @@ export class GeneralDetailComponent implements OnInit {
     public _tripService: TripService,
     public appComponent: AppComponent,
   ) {
-    // console.log("countries",this.counries)
     this.generalDetailsForm = new FormGroup({
-      name_in_passport: new FormControl('', [Validators.required]),
-      pssport_number: new FormControl('', [Validators.required, Validators.pattern('^(?!^0+$)[a-zA-Z0-9]{8,20}$')]),
-      dob: new FormControl('', Validators.required),
-      place_of_birth: new FormControl('', [Validators.required]),
-      address_in_passport: new FormControl('', [Validators.required]),
-      duration: new FormControl('', [Validators.required]),
-      desination_country: new FormControl('', [Validators.required]),
+      // name_in_passport: new FormControl('', [Validators.required]),
+      // pssport_number: new FormControl('', [Validators.required, Validators.pattern('^(?!^0+$)[a-zA-Z0-9]{8,20}$')]),
+      // dob: new FormControl('', Validators.required),
+      // // place_of_birth: new FormControl('', [Validators.required]),
+      // address_in_passport: new FormControl('', [Validators.required]),
+      // duration: new FormControl('', [Validators.required]),
+      // desination_country: new FormControl('', [Validators.required]),
+      // place_name: new FormControl(''),
+      // departure_date: new FormControl('', [Validators.required]),
+      // intende_date: new FormControl('', [Validators.required]),
+      // // passport_valid_date: new FormControl('', [Validators.required]),
+      // duration_status: new FormControl('Flexible'),
+
+
+      name_in_passport: new FormControl(''),
+      pssport_number: new FormControl(''),
+      dob: new FormControl(''),
+      // place_of_birth: new FormControl(''),
+      address_in_passport: new FormControl(''),
+      duration: new FormControl(''),
+      desination_country: new FormControl(''),
       place_name: new FormControl(''),
-      departure_date: new FormControl('', [Validators.required]),
-      intende_date: new FormControl('', [Validators.required]),
-      passport_valid_date: new FormControl('', [Validators.required]),
+      departure_date: new FormControl(''),
+      intende_date: new FormControl(''),
+      // passport_valid_date: new FormControl(''),
       duration_status: new FormControl('Flexible'),
     })
   }
 
   ngOnInit() {
     this.formUrl = JSON.parse(localStorage.getItem('formId'));
-    // this.formUrl.splice(0, 1);
-    // localStorage.setItem('formId', JSON.stringify(this.formUrl));
     this.nextYearCount();;
 
     $(document).ready(function () {
       $('#myselection').select2({
-        // placeholder: "Destination Country",
       });
     });
 
@@ -116,8 +126,7 @@ export class GeneralDetailComponent implements OnInit {
           console.log("inquiry form res", res);
           localStorage.removeItem('form_data');
           localStorage.removeItem('selectedFormCategory');
-          // this._toastService.presentToast(res.message, 'success');
-          this.appComponent.sucessAlert("Inquiry Submitted Successfully","Awesome");
+          this.appComponent.sucessAlert("Inquiry Submitted Successfully", "Awesome");
           this.route.navigate(['/home']);
         }, (err) => {
           this.isDisable = false;
@@ -151,7 +160,6 @@ export class GeneralDetailComponent implements OnInit {
       this.formUrl.splice(0, 1);
       localStorage.setItem('formId', JSON.stringify(this.formUrl));
     }
-    // console.log("data in next forrm", data);
     console.log("local storage form data", JSON.parse(localStorage.getItem('form_data')));
     const localStorageFormData = JSON.parse(localStorage.getItem('form_data'));
     let index;
@@ -186,26 +194,18 @@ export class GeneralDetailComponent implements OnInit {
   changeDateFormate(data) {
     if (data.dob.includes("T")) {
       data.dob = data.dob.split("T")[0];
-      // const fd = data.dob[1].split('.')
-      // data.dob = data.dob[0] + ' ' + fd[0];
     }
 
     if (data.departure_date.includes("T")) {
       data.departure_date = data.departure_date.split("T")[0];
-      // const fd1 = data.departure_date[1].split('.')
-      // data.departure_date = data.departure_date[0] + ' ' + fd1[0];
     }
 
     if (data.intende_date.includes("T")) {
       data.intende_date = data.intende_date.split("T")[0];
-      // const fd2 = data.intende_date[1].split('.')
-      // data.intende_date = data.intende_date[0] + ' ' + fd2[0];
     }
-    if (data.passport_valid_date.includes("T")) {
-      data.passport_valid_date = data.passport_valid_date.split("T")[0];
-      // const fd3 = data.passport_valid_date[1].split('.')
-      // data.passport_valid_date = data.passport_valid_date[0] + ' ' + fd3[0];
-    }
+    // if (data.passport_valid_date.includes("T")) {
+    //   data.passport_valid_date = data.passport_valid_date.split("T")[0];
+    // }
     return data
   }
 

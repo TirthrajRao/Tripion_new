@@ -30,10 +30,7 @@
                         </div>
                         <div *ngIf="msg.message.message_type == 'image'" class="image-type"
                             (click)="downloadImage(msg.message.msg)">
-                            <img [src]="msg.message.msg.url" />
-                            <!-- <video controls="controls" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline" class="videoPlayer" *ngIf="msg.message.message.type == 'vedio'">
-                                <source src="{{msg.message.message.url}}" type="video/mp4" />
-                            </video> -->
+                            <img [src]="msg.message.msg.url" onError="src = 'assets/images/placeholder.png'"/>
                         </div>
                         <div (click)="downloadImage(msg.message.msg)" *ngIf="msg.message.message_type == 'video'"
                             class="video-view">
@@ -44,9 +41,6 @@
                         </div>
                         <div *ngIf="msg.message.message_type == 'file'" class="file-type"
                             (click)="downloadImage(msg.message.msg)">
-                            <!-- <i class="fa fa-file-pdf" aria-hidden="true" *ngIf="msg.message.msg.ext=='pdf'"></i> -->
-                            <!-- <i class="fa fa-file" aria-hidden="true" *ngIf="msg.message.msg.ext!='pdf'"></i> -->
-
                             <div *ngIf="!msg.message.msg.mimeType.includes('image')" class="holds-the-iframe">
                                 <iframe
                                     [src]="'https://docs.google.com/viewerng/viewer?url=' + msg.message.msg.url +'&embedded=true' | safe:'resourceUrl'"
@@ -55,7 +49,7 @@
                                 <p>{{msg.message.msg.name}}</p>
                             </div>
                             <div *ngIf="msg.message.msg.mimeType.includes('image')" class="image-type">
-                                <img [src]="msg.message.msg.url" />
+                                <img [src]="msg.message.msg.url" onError="src = 'assets/images/placeholder.png'"/>
                             </div>
                         </div>
 
@@ -94,7 +88,7 @@
                         </div>
                         <div *ngIf="msg.message.message_type == 'image'" class="image-type"
                             (click)="downloadImage(msg.message.msg)">
-                            <img [src]="msg.message.msg.url" />
+                            <img [src]="msg.message.msg.url" onError="src = 'assets/images/placeholder.png'"/>
                         </div>
                         <div (click)="downloadImage(msg.message.msg)" *ngIf="msg.message.message_type == 'video'"
                             class="video-view">
@@ -105,9 +99,7 @@
                         </div>
                         <div *ngIf="msg.message.message_type == 'file'" class="file-type"
                             (click)="downloadImage(msg.message.msg)">
-                            <!-- <i class="fa fa-file-pdf" *ngIf="msg.message.msg.ext=='pdf'"></i> -->
-                            <!-- <i class="fa fa-file" *ngIf="msg.message.msg.ext!='pdf'"></i> -->
-                            <!-- <p>{{msg.message.msg.name}}</p> -->
+                         
                             <div *ngIf="!msg.message.msg.mimeType.includes('image')" class="holds-the-iframe">
                                 <iframe
                                     [src]="'https://docs.google.com/viewerng/viewer?url=' + msg.message.msg.url +'&embedded=true' | safe:'resourceUrl'"
@@ -116,10 +108,8 @@
                                 <p>{{msg.message.msg.name}}</p>
                             </div>
                             <div *ngIf="msg.message.msg.mimeType.includes('image')" class="image-type">
-                                <img [src]="msg.message.msg.url" />
+                                <img [src]="msg.message.msg.url" onError="src = 'assets/images/placeholder.png'"/>
                             </div>
-                            <!-- <iframe src="https://docs.google.com/gview?url={{msg.message.msg.url}}&embedded=true" frameborder="0">
-                            </iframe> -->
                         </div>
                         <div *ngIf="msg.message.message_type == 'audio'">
                             <audio controls style="width: 67vw;">
@@ -129,11 +119,6 @@
                         <div *ngIf="msg.message.message_type == 'ifram'">
                             <p>iframe</p>
                             <div id="{{msg.key}}"></div>
-
-                            <!-- <div>
-                                "<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14688.027612893833!2d72.53231360000001!3d23.02351875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b37cd75c63d%3A0xf60463b785613cd1!2sCafe%20Mocha!5e0!3m2!1sen!2sin!4v1583414865309!5m2!1sen!2sin"
-                                    width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>"
-                            </div> -->
                         </div>
                         <div *ngIf="msg.message.message_type == 'link'">
                             <p>link</p>
@@ -175,8 +160,6 @@
                     <div class="input-group-append" (click)="send(addMessageForm.value,'text')" *ngIf="!recording">
                         <span class="input-group-text"><i class="fas fa-arrow-right"></i></span>
                     </div>
-                    <!-- <button class="audio-record" ion-button ion-long-press [interval]="400" (pressed)="pressed()" (longPressed)="active()" (pressEnded)="released()"> <img src="assets/images/mic.png" /></button> -->
-                    <!-- <ion-button (press)="onPress($event)" (pressup)="onPressUp($event)">Press Me</ion-button> -->
                     <div class="audio-record" (press)="startRecord()" (pressup)="stopRecord()">
                         <img src="assets/images/mic.png" />
                     </div>
@@ -187,7 +170,6 @@
                 <div class="row">
                     <div class="col-3 px-2">
                         <div class="attach_img">
-                            <!-- (click)="getPhoto(0)" -->
                             <input type="file" class="form-control" #img hidden accept="image/*"
                                 (change)="selectFile($event,'image')">
                             <label (click)="img.click()"> <i class="fas fa-camera "></i></label>
@@ -196,8 +178,6 @@
                     </div>
                     <div class="col-3 px-2 ">
                         <div class="attach_img ">
-                            <!-- (click)="getPhoto(1)" -->
-                            <!-- <input type="file " class="form-control " id="file_vedio " name="files " value="files " style="display: none; " accept="video/mp4,video/x-m4v,video/* "> -->
                             <input type="file" #video class="form-control" hidden
                                 accept="video/mp4,video/x-m4v,video/* " (change)="selectFile($event,'video')">
                             <label (click)="video.click()"><i class="fas fa-video "></i></label>
@@ -205,7 +185,6 @@
                         </div>
                     </div>
                     <div class="col-3 px-2 " (click)="launchLocationPage()">
-                        <!-- (click)="launchLocationPage() " -->
                         <div class="attach_img ">
                             <i class="fas fa-map-marker-alt "></i>
                             <p>LOCATION</p>

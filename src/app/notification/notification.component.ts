@@ -59,7 +59,6 @@ export class NotificationComponent implements OnInit {
        this.loading = false;
      }, (err) => {
        console.log(err);
-       // this._toastService.presentToast(err.error.message, 'danger');
        this.appComponent.errorAlert(err.error.message);
        this.loading = false;
      })

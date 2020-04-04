@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
-import { ToastService } from '../services/toast.service';
 import { Router } from '@angular/router';
-import {data} from '../data';
+import { data } from '../data';
 import { AppComponent } from '../app.component';
 declare const $: any;
 class Port {
@@ -29,11 +28,10 @@ export class SignupComponent implements OnInit {
 
 
   constructor(
-    public _userService: UserService, 
-    // public _toastServices: ToastService,
+    public _userService: UserService,
     public router: Router,
     public appComponent: AppComponent,
-    ) {
+  ) {
     this.signUpForm = new FormGroup({
       first_name: new FormControl('', [Validators.required]),
       last_name: new FormControl('', [Validators.required]),
@@ -45,7 +43,7 @@ export class SignupComponent implements OnInit {
       // home_town: new FormControl('', [Validators.required])
     });
 
-    console.log("timezones",this.timeZoneList)
+    console.log("timezones", this.timeZoneList)
   }
 
   ngOnInit() {
@@ -70,40 +68,34 @@ export class SignupComponent implements OnInit {
    * Register User
    * @param {Object} data 
    */
-   signUpUser(data) {
-     this.submitted = true;
-    //  data.dob = data.dob.split("T");
-    //  const td = data.dob[1].split('.')
-    //  data.dob = data.dob[0] + ' ' + td[0];
-       
-     console.log(data);
-     if (this.signUpForm.invalid) {
-       return;
-     }
+  signUpUser(data) {
+    this.submitted = true;
 
-     console.log("data", data)
-     this.isDisable = true;
-     this.loading = true;
-     this._userService.signUpUser(data).subscribe((res: any) => {
-       console.log("register user", res);
-       this.isDisable = false;
-       this.loading = false;
-       this._userService.sendDeviceToken().subscribe((response: any) => {
-         console.log("res of devicedata in login", response);
-       }, err => {
-         console.log("errr", err);
-         // this._toastServices.presentToast(err.error.message, 'danger')
-       })
-       // this._toastServices.presentToast(res.message, 'success')
-       this.appComponent.sucessAlert("Registration Completed")
-       this.router.navigate(['/home']);
-     }, (err) => {
-       this.isDisable = false;
-       this.loading = false;
-       // this._toastServices.presentToast(err.error.message, 'danger');
-       this.appComponent.errorAlert(err.error.message);
-       console.log("err in register", err)
-     })
-   }
+    console.log(data);
+    if (this.signUpForm.invalid) {
+      return;
+    }
 
- }
+    console.log("data", data)
+    this.isDisable = true;
+    this.loading = true;
+    this._userService.signUpUser(data).subscribe((res: any) => {
+      console.log("register user", res);
+      this.isDisable = false;
+      this.loading = false;
+      this._userService.sendDeviceToken().subscribe((response: any) => {
+        console.log("res of devicedata in login", response);
+      }, err => {
+        console.log("errr", err);
+      })
+      this.appComponent.sucessAlert("Registration Completed")
+      this.router.navigate(['/home']);
+    }, (err) => {
+      this.isDisable = false;
+      this.loading = false;
+      this.appComponent.errorAlert(err.error.message);
+      console.log("err in register", err)
+    })
+  }
+
+}

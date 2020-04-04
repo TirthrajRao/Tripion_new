@@ -11,8 +11,9 @@
         <div *ngFor="let ffp of FFPResponse; let i = index">
             <div class="country_name w-100" (click)="getDetails(ffp,i)" *ngIf="ffp">
                 <p class="float-left" *ngIf="ffp.frequent_flight">{{ffp.frequent_flight}}</p>
-                <img *ngIf="!ffp.flight_image" src="/assets/images/placeholder.png"class="float-right">
-                <img *ngIf="ffp.flight_image" src="{{ffp.flight_image || '../../../assets/images/placeholder.png'}}" class="float-right">
+                <img *ngIf="!ffp.flight_image" src="/assets/images/placeholder.png" class="float-right">
+                <img *ngIf="ffp.flight_image" src="{{ffp.flight_image || 'assets/images/placeholder.png'}}"
+                onError="src = 'assets/images/placeholder.png'" class="float-right">
             </div>
         </div>
     </div>
@@ -20,7 +21,7 @@
     <div *ngIf="loading">
         <div id="loader-wrapper">
             <div class="heartbeatloader">
-                <ion-img class="svgdraw" src="../../../assets/images/loader.gif"></ion-img>
+                <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
             </div>
         </div>
     </div>
@@ -30,7 +31,7 @@
     </div>
     <div class="add_button" id="add_passport">
         <a href="javascript:void(0);">
-            <img src="../../assets/images/plus.png">
+            <img src="assets/images/plus.png">
         </a>
     </div>
     <!-- add FFP Request modal start  -->
@@ -44,7 +45,7 @@
                     <div>
                         <ion-item>
                             <ion-label position="floating">Airline name</ion-label>
-                            <ion-input type="text"  formControlName="flight_name"></ion-input>
+                            <ion-input type="text" formControlName="flight_name"></ion-input>
                         </ion-item>
                         <div *ngIf="submitted && f.flight_name.errors" class="invalid-feedback">
                             <div *ngIf="f.flight_name.errors.required">Flight name is required</div>
@@ -53,7 +54,7 @@
                     <div>
                         <ion-item>
                             <ion-label position="floating">Airline Username </ion-label>
-                            <ion-input type="text"  formControlName="user_name"></ion-input>
+                            <ion-input type="text" formControlName="user_name"></ion-input>
                         </ion-item>
                         <div *ngIf="submitted && f.user_name.errors" class="invalid-feedback">
                             <div *ngIf="f.user_name.errors.required">User name is required</div>
@@ -62,7 +63,7 @@
                     <div>
                         <ion-item>
                             <ion-label position="floating">Airline Password</ion-label>
-                            <ion-input type="text"  formControlName="password"></ion-input>
+                            <ion-input type="text" formControlName="password"></ion-input>
                         </ion-item>
                         <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                             <div *ngIf="f.password.errors.required">Password is required</div>
@@ -71,14 +72,12 @@
                     <div>
                         <ion-item>
                             <ion-label position="floating">Points</ion-label>
-                            <ion-input type="text"  formControlName="points"></ion-input>
+                            <ion-input type="text" formControlName="points"></ion-input>
                         </ion-item>
-                        <!-- <div *ngIf="submitted && f.points.errors" class="invalid-feedback">
-                            <div *ngIf="f.points.errors.required">Points is required</div>
-                        </div> -->
                     </div>
                     <div class="make_folder">
-                        <button (click)="addFfpRequest(addFfpReqForm.value)" class="btn" [disabled]="isDisable"><i class="fas fa-plus"></i>Add
+                        <button (click)="addFfpRequest(addFfpReqForm.value)" class="btn" [disabled]="isDisable"><i
+                                class="fas fa-plus"></i>Add
                             Airline</button>
                     </div>
                 </form>

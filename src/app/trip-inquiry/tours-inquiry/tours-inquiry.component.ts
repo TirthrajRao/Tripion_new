@@ -15,17 +15,20 @@ export class ToursInquiryComponent implements OnInit {
   status: any = 'Releaxed';
   path = 'assets/images/03-Gif.gif';
   languages = data.language;
-  // formData = JSON.parse(localStorage.getItem('form_data'));
 
   constructor(public route: Router, public _tripService: TripService) {
     this.formUrl = JSON.parse(localStorage.getItem('formId'));
-    // this.formUrl.splice(0, 1);
-    // localStorage.setItem('formId', JSON.stringify(this.formUrl));
 
     this.tourForm = new FormGroup({
-      tour_basis: new FormControl('', [Validators.required]),
-      language: new FormControl('', [Validators.required]),
-      duration: new FormControl('', [Validators.required]),
+      // tour_basis: new FormControl('', [Validators.required]),
+      // language: new FormControl('', [Validators.required]),
+      // duration: new FormControl('', [Validators.required]),
+      // special_request: new FormControl(''),
+      // itinerary_pace: new FormControl('0')
+
+      tour_basis: new FormControl(''),
+      language: new FormControl(''),
+      duration: new FormControl(''),
       special_request: new FormControl(''),
       itinerary_pace: new FormControl('0')
     })
@@ -100,13 +103,13 @@ export class ToursInquiryComponent implements OnInit {
     console.log(e.target.value)
     if (e.target.value >= 0 && e.target.value <= 4) {
       this.status = "Releaxed"
-      this.path = '../../../assets/images/03-Gif.gif';
+      this.path = 'assets/images/03-Gif.gif';
     } else if (e.target.value > 4 && e.target.value <= 7) {
       this.status = "Average";
-      this.path = '../../../assets/images/01-Gif.gif';
+      this.path = 'assets/images/01-Gif.gif';
     } else if (e.target.value > 7) {
       this.status = "Busy"
-      this.path = '../../../assets/images/02.gif'
+      this.path = 'assets/images/02.gif'
     }
   }
 
@@ -137,9 +140,7 @@ export class ToursInquiryComponent implements OnInit {
         localStorageFormData.splice(index, 1)
       }
       console.log("index of tours in localstorage", localStorageFormData);
-      // if (localStorageFormData.length) {
       localStorage.setItem('form_data', JSON.stringify(localStorageFormData))
-      // }
     }
   }
 

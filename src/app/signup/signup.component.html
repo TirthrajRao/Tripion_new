@@ -21,7 +21,6 @@
 <ion-content>
     <div class="login_form_page">
         <div class="login">
-            <!-- <h4 class="login_header">Sign Up</h4> -->
             <form class="login_form" [formGroup]='signUpForm'>
                 <div class="form-group">
                     <input type="text" formControlName="first_name" class="form-control" id="fname" placeholder="Enter First Name">
@@ -85,7 +84,7 @@
     <div *ngIf="loading">
         <div id="loader-wrapper">
             <div class="heartbeatloader">
-                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+                <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
             </div>
         </div>
     </div>

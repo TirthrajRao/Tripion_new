@@ -20,19 +20,28 @@ export class AccomodationInquiryComponent implements OnInit {
 
   constructor(public route: Router, private fb: FormBuilder, public _tripService: TripService) {
     this.formUrl = JSON.parse(localStorage.getItem('formId'));
-    // this.formUrl.splice(0, 1)
-    // localStorage.setItem('formId', JSON.stringify(this.formUrl));
-
+   
     this.accomodationForm = this.fb.group({
-      accomodation_type: new FormControl('', [Validators.required]),
-      room_category_preference: new FormControl('', [Validators.required]),
+      // accomodation_type: new FormControl('', [Validators.required]),
+      // room_category_preference: new FormControl('', [Validators.required]),
+      // smoking_room: new FormControl('No'),
+      // wheelchair_accessible: new FormControl('No'),
+      // special_request: new FormControl(''),
+      // meal_plan: new FormControl('CP ( Continental Plan ) - Only Breakfast'),
+      // culinary_preferrence: new FormControl('Vegetarian'),
+      // culinary_special_request: new FormControl(''),
+      // rooms: this.fb.array([], [Validators.required]),
+
+
+      accomodation_type: new FormControl(''),
+      room_category_preference: new FormControl(''),
       smoking_room: new FormControl('No'),
       wheelchair_accessible: new FormControl('No'),
       special_request: new FormControl(''),
       meal_plan: new FormControl('CP ( Continental Plan ) - Only Breakfast'),
       culinary_preferrence: new FormControl('Vegetarian'),
       culinary_special_request: new FormControl(''),
-      rooms: this.fb.array([], [Validators.required]),
+      rooms: this.fb.array([]),
     })
     this.room = this.accomodationForm.controls.rooms as FormArray;
   }
@@ -132,9 +141,7 @@ export class AccomodationInquiryComponent implements OnInit {
         localStorageFormData.splice(index, 1)
       }
       console.log("index of accomodation in localstorage", localStorageFormData);
-      // if (localStorageFormData.length) {
       localStorage.setItem('form_data', JSON.stringify(localStorageFormData))
-      // }
     }
   }
 }

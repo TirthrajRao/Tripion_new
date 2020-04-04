@@ -19,25 +19,35 @@ export class AirTicketsInquiryComponent implements OnInit {
   adultsPassenger: any = 0;
   seniorPassenger: any = 0;
 
-  // formData = JSON.parse(localStorage.getItem('form_data'));
 
   constructor(public route: Router, public _tripService: TripService) {
 
     this.formUrl = JSON.parse(localStorage.getItem('formId'));
-    // this.formUrl.splice(0, 1)
-    // localStorage.setItem('formId', JSON.stringify(this.formUrl));
     this.isSelected = localStorage.getItem('selectOnlyAirTickits');
 
     this.airTickitForm = new FormGroup({
-      infants_passenger: new FormControl('0', [Validators.required]),
-      children_passenger: new FormControl('0', [Validators.required]),
-      adults_passenger: new FormControl('0', [Validators.required]),
-      senior_passenger: new FormControl('0', [Validators.required]),
+      // infants_passenger: new FormControl('0', [Validators.required]),
+      // children_passenger: new FormControl('0', [Validators.required]),
+      // adults_passenger: new FormControl('0', [Validators.required]),
+      // senior_passenger: new FormControl('0', [Validators.required]),
+      // journey_type: new FormControl('Round Trip'),
+      // flightTire_preference: new FormControl('Economy'),
+      // flightSeat_preferences: new FormControl('Aisle', [Validators.required]),
+      // in_flight_meal: new FormControl('', [Validators.required]),
+      // airline_preference: new FormControl('', [Validators.required]),
+      // seat_belt_extender: new FormControl('Yes'),
+      // wheelChair_assistance: new FormControl('Yes')
+
+
+      infants_passenger: new FormControl('0'),
+      children_passenger: new FormControl('0'),
+      adults_passenger: new FormControl('0'),
+      senior_passenger: new FormControl('0'),
       journey_type: new FormControl('Round Trip'),
       flightTire_preference: new FormControl('Economy'),
-      flightSeat_preferences: new FormControl('Aisle', [Validators.required]),
-      in_flight_meal: new FormControl('', [Validators.required]),
-      airline_preference: new FormControl('', [Validators.required]),
+      flightSeat_preferences: new FormControl('Aisle'),
+      in_flight_meal: new FormControl(''),
+      airline_preference: new FormControl(''),
       seat_belt_extender: new FormControl('Yes'),
       wheelChair_assistance: new FormControl('Yes')
     })
@@ -72,6 +82,7 @@ export class AirTicketsInquiryComponent implements OnInit {
     this.airTickitForm.controls.flightSeat_preferences.setValue(e.target.value);
   }
 
+  //Decrement passangers count
   decrement(type) {
     console.log("type in dec", type);
     if (type == "infants") {
@@ -93,6 +104,7 @@ export class AirTicketsInquiryComponent implements OnInit {
     }
   }
 
+  //Increment passangers count
   increment(type) {
     console.log("type in inc", type)
     if (type == "infants") {
@@ -137,9 +149,7 @@ export class AirTicketsInquiryComponent implements OnInit {
         localStorageFormData.splice(index, 1)
       }
       console.log("index of air-tickit in localstorage", localStorageFormData);
-      // if (localStorageFormData.length) {
-      localStorage.setItem('form_data', JSON.stringify(localStorageFormData))
-      // }
+      localStorage.setItem('form_data', JSON.stringify(localStorageFormData));
     }
   }
 }

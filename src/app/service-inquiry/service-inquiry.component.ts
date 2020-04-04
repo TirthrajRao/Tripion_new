@@ -53,12 +53,6 @@ export class ServiceInquiryComponent implements OnInit {
         $(' .error_alert_box3 .alert_box_content').click(function (event) {
           event.stopPropagation();
         });
-        // const alert = await this.alertController.create({
-        //   subHeader: 'Trip Inquiry',
-        //   message: 'you have to select atleast three service',
-        //   buttons: ['OK']
-        // });
-        // await alert.present();
         return;
       }
 
@@ -120,11 +114,6 @@ export class ServiceInquiryComponent implements OnInit {
       }
     } else if (this.otherServices.length) {
       console.log("in othet", this.otherServices.length)
-      let formRoute;
-      // this.checkBoxValue = this.checkBoxValue.concat(this.otherServices);
-      // this.checkBoxValue.unshift('general-detail');
-      // formRoute = this.checkBoxValue[0]
-      // localStorage.setItem('formId', JSON.stringify(this.checkBoxValue));
       localStorage.setItem('selectedFormCategory', JSON.stringify(this.selectedFormCategory));
       localStorage.setItem('selectedForm', JSON.stringify(this.selectedForm));
       this.route.navigate(['/home/general-detail'])

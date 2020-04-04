@@ -43,9 +43,6 @@ export class ImageModalComponent implements OnInit {
 
     this.platform.backButton.subscribe(() => {
       console.log("this.router", this.router)
-      // if (this.router.url === '/home/home-page' || this.router.url === '/login') {
-      //   navigator['app'].exitApp();
-      // }
     })
     console.log("file object data", this.fileObjectData, this.fileType)
   }

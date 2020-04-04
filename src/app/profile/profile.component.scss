@@ -1,6 +1,6 @@
-$purple: #0575E6;
-$blue: #021B79;
-$green: #2FE57C;
+$purple: #0575e6;
+$blue: #021b79;
+$green: #2fe57c;
 $button_color: #003574;
 // content css end here
 .profile_content {
@@ -11,13 +11,13 @@ $button_color: #003574;
 
 .rawards_point {
     padding: 25px 15px 10px 15px;
-    @media(max-height: 600px) {
+    @media (max-height: 600px) {
         padding: 12px 15px 5px 15px;
     }
     ion-img {
         width: 100px;
         float: left;
-        @media(max-height: 600px) {
+        @media (max-height: 600px) {
             width: 85px;
         }
     }
@@ -32,18 +32,18 @@ $button_color: #003574;
 .card {
     margin-top: 15px;
     border-radius: 4px;
-    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
-    @media(max-height: 750px) {
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+    @media (max-height: 750px) {
         margin-top: 5px;
     }
     .card_header {
         p {
-            color: #434A5E;
+            color: #434a5e;
             font-size: 17px;
             font-weight: 600;
             padding: 15px;
             line-height: 20px;
-            border-bottom: 1px solid #C7CBD6;
+            border-bottom: 1px solid #c7cbd6;
         }
         ion-img {
             cursor: pointer;
@@ -56,37 +56,6 @@ $button_color: #003574;
     }
     .card_body {
         padding: 5px 0px 20px 0px;
-        // ion-card {
-        //     margin: 15px 10px 0px 10px !important;
-        // }
-        // ion-card-content {
-        //     width: 100%;
-        //     display: inline-block;
-        //     font-family: 'Montserrat', sans-serif !important;
-        //     .personal_detail {
-        //         width: 85%;
-        //         float: left;
-        //         p {
-        //             color: #7F8DAB;
-        //             font-size: 14px;
-        //             line-height: 27px;
-        //         }
-        //         h6 {
-        //             font-size: 17px;
-        //             color: #000;
-        //             font-weight: 600;
-        //         }
-        //     }
-        //     ion-img {
-        //         cursor: pointer;
-        //         width: 25px;
-        //         float: right;
-        //         position: absolute;
-        //         top: 0;
-        //         bottom: 0;
-        //         right: 10px;
-        //     }
-        // }
         ion-card {
             margin-inline-start: 0px;
             width: 100%;
@@ -99,7 +68,7 @@ $button_color: #003574;
                 position: relative;
                 margin-bottom: 12px;
                 margin: 0px;
-                font-family: 'Montserrat', sans-serif !important;
+                font-family: "Montserrat", sans-serif !important;
                 ion-img {
                     width: 24px;
                     position: absolute;
@@ -110,7 +79,7 @@ $button_color: #003574;
                 .user_detail {
                     width: 100%;
                     small {
-                        color: #7F8DAB;
+                        color: #7f8dab;
                         font-size: 13px;
                         line-height: 30px;
                     }
@@ -132,10 +101,10 @@ $button_color: #003574;
 
 .uograde_premium {
     padding: 40px 30px;
-    @media(max-height: 750px) {
+    @media (max-height: 750px) {
         padding: 28px 30px;
     }
-    @media(max-height: 600px) {
+    @media (max-height: 600px) {
         padding: 20px 30px;
     }
     button {
@@ -153,7 +122,7 @@ $button_color: #003574;
         i {
             margin-right: 15px;
             font-size: 25px;
-            color: #FFF700;
+            color: #fff700;
         }
     }
 }
@@ -231,7 +200,7 @@ $button_color: #003574;
 }
 
 ion-refresher-content {
-    background-color: #0575E6;
+    background-color: #0575e6;
     --color: white !important;
 }
 

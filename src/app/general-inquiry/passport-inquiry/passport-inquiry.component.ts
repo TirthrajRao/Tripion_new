@@ -26,11 +26,6 @@ export class PassportInquiryComponent implements OnInit {
   ) {
     this.passportInquiryForm = new FormGroup({
       passport_inquiry_type: new FormControl('New Passport'),
-      // firstName: new FormControl('', [Validators.required]),
-      // lastName: new FormControl('', [Validators.required]),
-      // dob: new FormControl('', [Validators.required]),
-      // address: new FormControl('', [Validators.required]),
-      // city: new FormControl('', [Validators.required])
     })
   }
 
@@ -47,7 +42,6 @@ export class PassportInquiryComponent implements OnInit {
       if (category.slug == 'passport') {
         this.selectedFormCategory = category.id
       }
-
     })
 
   }
@@ -77,7 +71,6 @@ export class PassportInquiryComponent implements OnInit {
     this._tripService.addPassportForm(obj).subscribe((res: any) => {
       console.log("passport res", res);
       this.loading = false;
-      // this._toastService.presentToast(res.message, 'success')
       this.appComponent.sucessAlert("Inquiry Submitted!! We have sent you the mail");
       if (this.formUrl.length) {
         this.route.navigate(['/home/' + this.formUrl[0]])
@@ -87,10 +80,8 @@ export class PassportInquiryComponent implements OnInit {
     }, err => {
       console.log("err", err);
       this.loading = false;
-      // this._toastService.presentToast(err.error.message, 'danger')
       this.appComponent.errorAlert(err.error.message);
     })
-    // this.storeFormData(data);
 
   }
 

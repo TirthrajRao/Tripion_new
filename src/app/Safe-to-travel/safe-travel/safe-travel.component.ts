@@ -67,7 +67,6 @@ export class SafeTravelComponent implements OnInit {
       this.loading = false;
     }, (err) => {
       console.log("err", err);
-      // this._toastService.presentToast(err.error.message, 'danger');
       this.appComponent.errorAlert(err.error.message);
       this.loading = false;
     })
@@ -96,8 +95,6 @@ export class SafeTravelComponent implements OnInit {
       $('.success_alert_box1 .alert_box_content').click(function (event) {
         event.stopPropagation();
       });
-      
     }
-
   }
 }

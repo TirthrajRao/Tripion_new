@@ -23,8 +23,23 @@ export class TransferInquiryComponent implements OnInit {
     this.getFormUrl()
 
     this.transferForm = new FormGroup({
-      from_date: new FormControl('', [Validators.required]),
-      to_date: new FormControl('', [Validators.required]),
+      // from_date: new FormControl('', [Validators.required]),
+      // to_date: new FormControl('', [Validators.required]),
+      // transferBasis: new FormControl('Private'),
+      // transfer_basis_special_request: new FormControl(''),
+      // meal: new FormControl(''),
+      // seat_preference: new FormControl(''),
+      // tyre: new FormControl(''),
+      // air: new FormControl(''),
+      // chauffer_car_type: new FormControl(''),
+      // selfdrive_car_type: new FormControl(''),
+      // suggest_rental: new FormControl(''),
+      // cabin_category: new FormControl(''),
+      // shore_excrusion: new FormControl(''),
+      // city_cards: new FormControl('No', [Validators.required])
+
+      from_date: new FormControl(''),
+      to_date: new FormControl(''),
       transferBasis: new FormControl('Private'),
       transfer_basis_special_request: new FormControl(''),
       meal: new FormControl(''),
@@ -36,7 +51,7 @@ export class TransferInquiryComponent implements OnInit {
       suggest_rental: new FormControl(''),
       cabin_category: new FormControl(''),
       shore_excrusion: new FormControl(''),
-      city_cards: new FormControl('No', [Validators.required])
+      city_cards: new FormControl('No')
     });
 
   }

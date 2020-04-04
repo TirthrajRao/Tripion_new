@@ -7,10 +7,6 @@
         </video>
         <div *ngIf="fileType == 'file'">
             <img src="assets/images/no-preview.jpg">
-            <!-- {{viewDocument()}} -->
-            <!-- <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(imagePath)" frameborder="0">
-            </iframe> -->
-            <!-- <iframe src="{{imagePath}}" width="100%" height="500px"> </iframe> -->
         </div>
         <div (click)="uploadImage()" class="send_button">
             <ion-icon ios="ios-send" md="md-send" [color]="white"></ion-icon>

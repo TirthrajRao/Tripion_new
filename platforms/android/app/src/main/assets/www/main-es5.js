@@ -447,7 +447,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n\n  <!-- Success alert -->\n  <div class=\"success_alert_box\" style=\"display: none;\">\n    <div class=\"alert_box_content\">\n      <div class=\"alert_box_text\">\n        <h4 *ngIf=\"!title\">Thanks !!</h4>\n        <h4 *ngIf=\"title\">{{title}}</h4>\n        <p>\n         {{message}}\n       </p>\n     </div>\n     <div class=\"alert_box_image\">\n      <img src=\"../../assets/images/success.png\" alt=\"image icon\">\n    </div>\n  </div>\n</div>\n\n<!-- Error Alert -->\n<div class=\"error_alert_box\" style=\"display: none;\">\n  <div class=\"alert_box_content\">\n    <div class=\"alert_box_text\">\n      <h4>Oopps !!</h4>\n      <div>\n        <span>A BOO-BOO HAPPENS</span>\n        <p *ngIf=\"!errMessage\" > something went wrong</p>\n        <p *ngIf=\"errMessage\" >{{errMessage}}</p>\n      </div>\n    </div>\n    <div class=\"alert_box_image\">\n      <img src=\"assets/images/cross.png\" alt=\"image icon\">\n    </div>\n  </div>\n</div>\n\n</ion-app>\n"
+module.exports = "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n\n  <!-- Success alert -->\n  <div class=\"success_alert_box\" style=\"display: none;\">\n    <div class=\"alert_box_content\">\n      <div class=\"alert_box_text\">\n        <h4 *ngIf=\"!title\">Thanks !!</h4>\n        <h4 *ngIf=\"title\">{{title}}</h4>\n        <p>\n         {{message}}\n       </p>\n     </div>\n     <div class=\"alert_box_image\">\n      <img src=\"assets/images/success.png\" alt=\"image icon\">\n    </div>\n  </div>\n</div>\n\n<!-- Error Alert -->\n<div class=\"error_alert_box\" style=\"display: none;\">\n  <div class=\"alert_box_content\">\n    <div class=\"alert_box_text\">\n      <h4>Oopps !!</h4>\n      <div>\n        <span>A BOO-BOO HAPPENS</span>\n        <p *ngIf=\"!errMessage\" > something went wrong</p>\n        <p *ngIf=\"errMessage\" >{{errMessage}}</p>\n      </div>\n    </div>\n    <div class=\"alert_box_image\">\n      <img src=\"assets/images/cross.png\" alt=\"image icon\">\n    </div>\n  </div>\n</div>\n\n</ion-app>\n"
 
 /***/ }),
 
@@ -458,7 +458,7 @@ module.exports = "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n\n  <!--
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content>\n    <div class=\"login_form_page\">\n        <div class=\"login\">\n            <h4 class=\"login_header\">Login</h4>\n            <form class=\"login_form\" [formGroup]='loginForm'>\n                <div class=\"form-group\">\n                    <input type=\"text\" class=\"form-control\" formControlName=\"username\" id=\"email\" placeholder=\"Enter Email\" required />\n                    <div *ngIf=\"submitted && f.username.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.username.errors.required\">Email is required</div>\n                        <div *ngIf=\"f.username.errors.email\">Email is invalid</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <input type=\"password\" class=\"form-control\" formControlName=\"password\" id=\"password\" placeholder=\"Enter Password\">\n                    <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.password.errors.required\">Password is required</div>\n                    </div>\n                </div>\n                <button type=\"submit\" class=\"login_btn btn\" (click)=\"loginUser(loginForm.value)\" [disabled]=\"isDisable\">Login</button>\n                <div class=\"sign_up_link\">\n                    <a href=\"#\" class=\"float-left\" routerLink='/signup'>Create new account?</a>\n                    <a class=\"float-right\" id=\"forgot-psw\">Forgot Password?</a>\n                </div>\n                <div class=\"or_section\">OR</div>\n                <div class=\"social_media_login\">\n                    <div class=\"row\">\n                        <div class=\"col-6\">\n                            <div class=\"facebook_login\">\n                                <button href=\"#\" class=\"facebook_btn btn\" (click)=\"facebookLogin()\" [disabled]=\"isDisable\"><i\n                                        class=\"fab fa-facebook-f\"></i>Facebook\n                                </button>\n                            </div>\n                        </div>\n                        <div class=\"col-6\">\n                            <div class=\"google_login\">\n                                <button class=\"google_btn btn\" (click)=\"googleLogin()\" [disabled]=\"isDisable\"><i class=\"fab fa-google\"></i>\n                                    Google</button>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n\n    <div *ngIf=\"loading\">\n        <div id=\"loader-wrapper\">\n            <div class=\"heartbeatloader\">\n                <ion-img class=\"svgdraw\" src=\"../../assets/images/loader.gif\"></ion-img>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"modal_content_with_overlay\" id=\"forgot-password\" style=\"display: none;\">\n        <div class=\"modal_body\">\n            <div class=\"modal_content\">\n                <h5>Forgot Password</h5>\n                <form [formGroup]='forgotPswForm'>\n                    <div class=\"form-group\">\n                        <div>\n                            <ion-item>\n                                <ion-label position=\"floating\">Enter Email</ion-label>\n                                <ion-input type=\"email\" formControlName=\"email\"></ion-input>\n                            </ion-item>\n                            <div *ngIf=\"submmitedFPsw && fpsw.email.errors\" class=\"invalid-feedback\">\n                                <div *ngIf=\"fpsw.email.errors.required\">Email is required</div>\n                                <div *ngIf=\"fpsw.email.errors.email\">Email is invalid</div>\n                            </div>\n                        </div>\n                    </div>\n                </form>\n                <div class=\"submit_btn\">\n                    <button type=\"submit\" (click)=\"forgotPassword(forgotPswForm.value)\" [disabled]=\"isDisable\">Submit</button>\n                </div>\n            </div>\n        </div>\n    </div>\n</ion-content>"
+module.exports = "<ion-content>\n    <div class=\"login_form_page\">\n        <div class=\"login\">\n            <h4 class=\"login_header\">Login</h4>\n            <form class=\"login_form\" [formGroup]='loginForm'>\n                <div class=\"form-group\">\n                    <input type=\"text\" class=\"form-control\" formControlName=\"username\" id=\"email\" placeholder=\"Enter Email\" required />\n                    <div *ngIf=\"submitted && f.username.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.username.errors.required\">Email is required</div>\n                        <div *ngIf=\"f.username.errors.email\">Email is invalid</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <input type=\"password\" class=\"form-control\" formControlName=\"password\" id=\"password\" placeholder=\"Enter Password\">\n                    <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.password.errors.required\">Password is required</div>\n                    </div>\n                </div>\n                <button type=\"submit\" class=\"login_btn btn\" (click)=\"loginUser(loginForm.value)\" [disabled]=\"isDisable\">Login</button>\n                <div class=\"sign_up_link\">\n                    <a href=\"#\" class=\"float-left\" routerLink='/signup'>Create new account?</a>\n                    <a class=\"float-right\" id=\"forgot-psw\">Forgot Password?</a>\n                </div>\n                <div class=\"or_section\">OR</div>\n                <div class=\"social_media_login\">\n                    <div class=\"row\">\n                        <div class=\"col-6\">\n                            <div class=\"facebook_login\">\n                                <button href=\"#\" class=\"facebook_btn btn\" (click)=\"facebookLogin()\" [disabled]=\"isDisable\"><i\n                                        class=\"fab fa-facebook-f\"></i>Facebook\n                                </button>\n                            </div>\n                        </div>\n                        <div class=\"col-6\">\n                            <div class=\"google_login\">\n                                <button class=\"google_btn btn\" (click)=\"googleLogin()\" [disabled]=\"isDisable\"><i class=\"fab fa-google\"></i>\n                                    Google</button>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n\n    <div *ngIf=\"loading\">\n        <div id=\"loader-wrapper\">\n            <div class=\"heartbeatloader\">\n                <ion-img class=\"svgdraw\" src=\"assets/images/loader.gif\"></ion-img>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"modal_content_with_overlay\" id=\"forgot-password\" style=\"display: none;\">\n        <div class=\"modal_body\">\n            <div class=\"modal_content\">\n                <h5>Forgot Password</h5>\n                <form [formGroup]='forgotPswForm'>\n                    <div class=\"form-group\">\n                        <div>\n                            <ion-item>\n                                <ion-label position=\"floating\">Enter Email</ion-label>\n                                <ion-input type=\"email\" formControlName=\"email\"></ion-input>\n                            </ion-item>\n                            <div *ngIf=\"submmitedFPsw && fpsw.email.errors\" class=\"invalid-feedback\">\n                                <div *ngIf=\"fpsw.email.errors.required\">Email is required</div>\n                                <div *ngIf=\"fpsw.email.errors.email\">Email is invalid</div>\n                            </div>\n                        </div>\n                    </div>\n                </form>\n                <div class=\"submit_btn\">\n                    <button type=\"submit\" (click)=\"forgotPassword(forgotPswForm.value)\" [disabled]=\"isDisable\">Submit</button>\n                </div>\n            </div>\n        </div>\n    </div>\n</ion-content>"
 
 /***/ }),
 
@@ -469,7 +469,7 @@ module.exports = "<ion-content>\n    <div class=\"login_form_page\">\n        <d
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n    <ion-toolbar class=\"toolbar-color1\">\n        <ion-row>\n            <ion-col size='2'>\n                <div class=\"back_icon\">\n                    <ion-buttons slot=\"start\">\n                        <ion-back-button>\n                            <i class=\"fa fa-angle-left back_icon_white\"></i>\n                        </ion-back-button>\n                    </ion-buttons>\n                </div>\n            </ion-col>\n            <ion-col size='8'>\n                <div class=\"middle_sec text-center text-white\">\n                    <span>Sign Up</span>\n                </div>\n            </ion-col>\n        </ion-row>\n    </ion-toolbar>\n</ion-header>\n<ion-content>\n    <div class=\"login_form_page\">\n        <div class=\"login\">\n            <!-- <h4 class=\"login_header\">Sign Up</h4> -->\n            <form class=\"login_form\" [formGroup]='signUpForm'>\n                <div class=\"form-group\">\n                    <input type=\"text\" formControlName=\"first_name\" class=\"form-control\" id=\"fname\" placeholder=\"Enter First Name\">\n                    <div *ngIf=\"submitted && f.first_name.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.first_name.errors.required\">Firstname is required</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <input type=\"text\" formControlName=\"last_name\" class=\"form-control\" id=\"lname\" placeholder=\"Enter Last Name\">\n                    <div *ngIf=\"submitted && f.last_name.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.last_name.errors.required\">Lastname is required</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <input type=\"text\" formControlName=\"username\" class=\"form-control\" id=\"uname\" placeholder=\"Enter User Name\">\n                    <div *ngIf=\"submitted && f.username.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.username.errors.required\">Username is required</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <input type=\"email\" formControlName=\"email\" class=\"form-control\" id=\"email\" placeholder=\"Enter Email\">\n                    <div *ngIf=\"submitted && f.email.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.email.errors.required\">Email is required</div>\n                        <div *ngIf=\"f.email.errors.email\">Email is invalid</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <input type=\"number\" formControlName=\"phone_number\" class=\"form-control\" id=\"number\" placeholder=\"Enter Mobile number\">\n                    <div *ngIf=\"submitted && f.phone_number.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.phone_number.errors.required\">Phone number is required</div>\n                        <div *ngIf=\"f.phone_number.errors.pattern\">Phone Number must be 10 digit</div>\n                    </div>\n                </div>\n                <!-- <div class=\"form-group\">\n                    <ion-datetime placeholder=\"Select birth date\" class=\"form-control\" formControlName=\"dob\">\n                    </ion-datetime>\n                    <div *ngIf=\"submitted && f.dob.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.dob.errors.required\">Birthdate is required</div>\n                    </div>\n                </div> -->\n                <div class=\"form-group\">\n                    <input type=\"password\" formControlName=\"password\" class=\"form-control\" id=\"password\" placeholder=\"Enter Password\">\n                    <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.password.errors.required\">Password is required</div>\n                    </div>\n                </div>\n                <!-- <div class=\"form-group register-select\">\n                    <ion-label>Select Timezone</ion-label>\n                    <select id=\"myselection\" class=\"form-control\" formControlName=\"home_town\" (change)=\"changeCountry($event)\">\n                        <option [value]=\"i\" *ngFor=\"let timeZone of timeZoneList;let i = index\" > {{timeZone.text}}\n                        </option>\n                    </select>\n                    <div *ngIf=\"submitted && f.home_town.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.home_town.errors.required\">Select Your Timezone</div>\n                    </div>\n                </div> -->\n                <button type=\"submit\" class=\"login_btn btn\" (click)=\"signUpUser(signUpForm.value)\" [disabled]=\"isDisable\">Sign Up</button>\n            </form>\n        </div>\n    </div>\n    <div *ngIf=\"loading\">\n        <div id=\"loader-wrapper\">\n            <div class=\"heartbeatloader\">\n                <ion-img class=\"svgdraw\" src=\"../../assets/images/loader.gif\"></ion-img>\n            </div>\n        </div>\n    </div>\n</ion-content>"
+module.exports = "<ion-header>\n    <ion-toolbar class=\"toolbar-color1\">\n        <ion-row>\n            <ion-col size='2'>\n                <div class=\"back_icon\">\n                    <ion-buttons slot=\"start\">\n                        <ion-back-button>\n                            <i class=\"fa fa-angle-left back_icon_white\"></i>\n                        </ion-back-button>\n                    </ion-buttons>\n                </div>\n            </ion-col>\n            <ion-col size='8'>\n                <div class=\"middle_sec text-center text-white\">\n                    <span>Sign Up</span>\n                </div>\n            </ion-col>\n        </ion-row>\n    </ion-toolbar>\n</ion-header>\n<ion-content>\n    <div class=\"login_form_page\">\n        <div class=\"login\">\n            <form class=\"login_form\" [formGroup]='signUpForm'>\n                <div class=\"form-group\">\n                    <input type=\"text\" formControlName=\"first_name\" class=\"form-control\" id=\"fname\" placeholder=\"Enter First Name\">\n                    <div *ngIf=\"submitted && f.first_name.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.first_name.errors.required\">Firstname is required</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <input type=\"text\" formControlName=\"last_name\" class=\"form-control\" id=\"lname\" placeholder=\"Enter Last Name\">\n                    <div *ngIf=\"submitted && f.last_name.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.last_name.errors.required\">Lastname is required</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <input type=\"text\" formControlName=\"username\" class=\"form-control\" id=\"uname\" placeholder=\"Enter User Name\">\n                    <div *ngIf=\"submitted && f.username.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.username.errors.required\">Username is required</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <input type=\"email\" formControlName=\"email\" class=\"form-control\" id=\"email\" placeholder=\"Enter Email\">\n                    <div *ngIf=\"submitted && f.email.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.email.errors.required\">Email is required</div>\n                        <div *ngIf=\"f.email.errors.email\">Email is invalid</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <input type=\"number\" formControlName=\"phone_number\" class=\"form-control\" id=\"number\" placeholder=\"Enter Mobile number\">\n                    <div *ngIf=\"submitted && f.phone_number.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.phone_number.errors.required\">Phone number is required</div>\n                        <div *ngIf=\"f.phone_number.errors.pattern\">Phone Number must be 10 digit</div>\n                    </div>\n                </div>\n                <!-- <div class=\"form-group\">\n                    <ion-datetime placeholder=\"Select birth date\" class=\"form-control\" formControlName=\"dob\">\n                    </ion-datetime>\n                    <div *ngIf=\"submitted && f.dob.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.dob.errors.required\">Birthdate is required</div>\n                    </div>\n                </div> -->\n                <div class=\"form-group\">\n                    <input type=\"password\" formControlName=\"password\" class=\"form-control\" id=\"password\" placeholder=\"Enter Password\">\n                    <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.password.errors.required\">Password is required</div>\n                    </div>\n                </div>\n                <!-- <div class=\"form-group register-select\">\n                    <ion-label>Select Timezone</ion-label>\n                    <select id=\"myselection\" class=\"form-control\" formControlName=\"home_town\" (change)=\"changeCountry($event)\">\n                        <option [value]=\"i\" *ngFor=\"let timeZone of timeZoneList;let i = index\" > {{timeZone.text}}\n                        </option>\n                    </select>\n                    <div *ngIf=\"submitted && f.home_town.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.home_town.errors.required\">Select Your Timezone</div>\n                    </div>\n                </div> -->\n                <button type=\"submit\" class=\"login_btn btn\" (click)=\"signUpUser(signUpForm.value)\" [disabled]=\"isDisable\">Sign Up</button>\n            </form>\n        </div>\n    </div>\n    <div *ngIf=\"loading\">\n        <div id=\"loader-wrapper\">\n            <div class=\"heartbeatloader\">\n                <ion-img class=\"svgdraw\" src=\"assets/images/loader.gif\"></ion-img>\n            </div>\n        </div>\n    </div>\n</ion-content>"
 
 /***/ }),
 
@@ -579,6 +579,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+//firebase configration
 var config = {
     apiKey: 'MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC7c1GumIdO3yTH\n3wFXJsQPxoRNc1dS3eIZGy3rBmHE8f7guQOzGTrAIikQe10kCYp9hU+WqjfCg7qU\nhOkGikml9i5jD7BRboS6L066UROgsBpz6JZnA/jSXnHKNH88HdzL28xH5Jw472Ck\nQkq8pLgvVMnO2+GBRemJkP3di+DjtTVBtzgjLi8PNbc7w+O9SHHjekqDssCQixuL\nLv2j6TgR25lTLXSGu9mFRgcH+RJgk3UjiFShy4h2+SlYvNy5qL0adcSx5GlixzQc\nNfs+NdnEwyGqbff7iR736NGPMP8w5RsHzgMoDjkF+dRlot8Go0CfXreuLcri52H3\n8jHzvdsvAgMBAAECggEAGsyCVYVN9us1DXQm82hB6IV3ncELL3g0XmWB25N2f9sf\nFs6spjrJqPVZTJduefv5NjfMaJxeS2tczeXwkLRNkjIPcK8qBIJZ7GpeBYoY1cTH\ni2GpuwGY3a6N8xwtQpF8YxLB8ldPNF6YwPMPT0f3YyDqly3dYAd4O2gkuztHxBYB\nZjv0BJ17VEcQpou115MduBvSnPkAwig0koynNmr6eczPp4329/GbSqeIPdiS6r0m\nY8mFYW0xajR6Fye+l4oQZwAgbESOt2W6oC+Qquyyak/CU4tfa20nxMphakftlkFL\ntzkVK3YWOOBWGVCyR/ZCylz+68lkxPZBap+5sPWRcQKBgQD5Muk8s2cAEAVYZJx9\n5RWwlVcUyAH2j2NpdJmDUhgHUE6mwhXkNBxwIEod91u2xjLehJUCecd21pHvAEgY\nA3UpYctdT5M49c2g0fsjZFFy5nliHznPQvTvu4+nLYfERvYW+y70stJLhTwgavx1\nsX9Q45WXLYiuldeOTLIlJHgxXwKBgQDAkPzVbcwTa9Au0VoEJPnm9qKtiP16QkQa\n4KEKtFZrOBGPOaD7jZw/3tkaqK8mwJ0TybMDKvb40gKzG7VoOvVL6mDk68q1EKAs\nw40TJ8P84iLExIx0Dh/I1O2FrQV2JPexCt1QbWmsscief9OSv9yXCmmc2qMny04/\ntMgtQBSYMQKBgCB59xWXF9xVOi0b550sptf9jnzB2Cem5kDPFlab80+4spdfAfVc\nqTwfqSkgnI5EZErFopnQ/yLIsfog4kRm5vT+rr85aKlqt2K3GvCw2UCNMtKL2T/e\nrQc1PXJ/J4t36Ah0sdjoGSoIch6TctVvzXTgRBWQtJh0JMSB0FGw4A0nAoGAeBx3\nd/DKb/q5mdo/WYJu1d9UzQU7hfy7WkBucqzVkn8ghMOfZAiKQ1SO+o/o4DUYRPV0\nUS+FaOIliO5pkp/jzPxef6uLfrDmF8XJwv70wlGS+kTWjrUYoj4eAVlQpMaeMLHk\nJXx5g5xI1IRKxagiwZtfENVXG0U2g4oRqhfkQKECgYEAkIZrWYJtr/H9dtfq9Cpa\noA7tVlm91WIo7tD/3Y5EdczZ83hlitzeXULfBcmV8/fOi9lc1y8y6mvI4HvaxcFQ\nFt/5SdkUw25g289uIi+Tt4vu48g4GwifZCNEjLVB/FwliQkBpodfsLIdCZnZRHHG\nwWZhuso+M1XaY08tJ8id/hU=',
     authDomain: 'https://accounts.google.com/o/oauth2/auth',
@@ -614,8 +615,6 @@ var AppComponent = /** @class */ (function () {
         var _this = this;
         this.platform.ready().then(function () {
             _this.getNotification();
-            // this.checkNetworkConectivity();
-            // this.statusBar.styleDefault();
             _this.statusBar.backgroundColorByHexString('#0575E6');
             _this.splashScreen.hide();
             _this.menuRadius(); // call menuRadius method
@@ -646,7 +645,6 @@ var AppComponent = /** @class */ (function () {
                 console.log("Received in foreground");
             }
             ;
-            // this._toastService.presentToast(data.body, 'success')
             _this.getLocalNotification(data);
         });
     };
@@ -729,9 +727,6 @@ var AppComponent = /** @class */ (function () {
         $('.success_alert_box .alert_box_content').click(function (event) {
             event.stopPropagation();
         });
-        // setTimeout(() => {
-        //   $('.success_alert_box').hide().removeClass('animate');
-        // }, 2000)
     };
     /**
      *Error Alert
@@ -746,9 +741,6 @@ var AppComponent = /** @class */ (function () {
         $(' .error_alert_box .alert_box_content').click(function (event) {
             event.stopPropagation();
         });
-        // setTimeout(() => {
-        //   $('.error_alert_box').hide().removeClass('animate');
-        // }, 2000)
     };
     AppComponent.ctorParameters = function () { return [
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
@@ -22136,10 +22128,8 @@ var LoginComponent = /** @class */ (function () {
                 console.log("res of devicedata in login", response);
             }, function (err) {
                 console.log("errr", err);
-                // this._toastServices.presentToast(err.error.message, 'danger')
             });
             _this.loading = false;
-            // this._toastServices.presentToast(res.message, 'success');
             _this.appComponent.sucessAlert("Login Successful", "Welcome");
             _this.router.navigate(['/home']);
             _this.loginForm.reset();
@@ -22147,7 +22137,6 @@ var LoginComponent = /** @class */ (function () {
         }, function (err) {
             console.log("err in login", err);
             _this.appComponent.errorAlert(err.error.message);
-            // this._toastServices.presentToast(err.error.message, 'danger');
             _this.isDisable = false;
             _this.loading = false;
         });
@@ -22177,10 +22166,9 @@ var LoginComponent = /** @class */ (function () {
                     console.log("errr", err);
                 });
                 _this.appComponent.sucessAlert("Login Successful", "Welcome");
-                // this._toastServices.presentToast(res.message, 'success');
                 _this.loading = false;
                 _this.isDisable = false;
-                if (res.data.home_town) {
+                if (res.data.first_name && res.data.last_name && res.data.email) {
                     _this.router.navigate(['/home']);
                 }
                 else {
@@ -22188,7 +22176,6 @@ var LoginComponent = /** @class */ (function () {
                     _this.router.navigate(['/home/profile']);
                 }
             }, function (err) {
-                // this._toastServices.presentToast(err.error.message, 'danger');
                 _this.appComponent.errorAlert(err.error.message);
                 console.log("err in google login", err);
                 _this.loading = false;
@@ -22196,7 +22183,6 @@ var LoginComponent = /** @class */ (function () {
             });
         })
             .catch(function (err) {
-            // this._toastServices.presentToast("Error in Google Login", 'danger')
             _this.appComponent.errorAlert("Error in Google Login");
             console.error("err", err);
             _this.loading = false;
@@ -22243,10 +22229,9 @@ var LoginComponent = /** @class */ (function () {
                                         _this.isDisable = false;
                                     });
                                     _this.appComponent.sucessAlert("Login Successful", "Welcome");
-                                    // this._toastServices.presentToast(res.message, 'success');
                                     _this.loading = false;
                                     _this.isDisable = false;
-                                    if (res.data.home_town) {
+                                    if (res.data.first_name && res.data.last_name && res.data.email) {
                                         _this.router.navigate(['/home']);
                                     }
                                     else {
@@ -22254,7 +22239,6 @@ var LoginComponent = /** @class */ (function () {
                                         _this.router.navigate(['/home/profile']);
                                     }
                                 }, function (err) {
-                                    // this._toastServices.presentToast(err.error.message, 'danger');
                                     _this.appComponent.errorAlert(err.error.message);
                                     console.log("err in fb login", err);
                                     _this.loading = false;
@@ -22271,7 +22255,6 @@ var LoginComponent = /** @class */ (function () {
             console.error("err", err);
             _this.loading = false;
             _this.isDisable = false;
-            // this._toastServices.presentToast("Error in facebook Login", 'danger')
             _this.appComponent.errorAlert("Error in Facebook Login");
         });
     };
@@ -22299,7 +22282,6 @@ var LoginComponent = /** @class */ (function () {
             _this.appComponent.sucessAlert("Please Check the mail");
         }, function (err) {
             console.log("err in f psw", err);
-            // this._toastServices.presentToast(err.error.message, 'danger');
             _this.appComponent.errorAlert(err.error.message);
             _this.loading = false;
             _this.isDisable = false;
@@ -22531,6 +22513,8 @@ var UserService = /** @class */ (function () {
             localStorage.removeItem('currentUser');
             localStorage.removeItem("temprature");
             localStorage.removeItem("time");
+            localStorage.removeItem('tempratureData');
+            localStorage.removeItem('timeData');
             _this.router.navigate(['/login'], { clearHistory: true });
             _this.currentUserSubject.next(null);
             return res;
@@ -22694,9 +22678,7 @@ var Port = /** @class */ (function () {
     return Port;
 }());
 var SignupComponent = /** @class */ (function () {
-    function SignupComponent(_userService, 
-    // public _toastServices: ToastService,
-    router, appComponent) {
+    function SignupComponent(_userService, router, appComponent) {
         this._userService = _userService;
         this.router = router;
         this.appComponent = appComponent;
@@ -22740,9 +22722,6 @@ var SignupComponent = /** @class */ (function () {
     SignupComponent.prototype.signUpUser = function (data) {
         var _this = this;
         this.submitted = true;
-        //  data.dob = data.dob.split("T");
-        //  const td = data.dob[1].split('.')
-        //  data.dob = data.dob[0] + ' ' + td[0];
         console.log(data);
         if (this.signUpForm.invalid) {
             return;
@@ -22758,15 +22737,12 @@ var SignupComponent = /** @class */ (function () {
                 console.log("res of devicedata in login", response);
             }, function (err) {
                 console.log("errr", err);
-                // this._toastServices.presentToast(err.error.message, 'danger')
             });
-            // this._toastServices.presentToast(res.message, 'success')
-            _this.appComponent.sucessAlert("Register Successful");
+            _this.appComponent.sucessAlert("Registration Completed");
             _this.router.navigate(['/home']);
         }, function (err) {
             _this.isDisable = false;
             _this.loading = false;
-            // this._toastServices.presentToast(err.error.message, 'danger');
             _this.appComponent.errorAlert(err.error.message);
             console.log("err in register", err);
         });

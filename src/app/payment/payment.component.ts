@@ -25,7 +25,6 @@ export class PaymentComponent implements OnInit {
 
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
-        // this.paymentData = this.router.getCurrentNavigation().extras.state.data;
         this.paymentData = JSON.parse(this.router.getCurrentNavigation().extras.state.data)
         this.totalAmount = this.router.getCurrentNavigation().extras.state.total
         this.tripId = this.router.getCurrentNavigation().extras.state.tripId

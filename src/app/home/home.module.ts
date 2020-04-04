@@ -68,6 +68,7 @@ import { Base64 } from '@ionic-native/base64/ngx';
 import * as Hammer from 'hammerjs';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { InnerFolderComponent } from '../folder-data/inner-folder/inner-folder.component';
+import { SelectCityComponent } from '../select-city/select-city.component';
 
 import { MediaCapture } from '@ionic-native/media-capture/ngx';
 import { Media } from '@ionic-native/media/ngx';
@@ -277,10 +278,11 @@ export class IonicGestureConfig extends HammerGestureConfig {
             path: 'inner-folder/:foldername',
             component: InnerFolderComponent
           },
-          // {
-          //   path:'send-image',
-          //   component:ImageModalComponent
-          // }
+          {
+            path: 'select-city/:type',
+            component: SelectCityComponent
+          },
+         
         ]
       },
 
@@ -338,6 +340,7 @@ export class IonicGestureConfig extends HammerGestureConfig {
     ImageModalComponent,
     SafePipe,
     InnerFolderComponent,
+    SelectCityComponent
   ],
   providers: [
     FileTransfer,

@@ -6,6 +6,10 @@ $green: #2FE57C;
     padding: 0px 10px;
     position: relative;
     z-index: 11;
+    ion-spinner{
+        display: block;
+        margin: auto;
+    }
 }
 
 .card {
@@ -58,7 +62,7 @@ $green: #2FE57C;
         font-weight: 500;
         outline: none;
         background: linear-gradient(to right, $purple, $blue);
-        box-shadow: 2px 1px 3px rgba(129, 59, 219, 0.5);
+        // box-shadow: 2px 1px 3px rgba(129, 59, 219, 0.5);
         i {
             margin-right: 15px;
             font-size: 25px;

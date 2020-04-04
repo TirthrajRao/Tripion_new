@@ -30,42 +30,42 @@ export class HomePage {
       {
         title: 'Home',
         url: '/home/home-page',
-        iconSrc: '../../assets/images/1.png'
+        iconSrc: 'assets/images/1.png'
       },
       {
         title: 'Inquiry',
         url: '/home/service-inquiry',
-        iconSrc: '../../assets/images/2.png'
+        iconSrc: 'assets/images/2.png'
       },
       {
         title: 'Briefcase',
         url: '/home/briefcase',
-        iconSrc: '../../assets/images/3.png'
+        iconSrc: 'assets/images/3.png'
       },
       {
         title: 'Amendments',
         url: '/home/amendments',
-        iconSrc: '../../assets/images/4.png'
+        iconSrc: 'assets/images/4.png'
       },
       {
         title: 'Notifications',
         url: '/home/notification',
-        iconSrc: '../../assets/images/5.png'
+        iconSrc: 'assets/images/5.png'
       },
       {
         title: 'Past Trips',
         url: '/home/past-trips',
-        iconSrc: '../../assets/images/6.png'
+        iconSrc: 'assets/images/6.png'
       },
       {
         title: 'Safe to Travel',
         url: '/home/safe-travel',
-        iconSrc: '../../assets/images/7.png'
+        iconSrc: 'assets/images/7.png'
       },
       {
         title: 'Profile',
         url: '/home/profile',
-        iconSrc: '../../assets/images/9.png'
+        iconSrc: 'assets/images/9.png'
       },
     ]
 
@@ -82,8 +82,6 @@ export class HomePage {
     this.event.subscribe("userName", (data) => {
       console.log(data);
       this.currentUserData = data;
-      // this.userName = data.user_name;
-      // this.profilePic = data.profile_pic
     });
   }
   /**
@@ -116,7 +114,6 @@ export class HomePage {
     this._tripService.getFormCategoryList().subscribe((res: any) => {
       localStorage.setItem('categoryList', JSON.stringify(res.data))
     }, (err) => {
-      // this._toastService.presentToast(err.error.message, 'danger');
       console.log(err);
     })
   }

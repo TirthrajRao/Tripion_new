@@ -74,7 +74,6 @@ export class PlanOptionDetailComponent implements OnInit {
          this.createSlider();
        }, 1)
      }, (err) => {
-       // this._toastService.presentToast(err.error.message, 'danger');
        this.appComponent.errorAlert(err.error.message);
        console.log(err);
        this.loading = false;
@@ -110,9 +109,7 @@ export class PlanOptionDetailComponent implements OnInit {
        //Download file
        this._toastService.presentToast("Downloading.....", 'success')
        this.fileTransfer.download(url, ROOT_DIRECTORY + downloadFolderName + '/' + name).then((entry) => {
-         // this.downloading = false;
          console.log('download complete: ' + entry.toURL());
-         this._toastService.presentToast("Download Completed", 'success');
          this.openFile(entry.nativeURL, mimeType);
        }, (error) => {
          console.log("error", error);

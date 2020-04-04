@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ChatService } from '../services/chat.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IonContent, NavController, ModalController, Platform, AlertController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -23,7 +22,7 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import * as firebase from 'firebase';
 
-import { MediaCapture, MediaFile, CaptureError, CaptureVideoOptions } from '@ionic-native/media-capture/ngx';
+import { MediaCapture } from '@ionic-native/media-capture/ngx';
 declare var $: any;
 
 @Component({
@@ -59,7 +58,6 @@ export class AmendmentsComponent implements OnInit {
   timex: any;
 
   constructor(
-    public _chatService: ChatService,
     public router: Router,
     public _userService: UserService,
     public _s3Service: S3Service,
@@ -79,9 +77,7 @@ export class AmendmentsComponent implements OnInit {
     public sanitizer: DomSanitizer,
     private media: Media,
     private base64: Base64,
-    private filesPath: FilePath,
     public appComponent: AppComponent,
-    private mediaCapture: MediaCapture,
   ) {
     this.addMessageForm = new FormGroup({
       message: new FormControl('', Validators.required)
@@ -110,8 +106,6 @@ export class AmendmentsComponent implements OnInit {
       this.messagesList = tmp;
       this.loading = false;
       console.log("message list", this.messagesList);
-
-      // console.log("-------", this.messagesList[40].message.message.url)
       this.contentArea.scrollToBottom();
       setTimeout(() => {
         _.forEach(this.messagesList, (message) => {
@@ -150,19 +144,6 @@ export class AmendmentsComponent implements OnInit {
         this.sendLocation(this.locationData)
       }
     }
-    // if (this.route.queryParams) {
-    //   this.route.queryParams.subscribe((param) => {
-    //     console.log("param", param)
-    //     this.locationData = param
-    //     console.log("location data in ammendments", this.locationData);
-    //     if (this.locationData.place_id) {
-    //       this.getLatLng(this.locationData.place_id);
-    //     } else if (Object.keys(this.locationData).length) {
-    //       console.log("this.locationdata", this.locationData)
-    //       this.sendLocation(this.locationData)
-    //     }
-    //   })
-    // }
   }
 
 
@@ -173,9 +154,6 @@ export class AmendmentsComponent implements OnInit {
       $("#open_attachment").click(function () {
         $(".attechments").slideToggle();
       });
-      // $(".attach_img").click(function () {
-      //   $(".attechments").slideToggle();
-      // })
     });
   }
 
@@ -212,11 +190,9 @@ export class AmendmentsComponent implements OnInit {
    * @param {Number} messageIndex
    */
   getMessageDate(messageIndex: number): string {
-   
+
     var fromNow = moment(this.messagesList[messageIndex].message.date).fromNow();
-
     return moment(this.messagesList[messageIndex].message.date).calendar(null, {
-
       lastDay: '[Yesterday]',
       sameDay: '[Today]',
 
@@ -224,10 +200,9 @@ export class AmendmentsComponent implements OnInit {
         return "[" + fromNow + "]";
       }
     });
-
-
   }
 
+  // change date formate for display message date
   changeDateFormate(date) {
     return moment(date).format('dddd ,h:mm a')
   }
@@ -246,7 +221,6 @@ export class AmendmentsComponent implements OnInit {
    */
   getLatLng(placeId) {
     console.log("placeId========>", placeId);
-    // this.http.get('https://maps.googleapis.com/maps/api/geocode/json?place_id=' + placeId + '&key=AIzaSyAHyK08CHb5PEfGHwUc34x-Lnp86YsODGg', {}, {})
     this.http.get('https://maps.googleapis.com/maps/api/place/details/json?placeid=' + placeId + '&key=AIzaSyAHyK08CHb5PEfGHwUc34x-Lnp86YsODGg', {}, {})
       .then(data => {
         console.log("res", data.status, JSON.parse(data.data));
@@ -341,49 +315,6 @@ export class AmendmentsComponent implements OnInit {
     this.addMessageForm.reset();
   }
 
-
-  /**
-   * Upload image
-   */
-  async getPhoto(type) {
-
-    const alert = await this.alertCtrl.create({
-      // title: 'Profile Picture',
-      message: 'From where do you want to choose your item pic?',
-      buttons: [
-        {
-          text: 'Cancel',
-          handler: data => { }
-        },
-        {
-          text: 'Choose from gallery',
-          handler: () => {
-            // Call imageProvider to process, upload, and update user photo.
-            this._s3Service.setProfilePhoto('', this.camera.PictureSourceType.PHOTOLIBRARY, type).then(data => {
-              console.log("response from gallary", data)
-              this.imgPreview = data;
-              this.openModal(this.imgPreview)
-              // $("#display-image").fadeIn();
-              this.imageSet = true;
-            });
-          }
-        },
-        {
-          text: 'Take my photo',
-          handler: () => {
-            // Call imageProvider to process, upload, and update user photo.
-            this._s3Service.setProfilePhoto('', this.camera.PictureSourceType.CAMERA, type).then(data => {
-              console.log("response", data)
-              this.imgPreview = data;
-              this.openModal(this.imgPreview)
-              this.imageSet = true;
-            });
-          }
-        }
-      ]
-    })
-    await alert.present();
-  }
 
   /**
   *Open Modal
@@ -495,7 +426,6 @@ export class AmendmentsComponent implements OnInit {
         }).catch((err) => {
           console.log("Error is", err);
           this.appComponent.errorAlert()
-          // this._toastService.presentToast("Internal server error", 'danger')
         })
       }
     }
@@ -568,16 +498,15 @@ export class AmendmentsComponent implements OnInit {
         // this._toastService.presentToast("Internal server error", 'danger')
       })
     })
-
-
-
-
   }
 
+  /**
+   * Count timer for audio recording  
+   */
   startTimer() {
     var hours = 0;
     var mins = 0;
-    var seconds:any = 0;
+    var seconds: any = 0;
 
     this.timex = setInterval(() => {
       seconds++;
@@ -595,7 +524,7 @@ export class AmendmentsComponent implements OnInit {
       }
       if (seconds < 10) {
         seconds = '0' + seconds;
-        console.log("seconds", '0' + seconds,"----",seconds)
+        console.log("seconds", '0' + seconds, "----", seconds)
         $("#seconds").text(seconds);
       } else {
         $("#seconds").text(seconds);

@@ -15,7 +15,8 @@ export class SafeTravelDetailComponent implements OnInit {
   fileTransfer: FileTransferObject = this.transfer.create();
   public progress: any;
   downloading: Boolean = false;
-  pathToPreview:any
+  pathToPreview: any;
+  imgLoading:Boolean = true;
   constructor(
     public route: ActivatedRoute,
     public router: Router,
@@ -39,7 +40,7 @@ export class SafeTravelDetailComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.details = this.router.getCurrentNavigation().extras.state;
-         this.pathToPreview = "https://docs.google.com/viewerng/viewer?url=" +this.details.pdfUrl.image_url + "&embedded=true"
+        this.pathToPreview = "https://docs.google.com/viewerng/viewer?url=" + this.details.pdfUrl.image_url + "&embedded=true"
         console.log("in payment page", this.details)
       }
     });
@@ -51,14 +52,14 @@ export class SafeTravelDetailComponent implements OnInit {
   /**
    * Doenload report
    */
-  downloadPdf(name,mimeType) {
+  downloadPdf(name, mimeType) {
     console.log("===enter====", name)
     this.downloading = true;
     const ROOT_DIRECTORY = 'file:///sdcard//';
     const downloadFolderName = 'Download/';
-    
+
     this.file.checkFile(ROOT_DIRECTORY + downloadFolderName, name).then((isExist) => {
-      this.openFile(ROOT_DIRECTORY + downloadFolderName + name,mimeType);
+      this.openFile(ROOT_DIRECTORY + downloadFolderName + name, mimeType);
     }).catch((notexist) => {
       console.log("nonexist")
       //create dir
@@ -69,8 +70,7 @@ export class SafeTravelDetailComponent implements OnInit {
           this.fileTransfer.download(this.details.pdfUrl.image_url, ROOT_DIRECTORY + downloadFolderName + '/' + name).then((entry) => {
             this.downloading = false;
             console.log('download complete: ' + entry.toURL());
-            // this._toastService.presentToast("Download Completed", 'success');
-            this.openFile(entry.nativeURL,mimeType);
+            this.openFile(entry.nativeURL, mimeType);
           }, (error) => {
             console.log("error", error);
             this._toastService.presentToast('Error in dowloading', 'danger');
@@ -85,7 +85,7 @@ export class SafeTravelDetailComponent implements OnInit {
   /**
    * Open File
    */
-  openFile(url,mimeType) {
+  openFile(url, mimeType) {
     console.log(url);
     this.fileOpener.showOpenWithDialog(url, mimeType)
       .then(() => console.log('File is opened'))
@@ -100,5 +100,23 @@ export class SafeTravelDetailComponent implements OnInit {
   previewImage(img) {
     console.log(img)
     this.photoViewer.show(img)
+  }
+
+   /**
+   * set fallback image on error
+   * @param {Number} index 
+   */
+  onErrorImage(index) {
+    console.log("index", index);
+    this.details.pdfUrl.image_url = 'assets/images/placeholder.png'
+  }
+
+  ionImgWillLoad(){
+    console.log("image loading");
+    this.imgLoading = false;
+  }
+  ionImgDidLoad(){
+    console.log("image loaded");
+    this.imgLoading = true;
   }
 }

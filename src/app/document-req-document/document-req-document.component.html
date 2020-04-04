@@ -11,7 +11,7 @@
             <div class="image_detail"
                 *ngIf="document.image_extension == 'png' || document.image_extension == 'jpg' || document.image_extension == 'jpeg'">
                 <div class="image">
-                    <img [src]="document.image_url || '../../assets/images/placeholder.png'">
+                    <img [src]="document.image_url || 'assets/images/placeholder.png'" onError="src = 'assets/images/placeholder.png'">
                 </div>
                 <div class="detail">
                     <p *ngIf="document.admin_approved_image == 0" style="color: orange;">Pending</p>
@@ -22,7 +22,7 @@
             </div>
             <div class="image_detail"
                 *ngIf="document.image_extension != 'png' && document.image_extension != 'jpg' && document.image_extension != 'jpeg'">
-                <ion-img src="../../assets/images/doc.png"></ion-img>
+                <ion-img src="assets/images/doc.png"></ion-img>
                 <span>{{document.image_name}}</span>
             </div>
         </div>
@@ -33,7 +33,7 @@
     <div *ngIf="loading">
         <div id="loader-wrapper">
             <div class="heartbeatloader">
-                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+                <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
             </div>
         </div>
     </div>

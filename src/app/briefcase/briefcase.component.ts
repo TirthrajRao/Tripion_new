@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UploadService } from '../services/upload.service';
-// import { ToastService } from '../services/toast.service';
 import { AppComponent } from '../app.component';
 declare const $: any;
 @Component({
@@ -13,11 +12,10 @@ export class BriefcaseComponent implements OnInit {
   loading: Boolean = false;
   allFolder: any = [];
   lastImage;
-  imageIcon = ["../../assets/images/green.png", "../../assets/images/y1.png", "../../assets/images/sky.png"];
+  imageIcon = ["assets/images/green.png", "assets/images/y1.png", "assets/images/sky.png"];
 
   constructor(
     public _uploadService: UploadService,
-    // public _toastService: ToastService,
     public appComponent: AppComponent,
   ) { }
 
@@ -54,8 +52,7 @@ export class BriefcaseComponent implements OnInit {
       this.loading = false;
     }, (err) => {
       console.log(err);
-      this.appComponent.errorAlert(err.error.message)
-      // this._toastService.presentToast(err.error.message,'danger');
+      this.appComponent.errorAlert(err.error.message);
       this.loading = false;
     })
   }

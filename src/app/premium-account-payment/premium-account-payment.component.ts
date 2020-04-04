@@ -17,11 +17,11 @@ export class PremiumAccountPaymentComponent implements OnInit {
   loading: Boolean = false;
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private router: Router,
     public _tripService: TripService,
     public appComponent: AppComponent,
-    ) {
+  ) {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.amount = this.router.getCurrentNavigation().extras.state.amount;
@@ -51,8 +51,7 @@ export class PremiumAccountPaymentComponent implements OnInit {
       console.log("inquiry form res", res);
       localStorage.removeItem('form_data');
       localStorage.removeItem('selectedFormCategory');
-      this.appComponent.sucessAlert("We got your money","WooW")
-      // this._toastService.presentToast(res.message, 'success')
+      this.appComponent.sucessAlert("We got your money", "WooW")
       this.router.navigate(['/home']);
     }, (err) => {
       this.appComponent.errorAlert(err.error.message);

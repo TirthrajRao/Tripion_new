@@ -80,7 +80,6 @@ export class AllPlanComponent implements OnInit {
 
       this.loading = false;
       console.log("all palans", this.allPlans);
-      //  if (this.allPlans.length == 1) {
       _.forEach(this.allPlans, (plan, index) => {
         console.log("plan", plan);
         if (plan.plan_selected == 1) {
@@ -90,13 +89,10 @@ export class AllPlanComponent implements OnInit {
           return false;
         }
       })
-      // this.planSlected = this.allPlans[0].plan_selected;
-      //  }
       console.log("plan selected", this.planSlected);
     }, err => {
       console.log(err);
       this.loading = false;
-      // this._toastService.presentToast(err.error.message, 'danger');
       this.appComponent.errorAlert(err.error.message);
     })
   }
@@ -122,14 +118,12 @@ export class AllPlanComponent implements OnInit {
           this.allPlans.splice(this.allPlans.indexOf(plan), 1)
         }
       })
-      // this._toastService.presentToast(res.message,'success');
       this.appComponent.sucessAlert("Thanks for choosing the plan!!", "Hive Five!!")
       this.router.navigate(['home/plan-option/' + this.inquiryId]);
     }, (err) => {
       console.log(err);
       this.isDisable = false;
       this.loading = false;
-      // this._toastService.presentToast(err.error.message, 'danger');
       this.appComponent.errorAlert(err.error.message);
     })
   }
@@ -141,7 +135,7 @@ export class AllPlanComponent implements OnInit {
     const obj = {
       id: this.currentUser.id,
       inquiry_id: this.inquiryId,
-      form_id:this.formId
+      form_id: this.formId
     }
     this._tripService.doThingYourWay(obj).subscribe((res: any) => {
       console.log("res of terminate", res);

@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card_header w-100">
                     <p>Country</p>
-                    <ion-img src="../../assets/images/s1.png"></ion-img>
+                    <ion-img src="assets/images/s1.png"></ion-img>
                 </div>
                 <div class="card_body safe-to-travel">
                     <ion-item>
@@ -18,7 +18,6 @@
                             <option [value]="country.name" *ngFor="let country of countries"> {{country.name}}
                             </option>
                         </select>
-                        <!-- <ion-input type="text" formControlName="countryName"></ion-input> -->
                     </ion-item>
                     <div *ngIf="submitted && f.countryName.errors" class="invalid-feedback">
                         <div *ngIf="f.countryName.errors.required">Country Name is required</div>
@@ -27,54 +26,16 @@
             </div>
             <div class="card">
                 <div class="card_header w-100">
-                    <ion-img src="../../assets/images/s2.png"></ion-img>
+                    <ion-img src="assets/images/s2.png"></ion-img>
                     <p>Passengers</p>
                 </div>
                 <div class="card_body">
-                    <!-- <div>
-                        <ion-item>
-                            <ion-label position="floating">Infants</ion-label>
-                            <ion-input type="number" formControlName="infantsPassengers" min='0'></ion-input>
-                        </ion-item>
-                        <div *ngIf="submitted && f.infantsPassengers.errors" class="invalid-feedback">
-                            <div *ngIf="f.infantsPassengers.errors.required">Infants Passengers is required</div>
-                        </div>
-                    </div>
-                    <div>
-                        <ion-item>
-                            <ion-label position="floating">Children</ion-label>
-                            <ion-input type="number" formControlName="childrenPassengers" min='0'></ion-input>
-                        </ion-item>
-                        <div *ngIf="submitted && f.childrenPassengers.errors" class="invalid-feedback">
-                            <div *ngIf="f.childrenPassengers.errors.required">Children Passengers is required</div>
-                        </div>
-                    </div>
-                    <div>
-                        <ion-item>
-                            <ion-label position="floating">Adults</ion-label>
-                            <ion-input type="number" formControlName="adultsPassengers" min='0'></ion-input>
-                        </ion-item>
-                        <div *ngIf="submitted && f.adultsPassengers.errors" class="invalid-feedback">
-                            <div *ngIf="f.adultsPassengers.errors.required">Adults Passengers is required</div>
-                        </div>
-                    </div>
-                    <div>
-                        <ion-item>
-                            <ion-label position="floating">Senior Citizens</ion-label>
-                            <ion-input type="number" formControlName="seniorPassengers" min='0'></ion-input>
-                        </ion-item>
-                        <div *ngIf="submitted && f.seniorPassengers.errors" class="invalid-feedback">
-                            <div *ngIf="f.seniorPassengers.errors.required">Senior Citizens Passengers is required</div>
-                        </div>
-                    </div> -->
-
                     <div class="general_details_body">
                         <div class="passengers-details">
                             <div class="plist">Infants</div>
                             <div class="icon-button">
                                 <div class="icons">
                                     <i class="fa fa-minus" aria-hidden="true" (click)="decrement('infants')"></i>
-                                    <!-- <span>{{infantsPassengers}}</span> -->
                                     <span>
                                         <ion-input type="number" formControlName="infantsPassengers"
                                             [(ngModel)]="infantsPassengers" min='0'></ion-input>
@@ -88,7 +49,6 @@
                             <div class="icon-button">
                                 <div class="icons">
                                     <i class="fa fa-minus" aria-hidden="true" (click)="decrement('children')"></i>
-                                    <!-- <span>{{childrenPassengers}}</span> -->
                                     <span>
                                         <ion-input type="number" formControlName="childrenPassengers"
                                             [(ngModel)]="childrenPassengers" min='0'></ion-input>
@@ -102,7 +62,6 @@
                             <div class="icon-button">
                                 <div class="icons">
                                     <i class="fa fa-minus" aria-hidden="true" (click)="decrement('adults')"></i>
-                                    <!-- <span>{{adultsPassengers}}</span> -->
                                     <span>
                                         <ion-input type="number" formControlName="adultsPassengers"
                                             [(ngModel)]="adultsPassengers" min='0'></ion-input>
@@ -116,7 +75,6 @@
                             <div class="icon-button">
                                 <div class="icons">
                                     <i class="fa fa-minus" aria-hidden="true" (click)="decrement('senior')"></i>
-                                    <!-- <span>{{seniorPassengers}}</span> -->
                                     <span>
                                         <ion-input type="number" formControlName="seniorPassengers"
                                             [(ngModel)]="seniorPassengers" min='0'></ion-input>
@@ -125,47 +83,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div>
-                            <ion-item>
-                                <ion-label position="floating">Infants</ion-label>
-                                <ion-input type="number" formControlName="infantsPassenger"></ion-input>
-                            </ion-item>
-                            <div *ngIf="submitted && f.infantsPassenger.errors" class="invalid-feedback">
-                                <div *ngIf="f.infantsPassenger.errors.required">Number of Infants Passengers is required
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <ion-item>
-                                <ion-label position="floating">Children</ion-label>
-                                <ion-input type="number" formControlName="childrenPassenger"></ion-input>
-                            </ion-item>
-                            <div *ngIf="submitted && f.childrenPassenger.errors" class="invalid-feedback">
-                                <div *ngIf="f.childrenPassenger.errors.required">Number of Children Passengers is
-                                    required
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <ion-item>
-                                <ion-label position="floating">Adults</ion-label>
-                                <ion-input type="number" formControlName="adultsPassenger"></ion-input>
-                            </ion-item>
-                            <div *ngIf="submitted && f.adultsPassenger.errors" class="invalid-feedback">
-                                <div *ngIf="f.adultsPassenger.errors.required">Number of Adults Passengers is required
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <ion-item>
-                                <ion-label position="floating">Senior Citizens</ion-label>
-                                <ion-input type="number" formControlName="seniorPassenger"></ion-input>
-                            </ion-item>
-                            <div *ngIf="submitted && f.seniorPassenger.errors" class="invalid-feedback">
-                                <div *ngIf="f.seniorPassenger.errors.required">Number of Senior Passengers is required
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                     <div class="row mt-3">
                         <div class="col-3 text-center pl-4">
@@ -192,7 +109,7 @@
             <div class="card">
                 <div class="card_header w-100">
                     <p>Dates</p>
-                    <ion-img src="../../assets/images/s3.png"></ion-img>
+                    <ion-img src="assets/images/s3.png"></ion-img>
                 </div>
                 <div class="card_body">
                     <div>
@@ -226,7 +143,7 @@
     <div *ngIf="loading">
         <div id="loader-wrapper">
             <div class="heartbeatloader">
-                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+                <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
             </div>
         </div>
     </div>

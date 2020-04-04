@@ -13,7 +13,7 @@
             <ion-col size='8'>
                 <div class="middle_sec text-white w-100">
                     <div class="text-center">
-                        <ion-img src="../../assets/images/9.png"></ion-img>
+                        <ion-img src="assets/images/9.png"></ion-img>
                         <span>{{passportDetail.nameInPassport}}</span>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
 
 
                         <div class="edit_icon" routerLink="/home/visa-detail/{{visa.id}}">
-                            <ion-img src="../../assets/images/pencil.png">
+                            <ion-img src="assets/images/pencil.png">
                             </ion-img>
                         </div>
                         <p class="texr-center">{{visa.country}}</p>
@@ -55,11 +55,10 @@
                             </div>
                             <div class="passport_image">
                                 <div class="passport_slider">
-                                    <div *ngFor="let img of visa.image_url">
+                                    <div *ngFor="let img of visa.image_url;let i=index">
                                         <div class="passport_slide">
-                                            <!-- <ion-img [src]="img.image_url || '../../../assets/images/placeholder.png'" (click)="previewImage(img.image_url)" (load)="loaded = true" [ngClass]="{'img-loaded':loaded}" [hidden]="loaded"></ion-img>
-                                            <ion-spinner [ngClass]="{'center':true}" [hidden]="!loaded"></ion-spinner> -->
-                                            <ion-img [src]="img.image_url || '../../../assets/images/placeholder.png'" (click)="previewImage(img.image_url)" ></ion-img>
+                                            <ion-img [src]="img.image_url || '../assets/images/placeholder.png'"
+                                                (click)="previewImage(img.image_url)" (ionError)="onErrorImage(i)"></ion-img>
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +73,7 @@
         </div>
         <div class="add_button">
             <a href="javascript:void(0);" id="add-visa">
-                <img src="../../assets/images/plus.png">
+                <img src="assets/images/plus.png">
             </a>
         </div>
     </div>
@@ -82,7 +81,7 @@
     <div *ngIf="loading">
         <div id="loader-wrapper">
             <div class="heartbeatloader">
-                <ion-img class="svgdraw" src="../../../assets/images/loader.gif"></ion-img>
+                <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
             </div>
         </div>
     </div>
@@ -108,10 +107,6 @@
                         </div>
                     </div>
                     <div class="visa-country">
-                        <!-- <ion-item>
-                            <ion-label position="floating">Country</ion-label>
-                            <ion-input type="text" formControlName="country"></ion-input>
-                        </ion-item> -->
                         <ion-item class="select2">
                             <ion-label>Select country</ion-label>
                             <select id="myselection" class="form-control w-100 " formControlName="country">
@@ -144,8 +139,8 @@
                         </div>
                     </div>
                     <div class="select_files">
-                        <!-- <input type="file" class="form-control" formControlName="profile_image" id="visafile" style="display: none;" (change)="selectFile($event)" multiple accept="image/* ,.doc ,.pdf"> -->
-                        <input type="file" class="form-control" formControlName="profile_image" id="visafile" style="display: none;" (change)="selectFile($event)" multiple >
+                        <input type="file" class="form-control" formControlName="profile_image" id="visafile"
+                            style="display: none;" (change)="selectFile($event)" multiple>
                         <label class="text-center" for="visafile">
                             <i class="far fa-copy"></i>
                             Select from Files

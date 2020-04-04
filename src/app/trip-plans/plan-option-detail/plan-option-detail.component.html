@@ -13,7 +13,7 @@
             <h3 class="text-center">{{planDetail.inquiry_name}} tour for {{planDetail.duration}} Days</h3>
             <div class="plan_images" *ngIf="planDetail.images.length">
                 <div class="plan_images_slide" *ngFor="let img of planDetail.images">
-                    <img [src]="img.image_url">
+                    <img [src]="img.image_url" onError="src = 'assets/images/placeholder.png'">
                 </div>
             </div>
             <span class="font-weight-bold ml-2">Description :</span>

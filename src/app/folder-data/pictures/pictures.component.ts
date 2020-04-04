@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UploadService } from '../../services/upload.service';
-// import { ToastService } from '../../services/toast.service';
 import {AppComponent} from '../../app.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 declare var $: any;
@@ -28,12 +27,10 @@ export class PicturesComponent implements OnInit {
   constructor(
     public route: ActivatedRoute,
     public _uploadService: UploadService,
-    // public _toastService: ToastService,
     public appComponent:AppComponent,
     ) {
 
       this.createFolderForm = new FormGroup({
-        // folder_name: new FormControl('', [Validators.required,Validators.pattern(`^(?!.*[!@#$%^&*()\-_+={}[\]|\\;:'",<.>\/?]{2}).+$`)])
         folder_name:new FormControl('',[Validators.required,Validators.pattern("^([a-zA-Z0-9][^*/><?\|:]*)$")])
       })
 
@@ -52,6 +49,7 @@ export class PicturesComponent implements OnInit {
     this.getFolderData();
   }
   get f() { return this.createFolderForm.controls }
+
   // modal for upload new pictures 
   openModal() {
     $('#upload-pictures').click(function () {
@@ -151,13 +149,11 @@ export class PicturesComponent implements OnInit {
        this.isDisable = false;
        this.loading = false;
        this.urls = [];
-        // this.appComponent.sucessAlert("File Successfully Uploaded");
      }, (err) => {
        console.log(err);
        this.isDisable = false;
        this.loading = false;
         this.appComponent.errorAlert(err.error.message);
-       // this._toastService.presentToast(err.error.message, 'danger')
      })
    }
 
@@ -189,7 +185,6 @@ export class PicturesComponent implements OnInit {
      }, (err) => {
        console.log(err);
         this.appComponent.errorAlert(err.error.message);
-       // this._toastService.presentToast(err.error.message, 'danger');
        this.loading = false;
      })
    }
@@ -221,7 +216,6 @@ export class PicturesComponent implements OnInit {
       this.getFolderData();
     }, (err) => {
       console.log(err);
-      // this._toastService.presentToast(err.error.message, 'danger');
       this.appComponent.errorAlert(err.error.message);
       this.isDisable = false;
       this.loading = false;
@@ -241,12 +235,9 @@ export class PicturesComponent implements OnInit {
     this._uploadService.getAllFolder(obj).subscribe((res: any) => {
       console.log("folders",res);
       this.folderList = res.data;
-      // this.loading = false;
     }, (err) => {
       console.log(err);
-      // this.loading = false;
       this.appComponent.errorAlert(err.error.message);
-      // this._toastService.presentToast(err.error.message, 'danger')
     })
   }
 

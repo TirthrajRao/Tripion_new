@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform, ModalController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { ChatService } from '../services/chat.service';
-import { GoogleMaps, GoogleMap  } from '@ionic-native/google-maps';
+import { GoogleMaps, GoogleMap } from '@ionic-native/google-maps';
 import { HTTP } from '@ionic-native/http/ngx';
 import { Router, NavigationExtras } from '@angular/router';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
@@ -22,23 +21,20 @@ export class SelectLocationComponent implements OnInit {
   markerLat: any;
   markerLng: any;
   cityName: any;
-  isDisplay:Boolean = false;
-  // @ViewChild('map', { static: false }) mapElement: ElementRef;
-  // @ViewChild('pleaseConnect', { static: false }) pleaseConnect: ElementRef;
-
+  isDisplay: Boolean = false;
   location: any;
   height = 0;
   searchedLocation: any = [];
+
   constructor(
     public modlCtrl: ModalController,
     private geolocation: Geolocation,
     private googleMaps: GoogleMaps,
     public platform: Platform,
-    public _chatService: ChatService,
     private http: HTTP,
     private router: Router,
     private nativeGeocoder: NativeGeocoder,
-    public _toastService:ToastService
+    public _toastService: ToastService
   ) {
     this.getCurrentLocation();
     this.height = platform.height() - 56;
@@ -56,19 +52,6 @@ export class SelectLocationComponent implements OnInit {
    */
   getCurrentLocation() {
 
-
-    // console.log("==============currunt location===")
-    // this.geolocation.getCurrentPosition().then((resp) => {
-    //   console.log("respons of lat long", resp);
-    //   this.markerLat = resp.coords.latitude;
-    //   this.markerLng = resp.coords.longitude;
-      
-    // }).catch((error) => {
-    //   console.log('Error getting location', error);
-    // });
-
-
-
     console.log("get Current location")
     this.geolocation.getCurrentPosition().then((geo) => {
       console.log("geo=====>", geo)
@@ -78,7 +61,7 @@ export class SelectLocationComponent implements OnInit {
       this.lng = geo.coords.longitude;
 
     }).catch((error) => {
-      console.log("err",error);
+      console.log("err", error);
     });
   }
 
@@ -92,8 +75,8 @@ export class SelectLocationComponent implements OnInit {
    */
   searchLocation() {
     console.log("search location", $('#searchinput').val());
-    $("agm-map").css({ height: this.height/2 })
-    this.isDisplay  = false;
+    $("agm-map").css({ height: this.height / 2 })
+    this.isDisplay = false;
     const locationName = $('#searchinput').val()
     this.http.get('https://maps.googleapis.com/maps/api/place/autocomplete/json?input=' + locationName + '&key=AIzaSyAHyK08CHb5PEfGHwUc34x-Lnp86YsODGg&sessiontoken=1234567890', {}, {})
       .then(data => {
@@ -127,6 +110,10 @@ export class SelectLocationComponent implements OnInit {
     console.log("map drag", $event)
   }
 
+  /**
+   * Change center change and set lat lng
+   * @param {object} e 
+   */
   centerChange(e) {
     console.log("map change", e);
     this.markerLat = e.lat;
@@ -140,6 +127,11 @@ export class SelectLocationComponent implements OnInit {
   }
 
 
+  /**
+   * Get Location Name
+   * @param {number} lat 
+   * @param {number} lng 
+   */
   getLocationName(lat, lng) {
     let options: NativeGeocoderOptions = {
       useLocale: true,
@@ -156,17 +148,23 @@ export class SelectLocationComponent implements OnInit {
       });
   }
 
-  sendSelectedLocation(){
-    const data={
-      lat:this.markerLat,
-      lng:this.markerLng,
-      name:this.cityName
+  /**
+   * send location data to chat
+   */
+  sendSelectedLocation() {
+    const data = {
+      lat: this.markerLat,
+      lng: this.markerLng,
+      name: this.cityName
     }
-    this.router.navigate(['/home/amendments'], { queryParams: data});
+    this.router.navigate(['/home/amendments'], { queryParams: data });
 
   }
 
-  sendCurrentLocation(){
+  /**
+   * send current location
+   */
+  sendCurrentLocation() {
     let options: NativeGeocoderOptions = {
       useLocale: true,
       maxResults: 1
@@ -175,17 +173,16 @@ export class SelectLocationComponent implements OnInit {
       .then((result: NativeGeocoderResult[]) => {
         console.log("location", result[0].locality);
         this.cityName = result[0].locality;
-        const data={
-          lat:this.lat,
-          lng:this.lng,
-          name:this.cityName
+        const data = {
+          lat: this.lat,
+          lng: this.lng,
+          name: this.cityName
         }
-        this.router.navigate(['/home/amendments'], { queryParams: data});
+        this.router.navigate(['/home/amendments'], { queryParams: data });
       })
       .catch((error: any) => {
         console.log(error);
         this._toastService.presentToast('Cannot Get Location', 'danger')
       });
-    
   }
 }

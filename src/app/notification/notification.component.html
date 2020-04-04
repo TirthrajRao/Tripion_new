@@ -6,7 +6,7 @@
             <div class="header_sec">
                 <div class="header_text">
                     <div>
-                        <img src="../../assets/images/n_icon.png">
+                        <img src="assets/images/n_icon.png">
                         <div class="text">
                             <h3>Notification</h3>
                             <p>Important Reminders</p>
@@ -19,9 +19,6 @@
             <div class="card" *ngFor="let notification of allNotifications"
                 routerLink="/home/plan-option/{{notification.inquiry_id}}">
                 <div class="left-part float-left">
-                    <!-- <div class="left-image">
-                        <img src="../../assets/images/profile1.png">
-                    </div> -->
                     <div class="text-content">
                         <div class="main-text">
                             <p>{{notification.title}}</p>
@@ -29,21 +26,18 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="right-sec float-right">
-                    <button type="submit">View Details</button>
-                </div> -->
             </div>
         </div>
         <div *ngIf="loading">
             <div id="loader-wrapper">
                 <div class="heartbeatloader">
-                    <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+                    <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
                 </div>
             </div>
         </div>
         <div class="loader" *ngIf="!loading && !allNotifications.length">
             <div class="message-icon">
-                <img src="../../assets/images/message.svg">
+                <img src="assets/images/message.svg">
             </div>
             <div class="notification-text">
                 <span class="text-center no-request">No Notification</span>

@@ -9,23 +9,6 @@
     </ion-refresher> -->
     <div class="all_content" *ngIf="allDocument.length">
         <div *ngIf="allDocument.length">
-
-            <!-- <div class="doc_details">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="doc_img card w-100">
-                            <ion-img src="../../assets/images/v.png"></ion-img>
-                            <p>Vouchers</p>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="doc_img card">
-                            <ion-img src="../../assets/images/e.png"></ion-img>
-                            <p>Tickets</p>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <app-folder-images [images]="allDocument"></app-folder-images>
         </div>
     </div>
@@ -33,7 +16,7 @@
         <div *ngIf="loading">
             <div id="loader-wrapper">
                 <div class="heartbeatloader">
-                    <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+                    <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
                 </div>
             </div>
         </div>

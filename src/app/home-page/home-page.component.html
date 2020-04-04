@@ -3,8 +3,6 @@
         <ion-row>
             <ion-col size='10'>
                 <div class="home_text text-center">
-                    <!-- <span *ngIf="allTrips.length" [innerHtml]="upCommingTrip"></span> -->
-                    <!-- <span *ngIf="!allTrips.length && !loading">Welcome to Tripion</span> -->
                     <span>Welcome to Tripion</span>
                 </div>
             </ion-col>
@@ -17,7 +15,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content >
+<ion-content>
     <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
         <ion-refresher-content refreshingSpinner="circular" pullingIcon="null">
         </ion-refresher-content>
@@ -25,51 +23,41 @@
     <div class=" all_content">
         <div class="wether w-100 ">
             <div class="wether_image float-left ">
-                <!-- <ion-img src="{{temperatureIcon}} " *ngIf="temperatureIcon "></ion-img> -->
 
-
-                <ion-img src="../../assets/images/wether.png "></ion-img>
+                <ion-img src="assets/images/wether.png "></ion-img>
 
                 <div class="temprature-select">
-                    <select id="myselection1" class="form-control w-100 temp" [(ngModel)]="this.tempratureIndex" >
+                    <!-- <select id="myselection1" class="form-control w-100 temp" [(ngModel)]="this.tempratureIndex" >
                         <option style="color: black;" [value]="i" *ngFor="let city of allCites;let i=  index">
                             {{city.city}}
                         </option>
-                    </select>
-                    <!-- <span *ngIf="!tempratureCity && !tempratureIndex" style="position: absolute;">Rajkot</span> -->
+                    </select> -->
+                    <p class="temp-city" (click)="selectCity('temperature')">{{tempratureCity}}</p>
                     <span *ngIf="tempratureCity && !tempratureIndex"
                         style="position: absolute;">{{tempratureCity}}</span>
                 </div>
 
                 <span *ngIf="temperature " class="temprature-text">{{temperature}}°C
                 </span>
-                <!-- <span *ngIf="!temperature " class="temprature-text">14°C
-                </span> -->
-
-
             </div>
             <div class="city_name float-right time-select">
-                <!-- <p *ngIf="cityName">{{cityName}}</p> -->
-                <select id="myselection2" class="form-control w-100" [(ngModel)]="this.timeIndex" >
+                <!-- <select id="myselection2" class="form-control w-100" [(ngModel)]="this.timeIndex">
                     <option style="color: black;" [value]="i" *ngFor="let city of allCites;let i=  index">
                         {{city.city}}
                     </option>
-                </select>
-                <p *ngIf="currentTime" style="    position: absolute;
-                margin-top: 25px;
-                right: 20px;
-                width: 150px;">{{currentTime}}</p>
-                <p *ngIf="!currentTime">4:47</p>
+                </select> -->
+                <p class="time-city"  (click)="selectCity('time')">{{timeCity}}</p>
+                <p *ngIf="currentTime" class="time-txt">{{currentTime}}</p>
             </div>
         </div>
-        <div class="home_details " *ngIf="allTrips.length ">
-            <div *ngFor="let trip of allTrips " >
+        <div class="home_details" *ngIf="allTrips.length ">
+            <div *ngFor="let trip of allTrips">
                 <div class="card text-white mb-2 " (click)="getPlanOption(trip) ">
                     <div class="card_content w-100 ">
-                        <div class="country_details float-left ">
+                        <div class="country_details float-left">
                             <p [innerHtml]="trip.inquiry_name "></p>
                             <ul>
-                                <li *ngFor="let inquiry of trip.list_of_inquiry ">{{inquiry}}</li>
+                                <li *ngFor="let inquiry of trip.list_of_inquiry">{{inquiry}}</li>
                             </ul>
                         </div>
                         <div class="booking_details float-right ">
@@ -87,7 +75,7 @@
     <div *ngIf="loading">
         <div id="loader-wrapper ">
             <div class="heartbeatloader ">
-                <ion-img class="svgdraw " src="../../assets/images/loader.gif "></ion-img>
+                <ion-img class="svgdraw " src="assets/images/loader.gif "></ion-img>
             </div>
         </div>
     </div>
@@ -95,9 +83,6 @@
     <div class="success_alert_box2" style="display: none;">
         <div class="alert_box_content">
             <div class="alert_box_text">
-                <!-- <div class="alert_box_image">
-                    <img src="../../assets/images/safetravel.png" alt="image icon">
-                </div> -->
                 <p>
                     Please Complete <br>
                     Your Profile
@@ -117,8 +102,8 @@
         <div class="footer_sec ">
             <div class="row ">
                 <div class="col-4 ">
-                    <div class="footer_img " routerLink='/home/frequent-flyer'>
-                        <ion-img src="../../assets/images/8.png "></ion-img>
+                    <div class="footer_img" routerLink='/home/frequent-flyer'>
+                        <ion-img src="assets/images/8.png "></ion-img>
                         <p>Frequent Flyer
                         </p>
                     </div>
@@ -126,13 +111,13 @@
                 <div class="col-4 ">
                     <div class="footer_img" routerLink='/home/notification'>
                         <span class="num" *ngIf="notificationCount">{{notificationCount}}</span>
-                        <ion-img src="../../assets/images/not_icon.png "></ion-img>
+                        <ion-img src="assets/images/not_icon.png "></ion-img>
                         <p>Notifications</p>
                     </div>
                 </div>
                 <div class="col-4 ">
-                    <div class="footer_img " routerLink='/home/briefcase'>
-                        <ion-img src="../../assets/images/3.png "></ion-img>
+                    <div class="footer_img" routerLink='/home/briefcase'>
+                        <ion-img src="assets/images/3.png "></ion-img>
                         <p>Briefcase</p>
                     </div>
                 </div>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TripService } from '../services/trip.service';
-import { ToastService } from '../services/toast.service';
 import { ActivatedRoute } from '@angular/router';
 import {AppComponent} from '../app.component';
 
@@ -16,7 +15,6 @@ export class DocumentReqDocumentComponent implements OnInit {
   loading: Boolean = true;
   constructor(
     public _tripService: TripService,
-    // public _toastService: ToastService,
     public route: ActivatedRoute,
     public appComponent:AppComponent,
     ) {
@@ -59,7 +57,6 @@ export class DocumentReqDocumentComponent implements OnInit {
      }, (err) => {
        console.log(err);
        this.appComponent.errorAlert(err.error.message);
-       // this._toastService.presentToast(err.error.message, 'danger');
        this.loading = false;
      })
    }

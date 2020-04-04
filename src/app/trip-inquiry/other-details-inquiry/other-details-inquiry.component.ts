@@ -34,9 +34,16 @@ export class OtherDetailsInquiryComponent implements OnInit {
     public appComponent: AppComponent,
   ) {
     this.otherDetailsForm = new FormGroup({
+      // communication_mode: new FormControl(''),
+      // budget_preference: new FormControl('', [Validators.required]),
+      // budget_amount: new FormControl('', [Validators.required]),
+      // payment_mode: new FormControl(''),
+      // number_of_plans: new FormControl('')
+
+
       communication_mode: new FormControl(''),
-      budget_preference: new FormControl('', [Validators.required]),
-      budget_amount: new FormControl('', [Validators.required]),
+      budget_preference: new FormControl(''),
+      budget_amount: new FormControl(''),
       payment_mode: new FormControl(''),
       number_of_plans: new FormControl('')
     })
@@ -52,9 +59,8 @@ export class OtherDetailsInquiryComponent implements OnInit {
   // Get Form Url For next form
   getFormUrl() {
     this.formUrl = JSON.parse(localStorage.getItem('formId'));
-    // this.formUrl.splice(0, 1);
-    // localStorage.setItem('formId', JSON.stringify(this.formUrl));
   }
+
   /**
    * Get User Details
    */
@@ -66,7 +72,6 @@ export class OtherDetailsInquiryComponent implements OnInit {
       console.log("user profile", res);
       this.userData = res.data;
     }, (err) => {
-      // this._toastService.presentToast(err.error.message, 'danger');
       this.appComponent.errorAlert(err.error.message);
       console.log("err", err);
     })
@@ -80,11 +85,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
       localStorage.setItem('formId', JSON.stringify(this.formUrl));
     }
     this.submitted = true;
-    // if (this.otherDetailsForm.invalid) {
-    //   return
-    // }
     console.log(data);
-
     this.submitted = true;
     if (this.otherDetailsForm.invalid) {
       return;
@@ -133,10 +134,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
         }
       };
       console.log(this.formData);
-      // localStorage.removeItem('form_data');
       this.route.navigate(['/home/premium-account'], navigationExtras)
-      // this.route.navigate(['/home/payment'])
-      // this.route.navigate(['/home/' + this.formUrl[0]])
     }
 
 
@@ -277,9 +275,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
       }
 
       console.log("index of other_detail in localstorage", localStorageFormData);
-      // if (localStorageFormData.length) {
       localStorage.setItem('form_data', JSON.stringify(localStorageFormData))
-      // }
     }
   }
 

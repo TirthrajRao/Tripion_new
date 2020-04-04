@@ -38,34 +38,6 @@
                             </ion-checkbox>
                             <ion-label class="ml-3">Message</ion-label>
                         </div>
-
-                        <!-- <div class="row">
-                            <div class="col-12">
-                                <input type="radio" class="mr-2" id="Communication1" value="Whatsapp"
-                                    formControlName="communicationMode">
-                                <label for="Communication1">Whatsapp</label>
-                            </div>
-                            <div class="col-12">
-                                <input type="radio" class="mr-2" id="Communication2" value="Phone"
-                                    formControlName="communicationMode">
-                                <label for="Communication2">Phone</label>
-                            </div>
-                            <div class="col-12">
-                                <input type="radio" class="mr-2" id="Communication3" value="Mail"
-                                    formControlName="communicationMode">
-                                <label for="Communication3">Mail</label>
-                            </div>
-                            <div class="col-12">
-                                <input type="radio" class="mr-2" id="Communication4" value="Visit Us"
-                                    formControlName="communicationMode">
-                                <label for="Communication4">Visit Us</label>
-                            </div>
-                            <div class="col-12">
-                                <input type="radio" class="mr-2" id="Communication5" value="Message"
-                                    formControlName="communicationMode">
-                                <label for="Communication5">Message</label>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
 
@@ -165,28 +137,16 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="submit_btn" >
-                <button type="submit" (click)="submitForm(otherDetailsForm.value)" [disabled]="isDisable"><i class="fas fa-save"></i>Submit</button>
-            </div> -->
-
             <div class="next_btn" >
                 <button type="submit" (click)="nextForm(otherDetailsForm.value)">Next<i
                         class="fas fa-arrow-right"></i></button>
             </div>
-            <!-- <div class="next_btn" *ngIf="isTripInquiry">
-                <button type="submit" (click)="nextForm(otherDetailsForm.value)">Next<i
-                        class="fas fa-arrow-right"></i></button>
-            </div>
-            <div class="submit_btn" *ngIf="!isTripInquiry">
-                <button type="submit" (click)="submitForm(otherDetailsForm.value)" [disabled]="isDisable"><i
-                        class="fas fa-save"></i>Submit</button>
-            </div> -->
         </form>
     </div>
     <div *ngIf="loading">
         <div id="loader-wrapper">
             <div class="heartbeatloader">
-                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+                <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
             </div>
         </div>
     </div>

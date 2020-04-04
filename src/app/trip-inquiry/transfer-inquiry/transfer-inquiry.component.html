@@ -61,38 +61,24 @@
                                     <ion-select-option value="None">None</ion-select-option>
                                 </ion-select>
                             </ion-item>
-                            <!-- <div *ngIf="submitted && f.meal.errors" class="invalid-feedback">
-                                <div *ngIf="f.meal.errors.required">Select Meal</div>
-                            </div> -->
                         </div>
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Seat Preference</ion-label>
                                 <ion-select formControlName="seat_preference">
                                     <ion-select-option value="Window">Window</ion-select-option>
-                                    <!-- <ion-select-option value="Front">Front</ion-select-option>
-                                    <ion-select-option value="Back">Back</ion-select-option> -->
                                     <ion-select-option value="aisle">aisle</ion-select-option>
                                 </ion-select>
                             </ion-item>
-                            <!-- <div *ngIf="submitted && f.seat_preference.errors" class="invalid-feedback">
-                                <div *ngIf="f.seat_preference.errors.required">Select Seat Preference</div>
-                            </div> -->
                         </div>
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Tier</ion-label>
                                 <ion-select formControlName="tyre">
-                                    <!-- <ion-select-option value="Economy">Economy</ion-select-option>
-                                    <ion-select-option value="Business">Business</ion-select-option> -->
                                     <ion-select-option value="First Class">First Class</ion-select-option>
                                     <ion-select-option value="Second Class">Second Class</ion-select-option>
-                                    <!-- <ion-select-option value="Premium Economy">Premium Economy</ion-select-option> -->
                                 </ion-select>
                             </ion-item>
-                            <!-- <div *ngIf="submitted && f.tyre.errors" class="invalid-feedback">
-                                <div *ngIf="f.tyre.errors.required">Select Tyre</div>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -111,9 +97,6 @@
                             <ion-checkbox checked="false" (ionChange)="selectAir($event)" value="Private Jet"> </ion-checkbox>
                             <ion-label class="ml-3">Private Jet</ion-label>
                         </div>
-                        <!-- <div *ngIf="submitted && !airArray.length" class="invalid-feedback">
-                            <div>Select Air </div>
-                        </div> -->
                     </div>
                 </div>
 
@@ -127,20 +110,6 @@
                             <ion-item>
                                 <ion-label position="floating">Car Type</ion-label>
                                 <ion-select formControlName="chauffer_car_type">
-                                    <!-- <ion-select-option value="Chauffer1">
-                                        Intermediate Car</ion-select-option>
-                                    <ion-select-option value="Luxury Car">Luxury Car</ion-select-option>
-                                    <ion-select-option value="Mini Car">Mini Car</ion-select-option>
-                                    <ion-select-option value="Economy Car">Economy Car</ion-select-option>
-                                    <ion-select-option value="Standard Car">Standard Car</ion-select-option>
-                                    <ion-select-option value="Compact Car">Compact Car</ion-select-option>
-                                    <ion-select-option value="Full Size SUV"> Full Size SUV</ion-select-option>
-                                    <ion-select-option value="Full Size Car"> Full Size Car</ion-select-option>
-                                    <ion-select-option value="Premium SUV"> Premium SUV</ion-select-option>
-                                    <ion-select-option value="Full Size Car">Full Size Car</ion-select-option>
-                                    <ion-select-option value="Full Size SUV">Full Size SUV</ion-select-option>
-                                    <ion-select-option value="Full Size Van">Full Size Van</ion-select-option>
-                                    <ion-select-option value="No">No</ion-select-option> -->
                                     <ion-select-option value="Economy Car">Economy Car</ion-select-option>
                                     <ion-select-option value="Compact Car">Compact Car</ion-select-option>
                                     <ion-select-option value="Mid Size Car">Mid Size Car</ion-select-option>
@@ -151,9 +120,6 @@
 
                                 </ion-select>
                             </ion-item>
-                            <!-- <div *ngIf="submitted && f.chauffer_car_type.errors" class="invalid-feedback">
-                                <div *ngIf="f.chauffer_car_type.errors.required">Select Car Type</div>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -167,20 +133,6 @@
                         <ion-item>
                             <ion-label position="floating">Car Type</ion-label>
                             <ion-select formControlName="selfdrive_car_type">
-                                <!-- <ion-select-option value="Chauffer1">
-                                    Intermediate Car</ion-select-option>
-                                <ion-select-option value="Luxury Car">Luxury Car</ion-select-option>
-                                <ion-select-option value="Mini Car">Mini Car</ion-select-option>
-                                <ion-select-option value="Economy Car">Economy Car</ion-select-option>
-                                <ion-select-option value="Standard Car">Standard Car</ion-select-option>
-                                <ion-select-option value="Compact Car">Compact Car</ion-select-option>
-                                <ion-select-option value="Full Size SUV"> Full Size SUV</ion-select-option>
-                                <ion-select-option value="Full Size Car"> Full Size Car</ion-select-option>
-                                <ion-select-option value="Premium SUV"> Premium SUV</ion-select-option>
-                                <ion-select-option value="Full Size Car">Full Size Car</ion-select-option>
-                                <ion-select-option value="Full Size SUV">Full Size SUV</ion-select-option>
-                                <ion-select-option value="Full Size Van">Full Size Van</ion-select-option>
-                                <ion-select-option value="No">No</ion-select-option> -->
                                 <ion-select-option value="Economy Car">Economy Car</ion-select-option>
                                 <ion-select-option value="Compact Car">Compact Car</ion-select-option>
                                 <ion-select-option value="Mid Size Car">Mid Size Car</ion-select-option>
@@ -190,9 +142,6 @@
                                 <ion-select-option value="Luxury Car"> Luxury Car</ion-select-option>
                             </ion-select>
                         </ion-item>
-                        <!-- <div *ngIf="submitted && f.selfdrive_car_type.errors" class="invalid-feedback">
-                                <div *ngIf="f.selfdrive_car_type.errors.required">Select Car Type</div>
-                            </div> -->
                         <div class="select_plan_check mt-2">
                             <ion-checkbox checked="false" formControlName="suggest_rental"> </ion-checkbox>
                             <ion-label class="ml-3">Suggest Rental</ion-label>
@@ -217,9 +166,6 @@
                                     <ion-select-option value="Suite">Suite</ion-select-option>
                                 </ion-select>
                             </ion-item>
-                            <!-- <div *ngIf="submitted && f.cabin_category.errors" class="invalid-feedback">
-                                <div *ngIf="f.cabin_category.errors.required">Select Cabin Category</div>
-                            </div> -->
                         </div>
                         <div>
                             <ion-item>
@@ -232,9 +178,6 @@
                                     <ion-select-option value="Sight-seeing">Sight-seeing</ion-select-option>
                                 </ion-select>
                             </ion-item>
-                            <!-- <div *ngIf="submitted && f.shore_excrusion.errors" class="invalid-feedback">
-                                <div *ngIf="f.shore_excrusion.errors.required">Select Shore Excrusion</div>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -244,8 +187,6 @@
                         <p>City Cards </p>
                     </div>
                     <div class="general_details_body">
-
-                        <!-- <p class="mt-2">Transfer Basis</p> -->
                         <div class="row mt-2">
                             <div class="col-6">
                                 <input type="radio" class="mr-2" id="cityCards1" formControlName="city_cards" value="Yes">
@@ -256,13 +197,6 @@
                                 <label for="cityCards2">No</label>
                             </div>
                         </div>
-                        <!-- 
-                        <ion-item>
-                            <ion-label position="floating">City Card</ion-label>
-                            <ion-input type="text" formControlName="cityCards"></ion-input>
-                          
-                        </ion-item> -->
-
                         <div *ngIf="submitted && f.city_cards.errors" class="invalid-feedback">
                             <div *ngIf="f.city_cards.errors.required">City Cards Required</div>
                         </div>

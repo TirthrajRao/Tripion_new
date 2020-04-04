@@ -14,7 +14,6 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import { NativeGeocoderOptions, NativeGeocoderResult, NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { citydata } from '../city';
-// import * as cities from 'all-the-cities'
 declare const $: any;
 
 @Component({
@@ -43,12 +42,15 @@ export class HomePageComponent implements OnInit {
   notificationCount: any;
   timeZoneList = data.timeZone;
   homeTownData: any;
-  allCites = [];
   // allCites = citydata.city;
   tempratureIndex = localStorage.getItem('temprature');
   timeIndex = localStorage.getItem('time')
   tempratureCity: any;
   cityRefreshInterval: any;
+  searchedResult: any = [];
+  tempratureData: any;
+  timeData: any;
+  timeCity: any;
   constructor(
     private geolocation: Geolocation,
     public http: HttpClient,
@@ -61,7 +63,7 @@ export class HomePageComponent implements OnInit {
     public appComponent: AppComponent,
     private nativeGeocoder: NativeGeocoder,
   ) {
-    // console.log("all cities using npm-----/>", cities)
+
     this.curruetDate = this.curruetDate.split('T')[0];
     console.log("currentdate", this.curruetDate);
 
@@ -95,74 +97,59 @@ export class HomePageComponent implements OnInit {
 
 
   ngOnInit() {
-    // $(document).ready(()=>{
-    //   console.log("document ready");
-    //   setTimeout(()=>{
+
     const cityList = citydata.city;
-    _.forEach(cityList, (city, index) => {
-      if (index <= 1500) {
-        this.allCites.push(city)
-      } else {
-        return false
-      }
-    });
-setTimeout(()=>{
+    // _.forEach(cityList, (city, index) => {
+    //   if (index <= 1500) {
+    //     this.allCites.push(city)
+    //   } else {
+    //     return false
+    //   }
+    // });
 
-  this.cityRefreshInterval = setInterval(() => {
-    const cityLength = this.allCites.length + 1500
-    for (let i = this.allCites.length - 1; i < cityLength; i++) {
-      if (i < cityList.length
-        ) {
-          this.allCites.push(cityList[i]);
-        } else {
-          console.log("in else", this.allCites, i);
-          clearInterval(this.cityRefreshInterval);
-        }
-      }
-      // )
-      console.log("all  city after push", this.allCites)
-    }, 1800)
-  },1500)
+    // setTimeout(() => {
 
-    $(document).ready(function () {
+    //   this.cityRefreshInterval = setInterval(() => {
+    //     const cityLength = this.allCites.length + 1500
+    //     for (let i = this.allCites.length - 1; i < cityLength; i++) {
+    //       if (i < cityList.length
+    //       ) {
+    //         this.allCites.push(cityList[i]);
+    //       } else {
+    //         console.log("in else", this.allCites, i);
+    //         clearInterval(this.cityRefreshInterval);
+    //       }
+    //     }
+    //     console.log("all  city after push", this.allCites)
+    //   }, 1800)
+    // }, 1500)
 
-      $('#myselection1').select2({
-        // placeholder: "Select Timezone",
-      });
-    });
+    // $(document).ready(function () {
 
-    $('#myselection1').on('select2:select', (e) => {
-      console.log(this.allCites[e.params.data.id]);
-      localStorage.setItem("temprature", e.params.data.id)
-      const data = this.allCites[e.params.data.id];
-      localStorage.setItem("tempratureData",JSON.stringify(data));
-      // const cityLength = this.allCites.length + 10
-      // _.forEach(cityList, (city, index) => {
-      //   console.log("index ", index, this.allCites.length - 1)
-      //   if (index > this.allCites.length - 1) {
-      //     if (index < cityLength) {
-      //       console.log("inner if", index, cityLength)
-      //       this.allCites.push(city);
-      //     }
-      //   }
-      // })
-      // console.log("all  city after push", this.allCites)
-      this.getWeather(data.lat, data.lng)
-    });
+    //   $('#myselection1').select2({
+    //   });
+    // });
 
-    $(document).ready(function () {
-      $('#myselection2').select2({
-        // placeholder: "Select Timezone",
-      });
-    });
-    $('#myselection2').on('select2:select', (e) => {
-      console.log(this.allCites[e.params.data.id]);
-      this.getTime(this.allCites[e.params.data.id].lat, this.allCites[e.params.data.id].lng);
-      const data = this.allCites[e.params.data.id];
-      localStorage.setItem("time", e.params.data.id)
-      localStorage.setItem("timeData",JSON.stringify(data));
-      this.getTime(data.lat, data.lng)
-    });
+    // $('#myselection1').on('select2:select', (e) => {
+    //   console.log(this.allCites[e.params.data.id]);
+    //   localStorage.setItem("temprature", e.params.data.id)
+    //   const data = this.allCites[e.params.data.id];
+    //   localStorage.setItem("tempratureData", JSON.stringify(data));
+    //   this.getWeather(data.lat, data.lng)
+    // });
+
+    // $(document).ready(function () {
+    //   $('#myselection2').select2({
+    //   });
+    // });
+    // $('#myselection2').on('select2:select', (e) => {
+    //   console.log(this.allCites[e.params.data.id]);
+    //   this.getTime(this.allCites[e.params.data.id].lat, this.allCites[e.params.data.id].lng);
+    //   const data = this.allCites[e.params.data.id];
+    //   localStorage.setItem("time", e.params.data.id)
+    //   localStorage.setItem("timeData", JSON.stringify(data));
+    //   this.getTime(data.lat, data.lng)
+    // });
   }
 
 
@@ -170,37 +157,53 @@ setTimeout(()=>{
 
   ionViewWillEnter() {
     console.log("in enter", this.tempratureIndex);
+    this.tempratureData = JSON.parse(localStorage.getItem('tempratureData'));
+    this.timeData = JSON.parse(localStorage.getItem('timeData'))
+    console.log("this.temprature data", this.tempratureData, this.timeData);
 
-    this.tempratureIndex = localStorage.getItem('temprature');
-
-    if (this.tempratureIndex && this.tempratureIndex != '0') {
-      if (this.allCites[this.tempratureIndex]) {
-        console.log("---------",this.allCites[this.tempratureIndex])
-        this.getWeather(this.allCites[this.tempratureIndex].lat, this.allCites[this.tempratureIndex].lng)
-      } else{
-        console.log("in else",JSON.parse(localStorage.getItem('tempratureData')));
-        const data  = JSON.parse(localStorage.getItem('tempratureData'))
-        this.getWeather(data.lat, data.lng)
-      }
+    //Get Temprature
+    if (this.tempratureData) {
+      this.tempratureIndex = localStorage.getItem('temprature');
+      this.tempratureCity = this.tempratureData.city;
+      this.getWeather(this.tempratureData.lat, this.tempratureData.lng)
     }
 
-    if (this.timeIndex && this.timeIndex != '0') {
-      if (this.allCites[this.timeIndex]) {
-        this.getTime(this.allCites[this.timeIndex].lat, this.allCites[this.timeIndex].lng)
-      } else{
-        console.log("in else",JSON.parse(localStorage.getItem('timeData')));
-        const data  = JSON.parse(localStorage.getItem('timeData'))
-        this.getTime(data.lat, data.lng)
-      }
+    //Get Time
+    if (this.timeData) {
+      this.timeCity = this.timeData.city;
+      this.getTime(this.timeData.lat, this.timeData.lng)
     }
 
-    // this.notificationCount = this._userService.notiFicationCounts;
-    // console.log("notification count=======>",this.notificationCount)
+
+    //Get Temprature
+    // if (this.tempratureIndex && this.tempratureIndex != '0') {
+    //   if (this.allCites[this.tempratureIndex]) {
+    //     console.log("---------", this.allCites[this.tempratureIndex])
+    //     this.getWeather(this.allCites[this.tempratureIndex].lat, this.allCites[this.tempratureIndex].lng)
+    //   } else {
+    //     console.log("in else", JSON.parse(localStorage.getItem('tempratureData')));
+    //     const data = JSON.parse(localStorage.getItem('tempratureData'))
+    //     this.getWeather(data.lat, data.lng)
+    //   }
+    // }
+
+    //Get Time
+    // if (this.timeIndex && this.timeIndex != '0') {
+    //   if (this.allCites[this.timeIndex]) {
+    //     this.getTime(this.allCites[this.timeIndex].lat, this.allCites[this.timeIndex].lng)
+    //   } else {
+    //     console.log("in else", JSON.parse(localStorage.getItem('timeData')));
+    //     const data = JSON.parse(localStorage.getItem('timeData'))
+    //     this.getTime(data.lat, data.lng)
+    //   }
+    // }
+
     this.refreshIntervalId = setInterval(() => {
-      // this.getCurrentTime();
       this.timeIndex = localStorage.getItem('time');
-      // console.log("this.timeindex",this.timeIndex)
-      this.getTime(this.allCites[this.timeIndex].lat, this.allCites[this.timeIndex].lng)
+      this.timeData = JSON.parse(localStorage.getItem('timeData'))
+      this.timeCity = this.timeData.city;
+      this.getTime(this.timeData.lat, this.timeData.lng)
+      // this.getTime(this.allCites[this.timeIndex].lat, this.allCites[this.timeIndex].lng)
     }, 10000);
 
     this.getNotificationCount();
@@ -215,14 +218,7 @@ setTimeout(()=>{
 
   checkUserProfile() {
     if (!this.currentUser.email) {
-      // alert("complete your profile")
       $('.success_alert_box2').fadeIn().addClass('animate');
-      // $('.success_alert_box2').click(function () {
-      //   $(this).hide().removeClass('animate');
-      // });
-      // $('.success_alert_box2 .alert_box_content').click(function (event) {
-      //   event.stopPropagation();
-      // });
     }
   }
 
@@ -235,12 +231,9 @@ setTimeout(()=>{
   }
 
   getTime(lat, lng) {
-    // console.log("in time", lat, lng);
     this._userService.getTime(lat, lng).subscribe((res: any) => {
-      // console.log("time in api=======>", res);
       this.currentTime = res.formatted;
       this.currentTime = moment(this.currentTime).format('hh:mm')
-      // console.log("time", this.currentTime)
     }, err => {
       console.log("errrrrrr", err)
     })
@@ -304,38 +297,6 @@ setTimeout(()=>{
 
     this.currentTime = new Date().toISOString();
     this.currentTime = moment.utc(this.currentTime).local().format();
-    // console.log("in currunt time func", this.currentUser)
-    // this.homeTownData = this.currentUser.home_town;
-    // console.log("hometoendata", this.homeTownData);
-    // if (this.homeTownData) {
-    //   console.log("in if", this.homeTownData)
-    //   let timeZone = this.timeZoneList[Number(this.homeTownData)]
-    //   console.log("timezone", timeZone, timeZone.offset)
-    //   // getDateWithUTCOffset(inputTzOffset){
-    //   var now = new Date(); // get the current time
-
-    //   var currentTzOffset = -now.getTimezoneOffset() / 60 // in hours, i.e. -4 in NY
-    //   var deltaTzOffset = timeZone.offset - currentTzOffset; // timezone diff
-
-    //   var nowTimestamp = now.getTime(); // get the number of milliseconds since unix epoch 
-    //   var deltaTzOffsetMilli = deltaTzOffset * 1000 * 60 * 60; // convert hours to milliseconds (tzOffsetMilli*1000*60*60)
-    //   var outputDate = new Date(nowTimestamp + deltaTzOffsetMilli) // your new Date object with the timezone offset applied.
-    //   this.currentTime = moment(outputDate).format('hh:mm')
-    //   // console.log("time", this.currentTime)
-
-    // }
-
-
-    // this._userService.getHomeTownTime(this.currentUser.home_town).subscribe((res: any) => {
-    //   // console.log("datetime",res,res.datetime)
-    //   this.currentTime = res.datetime;
-    //   // this.currentTime = this.currentTime.split("T")[1];
-    //   // this.currentTime = this.currentTime.split(':');
-    //   // this.currentTime = this.currentTime[0] + ':' + this.currentTime[1]
-    // }, err => {
-    //   console.log("errr", err)
-    // })
-
   }
 
 
@@ -355,24 +316,33 @@ setTimeout(()=>{
         lng: this.longitude,
         country: "hjh"
       }
-      this.allCites[0] = obj;
-      if (this.tempratureIndex == '0') {
-        this.getWeather(this.allCites[0].lat, this.allCites[0].lng)
-      } else if (!this.tempratureIndex) {
-        localStorage.setItem("temprature", '0');
-        this.tempratureIndex = localStorage.getItem('temprature')
-        this.getWeather(this.allCites[0].lat, this.allCites[0].lng)
+      // this.allCites[0] = obj;
+      // if (this.tempratureIndex == '0') {
+      //   this.getWeather(this.allCites[0].lat, this.allCites[0].lng)
+      // } else if (!this.tempratureIndex) {
+      //   localStorage.setItem("temprature", '0');
+      //   this.tempratureIndex = localStorage.getItem('temprature')
+      //   this.getWeather(this.allCites[0].lat, this.allCites[0].lng)
+      // }
+
+      if (!this.tempratureData) {
+        this.tempratureCity = obj.city
+        this.getWeather(obj.lat, obj.lng)
+      }
+      if (!this.timeData) {
+        this.timeCity = obj.city
+        this.getTime(obj.lat, obj.lng)
       }
 
-      if (this.timeIndex == '0') {
-        this.getTime(this.allCites[0].lat, this.allCites[0].lng)
-      } else if (!this.timeIndex) {
-        console.log("in else")
-        localStorage.setItem("time", '0');
-        this.timeIndex = localStorage.getItem('time')
-        this.getTime(this.allCites[0].lat, this.allCites[0].lng)
-      }
-      console.log("this.alllllllcity", this.allCites);
+      // if (this.timeIndex == '0') {
+      //   this.getTime(this.allCites[0].lat, this.allCites[0].lng)
+      // } else if (!this.timeIndex) {
+      //   console.log("in else")
+      //   localStorage.setItem("time", '0');
+      //   this.timeIndex = localStorage.getItem('time')
+      //   this.getTime(this.allCites[0].lat, this.allCites[0].lng)
+      // }
+      // console.log("this.alllllllcity", this.allCites);
 
     }).catch((error) => {
       console.log('Error getting location', error);
@@ -394,7 +364,6 @@ setTimeout(()=>{
       .then((result: NativeGeocoderResult[]) => {
         console.log("location", result[0].locality);
         this.cityName = result[0].locality;
-        // this.tempratureCity = result[0].locality;
         console.log("cityname", this.cityName);
         const obj = {
           city: this.cityName,
@@ -402,21 +371,30 @@ setTimeout(()=>{
           lng: this.longitude,
           country: "hjh"
         }
-        this.allCites[0] = obj;
-        if (this.tempratureIndex == '0') {
-          this.getWeather(this.allCites[0].lat, this.allCites[0].lng)
-        } else if (!this.tempratureIndex) {
-          localStorage.setItem("temprature", '0');
-          this.tempratureIndex = localStorage.getItem('temprature')
-          this.getWeather(this.allCites[0].lat, this.allCites[0].lng)
+
+        if (!this.tempratureData) {
+          this.tempratureCity = obj.city
+          this.getWeather(obj.lat, obj.lng)
         }
-        if (this.timeIndex == '0') {
-          this.getWeather(this.allCites[0].lat, this.allCites[0].lng)
-        } else if (!this.timeIndex) {
-          localStorage.setItem("time", '0');
-          this.timeIndex = localStorage.getItem('time')
-          this.getWeather(this.allCites[0].lat, this.allCites[0].lng)
+        if (!this.timeData) {
+          this.timeCity = obj.city
+          this.getTime(obj.lat, obj.lng)
         }
+        // this.allCites[0] = obj;
+        // if (this.tempratureIndex == '0') {
+        //   this.getWeather(this.allCites[0].lat, this.allCites[0].lng)
+        // } else if (!this.tempratureIndex) {
+        //   localStorage.setItem("temprature", '0');
+        //   this.tempratureIndex = localStorage.getItem('temprature')
+        //   this.getWeather(this.allCites[0].lat, this.allCites[0].lng)
+        // }
+        // if (this.timeIndex == '0') {
+        //   this.getWeather(this.allCites[0].lat, this.allCites[0].lng)
+        // } else if (!this.timeIndex) {
+        //   localStorage.setItem("time", '0');
+        //   this.timeIndex = localStorage.getItem('time')
+        //   this.getWeather(this.allCites[0].lat, this.allCites[0].lng)
+        // }
       })
       .catch((error: any) => {
         console.log("err get in cityname", error);
@@ -448,12 +426,10 @@ setTimeout(()=>{
     this._tripService.getAllTrips(data).subscribe((res: any) => {
       this.allTrips = res.data;
       console.log(this.allTrips);
-      // this.upCommingTripData();
       this.checkUserProfile();
       this.loading = false;
     }, (err) => {
       this.appComponent.errorAlert(err.error.message);
-      // this._toastService.presentToast(err.error.message, 'danger');
       console.log(err);
       this.loading = false;
     })
@@ -485,5 +461,16 @@ setTimeout(()=>{
         this.router.navigate(['/home/plan-option/' + data.inquiry_id]);
       }
     }
+  }
+
+
+  /**
+   * Redirect to selecct city
+   * @param {string} type 
+   */
+  selectCity(type) {
+    console.log("type", type);
+    this.router.navigate(['/home/select-city/' + type])
+
   }
 }

@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-toolbar class="toolbar-color1">
+        <ion-row>
+            <ion-col size='2'>
+                <div class="back_icon">
+                    <ion-buttons slot="start">
+                        <ion-back-button>
+                            <i class="fa fa-angle-left back_icon_white"></i>
+                        </ion-back-button>
+                    </ion-buttons>
+                </div>
+            </ion-col>
+            <ion-col size='8'>
+                <div class="middle_sec text-center text-white">
+                    <span>Select City</span>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class=" all_content">
+        <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+        <div *ngIf="!searchedResult.length">
+            <ion-list>
+                <ion-item *ngFor="let data of cityList" (click)="storeSelectedData(data)">
+                    {{data.city}}
+                </ion-item>
+            </ion-list>
+            <ion-infinite-scroll threshold="200px" (ionInfinite)="loadData($event)">
+                <ion-infinite-scroll-content loadingSpinner="circles" loadingText="Loading more data...">
+                </ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+        </div>
+        <div *ngIf="searchedResult.length" class="ab">
+            <ion-list>
+                <ion-item *ngFor="let data of searchedCityList" (click)="storeSelectedData(data)">
+                    {{data.city}}
+                </ion-item>
+            </ion-list>
+            <ion-infinite-scroll threshold="100px" (ionInfinite)="loadSearchResultData($event)">
+                <ion-infinite-scroll-content loadingSpinner="circles" loadingText="Loading more data...">
+                </ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+        </div>
+        <!-- <ion-list>
+            <ion-item *ngFor="let data of allCity">
+                {{data.city}}
+            </ion-item>
+        </ion-list> -->
+    </div>
+</ion-content>

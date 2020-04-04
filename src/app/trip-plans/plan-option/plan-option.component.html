@@ -8,15 +8,12 @@
         </ion-refresher-content>
     </ion-refresher> -->
     <div class="plan_option_content" *ngIf="tripDetail">
-        <!-- <div class="card plan_option_heading  w-100 " routerLink='/home/all-plan/{{tripDetail.inquiry_id}}' *ngIf="tripDetail.plans.length"> -->
 
         <!-- DISPLAY SELECTED PLAN -->
         <div class="card plan_option_heading  w-100 " routerLink='/home/plan-option-detail/{{tripDetail.plans[0].id}}'
             *ngIf="tripDetail.plans.length">
-            <!-- <span class="float-left" [innerHTML]="tripDetail.plans[0].plan_name"></span> -->
             <span [innerHtml]="tripDetail.plans[0].plan_name"></span>
             <div class="calendar_img float-right">
-                <!-- <ion-img src="../../assets/images/calendar.png"></ion-img> -->
                 <ion-img src="assets/images/plane.png"></ion-img>
             </div>
         </div>
@@ -33,8 +30,6 @@
                 <iframe style="height:230px;cursor: pointer;" class="w-100" [src]='pathToPreview | safe:"resourceUrl"'
                     frameborder="0">
                 </iframe>
-
-               
             </div>
             <div class="card_footer w-100 mt-2">
                 <button type="submit" (click)="selectDocument()">
@@ -49,8 +44,8 @@
             <div class="card_header colapse-icon">
                 <span>Uploaded Passport Form </span>
                 <a class="toggle-section collapsed collapsed float-right mt-1" data-toggle="collapse"
-                    data-target="#UPLOAD-passport-arrow" aria-expanded="false" aria-controls="UPLOAD-passport-arrow"> <i class="fa"
-                        aria-hidden="true"></i></a>
+                    data-target="#UPLOAD-passport-arrow" aria-expanded="false" aria-controls="UPLOAD-passport-arrow"> <i
+                        class="fa" aria-hidden="true"></i></a>
             </div>
             <div class="card_body ml-2 mr-2 holds-the-iframe collapse multi-collapse mb-2" id="UPLOAD-passport-arrow">
                 <iframe style="height:230px;cursor: pointer;" class="w-100" [src]='pathToPreview1 | safe:"resourceUrl"'
@@ -91,7 +86,7 @@
         <!-- DISPLAY PAYMENT REQUEST -->
         <div class="document_request card w-100 mt-3" *ngIf="tripDetail.payment.payment_request.length">
             <div class="card_header">
-                <ion-img src="../../assets/images/money.png"></ion-img><span>Payment Request</span>
+                <ion-img src="assets/images/money.png"></ion-img><span>Payment Request</span>
             </div>
             <div class="card_body w-100">
                 <small>Payment for the Following</small>
@@ -112,7 +107,7 @@
         <!-- DISPLAY PAYMENT ACKNOQWLDGMENT -->
         <div class="document_request card w-100 mt-3" *ngIf="tripDetail.payment.payment_success.length">
             <div class="card_header">
-                <ion-img src="../../assets/images/money.png"></ion-img><span>Payment Acknowledgement</span>
+                <ion-img src="assets/images/money.png"></ion-img><span>Payment Acknowledgement</span>
             </div>
             <div class="card_body w-100">
                 <small>Payment for the Following</small>
@@ -148,7 +143,7 @@
     <div *ngIf="loading">
         <div id="loader-wrapper">
             <div class="heartbeatloader">
-                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+                <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
             </div>
         </div>
     </div>

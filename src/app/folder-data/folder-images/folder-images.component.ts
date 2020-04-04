@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UploadService } from '../../services/upload.service';
-// import { ToastService } from '../../services/toast.service';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
-import {AppComponent} from '../../app.component';
+import { AppComponent } from '../../app.component';
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 import { Url } from 'url';
 import { AlertController } from '@ionic/angular';
@@ -16,16 +15,15 @@ export class FolderImagesComponent implements OnInit {
   loading: Boolean = false;
   constructor(
     public _uploadService: UploadService,
-    // public _toastService: ToastService,
     private photoViewer: PhotoViewer,
     private previewAnyFile: PreviewAnyFile,
-    public alertController:AlertController,
-    public appComponent:AppComponent,
+    public alertController: AlertController,
+    public appComponent: AppComponent,
   ) { }
 
   ngOnInit() {
-    console.log('images', this.allImages)
-  }
+    console.log('images', this.allImages);
+   }
 
 
   /**
@@ -57,10 +55,9 @@ export class FolderImagesComponent implements OnInit {
               this.loading = false;
               this.allImages.splice(this.allImages.indexOf(data), 1);
             }, (err) => {
-              console.log(err); 
+              console.log(err);
               this.loading = false;
-               this.appComponent.errorAlert(err.error.message);
-              // this._toastService.presentToast(err.error.message, 'danger')
+              this.appComponent.errorAlert(err.error.message);
             })
           }
         }
@@ -68,9 +65,6 @@ export class FolderImagesComponent implements OnInit {
     });
 
     await alert.present();
-
-
-    
   }
 
   /**
@@ -93,4 +87,12 @@ export class FolderImagesComponent implements OnInit {
       .catch((error: any) => console.error(error));
   }
 
+  /**
+   * set fallback image on error
+   * @param {Number} index 
+   */
+  onErrorImage(index){
+    console.log("index",index);
+    this.allImages[index].image_url = 'assets/images/placeholder.png'
+  }
 }

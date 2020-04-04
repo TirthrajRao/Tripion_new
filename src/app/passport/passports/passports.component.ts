@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import * as _ from 'lodash';
 import { UploadService } from '../../services/upload.service';
 import { ToastService } from '../../services/toast.service';
 import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { AppComponent } from '../../app.component';
+import * as _ from 'lodash';
 declare var $: any;
 
 @Component({
@@ -129,8 +129,6 @@ export class PassportsComponent implements OnInit {
    */
   addPassport(formData) {
     formData.doc_expiry_date = formData.doc_expiry_date.split("T")[0];
-    // const td = formData.doc_expiry_date[1].split('.')
-    // formData.doc_expiry_date = formData.doc_expiry_date[0] + ' ' + td[0];
       
     this.submitted = true;
     if (this.addPassportForm.invalid) {
@@ -162,7 +160,6 @@ export class PassportsComponent implements OnInit {
       this.allPassport.unshift(res.data);
     }, (err) => {
       console.log(err);
-      // this._toastService.presentToast(err.error.message, 'danger');
        this.appComponent.errorAlert(err.error.message);
       this.isDisable = false;
       this.loading = false;
@@ -187,7 +184,6 @@ export class PassportsComponent implements OnInit {
     }, (err) => {
       console.log(err);
        this.appComponent.errorAlert(err.error.message);
-      // this._toastService.presentToast(err.error.message, 'danger');
       this.loading = false;
     })
   }

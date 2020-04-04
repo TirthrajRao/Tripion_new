@@ -27,7 +27,6 @@
                         <small>Date of Expiry</small>
                         <div>
                             <ion-item>
-                                <!-- <p>{{passportDetail.doc_expiry_date | date}}</p> -->
                                 <ion-datetime [(ngModel)]="passportDetail.doc_expiry_date" formControlName="doc_expiry_date" min="{{curruntDate}}" max="{{nextYear}}">
                                 </ion-datetime>
                             </ion-item>
@@ -57,15 +56,15 @@
 
             <div class="card" *ngIf="passportDetail.image_url.length">
                 <div class="row">
-                    <div class="col-4" *ngFor="let img of passportDetail.image_url">
+                    <div class="col-4" *ngFor="let img of passportDetail.image_url;let i=index">
                         <div class="all_image" *ngIf="img.image_extension == 'png' || img.image_extension == 'jpg' || img.image_extension == 'jpeg'">
-                            <ion-img [src]="img.image_url" class="visa_image"></ion-img>
+                            <ion-img [src]="img.image_url || 'assets/images/placeholder.png'" (ionError)="onErrorImage(i)" class="visa_image"></ion-img>
                         </div>
                         <div *ngIf="img.image_extension != 'png' && img.image_extension != 'jpeg' && img.image_extension != 'jpg' ">
                             <a href="{{img.image_url}}" download>{{img.image_name}}</a>
                         </div>
                         <div (click)=removeImage(img) class="mt-2">
-                            <ion-img src="../../assets/images/remove.png" class="remove_image"></ion-img>
+                            <ion-img src="assets/images/remove.png" class="remove_image"></ion-img>
                         </div>
                     </div>
                 </div>
@@ -75,7 +74,7 @@
             </div>
             <div class="add_button" id="add-visa" (click)="moveDocumentPage()">
                 <a href="javascript:void(0);">
-                    <img src="../../assets/images/plus.png">
+                    <img src="assets/images/plus.png">
                 </a>
             </div>
         </form>
@@ -83,7 +82,7 @@
     <div *ngIf="loading">
         <div id="loader-wrapper">
             <div class="heartbeatloader">
-                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+                <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
             </div>
         </div>
     </div>

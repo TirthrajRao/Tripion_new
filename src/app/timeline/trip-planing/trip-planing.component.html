@@ -1,6 +1,6 @@
 <ion-content>
     <div class="trip_content">
-        <div class="header_sec" [style.background-image]="tripImage ?'url('+tripImage+')': 'url(../../../assets/images/header.png)'">
+        <div class="header_sec" [style.background-image]="tripImage ?'url('+tripImage+')': 'url(assets/images/header.png)'">
             <i class="fa fa-angle-left back_icon_white" (click)="goBack()"></i>
             <div class="header_text">
                 <h3>The Trip Planing</h3>
@@ -16,7 +16,7 @@
                     <div class="custom_card" routerLink="/home/trip-planing-detail/{{tripId}}/{{timeline.itinerary_day}} " [ngClass]="{ 'card1': curruntDate == timeline.itinerary_date } ">
                         <div class="card_header w-100 d-inline-block ">
                             <h3 class="float-left ">{{timeline.itinerary_title}}</h3>
-                            <p class="float-right "><img src="../../assets/images/ca.png ">{{timeline.itinerary_date |date}}
+                            <p class="float-right "><img src="assets/images/ca.png ">{{timeline.itinerary_date |date}}
                             </p>
                         </div>
                         <div class="card_body ">
@@ -29,7 +29,7 @@
         <div *ngIf="loading">
             <div id="loader-wrapper">
                 <div class="heartbeatloader">
-                    <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+                    <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
                 </div>
             </div>
         </div>

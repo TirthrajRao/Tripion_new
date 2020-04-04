@@ -24,14 +24,10 @@
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Language Preference</ion-label>
-                                <!-- <ion-input type="text" formControlName="language"></ion-input> -->
                                 <ion-select formControlName="language">
                                     <ion-select-option [value]="lan" *ngFor="let lan of languages">{{lan}}</ion-select-option>
                                 </ion-select>
-                                <!-- <select id="myselection" class="form-control" formControlName="language">
-                                    <option [value]="lan" *ngFor="let lan of languages" > {{lan}}
-                                    </option>
-                                </select> -->
+                              
                             </ion-item>
                             <div *ngIf="submitted && f.language.errors" class="invalid-feedback">
                                 <div *ngIf="f.language.errors.required">Language Required</div>
@@ -51,9 +47,6 @@
                                 <ion-label position="floating">Any Special Request </ion-label>
                                 <ion-input type="text" formControlName="special_request"></ion-input>
                             </ion-item>
-                            <!-- <div *ngIf="submitted && f.special_request.errors" class="invalid-feedback">
-                                <div *ngIf="f.special_request.errors.required">Please Enter Special Request</div>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -64,15 +57,11 @@
                     </div>
                     <div class="general_details_body ">
                         <div class="relax_img">
-                            <!-- <x-gif src="assets/images/itenary.gif" speed="2"></x-gif> -->
                             <ion-img [src]="path"></ion-img>
                             <h2 class="text-center">{{status}}</h2>
                             <div class="status_bar">
                                 <input type="range" class="gradient-range" value="0" min="0" max="10" formControlName="itinerary_pace" (input)="changeStatus($event)" />
                             </div>
-                            <!-- <div class="status_bar">
-                                <input type="range" class="gradient-range" value="0" min="0" max="100" />
-                            </div> -->
                         </div>
                     </div>
                 </div>

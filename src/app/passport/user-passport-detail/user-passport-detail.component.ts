@@ -29,9 +29,8 @@ export class UserPassportDetailComponent implements OnInit {
   visaList: any = [];
   loading: Boolean = false;
   isDisable: Boolean = false;
-  previousUrl;
   counries = data.countries;
-  loaded:Boolean = false;
+  loaded: Boolean = false;
   constructor(
     public _uploadService: UploadService,
     public _toastService: ToastService,
@@ -73,18 +72,17 @@ export class UserPassportDetailComponent implements OnInit {
     setTimeout(() => {
       this.createSlider();
     }, 1)
-    this.previousUrl = this._userService.getPreviousUrl;
-    let visa;
-    this.route.queryParams.subscribe((param) => {
-      //  param.image_url =  JSON.parse(param.image_url);
-      console.log("param=====", JSON.parse(param.data))
+    // let visa;
+    // this.route.queryParams.subscribe((param) => {
+    //   //  param.image_url =  JSON.parse(param.image_url);
+    //   console.log("param=====", JSON.parse(param.data))
 
-      visa = JSON.parse(param.data)
+    //   visa = JSON.parse(param.data)
 
-    })
-    let index = this.visaList.findIndex(x => x.id == visa.id);
-    this.visaList[index] = visa;
-    console.log("index", index)
+    // })
+    // let index = this.visaList.findIndex(x => x.id == visa.id);
+    // this.visaList[index] = visa;
+    // console.log("index", index)
   }
 
   get f() { return this.addVisaForm.controls }
@@ -177,8 +175,8 @@ export class UserPassportDetailComponent implements OnInit {
       dots: true,
       draggable: true,
       fade: false,
-      prevArrow: '<button class="prevarrow" ><img src="../assets/images/left.png"></button>',
-      nextArrow: '<button class="nextarrow"><img src="../assets/images/r1.png"></button>',
+      prevArrow: '<button class="prevarrow" ><img src="assets/images/left.png"></button>',
+      nextArrow: '<button class="nextarrow"><img src="assets/images/r1.png"></button>',
     });
 
   }
@@ -247,8 +245,6 @@ export class UserPassportDetailComponent implements OnInit {
       return
     }
     data.doc_expiry_date = data.doc_expiry_date.split("T")[0];
-    // const td = data.doc_expiry_date[1].split('.')
-    // data.doc_expiry_date = data.doc_expiry_date[0] + ' ' + td[0]
     this.isDisable = true;
     this.loading = true;
     console.log(data);
@@ -278,7 +274,6 @@ export class UserPassportDetailComponent implements OnInit {
       this.isDisable = false;
       this.submitted = false;
       this.loading = false;
-      // this._toastService.presentToast(err.error.message, 'danger');
       this.appComponent.errorAlert(err.error.message);
     })
   }
@@ -339,11 +334,12 @@ export class UserPassportDetailComponent implements OnInit {
     await alert.present();
   }
 
-  loadImag(){
-    console.log("this.loadded",this.loaded)
+  /**
+   * set fallback image on error
+   * @param {Number} index 
+   */
+  onErrorImage(index) {
+    console.log("index", index);
+    this.passportDetail.image_url[index].image_url = 'assets/images/placeholder.png'
   }
-  callThisFunctionAfterImageLoaded(){
-    console.log("loaded")
-  }
-
 }

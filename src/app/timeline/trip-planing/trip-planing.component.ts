@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TripService } from 'src/app/services/trip.service';
-// import { ToastService } from 'src/app/services/toast.service';
 import { AppComponent } from '../../app.component';
 import { DatePipe } from '@angular/common'
 import * as _ from 'lodash';
@@ -23,7 +22,6 @@ export class TripPlaningComponent implements OnInit {
   constructor(
     public route: ActivatedRoute,
     public _tripService: TripService,
-    // public _toastService: ToastService,
     public datepipe: DatePipe,
     public appComponent: AppComponent,
     ) {
@@ -65,7 +63,6 @@ export class TripPlaningComponent implements OnInit {
        console.log("res of timeline", res);
      }, (err) => {
        console.log(err);
-       // this._toastService.presentToast(err.error.message, 'danger');
        this.appComponent.errorAlert(err.error.message);
        this.loading = false;
      })

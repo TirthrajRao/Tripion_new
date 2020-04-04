@@ -8,23 +8,26 @@
         </ion-refresher-content>
     </ion-refresher> -->
     <div class="document_content image_preview" *ngIf="allImage.length">
-        <ion-img [src]="allImage[0].image_url" *ngIf="!previewImag.length"></ion-img>
+        <img [src]="allImage[0].image_url" onError="src = 'assets/images/placeholder.png'" *ngIf="!previewImag.length">
         <ion-slides [options]="slideOpts" *ngIf="previewImag.length" pager="true">
             <ion-slide *ngFor="let img of previewImag.reverse()">
-                <ion-img [src]="img.image_url"></ion-img>
+                <img [src]="img.image_url " onError="src = 'assets/images/placeholder.png'">
             </ion-slide>
         </ion-slides>
     </div>
     <div class="document_content">
         <div class="row all-img m-0 " *ngIf="allImage.length">
-            <div class="col-4 img-icon p-0" *ngFor="let photo of allImage" style="cursor: pointer;" (click)="selectDocument(photo)">
-
+            <div class="col-4 img-icon p-0" *ngFor="let photo of allImage" style="cursor: pointer;"
+                (click)="selectDocument(photo)">
                 <div class="single_img">
                     <div class="single_img_div backgroung-img">
-                        <img [src]="photo.image_url || '../../assets/images/placeholder.png'" class="image-{{photo.id}}" style="opacity: 1;" *ngIf="photo.image_extension == 'png' || photo.image_extension == 'jpg'  || photo.image_extension == 'jpeg'" />
+                        <img [src]="photo.image_url" onError="src = 'assets/images/placeholder.png'" class="image-{{photo.id}}"
+                            style="opacity: 1;"
+                            *ngIf="photo.image_extension == 'png' || photo.image_extension == 'jpg'  || photo.image_extension == 'jpeg'" />
                     </div>
                     <div class="single_img_div">
-                        <span *ngIf="photo.image_extension != 'png' && photo.image_extension != 'jpg'  && photo.image_extension != 'jpeg'">{{photo.image_name}}</span>
+                        <span
+                            *ngIf="photo.image_extension != 'png' && photo.image_extension != 'jpg'  && photo.image_extension != 'jpeg'">{{photo.image_name}}</span>
                     </div>
                     <ion-icon name="checkmark" class="checkmark-icon-{{photo.id}}"></ion-icon>
                 </div>
@@ -36,7 +39,7 @@
     </div>
     <div class="add_button" id="open-modal">
         <a href="javascript:void(0);">
-            <img src="../../assets/images/plus.png">
+            <img src="assets/images/plus.png">
         </a>
     </div>
     <div class="modal_content_with_overlay" id="folder-modal" style="display: none;">
@@ -44,10 +47,7 @@
             <div class="modal_content">
                 <ion-item>
                     <div class="single_folder" id="upload-documents">
-                        <!-- <input type="file" #file style="display: none;" (change)="selectOtherFile($event)" accept=
-                        "application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
-                        text/plain, application/pdf, image/*" multiple> -->
-                        <input type="file" #file style="display: none;" (change)="selectOtherFile($event)"  multiple>
+                        <input type="file" #file style="display: none;" (change)="selectOtherFile($event)" multiple>
                         <span (click)="file.click()" style="cursor: pointer;"><i class="fas fa-upload mr-2"></i>Upload
                             New
                             Document</span>
@@ -57,8 +57,9 @@
                     <div class="row">
                         <div class="col-3">
                             <div class="uploded_image">
-                                <ion-img [src]="image.url" *ngIf="image.type"></ion-img>
-                                <ion-img src="assets/images/doc.png" *ngIf="!image.type" style="height: 33px;"></ion-img>
+                                <ion-img [src]="image.url" onError="src = 'assets/images/placeholder.png'" *ngIf="image.type"></ion-img>
+                                <ion-img src="assets/images/doc.png" *ngIf="!image.type" style="height: 33px;">
+                                </ion-img>
                             </div>
                         </div>
                         <div class="col-7 p-0">
@@ -66,14 +67,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- <ion-item>
-                    <div class="single_folder" routerLink='/home/passports' *ngIf="isVisiblePassport">
-                        <span style="cursor: pointer;"><i class="fas fa-passport mr-2"></i>New Passport</span>
-                    </div>
-                </ion-item> -->
                 <div class="finish_button" *ngIf="urls.length">
                     <button type="submit" class="btn" (click)="uploadDocument()" [disabled]="isDisable">
-                        <ion-img src="../../assets/images/finish.png"></ion-img>
+                        <ion-img src="assets/images/finish.png"></ion-img>
                         Add to gallery
                     </button>
                 </div>
@@ -85,7 +81,7 @@
     <div *ngIf="loading">
         <div id="loader-wrapper">
             <div class="heartbeatloader">
-                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+                <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
             </div>
         </div>
     </div>

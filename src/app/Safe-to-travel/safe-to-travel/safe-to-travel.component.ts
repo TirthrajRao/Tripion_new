@@ -86,14 +86,10 @@ export class SafeToTravelComponent implements OnInit {
   addSafeToTravelReq(data) {
     console.log(data)
     this.submitted = true;
-   
+
     data.fromDate = data.fromDate.split("T")[0];
-    // const fd = data.fromDate[1].split('.')
-    // data.fromDate = data.fromDate[0] + ' ' + fd[0];
 
     data.toDate = data.toDate.split("T")[0];
-    // const td = data.toDate[1].split('.')
-    // data.toDate = data.toDate[0] + ' ' + td[0]
     if (this.safeToTravelForm.invalid) {
       return
     }
@@ -115,7 +111,6 @@ export class SafeToTravelComponent implements OnInit {
       console.log("res of safe to travel", res);
       this.isDisable = false;
       this.loading = false;
-      // this._toastService.presentToast(res.message, 'success');
       this.appComponent.sucessAlert("Request Submitted")
       let navigationExtras: NavigationExtras = {
         state: {
@@ -128,13 +123,13 @@ export class SafeToTravelComponent implements OnInit {
       this.router.navigate(['/home/safe-travel'], navigationExtras);
     }, (err) => {
       console.log("err", err);
-      // this._toastService.presentToast(err.error.message, 'danger');
       this.appComponent.errorAlert(err.error.message);
       this.isDisable = false;
       this.loading = false;
     })
   }
 
+  //decrement passagener count
   decrement(type) {
     console.log("type in dec", type);
     if (type == "infants") {
@@ -156,12 +151,13 @@ export class SafeToTravelComponent implements OnInit {
     }
   }
 
+  //Increment passagener count
   increment(type) {
     console.log("type in inc", type)
     if (type == "infants") {
       this.infantsPassengers++;
       this.safeToTravelForm.controls.infantsPassengers.setValue(this.infantsPassengers);
-      
+
     } else if (type == "children") {
       this.childrenPassengers++;
       this.safeToTravelForm.controls.childrenPassengers.setValue(this.childrenPassengers)

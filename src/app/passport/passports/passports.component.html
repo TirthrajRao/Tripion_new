@@ -10,7 +10,6 @@
     <div class="all_content">
         <div *ngIf="allPassport.length">
             <div *ngFor="let passport of allPassport">
-                <!-- <div class="user_details" *ngIf="passport.image_url.length"> -->
                 <div class="user_details">
                     <div class="row">
                         <div class="col-6">
@@ -21,8 +20,7 @@
                         <div class="col-6">
                             <div class="valid_date_info w-100">
                                 <div class="edit_icon" routerLink="/home/edit-user-passport-detail/{{passport.id}}">
-                                    <!-- <p class="text-white">Visa</p> -->
-                                    <ion-img src="../../assets/images/edit_icon.png" class="float-left"></ion-img>
+                                    <ion-img src="assets/images/edit_icon.png" class="float-left"></ion-img>
                                 </div>
                                 <div class="valid_date float-right">
                                     <small> Valid Up To :
@@ -63,7 +61,7 @@
                     <div>
                         <ion-item>
                             <ion-label position="floating">Name in Passport</ion-label>
-                            <ion-input type="text"  formControlName="name_in_passport"></ion-input>
+                            <ion-input type="text" formControlName="name_in_passport"></ion-input>
                         </ion-item>
                         <div *ngIf="submitted && f.name_in_passport.errors" class="invalid-feedback">
                             <div *ngIf="f.name_in_passport.errors.required">Name is required</div>
@@ -72,7 +70,7 @@
                     <div>
                         <ion-item>
                             <ion-label position="floating">Passport Number</ion-label>
-                            <ion-input type="text"  formControlName="passport_number"></ion-input>
+                            <ion-input type="text" formControlName="passport_number"></ion-input>
                         </ion-item>
                         <div *ngIf="submitted && f.passport_number.errors" class="invalid-feedback">
                             <div *ngIf="f.passport_number.errors.required">Passport Number is required</div>
@@ -91,11 +89,8 @@
                     </div>
                     <div class="select_files">
                         <p>Pictures of the Passport</p>
-                        <!-- <input type="file" class="form-control" id="file" formControlName="profile_image"
-                            style="display: none;" (change)="selectFile($event)" multiple accept=" 
-                        text/plain, application/pdf, image/*,.doc,.docx,.pdf"> -->
                         <input type="file" class="form-control" id="file" formControlName="profile_image"
-                            style="display: none;" (change)="selectFile($event)" multiple >
+                            style="display: none;" (change)="selectFile($event)" multiple>
                         <label class="text-center" for="file">
                             <i class="far fa-copy"></i>
                             Select from Files

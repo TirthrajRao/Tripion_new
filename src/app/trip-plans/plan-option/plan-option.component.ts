@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras, RoutesRecognized } from '@angular/router';
 import { TripService } from '../../services/trip.service';
 import { ToastService } from '../../services/toast.service';
-// import { DomSanitizer } from '@angular/platform-browser';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
@@ -35,7 +34,6 @@ export class PlanOptionComponent implements OnInit {
     private file: File,
     private fileOpener: FileOpener,
     public appComponent: AppComponent,
-    // public domsanitizer:DomSanitizer
   ) {
     this.route.params.subscribe((param) => {
       console.log("==", param.tripId);
@@ -51,7 +49,6 @@ export class PlanOptionComponent implements OnInit {
         console.log("eeee", e);
         if (e[1].urlAfterRedirects.includes('plan-option')) {
           this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-          // console.log("urllllll", e[0].urlAfterRedirects);
           this.previousUrl = e[0].urlAfterRedirects;
           if (this.previousUrl.includes('payment')
           ) {
@@ -96,16 +93,13 @@ export class PlanOptionComponent implements OnInit {
       this.tripDetail = res.data;
       this.loading = false;
       console.log(this.tripDetail);
-      // this.tripDetail.payment.payment_request = []
       if (res.data.requested_docs.length)
         this.notApproveDoc = res.data.requested_docs.filter(function (obj) { return res.data.approved_docs.indexOf(obj) == -1; });
       console.log("not approved doc", this.notApproveDoc);
       this.pathToPreview = "https://docs.google.com/viewerng/viewer?url=" + this.tripDetail.passport_doc.image_url + "&embedded=true";
       if (this.tripDetail.is_passport == 1)
         this.getDocumentRequest(this.tripDetail.inquiry_id);
-      // https://docs.google.com/viewerng/viewer?url=https://testing-platinum-rail-services.s3.ap-south-1.amazonaws.com/passport-1-1584351271687.xlsx
     }, (err) => {
-      // this._toastService.presentToast(err.error.message, 'danger');
       this.appComponent.errorAlert(err.error.message);
       console.log(err);
       this.loading = false;
@@ -167,7 +161,6 @@ export class PlanOptionComponent implements OnInit {
     }, (err) => {
       console.log(err);
       this.appComponent.errorAlert(err.error.message);
-      // this._toastService.presentToast(err.error.message, 'danger');
       this.loading = false;
     })
   }

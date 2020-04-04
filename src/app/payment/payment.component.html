@@ -3,18 +3,18 @@
     <ion-row>
       <ion-col size='2'>
         <div class="back_icon">
-            <ion-buttons slot="start">
-                <ion-back-button>
-                  <i class="fa fa-angle-left back_icon_white"></i>
-                </ion-back-button>
-            </ion-buttons>
-                 </div>
+          <ion-buttons slot="start">
+            <ion-back-button>
+              <i class="fa fa-angle-left back_icon_white"></i>
+            </ion-back-button>
+          </ion-buttons>
+        </div>
       </ion-col>
       <ion-col size='8'>
         <div class="middle_sec text-white w-100">
           <div class="text-center">
-              <i class="far fa-credit-card"></i>
-                      <span>Payment</span>
+            <i class="far fa-credit-card"></i>
+            <span>Payment</span>
           </div>
         </div>
       </ion-col>
@@ -33,22 +33,23 @@
       <div class="payment_for">
         <p class="payment_following">Payment for the following</p>
         <ul class=" text-white ">
-          <li *ngFor="let payment of paymentData">{{payment.title}} - <span class="float-right">{{payment.payment_amount}}</span></li>
+          <li *ngFor="let payment of paymentData">{{payment.title}} - <span
+              class="float-right">{{payment.payment_amount}}</span></li>
         </ul>
         <p class="payment_total text-white text-center">₹ {{totalAmount}}</p>
       </div>
     </div>
     <div class="pay_now_button text-center text-white" (click)="payNow()">
       <button type="submit" class="btn" [disabled]="isDisable">
-        <ion-img src="../../assets/images/done.png"></ion-img>Pay Now
+        <ion-img src="assets/images/done.png"></ion-img>Pay Now
       </button>
     </div>
   </div>
   <div *ngIf="loading">
     <div id="loader-wrapper">
-        <div class="heartbeatloader">
-            <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
-        </div>
+      <div class="heartbeatloader">
+        <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
+      </div>
     </div>
-</div>
+  </div>
 </ion-content>

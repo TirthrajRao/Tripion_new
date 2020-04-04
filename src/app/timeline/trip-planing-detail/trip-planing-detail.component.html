@@ -1,6 +1,6 @@
 <ion-content>
     <div class="trip_content">
-        <div class="header_sec" [style.background-image]="tripImage ?'url('+tripImage+')': 'url(../../../assets/images/header.png)'">
+        <div class="header_sec" [style.background-image]="tripImage ?'url('+tripImage+')': 'url(assets/images/header.png)'">
             <i class="fa fa-angle-left back_icon_white" (click)="goBack()"></i>
             <div class="header_text">
                 <h3>The Trip Planing</h3>
@@ -38,7 +38,7 @@
                                             <div class="col-6" *ngFor="let img of detail.attachment;let i=index">
                                                 <div *ngIf="i < 2">
                                                     <div class="trip_img" (click)="previewImage(img.image_url);" *ngIf="img.image_extension == 'jpeg' || img.image_extension == 'png' || img.image_extension == 'jpg'">
-                                                        <img [src]="img.image_url" (click)="downloadPdf(img.image_url,img.image_name,img.mime_type,img.image_extension)">
+                                                        <img [src]="img.image_url" onError="src = 'assets/images/placeholder.png'" (click)="downloadPdf(img.image_url,img.image_name,img.mime_type,img.image_extension)">
                                                     </div>
 
                                                     <div class="trip_img" *ngIf="img.image_extension != 'jpeg' && img.image_extension != 'png' && img.image_extension != 'jpg'" (click)="downloadPdf(img.image_url,img.image_name,img.mime_type)">
@@ -57,17 +57,11 @@
                     </ion-card>
                 </div>
             </div>
-            <!-- <div class="trip_status">
-                <div class="day_one" [ngClass]="{'day_one1': '2020-01-14' > '2020-03-15'}">
-                <div>
-                    <p> Day {{timelineDayDetail.itinerary_day}}</p>
-                </div>
-            </div> -->
         </div>
         <div *ngIf="loading">
             <div id="loader-wrapper">
                 <div class="heartbeatloader">
-                    <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+                    <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
                 </div>
             </div>
         </div>
@@ -82,7 +76,7 @@
                     <div class="row">
                         <div class="col-6" *ngFor="let img of images">
                             <div class="trip_img" (click)="previewImage(img)" *ngIf="img.image_extension == 'jpeg' || img.image_extension == 'png' || img.image_extension == 'jpg'">
-                                <img [src]="img.image_url" (click)="downloadPdf(img.image_url,img.image_name,img.mime_type)">
+                                <img [src]="img.image_url" onError="src = 'assets/images/placeholder.png'" (click)="downloadPdf(img.image_url,img.image_name,img.mime_type)">
                             </div>
                             <div class="trip_img" *ngIf="img.image_extension != 'jpeg' && img.image_extension != 'png' && img.image_extension != 'jpg'" (click)="downloadPdf(img.image_url,img.image_name,img.mime_type)">
                                 <span>{{img.image_name}}</span>

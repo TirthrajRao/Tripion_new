@@ -41,15 +41,15 @@
                 </div>
                 <div class="card">
                     <div class="row">
-                        <div class="col-4" *ngFor="let doc of visaDetails.image_url">
+                        <div class="col-4" *ngFor="let doc of visaDetails.image_url;let i= index">
                             <div class="all_image" *ngIf="doc.image_extension == 'png' || doc.image_extension == 'jpg' || doc.image_extension == 'jpeg'">
-                                <ion-img [src]="doc.image_url" class="visa_image "></ion-img>
+                                <ion-img [src]="doc.image_url || 'assets/images/placeholder.png'" class="visa_image " (ionError)="onErrorImage(i)"></ion-img>
                             </div>
                             <div *ngIf="doc.image_extension != 'png' && doc.image_extension != 'jpeg' && doc.image_extension != 'jpg' ">
                                 <a href="{{doc.image_url}}" download>{{doc.image_name}}</a>
                             </div>
                             <div (click)=removeImage(doc) class="mt-2">
-                                <ion-img src="../../assets/images/remove.png " class="remove_image "></ion-img>
+                                <ion-img src="assets/images/remove.png " class="remove_image "></ion-img>
                             </div>
                         </div>
 
@@ -62,7 +62,7 @@
             </div>
             <div class="add_button" id="add-visa" (click)="moveDocumentPage()">
                 <a href="javascript:void(0);">
-                    <img src="../../assets/images/plus.png">
+                    <img src="assets/images/plus.png">
                 </a>
             </div>
         </form>
@@ -70,7 +70,7 @@
     <div *ngIf="loading">
         <div id="loader-wrapper">
             <div class="heartbeatloader">
-                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+                <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
             </div>
         </div>
     </div>

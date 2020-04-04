@@ -9,15 +9,14 @@
     <div class="document_content">
         <div>
             <div class="submit_btn select_files">
-                <!-- <input type="file" #file1 style="display: none;" (change)="selectOtherFile($event)" accept="image/*, .doc ,.pdf" multiple> -->
-                <input type="file" #file1 style="display: none;" (change)="selectOtherFile($event)"  multiple>  
+                <input type="file" #file1 style="display: none;" (change)="selectOtherFile($event)" multiple>
                 <button (click)="file1.click()">Add new Document</button>
             </div>
             <div *ngIf="urls && urls.length">
                 <div class="row">
                     <div class="col-3" *ngFor="let url of urls">
                         <div class="uploded_image">
-                            <ion-img [src]="url.imgUrl" *ngIf="url.type=='img'"></ion-img>
+                            <ion-img [src]="url.imgUrl || 'assets/images/placeholder.png' " *ngIf="url.type=='img'"></ion-img>
                             <span *ngIf="url.type=='pdf'">{{url.name}}</span>
                         </div>
                     </div>
@@ -30,12 +29,16 @@
         <div class="all_uploaded_img">
             <div *ngIf="allImage.length">
                 <div class="row m-0">
-                    <div class="col-4 img-icon p-0" *ngFor="let photo of allImage.reverse()" style="cursor: pointer;" (click)="selectDocument(photo.id,photo.image_url,photo.image_extension,photo.image_name)">
+                    <div class="col-4 img-icon p-0" *ngFor="let photo of allImage.reverse()" style="cursor: pointer;"
+                        (click)="selectDocument(photo.id,photo.image_url,photo.image_extension,photo.image_name)">
                         <div class="single_img">
                             <div class="single_img_div">
-                                <img [src]="photo.image_url" onError="src = '../../assets/images/placeholder.png'" class="image-{{photo.id}}" style="opacity: 1;" *ngIf="photo.image_extension == 'png' || photo.image_extension == 'jpg'  || photo.image_extension == 'jpeg'" />
+                                <img [src]="photo.image_url" onError="src = 'assets/images/placeholder.png'"
+                                    class="image-{{photo.id}}" style="opacity: 1;"
+                                    *ngIf="photo.image_extension == 'png' || photo.image_extension == 'jpg'  || photo.image_extension == 'jpeg'" />
                             </div>
-                            <span *ngIf="photo.image_extension != 'png' && photo.image_extension != 'jpg'  && photo.image_extension != 'jpeg'">{{photo.image_name}}</span>
+                            <span
+                                *ngIf="photo.image_extension != 'png' && photo.image_extension != 'jpg'  && photo.image_extension != 'jpeg'">{{photo.image_name}}</span>
                             <ion-icon name="checkmark" class="checkmark-icon-{{photo.id}}"></ion-icon>
                         </div>
                     </div>
@@ -49,7 +52,7 @@
     <div *ngIf="loading">
         <div id="loader-wrapper">
             <div class="heartbeatloader">
-                <ion-img class="svgdraw" src="../../assets/images/loader.gif"></ion-img>
+                <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
             </div>
         </div>
     </div>

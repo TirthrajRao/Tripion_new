@@ -11,6 +11,7 @@ import 'rxjs/add/observable/fromEvent';
 import * as firebase from 'firebase';
 declare const $: any;
 
+//firebase configration
 const config = {
   apiKey: 'MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC7c1GumIdO3yTH\n3wFXJsQPxoRNc1dS3eIZGy3rBmHE8f7guQOzGTrAIikQe10kCYp9hU+WqjfCg7qU\nhOkGikml9i5jD7BRboS6L066UROgsBpz6JZnA/jSXnHKNH88HdzL28xH5Jw472Ck\nQkq8pLgvVMnO2+GBRemJkP3di+DjtTVBtzgjLi8PNbc7w+O9SHHjekqDssCQixuL\nLv2j6TgR25lTLXSGu9mFRgcH+RJgk3UjiFShy4h2+SlYvNy5qL0adcSx5GlixzQc\nNfs+NdnEwyGqbff7iR736NGPMP8w5RsHzgMoDjkF+dRlot8Go0CfXreuLcri52H3\n8jHzvdsvAgMBAAECggEAGsyCVYVN9us1DXQm82hB6IV3ncELL3g0XmWB25N2f9sf\nFs6spjrJqPVZTJduefv5NjfMaJxeS2tczeXwkLRNkjIPcK8qBIJZ7GpeBYoY1cTH\ni2GpuwGY3a6N8xwtQpF8YxLB8ldPNF6YwPMPT0f3YyDqly3dYAd4O2gkuztHxBYB\nZjv0BJ17VEcQpou115MduBvSnPkAwig0koynNmr6eczPp4329/GbSqeIPdiS6r0m\nY8mFYW0xajR6Fye+l4oQZwAgbESOt2W6oC+Qquyyak/CU4tfa20nxMphakftlkFL\ntzkVK3YWOOBWGVCyR/ZCylz+68lkxPZBap+5sPWRcQKBgQD5Muk8s2cAEAVYZJx9\n5RWwlVcUyAH2j2NpdJmDUhgHUE6mwhXkNBxwIEod91u2xjLehJUCecd21pHvAEgY\nA3UpYctdT5M49c2g0fsjZFFy5nliHznPQvTvu4+nLYfERvYW+y70stJLhTwgavx1\nsX9Q45WXLYiuldeOTLIlJHgxXwKBgQDAkPzVbcwTa9Au0VoEJPnm9qKtiP16QkQa\n4KEKtFZrOBGPOaD7jZw/3tkaqK8mwJ0TybMDKvb40gKzG7VoOvVL6mDk68q1EKAs\nw40TJ8P84iLExIx0Dh/I1O2FrQV2JPexCt1QbWmsscief9OSv9yXCmmc2qMny04/\ntMgtQBSYMQKBgCB59xWXF9xVOi0b550sptf9jnzB2Cem5kDPFlab80+4spdfAfVc\nqTwfqSkgnI5EZErFopnQ/yLIsfog4kRm5vT+rr85aKlqt2K3GvCw2UCNMtKL2T/e\nrQc1PXJ/J4t36Ah0sdjoGSoIch6TctVvzXTgRBWQtJh0JMSB0FGw4A0nAoGAeBx3\nd/DKb/q5mdo/WYJu1d9UzQU7hfy7WkBucqzVkn8ghMOfZAiKQ1SO+o/o4DUYRPV0\nUS+FaOIliO5pkp/jzPxef6uLfrDmF8XJwv70wlGS+kTWjrUYoj4eAVlQpMaeMLHk\nJXx5g5xI1IRKxagiwZtfENVXG0U2g4oRqhfkQKECgYEAkIZrWYJtr/H9dtfq9Cpa\noA7tVlm91WIo7tD/3Y5EdczZ83hlitzeXULfBcmV8/fOi9lc1y8y6mvI4HvaxcFQ\nFt/5SdkUw25g289uIi+Tt4vu48g4GwifZCNEjLVB/FwliQkBpodfsLIdCZnZRHHG\nwWZhuso+M1XaY08tJ8id/hU=',
   authDomain: 'https://accounts.google.com/o/oauth2/auth',
@@ -31,6 +32,7 @@ export class AppComponent {
   message: any;
   title: any;
   errMessage: any;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -59,8 +61,6 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.getNotification();
-      // this.checkNetworkConectivity();
-      // this.statusBar.styleDefault();
       this.statusBar.backgroundColorByHexString('#0575E6');
       this.splashScreen.hide();
       this.menuRadius(); // call menuRadius method
@@ -90,7 +90,6 @@ export class AppComponent {
       } else {
         console.log("Received in foreground");
       };
-      // this._toastService.presentToast(data.body, 'success')
       this.getLocalNotification(data);
     });
   }
@@ -105,6 +104,7 @@ export class AppComponent {
       console.log("in local sstorage", localStorage.getItem('deviceToken'));
     });
   }
+
   /**
    * Get LOcal NOtification when app is in foreground
    */
@@ -183,9 +183,6 @@ export class AppComponent {
     $('.success_alert_box .alert_box_content').click(function (event) {
       event.stopPropagation();
     });
-    // setTimeout(() => {
-    //   $('.success_alert_box').hide().removeClass('animate');
-    // }, 2000)
   }
 
   /** 
@@ -201,8 +198,5 @@ export class AppComponent {
     $(' .error_alert_box .alert_box_content').click(function (event) {
       event.stopPropagation();
     });
-    // setTimeout(() => {
-    //   $('.error_alert_box').hide().removeClass('animate');
-    // }, 2000)
   }
 }

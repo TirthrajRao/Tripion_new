@@ -5,18 +5,14 @@
                 <div class="row" routerLink="/home/profile" (click)="closeMenu()">
                     <div class="col-3 pl-4" *ngIf="currentUserData">
                         <div class="profile_img">
-                            <img src="../../assets/images/user.png" *ngIf="!currentUserData.profile_pic" />
-                            <img [src]="currentUserData.profile_pic" *ngIf="currentUserData.profile_pic" onError="src = '../../assets/images/placeholder.png'" />
+                            <img src="assets/images/user.png" *ngIf="!currentUserData.profile_pic" />
+                            <img [src]="currentUserData.profile_pic" *ngIf="currentUserData.profile_pic"
+                                onError="src = 'assets/images/placeholder.png'" />
                         </div>
                     </div>
                     <div class="col-9 pl-3">
                         <div class="profile_detail text-white">
                             <p *ngIf="currentUserData">{{currentUserData.first_name}} {{currentUserData.last_name}}</p>
-                            <!-- <p *ngIf="userName">{{userName}}</p> -->
-                            <!-- <div class="awrd_img">
-                                <ion-img src="../../assets/images/award.png" class="float-left mr-1"></ion-img>
-                                <span>150</span>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -29,7 +25,7 @@
                     </div>
                 </div>
                 <div class="menu_list text-white" (click)="logOut()">
-                    <ion-img src="../../assets/images/10.png" class="mr-3"></ion-img>
+                    <ion-img src="assets/images/10.png" class="mr-3"></ion-img>
                     <span> Log Out</span>
                 </div>
             </div>

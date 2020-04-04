@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UploadService } from '../../services/upload.service';
-// import { ToastService } from '../../services/toast.service';
 import { AppComponent } from '../../app.component';
 declare const $: any;
 @Component({
@@ -21,7 +20,6 @@ export class InnerFolderComponent implements OnInit {
   constructor(
     public route: ActivatedRoute,
     public _uploadService: UploadService,
-    // public _toastService: ToastService,
     public appComponent: AppComponent,
   ) {
     this.route.params.subscribe((params) => {
@@ -32,17 +30,11 @@ export class InnerFolderComponent implements OnInit {
 
   ngOnInit() {
     console.log("folder name", this.folderName)
-    // this.openModal();
     this.getAllImages();
   }
 
   openModal() {
-    console.log("===")
-    // $('#upload-pictures').click(function () {
-      console.log("----")
-      $('#Add-Pictures').fadeIn();
-      // $('#new-modal').fadeIn();
-    // });
+    $('#Add-Pictures').fadeIn();
     $('#Add-Pictures .modal_body').click(function (event) {
       event.stopPropagation();
     });
@@ -50,6 +42,7 @@ export class InnerFolderComponent implements OnInit {
       $('#Add-Pictures').fadeOut();
     });
   }
+
   /**
    * Select file from device
    * @param {object} e 
@@ -102,13 +95,11 @@ export class InnerFolderComponent implements OnInit {
       this.isDisable = false;
       this.loading = false;
       this.urls = [];
-      // this.appComponent.sucessAlert("File Successfully Uploaded");
     }, (err) => {
       console.log(err);
       this.isDisable = false;
       this.loading = false;
       this.appComponent.errorAlert(err.error.message);
-      // this._toastService.presentToast(err.error.message, 'danger')
     })
   }
 
@@ -129,9 +120,16 @@ export class InnerFolderComponent implements OnInit {
     }, (err) => {
       console.log(err);
       this.appComponent.errorAlert(err.error.message);
-      // this._toastService.presentToast(err.error.message, 'danger');
       this.loading = false;
     })
   }
 
+  /**
+   * set fallback image on error
+   * @param {Number} index 
+   */
+  onErrorImage(index) {
+    console.log("index", index);
+    this.allImages[index].image_url = 'assets/images/placeholder.png'
+  }
 }
