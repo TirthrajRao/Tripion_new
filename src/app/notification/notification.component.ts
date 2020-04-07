@@ -13,14 +13,7 @@ export class NotificationComponent implements OnInit {
   allNotifications: any = [];
   loading: Boolean = false;
   previousUrl: any;
-  items = [
-    { title: 'Slide item1' },
-    { title: 'Slide item2' },
-    { title: 'Slide item3' },
-    { title: 'Slide item4' },
-    { title: 'Slide item5' },
-    { title: 'Slide item6' }
-  ];
+  isDisable:Boolean = false;
   constructor(
     public _userService: UserService,
     public _toastService: ToastService,
@@ -77,10 +70,19 @@ export class NotificationComponent implements OnInit {
    */
   removeItem(data) {
     console.log("data", data);
-    for (let i = 0; i < this.items.length; i++) {
-      if (this.allNotifications[i].notification_id == data.notification_id) {
-        this.allNotifications.splice(i, 1);
-      }
+    this.isDisable = true;
+    const obj = {
+      id:this.currentUser.id,
+      notification_id:data.notification_id
     }
+    this._userService.deleteNotification(obj).subscribe((res:any)=>{
+      console.log("res of delete noti.",res);
+      this.allNotifications = res.data
+      this.isDisable = false;
+    },err=>{
+      console.log("err",err);
+      this.isDisable = false;
+      this.appComponent.errorAlert();
+    })
   }
 }

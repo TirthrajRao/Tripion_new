@@ -54,6 +54,27 @@
                         </div>
 
                         <div *ngIf="msg.message.message_type == 'audio'">
+                            <!-- <div class="row">
+                                <div class="col-2 paly-icon">
+                                  
+                                    <ion-icon name="play" (click)="togglePlayer(false);playAudio(msg.message.msg.url)" *ngIf="!isPlaying"></ion-icon>
+                                 
+                                    <ion-icon name="pause" (click)="togglePlayer(true)" *ngIf="isPlaying"></ion-icon>
+                                   
+                                </div>
+                                <div class="col-10 pl-0">
+                                    <ion-range #range (touchend)="seek()" (mouseup)="seek()">
+                                    </ion-range>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                </div>
+                                <div class="col-10 pl-0 duration">
+                                    <p>00:02</p>
+                                </div>
+                            </div> -->
                             <audio controls style="width: 67vw;">
                                 <source src="{{msg.message.msg.url}}" type="audio/mpeg">
                             </audio>
@@ -66,20 +87,23 @@
                         <small>{{ changeDateFormate(msg.message.date)}}</small>
                     </div>
                     <div class="user_profile">
-                        <ion-img src="../../assets/images/avatar1.png"></ion-img>
+                        <!-- <ion-img src="../../assets/images/avatar1.png"></ion-img> -->
+                        <ion-img [src]="currentUser.profile_pic || 'assets/images/avatar1.png'"
+                            (ionError)="onErrorImage()"></ion-img>
                     </div>
                 </div>
                 <div *ngIf="msg.message.sender_id != currentUser.id"
                     class="receive_msg d-flex justify-content-start mb-4">
                     <div class="user_profile">
-                        <ion-img src="../../assets/images/avatar.png"></ion-img>
+                        <ion-img [src]="adminProfilePic || 'assets/images/avatar.png'" (ionError)="onErrorImage1()">
+                        </ion-img>
                     </div>
                     <div class="user_msg">
                         <p *ngIf="msg.message.message_type == 'text'">{{msg.message.msg}}</p>
                         <div *ngIf="msg.message.message_type == 'latlon'"
                             (click)="openMap(msg.message.msg.lat,msg.message.msg.lon,msg.message.msg.name)">
                             <agm-map [latitude]="+msg.message.msg.lat" [longitude]="+msg.message.msg.lon" style="height: 160px;
-                        width: 210px;" [scrollwheel]="null" [gestureHandling]="none" [mapDraggable]="false"
+                               width: 210px;" [scrollwheel]="null" [gestureHandling]="none" [mapDraggable]="false"
                                 [maxZoom]="0">
                                 <agm-marker [latitude]="+msg.message.msg.lat" [longitude]="+msg.message.msg.lon">
                                 </agm-marker>
@@ -179,7 +203,7 @@
                     <div class="col-3 px-2 ">
                         <div class="attach_img ">
                             <input type="file" #video class="form-control" hidden
-                                accept="video/mp4,video/x-m4v,video/* " (change)="selectFile($event,'video')">
+                                accept="video/mp4,video/x-m4v,video/* " (change)="selectFile($event,'video')" multiple>
                             <label (click)="video.click()"><i class="fas fa-video "></i></label>
                             <p>VIDEO</p>
                         </div>
@@ -193,7 +217,7 @@
                     <div class="col-3 px-2 ">
                         <div class="attach_img ">
                             <input type="file" #file3 class="form-control " style="display: none; "
-                                (change)="selectFile($event,'file')">
+                                (change)="selectFile($event,'file')" multiple>
                             <label (click)="file3.click()"><i class="fas fa-link "></i></label>
                             <p (click)="file3.click()">FILE</p>
                         </div>

@@ -5,11 +5,20 @@
 <ion-content>
     <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">                                                                                                                                                                                                                                                                                                                                               </ion-refresher> -->
     <div class="all_content">
-        <div *ngIf="folderList.length">
+        <!-- <div *ngIf="folderList.length">
             <div class="card folder_detail" *ngFor="let folder of folderList;let i =index"
                 routerLink='/home/inner-folder/{{folder}}'>
                 <ion-img [src]="getRandomImgeIcon(i)"></ion-img>
                 <p>{{folder}}</p>
+            </div>
+        </div> -->
+        <div *ngIf="folderList.length" class="row folder-view m-0">
+            <div class="col-4  folder_detail" *ngFor="let folder of folderList;let i =index"
+                routerLink='/home/inner-folder/{{folder}}'>
+                <div class="card p-3">
+                    <ion-img [src]="getRandomImgeIcon(i)"></ion-img>
+                    <p>{{folder}}</p>
+                </div>
             </div>
         </div>
         <div *ngIf="allImages.length">
@@ -68,7 +77,7 @@
         <div class="modal_body">
             <div class="create_folder">
                 <div class="single_folder" id="upload-documents">
-                    <a href="javascript:void(0);"><i class="fas fa-upload mr-2"></i>Upload New Files</a>
+                    <a href="javascript:void(0);"><i class="fas fa-upload mr-2"></i>Add New Files</a>
                 </div>
                 <div class="single_folder" id="open-folderr">
                     <a href="javascript:void(0);"><i class="fas fa-plus mr-2"></i>New Folder</a>
@@ -99,7 +108,7 @@
                     </div>
                     <div class="make_folder">
                         <button type="submit" class="btn" (click)="createFolder(createFolderForm.value)"
-                            [disabled]="isDisable"><i class="fas fa-plus"></i>Make Folder</button>
+                            [disabled]="isDisable"><i class="fas fa-plus"></i>Add Folder</button>
                     </div>
                 </form>
             </div>

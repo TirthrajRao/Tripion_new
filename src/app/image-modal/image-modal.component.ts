@@ -24,7 +24,10 @@ export class ImageModalComponent implements OnInit {
   itemPicturesStoreURL: any;
   fileType: any;
   loading: Boolean = false;
-
+  slideOpts = {
+    initialSlide: 1,
+    speed: 400
+  };
   constructor(
     public navParams: NavParams,
     public modalCtrl: ModalController,
@@ -44,7 +47,7 @@ export class ImageModalComponent implements OnInit {
     this.platform.backButton.subscribe(() => {
       console.log("this.router", this.router)
     })
-    console.log("file object data", this.fileObjectData, this.fileType)
+    console.log("file object data", this.fileObjectData, this.fileType,this.imagePath)
   }
 
   ngOnInit() {
@@ -66,8 +69,8 @@ export class ImageModalComponent implements OnInit {
   uploadImage() {
     this.loading = true;
     let imageName;
-    imageName = this.fileObjectData[0].name;
-    this._s3Service.uploadImage(this.imagePath, imageName, this.fileType, this.fileObjectData[0]).then((res) => {
+    imageName = this.fileObjectData;
+    this._s3Service.uploadImage(this.imagePath, this.fileType, this.fileObjectData).then((res) => {
       console.log("Response", res);
       this.loading = false;
       this.modalCtrl.dismiss({

@@ -23,7 +23,7 @@ export class S3Service {
     private filePath: FilePath,
     public file: File,
 
-  ) { console.log(".................",Awskey)}
+  ) { console.log(".................", Awskey) }
 
   /**
    * get image from camera and gallary
@@ -90,8 +90,101 @@ export class S3Service {
   /**
    * upload image to s3
    */
-  uploadImage(image, imageName, fileType, fileObject) {
-    console.log("image path and name", image, imageName, fileType);
+  // uploadImage(image, imageName, fileType, fileObject) {
+  //   console.log("image path and name", image, imageName, fileType);
+  //   return new Promise((resolve, reject) => {
+  //     let date = Date.now();
+
+  //     let body, ext, mime, type, key;
+  //     if (image.includes('data:imagedf')) {
+  //       body = image;
+  //       body = Buffer.from(image.replace(/^data:image\/\w+;base64,/, ''), 'base64');
+  //       ext = image.split(';')[0].split('/')[1] || 'jpg';
+  //       mime = "image/" + ext,
+  //         type = "image"
+  //     } else if (image.includes('data:video/mp4;base64fgg')) {
+  //       body = Buffer.from(image.replace(/^data:video\/\w+;base64,/, ''), 'base64');;
+  //       console.log("----", image)
+  //       ext = image.split(';')[0].split('/')[1] || 'mp4';
+  //       mime = "video/" + ext,
+  //         type = "vedio"
+  //     } else if (image.includes('mp3gyyhty')) {
+  //       console.log("type audio ??????????????????????")
+  //       body = image;
+  //       console.log(">>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<",body)
+  //       // body = Buffer.from(image.replace(/^data:audio\/\w+;base64,/, ''), 'base64');
+  //       ext = 'mp3';
+  //       mime = "audio/" + ext,
+  //         type = fileType,
+  //         key = "chat/" + date + '.' + ext;
+  //     } else if (fileObject) {
+  //       console.log("file object", fileObject);
+  //       body = fileObject;
+  //       ext = fileObject.type.split('/')[1];
+  //       type = fileType;
+  //       mime = fileObject.type
+  //       key = "chat/" + imageName + date + '.' + ext;
+  //     }
+  //     console.log("ext", ext)
+  //     console.log("BODY======>", body)
+  //     console.log("EXT====>",ext)
+  //     console.log("key====>",key)
+  //     console.log("type====>",type)
+  //     // const key = "chat/" + imageName + date + '.' + ext;
+  //     // console.log(body, ext, mime, key, type)
+  //     this.s3Putimage({ body, mime: mime, name: imageName, type: type }, key, 'base64', ext).then((result) => { resolve(result); }).catch((err) => { reject(err); });
+  //   })
+  // }
+
+
+  // s3Putimage(file, key, encoding, ext) {
+  //   console.log(",,,,,,,", Awskey)
+  //   console.log("file", file, "key", key, "encoding", encoding)
+  //   return new Promise((resolve, reject) => {
+  //     AWS.config.accessKeyId = Awskey.accessKeyId;
+  //     AWS.config.secretAccessKey = Awskey.secretAccessKey;
+  //     AWS.config.region = 'us-east-2';
+  //     AWS.config.signatureVersion = 'v4';
+  //     let s3 = new AWS.S3();
+
+  //     const params = {
+  //       Body: file.body,
+  //       Bucket: 'tripion-testing',
+  //       Key: key,
+  //       ACL: "public-read",
+  //       ContentType: 'audio/webm',
+  //     };
+  //     console.log("params", params)
+
+  //     s3.upload(params, function (evt) {
+  //       console.log('Event In evt====>>>>', evt);
+  //       // resolve(evt)
+  //       // console.log(evt.loaded + ' of ' + evt.total + ' Bytes');
+
+  //     }).send(function (err, data) {
+  //       if (err) {
+  //         console.log('There was an error uploading your file: ', err);
+  //         reject(err);
+  //       }
+  //       console.log('Successfully uploaded file.', data);
+  //       const obj = {
+  //         url: data.Location,
+  //         mimeType: file.mime,
+  //         ext: ext,
+  //         name: file.name,
+  //         type: file.type
+  //       }
+  //       console.log("obj", obj)
+  //       resolve(obj);
+  //     });
+  //   })
+  //   // })
+  // }
+
+
+
+  uploadImage(image, fileType, fileObject) {
+    console.log("image path and name", image, fileType, fileObject);
     return new Promise((resolve, reject) => {
       let date = Date.now();
 
@@ -111,73 +204,80 @@ export class S3Service {
       } else if (image.includes('mp3gyyhty')) {
         console.log("type audio ??????????????????????")
         body = image;
-        console.log(">>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<",body)
+        console.log(">>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<", body)
         // body = Buffer.from(image.replace(/^data:audio\/\w+;base64,/, ''), 'base64');
         ext = 'mp3';
         mime = "audio/" + ext,
           type = fileType,
           key = "chat/" + date + '.' + ext;
-      } else if (fileObject) {
+      } else if (fileObject.length) {
         console.log("file object", fileObject);
         body = fileObject;
-        ext = fileObject.type.split('/')[1];
+        // ext = fileObject.type.split('/')[1];
         type = fileType;
-        mime = fileObject.type
-        key = "chat/" + imageName + date + '.' + ext;
+        // mime = fileObject.type,
+        // key = "chat/" + imageName + date + '.' + ext;
       }
       console.log("ext", ext)
       console.log("BODY======>", body)
-      console.log("EXT====>",ext)
-      console.log("key====>",key)
-      console.log("type====>",type)
+      console.log("EXT====>", ext)
+      console.log("key====>", key)
+      console.log("type====>", type)
       // const key = "chat/" + imageName + date + '.' + ext;
       // console.log(body, ext, mime, key, type)
-      this.s3Putimage({ body, mime: mime, name: imageName, type: type }, key, 'base64', ext).then((result) => { resolve(result); }).catch((err) => { reject(err); });
+      this.s3Putimage({ body, type: type }, 'base64').then((result) => { resolve(result); }).catch((err) => { reject(err); });
     })
   }
 
 
-  s3Putimage(file, key, encoding, ext) {
-    console.log(",,,,,,,", Awskey)
-    console.log("file", file, "key", key, "encoding", encoding)
+  s3Putimage(file, encoding) {
+    let responseData = []
+    console.log("file", file, "encoding", encoding)
     return new Promise((resolve, reject) => {
       AWS.config.accessKeyId = Awskey.accessKeyId;
       AWS.config.secretAccessKey = Awskey.secretAccessKey;
       AWS.config.region = 'us-east-2';
       AWS.config.signatureVersion = 'v4';
       let s3 = new AWS.S3();
+      file.body.map((item) => {
+        console.log("item", item);
+        let ext = item.type.split('/')[1];
+        let date = Date.now();
+        let params = {
+          Body: item,
+          Bucket: 'tripion-testing',
+          Key: "chat/" + item.name + date + '.' + ext,
+          ACL: "public-read",
+          ContentType: 'audio/webm',
+        };
+        console.log("params", params)
+        s3.upload(params, function (evt) {
+          console.log('Event In evt====>>>>', evt);
+          // resolve(evt)
+          // console.log(evt.loaded + ' of ' + evt.total + ' Bytes');
 
-      const params = {
-        Body: file.body,
-        Bucket: 'tripion-testing',
-        Key: key,
-        ACL: "public-read",
-        ContentType: 'audio/webm',
-      };
-      console.log("params", params)
-
-      s3.upload(params, function (evt) {
-        console.log('Event In evt====>>>>', evt);
-        // resolve(evt)
-        // console.log(evt.loaded + ' of ' + evt.total + ' Bytes');
-
-      }).send(function (err, data) {
-        if (err) {
-          console.log('There was an error uploading your file: ', err);
-          reject(err);
-        }
-        console.log('Successfully uploaded file.', data);
-        const obj = {
-          url: data.Location,
-          mimeType: file.mime,
-          ext: ext,
-          name: file.name,
-          type: file.type
-        }
-        console.log("obj", obj)
-        resolve(obj);
-      });
+        }).send(function (err, data) {
+          if (err) {
+            console.log('There was an error uploading your file: ', err);
+            reject(err);
+          } else {
+            console.log('Successfully uploaded file.', data);
+            const obj = {
+              url: data.Location,
+              mimeType: item.type,
+              ext: ext,
+              name: item.name,
+              type: file.type
+            }
+            console.log("obj", obj);
+            responseData.push(obj);
+            console.log('responseData', responseData);
+            if(responseData.length == file.body.length){
+              resolve(responseData);
+            }
+          }
+        });
+      })
     })
-    // })
   }
 }

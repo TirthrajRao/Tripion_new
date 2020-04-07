@@ -33,6 +33,27 @@
         }
     }
 }
+.main-image-view{
+    margin-left: -5px !important;
+    margin-right: -5px !important;
+    .image-view{
+        img{
+            height: 75px;
+            width: 100%;
+            object-fit: fill;
+            padding: 5px 5px !important;
+            border-radius: 7px;
+        }
+    }
+    i{
+        position: absolute;
+        right: 0;
+        bottom: 60px;
+        z-index: 11111;
+        color: black;
+        opacity: 0;
+    }
+}
 
 ​ .remove_image {
     height: 20px;

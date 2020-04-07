@@ -1,10 +1,19 @@
 <ion-content fullscreen>
-    <div class="img-preview" *ngIf="imagePath">
-        <img src="{{imagePath}}" *ngIf="fileType == 'image'" onError="src = 'assets/images/placeholder.png'" />
-        <video controls="controls" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline"
-            class="videoPlayer" *ngIf="fileType == 'video'">
-            <source src="{{imagePath}}" type="video/mp4" />
-        </video>
+    <div class="img-preview" *ngIf="imagePath.length">
+        <ion-slides pager="true" *ngIf="fileType =='image'">
+            <ion-slide *ngFor="let img of imagePath">
+                <img src="{{img}}" *ngIf="fileType == 'image'" onError="src = 'assets/images/placeholder.png'" />
+            </ion-slide>
+        </ion-slides>
+        <ion-slides pager="true" *ngIf="fileType == 'video'">
+            <ion-slide *ngFor="let img of imagePath">
+                <video controls="controls" preload="metadata" autoplay="autoplay" webkit-playsinline="webkit-playsinline"
+                class="videoPlayer">
+                <source src="{{img}}" type="video/mp4" />
+            </video>
+            </ion-slide>
+        </ion-slides>
+       
         <div *ngIf="fileType == 'file'">
             <img src="assets/images/no-preview.jpg">
         </div>

@@ -17,12 +17,13 @@ import { Media, MediaObject } from '@ionic-native/media/ngx';
 import { Base64 } from '@ionic-native/base64/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { AppComponent } from '../app.component';
-
+import { Howl } from 'howler';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import * as firebase from 'firebase';
 
 import { MediaCapture } from '@ionic-native/media-capture/ngx';
+import { Bool } from 'aws-sdk/clients/clouddirectory';
 declare var $: any;
 
 @Component({
@@ -32,6 +33,7 @@ declare var $: any;
 })
 export class AmendmentsComponent implements OnInit {
   @ViewChild(IonContent, { static: false }) contentArea: IonContent;
+  @ViewChild('range', { static: false }) range: Range;
   fileTransfer: FileTransferObject = this.transfer.create();
   currentUser = JSON.parse(localStorage.getItem('currentUser'));
   messages: any = [];
@@ -48,7 +50,7 @@ export class AmendmentsComponent implements OnInit {
   imageSet: Boolean = false;
   downloading: Boolean = false;
   files: any;
-  urls: any;
+  urls: any = [];
   chatId: any;
 
   recording: boolean = false;
@@ -56,7 +58,10 @@ export class AmendmentsComponent implements OnInit {
   fileName: string;
   audio: MediaObject;
   timex: any;
-
+  adminProfilePic: any;
+  player: Howl = null;
+  isPlaying: Boolean = false;
+  progress = 0;
   constructor(
     public router: Router,
     public _userService: UserService,
@@ -131,6 +136,7 @@ export class AmendmentsComponent implements OnInit {
     this._userService.getMessagesToAmmendments().subscribe(response => {
       console.log("messages response=============>", response)
     })
+    this.getAdminProfile();
     if (this.route.snapshot.queryParams) {
       this.locationData = this.route.snapshot.queryParams;
       console.log("location data in ammendments", this.locationData);
@@ -157,6 +163,17 @@ export class AmendmentsComponent implements OnInit {
     });
   }
 
+  /**
+   * Get Admin profile
+   */
+  getAdminProfile() {
+    this._userService.getAdminProfile().subscribe((res: any) => {
+      console.log("res", res);
+      this.adminProfilePic = res.admin_profile_pic
+    }, err => {
+      console.log("err", err)
+    })
+  }
   /**
    * Pull to refresh
    * @param {object} event
@@ -291,7 +308,8 @@ export class AmendmentsComponent implements OnInit {
    * @param {object} data
    */
   send(data, type) {
-    console.log("send message", data, type, data.message);
+    console.log("send message", data, type);
+    this.loading = true;
     if (data.message.type)
       delete data.message.type
     // data.delete.message.type;
@@ -312,6 +330,7 @@ export class AmendmentsComponent implements OnInit {
       user_id: 1,
       sender_id: this.currentUser.id
     });
+    this.loading = false;
     this.addMessageForm.reset();
   }
 
@@ -336,10 +355,14 @@ export class AmendmentsComponent implements OnInit {
         console.log("data", data)
         const imageData = data.data;
         console.log("user====>", imageData.data); // Here's your selected imagedata!
-        const messageData = {
-          message: imageData.data,
-        }
-        this.send(messageData, messageData.message.type)
+        _.forEach(imageData.data, (item) => {
+          const messageData = {
+            message: item,
+          }
+          this.send(messageData, item.type);
+          this.modalController.dismiss();
+          console.log("=======")
+        })
       });
     return await modal.present();
   }
@@ -406,29 +429,59 @@ export class AmendmentsComponent implements OnInit {
    */
   selectFile(e, type) {
     console.log("file data", e.target.files);
-    this.files = e.target.files;
-    let reader = new FileReader();
-    reader.readAsDataURL(this.files[0]);
-    reader.onload = (_event) => {
-      this.urls = reader.result
-
-      console.log("url", this.urls)
-      if (this.urls && type != 'file') {
-        this.openModal(this.urls, type)
-      } else if (this.urls && type == 'file') {
-        console.log("file type");
-        this._s3Service.uploadImage(this.urls, this.files[0].name, 'file', this.files[0]).then((res) => {
-          console.log("Response", res);
-          const messageData: any = {
-            message: res,
-          }
-          this.send(messageData, messageData.message.type)
-        }).catch((err) => {
-          console.log("Error is", err);
-          this.appComponent.errorAlert()
-        })
+    this.files = Array.from(e.target.files);
+    console.log("this.files", this.files);
+    this.urls = [];
+    for (let i = 0; i < this.files.length; i++) {
+      let reader = new FileReader();
+      reader.readAsDataURL(this.files[i]);
+      reader.onload = (_event) => {
+        this.urls.push(reader.result);
+        console.log("url", this.urls)
+        if (this.urls.length == this.files.length && type != 'file') {
+          this.openModal(this.urls, type)
+        } else if (this.urls.length == this.files.length && type == 'file') {
+          console.log("file type");
+          this._s3Service.uploadImage(this.urls, 'file', this.files).then((res: any) => {
+            console.log("Response", res);
+            res.map((item) => {
+              const messageData: any = {
+                message: item,
+              }
+              this.send(messageData, messageData.message.type)
+            })
+          }).catch((err) => {
+            console.log("Error is", err);
+            this.appComponent.errorAlert()
+          })
+        }
       }
     }
+
+
+
+    // let reader = new FileReader();
+    // reader.readAsDataURL(this.files[0]);
+    // reader.onload = (_event) => {
+    //   this.urls = reader.result
+
+    //   console.log("url", this.urls)
+    //   if (this.urls && type != 'file') {
+    //     this.openModal(this.urls, type)
+    //   } else if (this.urls && type == 'file') {
+    //     console.log("file type");
+    //     this._s3Service.uploadImage(this.urls, this.files[0].name, 'file', this.files[0]).then((res) => {
+    //       console.log("Response", res);
+    //       const messageData: any = {
+    //         message: res,
+    //       }
+    //       this.send(messageData, messageData.message.type)
+    //     }).catch((err) => {
+    //       console.log("Error is", err);
+    //       this.appComponent.errorAlert()
+    //     })
+    //   }
+
   }
 
 
@@ -460,8 +513,14 @@ export class AmendmentsComponent implements OnInit {
     this.recording = false;
     console.log("this.audio", this.audio);
     this.audio.stopRecord();
-
-
+    var timerDur = setInterval(function () {
+      var duration = this.audio.getDuration();
+      if (duration > 0) {
+        clearInterval(timerDur);
+        console.log(duration + ' seconds');
+      }
+    }, 100);
+    console.log()
     let data = { name: this.fileName, src: this.filePath, type: 'audio/mp3' };
     console.log("recorded audio", data);
 
@@ -480,13 +539,16 @@ export class AmendmentsComponent implements OnInit {
         ia[i] = byteString.charCodeAt(i);
       }
       var blob = new Blob([ia], { type: 'audio/mp3' });
-      console.log("blob====>", blob)
-
-      this._s3Service.uploadImage(data.src, data.name, 'audio', blob).then((res) => {
+      console.log("blob====>", blob);
+      blob['name'] = data.name
+      let arr = []
+      arr.push(blob)
+      console.log('arrrr', arr)
+      this._s3Service.uploadImage(data.src, 'audio', arr).then((res) => {
         this.loading = true;
         console.log("Response", res);
         const messageData: any = {
-          message: res,
+          message: res[0],
         }
         console.log("messge response=====>", messageData)
         this.send(messageData, messageData.message.type)
@@ -532,4 +594,54 @@ export class AmendmentsComponent implements OnInit {
     }, 1000);
 
   }
+
+  /**
+  * set fallback image on error
+  */
+  onErrorImage() {
+    this.currentUser.profile_pic = 'assets/images/avatar1.png';
+  }
+
+  /**
+  * set fallback image on error
+  */
+  onErrorImage1() {
+    this.adminProfilePic = 'assets/images/avatar.png';
+  }
+
+  // playAudio(url) {
+  //   console.log("mp3 file", url);
+  //   if (this.player) {
+  //     this.player.stop();
+  //   }
+  //   this.player = new Howl({
+  //     src: [url],
+  //     onplay: () => {
+  //       console.log("onplay")
+  //       this.isPlaying = true;
+  //       this.updateProgress();
+  //     },
+  //     onend: () => {
+  //       console.log("onend");
+  //     }
+  //   })
+  //   this.player.play()
+  // }
+
+  // updateProgress() {
+  //   let seek = this.player.seek();
+  //   this.progress = (seek / this.player.duration()) * 100 || 0;
+  //   console.log("this.progeress",this.progress,this.player.duration())
+  //   setTimeout(() => {
+  //     this.updateProgress()
+  //   }, 1000);
+  // }
+  // togglePlayer(pause) {
+  //   // this.isPlaying = !pause;
+  //   // if (pause) {
+  //   //   this.player.pause();
+  //   // } else {
+  //   //   this.player.play();
+  //   // }
+  // }
 }

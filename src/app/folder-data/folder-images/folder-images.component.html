@@ -1,9 +1,9 @@
-<div class="card mb-2" *ngFor="let img of allImages;let i = index">
+<!-- <div class="card mb-2" *ngFor="let img of allImages;let i = index">
     <div class="row image_folder_detail">
         <div class="col-4">
             <div *ngIf="img.image_extension == 'png' || img.image_extension == 'jpg' || img.image_extension == 'jpeg'">
                 <div class="image_detail">
-                    <ion-img [src]="img.image_url || 'assets/images/placeholder.png'" 
+                    <ion-img [src]="img.image_url || 'assets/images/placeholder.png'"
                         (click)="previewImage(img.image_url)" (ionError)="onErrorImage(i)"></ion-img>
                 </div>
             </div>
@@ -23,6 +23,22 @@
         </div>
         <div class="col-2">
             <ion-img src="assets/images/remove.png" class="remove_image" (click)=removeImage(img)></ion-img>
+        </div>
+    </div>
+</div> -->
+<div class="row main-image-view">
+    <div class="col-4 pr-0 pl-0" *ngFor="let img of allImages;let i = index">
+        <div *ngIf="img.image_extension == 'png' || img.image_extension == 'jpg' || img.image_extension == 'jpeg'">
+            <div class="image-view" (press)="longPress(i)">
+                <img [src]="img.image_url || 'assets/images/placeholder.png'" (click)="previewImage(img.image_url)"
+                    (ionError)="onErrorImage(i)">
+            </div>
+            <i class="fa fa-times-circle icon-{{i}}" (click)="removeImage(img,i)"></i>
+        </div>
+        <div *ngIf="img.image_extension != 'png' && img.image_extension != 'jpg' && img.image_extension != 'jpeg'">
+            <div class="image-view" (click)="previewDocument(img.image_url)">
+                <img src="assets/images/docs2.png">
+            </div>
         </div>
     </div>
 </div>

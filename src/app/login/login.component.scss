@@ -15,7 +15,7 @@ ion-content {
     justify-content: center;
     align-items: center;
     position: relative;
-    background: url("../../assets/images/balckground.png") center center no-repeat;
+    background: url("../../assets/images/balckground1.png") center center no-repeat;
     background-size: 100% 100%;
     &:after {
         content: " ";
@@ -24,10 +24,16 @@ ion-content {
     }
     .login_header {
         text-align: center;
-        font-size: 25px;
+        font-size: 22px;
         font-weight: 600;
         color: #fff;
         // margin-bottom: 25px;
+    }
+    .logo {
+        height: 57px;
+        display: block;
+        margin: auto;
+        width: 265px;
     }
 }
 
@@ -36,7 +42,7 @@ ion-content {
     // background-color: #fff;
     border-radius: 8px;
     padding: 18px;
-    padding-top: 10px;
+    padding-top: 7px;
     margin: auto;
     // box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.5);
     .login_btn {
@@ -104,6 +110,10 @@ ion-content {
         font-weight: 500;
         cursor: pointer;
         text-decoration: none;
+    }
+    p {
+        font-size: 12px;
+        color: #d1d1d1;
     }
 }
 

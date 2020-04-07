@@ -1,6 +1,6 @@
-$purple: #0575E6;
-$blue: #021B79;
-$green: #2FE57C;
+$purple: #0575e6;
+$blue: #021b79;
+$green: #2fe57c;
 $button_color: #003574;
 // content css start here
 .image_folder_detail {
@@ -19,7 +19,7 @@ $button_color: #003574;
 }
 
 ion-refresher-content {
-    background-color: #0575E6;
+    background-color: #0575e6;
     --color: white !important;
 }
 
@@ -29,15 +29,15 @@ ion-refresher-content {
     right: 35px;
     border-radius: 5px;
     padding: 8px 0px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     transition: 5s;
-    @media(max-height: 600px) {
+    @media (max-height: 600px) {
         padding: 5px 0px;
     }
     .single_folder {
         padding: 5px 6px;
         cursor: pointer;
-        @media(max-height: 600px) {
+        @media (max-height: 600px) {
             padding: 3px 5px;
         }
         @media (max-height: 600px) {
@@ -53,40 +53,50 @@ ion-refresher-content {
 }
 .folder_detail {
     width: 100%;
-    padding: 18px;
+    padding: 5px;
     border-radius: 9px;
     display: inline-block;
     margin-bottom: 10px;
     position: relative;
     cursor: pointer;
-    @media(max-height: 812px) {
-        padding: 14px;
-    }
-    @media(max-height: 750px) {
-        padding: 12px;
-    }
-    @media(max-height: 600px) {
-        padding: 8px;
-    }
+    // @media(max-height: 812px) {
+    //     padding: 14px;
+    // }
+    // @media(max-height: 750px) {
+    //     padding: 12px;
+    // }
+    // @media(max-height: 600px) {
+    //     padding: 8px;
+    // }
     ion-img {
-        width: 42px;
-        float: left;
-        position: absolute;
-        left: 13px;
-        top: 0;
-        bottom: 0;
-        @media(max-height: 750px) {
-            width: 38px;
-        }
-        @media(max-height: 600px) {
-            width: 35px;
-        }
+        height: 40px;
+        // width: 42px;
+        // float: left;
+        // position: absolute;
+        // left: 13px;
+        // top: 0;
+        // bottom: 0;
+        // @media(max-height: 750px) {
+        //     width: 38px;
+        // }
+        // @media(max-height: 600px) {
+        //     width: 35px;
+        // }
     }
     p {
         font-weight: 600;
         font-size: 19px;
-        margin-left: 60px;
+        // margin-left: 60px;
+        text-align: center;
         line-height: 30px;
         text-transform: capitalize;
+        width: 75px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
+}
+.folder-view {
+    margin-left: -5px !important;
+    margin-right: -5px !important;
 }

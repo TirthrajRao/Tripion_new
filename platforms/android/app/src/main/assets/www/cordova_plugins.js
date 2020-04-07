@@ -1,6 +1,14 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
   module.exports = [
     {
+      "id": "com-badrit-base64.Base64",
+      "file": "plugins/com-badrit-base64/www/Base64.js",
+      "pluginId": "com-badrit-base64",
+      "clobbers": [
+        "navigator.Base64"
+      ]
+    },
+    {
       "id": "com-sarriaroman-photoviewer.PhotoViewer",
       "file": "plugins/com-sarriaroman-photoviewer/www/PhotoViewer.js",
       "pluginId": "com-sarriaroman-photoviewer",
@@ -255,14 +263,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
-      "id": "cordova-plugin-badge.Badge",
-      "file": "plugins/cordova-plugin-badge/www/badge.js",
-      "pluginId": "cordova-plugin-badge",
-      "clobbers": [
-        "cordova.plugins.notification.badge"
-      ]
-    },
-    {
       "id": "cordova-plugin-camera.Camera",
       "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
       "pluginId": "cordova-plugin-camera",
@@ -407,6 +407,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       ]
     },
     {
+      "id": "cordova-plugin-badge.Badge",
+      "file": "plugins/cordova-plugin-badge/www/badge.js",
+      "pluginId": "cordova-plugin-badge",
+      "clobbers": [
+        "cordova.plugins.notification.badge"
+      ]
+    },
+    {
       "id": "cordova-plugin-local-notification.LocalNotification",
       "file": "plugins/cordova-plugin-local-notification/www/local-notification.js",
       "pluginId": "cordova-plugin-local-notification",
@@ -430,55 +438,6 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "merges": [
         "cordova.plugins.notification.local.core",
         "plugin.notification.local.core"
-      ]
-    },
-    {
-      "id": "cordova-plugin-nativegeocoder.NativeGeocoder",
-      "file": "plugins/cordova-plugin-nativegeocoder/www/NativeGeocoder.js",
-      "pluginId": "cordova-plugin-nativegeocoder",
-      "clobbers": [
-        "nativegeocoder"
-      ]
-    },
-    {
-      "id": "cordova-plugin-network-information.network",
-      "file": "plugins/cordova-plugin-network-information/www/network.js",
-      "pluginId": "cordova-plugin-network-information",
-      "clobbers": [
-        "navigator.connection",
-        "navigator.network.connection"
-      ]
-    },
-    {
-      "id": "cordova-plugin-network-information.Connection",
-      "file": "plugins/cordova-plugin-network-information/www/Connection.js",
-      "pluginId": "cordova-plugin-network-information",
-      "clobbers": [
-        "Connection"
-      ]
-    },
-    {
-      "id": "cordova-plugin-preview-any-file.PreviewAnyFile",
-      "file": "plugins/cordova-plugin-preview-any-file/www/preview.js",
-      "pluginId": "cordova-plugin-preview-any-file",
-      "clobbers": [
-        "window.PreviewAnyFile"
-      ]
-    },
-    {
-      "id": "cordova-plugin-splashscreen.SplashScreen",
-      "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-      "pluginId": "cordova-plugin-splashscreen",
-      "clobbers": [
-        "navigator.splashscreen"
-      ]
-    },
-    {
-      "id": "cordova-plugin-statusbar.statusbar",
-      "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
-      "pluginId": "cordova-plugin-statusbar",
-      "clobbers": [
-        "window.StatusBar"
       ]
     },
     {
@@ -566,41 +525,82 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "runs": true
     },
     {
-      "id": "com-badrit-base64.Base64",
-      "file": "plugins/com-badrit-base64/www/Base64.js",
-      "pluginId": "com-badrit-base64",
+      "id": "cordova-plugin-nativegeocoder.NativeGeocoder",
+      "file": "plugins/cordova-plugin-nativegeocoder/www/NativeGeocoder.js",
+      "pluginId": "cordova-plugin-nativegeocoder",
       "clobbers": [
-        "navigator.Base64"
+        "nativegeocoder"
+      ]
+    },
+    {
+      "id": "cordova-plugin-network-information.network",
+      "file": "plugins/cordova-plugin-network-information/www/network.js",
+      "pluginId": "cordova-plugin-network-information",
+      "clobbers": [
+        "navigator.connection",
+        "navigator.network.connection"
+      ]
+    },
+    {
+      "id": "cordova-plugin-network-information.Connection",
+      "file": "plugins/cordova-plugin-network-information/www/Connection.js",
+      "pluginId": "cordova-plugin-network-information",
+      "clobbers": [
+        "Connection"
+      ]
+    },
+    {
+      "id": "cordova-plugin-preview-any-file.PreviewAnyFile",
+      "file": "plugins/cordova-plugin-preview-any-file/www/preview.js",
+      "pluginId": "cordova-plugin-preview-any-file",
+      "clobbers": [
+        "window.PreviewAnyFile"
+      ]
+    },
+    {
+      "id": "cordova-plugin-splashscreen.SplashScreen",
+      "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+      "pluginId": "cordova-plugin-splashscreen",
+      "clobbers": [
+        "navigator.splashscreen"
+      ]
+    },
+    {
+      "id": "cordova-plugin-statusbar.statusbar",
+      "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+      "pluginId": "cordova-plugin-statusbar",
+      "clobbers": [
+        "window.StatusBar"
       ]
     }
   ];
   module.exports.metadata = {
+    "com-badrit-base64": "0.2.0",
     "com-sarriaroman-photoviewer": "1.2.4",
     "cordova-plugin-file": "6.0.2",
     "cordova-plugin-advanced-http": "2.4.1",
-    "cordova-plugin-badge": "0.8.8",
     "cordova-plugin-camera": "4.1.0",
     "cordova-plugin-device": "2.0.2",
     "cordova-plugin-document-viewer": "0.9.13",
-    "cordova-plugin-facebook4": "6.2.0",
-    "cordova-plugin-fcm-with-dependecy-updated": "4.1.1",
+    "cordova-plugin-facebook4": "6.4.0",
+    "cordova-plugin-fcm-with-dependecy-updated": "4.4.0",
     "cordova-plugin-file-opener2": "2.2.1",
     "cordova-plugin-file-transfer": "1.7.1",
     "cordova-plugin-filepath": "1.5.7",
     "cordova-plugin-geolocation": "4.0.2",
-    "cordova-plugin-googleplus": "8.2.1",
+    "cordova-plugin-googleplus": "8.4.0",
     "cordova-plugin-inappbrowser": "3.2.0",
     "cordova-plugin-ionic-keyboard": "2.2.0",
     "cordova-plugin-ionic-webview": "4.1.3",
+    "cordova-plugin-badge": "0.8.8",
     "cordova-plugin-local-notification": "0.9.0-beta.2",
+    "cordova-plugin-media": "5.0.3",
+    "cordova-plugin-media-capture": "3.0.3",
     "cordova-plugin-nativegeocoder": "3.2.2",
     "cordova-plugin-network-information": "2.0.2",
     "cordova-plugin-preview-any-file": "0.1.5",
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-statusbar": "2.4.2",
-    "cordova-plugin-whitelist": "1.3.3",
-    "cordova-plugin-media": "5.0.3",
-    "cordova-plugin-media-capture": "3.0.3",
-    "com-badrit-base64": "0.2.0"
+    "cordova-plugin-whitelist": "1.3.3"
   };
 });

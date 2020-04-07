@@ -29,7 +29,7 @@
                         </div>
                     </ion-item>
                     <ion-item-options>
-                        <button color="text-danger" (click)="removeItem(notification)">
+                        <button color="text-danger" class="btn" (click)="removeItem(notification)" [disabled]="isDisable">
                              Delete
                         </button>
                     </ion-item-options>

@@ -82,6 +82,7 @@
         "core-js": "^2.5.4",
         "firebase": "^7.9.2",
         "hammerjs": "^2.0.8",
+        "howler": "^2.1.3",
         "ionic-long-press": "^2.0.3",
         "ionic-select-searchable": "^2.10.0",
         "lodash": "^4.17.15",

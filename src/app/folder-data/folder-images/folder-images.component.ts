@@ -5,6 +5,7 @@ import { AppComponent } from '../../app.component';
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
 import { Url } from 'url';
 import { AlertController } from '@ionic/angular';
+declare const $: any;
 @Component({
   selector: 'app-folder-images',
   templateUrl: './folder-images.component.html',
@@ -23,13 +24,13 @@ export class FolderImagesComponent implements OnInit {
 
   ngOnInit() {
     console.log('images', this.allImages);
-   }
+  }
 
 
   /**
    * Delete Image
    */
-  async removeImage(data) {
+  async removeImage(data, index) {
     console.log(data);
     const alert = await this.alertController.create({
       header: 'Alert!',
@@ -41,6 +42,7 @@ export class FolderImagesComponent implements OnInit {
           cssClass: 'secondary',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
+            $('.icon-' + index).css('opacity', 0)
           }
         }, {
           text: 'Yes',
@@ -91,8 +93,13 @@ export class FolderImagesComponent implements OnInit {
    * set fallback image on error
    * @param {Number} index 
    */
-  onErrorImage(index){
-    console.log("index",index);
+  onErrorImage(index) {
+    console.log("index", index);
     this.allImages[index].image_url = 'assets/images/placeholder.png'
+  }
+
+  longPress(index) {
+    console.log("longpresss", index);
+    $('.icon-' + index).css('opacity', 1)
   }
 }

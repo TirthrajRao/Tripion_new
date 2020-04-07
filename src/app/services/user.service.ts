@@ -171,6 +171,14 @@ sendMessageToAmmendments(data){
   }
 
   /**
+   * Delete Notification
+   * @param {object} data 
+   */
+  deleteNotification(data){
+    return this.http.post(config.baseApiUrl + 'read-notification', data);
+  }
+
+  /**
    * Send Device token and type
    */
   sendDeviceToken() {
@@ -230,8 +238,16 @@ sendMessageToAmmendments(data){
       }))
   }
 
+  /**
+   * Get time
+   * @param {number} lat 
+   * @param {number} lng 
+   */
   getTime(lat,lng){
     return this.http.get('https://api.timezonedb.com/v2.1/get-time-zone?key=S3GVRR1XTRO9&format=json&by=position&lat='+lat+'&lng='+lng);
   }
 
+  getAdminProfile(){
+    return this.http.get(config.baseApiUrl + 'admin-profile');
+  }
 }

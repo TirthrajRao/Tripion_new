@@ -28,6 +28,10 @@
         "parents": {
           "/*": [
             {
+              "xml": "<feature name=\"Base64\"><param name=\"android-package\" value=\"com.badrit.Base64.Base64Plugin\" /></feature>",
+              "count": 1
+            },
+            {
               "xml": "<feature name=\"PhotoViewer\"><param name=\"android-package\" value=\"com.sarriaroman.PhotoViewer.PhotoViewer\" /></feature>",
               "count": 1
             },
@@ -120,6 +124,14 @@
               "count": 1
             },
             {
+              "xml": "<feature name=\"Media\"><param name=\"android-package\" value=\"org.apache.cordova.media.AudioHandler\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"Capture\"><param name=\"android-package\" value=\"org.apache.cordova.mediacapture.Capture\" /></feature>",
+              "count": 1
+            },
+            {
               "xml": "<feature name=\"NativeGeocoder\"><param name=\"android-package\" value=\"cordova.plugin.nativegeocoder.NativeGeocoder\" /></feature>",
               "count": 1
             },
@@ -142,18 +154,6 @@
             {
               "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
               "count": 1
-            },
-            {
-              "xml": "<feature name=\"Media\"><param name=\"android-package\" value=\"org.apache.cordova.media.AudioHandler\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"Capture\"><param name=\"android-package\" value=\"org.apache.cordova.mediacapture.Capture\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"Base64\"><param name=\"android-package\" value=\"com.badrit.Base64.Base64Plugin\" /></feature>",
-              "count": 1
             }
           ]
         }
@@ -175,6 +175,10 @@
             },
             {
               "xml": "<service android:name=\"com.gae.scaffolder.plugin.MyFirebaseMessagingService\" android:stopWithTask=\"false\"><intent-filter><action android:name=\"com.google.firebase.MESSAGING_EVENT\" /></intent-filter></service>",
+              "count": 1
+            },
+            {
+              "xml": "<meta-data android:name=\"com.google.firebase.messaging.default_notification_icon\" android:resource=\"@mipmap/ic_launcher\" />",
               "count": 1
             },
             {
@@ -246,14 +250,6 @@
               "count": 1
             },
             {
-              "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
-              "count": 1
-            },
-            {
-              "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-              "count": 2
-            },
-            {
               "xml": "<uses-permission android:name=\"android.permission.RECORD_AUDIO\" />",
               "count": 2
             },
@@ -268,6 +264,14 @@
             {
               "xml": "<uses-permission android:name=\"android.permission.RECORD_VIDEO\" />",
               "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+              "count": 2
             }
           ],
           "application": [
@@ -285,40 +289,6 @@
             },
             {
               "xml": "<activity android:configChanges=\"keyboard|keyboardHidden|screenLayout|screenSize|orientation\" android:label=\"@string/fb_app_name\" android:name=\"com.facebook.FacebookActivity\" />",
-              "count": 1
-            }
-          ]
-        }
-      },
-      "config.xml": {
-        "parents": {
-          "/*": [
-            {
-              "xml": "<feature name=\"Badge\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.badge.Badge\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"CDVIonicKeyboard\"><param name=\"android-package\" onload=\"true\" value=\"io.ionic.keyboard.CDVIonicKeyboard\" /></feature>",
-              "count": 1
-            },
-            {
-              "xml": "<allow-navigation href=\"http://localhost/*\" />",
-              "count": 1
-            },
-            {
-              "xml": "<allow-navigation href=\"https://localhost/*\" />",
-              "count": 1
-            },
-            {
-              "xml": "<allow-navigation href=\"ionic://*\" />",
-              "count": 1
-            },
-            {
-              "xml": "<preference name=\"webView\" value=\"com.ionicframework.cordova.webview.IonicWebViewEngine\" />",
-              "count": 1
-            },
-            {
-              "xml": "<feature name=\"IonicWebView\"><param name=\"android-package\" value=\"com.ionicframework.cordova.webview.IonicWebView\" /></feature>",
               "count": 1
             }
           ]
@@ -359,10 +329,47 @@
             }
           ]
         }
+      },
+      "config.xml": {
+        "parents": {
+          "/*": [
+            {
+              "xml": "<feature name=\"CDVIonicKeyboard\"><param name=\"android-package\" onload=\"true\" value=\"io.ionic.keyboard.CDVIonicKeyboard\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<allow-navigation href=\"http://localhost/*\" />",
+              "count": 1
+            },
+            {
+              "xml": "<allow-navigation href=\"https://localhost/*\" />",
+              "count": 1
+            },
+            {
+              "xml": "<allow-navigation href=\"ionic://*\" />",
+              "count": 1
+            },
+            {
+              "xml": "<preference name=\"webView\" value=\"com.ionicframework.cordova.webview.IonicWebViewEngine\" />",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"IonicWebView\"><param name=\"android-package\" value=\"com.ionicframework.cordova.webview.IonicWebView\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"Badge\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.badge.Badge\" /></feature>",
+              "count": 1
+            }
+          ]
+        }
       }
     }
   },
   "installed_plugins": {
+    "com-badrit-base64": {
+      "PACKAGE_NAME": "io.ionic.tripion"
+    },
     "com-sarriaroman-photoviewer": {
       "PACKAGE_NAME": "io.ionic.tripion"
     },
@@ -371,9 +378,6 @@
     },
     "cordova-plugin-advanced-http": {
       "OKHTTP_VERSION": "3.10.0",
-      "PACKAGE_NAME": "io.ionic.tripion"
-    },
-    "cordova-plugin-badge": {
       "PACKAGE_NAME": "io.ionic.tripion"
     },
     "cordova-plugin-camera": {
@@ -394,10 +398,11 @@
       "PACKAGE_NAME": "io.ionic.tripion"
     },
     "cordova-plugin-fcm-with-dependecy-updated": {
-      "FCM_CORE_VERSION": "16.0.9",
       "FCM_VERSION": "18.0.0",
       "GRADLE_TOOLS_VERSION": "3.5.0",
       "GOOGLE_SERVICES_VERSION": "4.2.0",
+      "SUPPORT_LIBRARY_VERSION": "28.0.0",
+      "ANDROID_DEFAULT_NOTIFICATION_ICON": "@mipmap/ic_launcher",
       "PACKAGE_NAME": "io.ionic.tripion"
     },
     "cordova-plugin-file-opener2": {
@@ -427,7 +432,16 @@
       "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+",
       "PACKAGE_NAME": "io.ionic.tripion"
     },
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "io.ionic.tripion"
+    },
     "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "io.ionic.tripion"
+    },
+    "cordova-plugin-media": {
+      "PACKAGE_NAME": "io.ionic.tripion"
+    },
+    "cordova-plugin-media-capture": {
       "PACKAGE_NAME": "io.ionic.tripion"
     },
     "cordova-plugin-nativegeocoder": {
@@ -447,19 +461,18 @@
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "io.ionic.tripion"
-    },
-    "cordova-plugin-media": {
-      "PACKAGE_NAME": "io.ionic.tripion"
-    },
-    "cordova-plugin-media-capture": {
-      "PACKAGE_NAME": "io.ionic.tripion"
-    },
-    "com-badrit-base64": {
-      "PACKAGE_NAME": "io.ionic.tripion"
     }
   },
   "dependent_plugins": {},
   "modules": [
+    {
+      "id": "com-badrit-base64.Base64",
+      "file": "plugins/com-badrit-base64/www/Base64.js",
+      "pluginId": "com-badrit-base64",
+      "clobbers": [
+        "navigator.Base64"
+      ]
+    },
     {
       "id": "com-sarriaroman-photoviewer.PhotoViewer",
       "file": "plugins/com-sarriaroman-photoviewer/www/PhotoViewer.js",
@@ -715,14 +728,6 @@
       ]
     },
     {
-      "id": "cordova-plugin-badge.Badge",
-      "file": "plugins/cordova-plugin-badge/www/badge.js",
-      "pluginId": "cordova-plugin-badge",
-      "clobbers": [
-        "cordova.plugins.notification.badge"
-      ]
-    },
-    {
       "id": "cordova-plugin-camera.Camera",
       "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
       "pluginId": "cordova-plugin-camera",
@@ -867,6 +872,14 @@
       ]
     },
     {
+      "id": "cordova-plugin-badge.Badge",
+      "file": "plugins/cordova-plugin-badge/www/badge.js",
+      "pluginId": "cordova-plugin-badge",
+      "clobbers": [
+        "cordova.plugins.notification.badge"
+      ]
+    },
+    {
       "id": "cordova-plugin-local-notification.LocalNotification",
       "file": "plugins/cordova-plugin-local-notification/www/local-notification.js",
       "pluginId": "cordova-plugin-local-notification",
@@ -890,55 +903,6 @@
       "merges": [
         "cordova.plugins.notification.local.core",
         "plugin.notification.local.core"
-      ]
-    },
-    {
-      "id": "cordova-plugin-nativegeocoder.NativeGeocoder",
-      "file": "plugins/cordova-plugin-nativegeocoder/www/NativeGeocoder.js",
-      "pluginId": "cordova-plugin-nativegeocoder",
-      "clobbers": [
-        "nativegeocoder"
-      ]
-    },
-    {
-      "id": "cordova-plugin-network-information.network",
-      "file": "plugins/cordova-plugin-network-information/www/network.js",
-      "pluginId": "cordova-plugin-network-information",
-      "clobbers": [
-        "navigator.connection",
-        "navigator.network.connection"
-      ]
-    },
-    {
-      "id": "cordova-plugin-network-information.Connection",
-      "file": "plugins/cordova-plugin-network-information/www/Connection.js",
-      "pluginId": "cordova-plugin-network-information",
-      "clobbers": [
-        "Connection"
-      ]
-    },
-    {
-      "id": "cordova-plugin-preview-any-file.PreviewAnyFile",
-      "file": "plugins/cordova-plugin-preview-any-file/www/preview.js",
-      "pluginId": "cordova-plugin-preview-any-file",
-      "clobbers": [
-        "window.PreviewAnyFile"
-      ]
-    },
-    {
-      "id": "cordova-plugin-splashscreen.SplashScreen",
-      "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-      "pluginId": "cordova-plugin-splashscreen",
-      "clobbers": [
-        "navigator.splashscreen"
-      ]
-    },
-    {
-      "id": "cordova-plugin-statusbar.statusbar",
-      "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
-      "pluginId": "cordova-plugin-statusbar",
-      "clobbers": [
-        "window.StatusBar"
       ]
     },
     {
@@ -1026,41 +990,82 @@
       "runs": true
     },
     {
-      "id": "com-badrit-base64.Base64",
-      "file": "plugins/com-badrit-base64/www/Base64.js",
-      "pluginId": "com-badrit-base64",
+      "id": "cordova-plugin-nativegeocoder.NativeGeocoder",
+      "file": "plugins/cordova-plugin-nativegeocoder/www/NativeGeocoder.js",
+      "pluginId": "cordova-plugin-nativegeocoder",
       "clobbers": [
-        "navigator.Base64"
+        "nativegeocoder"
+      ]
+    },
+    {
+      "id": "cordova-plugin-network-information.network",
+      "file": "plugins/cordova-plugin-network-information/www/network.js",
+      "pluginId": "cordova-plugin-network-information",
+      "clobbers": [
+        "navigator.connection",
+        "navigator.network.connection"
+      ]
+    },
+    {
+      "id": "cordova-plugin-network-information.Connection",
+      "file": "plugins/cordova-plugin-network-information/www/Connection.js",
+      "pluginId": "cordova-plugin-network-information",
+      "clobbers": [
+        "Connection"
+      ]
+    },
+    {
+      "id": "cordova-plugin-preview-any-file.PreviewAnyFile",
+      "file": "plugins/cordova-plugin-preview-any-file/www/preview.js",
+      "pluginId": "cordova-plugin-preview-any-file",
+      "clobbers": [
+        "window.PreviewAnyFile"
+      ]
+    },
+    {
+      "id": "cordova-plugin-splashscreen.SplashScreen",
+      "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+      "pluginId": "cordova-plugin-splashscreen",
+      "clobbers": [
+        "navigator.splashscreen"
+      ]
+    },
+    {
+      "id": "cordova-plugin-statusbar.statusbar",
+      "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+      "pluginId": "cordova-plugin-statusbar",
+      "clobbers": [
+        "window.StatusBar"
       ]
     }
   ],
   "plugin_metadata": {
+    "com-badrit-base64": "0.2.0",
     "com-sarriaroman-photoviewer": "1.2.4",
     "cordova-plugin-file": "6.0.2",
     "cordova-plugin-advanced-http": "2.4.1",
-    "cordova-plugin-badge": "0.8.8",
     "cordova-plugin-camera": "4.1.0",
     "cordova-plugin-device": "2.0.2",
     "cordova-plugin-document-viewer": "0.9.13",
-    "cordova-plugin-facebook4": "6.2.0",
-    "cordova-plugin-fcm-with-dependecy-updated": "4.1.1",
+    "cordova-plugin-facebook4": "6.4.0",
+    "cordova-plugin-fcm-with-dependecy-updated": "4.4.0",
     "cordova-plugin-file-opener2": "2.2.1",
     "cordova-plugin-file-transfer": "1.7.1",
     "cordova-plugin-filepath": "1.5.7",
     "cordova-plugin-geolocation": "4.0.2",
-    "cordova-plugin-googleplus": "8.2.1",
+    "cordova-plugin-googleplus": "8.4.0",
     "cordova-plugin-inappbrowser": "3.2.0",
     "cordova-plugin-ionic-keyboard": "2.2.0",
     "cordova-plugin-ionic-webview": "4.1.3",
+    "cordova-plugin-badge": "0.8.8",
     "cordova-plugin-local-notification": "0.9.0-beta.2",
+    "cordova-plugin-media": "5.0.3",
+    "cordova-plugin-media-capture": "3.0.3",
     "cordova-plugin-nativegeocoder": "3.2.2",
     "cordova-plugin-network-information": "2.0.2",
     "cordova-plugin-preview-any-file": "0.1.5",
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-statusbar": "2.4.2",
-    "cordova-plugin-whitelist": "1.3.3",
-    "cordova-plugin-media": "5.0.3",
-    "cordova-plugin-media-capture": "3.0.3",
-    "com-badrit-base64": "0.2.0"
+    "cordova-plugin-whitelist": "1.3.3"
   }
 }

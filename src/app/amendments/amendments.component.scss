@@ -1,10 +1,10 @@
-$purple: #0575E6;
-$blue: #021B79;
-$green: #2FE57C;
+$purple: #0575e6;
+$blue: #021b79;
+$green: #2fe57c;
 $button_color: #003574;
 // ion content start
 ion-content {
-    --background: #0575E6 !important;
+    --background: #0575e6 !important;
 }
 
 .all_content {
@@ -21,10 +21,12 @@ ion-content {
             height: 45px;
             width: 45px;
             overflow: hidden;
+            border-radius: 50%;
+            object-fit: cover;
         }
     }
     .user_msg {
-        background-color: #FFA000;
+        background-color: #ffa000;
         padding: 20px;
         width: auto;
         position: relative;
@@ -40,7 +42,7 @@ ion-content {
         }
         small {
             // position: absolute;
-            color: #D9D9D9;
+            color: #d9d9d9;
             // right: 20px;
             font-size: 12px;
             // bottom: 5px;
@@ -73,6 +75,8 @@ ion-content {
             height: 45px;
             width: 45px;
             overflow: hidden;
+            object-fit: cover;
+            border-radius: 50%;
         }
     }
     .user_msg {
@@ -91,7 +95,7 @@ ion-content {
         }
         small {
             // position: absolute;
-            color: #D9D9D9;
+            color: #d9d9d9;
             // right: 20px;
             font-size: 12px;
             // bottom: 5px;
@@ -146,12 +150,12 @@ ion-footer ion-toolbar:last-child {
     input {
         height: 45px;
         color: #707070;
-        font-family: 'Montserrat', sans-serif !important;
+        font-family: "Montserrat", sans-serif !important;
         outline: none;
         box-shadow: none;
     }
-     ::placeholder {
-        color: #D9D9D9;
+    ::placeholder {
+        color: #d9d9d9;
     }
     .input-group-append {
         margin-left: 10px;
@@ -237,8 +241,23 @@ ion-footer ion-toolbar:last-child {
 .audio-input {
     border-radius: 24px !important;
     margin-right: 12px;
-
 }
 .holds-the-iframe {
-  background:url('../../assets/images/pdfloader.gif') center center no-repeat;
+    background: url("../../assets/images/pdfloader.gif") center center no-repeat;
+}
+.paly-icon {
+    display: grid;
+    align-items: center;
+    ion-icon {
+        font-size: 28px;
+        color: #707070;
+    }
+}
+.duration {
+    p {
+        color: #707070 !important;
+        margin-bottom: 0 !important;
+        margin-top: -18px;
+        padding-left: 9px;
+    }
 }

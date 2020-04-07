@@ -99,8 +99,8 @@ ext {
 
 // PLUGIN GRADLE EXTENSIONS START
 apply from: "../com-sarriaroman-photoviewer/tripion-photoviewer.gradle"
-apply from: "../cordova-plugin-badge/tripion-badge.gradle"
 apply from: "../cordova-plugin-fcm-with-dependecy-updated/tripion-FCMPlugin.gradle"
+apply from: "../cordova-plugin-badge/tripion-badge.gradle"
 apply from: "../cordova-plugin-local-notification/tripion-localnotification.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
@@ -301,7 +301,6 @@ dependencies {
     implementation "com.android.support:support-v4:27.+"
     implementation "com.android.support:support-v4:27+"
     implementation "com.facebook.android:facebook-android-sdk:5.5.2"
-    implementation "com.google.firebase:firebase-core:16.0.9"
     implementation "com.google.firebase:firebase-messaging:18.0.0"
     implementation "com.google.android.gms:play-services-auth:15.0.1"
     implementation "com.google.android.gms:play-services-identity:15.0.1"
