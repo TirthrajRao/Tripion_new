@@ -17,7 +17,7 @@ import { Media, MediaObject } from '@ionic-native/media/ngx';
 import { Base64 } from '@ionic-native/base64/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { AppComponent } from '../app.component';
-import { Howl } from 'howler';
+// import { Howl } from 'howler';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import * as firebase from 'firebase';
@@ -59,7 +59,7 @@ export class AmendmentsComponent implements OnInit {
   audio: MediaObject;
   timex: any;
   adminProfilePic: any;
-  player: Howl = null;
+  // player: Howl = null;
   isPlaying: Boolean = false;
   progress = 0;
   constructor(
@@ -513,14 +513,7 @@ export class AmendmentsComponent implements OnInit {
     this.recording = false;
     console.log("this.audio", this.audio);
     this.audio.stopRecord();
-    var timerDur = setInterval(function () {
-      var duration = this.audio.getDuration();
-      if (duration > 0) {
-        clearInterval(timerDur);
-        console.log(duration + ' seconds');
-      }
-    }, 100);
-    console.log()
+   
     let data = { name: this.fileName, src: this.filePath, type: 'audio/mp3' };
     console.log("recorded audio", data);
 
