@@ -51,12 +51,12 @@ ion-card {
     .card_header {
         h3 {
             font-size: 18px;
-            color: #044EB6;
+            color: #044eb6;
             font-weight: 600;
             line-height: 10px;
         }
         p {
-            color: #3468D6;
+            color: #3468d6;
             font-size: 10px;
             i {
                 font-size: 14px;
@@ -68,7 +68,7 @@ ion-card {
     .card_body {
         border-bottom: 1px solid #707070;
         p {
-            color: #7F8DAB;
+            color: #7f8dab;
             font-size: 13px;
             padding-bottom: 15px;
         }
@@ -87,13 +87,13 @@ ion-card {
         }
     }
     p {
-        color: #7F8DAB;
+        color: #7f8dab;
         font-size: 14px;
         margin-top: 7px;
         line-height: 20px;
     }
     h6 {
-        color: #2A2A2A;
+        color: #2a2a2a;
         font-size: 15px;
         font-weight: 600;
     }
@@ -101,25 +101,25 @@ ion-card {
         margin-bottom: 15px;
         h5 {
             font-size: 15px;
-            color: #044EB6;
+            color: #044eb6;
             font-weight: 600;
             line-height: 10px;
         }
         i {
             float: left;
             padding-right: 8px;
-            color: #044EB6;
+            color: #044eb6;
             font-size: 22px;
         }
         small {
-            color: #5B5B5B;
+            color: #5b5b5b;
         }
     }
     .trip_drescription_image {
         margin-top: 15px;
         .trip_img {
             width: 100%;
-            height: 90px;
+            // height: 90px;
             border-radius: 10px;
             overflow: hidden;
             img {
@@ -130,8 +130,15 @@ ion-card {
                 object-fit: cover;
             }
             span {
-                color: #0074FF;
+                color: #0074ff;
                 font-weight: 500;
+            }
+            p {
+                width: 60px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin: 0;
             }
         }
     }
@@ -143,23 +150,23 @@ ion-card {
     padding: 0 4px;
     p {
         font-size: 14px;
-        color: #0074FF;
+        color: #0074ff;
     }
     .day_one {
         position: relative;
         height: 190px;
         p {
             padding-left: 12px;
-            color: #044EB6;
+            color: #044eb6;
         }
         &:after {
             content: " ";
             position: absolute;
-            background: #044EB6;
+            background: #044eb6;
             border-radius: 50%;
             height: 26px;
             width: 26px;
-            border: 6px solid #95C5FF;
+            border: 6px solid #95c5ff;
             left: 22px;
             top: 28px;
         }
@@ -168,23 +175,23 @@ ion-card {
             position: absolute;
             width: 2px;
             height: 80px;
-            background: #95C5FF;
+            background: #95c5ff;
             top: 51px;
             right: 4px;
         }
     }
     .day_one1 {
         p {
-            color: #00C274;
+            color: #00c274;
         }
         &:after {
             content: " ";
             position: absolute;
-            background: #00C274;
+            background: #00c274;
             border-radius: 50%;
             height: 26px;
             width: 26px;
-            border: 6px solid #C5FFBE;
+            border: 6px solid #c5ffbe;
             left: 22px;
             top: 28px;
         }
@@ -203,9 +210,9 @@ ion-card {
     font-size: 20px;
     font-weight: 500;
 }
-.title{
+.title {
     font-size: 15px;
-    color: #044EB6;
+    color: #044eb6;
     font-weight: 600;
 }
 

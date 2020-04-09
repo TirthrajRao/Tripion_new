@@ -47,9 +47,9 @@ export class GeneralDetailComponent implements OnInit {
 
       name_in_passport: new FormControl(''),
       pssport_number: new FormControl(''),
-      dob: new FormControl(''),
+      // dob: new FormControl(''),
       // place_of_birth: new FormControl(''),
-      address_in_passport: new FormControl(''),
+      // address_in_passport: new FormControl(''),
       duration: new FormControl(''),
       desination_country: new FormControl(''),
       place_name: new FormControl(''),

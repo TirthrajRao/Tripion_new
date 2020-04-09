@@ -126,8 +126,8 @@
             <div class="card_body w-100">
                 <small>Payment for the Following</small>
                 <ul class="">
-                    <li *ngFor="let payment of tripDetail.payment.payment_success">{{payment.title}} - <span
-                            class="float-right">{{payment.payment_amount}} </span></li>
+                    <li *ngFor="let payment of tripDetail.payment.payment_success" class="w-100"><p style="width: 75% !important;">{{payment.title}} </p><h6
+                        > - &nbsp;{{payment.payment_amount}} </h6></li>
                 </ul>
             </div>
         </div>

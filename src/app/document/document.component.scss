@@ -157,9 +157,10 @@ ion-slides {
     position: relative;
     p {
         white-space: nowrap;
-        width: 90%;
+        width: 85px;
         overflow: hidden;
         text-overflow: ellipsis;
+        margin-left: 5px;
     }
 }
 
