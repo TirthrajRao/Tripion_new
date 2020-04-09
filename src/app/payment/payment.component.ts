@@ -47,7 +47,7 @@ export class PaymentComponent implements OnInit {
     }
     this._tripService.tripPayment(obj).subscribe((res: any) => {
       console.log("res of payment", res);
-      this.appComponant.sucessAlert("We got your money", "WooW");
+      this.appComponant.sucessAlert("We got your money!!", "WoW");
       this.router.navigate(['/home/plan-option/'+this.tripId])
       this.loading = false;
       this.isDisable = false;

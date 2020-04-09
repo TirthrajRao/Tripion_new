@@ -29,6 +29,7 @@ ion-content {
         background-color: #ffa000;
         padding: 20px;
         width: auto;
+        max-width: 85%;
         position: relative;
         margin-top: auto;
         margin-bottom: auto;
@@ -87,6 +88,8 @@ ion-content {
         margin-bottom: auto;
         margin-left: 10px;
         border-radius: 3px;
+        width: auto;
+        max-width: 85%;
         p {
             color: #707070;
             font-size: 14px;

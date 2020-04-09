@@ -32,9 +32,19 @@
     <div class="payment_content">
       <div class="payment_for">
         <p class="payment_following">Payment for the following</p>
-        <ul class=" text-white ">
-          <li *ngFor="let payment of paymentData">{{payment.title}} - <span
-              class="float-right">{{payment.payment_amount}}</span></li>
+        <ul class="text-white">
+          <!-- <div class="row payment-list"  *ngFor="let payment of paymentData">
+            <div class="col-8">
+              <li>{{payment.title}} </li>
+            </div>
+            <div class="col-4 pr-0">
+               <span> - {{payment.payment_amount}}</span>
+            </div>
+          </div> -->
+          <li *ngFor="let payment of paymentData" class="w-100"><p style="width: 70% !important;">{{payment.title}} </p><h6
+            style="margin-top: 12px;"> - &nbsp; {{payment.payment_amount}} </h6></li>
+          <!-- <li *ngFor="let payment of paymentData">{{payment.title}} - <span
+              class="float-right">{{payment.payment_amount}}</span></li> -->
         </ul>
         <p class="payment_total text-white text-center">₹ {{totalAmount}}</p>
       </div>

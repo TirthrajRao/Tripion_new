@@ -25,7 +25,8 @@ export class SignupComponent implements OnInit {
   counries: any = [];
   selectedCountry: any;
   timeZoneList: any = data.timeZone
-
+  passwordType: string = 'password';
+  passwordIcon: string = 'eye-off';
 
   constructor(
     public _userService: UserService,
@@ -62,6 +63,13 @@ export class SignupComponent implements OnInit {
 
   get f() { return this.signUpForm.controls; }
 
+   /**
+   * Show hide password
+   */
+  showHide() {
+    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+  }
 
 
   /**

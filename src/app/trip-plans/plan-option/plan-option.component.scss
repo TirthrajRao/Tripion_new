@@ -1,6 +1,6 @@
-$purple: #0575E6;
-$blue: #021B79;
-// content css start here 
+$purple: #0575e6;
+$blue: #021b79;
+// content css start here
 .plan_option_content {
     padding: 0px 10px 20px 10px;
     position: relative;
@@ -14,13 +14,13 @@ $blue: #021B79;
         cursor: pointer;
         border-radius: 7px;
         background-color: #ffffff;
-        @media(max-height: 812px) {
+        @media (max-height: 812px) {
             padding: 18px 20px;
         }
-        @media(max-height: 750px) {
+        @media (max-height: 750px) {
             padding: 15px 20px;
         }
-        @media(max-height: 600px) {
+        @media (max-height: 600px) {
             padding: 10px 20px;
         }
         span {
@@ -30,6 +30,7 @@ $blue: #021B79;
             text-transform: capitalize;
         }
         .calendar_img {
+            margin-top: 12px;
             ion-img {
                 height: 25px;
                 width: 25px;
@@ -41,29 +42,29 @@ $blue: #021B79;
         border-radius: 7px;
         background-color: #ffffff;
         .card_header {
-            border-bottom: 1px solid #C7CBD6;
+            border-bottom: 1px solid #c7cbd6;
             width: 100%;
             padding: 10px 12px;
-            @media(max-height: 750px) {
+            @media (max-height: 750px) {
                 padding: 12px;
             }
-            @media(max-height: 600px) {
+            @media (max-height: 600px) {
                 padding: 7px 12px;
             }
             ion-img {
                 height: 28px;
                 width: 22px;
                 float: left;
-                @media(max-height: 750px) {
+                @media (max-height: 750px) {
                     height: 24px;
                 }
-                @media(max-height: 600px) {
+                @media (max-height: 600px) {
                     height: 22px;
                 }
             }
             span {
                 font-size: 18px;
-                color: #434A5E;
+                color: #434a5e;
                 margin-left: 10px;
                 font-weight: 500;
             }
@@ -76,11 +77,11 @@ $blue: #021B79;
         }
         .card_body {
             padding: 20px 0px;
-            @media(max-height: 750px) {
+            @media (max-height: 750px) {
                 padding: 12px 0px;
             }
             .total {
-                color: #434A5E;
+                color: #434a5e;
                 font-size: 5vw;
                 margin-top: 20px;
                 padding-left: 35px;
@@ -88,7 +89,7 @@ $blue: #021B79;
                 background-color: rgba(88, 75, 221, 0.1);
             }
             small {
-                color: #ADB3C4;
+                color: #adb3c4;
                 font-size: 12px;
                 padding: 0px 18px;
             }
@@ -99,11 +100,13 @@ $blue: #021B79;
             }
             li {
                 list-style: none;
-                color: #434A5E;
+                color: #434a5e;
                 font-size: 12px;
                 line-height: 1.8;
                 margin-left: 20px;
                 position: relative;
+                display: flex;
+                justify-content: space-between;
                 &:after {
                     content: "";
                     width: 1px;
@@ -124,10 +127,16 @@ $blue: #021B79;
                     top: 8px;
                 }
             }
-             :last-child {
+            :last-child {
                 &:after {
                     width: 0px !important;
                 }
+            }
+            h6{
+                color: #434a5e;
+                font-size: 12px;
+                margin-top: 5px;
+               
             }
         }
         .card_footer {
@@ -141,8 +150,8 @@ $blue: #021B79;
                 width: 100%;
                 font-weight: 500;
                 outline: none;
-                background: -webkit-gradient(linear, left top, right top, from(#0575E6), to(#021B79));
-                background: linear-gradient(to right, #0575E6, #021B79);
+                background: -webkit-gradient(linear, left top, right top, from(#0575e6), to(#021b79));
+                background: linear-gradient(to right, #0575e6, #021b79);
                 // box-shadow: 2px 1px 3px rgba(129, 59, 219, 0.5);
                 i {
                     margin-right: 15px;
@@ -154,38 +163,47 @@ $blue: #021B79;
 }
 
 ion-refresher-content {
-    background-color: #0575E6;
+    background-color: #0575e6;
     --color: white !important;
 }
 
 .holds-the-iframe {
-  background:url('../../../assets/images/pdfloader.gif') center center no-repeat;
+    background: url("../../../assets/images/pdfloader.gif") center center no-repeat;
 }
 
-.message-icon{
+.message-icon {
     width: 85px;
-  height: 50px;
-  position: relative;
-  right: 0;
-  left: 0;
-  margin: auto;
- 
+    height: 50px;
+    position: relative;
+    right: 0;
+    left: 0;
+    margin: auto;
 }
-.notification-text{
-  position: absolute;
-  width: 100%;
-  margin-top: 65px;
+.notification-text {
+    position: absolute;
+    width: 100%;
+    margin-top: 65px;
 }
-.no-req{
-display: block;
-margin: auto;
+.no-req {
+    display: block;
+    margin: auto;
 }
 
-
-[data-toggle="collapse"] .fa:before {  
+[data-toggle="collapse"] .fa:before {
     content: "\f139";
-  }
-  
-  [data-toggle="collapse"].collapsed .fa:before {
+}
+
+[data-toggle="collapse"].collapsed .fa:before {
     content: "\f13a";
-  }
+}
+.payment-list {
+    span {
+        list-style: none;
+        color: #434a5e;
+        font-size: 12px;
+        line-height: 1.8;
+        margin-left: 20px;
+        position: relative;
+    }
+}
+

@@ -58,8 +58,9 @@ export class ServiceInquiryComponent implements OnInit {
 
     this.checkBoxValue = this.generalServices.concat(this.tripServices);
     this.selectedForm = services.concat(this.generalServices);
-
-    console.log("selected form---------------------------------", this.selectedForm)
+    this.checkBoxValue = _.uniq(this.checkBoxValue);
+    this.selectedForm = _.uniq(this.selectedForm);
+    console.log("selected form---------------------------------", this.checkBoxValue, '----', this.selectedForm)
     // this.checkBoxValue = this.checkBoxValue.concat(this.otherServices);
     this.storeSelectedFormCategory();
     if (this.checkBoxValue.length > 1) {

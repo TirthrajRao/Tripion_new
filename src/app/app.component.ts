@@ -60,9 +60,12 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
+      console.log("platform ready")
       this.getNotification();
       this.statusBar.backgroundColorByHexString('#0575E6');
-      this.splashScreen.hide();
+      setTimeout(()=>{
+        this.splashScreen.hide();
+      },400)
       this.menuRadius(); // call menuRadius method
       this.getCountryList();
     });
@@ -113,6 +116,7 @@ export class AppComponent {
     const obj = {
       id: this.currentUser.id
     }
+    console.log("obj",obj)
     let output = this._userService.sendMessageToAmmendments(data);
     if (data.type != 'chat') {
       this._userService.getNotificationCount(obj).subscribe((res: any) => {

@@ -9,7 +9,7 @@
                 <p>Details</p>
             </div>
             <div class="card_body">
-                <p>{{details.detail}}</p>
+                <div [innerHtml]="details.detail"></div>
             </div>
         </div>
         <div class="mt-2" *ngIf="details.pdfUrl.id">

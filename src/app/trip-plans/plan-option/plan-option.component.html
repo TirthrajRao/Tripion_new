@@ -12,7 +12,11 @@
         <!-- DISPLAY SELECTED PLAN -->
         <div class="card plan_option_heading  w-100 " routerLink='/home/plan-option-detail/{{tripDetail.plans[0].id}}'
             *ngIf="tripDetail.plans.length">
-            <span [innerHtml]="tripDetail.plans[0].plan_name"></span>
+            <div class="float-left">
+                <span [innerHtml]="tripDetail.plans[0].plan_name"></span>
+                <p *ngIf="tripDetail.plans[0].selected_plan == 2">Book With Third Party</p>
+                <p *ngIf="tripDetail.plans[0].selected_plan == 1">Book With Us</p>
+            </div>
             <div class="calendar_img float-right">
                 <ion-img src="assets/images/plane.png"></ion-img>
             </div>
@@ -91,8 +95,18 @@
             <div class="card_body w-100">
                 <small>Payment for the Following</small>
                 <ul class="">
-                    <li *ngFor="let payment of tripDetail.payment.payment_request">{{payment.title}} - <span
-                            class="float-right">{{payment.payment_amount}} </span></li>
+                    <!-- <div class="row payment-list" >
+                        <div class="col-8">
+                            <div class="payment-title" >
+                                <p *ngFor="let payment of tripDetail.payment.payment_request">{{payment.title}} </p>
+                            </div>
+                        </div>
+                        <div class="col-4 pr-0">
+                            <span *ngFor="let payment of tripDetail.payment.payment_request"> - {{payment.payment_amount}}</span>
+                        </div>
+                    </div> -->
+                    <li *ngFor="let payment of tripDetail.payment.payment_request" class="w-100"><p style="width: 75% !important;">{{payment.title}} </p><h6
+                        > - &nbsp; {{payment.payment_amount}} </h6></li>
                 </ul>
                 <p class="total">Total:<span class="ml-4">₹ {{tripDetail.payment.total_amount}}</span></p>
             </div>
@@ -107,7 +121,7 @@
         <!-- DISPLAY PAYMENT ACKNOQWLDGMENT -->
         <div class="document_request card w-100 mt-3" *ngIf="tripDetail.payment.payment_success.length">
             <div class="card_header">
-                <ion-img src="assets/images/money.png"></ion-img><span>Payment Acknowledge</span>
+                <ion-img src="assets/images/money.png"></ion-img><span>Payment Acknowledged</span>
             </div>
             <div class="card_body w-100">
                 <small>Payment for the Following</small>

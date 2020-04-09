@@ -16,11 +16,11 @@
                     <ion-card>
                         <ion-card-content>
                             <div class="card_header w-100 d-inline-block ">
-                                <h3 class="float-left">{{timelineDayDetail.itinerary_title}}</h3>
+                                <h3 class="float-left" [innerHtml]="timelineDayDetail.itinerary_title"></h3>
                                 <p class="float-right"><i class="far fa-calendar-minus"></i>{{timelineDayDetail.itinerary_date}}</p>
                             </div>
                             <div class="card_body">
-                                <p class="mt-1">{{timelineDayDetail.itinerary_content}}</p>
+                                <p class="mt-1" [innerHtml]="timelineDayDetail.itinerary_content"></p>
                             </div>
                             <div *ngFor="let detail of timelineDayDetail.itinerary_details">
                                 <div class="trip_drescription mt-3">
@@ -28,12 +28,16 @@
                                         <i class="far fa-clock"></i>
                                         <div class="top_sec">
                                             <h5>Trip Starts From </h5>
-                                            <small>{{detail.time}}</small>
+                                            <span style="padding-top: 2rem!important;">{{detail.time}}</span>
                                         </div>
                                     </div>
                                     <!-- <h6>Van Gogh Museum</h6> -->
-                                    <p>{{detail.des}}</p>
+                                    <h3 class="title">Description</h3>
+                                    <div [innerHtml]="detail.des" class="mb-2"></div>
+                                    <h3 class="title">Location</h3>
+                                    <div *ngIf="detail.location" [innerHtml]="detail.location" class="mb-2"></div>
                                     <div class="trip_drescription_image">
+                                        <h3 class="title mb-2">Attachment</h3>
                                         <div class="row" *ngIf="detail.attachment && detail.attachment.length">
                                             <div class="col-6" *ngFor="let img of detail.attachment;let i=index">
                                                 <div *ngIf="i < 2">

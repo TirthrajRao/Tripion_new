@@ -111,7 +111,6 @@ export class PlanOptionComponent implements OnInit {
    * Move to Select Document page
    */
   selectDocument() {
-
     let navigationExtras: NavigationExtras = {
       state: {
         documentList: this.tripDetail.requested_docs,

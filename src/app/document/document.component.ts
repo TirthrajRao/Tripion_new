@@ -90,10 +90,15 @@ export class DocumentComponent implements OnInit {
    */
   getAllImages() {
     this.loading = true;
-    const data = {
-      id: this.currentUser.id
+    // const data = {
+    //   id: this.currentUser.id
+    // }
+    // this._uploadService.getAllImages(data).subscribe((res: any) => {
+    const obj = {
+      id: this.currentUser.id,
+      folder_name: this.details.planName
     }
-    this._uploadService.getAllImages(data).subscribe((res: any) => {
+    this._uploadService.getFolderData(obj).subscribe((res: any) => {
       console.log("res of image", res);
       this.allImage = res.data;
       this.loading = false;

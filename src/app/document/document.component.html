@@ -20,14 +20,15 @@
             <div class="col-4 img-icon p-0" *ngFor="let photo of allImage" style="cursor: pointer;"
                 (click)="selectDocument(photo)">
                 <div class="single_img">
-                    <div class="single_img_div backgroung-img">
-                        <img [src]="photo.image_url" onError="src = 'assets/images/placeholder.png'" class="image-{{photo.id}}"
-                            style="opacity: 1;"
-                            *ngIf="photo.image_extension == 'png' || photo.image_extension == 'jpg'  || photo.image_extension == 'jpeg'" />
+                    <div class="single_img_div backgroung-img"
+                        *ngIf="photo.image_extension == 'png' || photo.image_extension == 'jpg'  || photo.image_extension == 'jpeg'">
+                        <img [src]="photo.image_url" onError="src = 'assets/images/placeholder.png'"
+                            class="image-{{photo.id}}" style="opacity: 1;" />
                     </div>
-                    <div class="single_img_div">
-                        <span
-                            *ngIf="photo.image_extension != 'png' && photo.image_extension != 'jpg'  && photo.image_extension != 'jpeg'">{{photo.image_name}}</span>
+                    <div
+                        *ngIf="photo.image_extension != 'png' && photo.image_extension != 'jpg'  && photo.image_extension != 'jpeg'">
+                        <img src="assets/images/docs2.png">
+                        <p>{{photo.image_name}}</p>
                     </div>
                     <ion-icon name="checkmark" class="checkmark-icon-{{photo.id}}"></ion-icon>
                 </div>
@@ -57,7 +58,8 @@
                     <div class="row">
                         <div class="col-3">
                             <div class="uploded_image">
-                                <ion-img [src]="image.url" onError="src = 'assets/images/placeholder.png'" *ngIf="image.type"></ion-img>
+                                <ion-img [src]="image.url" onError="src = 'assets/images/placeholder.png'"
+                                    *ngIf="image.type"></ion-img>
                                 <ion-img src="assets/images/doc.png" *ngIf="!image.type" style="height: 33px;">
                                 </ion-img>
                             </div>

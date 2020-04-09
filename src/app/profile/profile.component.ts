@@ -172,6 +172,8 @@ export class ProfileComponent implements OnInit {
       $('#reset-password-modal').fadeOut();
       this.isDisable = false;
       this.loading = false;
+      this.resetPswForm.reset();
+      this.submitted1 = false;
       this.appComponent.sucessAlert("Password Reset Successful")
     }, (err) => {
       this.appComponent.errorAlert(err.error.message);

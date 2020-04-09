@@ -38,7 +38,7 @@
     margin-right: -5px !important;
     .image-view{
         img{
-            height: 75px;
+            height: 115px;
             width: 100%;
             object-fit: fill;
             padding: 5px 5px !important;
@@ -58,4 +58,24 @@
 ​ .remove_image {
     height: 20px;
     margin-top: 10px;
+}
+.file-view{
+    img{
+        height: 93px;
+        border-bottom-right-radius: 0px !important;
+        border-bottom-left-radius: 0px !important;
+    }
+    p{
+        background: white;
+        // width: 91.60%;
+        margin-left: 5px;
+        margin-top: -8px;
+        padding: 0px 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-right: 5px;
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
+    }
 }

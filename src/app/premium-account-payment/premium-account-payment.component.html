@@ -32,18 +32,27 @@
         <div class="payment_content">
             <div class="payment_for">
                 <p class="payment_following">Payment for the following</p>
-                <ul class=" text-white ">
-                    <li> {{type}}</li>
-                    <li>Cost  per Plan - 1500</li>
-                    <li>Total Payment -  {{amount}}</li>
+                <ul class="text-white">
+                    <div class="row">
+                        <div class="col-8">
+                            <li> {{type}}</li>
+                            <li>Cost per Plan </li>
+                            <li>Total Payment</li>
+                        </div>
+                        <div class="col-4 amount-list">
+                            <p>- {{noOfPlan}}</p>
+                            <p>- 1500</p>
+                            <p>- {{amount}}</p>
+                        </div>
+                    </div>
+                  
                 </ul>
-                <!-- <p class="payment_total text-white text-center">₹</p> -->
             </div>
         </div>
         <div class="pay_now_button text-center text-white">
-            <button type="submit" (click)="payNow()" class="btn"  [disabled]="isDisable">
-          <ion-img src="assets/images/done.png"></ion-img>Pay Now
-        </button>
+            <button type="submit" (click)="payNow()" class="btn" [disabled]="isDisable">
+                <ion-img src="assets/images/done.png"></ion-img>Pay Now
+            </button>
         </div>
     </div>
     <div *ngIf="loading">

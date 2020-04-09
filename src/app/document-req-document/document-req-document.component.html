@@ -11,7 +11,8 @@
             <div class="image_detail"
                 *ngIf="document.image_extension == 'png' || document.image_extension == 'jpg' || document.image_extension == 'jpeg'">
                 <div class="image">
-                    <img [src]="document.image_url || 'assets/images/placeholder.png'" onError="src = 'assets/images/placeholder.png'">
+                    <img [src]="document.image_url || 'assets/images/placeholder.png'"
+                        onError="src = 'assets/images/placeholder.png'">
                 </div>
                 <div class="detail">
                     <p *ngIf="document.admin_approved_image == 0" style="color: orange;">Pending</p>
@@ -22,13 +23,20 @@
             </div>
             <div class="image_detail"
                 *ngIf="document.image_extension != 'png' && document.image_extension != 'jpg' && document.image_extension != 'jpeg'">
-                <ion-img src="assets/images/doc.png"></ion-img>
+                <div class="image">
+                    <ion-img src="assets/images/doc.png"></ion-img>
+                </div>
+                <div class="detail">
+                    <p *ngIf="document.admin_approved_image == 0" style="color: orange;">Pending</p>
+                    <p *ngIf="document.admin_approved_image == 1" class="text-success">Approved</p>
+                    <p *ngIf="document.admin_approved_image == 2" class="text-danger">Reject</p>
+                </div>
                 <span>{{document.image_name}}</span>
             </div>
         </div>
     </div>
     <div *ngIf="!documentList.length && !loading">
-        <span class="text-white text-center no-request">No Uploaded Documents</span>
+        <span class="text-white text-center no-request">No Documents Uploaded </span>
     </div>
     <div *ngIf="loading">
         <div id="loader-wrapper">

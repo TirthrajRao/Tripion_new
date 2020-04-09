@@ -12,7 +12,7 @@ export class ToursInquiryComponent implements OnInit {
   formUrl: any;
   tourForm: FormGroup;
   submitted: Boolean = false;
-  status: any = 'Releaxed';
+  status: any = 'Relaxed';
   path = 'assets/images/03-Gif.gif';
   languages = data.language;
 
@@ -20,7 +20,7 @@ export class ToursInquiryComponent implements OnInit {
     this.formUrl = JSON.parse(localStorage.getItem('formId'));
 
     this.tourForm = new FormGroup({
-      // tour_basis: new FormControl('', [Validators.required]),
+      // tour_basis: new FormControl('', [Valida  tors.required]),
       // language: new FormControl('', [Validators.required]),
       // duration: new FormControl('', [Validators.required]),
       // special_request: new FormControl(''),
@@ -102,7 +102,7 @@ export class ToursInquiryComponent implements OnInit {
   changeStatus(e) {
     console.log(e.target.value)
     if (e.target.value >= 0 && e.target.value <= 4) {
-      this.status = "Releaxed"
+      this.status = "Relaxed"
       this.path = 'assets/images/03-Gif.gif';
     } else if (e.target.value > 4 && e.target.value <= 7) {
       this.status = "Average";

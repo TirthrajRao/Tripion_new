@@ -61,8 +61,9 @@
                         <div *ngIf="f.dob.errors.required">Birthdate is required</div>
                     </div>
                 </div> -->
-                <div class="form-group">
-                    <input type="password" formControlName="password" class="form-control" id="password" placeholder="Enter Password">
+                <div class="form-group" style="position: relative;">
+                    <ion-icon [name]="passwordIcon" (click)="showHide()" class="eye-icon"></ion-icon>
+                    <input [type]="passwordType" formControlName="password" class="form-control" id="password" placeholder="Enter Password">
                     <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                         <div *ngIf="f.password.errors.required">Password is required</div>
                     </div>

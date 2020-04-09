@@ -33,9 +33,9 @@
             <div class="select_for_continue" *ngIf="planSlected != 1">
                 <p class="text-center text-white">Choose one of the following to continue
                 </p>
-                <button type="submit" class="text-center text-white btn" [disabled]="isDisable" (click)="sendPlan(sendPlanForm.value)">Book with
+                <button type="submit" class="text-center text-white btn" [disabled]="isDisable" (click)="sendPlan(sendPlanForm.value,0)">Book with
                     us</button>
-                <button type="submit" class="text-center text-white btn" [disabled]="isDisable" routerLink='/home/plan-option'>Book with 3rd Party
+                <button type="submit" class="text-center text-white btn" [disabled]="isDisable" (click)="sendPlan(sendPlanForm.value,1)">Book with 3rd Party
                     apps</button>
                 <button type="submit" class="text-center text-white btn" [disabled]="isDisable" (click)="DoThingsYourWay()">Do things your
                     way</button>

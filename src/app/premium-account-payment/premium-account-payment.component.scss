@@ -1,6 +1,6 @@
-$purple: #0575E6;
-$blue  : #021B79;
-$green : #2FE57C;
+$purple: #0575e6;
+$blue: #021b79;
+$green: #2fe57c;
 
 // content css start here
 ion-content {
@@ -9,40 +9,40 @@ ion-content {
 
 .all_payment_content {
     position: relative;
-    z-index : 11;
+    z-index: 11;
 }
 
 .payment_content {
-    background: linear-gradient(#0575E6, #021B79);
-    padding   : 0px 15px;
-    position  : relative;
-    z-index   : 11;
+    background: linear-gradient(#0575e6, #021b79);
+    padding: 0px 15px;
+    position: relative;
+    z-index: 11;
 
     .payment_text {
-        font-size     : 18px;
+        font-size: 18px;
         letter-spacing: 1px;
     }
 
     .payment_for {
         padding: 6vh 30px 7vh 40px;
 
-        @media(max-height: 750px) {
+        @media (max-height: 750px) {
             padding: 2vh 30px 2vh 40px;
         }
 
         .payment_following {
-            font-size  : 17px;
-            color      : #ADB3C4;
+            font-size: 17px;
+            color: #adb3c4;
             margin-left: -18px;
-            padding    : 18px 0px;
+            padding: 18px 0px;
             font-weight: 500;
         }
 
         .payment_total {
-            font-size : 45px;
+            font-size: 45px;
             margin-top: 9vh;
 
-            @media(max-height: 600px) {
+            @media (max-height: 600px) {
                 margin-top: 5vh;
             }
         }
@@ -52,40 +52,39 @@ ion-content {
         }
 
         li {
-            list-style : none;
-            font-size  : 18px;
+            list-style: none;
+            font-size: 18px;
             font-weight: 500;
-            color      : #fff;
+            color: #fff;
             line-height: 38px;
-            position   : relative;
-
+            position: relative;
             &:after {
-                content   : "";
-                width     : 1px;
-                height    : 100%;
-                background: #FFFFFF;
-                position  : absolute;
-                left      : -17px;
-                top       : 13px;
+                content: "";
+                width: 1px;
+                height: 100%;
+                background: #ffffff;
+                position: absolute;
+                left: -17px;
+                top: 13px;
             }
 
             &:before {
-                content      : "";
-                width        : 8px;
-                height       : 8px;
+                content: "";
+                width: 8px;
+                height: 8px;
                 border-radius: 50%;
-                background   : #FFFFFF;
-                position     : absolute;
-                left         : -20px;
-                top          : 13px;
+                background: #ffffff;
+                position: absolute;
+                left: -20px;
+                top: 13px;
             }
         }
 
         :last-child {
             &:after {
-                content   : "";
-                width     : 0px !important;
-                background: #FFFFFF;
+                content: "";
+                width: 0px !important;
+                background: #ffffff;
             }
         }
     }
@@ -94,40 +93,44 @@ ion-content {
 .pay_now_button {
     padding: 45px 30px;
 
-    @media(max-height: 812px) {
+    @media (max-height: 812px) {
         padding: 35px 30px;
     }
 
-    @media(max-height: 750px) {
+    @media (max-height: 750px) {
         padding: 30px 30px;
     }
 
-    @media(max-height: 600px) {
+    @media (max-height: 600px) {
         padding: 25px 30px;
     }
 
-    @media(max-height: 480px) {
+    @media (max-height: 480px) {
         padding: 20px 30px;
     }
 
     button {
-        background   : linear-gradient(to right, $purple, $blue);
-        color        : #ffffff;
-        line-height  : 52px;
+        background: linear-gradient(to right, $purple, $blue);
+        color: #ffffff;
+        line-height: 52px;
         border-radius: 6px;
-        font-size    : 16px;
-        width        : 100%;
-        font-weight  : 500;
-        position     : relative;
-        outline      : none;
-        z-index      : 11;
-        cursor       : pointer;
-        box-shadow   : 2px 1px 3px rgba(129, 59, 219, 0.5);
+        font-size: 16px;
+        width: 100%;
+        font-weight: 500;
+        position: relative;
+        outline: none;
+        z-index: 11;
+        cursor: pointer;
+        box-shadow: 2px 1px 3px rgba(129, 59, 219, 0.5);
 
         ion-img {
-            width       : 28px;
-            display     : inline-block;
+            width: 28px;
+            display: inline-block;
             margin-right: 15px;
         }
     }
+}
+.amount-list {
+    line-height: 38px;
+    font-weight: 500;
 }

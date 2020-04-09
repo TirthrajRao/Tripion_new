@@ -1,9 +1,9 @@
-$purple: #0575E6;
-$blue: #021B79;
-$green: #2FE57C;
-// header css start here 
+$purple: #0575e6;
+$blue: #021b79;
+$green: #2fe57c;
+// header css start here
 .upload_img {
-    background: linear-gradient(#0575E6, #021B79);
+    background: linear-gradient(#0575e6, #021b79);
     ion-img {
         height: 120px;
         width: 120px;
@@ -11,7 +11,7 @@ $green: #2FE57C;
     }
 }
 
-// header css end here 
+// header css end here
 // content css start here
 ion-content {
     --background: #fff !important;
@@ -25,7 +25,7 @@ ion-content {
 
 .image_preview {
     height: 250px;
-   img {
+    img {
         height: 250px;
         width: 100%;
         object-fit: cover;
@@ -40,7 +40,6 @@ ion-slides {
     background-color: #707070;
 }
 
-
 .finish_button {
     padding: 30px;
     button {
@@ -52,8 +51,8 @@ ion-slides {
         width: 100%;
         font-weight: 500;
         outline: none;
-        background: -webkit-gradient(linear, left top, right top, from(#0575E6), to(#021B79));
-        background: linear-gradient(to right, #0575E6, #021B79);
+        background: -webkit-gradient(linear, left top, right top, from(#0575e6), to(#021b79));
+        background: linear-gradient(to right, #0575e6, #021b79);
         // box-shadow: 2px 1px 3px rgba(129, 59, 219, 0.5);
         ion-img {
             margin-right: 15px;
@@ -65,16 +64,16 @@ ion-slides {
 
 .upload_file_progress {
     padding: 15px 15px 0px 15px;
-    border-bottom: 1px solid #C7CBD6;
+    border-bottom: 1px solid #c7cbd6;
     .progress_bar {
         p {
             font-size: 14px;
-            color: #434A5E;
+            color: #434a5e;
             font-weight: 400;
         }
         h6 {
             font-size: 9px;
-            color: #434A5E;
+            color: #434a5e;
             margin-top: 10px;
         }
     }
@@ -89,7 +88,7 @@ ion-slides {
         }
         span {
             font-size: 10px;
-            color: #434A5E;
+            color: #434a5e;
         }
     }
 }
@@ -100,15 +99,15 @@ ion-slides {
     right: 35px;
     border-radius: 5px;
     padding: 8px 0px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     transition: 5s;
-    @media(max-height: 600px) {
+    @media (max-height: 600px) {
         padding: 5px 0px;
     }
     .single_folder {
         padding: 5px 6px;
         cursor: pointer;
-        @media(max-height: 600px) {
+        @media (max-height: 600px) {
             padding: 3px 5px;
         }
         @media (max-height: 600px) {
@@ -156,15 +155,19 @@ ion-slides {
     width: 100%;
     padding: 3px;
     position: relative;
+    p {
+        white-space: nowrap;
+        width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
 .single_img_div {
     height: 130px;
     object-fit: cover;
-   
-  
 }
-.backgroung-img{
+.backgroung-img {
     // background:url('../../assets/images/imgloader.gif') center center no-repeat;
     // background-size: 50px 50px;
 }

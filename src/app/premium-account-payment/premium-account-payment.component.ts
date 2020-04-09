@@ -15,7 +15,7 @@ export class PremiumAccountPaymentComponent implements OnInit {
   selectedFormCategory = JSON.parse(localStorage.getItem('selectedFormCategory'));
   isDisable: Boolean = false;
   loading: Boolean = false;
-
+  noOfPlan: any;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -26,6 +26,7 @@ export class PremiumAccountPaymentComponent implements OnInit {
       if (this.router.getCurrentNavigation().extras.state) {
         this.amount = this.router.getCurrentNavigation().extras.state.amount;
         this.type = this.router.getCurrentNavigation().extras.state.type;
+        this.noOfPlan = this.router.getCurrentNavigation().extras.state.noOfPlan;
         console.log("in payment page", this.amount, this.type)
       }
     });
@@ -51,7 +52,7 @@ export class PremiumAccountPaymentComponent implements OnInit {
       console.log("inquiry form res", res);
       localStorage.removeItem('form_data');
       localStorage.removeItem('selectedFormCategory');
-      this.appComponent.sucessAlert("We got your money", "WooW")
+      this.appComponent.sucessAlert("We got your money!!", "WoW")
       this.router.navigate(['/home']);
     }, (err) => {
       this.appComponent.errorAlert(err.error.message);

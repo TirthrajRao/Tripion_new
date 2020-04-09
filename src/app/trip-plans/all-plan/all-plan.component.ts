@@ -82,7 +82,7 @@ export class AllPlanComponent implements OnInit {
       console.log("all palans", this.allPlans);
       _.forEach(this.allPlans, (plan, index) => {
         console.log("plan", plan);
-        if (plan.plan_selected == 1) {
+        if (plan.plan_selected == 1 || plan.plan_selecte == 2) {
           this.planSlected = 1;
           this.allPlans = [];
           this.allPlans.push(plan)
@@ -97,8 +97,8 @@ export class AllPlanComponent implements OnInit {
     })
   }
 
-  sendPlan(data) {
-    console.log(data)
+  sendPlan(data, type) {
+    console.log(data, type)
     this.submitted = true;
     if (this.sendPlanForm.invalid) {
       return true
@@ -106,7 +106,8 @@ export class AllPlanComponent implements OnInit {
     this.isDisable = true;
     this.loading = true;
     data['id'] = this.currentUser.id;
-    data['inquiry_id'] = this.inquiryId
+    data['inquiry_id'] = this.inquiryId;
+    data['book_third'] = type;
     console.log(data);
     this._tripService.sendPlan(data).subscribe((res: any) => {
       console.log(res);
