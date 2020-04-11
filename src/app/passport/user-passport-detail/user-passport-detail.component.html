@@ -152,15 +152,16 @@
                     </div>
 
                     <div class="selected_image_preview" *ngIf="urls.length">
-                        <ul>
-                            <li *ngFor="let img of urls">
+                        <div class="row">
+                            <div class="col-4 selected_image" *ngFor="let img of urls">
                                 <ion-img [src]="img.url" *ngIf="img.type"></ion-img>
-                                <span *ngIf="!img.type">{{img.imageName}}</span>
+                                <ion-img *ngIf="!img.type" src="assets/images/docs2.png" style="height: 74px;"></ion-img>
+                                <p *ngIf="!img.type">{{img.imageName}}</p>
                                 <div (click)=removeImage(img) class="mt-2">
                                     <ion-img src="assets/images/remove.png" class="remove_image"></ion-img>
                                 </div>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </div>
                     <div class="make_folder">
                         <button (click)="addVisa(addVisaForm.value)" class="btn" [disabled]="isDisable"><i

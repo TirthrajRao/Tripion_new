@@ -13,12 +13,14 @@
             </div>
         </div> -->
         <div *ngIf="folderList.length" class="row folder-view m-0">
-            <div class="col-4  folder_detail" *ngFor="let folder of folderList;let i =index"
-                routerLink='/home/inner-folder/{{folder}}'>
+            <div class="col-4 folder_detail" *ngFor="let folder of folderList;let i =index"
+               (press)="longPress(i)">
                 <div class="card p-3">
-                    <ion-img [src]="getRandomImgeIcon(i)"></ion-img>
+                    <ion-img [src]="getRandomImgeIcon(i)"  routerLink='/home/inner-folder/{{folder}}'></ion-img>
                     <p>{{folder}}</p>
                 </div>
+                <i class="fa fa-times-circle folder-icon-{{i}}" (click)="removeFolder(i)" ></i>
+                <!-- <i class="fa fa-times-circle-o "></i> -->
             </div>
         </div>
         <div *ngIf="allImages.length">
@@ -60,7 +62,8 @@
                     <div class="row">
                         <div class="col-4 selected_image" *ngFor="let img of urls">
                             <ion-img [src]="img.url" *ngIf="img.type"></ion-img>
-                            <span *ngIf="!img.type">{{img.imageName}}</span>
+                            <ion-img *ngIf="!img.type" src="assets/images/docs2.png"></ion-img>
+                            <p *ngIf="!img.type">{{img.imageName}}</p>
                         </div>
                     </div>
                 </div>

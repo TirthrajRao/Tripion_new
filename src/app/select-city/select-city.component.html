@@ -11,9 +11,6 @@
                 </div>
             </ion-col>
             <ion-col size='8'>
-                <!-- <div class="middle_sec text-center text-white">
-                    <span>Select City</span>
-                </div> -->
                 <ion-input placeholder="Search" (ionInput)="getItems($event)"></ion-input>
                 <ion-icon name="search"></ion-icon>
             </ion-col>
@@ -22,11 +19,10 @@
 </ion-header>
 <ion-content>
     <div class=" all_content">
-        <!-- <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> -->
         <div *ngIf="isVisible">
             <ion-list>
-                <ion-item *ngFor="let data of cityList" (click)="storeSelectedData(data)">
-                    {{data.city}}
+                <ion-item *ngFor="let data of cityList;let i =index" (click)="storeSelectedData(data)">
+                    {{data.city}} <span *ngIf="i == 0"> &nbsp;(Current Location)</span>
                 </ion-item>
             </ion-list>
             <ion-infinite-scroll threshold="200px" (ionInfinite)="loadData($event)">

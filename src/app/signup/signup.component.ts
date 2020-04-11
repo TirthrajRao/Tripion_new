@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
-import { data } from '../data';
 import { AppComponent } from '../app.component';
 declare const $: any;
 class Port {
@@ -24,7 +23,6 @@ export class SignupComponent implements OnInit {
   loading: Boolean = false;
   counries: any = [];
   selectedCountry: any;
-  timeZoneList: any = data.timeZone
   passwordType: string = 'password';
   passwordIcon: string = 'eye-off';
 
@@ -43,8 +41,6 @@ export class SignupComponent implements OnInit {
       // dob: new FormControl('', [Validators.required]),
       // home_town: new FormControl('', [Validators.required])
     });
-
-    console.log("timezones", this.timeZoneList)
   }
 
   ngOnInit() {

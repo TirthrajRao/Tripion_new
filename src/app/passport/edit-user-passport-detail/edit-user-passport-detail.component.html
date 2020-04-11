@@ -11,7 +11,8 @@
                         <small>Name in Passport</small>
                         <div>
                             <ion-item>
-                                <ion-input type="text" [(ngModel)]="passportDetail.name_in_passport" formControlName="name_in_passport"></ion-input>
+                                <ion-input type="text" [(ngModel)]="passportDetail.name_in_passport"
+                                    formControlName="name_in_passport"></ion-input>
                             </ion-item>
                             <div *ngIf="submitted && f.name_in_passport.errors" class="invalid-feedback">
                                 <div *ngIf="f.name_in_passport.errors.required">Name is required</div>
@@ -27,7 +28,8 @@
                         <small>Date of Expiry</small>
                         <div>
                             <ion-item>
-                                <ion-datetime [(ngModel)]="passportDetail.doc_expiry_date" formControlName="doc_expiry_date" min="{{curruntDate}}" max="{{nextYear}}">
+                                <ion-datetime [(ngModel)]="passportDetail.doc_expiry_date"
+                                    formControlName="doc_expiry_date" min="{{curruntDate}}" max="{{nextYear}}">
                                 </ion-datetime>
                             </ion-item>
                             <div *ngIf="submitted && f.doc_expiry_date.errors" class="invalid-feedback">
@@ -44,7 +46,8 @@
                         <small>Passport Number</small>
                         <div>
                             <ion-item>
-                                <ion-input type="text" [(ngModel)]="passportDetail.passport_number" formControlName="passport_number"></ion-input>
+                                <ion-input type="text" [(ngModel)]="passportDetail.passport_number"
+                                    formControlName="passport_number"></ion-input>
                             </ion-item>
                             <div *ngIf="submitted && f.passport_number.errors" class="invalid-feedback">
                                 <div *ngIf="f.passport_number.errors.required">Paasport Number is required</div>
@@ -57,20 +60,27 @@
             <div class="card" *ngIf="passportDetail.image_url.length">
                 <div class="row">
                     <div class="col-4" *ngFor="let img of passportDetail.image_url;let i=index">
-                        <div class="all_image" *ngIf="img.image_extension == 'png' || img.image_extension == 'jpg' || img.image_extension == 'jpeg'">
-                            <ion-img [src]="img.image_url || 'assets/images/placeholder.png'" (ionError)="onErrorImage(i)" class="visa_image"></ion-img>
-                        </div>
-                        <div *ngIf="img.image_extension != 'png' && img.image_extension != 'jpeg' && img.image_extension != 'jpg' ">
-                            <a href="{{img.image_url}}" download>{{img.image_name}}</a>
+                        <div  class="all_image">
+                            <div
+                                *ngIf="img.image_extension == 'png' || img.image_extension == 'jpg' || img.image_extension == 'jpeg'">
+                                <ion-img [src]="img.image_url || 'assets/images/placeholder.png'"
+                                    (ionError)="onErrorImage(i)" class="visa_image"></ion-img>
+                            </div>
+                            <div
+                                *ngIf="img.image_extension != 'png' && img.image_extension != 'jpeg' && img.image_extension != 'jpg' ">
+                                <ion-img src="assets/images/docs2.png" class="visa_image"></ion-img>
+                                <a href="{{img.image_url}}" download><p>{{img.image_name}}</p></a>
+                            </div>
                         </div>
                         <div (click)=removeImage(img) class="mt-2">
-                            <ion-img src="assets/images/remove.png" class="remove_image"></ion-img>
+                            <ion-img src="assets/images/remove.png" class="remove_image mb-2"></ion-img>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="submit_btn">
-                <button (click)="editPassportDetail(editPassPortForm.value)" class="btn" [disabled]="isDisable"><i class="fas fa-save"></i>Save</button>
+                <button (click)="editPassportDetail(editPassPortForm.value)" class="btn" [disabled]="isDisable"><i
+                        class="fas fa-save"></i>Save</button>
             </div>
             <div class="add_button" id="add-visa" (click)="moveDocumentPage()">
                 <a href="javascript:void(0);">

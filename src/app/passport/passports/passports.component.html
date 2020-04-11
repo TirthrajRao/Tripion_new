@@ -100,12 +100,17 @@
                         </div>
                     </div>
                     <div class="selected_image_preview" *ngIf="urls.length">
-                        <ul>
-                            <li *ngFor="let url of urls">
-                                <ion-img [src]="url.imgUrl" *ngIf="url.type=='img'"></ion-img>
-                                <span *ngIf="url.type !='img'">{{url.name}}</span>
-                            </li>
-                        </ul>
+                        <div class="row">
+                            <div class="col-4 selected_image" *ngFor="let img of urls">
+                                <ion-img [src]="img.imgUrl" *ngIf="img.type=='img'"></ion-img>
+                                <ion-img *ngIf="img.type !='img'" src="assets/images/docs2.png" style="height: 74px;"></ion-img>
+                                <p *ngIf="img.type !='img'">{{img.name}}</p>
+                                <div (click)=removeImage(img) class="mt-2">
+                                    <ion-img src="assets/images/remove.png" class="remove_image"></ion-img>
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
                     <div class="make_folder">
                         <button (click)="addPassport(addPassportForm.value)" class="btn" [disabled]="isDisable"><i

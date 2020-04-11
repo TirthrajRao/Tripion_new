@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UploadService } from '../../services/upload.service';
 import {AppComponent} from '../../app.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 declare var $: any;
 
 @Component({
@@ -28,6 +29,7 @@ export class PicturesComponent implements OnInit {
     public route: ActivatedRoute,
     public _uploadService: UploadService,
     public appComponent:AppComponent,
+    public alertController:AlertController
     ) {
 
       this.createFolderForm = new FormGroup({
@@ -250,5 +252,52 @@ export class PicturesComponent implements OnInit {
     rand = i % this.imageIcon.length;
     this.lastImage = rand;
     return this.imageIcon[rand];
+  }
+
+  longPress(index){
+    console.log("index",index);
+    $('.folder-icon-' + index).css('opacity', 1)
+  }
+
+  /**
+   * Delete Folder
+   * @param {Number} index 
+   */
+  async removeFolder(index){
+    const alert = await this.alertController.create({
+      header: 'Alert!',
+      message: 'Are you sure you want to delete this folder?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+            $('.folder-icon-' + index).css('opacity', 0)
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            console.log('Confirm Okay');
+            // this.loading = true;
+            // const obj = {
+            //   image_id: data.id
+            // }
+            // this._uploadService.removeImage(obj).subscribe((res: any) => {
+            //   console.log(res);
+            //   this.loading = false;
+            //   this.allImages.splice(this.allImages.indexOf(data), 1);
+            // }, (err) => {
+            //   console.log(err);
+            //   this.loading = false;
+            //   this.appComponent.errorAlert(err.error.message);
+            // })
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
  }

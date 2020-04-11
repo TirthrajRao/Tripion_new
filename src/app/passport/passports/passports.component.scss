@@ -112,3 +112,14 @@ ion-input{
     left: 0;
     right: 0;
 }
+.selected_image{
+    p{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+.remove_image {
+    height: 20px !important;
+    cursor: pointer;
+}

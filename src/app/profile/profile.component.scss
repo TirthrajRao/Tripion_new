@@ -229,3 +229,9 @@ ion-refresher-content {
     outline: none !important;
     width: 100% !important;
 }
+.modal_content_with_overlay {
+    ion-input {
+        --padding-top: 10px;
+        --padding-bottom: 10px;
+    }
+}

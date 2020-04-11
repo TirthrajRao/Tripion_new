@@ -46,7 +46,8 @@
                     <div class="row">
                         <div class="col-4 selected_image" *ngFor="let img of urls;let i =index">
                             <ion-img [src]="img.url || 'assets/images/placeholder.png'" *ngIf="img.type" (ionError)="onErrorImage(i)"></ion-img>
-                            <span *ngIf="!img.type">{{img.imageName}}</span>
+                            <ion-img *ngIf="!img.type" src="assets/images/docs2.png"></ion-img>
+                            <p *ngIf="!img.type">{{img.imageName}}</p>
                         </div>
                     </div>
                 </div>

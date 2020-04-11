@@ -171,10 +171,9 @@ export class SelectCityComponent implements OnInit {
     } else {
       this.noResult = false;
     }
-    console.log("searched item", this.searchedResult);
+    // console.log("searched item", this.searchedResult);
     this.searchedCityList = [];
     for (let i = 0; i <= 20; i++) {
-      console.log("index", i)
       if (i < this.searchedResult.length)
         this.searchedCityList.push(this.searchedResult[i])
     }

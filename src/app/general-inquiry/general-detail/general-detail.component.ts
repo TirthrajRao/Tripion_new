@@ -192,9 +192,9 @@ export class GeneralDetailComponent implements OnInit {
    * @param {object} data 
    */
   changeDateFormate(data) {
-    if (data.dob.includes("T")) {
-      data.dob = data.dob.split("T")[0];
-    }
+    // if (data.dob.includes("T")) {
+    //   data.dob = data.dob.split("T")[0];
+    // }
 
     if (data.departure_date.includes("T")) {
       data.departure_date = data.departure_date.split("T")[0];

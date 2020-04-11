@@ -70,6 +70,7 @@ ion-refresher-content {
     // }
     ion-img {
         height: 40px;
+        outline: none;
         // width: 42px;
         // float: left;
         // position: absolute;
@@ -95,8 +96,21 @@ ion-refresher-content {
         text-overflow: ellipsis;
         white-space: nowrap;
     }
+    .fa-times-circle{
+        position: absolute;
+        right: 0;
+        top: 1px;
+        opacity: 0;
+    }
 }
 .folder-view {
     margin-left: -5px !important;
     margin-right: -5px !important;
+}
+.selected_image{
+    p{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }

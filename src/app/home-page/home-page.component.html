@@ -32,7 +32,7 @@
                             {{city.city}}
                         </option>
                     </select> -->
-                    <p class="temp-city" (click)="selectCity('temperature')">{{tempratureCity}}</p>
+                    <p class="temp-city" (click)="selectCity('temperature')" *ngIf="tempratureCity">{{tempratureCity}}</p>
                     <!-- <span *ngIf="tempratureCity && !tempratureIndex"
                         style="position: absolute;">{{tempratureCity}}</span> -->
                 </div>
@@ -46,7 +46,7 @@
                         {{city.city}}
                     </option>
                 </select> -->
-                <p class="time-city"  (click)="selectCity('time')">{{timeCity}}</p>
+                <p class="time-city"  (click)="selectCity('time')" *ngIf="timeCity">{{timeCity}}</p>
                 <p *ngIf="currentTime" class="time-txt">{{currentTime}}</p>
             </div>
         </div>

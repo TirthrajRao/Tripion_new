@@ -60,7 +60,7 @@ export class ServiceInquiryComponent implements OnInit {
     this.selectedForm = services.concat(this.generalServices);
     this.checkBoxValue = _.uniq(this.checkBoxValue);
     this.selectedForm = _.uniq(this.selectedForm);
-    console.log("selected form---------------------------------", this.checkBoxValue, '----', this.selectedForm)
+    console.log("selected form-------", this.checkBoxValue, '----', this.selectedForm)
     // this.checkBoxValue = this.checkBoxValue.concat(this.otherServices);
     this.storeSelectedFormCategory();
     if (this.checkBoxValue.length > 1) {
@@ -224,6 +224,4 @@ export class ServiceInquiryComponent implements OnInit {
       localStorage.setItem("selectOnlyAirTickits", 'false')
     }
   }
-
-
 }

@@ -36,9 +36,13 @@
                                 <img [src]="photo.image_url" onError="src = 'assets/images/placeholder.png'"
                                     class="image-{{photo.id}}" style="opacity: 1;"
                                     *ngIf="photo.image_extension == 'png' || photo.image_extension == 'jpg'  || photo.image_extension == 'jpeg'" />
-                            </div>
-                            <span
-                                *ngIf="photo.image_extension != 'png' && photo.image_extension != 'jpg'  && photo.image_extension != 'jpeg'">{{photo.image_name}}</span>
+                                    <img src="assets/images/docs2.png"
+                                    class="image-{{photo.id}}" style="opacity: 1;height: 103px;min-height: unset;"
+                                    *ngIf="photo.image_extension != 'png' && photo.image_extension != 'jpg'  && photo.image_extension != 'jpeg'" />
+                                    <p
+                                    *ngIf="photo.image_extension != 'png' && photo.image_extension != 'jpg'  && photo.image_extension != 'jpeg'">{{photo.image_name}}</p>
+                                </div>
+                            
                             <ion-icon name="checkmark" class="checkmark-icon-{{photo.id}}"></ion-icon>
                         </div>
                     </div>

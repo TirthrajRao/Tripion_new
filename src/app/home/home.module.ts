@@ -52,7 +52,6 @@ import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
-import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { DatePipe } from '@angular/common';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
@@ -97,7 +96,6 @@ export class IonicGestureConfig extends HammerGestureConfig {
     IonicModule,
     FormsModule,
     ReactiveFormsModule,
-    RoundProgressModule,
     LongPressModule,
     NgxDocViewerModule,
     RouterModule.forChild([

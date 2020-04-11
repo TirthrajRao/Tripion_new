@@ -20,7 +20,7 @@ export class UserPassportDetailComponent implements OnInit {
   currentUser = JSON.parse(localStorage.getItem('currentUser'));
   curruntDate: string = new Date().toISOString();
   addVisaForm: FormGroup;
-  files;
+  files:any = [];
   urls: any = [];
   submitted: Boolean = false;
   nextYear: any;
@@ -72,17 +72,6 @@ export class UserPassportDetailComponent implements OnInit {
     setTimeout(() => {
       this.createSlider();
     }, 1)
-    // let visa;
-    // this.route.queryParams.subscribe((param) => {
-    //   //  param.image_url =  JSON.parse(param.image_url);
-    //   console.log("param=====", JSON.parse(param.data))
-
-    //   visa = JSON.parse(param.data)
-
-    // })
-    // let index = this.visaList.findIndex(x => x.id == visa.id);
-    // this.visaList[index] = visa;
-    // console.log("index", index)
   }
 
   get f() { return this.addVisaForm.controls }
@@ -215,14 +204,19 @@ export class UserPassportDetailComponent implements OnInit {
   */
   selectFile(e) {
     console.log("===", e.target.files);
-    this.files = Array.from(e.target.files)
+    if (this.files.length) {
+      this.files.push(...Array.from(e.target.files))
+    } else {
+      this.files = Array.from(e.target.files)
+    }
+    this.urls = [];
     // var newFileList = Array.from(event.target.files);
     for (let i = 0; i < this.files.length; i++) {
       let reader = new FileReader();
       reader.onload = (e: any) => {
         const obj = {
           url: e.target.result,
-          imageName: this.files[i].name,
+          imageName: this.files[i].name,  
         }
         if (this.files[i].type == 'image/png' || this.files[i].type == 'image/jpeg' || this.files[i].type == 'image/jpg') {
           obj['type'] = 'image'
@@ -296,7 +290,6 @@ export class UserPassportDetailComponent implements OnInit {
   async removeImage(data) {
     console.log(data);
     console.log("file===", this.files, "urllll", this.urls);
-    console.log("this.file", typeof this.files[0])
     const alert = await this.alertController.create({
       header: 'Alert!',
       message: 'Are you sure you want to delete this image?',
@@ -314,17 +307,16 @@ export class UserPassportDetailComponent implements OnInit {
             console.log('Confirm Okay');
             let index = this.urls.indexOf(data);
             console.log("index", index);
-            this.urls.splice(index, 1);
             // var files1 = [].slice.call( this.files );
-
-            _.forEach(this.files, (file, i) => {
-              console.log("))", file.name)
-              if (file.name == data.imageName) {
+            
+            _.forEach( this.files, async (file, i) => {
+              console.log("))", file)
+              if (file && file.name == data.imageName) {
                 console.log("======", file, '-----', this.files[i])
-                delete this.files[i]
-                // files1.splice( i, 1 );
+               await this.files.splice( i, 1 );
               }
             })
+            this.urls.splice(index, 1);
             console.log("update file", this.files)
           }
         }

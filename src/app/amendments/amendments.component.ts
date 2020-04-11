@@ -457,31 +457,6 @@ export class AmendmentsComponent implements OnInit {
         }
       }
     }
-
-
-
-    // let reader = new FileReader();
-    // reader.readAsDataURL(this.files[0]);
-    // reader.onload = (_event) => {
-    //   this.urls = reader.result
-
-    //   console.log("url", this.urls)
-    //   if (this.urls && type != 'file') {
-    //     this.openModal(this.urls, type)
-    //   } else if (this.urls && type == 'file') {
-    //     console.log("file type");
-    //     this._s3Service.uploadImage(this.urls, this.files[0].name, 'file', this.files[0]).then((res) => {
-    //       console.log("Response", res);
-    //       const messageData: any = {
-    //         message: res,
-    //       }
-    //       this.send(messageData, messageData.message.type)
-    //     }).catch((err) => {
-    //       console.log("Error is", err);
-    //       this.appComponent.errorAlert()
-    //     })
-    //   }
-
   }
 
 
@@ -489,7 +464,12 @@ export class AmendmentsComponent implements OnInit {
    * Start audio recording
    */
   startRecord() {
-    console.log("startRecord");
+    console.log("startRecord", this.timex);
+    if (this.timex) {
+      clearInterval(this.timex)
+      this.stopRecord();
+      return
+    }
     console.log("this.file", this.file)
     const ROOT_DIRECTORY = this.file.externalRootDirectory;
     console.log("directory", ROOT_DIRECTORY)
@@ -507,13 +487,14 @@ export class AmendmentsComponent implements OnInit {
   /**
    * stop audio recording
    */
-  async stopRecord() {
-    console.log("stop record")
-    await clearInterval(this.timex);
+  stopRecord() {
+    console.log("stop record", this.timex)
+    clearInterval(this.timex);
+    this.timex = null;
     this.recording = false;
     console.log("this.audio", this.audio);
     this.audio.stopRecord();
-   
+
     let data = { name: this.fileName, src: this.filePath, type: 'audio/mp3' };
     console.log("recorded audio", data);
 
@@ -602,39 +583,4 @@ export class AmendmentsComponent implements OnInit {
     this.adminProfilePic = 'assets/images/avatar.png';
   }
 
-  // playAudio(url) {
-  //   console.log("mp3 file", url);
-  //   if (this.player) {
-  //     this.player.stop();
-  //   }
-  //   this.player = new Howl({
-  //     src: [url],
-  //     onplay: () => {
-  //       console.log("onplay")
-  //       this.isPlaying = true;
-  //       this.updateProgress();
-  //     },
-  //     onend: () => {
-  //       console.log("onend");
-  //     }
-  //   })
-  //   this.player.play()
-  // }
-
-  // updateProgress() {
-  //   let seek = this.player.seek();
-  //   this.progress = (seek / this.player.duration()) * 100 || 0;
-  //   console.log("this.progeress",this.progress,this.player.duration())
-  //   setTimeout(() => {
-  //     this.updateProgress()
-  //   }, 1000);
-  // }
-  // togglePlayer(pause) {
-  //   // this.isPlaying = !pause;
-  //   // if (pause) {
-  //   //   this.player.pause();
-  //   // } else {
-  //   //   this.player.play();
-  //   // }
-  // }
 }

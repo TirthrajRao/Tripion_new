@@ -63,7 +63,8 @@ ion-slides {
 }
 
 .upload_file_progress {
-    padding: 15px 15px 0px 15px;
+    // padding: 15px 15px 0px 15px;
+    padding: 15px 15px 15px 15px;
     border-bottom: 1px solid #c7cbd6;
     .progress_bar {
         p {
@@ -78,8 +79,8 @@ ion-slides {
         }
     }
     .uploded_image {
-        height: 75px;
-        width: 48px;
+        // height: 75px;
+        // width: 48px;
     }
     .progress_design {
         ion-img {

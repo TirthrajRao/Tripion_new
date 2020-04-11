@@ -35,11 +35,12 @@
             </div>
             <i class="fa fa-times-circle icon-{{i}}" (click)="removeImage(img,i)"></i>
         </div>
-        <div *ngIf="img.image_extension != 'png' && img.image_extension != 'jpg' && img.image_extension != 'jpeg'">
+        <div *ngIf="img.image_extension != 'png' && img.image_extension != 'jpg' && img.image_extension != 'jpeg'" (press)="longPress(i)">
             <div class="image-view file-view" (click)="previewDocument(img.image_url)">
                 <img src="assets/images/docs2.png" style="height: 93px;">
                 <p>{{img.image_name}}</p>
             </div>
+            <i class="fa fa-times-circle icon-{{i}}" (click)="removeImage(img,i)"></i>
         </div>
     </div>
 </div>

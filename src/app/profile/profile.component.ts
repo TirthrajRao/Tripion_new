@@ -3,7 +3,6 @@ import { UserService } from '../services/user.service';
 import { ToastService } from '../services/toast.service';
 import { Events } from '@ionic/angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { data } from '../data';
 import { AppComponent } from '../app.component';
 declare var $: any;
 
@@ -14,7 +13,6 @@ declare var $: any;
 })
 export class ProfileComponent implements OnInit {
   curruntUser = JSON.parse(localStorage.getItem('currentUser'));
-  timeZoneList: any = data.timeZone
   userData;
   editProfileForm: FormGroup;
   resetPswForm: FormGroup;

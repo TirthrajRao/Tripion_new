@@ -6,6 +6,7 @@ import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { AppComponent } from '../../app.component';
 import * as _ from 'lodash';
+import { AlertController } from '@ionic/angular';
 declare var $: any;
 
 @Component({
@@ -18,7 +19,7 @@ export class PassportsComponent implements OnInit {
   nextYear;
   curruntDate: string = new Date().toISOString();
   currentUser = JSON.parse(localStorage.getItem('currentUser'));
-  files: any;
+  files: any = [];
   urls: any = [];
   submitted: Boolean = false;
   allPassport: any = [];
@@ -33,6 +34,7 @@ export class PassportsComponent implements OnInit {
     public router: Router,
     public route: ActivatedRoute,
     public appComponent: AppComponent,
+    public alertController: AlertController
   ) {
     this.addPassportForm = new FormGroup({
       name_in_passport: new FormControl('', [Validators.required]),
@@ -105,7 +107,13 @@ export class PassportsComponent implements OnInit {
    */
   selectFile(e) {
     console.log("===", e.target.files);
-    this.files = e.target.files
+    if (this.files.length) {
+      this.files.push(...Array.from(e.target.files))
+    } else {
+      this.files = Array.from(e.target.files)
+    }
+    console.log("files", this.files);
+    this.urls = []
     for (let i = 0; i < this.files.length; i++) {
       let reader = new FileReader();
       reader.onload = (e: any) => {
@@ -128,8 +136,9 @@ export class PassportsComponent implements OnInit {
    * @param {object} formData 
    */
   addPassport(formData) {
+    console.log(formData)
     formData.doc_expiry_date = formData.doc_expiry_date.split("T")[0];
-      
+
     this.submitted = true;
     if (this.addPassportForm.invalid) {
       return
@@ -160,7 +169,7 @@ export class PassportsComponent implements OnInit {
       this.allPassport.unshift(res.data);
     }, (err) => {
       console.log(err);
-       this.appComponent.errorAlert(err.error.message);
+      this.appComponent.errorAlert(err.error.message);
       this.isDisable = false;
       this.loading = false;
     })
@@ -183,7 +192,7 @@ export class PassportsComponent implements OnInit {
       this.loading = false;
     }, (err) => {
       console.log(err);
-       this.appComponent.errorAlert(err.error.message);
+      this.appComponent.errorAlert(err.error.message);
       this.loading = false;
     })
   }
@@ -202,6 +211,48 @@ export class PassportsComponent implements OnInit {
       }
     }
     this.router.navigate(['/home/user-passport-detail'], navigationExtras);
+  }
+
+  /**
+* Remove Image in Edit Passport
+* @param {object} data 
+*/
+  async removeImage(data) {
+    console.log(data);
+    console.log("file===", this.files, "urllll", this.urls);
+    console.log("this.file", typeof this.files[0])
+    const alert = await this.alertController.create({
+      header: 'Alert!',
+      message: 'Are you sure you want to delete this image?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            console.log('Confirm Okay');
+            let index = this.urls.indexOf(data);
+            console.log("index", index);
+            _.forEach(this.files, async (file, i) => {
+              console.log("))", file)
+              if (file && file.name == data.name) {
+                console.log("======", file, '-----', this.files[i])
+                await this.files.splice(i, 1);
+              }
+            })
+            this.urls.splice(index, 1);
+            console.log("update file", this.files)
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }
 
