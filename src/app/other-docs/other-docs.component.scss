@@ -1,6 +1,6 @@
-$purple: #0575E6;
-$blue: #021B79;
-$green: #2FE57C;
+$purple: #0575e6;
+$blue: #021b79;
+$green: #2fe57c;
 $button_color: #003574;
 // content css start here
 .folder_detail {
@@ -11,20 +11,20 @@ $button_color: #003574;
     margin-bottom: 10px;
     position: relative;
     cursor: pointer;
-    @media(max-height: 812px) {
+    @media (max-height: 812px) {
         padding: 14px;
     }
-    @media(max-height: 750px) {
+    @media (max-height: 750px) {
         padding: 12px;
     }
-    @media(max-height: 600px) {
+    @media (max-height: 600px) {
         padding: 8px;
     }
     ion-img {
         width: 42px;
         float: left;
         position: absolute;
-        left: 13px;
+        left: 20px;
         top: 0;
         bottom: 0;
         @media(max-height: 750px) {
@@ -37,9 +37,18 @@ $button_color: #003574;
     p {
         font-weight: 600;
         font-size: 19px;
-        margin-left: 60px;
+        margin-left: 5px;
         line-height: 30px;
         text-transform: capitalize;
+    }
+    .remove_image {
+        display: block;
+        margin: auto;
+        position: absolute;
+        width: 19px;
+        top: 0;
+        bottom: 0;
+        height: 18px;
     }
 }
 
@@ -49,15 +58,15 @@ $button_color: #003574;
     right: 35px;
     border-radius: 5px;
     padding: 8px 0px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     transition: 5s;
-    @media(max-height: 600px) {
+    @media (max-height: 600px) {
         padding: 5px 0px;
     }
     .single_folder {
         padding: 5px 6px;
         cursor: pointer;
-        @media(max-height: 600px) {
+        @media (max-height: 600px) {
             padding: 3px 5px;
         }
         @media (max-height: 600px) {
@@ -74,7 +83,7 @@ $button_color: #003574;
 
 .single_folder:focus,
 .single_folder:hover {
-    background-color: #D9D9D9;
+    background-color: #d9d9d9;
 }
 
 .no-request {
@@ -85,6 +94,6 @@ $button_color: #003574;
 }
 
 ion-refresher-content {
-    background-color: #0575E6;
+    background-color: #0575e6;
     --color: white !important;
 }

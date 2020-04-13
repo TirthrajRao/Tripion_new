@@ -60,16 +60,28 @@
             <div class="card" *ngIf="passportDetail.image_url.length">
                 <div class="row">
                     <div class="col-4" *ngFor="let img of passportDetail.image_url;let i=index">
-                        <div  class="all_image">
+                        <div class="all_image">
                             <div
                                 *ngIf="img.image_extension == 'png' || img.image_extension == 'jpg' || img.image_extension == 'jpeg'">
                                 <ion-img [src]="img.image_url || 'assets/images/placeholder.png'"
                                     (ionError)="onErrorImage(i)" class="visa_image"></ion-img>
                             </div>
-                            <div
-                                *ngIf="img.image_extension != 'png' && img.image_extension != 'jpeg' && img.image_extension != 'jpg' ">
-                                <ion-img src="assets/images/docs2.png" class="visa_image"></ion-img>
-                                <a href="{{img.image_url}}" download><p>{{img.image_name}}</p></a>
+                            <div>
+                                <!-- <ion-img src="assets/images/docs2.png" class="visa_image"></ion-img> -->
+                                <img src="assets/images/pdf.png" *ngIf="img.image_extension == 'pdf'"
+                                    style="height: 90px;" class="visa_image">
+                                <ion-img src="assets/images/xls.png"
+                                    *ngIf="img.image_extension == 'xlsx' || img.image_extension == 'xls'"
+                                    style="height: 99px;" class="visa_image"></ion-img>
+                                <ion-img src="assets/images/doc1.png"
+                                    *ngIf="img.image_extension == 'doc' || img.image_extension == 'docx' || img.image_extension == 'odt'"
+                                    style="height: 99px;" class="visa_image"></ion-img>
+                                <ion-img src="assets/images/docs2.png" style="height: 93px;" class="visa_image"
+                                    *ngIf="img.image_extension != 'png' && img.image_extension != 'jpg'  && img.image_extension != 'jpeg' && img.image_extension != 'xlsx' && img.image_extension != 'xls' && img.image_extension != 'pdf'&& img.image_extension != 'doc'&& img.image_extension != 'docx'&&  img.image_extension != 'odt'">
+                                </ion-img>
+                                <a href="{{img.image_url}}" download  *ngIf="img.image_extension != 'png' && img.image_extension != 'jpg'  && img.image_extension != 'jpeg'">
+                                    <p>{{img.image_name}}</p>
+                                </a>
                             </div>
                         </div>
                         <div (click)=removeImage(img) class="mt-2">

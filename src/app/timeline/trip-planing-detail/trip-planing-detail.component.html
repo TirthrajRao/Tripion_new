@@ -1,6 +1,7 @@
 <ion-content>
     <div class="trip_content">
-        <div class="header_sec" [style.background-image]="tripImage ?'url('+tripImage+')': 'url(assets/images/header.png)'">
+        <div class="header_sec"
+            [style.background-image]="tripImage ?'url('+tripImage+')': 'url(assets/images/header.png)'">
             <i class="fa fa-angle-left back_icon_white" (click)="goBack()"></i>
             <div class="header_text">
                 <h3>The Trip Planing</h3>
@@ -17,7 +18,8 @@
                         <ion-card-content>
                             <div class="card_header w-100 d-inline-block ">
                                 <h3 class="float-left" [innerHtml]="timelineDayDetail.itinerary_title"></h3>
-                                <p class="float-right"><i class="far fa-calendar-minus"></i>{{timelineDayDetail.itinerary_date}}</p>
+                                <p class="float-right"><i
+                                        class="far fa-calendar-minus"></i>{{timelineDayDetail.itinerary_date}}</p>
                             </div>
                             <div class="card_body">
                                 <p class="mt-1" [innerHtml]="timelineDayDetail.itinerary_content"></p>
@@ -37,22 +39,35 @@
                                     <h3 class="title">Location</h3>
                                     <div *ngIf="detail.location" [innerHtml]="detail.location" class="mb-2"></div>
                                     <div class="trip_drescription_image">
-                                        <h3 class="title mb-2">Attachment</h3>
+                                        <h3 class="title mb-2" *ngIf="detail.attachment && detail.attachment.length">
+                                            Attachment</h3>
                                         <div class="row" *ngIf="detail.attachment && detail.attachment.length">
                                             <div class="col-6" *ngFor="let img of detail.attachment;let i=index">
                                                 <div *ngIf="i < 2">
-                                                    <div class="trip_img" (click)="previewImage(img.image_url);" *ngIf="img.image_extension == 'jpeg' || img.image_extension == 'png' || img.image_extension == 'jpg'">
-                                                        <img [src]="img.image_url" onError="src = 'assets/images/placeholder.png'" (click)="downloadPdf(img.image_url,img.image_name,img.mime_type,img.image_extension)">
+                                                    <div class="trip_img" (click)="previewImage(img.image_url);"
+                                                        *ngIf="img.image_extension == 'jpeg' || img.image_extension == 'png' || img.image_extension == 'jpg'">
+                                                        <img [src]="img.image_url"
+                                                            onError="src = 'assets/images/placeholder.png'"
+                                                            (click)="downloadPdf(img.image_url,img.image_name,img.mime_type,img.image_extension)">
                                                     </div>
-                                                    <div class="trip_img" *ngIf="img.image_extension != 'jpeg' && img.image_extension != 'png' && img.image_extension != 'jpg'" (click)="downloadPdf(img.image_url,img.image_name,img.mime_type)">
-                                                       <img src="assets/images/docs2.png">
-                                                        <p>{{img.image_name}}</p>
+                                                    <div class="trip_img"
+                                                        (click)="downloadPdf(img.image_url,img.image_name,img.mime_type)">
+                                                        <img src="assets/images/pdf.png"
+                                                            *ngIf="img.image_extension == 'pdf'">
+                                                        <img src="assets/images/xls.png"
+                                                            *ngIf="img.image_extension == 'xlsx'||img.image_extension == 'xls' ">
+                                                        <img src="assets/images/doc1.png"
+                                                            *ngIf="img.image_extension == 'doc'||img.image_extension == 'docx' ||img.image_extension == 'odt' ">
+                                                        <img src="assets/images/docs2.png"
+                                                            *ngIf="img.image_extension != 'png' && img.image_extension != 'jpg' && img.image_extension != 'jpeg' && img.image_extension != 'pdf' && img.image_extension != 'xlsx' && img.image_extension != 'xls'&& img.image_extension != 'docx' && img.image_extension != 'doc' && img.image_extension !='odt'">
+                                                        <p *ngIf="img.image_extension != 'png' && img.image_extension != 'jpg' && img.image_extension != 'jpeg' ">{{img.image_name}}</p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="view_more" *ngIf="detail.attachment.length >2" id="view-more" (click)="openModal(detail.attachment)">
+                                    <div class="view_more" *ngIf="detail.attachment.length >2" id="view-more"
+                                        (click)="openModal(detail.attachment)">
                                         <a>View More</a>
                                     </div>
                                 </div>
@@ -79,11 +94,22 @@
                 <div class="trip_drescription_image">
                     <div class="row">
                         <div class="col-6" *ngFor="let img of images">
-                            <div class="trip_img" (click)="previewImage(img)" *ngIf="img.image_extension == 'jpeg' || img.image_extension == 'png' || img.image_extension == 'jpg'">
-                                <img [src]="img.image_url" onError="src = 'assets/images/placeholder.png'" (click)="downloadPdf(img.image_url,img.image_name,img.mime_type)">
+                            <div class="trip_img" (click)="previewImage(img)"
+                                *ngIf="img.image_extension == 'jpeg' || img.image_extension == 'png' || img.image_extension == 'jpg'">
+                                <img [src]="img.image_url" onError="src = 'assets/images/placeholder.png'"
+                                    (click)="downloadPdf(img.image_url,img.image_name,img.mime_type)">
                             </div>
-                            <div class="trip_img" *ngIf="img.image_extension != 'jpeg' && img.image_extension != 'png' && img.image_extension != 'jpg'" (click)="downloadPdf(img.image_url,img.image_name,img.mime_type)">
-                                <span>{{img.image_name}}</span>
+                            <div class="trip_img"    
+                                (click)="downloadPdf(img.image_url,img.image_name,img.mime_type)">
+                                <img src="assets/images/pdf.png"
+                                *ngIf="img.image_extension == 'pdf'">
+                            <img src="assets/images/xls.png"
+                                *ngIf="img.image_extension == 'xlsx'||img.image_extension == 'xls' ">
+                            <img src="assets/images/doc1.png"
+                                *ngIf="img.image_extension == 'doc'||img.image_extension == 'docx' ||img.image_extension == 'odt' ">
+                            <img src="assets/images/docs2.png"
+                                *ngIf="img.image_extension != 'png' && img.image_extension != 'jpg' && img.image_extension != 'jpeg' && img.image_extension != 'pdf' && img.image_extension != 'xlsx' && img.image_extension != 'xls'&& img.image_extension != 'docx' && img.image_extension != 'doc' && img.image_extension !='odt'">
+                                <span *ngIf="img.image_extension != 'jpeg' && img.image_extension != 'png' && img.image_extension != 'jpg'">{{img.image_name}}</span>
                             </div>
                         </div>
                     </div>

@@ -143,7 +143,11 @@ $blue: #021b79;
             padding: 0px 25px 18px 25px;
             button {
                 border-radius: 30px;
-                line-height: 46px;
+                // line-height: 46px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px 0;
                 color: #ffffff;
                 font-size: 15px;
                 position: relative;
@@ -154,7 +158,7 @@ $blue: #021b79;
                 background: linear-gradient(to right, #0575e6, #021b79);
                 // box-shadow: 2px 1px 3px rgba(129, 59, 219, 0.5);
                 i {
-                    margin-right: 15px;
+                    margin-right: 10px;
                     font-size: 25px;
                 }
             }

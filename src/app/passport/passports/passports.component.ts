@@ -123,6 +123,10 @@ export class PassportsComponent implements OnInit {
         }
         if (this.files[i].type == 'image/png' || this.files[i].type == 'image/jpeg' || this.files[i].type == 'image/jpg') {
           obj['type'] = 'img'
+        }else {
+          let type = this.files[i].name.split('.');
+          obj['type'] = type[type.length - 1]
+          console.log("type",type);
         }
         this.urls.push(obj);
       }

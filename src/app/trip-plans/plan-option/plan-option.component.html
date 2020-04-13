@@ -14,8 +14,7 @@
             *ngIf="tripDetail.plans.length">
             <div class="float-left">
                 <span [innerHtml]="tripDetail.plans[0].plan_name"></span>
-                <p *ngIf="tripDetail.plans[0].selected_plan == 2">Book With Third Party</p>
-                <p *ngIf="tripDetail.plans[0].selected_plan == 1">Book With Us</p>
+                <p *ngIf="tripDetail.plans[0].selected_plan == 2">Booked With Third Party App</p>
             </div>
             <div class="calendar_img float-right">
                 <ion-img src="assets/images/plane.png"></ion-img>
@@ -81,7 +80,7 @@
             <div class="card_footer w-100">
                 <button type="submit" (click)="selectDocument()">
                     <i class="fas fa-cloud-upload-alt"></i>
-                    Upload Documents
+                    <span>Upload Documents</span>
                 </button>
             </div>
         </div>
@@ -136,7 +135,7 @@
 
         <div style="margin-top: 40%;"
             *ngIf="!tripDetail.payment.payment_request.length && !tripDetail.requested_docs.length  && tripDetail.is_passport != 1 && !tripDetail.payment.payment_success.length ">
-            <span class="text-center text-white no-req">We are Working on it <br>will revert soon!!</span>
+            <span class="text-center text-white no-req">We are Working on it, <br>will revert soon!!</span>
         </div>
 
 
@@ -147,7 +146,7 @@
                 <img src="assets/images/safetravel.png">
             </div>
             <div class="notification-text">
-                <span class="text-center no-request text-white"> We are working on it<br>
+                <span class="text-center no-request text-white"> We are working on it,<br>
                     will revert soon !!</span>
             </div>
         </div>

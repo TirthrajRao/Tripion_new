@@ -24,7 +24,10 @@
             <div class="image_detail"
                 *ngIf="document.image_extension != 'png' && document.image_extension != 'jpg' && document.image_extension != 'jpeg'">
                 <div class="image">
-                    <ion-img src="assets/images/doc.png"></ion-img>
+                    <img src="assets/images/pdf.png" *ngIf="document.image_extension == 'pdf'">
+                    <img src="assets/images/xls.png" *ngIf="document.image_extension == 'xlsx'||document.image_extension == 'xls' ">
+                    <img src="assets/images/doc1.png" *ngIf="document.image_extension == 'doc'||document.image_extension == 'docx' ||document.image_extension == 'odt' ">
+                    <img src="assets/images/docs2.png" *ngIf="document.image_extension != 'png' && document.image_extension != 'jpg' && document.image_extension != 'jpeg' && document.image_extension != 'pdf' && document.image_extension != 'xlsx' && document.image_extension != 'xls'&& document.image_extension != 'docx' && document.image_extension != 'doc' && document.image_extension !='odt'">
                 </div>
                 <div class="detail">
                     <p *ngIf="document.admin_approved_image == 0" style="color: orange;">Pending</p>

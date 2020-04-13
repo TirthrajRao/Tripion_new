@@ -45,8 +45,12 @@
                             <div class="all_image" *ngIf="doc.image_extension == 'png' || doc.image_extension == 'jpg' || doc.image_extension == 'jpeg'">
                                 <ion-img [src]="doc.image_url || 'assets/images/placeholder.png'" class="visa_image " (ionError)="onErrorImage(i)"></ion-img>
                             </div>
-                            <div *ngIf="doc.image_extension != 'png' && doc.image_extension != 'jpeg' && doc.image_extension != 'jpg' ">
-                                <a href="{{doc.image_url}}" download>{{doc.image_name}}</a>
+                            <div >
+                                <ion-img src="assets/images/pdf.png" class="visa_image " *ngIf="doc.image_extension == 'pdf'"></ion-img>
+                                <ion-img src="assets/images/xls.png" class="visa_image " *ngIf="doc.image_extension == 'xlsx' || doc.image_extension == 'xls'"></ion-img>
+                                <ion-img src="assets/images/doc1.png" class="visa_image " *ngIf="doc.image_extension == 'doc' || doc.image_extension == 'odt' || doc.image_extension == 'docx'"></ion-img>
+                                <ion-img src="assets/images/doc2.png" class="visa_image " *ngIf="doc.image_extension !='png' && doc.image_extension != 'jpeg' && doc.image_extension != 'jpg' && doc.image_extension != 'pdf' && doc.image_extension != 'xlsx' && doc.image_extension != 'xls' && doc.image_extension != 'doc'&& doc.image_extension != 'docx'&& doc.image_extension != 'odt'" ></ion-img>
+                                <a href="{{doc.image_url}}" download *ngIf="doc.image_extension != 'png' && doc.image_extension != 'jpeg' && doc.image_extension != 'jpg' ">{{doc.image_name}}</a>
                             </div>
                             <div (click)=removeImage(doc) class="mt-2">
                                 <ion-img src="assets/images/remove.png " class="remove_image "></ion-img>

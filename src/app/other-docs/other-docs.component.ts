@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UploadService } from '../services/upload.service';
 import { ToastService } from '../services/toast.service';
 import { AppComponent } from '../app.component';
+import { AlertController } from '@ionic/angular';
 declare var $: any;
 
 @Component({
@@ -26,10 +27,12 @@ export class OtherDocsComponent implements OnInit {
     public _uploadService: UploadService,
     public _toastService: ToastService,
     public appComponent: AppComponent,
+    public alertController: AlertController
   ) {
     this.createFolderForm = new FormGroup({
       folder_name: new FormControl('', [Validators.required, Validators.pattern("^([a-zA-Z0-9][^*/><?\|:]*)$")])
     })
+    
   }
 
   get f() { return this.createFolderForm.controls }
@@ -143,5 +146,48 @@ export class OtherDocsComponent implements OnInit {
     rand = i % this.imageIcon.length;
     this.lastImage = rand;
     return this.imageIcon[rand];
+  }
+
+  /**
+   * Delete Folder
+   * @param {string} data 
+   */
+  async removeFolder(data, index) {
+    const alert = await this.alertController.create({
+      header: 'Alert!',
+      message: 'Are you sure you want to delete this folder?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+            $('.folder-icon-' + index).css('opacity', 0)
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.loading = true
+            const obj = {
+              id: this.currentUser.id,
+              folder_path: 'Other Docs/' + data
+            }
+            this._uploadService.deleteFolder(obj).subscribe((res: any) => {
+              console.log("delete folder", res);
+              this.folderList.splice(index, 1);
+              this.loading = false;
+            }, err => {
+              console.log("err", err);
+              this.appComponent.errorAlert(err.error.message);
+              this.loading = false;
+            })
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

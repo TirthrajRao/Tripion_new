@@ -127,4 +127,12 @@ export class UploadService {
   editVisaDetail(data){
     return this.http.post(config.baseApiUrl + 'edit-visa', data);
   }
+
+  /**
+   * Delete Folder
+   * @param {object} data 
+   */
+  deleteFolder(data){
+    return this.http.post(config.baseApiUrl + 'delete-folder', data);
+  }
 }

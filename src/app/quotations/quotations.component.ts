@@ -107,7 +107,7 @@ export class QuotationsComponent implements OnInit {
           //Download file
           this._toastService.presentToast("Downloading.....", 'success')
           this.fileTransfer.download(url, ROOT_DIRECTORY + downloadFolderName + '/' + name + '.' + ext).then((entry) => {
-            console.log('download complete: ' + entry.toURL());
+            // console.log('download complete: ' + entry.toURL());
             this.openFile(entry.nativeURL, mimeType);
           }, (error) => {
             console.log("error", error);

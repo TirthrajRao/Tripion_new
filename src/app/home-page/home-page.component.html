@@ -32,7 +32,8 @@
                             {{city.city}}
                         </option>
                     </select> -->
-                    <p class="temp-city" (click)="selectCity('temperature')" *ngIf="tempratureCity">{{tempratureCity}}</p>
+                    <p class="temp-city" (click)="selectCity('temperature')" *ngIf="tempratureCity">{{tempratureCity}}
+                    </p>
                     <!-- <span *ngIf="tempratureCity && !tempratureIndex"
                         style="position: absolute;">{{tempratureCity}}</span> -->
                 </div>
@@ -46,23 +47,38 @@
                         {{city.city}}
                     </option>
                 </select> -->
-                <p class="time-city"  (click)="selectCity('time')" *ngIf="timeCity">{{timeCity}}</p>
+                <p class="time-city" (click)="selectCity('time')" *ngIf="timeCity">{{timeCity}}</p>
                 <p *ngIf="currentTime" class="time-txt">{{currentTime}}</p>
             </div>
         </div>
         <div class="home_details" *ngIf="allTrips.length ">
-            <div *ngFor="let trip of allTrips">
+            <div *ngFor="let trip of allTrips;let i = index">
                 <div class="card text-white mb-2 " (click)="getPlanOption(trip) ">
+                    <div class="booking_details">
+                        <p class="float-right">{{trip.status}}</p>
+                        <p [innerHtml]="trip.inquiry_name " class="inquiry-title float-left mt-1"></p>
+                    </div>
                     <div class="card_content w-100 ">
-                        <div class="country_details float-left">
-                            <p [innerHtml]="trip.inquiry_name "></p>
+                        <!-- <div>
+                            <p class="float-right">{{trip.status}}</p>
+                            <p [innerHtml]="trip.inquiry_name " class="inquiry-title float-left"></p>
+                        </div> -->
+                        <!-- <div class="booking_details ">
+                           
+                        </div> -->
+                        <!-- <div style="display: flex;"> -->
+                        <div class="country_details">
+                            <!-- <p class="float-right">{{trip.status}}</p>
+                            <p [innerHtml]="trip.inquiry_name " class="inquiry-title float-left"></p> -->
                             <ul>
                                 <li *ngFor="let inquiry of trip.list_of_inquiry">{{inquiry}}</li>
                             </ul>
                         </div>
-                        <div class="booking_details float-right ">
-                            <p>{{trip.status}}</p>
-                        </div>
+                        <!-- <div class="booking_details">
+                                
+                                <p >{{trip.status}}</p>
+                            </div> -->
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>

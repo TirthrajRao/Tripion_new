@@ -16,7 +16,8 @@
                 <div class="row">
                     <div class="col-3" *ngFor="let url of urls">
                         <div class="uploded_image">
-                            <ion-img [src]="url.imgUrl || 'assets/images/placeholder.png' " *ngIf="url.type=='img'"></ion-img>
+                            <ion-img [src]="url.imgUrl || 'assets/images/placeholder.png' " *ngIf="url.type=='img'">
+                            </ion-img>
                             <span *ngIf="url.type=='pdf'">{{url.name}}</span>
                         </div>
                     </div>
@@ -36,13 +37,26 @@
                                 <img [src]="photo.image_url" onError="src = 'assets/images/placeholder.png'"
                                     class="image-{{photo.id}}" style="opacity: 1;"
                                     *ngIf="photo.image_extension == 'png' || photo.image_extension == 'jpg'  || photo.image_extension == 'jpeg'" />
-                                    <img src="assets/images/docs2.png"
-                                    class="image-{{photo.id}}" style="opacity: 1;height: 103px;min-height: unset;"
-                                    *ngIf="photo.image_extension != 'png' && photo.image_extension != 'jpg'  && photo.image_extension != 'jpeg'" />
-                                    <p
-                                    *ngIf="photo.image_extension != 'png' && photo.image_extension != 'jpg'  && photo.image_extension != 'jpeg'">{{photo.image_name}}</p>
+
+                                <div *ngIf="photo.image_extension == 'pdf'">
+                                    <img src="assets/images/pdf.jpeg">
+                                    <p>{{photo.image_name}}</p>
                                 </div>
-                            
+                                <div *ngIf="photo.image_extension == 'xlsx'||photo.image_extension == 'xls' ">
+                                    <img src="assets/images/xl.png">
+                                    <p>{{photo.image_name}}</p>
+                                </div>
+                                <div
+                                    *ngIf="photo.image_extension == 'doc'||photo.image_extension == 'docx'|| photo.image_extension == 'odt' ">
+                                    <img src="assets/images/doc.jpeg">
+                                    <p>{{photo.image_name}}</p>
+                                </div>
+                                <div
+                                    *ngIf="photo.image_extension != 'png' && photo.image_extension != 'jpg'  && photo.image_extension != 'jpeg' && photo.image_extension != 'xlsx' && photo.image_extension != 'xls' && photo.image_extension != 'pdf'&& photo.image_extension != 'doc'&& photo.image_extension != 'docx'&&  photo.image_extension != 'odt'">
+                                    <img src="assets/images/docs2.png">
+                                    <p>{{photo.image_name}}</p>
+                                </div>
+                            </div>
                             <ion-icon name="checkmark" class="checkmark-icon-{{photo.id}}"></ion-icon>
                         </div>
                     </div>

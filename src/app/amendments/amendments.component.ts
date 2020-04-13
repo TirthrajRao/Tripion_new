@@ -399,7 +399,7 @@ export class AmendmentsComponent implements OnInit {
           this.fileTransfer.download(data.url, ROOT_DIRECTORY + downloadFolderName + '/' + data.name + '.' + data.ext).then((entry) => {
             this.downloading = false;
             console.log('download complete: ' + entry.toURL());
-            this._toastService.presentToast("Download Completed", 'success');
+            // this._toastService.presentToast("Download Completed", 'success');
             this.openFile(entry.nativeURL, data.mimeType);
           }, (error) => {
             console.log("error", error);

@@ -79,7 +79,7 @@ export class HomePageComponent implements OnInit {
           this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
           // console.log("urllllll", e[0].urlAfterRedirects);
           this.previousUrl = e[0].urlAfterRedirects;
-          if (this.previousUrl.includes('other-details') || this.previousUrl.includes('login') || this.previousUrl.includes('general-detail') || this.previousUrl.includes('signup') || this.previousUrl.includes('premium-account') || this.previousUrl.includes('passport') || this.previousUrl.includes('all-plan')
+          if (this.previousUrl.includes('other-details') || this.previousUrl.includes('login') || this.previousUrl.includes('general-detail') || this.previousUrl.includes('signup') || this.previousUrl.includes('premium-account') || this.previousUrl.includes('passport') || this.previousUrl.includes('all-plan') || this.previousUrl.includes('plan-option')
           ) {
             console.log("in if");
             this.allTrips = []
@@ -88,16 +88,10 @@ export class HomePageComponent implements OnInit {
         }
       });
     this.getAllTrips();
-
   }
-
 
   ngOnInit() {
-
   }
-
-
-
 
   ionViewWillEnter() {
     console.log("in enter", this.tempratureIndex);
@@ -292,7 +286,7 @@ export class HomePageComponent implements OnInit {
       .catch((error: any) => {
         console.log("err get in cityname", error);
       });
-  
+
 
   }
 
@@ -365,4 +359,13 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['/home/select-city/' + type])
 
   }
+
+  // getHeight(index) {
+  //   console.log("in get hieight i", index);
+  //   let width = $('.status-' + index).width();
+  //   if (width > 112) {
+  //     $('.status-' + index).css("font-size", '12px')
+  //   }
+  //   console.log("in get hieight", width);
+  // }
 }

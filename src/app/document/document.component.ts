@@ -192,7 +192,7 @@ export class DocumentComponent implements OnInit {
       this.previewImag.splice(index, 1)
       this.documentId.splice(index, 1)
     } else {
-      if (data.image_extension != 'pdf')
+      if (data.image_extension == 'png' || data.image_extension == 'jpg' || data.image_extension == 'jpeg')
         this.previewImag.push(data)
       this.documentId.push(data.id);
     }

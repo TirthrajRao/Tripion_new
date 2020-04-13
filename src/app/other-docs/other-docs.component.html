@@ -10,9 +10,18 @@
     <div class="all_content">
         <div *ngIf="folderList.length">
             <div class="card folder_detail" *ngFor="let folder of folderList;let i =index"
-                routerLink='/home/pictures/{{folder}}'>
-                <ion-img [src]="getRandomImgeIcon(i)"></ion-img>
-                <p>{{folder}}</p>
+             >
+                <div class="row">
+                    <div class="col-2">
+                        <ion-img [src]="getRandomImgeIcon(i)"></ion-img>
+                    </div>
+                    <div class="col-8"  routerLink='/home/pictures/{{folder}}' style="outline: none;">
+                        <p>{{folder}}</p>
+                    </div>
+                    <div class="col-2">
+                        <img src="assets/images/remove.png" class="remove_image" (click)=removeFolder(folder,i)>
+                    </div>
+                </div>
             </div>
         </div>
         <div *ngIf="!loading && !folderList.length">
