@@ -46,7 +46,7 @@ export class TripPlaningDetailComponent implements OnInit {
   ngOnInit() {
     console.log("trip id and day", this.tripId, this.day);
     this.getDayDetails();
-    console.log("currunt date", this.curruntDate);
+    // console.log("currunt date", this.curruntDate);
   }
 
   // open modal for add passport
@@ -56,7 +56,6 @@ export class TripPlaningDetailComponent implements OnInit {
       if (index >= 2)
         this.images.push(img)
     })
-    console.log(this.images)
     $('#view-img-modal').fadeIn();
     $('#view-img-modal .modal_body').click(function (event) {
       event.stopPropagation();

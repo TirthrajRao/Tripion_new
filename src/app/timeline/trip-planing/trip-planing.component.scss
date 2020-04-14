@@ -173,3 +173,19 @@ ion-content {
     display: flex;
     font-size: 22px;
 }
+.footer_img{
+    display: flex;
+    justify-content: center;
+    span{
+        font-size: 23px;
+    }
+    ion-img{
+        margin-top: 3px;
+    }
+}
+ion-header{
+    height: 0;
+     ion-toolbar:first-child{
+        --background:transparent
+     }
+}

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TripService } from 'src/app/services/trip.service';
 import { AppComponent } from '../../app.component';
-import { DatePipe } from '@angular/common'
+import { DatePipe } from '@angular/common';
+import { NavController } from '@ionic/angular';
 import * as _ from 'lodash';
 declare var $: any;
 
@@ -24,6 +25,7 @@ export class TripPlaningComponent implements OnInit {
     public _tripService: TripService,
     public datepipe: DatePipe,
     public appComponent: AppComponent,
+    public navCtrl:NavController
     ) {
     this.route.params.subscribe((params) => {
       this.tripId = params.inquiryId;
@@ -43,7 +45,8 @@ export class TripPlaningComponent implements OnInit {
   */
   goBack() {
     console.log("back")
-    window.history.back();
+    this.navCtrl.back();
+    // window.history.back();
   }
 
   /**
@@ -58,7 +61,7 @@ export class TripPlaningComponent implements OnInit {
      this._tripService.getTripTimeline(data).subscribe((res: any) => {
        this.tripTimeline = res.data.timeline;
        this.tripImage = res.data.featured_image;
-       console.log("===",this.tripImage)
+      //  console.log("===",this.tripImage)
        this.loading = false;
        console.log("res of timeline", res);
      }, (err) => {

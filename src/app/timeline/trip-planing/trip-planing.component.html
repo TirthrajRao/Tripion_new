@@ -1,7 +1,23 @@
+<ion-header>
+    <ion-toolbar class="toolbar-color1" >
+        <ion-row>
+            <ion-col size='2'>
+                <div class="back_icon">
+                    <ion-buttons slot="start">
+                        <ion-back-button>
+                            <i class="fa fa-angle-left back_icon_white"></i>
+                        </ion-back-button>
+                    </ion-buttons>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-header>
 <ion-content>
-    <div class="trip_content">
-        <div class="header_sec" [style.background-image]="tripImage ?'url('+tripImage+')': 'url(assets/images/header.png)'">
-            <i class="fa fa-angle-left back_icon_white" (click)="goBack()"></i>
+    <div class="trip_content mt-0">
+        <div class="header_sec"
+            [style.background-image]="tripImage ?'url('+tripImage+')': 'url(assets/images/header.png)'">
+            <!-- <i class="fa fa-angle-left back_icon_white" (click)="goBack()"></i> -->
             <div class="header_text">
                 <h3>The Trip Planing</h3>
                 <p>Daywise Summary</p>
@@ -12,8 +28,11 @@
         </div>
         <div id="content" *ngIf="tripTimeline.length">
             <ul class="timeline">
-                <li class="event" *ngFor="let timeline of tripTimeline;let i = index" data-id="Day {{i + 1}}" [ngClass]="{'event1': timeline.itinerary_date < curruntDate}">
-                    <div class="custom_card" routerLink="/home/trip-planing-detail/{{tripId}}/{{timeline.itinerary_day}} " [ngClass]="{ 'card1': curruntDate == timeline.itinerary_date } ">
+                <li class="event" *ngFor="let timeline of tripTimeline;let i = index" data-id="Day {{i + 1}}"
+                    [ngClass]="{'event1': timeline.itinerary_date < curruntDate}">
+                    <div class="custom_card"
+                        routerLink="/home/trip-planing-detail/{{tripId}}/{{timeline.itinerary_day}} "
+                        [ngClass]="{ 'card1': curruntDate == timeline.itinerary_date } ">
                         <div class="card_header w-100 d-inline-block ">
                             <h3 class="float-left ">{{timeline.itinerary_title}}</h3>
                             <p class="float-right "><img src="assets/images/ca.png ">{{timeline.itinerary_date |date}}
@@ -38,3 +57,19 @@
         </div>
     </div>
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <div class="footer_sec">
+            <div class="row">
+                <div class="col-12 text-white">
+                    <div class="footer_img" routerLink='/home/briefcase'>
+                        <ion-img src="assets/images/3.png"></ion-img>
+                        <span>Briefcase</span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-toolbar>
+</ion-footer>
