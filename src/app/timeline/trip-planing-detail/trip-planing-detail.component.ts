@@ -148,4 +148,11 @@ export class TripPlaningDetailComponent implements OnInit {
     console.log(img)
     this.photoViewer.show(img)
   }
+
+  /**
+   * Open location
+   */
+  openLocation(url) {
+    window.open(encodeURI(url), '_system', 'location=no');
+  }
 }

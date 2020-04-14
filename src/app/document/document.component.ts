@@ -140,6 +140,10 @@ export class DocumentComponent implements OnInit {
       }
       if (file.type == 'image/png' || file.type == 'image/jpeg' || file.type == 'image/jpg') {
         obj['type'] = 'image'
+      } else {
+        let type = file.name.split('.');
+        obj['type'] = type[type.length - 1]
+        console.log("type", type);
       }
       this.urls.push(obj);
     }
@@ -165,14 +169,44 @@ export class DocumentComponent implements OnInit {
     console.log(data)
     this._uploadService.uploadDocuments(data).subscribe((res: any) => {
       console.log("res", res);
+      this.allImage.push(...res.data);
+      console.log("alll",this.allImage)
       $('#folder-modal').fadeOut();
       this.isDisable = false;
       this.loading = false;
-      this.getAllImages();
-      this.urls = []
+      this.urls = [];
+      this.sendUploadedDocument(res.data)
     }, (err) => {
       console.log(err);
       this.isDisable = false;
+      this.loading = false;
+      this.appComponent.errorAlert(err.error.message);
+    })
+  }
+
+  /**
+   * Direct upload added document
+   * @param {Array} data 
+   */
+  sendUploadedDocument(data){
+    console.log("data",data);
+    this.loading = true;
+    _.forEach(data,(image)=>{
+      this.documentId.push(image.id);
+    })
+    console.log("documentid",this.documentId.toString());
+    const obj = {
+      id: this.currentUser.id,
+      document_id: this.documentId.toString(),
+      inquiry_id: this.details.tripId
+    }
+    this._uploadService.sendDocument(obj).subscribe((res: any) => {
+      this.documentId = [];
+      this.loading = false;
+      console.log("res of send document", res);
+      this.appComponent.sucessAlert("Files Successfully Uploaded")
+    }, (err) => {
+      console.log(err);
       this.loading = false;
       this.appComponent.errorAlert(err.error.message);
     })

@@ -35,6 +35,7 @@
                     <p *ngIf="document.admin_approved_image == 2" class="text-danger">Reject</p>
                 </div>
                 <span>{{document.image_name}}</span>
+                <p *ngIf="document.reason_to_reject">{{document.reason_to_reject}}</p>
             </div>
         </div>
     </div>

@@ -5,3 +5,47 @@
         text-overflow: ellipsis;
     }
 }
+.main-image-view{
+    margin-left: -5px !important;
+    margin-right: -5px !important;
+    .image-view{
+        img{
+            height: 120px;
+            width: 100%;
+            object-fit: fill;
+            padding: 5px 5px !important;
+            border-radius: 7px;
+        }
+    }
+    i{
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 11111;
+        color: black;
+        opacity: 0;
+        font-size: 25px;
+    }
+}
+
+​ .remove_image {
+    height: 20px;
+    margin-top: 10px;
+}
+.file-view{
+    img{
+        height: 93px;
+        border-bottom-right-radius: 0px !important;
+        border-bottom-left-radius: 0px !important;
+    }
+    p{
+        margin-left: 5px;
+        margin-top: -8px;
+        padding: 4px 5px 0px 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: white;
+        font-weight: 500;
+    }
+}

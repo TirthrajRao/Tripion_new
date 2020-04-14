@@ -106,7 +106,8 @@ export class PicturesComponent implements OnInit {
   selectFile(e) {
     console.log("===", e.target.files);
 
-    this.files = e.target.files
+    this.files = e.target.files;
+    this.urls = []
     for (let i = 0; i < this.files.length; i++) {
       let reader = new FileReader();
       reader.onload = (e: any) => {

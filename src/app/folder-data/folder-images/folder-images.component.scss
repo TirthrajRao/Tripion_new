@@ -3,13 +3,13 @@
     border-radius: 9px;
     margin-bottom: 10px;
     align-items: center;
-    @media(max-height: 812px) {
+    @media (max-height: 812px) {
         padding: 13px;
     }
-    @media(max-height: 750px) {
+    @media (max-height: 750px) {
         padding: 8px;
     }
-    @media(max-height: 600px) {
+    @media (max-height: 600px) {
         padding: 6px;
     }
     a,
@@ -33,11 +33,11 @@
         }
     }
 }
-.main-image-view{
+.main-image-view {
     margin-left: -5px !important;
     margin-right: -5px !important;
-    .image-view{
-        img{
+    .image-view {
+        img {
             height: 120px;
             width: 100%;
             object-fit: fill;
@@ -45,7 +45,7 @@
             border-radius: 7px;
         }
     }
-    i{
+    i {
         position: absolute;
         right: 0;
         top: 0;
@@ -60,23 +60,31 @@
     height: 20px;
     margin-top: 10px;
 }
-.file-view{
-    img{
+.file-view {
+    img {
         height: 93px;
         border-bottom-right-radius: 0px !important;
         border-bottom-left-radius: 0px !important;
     }
-    p{
-        background: white;
-        // width: 91.60%;
+    p {
         margin-left: 5px;
         margin-top: -8px;
-        padding: 0px 5px;
+        padding: 4px 5px 0px 5px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        margin-right: 5px;
-        border-bottom-left-radius: 2px;
-        border-bottom-right-radius: 2px;
+        color: white;
+        font-weight: 500;
+        // background: white;
+        // // width: 91.60%;
+        // margin-left: 5px;
+        // margin-top: -8px;
+        // padding: 0px 5px;
+        // white-space: nowrap;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
+        // margin-right: 5px;
+        // border-bottom-left-radius: 2px;
+        // border-bottom-right-radius: 2px;
     }
 }

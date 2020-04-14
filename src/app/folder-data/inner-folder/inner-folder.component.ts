@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UploadService } from '../../services/upload.service';
 import { AppComponent } from '../../app.component';
+import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
+import { AlertController } from '@ionic/angular';
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 declare const $: any;
 @Component({
   selector: 'app-inner-folder',
@@ -21,6 +24,9 @@ export class InnerFolderComponent implements OnInit {
     public route: ActivatedRoute,
     public _uploadService: UploadService,
     public appComponent: AppComponent,
+    private photoViewer: PhotoViewer,
+    private previewAnyFile: PreviewAnyFile,
+    public alertController: AlertController,
   ) {
     this.route.params.subscribe((params) => {
       this.folderName = params.foldername;
@@ -50,7 +56,8 @@ export class InnerFolderComponent implements OnInit {
   selectFile(e) {
     console.log("===", e.target.files);
 
-    this.files = e.target.files
+    this.files = e.target.files;
+    this.urls = [];
     for (let i = 0; i < this.files.length; i++) {
       let reader = new FileReader();
       reader.onload = (e: any) => {
@@ -135,5 +142,76 @@ export class InnerFolderComponent implements OnInit {
   onErrorImage(index) {
     console.log("index", index);
     this.allImages[index].image_url = 'assets/images/placeholder.png'
+  }
+
+
+
+  /**
+   * Delete Image
+   */
+  async removeImage(data, index, type) {
+    console.log(data);
+    const alert = await this.alertController.create({
+      header: 'Alert!',
+      message: 'Are you sure you want to delete this ' + type + '?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+            $('.icon-' + index).css('opacity', 0)
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.loading = true;
+            const obj = {
+              image_id: data.id
+            }
+            this._uploadService.removeImage(obj).subscribe((res: any) => {
+              console.log(res);
+              this.loading = false;
+              this.allImages.splice(this.allImages.indexOf(data), 1);
+            }, (err) => {
+              console.log(err);
+              this.loading = false;
+              this.appComponent.errorAlert(err.error.message);
+            })
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  /**
+   * Image pop up
+   * @param {URL} img 
+   */
+  previewImage(img) {
+    console.log(img)
+    this.photoViewer.show(img)
+  }
+
+  /**
+   * Document preview
+   * @param {Url} path 
+   */
+  previewDocument(path) {
+    console.log(path)
+    this.previewAnyFile.preview(path)
+      .then((res: any) => console.log(res))
+      .catch((error: any) => console.error(error));
+  }
+
+
+
+  longPress(index) {
+    console.log("longpresss", index);
+    $('.icons-' + index).css('opacity', 1)
   }
 }

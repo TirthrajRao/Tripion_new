@@ -33,17 +33,17 @@
                 <img [src]="img.image_url || 'assets/images/placeholder.png'" (click)="previewImage(img.image_url)"
                     (ionError)="onErrorImage(i)">
             </div>
-            <i class="fa fa-times-circle icon-{{i}}" (click)="removeImage(img,i)"></i>
+            <i class="fa fa-times-circle icon-{{i}}" (click)="removeImage(img,i,'image')"></i>
         </div>
         <div *ngIf="img.image_extension != 'png' && img.image_extension != 'jpg' && img.image_extension != 'jpeg'" (press)="longPress(i)">
             <div class="image-view file-view" (click)="previewDocument(img.image_url)">
-                <img src="assets/images/pdf.jpeg" *ngIf="img.image_extension == 'pdf'" style="height: 99px;">
-                <img src="assets/images/xl.png" *ngIf="img.image_extension == 'xlsx' || img.image_extension == 'xls'" style="height: 99px;">
-                <img src="assets/images/doc.jpeg" *ngIf="img.image_extension == 'doc' || img.image_extension == 'docx' || img.image_extension == 'odt'" style="height: 99px;">
-                <img src="assets/images/docs2.png" style="height: 93px;" *ngIf="img.image_extension != 'png' && img.image_extension != 'jpg'  && img.image_extension != 'jpeg' && img.image_extension != 'xlsx' && img.image_extension != 'xls' && img.image_extension != 'pdf'&& img.image_extension != 'doc'&& img.image_extension != 'docx'&&  img.image_extension != 'odt'">
+                <img src="assets/images/pdf.png" *ngIf="img.image_extension == 'pdf'" style="height: 99px;">
+                <img src="assets/images/xls.png" *ngIf="img.image_extension == 'xlsx' || img.image_extension == 'xls'" style="height: 99px;">
+                <img src="assets/images/doc1.png" *ngIf="img.image_extension == 'doc' || img.image_extension == 'docx' || img.image_extension == 'odt'" style="height: 99px;">
+                <img src="assets/images/docs2.png" style="height: 99px;" *ngIf="img.image_extension != 'png' && img.image_extension != 'jpg'  && img.image_extension != 'jpeg' && img.image_extension != 'xlsx' && img.image_extension != 'xls' && img.image_extension != 'pdf'&& img.image_extension != 'doc'&& img.image_extension != 'docx'&&  img.image_extension != 'odt'">
                 <p>{{img.image_name}}</p>
             </div>
-            <i class="fa fa-times-circle icon-{{i}}" (click)="removeImage(img,i)"></i>
+            <i class="fa fa-times-circle icon-{{i}}" (click)="removeImage(img,i,'file')"></i>
         </div>
     </div>
 </div>

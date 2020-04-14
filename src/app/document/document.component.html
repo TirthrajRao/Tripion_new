@@ -26,15 +26,16 @@
                             class="image-{{photo.id}}" style="opacity: 1;" />
                     </div>
                     <div *ngIf="photo.image_extension == 'pdf'">
-                        <img src="assets/images/pdf.jpeg">
+                        <img src="assets/images/pdf.png">
                         <p>{{photo.image_name}}</p>
                     </div>
                     <div *ngIf="photo.image_extension == 'xlsx'||photo.image_extension == 'xls' ">
-                        <img src="assets/images/xl.png">
+                        <img src="assets/images/xls.png">
                         <p>{{photo.image_name}}</p>
                     </div>
-                    <div *ngIf="photo.image_extension == 'doc'||photo.image_extension == 'docx'|| photo.image_extension == 'odt' ">
-                        <img src="assets/images/doc.jpeg">
+                    <div
+                        *ngIf="photo.image_extension == 'doc'||photo.image_extension == 'docx'|| photo.image_extension == 'odt' ">
+                        <img src="assets/images/doc1.png">
                         <p>{{photo.image_name}}</p>
                     </div>
                     <div
@@ -45,6 +46,9 @@
                     <ion-icon name="checkmark" class="checkmark-icon-{{photo.id}}"></ion-icon>
                 </div>
             </div>
+        </div>
+        <div *ngIf="!allImage.length && !loading">
+            <span class="text-center no-request">No Images or Documents</span>
         </div>
     </div>
     <div *ngIf="documentId.length" class="send_button" (click)="sendDocument()">
@@ -66,18 +70,26 @@
                             Document</span>
                     </div>
                 </ion-item>
-                <div class="upload_file_progress" *ngFor="let image of urls">
+                <div class="upload_file_progress" *ngFor="let img of urls">
                     <div class="row">
                         <div class="col-3">
                             <div class="uploded_image">
-                                <ion-img [src]="image.url" onError="src = 'assets/images/placeholder.png'"
-                                    *ngIf="image.type"></ion-img>
-                                <ion-img src="assets/images/doc.png" *ngIf="!image.type" style="height: 33px;">
+                                <ion-img [src]="img.url" onError="src = 'assets/images/placeholder.png'"
+                                    *ngIf="img.type == 'image'"></ion-img>
+                                <ion-img src="assets/images/pdf.png" *ngIf="img.type == 'pdf'"></ion-img>
+                                <ion-img src="assets/images/xls.png" *ngIf="img.type == 'xlsx' || img.type == 'xls'">
                                 </ion-img>
+                                <ion-img src="assets/images/doc1.png"
+                                    *ngIf="img.type == 'doc' || img.type == 'docx' || img.type == 'odt'"></ion-img>
+                                <ion-img
+                                    *ngIf="img.type !='image' && img.type != 'pdf' && img.type != 'xlsx' && img.type != 'xls' && img.type != 'doc'&& img.type != 'docx'&& img.type != 'odt'"
+                                    src="assets/images/docs2.png" ></ion-img>
+                                <!-- <ion-img src="assets/images/doc.png" *ngIf="!image.type" style="height: 33px;">
+                                </ion-img> -->
                             </div>
                         </div>
                         <div class="col-7 p-0">
-                            <p class="file_name">{{image.imageName}}</p>
+                            <p class="file_name">{{img.imageName}}</p>
                         </div>
                     </div>
                 </div>

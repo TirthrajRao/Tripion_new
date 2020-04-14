@@ -119,6 +119,8 @@ export class HomePageComponent implements OnInit {
         this.timeData = JSON.parse(localStorage.getItem('timeData'))
         this.timeCity = this.timeData.city;
         this.getTime(this.timeData.lat, this.timeData.lng)
+      } else{
+        this.getTime(this.latitude, this.longitude)
       }
     }, 10000);
 

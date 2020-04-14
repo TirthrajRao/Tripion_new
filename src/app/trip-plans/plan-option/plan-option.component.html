@@ -16,7 +16,7 @@
                 <span [innerHtml]="tripDetail.plans[0].plan_name"></span>
                 <p *ngIf="tripDetail.plans[0].selected_plan == 2">Booked With Third Party App</p>
             </div>
-            <div class="calendar_img float-right">
+            <div class="calendar_img float-right" [ngStyle]="{'margin-top':tripDetail.plans[0].selected_plan == '2'?'12px':'0'}">
                 <ion-img src="assets/images/plane.png"></ion-img>
             </div>
         </div>

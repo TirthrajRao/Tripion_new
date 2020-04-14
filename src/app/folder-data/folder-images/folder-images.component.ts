@@ -30,11 +30,11 @@ export class FolderImagesComponent implements OnInit {
   /**
    * Delete Image
    */
-  async removeImage(data, index) {
+  async removeImage(data, index,type) {
     console.log(data);
     const alert = await this.alertController.create({
       header: 'Alert!',
-      message: 'Are you sure you want to delete this image?',
+      message: 'Are you sure you want to delete this '+type +'?',
       buttons: [
         {
           text: 'Cancel',

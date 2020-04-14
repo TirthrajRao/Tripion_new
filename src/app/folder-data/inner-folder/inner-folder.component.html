@@ -8,7 +8,36 @@
     <div class="all_content">
 
         <div *ngIf="allImages.length">
-            <app-folder-images [images]="allImages"></app-folder-images>
+            <!-- <app-folder-images [images]="allImages"></app-folder-images> -->
+            <div class="row main-image-view">
+                <div class="col-4 pr-0 pl-0" *ngFor="let img of allImages;let i = index">
+                    <div *ngIf="img.image_extension == 'png' || img.image_extension == 'jpg' || img.image_extension == 'jpeg'">
+                        <div class="image-view" (press)="longPress(i)">
+                            <img [src]="img.image_url || 'assets/images/placeholder.png'" (click)="previewImage(img.image_url)"
+                                (ionError)="onErrorImage(i)">
+                        </div>
+                        <i class="fa fa-times-circle icons-{{i}}" (click)="removeImage(img,i,'image')"></i>
+                    </div>
+                    <div *ngIf="img.image_extension != 'png' && img.image_extension != 'jpg' && img.image_extension != 'jpeg'" (press)="longPress(i)">
+                        <div class="image-view file-view" (click)="previewDocument(img.image_url)">
+                            <img src="assets/images/pdf.png" *ngIf="img.image_extension == 'pdf'" style="height: 99px;">
+                            <img src="assets/images/xls.png" *ngIf="img.image_extension == 'xlsx' || img.image_extension == 'xls'" style="height: 99px;">
+                            <img src="assets/images/doc1.png" *ngIf="img.image_extension == 'doc' || img.image_extension == 'docx' || img.image_extension == 'odt'" style="height: 99px;">
+                            <img src="assets/images/docs2.png" style="height: 99px;" *ngIf="img.image_extension != 'png' && img.image_extension != 'jpg'  && img.image_extension != 'jpeg' && img.image_extension != 'xlsx' && img.image_extension != 'xls' && img.image_extension != 'pdf'&& img.image_extension != 'doc'&& img.image_extension != 'docx'&&  img.image_extension != 'odt'">
+                            <p>{{img.image_name}}</p>
+                        </div>
+                        <i class="fa fa-times-circle icons-{{i}}" (click)="removeImage(img,i,'file')"></i>
+                    </div>
+                </div>
+            </div>
+            ​
+            <div *ngIf="loading">
+                <div id="loader-wrapper">
+                    <div class="heartbeatloader">
+                        <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="add_button" id="upload-pictures" (click)="openModal()">
             <a href="javascript:void(0);">
