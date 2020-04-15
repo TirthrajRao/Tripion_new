@@ -111,7 +111,10 @@
                                 style="height: 90px;"></ion-img>
                                 <ion-img *ngIf="img.type !='img' && img.type != 'pdf' && img.type != 'xlsx' && img.type != 'xls' && img.type != 'doc'&& img.type != 'docx'&& img.type != 'odt'" src="assets/images/docs2.png" style="height: 74px;"></ion-img>
                                 <p *ngIf="img.type !='img'">{{img.name}}</p>
-                                <div (click)=removeImage(img) class="mt-2">
+                                <div (click)="removeImage(img,'file')" class="mt-2" *ngIf="img.type !='img'">
+                                    <ion-img src="assets/images/remove.png" class="remove_image"></ion-img>
+                                </div>
+                                <div (click)="removeImage(img,'image')" class="mt-2" *ngIf="img.type =='img'">
                                     <ion-img src="assets/images/remove.png" class="remove_image"></ion-img>
                                 </div>
                             </div>

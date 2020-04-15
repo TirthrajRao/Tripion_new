@@ -220,6 +220,10 @@ export class UserPassportDetailComponent implements OnInit {
         }
         if (this.files[i].type == 'image/png' || this.files[i].type == 'image/jpeg' || this.files[i].type == 'image/jpg') {
           obj['type'] = 'image'
+        } else{
+          let type = this.files[i].name.split('.');
+          obj['type'] = type[type.length - 1]
+          console.log("type",type);
         }
         this.urls.push(obj);
       }
@@ -287,12 +291,12 @@ export class UserPassportDetailComponent implements OnInit {
   * Remove Image in Edit Passport
   * @param {object} data 
   */
-  async removeImage(data) {
+  async removeImage(data,type) {
     console.log(data);
     console.log("file===", this.files, "urllll", this.urls);
     const alert = await this.alertController.create({
       header: 'Alert!',
-      message: 'Are you sure you want to delete this image?',
+      message: 'Are you sure you want to delete this '+type+'?',
       buttons: [
         {
           text: 'Cancel',

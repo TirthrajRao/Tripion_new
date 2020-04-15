@@ -65,6 +65,9 @@
                                 *ngIf="img.image_extension == 'png' || img.image_extension == 'jpg' || img.image_extension == 'jpeg'">
                                 <ion-img [src]="img.image_url || 'assets/images/placeholder.png'"
                                     (ionError)="onErrorImage(i)" class="visa_image"></ion-img>
+                                <div (click)="removeImage(img,'image')" class="mt-2">
+                                    <ion-img src="assets/images/remove.png" class="remove_image mb-2"></ion-img>
+                                </div>
                             </div>
                             <div>
                                 <!-- <ion-img src="assets/images/docs2.png" class="visa_image"></ion-img> -->
@@ -79,14 +82,16 @@
                                 <ion-img src="assets/images/docs2.png" style="height: 93px;" class="visa_image"
                                     *ngIf="img.image_extension != 'png' && img.image_extension != 'jpg'  && img.image_extension != 'jpeg' && img.image_extension != 'xlsx' && img.image_extension != 'xls' && img.image_extension != 'pdf'&& img.image_extension != 'doc'&& img.image_extension != 'docx'&&  img.image_extension != 'odt'">
                                 </ion-img>
-                                <a href="{{img.image_url}}" download  *ngIf="img.image_extension != 'png' && img.image_extension != 'jpg'  && img.image_extension != 'jpeg'">
+                                <a href="{{img.image_url}}" download
+                                    *ngIf="img.image_extension != 'png' && img.image_extension != 'jpg'  && img.image_extension != 'jpeg'">
                                     <p>{{img.image_name}}</p>
                                 </a>
+                                <div (click)="removeImage(img,'file')" class="mt-2"  *ngIf="img.image_extension != 'png' && img.image_extension != 'jpg'  && img.image_extension != 'jpeg'">
+                                    <ion-img src="assets/images/remove.png" class="remove_image mb-2"></ion-img>
+                                </div>
                             </div>
                         </div>
-                        <div (click)=removeImage(img) class="mt-2">
-                            <ion-img src="assets/images/remove.png" class="remove_image mb-2"></ion-img>
-                        </div>
+
                     </div>
                 </div>
             </div>

@@ -10,18 +10,23 @@
     <div class="plan_option_content" *ngIf="planDetail">
         <div class="card plan_option_heading plan-detail-content w-100 ">
             <h6 [innerHtml]="planDetail.plan_name"></h6>
-            <h3 class="text-center" [innerHtml]="planDetail.inquiry_name + ' tour for ' + planDetail.duration +' Days'"></h3>
+            <h3 class="text-center" [innerHtml]="planDetail.inquiry_name + ' tour for ' + planDetail.duration +' Days'">
+            </h3>
             <div class="plan_images" *ngIf="planDetail.images.length">
                 <div class="plan_images_slide" *ngFor="let img of planDetail.images">
                     <img [src]="img.image_url" onError="src = 'assets/images/placeholder.png'">
                 </div>
             </div>
-            <span class="font-weight-bold ml-2">Description :</span>
-            <p [innerHtml]="planDetail.plan_description"></p>
-            <span class="font-weight-bold ml-2">INCLUDED :</span>
-            <p [innerHtml]="planDetail.inclueded" ></p>
-            <span class="font-weight-bold ml-2">EXCLUDED :</span>
-            <p [innerHtml]="planDetail.excluded"  ></p>
+            <div class="plans_details">
+                <span class="font-weight-bold ml-2">Description :</span>
+                <p [innerHtml]="planDetail.plan_description"></p>
+                <span class="font-weight-bold ml-2"> Included :</span>
+                <p [innerHtml]="planDetail.inclueded"></p>
+                <span class="font-weight-bold ml-2">Excluded :</span>
+                <p [innerHtml]="planDetail.excluded"></p>
+                <span class="font-weight-bold ml-2">Estimate :</span>
+                <p [innerHtml]="planDetail.estimate"></p>
+            </div>
         </div>
     </div>
     <div *ngIf="loading">

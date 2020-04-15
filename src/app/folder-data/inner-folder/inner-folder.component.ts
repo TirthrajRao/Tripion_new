@@ -161,7 +161,7 @@ export class InnerFolderComponent implements OnInit {
           cssClass: 'secondary',
           handler: (blah) => {
             console.log('Confirm Cancel: blah');
-            $('.icon-' + index).css('opacity', 0)
+            $('.icons-' + index).css('opacity', 0)
           }
         }, {
           text: 'Yes',

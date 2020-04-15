@@ -52,7 +52,7 @@
                                 <ion-img src="assets/images/doc2.png" class="visa_image " *ngIf="doc.image_extension !='png' && doc.image_extension != 'jpeg' && doc.image_extension != 'jpg' && doc.image_extension != 'pdf' && doc.image_extension != 'xlsx' && doc.image_extension != 'xls' && doc.image_extension != 'doc'&& doc.image_extension != 'docx'&& doc.image_extension != 'odt'" ></ion-img>
                                 <a href="{{doc.image_url}}" download *ngIf="doc.image_extension != 'png' && doc.image_extension != 'jpeg' && doc.image_extension != 'jpg' ">{{doc.image_name}}</a>
                             </div>
-                            <div (click)=removeImage(doc) class="mt-2">
+                            <div (click)="doc.image_extension == 'png' || doc.image_extension == 'jpg' || doc.image_extension == 'jpeg' ? removeImage(doc,'image'):removeImage(doc,'file')" class="mt-2">
                                 <ion-img src="assets/images/remove.png " class="remove_image "></ion-img>
                             </div>
                         </div>

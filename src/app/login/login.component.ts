@@ -236,8 +236,9 @@ export class LoginComponent implements OnInit {
     $('#forgot-password .modal_body').click(function (event) {
       event.stopPropagation();
     });
-    $('#forgot-password').click(function () {
-      $(this).fadeOut();
+    $('#forgot-password').click( ()=> {
+      $('#forgot-password').fadeOut();
+      this.submmitedFPsw = false;
     });
   }
 

@@ -221,13 +221,13 @@ export class PassportsComponent implements OnInit {
 * Remove Image in Edit Passport
 * @param {object} data 
 */
-  async removeImage(data) {
+  async removeImage(data,type) {
     console.log(data);
     console.log("file===", this.files, "urllll", this.urls);
     console.log("this.file", typeof this.files[0])
     const alert = await this.alertController.create({
       header: 'Alert!',
-      message: 'Are you sure you want to delete this image?',
+      message: 'Are you sure you want to delete this '+type +'?',
       buttons: [
         {
           text: 'Cancel',

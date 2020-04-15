@@ -154,10 +154,19 @@
                     <div class="selected_image_preview" *ngIf="urls.length">
                         <div class="row">
                             <div class="col-4 selected_image" *ngFor="let img of urls">
-                                <ion-img [src]="img.url" *ngIf="img.type"></ion-img>
-                                <ion-img *ngIf="!img.type" src="assets/images/docs2.png" style="height: 74px;"></ion-img>
-                                <p *ngIf="!img.type">{{img.imageName}}</p>
-                                <div (click)=removeImage(img) class="mt-2">
+                                <ion-img [src]="img.url" *ngIf="img.type == 'image'"></ion-img>
+                                <!-- <ion-img *ngIf="!img.type" src="assets/images/docs2.png" style="height: 74px;"></ion-img> -->
+
+                                <ion-img src="assets/images/pdf.png" *ngIf="img.type == 'pdf'"
+                                style="height: 90px;"></ion-img>
+                                <ion-img src="assets/images/xls.png" *ngIf="img.type == 'xlsx' || img.type == 'xls'"
+                                style="height: 90px;"></ion-img>
+                                <ion-img src="assets/images/doc1.png" *ngIf="img.type == 'doc' || img.type == 'docx' || img.type == 'odt'"
+                                style="height: 90px;"></ion-img>
+                                <ion-img *ngIf="img.type !='image' && img.type != 'pdf' && img.type != 'xlsx' && img.type != 'xls' && img.type != 'doc'&& img.type != 'docx'&& img.type != 'odt'" src="assets/images/docs2.png" style="height: 74px;"></ion-img>
+                             
+                                <p *ngIf="img.type != 'image'">{{img.imageName}}</p>
+                                <div (click)="img.type != 'image' ?removeImage(img,'file'):removeImage(img,'image')" class="mt-2">
                                     <ion-img src="assets/images/remove.png" class="remove_image"></ion-img>
                                 </div>
                             </div>

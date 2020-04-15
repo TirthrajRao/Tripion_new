@@ -110,11 +110,11 @@ export class EditUserPassportDetailComponent implements OnInit {
    * Remove Image in Edit Passport
    * @param {object} data 
    */
-  async removeImage(data) {
+  async removeImage(data,type) {
 
     const alert = await this.alertController.create({
       header: 'Alert!',
-      message: 'Are you sure you want to delete this image?',
+      message: 'Are you sure you want to delete this '+type+'?',
       buttons: [
         {
           text: 'Cancel',
