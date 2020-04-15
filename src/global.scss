@@ -775,3 +775,9 @@ span.select2-selection__placeholder {
 .infinite-loading {
     background: white !important;
 }
+.plan-detail-content ,.quotation-content,.trip_plan_top{
+    ul {
+        padding: 0px 0 0 40px !important;
+        margin: 0px 0 16px 0px !important;
+    }
+}

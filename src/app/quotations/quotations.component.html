@@ -11,8 +11,8 @@
             <div class="card plan_option_heading  w-100 ">
                 <h6 [innerHtml]="quotation.plan_name"></h6>
                 <!-- <h3 class="text-center" [innerHtml]="quotation.inquiry_name"></h3> -->
-                <span class="font-weight-bold ml-2">Quotations :</span>
-                <div class="quotation-content p-3" [innerHtml]="quotation.quotation"></div>
+                <span class="font-weight-bold ml-2" *ngIf="quotation.quotation">Quotations :</span>
+                <div class="quotation-content p-3" [innerHtml]="quotation.quotation"  *ngIf="quotation.quotation"></div>
             </div>
         </div>
     </div>
