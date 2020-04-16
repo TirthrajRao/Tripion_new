@@ -59,7 +59,7 @@
 
             <div class="card" *ngIf="passportDetail.image_url.length">
                 <div class="row">
-                    <div class="col-4" *ngFor="let img of passportDetail.image_url;let i=index">
+                    <div class="col-4 mb-2" *ngFor="let img of passportDetail.image_url;let i=index">
                         <div class="all_image">
                             <div
                                 *ngIf="img.image_extension == 'png' || img.image_extension == 'jpg' || img.image_extension == 'jpeg'">
@@ -101,7 +101,7 @@
             </div>
             <div class="add_button" id="add-visa" (click)="moveDocumentPage()">
                 <a href="javascript:void(0);">
-                    <img src="assets/images/plus.png">
+                    <img src="assets/images/gallary.png">
                 </a>
             </div>
         </form>

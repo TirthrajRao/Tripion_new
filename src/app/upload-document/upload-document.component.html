@@ -13,12 +13,20 @@
                 <button (click)="file1.click()">Add new Document</button>
             </div>
             <div *ngIf="urls && urls.length">
-                <div class="row">
-                    <div class="col-3" *ngFor="let url of urls">
+                <div class="row m-0">
+                    <div class="col-4 mb-2" *ngFor="let url of urls">
                         <div class="uploded_image">
                             <ion-img [src]="url.imgUrl || 'assets/images/placeholder.png' " *ngIf="url.type=='img'">
                             </ion-img>
-                            <span *ngIf="url.type=='pdf'">{{url.name}}</span>
+                            <ion-img src="assets/images/pdf.png" *ngIf="url.type=='pdf'"></ion-img>
+                            <ion-img src="assets/images/xls.png" *ngIf="url.type == 'xlsx'||url.type == 'xls' ">
+                            </ion-img>
+                            <ion-img src="assets/images/doc1.png"
+                                *ngIf="url.type == 'doc'||url.type == 'docx'|| url.type == 'odt' "></ion-img>
+                            <ion-img src="assets/images/docs2.png"
+                                *ngIf="url.type != 'img'  && url.type != 'xlsx' && url.type != 'xls' && url.type != 'pdf'&& url.type != 'doc'&& url.type != 'docx'&&  url.type != 'odt'">
+                            </ion-img>
+                            <span *ngIf="url.type!='img'">{{url.name}}</span>
                         </div>
                     </div>
                 </div>

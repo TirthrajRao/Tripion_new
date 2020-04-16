@@ -13,8 +13,8 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import { NativeGeocoderOptions, NativeGeocoderResult, NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { citydata } from '../city';
+// import  * as  cities from 'cities.json';
 declare const $: any;
-
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -102,13 +102,13 @@ export class HomePageComponent implements OnInit {
     //Get Temprature
     if (this.tempratureData) {
       this.tempratureIndex = localStorage.getItem('temprature');
-      this.tempratureCity = this.tempratureData.city;
+      this.tempratureCity = this.tempratureData.name;
       this.getWeather(this.tempratureData.lat, this.tempratureData.lng)
     }
 
     //Get Time
     if (this.timeData) {
-      this.timeCity = this.timeData.city;
+      this.timeCity = this.timeData.name;
       this.getTime(this.timeData.lat, this.timeData.lng)
     }
 
@@ -117,9 +117,9 @@ export class HomePageComponent implements OnInit {
       this.timeIndex = localStorage.getItem('time');
       if (this.timeData) {
         this.timeData = JSON.parse(localStorage.getItem('timeData'))
-        this.timeCity = this.timeData.city;
+        this.timeCity = this.timeData.name;
         this.getTime(this.timeData.lat, this.timeData.lng)
-      } else{
+      } else {
         this.getTime(this.latitude, this.longitude)
       }
     }, 10000);
@@ -229,19 +229,19 @@ export class HomePageComponent implements OnInit {
       this.longitude = resp.coords.longitude;
       this.getLocation(this.latitude, this.longitude)
       const obj = {
-        city: "Rajkot",
+        name: "Rajkot",
         lat: this.latitude,
         lng: this.longitude,
         country: "hjh"
       }
 
       if (!this.tempratureData) {
-        this.tempratureCity = obj.city
+        this.tempratureCity = obj.name
         console.log("in current lat lng")
         this.getWeather(obj.lat, obj.lng)
       }
       if (!this.timeData) {
-        this.timeCity = obj.city
+        this.timeCity = obj.name
         this.getTime(obj.lat, obj.lng)
       }
 
@@ -267,7 +267,7 @@ export class HomePageComponent implements OnInit {
         this.cityName = result[0].locality;
         console.log("cityname", this.cityName);
         const obj = {
-          city: this.cityName,
+          name: this.cityName,
           lat: this.latitude,
           lng: this.longitude,
           country: "hjh"
@@ -275,12 +275,12 @@ export class HomePageComponent implements OnInit {
         console.log("object", obj)
         if (!this.tempratureData) {
           console.log("in if ofget location temp", obj)
-          this.tempratureCity = obj.city
+          this.tempratureCity = obj.name
           this.getWeather(obj.lat, obj.lng)
         }
         if (!this.timeData) {
           console.log("in if of time", obj)
-          this.timeCity = obj.city
+          this.timeCity = obj.name
           this.getTime(obj.lat, obj.lng)
         }
 

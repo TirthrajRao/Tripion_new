@@ -4,8 +4,9 @@ import { citydata } from '../city';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoderOptions, NativeGeocoderResult, NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
-
-@Component({
+const cities = require('cities.json');
+import * as _ from 'lodash'
+;@Component({
   selector: 'app-select-city',
   templateUrl: './select-city.component.html',
   styleUrls: ['./select-city.component.scss'],
@@ -13,7 +14,8 @@ import { NativeGeocoderOptions, NativeGeocoderResult, NativeGeocoder } from '@io
 export class SelectCityComponent implements OnInit {
   @ViewChild(IonInfiniteScroll, { static: false }) infiniteScroll: IonInfiniteScroll;
   type: any;
-  allCity = citydata.city
+  // allCity = citydata.city
+  allCity:any;
   cityList: any = [];
   searchedResult: any = [];
   searchedCityList: any = [];
@@ -37,6 +39,9 @@ export class SelectCityComponent implements OnInit {
   }
 
   ngOnInit() {
+    const data = _.uniq(cities, 'name');
+    this.allCity = data;
+    console.log("cities----------->", cities,"-----",data[0])
     console.log("type", this.type)
     console.log("all city", this.allCity);
     this.getCityList();
@@ -53,7 +58,7 @@ export class SelectCityComponent implements OnInit {
       this.longitude = resp.coords.longitude;
       this.getLocation(this.latitude, this.longitude)
       const obj = {
-        city: "Rajkot",
+        name: "Rajkot",
         lat: this.latitude,
         lng: this.longitude,
         country: "hjh"
@@ -84,7 +89,7 @@ export class SelectCityComponent implements OnInit {
         this.cityName = result[0].locality;
         console.log("cityname", this.cityName);
         const obj = {
-          city: this.cityName,
+          name: this.cityName,
           lat: this.latitude,
           lng: this.longitude,
           country: "a"
@@ -160,7 +165,7 @@ export class SelectCityComponent implements OnInit {
     }
 
     this.searchedResult = this.allCity.filter((v) => {
-      if (v.city.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+      if (v.name.toLowerCase().indexOf(q.toLowerCase()) > -1) {
         return true;
       }
       return false;

@@ -58,6 +58,7 @@ export class GeneralDetailComponent implements OnInit {
       // passport_valid_date: new FormControl(''),
       duration_status: new FormControl('Flexible'),
     })
+    console.log("lenfgrj",this.counries.length)
   }
 
   ngOnInit() {

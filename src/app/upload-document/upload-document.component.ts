@@ -77,6 +77,7 @@ export class UploadDocumentComponent implements OnInit {
   selectOtherFile(e) {
     console.log(e.target.files);
     this.files = e.target.files;
+    this.urls = [];
     for (let i = 0; i < this.files.length; i++) {
       let reader = new FileReader();
       reader.readAsDataURL(this.files[i]);
@@ -86,7 +87,9 @@ export class UploadDocumentComponent implements OnInit {
           type: "img"
         }
         if (this.files[i].type != "image/png" && this.files[i].type != "image/jpeg" && this.files[i].type != "image/png") {
-          obj.type = 'pdf';
+          let type = this.files[i].name.split('.');
+          obj['type'] = type[type.length - 1]
+          console.log("type", type);
           obj['name'] = this.files[i].name
         }
         this.urls.push(obj);
@@ -114,10 +117,21 @@ export class UploadDocumentComponent implements OnInit {
     console.log(data)
     this._uploadService.uploadDocuments(data).subscribe((res: any) => {
       console.log("res", res);
-      this.getAllImages();
+      this.allImage.push(...res.data)
+      // this.getAllImages();
       this.isDisable = false;
       this.loading = false;
-      this.urls = []
+      this.urls = [];
+      _.forEach(res.data, (img) => {
+        const obj = {
+          image_id: img.id,
+          image_url: img.image_url,
+          image_extension: img.image_extension,
+          image_name: img.image_name
+        }
+        this.documentId.push(obj)
+      })
+      this.closeModal();
     }, (err) => {
       console.log(err);
       this.isDisable = false;
@@ -152,6 +166,7 @@ export class UploadDocumentComponent implements OnInit {
   }
 
   closeModal() {
+    console.log("documentId", this.documentId)
     this.selectedImages = this.documentId;
     _.forEach(this.documentId, (id) => {
       $(".checkmark-icon-" + id.image_id).toggle();
@@ -167,5 +182,5 @@ export class UploadDocumentComponent implements OnInit {
     this.router.navigate(['/home/' + this.path.url + '/' + this.path.id], navigationExtras);
   }
 
- 
+
 }

@@ -49,6 +49,7 @@
         "@types/aws-sdk": "^2.7.0",
         "@types/google-maps": "^3.2.1",
         "@types/node": "^13.7.7",
+        "cities.json": "^1.1.5",
         "com-badrit-base64": "0.2.0",
         "com-sarriaroman-photoviewer": "^1.2.4",
         "cordova-android": "8.1.0",
