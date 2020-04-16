@@ -1061,7 +1061,9 @@ let LoginComponent = class LoginComponent {
                 access_token: res.accessToken,
                 social_login_type: 'google',
                 username: res.givenName + ' ' + res.familyName,
-                email: res.email
+                email: res.email,
+                first_name: res.givenName,
+                last_name: res.familyName
             };
             this._userServices.loginUser(data).subscribe((res) => {
                 console.log("res of google login", res);
@@ -1113,7 +1115,9 @@ let LoginComponent = class LoginComponent {
                     social_login_id: userId,
                     access_token: response.authResponse.accessToken,
                     social_login_type: 'facebook',
-                    username: res.name
+                    username: res.name,
+                    first_name: res.first_name,
+                    last_name: res.last_name
                 };
                 if (res.email) {
                     data['email'] = res.email;

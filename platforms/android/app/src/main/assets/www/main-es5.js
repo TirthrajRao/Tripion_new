@@ -1089,7 +1089,9 @@ var LoginComponent = /** @class */ (function () {
                 access_token: res.accessToken,
                 social_login_type: 'google',
                 username: res.givenName + ' ' + res.familyName,
-                email: res.email
+                email: res.email,
+                first_name: res.givenName,
+                last_name: res.familyName
             };
             _this._userServices.loginUser(data).subscribe(function (res) {
                 console.log("res of google login", res);
@@ -1147,7 +1149,9 @@ var LoginComponent = /** @class */ (function () {
                                 social_login_id: userId,
                                 access_token: response.authResponse.accessToken,
                                 social_login_type: 'facebook',
-                                username: res.name
+                                username: res.name,
+                                first_name: res.first_name,
+                                last_name: res.last_name
                             };
                             if (res.email) {
                                 data['email'] = res.email;

@@ -18,9 +18,14 @@ export class UploadDocumentComponent implements OnInit {
   urls = [];
   documentId: any = [];
   selectedImages: any = [];
+  previewImag: any = [];
   path;
   isDisable: Boolean = false;
   loading: Boolean = false;
+  slideOpts = {
+    initialSlide: 1,
+    speed: 400
+  };
   constructor(
     public _uploadService: UploadService,
     public _toastService: ToastService,
@@ -38,6 +43,21 @@ export class UploadDocumentComponent implements OnInit {
 
   ngOnInit() {
     this.getAllImages();
+    this.openModal()
+  }
+
+   // open modal of add new document or passport
+   openModal() {
+    $('#open-modal1').click(function () {
+      $('#folder-modal1').fadeIn();
+    });
+    $('#folder-modal1 .modal_body').click(function (event) {
+      event.stopPropagation();
+    });
+    $('#folder-modal1').click(function () {
+      $(this).fadeOut();
+    });
+    
   }
 
   /**
@@ -84,7 +104,8 @@ export class UploadDocumentComponent implements OnInit {
       reader.onload = (_event) => {
         let obj = {
           imgUrl: reader.result,
-          type: "img"
+          type: "img",
+          name:this.files[i].name
         }
         if (this.files[i].type != "image/png" && this.files[i].type != "image/jpeg" && this.files[i].type != "image/png") {
           let type = this.files[i].name.split('.');
@@ -152,6 +173,7 @@ export class UploadDocumentComponent implements OnInit {
       $(".image-" + id).css('opacity', '1')
       let index = this.documentId.indexOf(document);
       console.log(index);
+      this.previewImag.splice(index, 1)
       this.documentId.splice(index, 1)
     } else {
       const obj = {
@@ -160,6 +182,7 @@ export class UploadDocumentComponent implements OnInit {
         image_extension: ext,
         image_name: name
       }
+      this.previewImag.push(obj)
       this.documentId.push(obj);
     }
     console.log("selected image id", this.documentId)
@@ -173,6 +196,7 @@ export class UploadDocumentComponent implements OnInit {
       $(".image-" + id.image_id).css('opacity', '1')
     });
     this.documentId = [];
+    this.previewImag = [];
     console.log("selected images", this.selectedImages);
     let navigationExtras: NavigationExtras = {
       state: {

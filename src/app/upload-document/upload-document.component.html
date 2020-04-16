@@ -6,8 +6,16 @@
         <ion-refresher-content refreshingSpinner="circular" pullingIcon="null">
         </ion-refresher-content>
     </ion-refresher> -->
+    <div class="document_content image_preview" *ngIf="allImage.length">
+        <img [src]="allImage[0].image_url" onError="src = 'assets/images/placeholder.png'" *ngIf="!previewImag.length">
+        <ion-slides [options]="slideOpts" *ngIf="previewImag.length" pager="true">
+            <ion-slide *ngFor="let img of previewImag.reverse()">
+                <img [src]="img.image_url " onError="src = 'assets/images/placeholder.png'">
+            </ion-slide>
+        </ion-slides>
+    </div>
     <div class="document_content">
-        <div>
+        <!-- <div>
             <div class="submit_btn select_files">
                 <input type="file" #file1 style="display: none;" (change)="selectOtherFile($event)" multiple>
                 <button (click)="file1.click()">Add new Document</button>
@@ -34,11 +42,11 @@
             <div class="submit_btn" *ngIf="urls.length">
                 <button (click)="addToGallery()" class="btn" [disabled]="isDisable">Add to Gallery</button>
             </div>
-        </div>
+        </div> -->
         <div class="all_uploaded_img">
             <div *ngIf="allImage.length">
                 <div class="row m-0">
-                    <div class="col-4 img-icon p-0" *ngFor="let photo of allImage.reverse()" style="cursor: pointer;"
+                    <div class="col-4 img-icon p-0" *ngFor="let photo of allImage" style="cursor: pointer;"
                         (click)="selectDocument(photo.id,photo.image_url,photo.image_extension,photo.image_name)">
                         <div class="single_img">
                             <div class="single_img_div">
@@ -70,8 +78,64 @@
                     </div>
                 </div>
             </div>
-            <div class="submit_btn" *ngIf="documentId.length" (click)="closeModal()">
+            <div *ngIf="!allImage.length && !loading">
+                <span class="text-center no-request" style="margin-top: 69%;">No Images or Documents</span>
+            </div>
+            <!-- <div class="submit_btn" *ngIf="documentId.length" (click)="closeModal()">
                 <button><i class="fas fa-plus"></i>Done</button>
+            </div> -->
+        </div>  
+    </div>
+    <div *ngIf="documentId.length" class="send_button" (click)="closeModal()">
+        <ion-icon ios="ios-send" md="md-send"></ion-icon>
+    </div>
+    <div class="add_button" id="open-modal1"    >
+        <a href="javascript:void(0);"  >
+            <img src="assets/images/plus.png">
+        </a>
+    </div>
+
+    <div class="modal_content_with_overlay" id="folder-modal1" style="display: none;">
+        <div class="modal_body">
+            <div class="modal_content">
+                <ion-item>
+                    <div class="single_folder" id="upload-documents">
+                        <input type="file" #file4 style="display: none;" (change)="selectOtherFile($event)" multiple>
+                        <span (click)="file4.click()" style="cursor: pointer;"><i class="fas fa-upload mr-2"></i>Upload
+                            New
+                            Document</span>
+                    </div>
+                </ion-item>
+                <div class="upload_file_progress" *ngFor="let img of urls">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="uploded_image">
+                                <ion-img [src]="img.imgUrl" onError="src = 'assets/images/placeholder.png'"
+                                    *ngIf="img.type == 'img'"></ion-img>
+                                <ion-img src="assets/images/pdf.png" *ngIf="img.type == 'pdf'"></ion-img>
+                                <ion-img src="assets/images/xls.png" *ngIf="img.type == 'xlsx' || img.type == 'xls'">
+                                </ion-img>
+                                <ion-img src="assets/images/doc1.png"
+                                    *ngIf="img.type == 'doc' || img.type == 'docx' || img.type == 'odt'"></ion-img>
+                                <ion-img
+                                    *ngIf="img.type !='img' && img.type != 'pdf' && img.type != 'xlsx' && img.type != 'xls' && img.type != 'doc'&& img.type != 'docx'&& img.type != 'odt'"
+                                    src="assets/images/docs2.png"></ion-img>
+                                <!-- <ion-img src="assets/images/doc.png" *ngIf="!image.type" style="height: 33px;">
+                                </ion-img> -->
+                            </div>
+                        </div>
+                        <div class="col-7 p-0">
+                            <p class="file_name">{{img.name}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="finish_button" *ngIf="urls.length">
+                    <button type="submit" class="btn" (click)="addToGallery()" [disabled]="isDisable">
+                        <ion-img src="assets/images/finish.png"></ion-img>
+                        Add to gallery
+                    </button>
+                </div>
+
             </div>
         </div>
     </div>

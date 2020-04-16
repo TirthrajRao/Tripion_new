@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { citydata } from '../city';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoderOptions, NativeGeocoderResult, NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
@@ -14,7 +13,6 @@ import * as _ from 'lodash'
 export class SelectCityComponent implements OnInit {
   @ViewChild(IonInfiniteScroll, { static: false }) infiniteScroll: IonInfiniteScroll;
   type: any;
-  // allCity = citydata.city
   allCity:any;
   cityList: any = [];
   searchedResult: any = [];
@@ -41,7 +39,6 @@ export class SelectCityComponent implements OnInit {
   ngOnInit() {
     const data = _.uniq(cities, 'name');
     this.allCity = data;
-    console.log("cities----------->", cities,"-----",data[0])
     console.log("type", this.type)
     console.log("all city", this.allCity);
     this.getCityList();

@@ -12,8 +12,7 @@ import { AppComponent } from '../app.component';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { NativeGeocoderOptions, NativeGeocoderResult, NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
-import { citydata } from '../city';
-// import  * as  cities from 'cities.json';
+
 declare const $: any;
 @Component({
   selector: 'app-home-page',
@@ -68,26 +67,26 @@ export class HomePageComponent implements OnInit {
       console.log("response of notification count in home page =====>", response, this.notificationCount);
 
     })
-    router.events
-      .pipe(
-        filter(event => event instanceof RoutesRecognized),
-        pairwise()
-      )
-      .subscribe((e: any) => {
-        console.log("eeee", e);
-        if (e[1].urlAfterRedirects == '/home/home-page') {
-          this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-          // console.log("urllllll", e[0].urlAfterRedirects);
-          this.previousUrl = e[0].urlAfterRedirects;
-          if (this.previousUrl.includes('other-details') || this.previousUrl.includes('login') || this.previousUrl.includes('general-detail') || this.previousUrl.includes('signup') || this.previousUrl.includes('premium-account') || this.previousUrl.includes('passport') || this.previousUrl.includes('all-plan') || this.previousUrl.includes('plan-option')
-          ) {
-            console.log("in if");
-            this.allTrips = []
-            this.getAllTrips();
-          }
-        }
-      });
-    this.getAllTrips();
+    // router.events
+    //   .pipe(
+    //     filter(event => event instanceof RoutesRecognized),
+    //     pairwise()
+    //   )
+    //   .subscribe((e: any) => {
+    //     console.log("eeee", e);
+    //     if (e[1].urlAfterRedirects == '/home/home-page') {
+    //       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    //       // console.log("urllllll", e[0].urlAfterRedirects);
+    //       this.previousUrl = e[0].urlAfterRedirects;
+    //       if (this.previousUrl.includes('other-details') || this.previousUrl.includes('login') || this.previousUrl.includes('general-detail') || this.previousUrl.includes('signup') || this.previousUrl.includes('premium-account') || this.previousUrl.includes('passport') || this.previousUrl.includes('all-plan') || this.previousUrl.includes('plan-option')
+    //       ) {
+    //         console.log("in if");
+    //         this.allTrips = []
+    //         this.getAllTrips();
+    //       }
+    //     }
+    //   });
+    // this.getAllTrips();
   }
 
   ngOnInit() {
@@ -95,6 +94,7 @@ export class HomePageComponent implements OnInit {
 
   ionViewWillEnter() {
     console.log("in enter", this.tempratureIndex);
+    this.getAllTrips();
     this.tempratureData = JSON.parse(localStorage.getItem('tempratureData'));
     this.timeData = JSON.parse(localStorage.getItem('timeData'))
     console.log("this.temprature data", this.tempratureData, this.timeData);
