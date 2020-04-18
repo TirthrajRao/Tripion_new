@@ -1,0 +1,59 @@
+<ion-header>
+  <app-header [cname]="'Information Pack Inclusions Per Travel Plan'"></app-header>
+</ion-header>
+<ion-content>
+  <div class="all_content">
+    <div class="card mt-2 mb-3">
+      <div class="information-list">
+        <ul>
+          <li>Outline (Tentative Travel Plan)
+          </li>
+          <li>Attractions (3-6)
+          </li>
+          <li>List of Activities (1-2 Per Destination)
+          </li>
+          <li>Weather Forecast for the Travel dates
+          </li>
+          <li>History & Culture Information
+          </li>
+          <li>Currency Information
+          </li>
+          <li>Terrain Insights
+          </li>
+          <li>Shopping Exclusives
+          </li>
+          <li>Cost-Effective Ideas & Suggestions
+          </li>
+          <li>Flight Quote (1 Option only) for Extra option INR 80 per Option
+          </li>
+          <li>Basic Visa Requirements and Quote
+          </li>
+          <li>Travel Insurance Quote
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="general_details">
+      <div class="general_details_header">
+        <img src="assets/images/tile.png" style="height: 30px;margin: 0 7px;">
+        <p>Number of Plans</p>
+      </div>
+      <div class="general_details_body">
+        <ion-item>
+          <ion-label position="floating">Plans</ion-label>
+          <ion-input type="text" (ionChange)="numberOfPlan($event)" id="no-of-plans"></ion-input>
+        </ion-item>
+        <!-- <div *ngIf="submitted && f.number_of_plans.errors" class="invalid-feedback">
+              <div *ngIf="f.number_of_plans.errors.required">Number of plans is Required</div>
+          </div> -->
+        <div class="total_cost w-100 d-inline-block">
+          <p class="float-left">Cost</p>
+          <p class="float-right">₹ {{amount ? amount : 0}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="next_btn">
+      <button type="submit" (click)="nextForm()">Next<i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+</ion-content>

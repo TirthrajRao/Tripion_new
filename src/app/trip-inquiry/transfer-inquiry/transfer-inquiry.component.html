@@ -8,11 +8,34 @@
             <div class="services_detail">
                 <p class="ml-3 visa_text">Transfer</p>
                 <div class="general_details">
+                    <div class="general_details_header">
+                        <p>City Cards </p>
+                    </div>
+                    <div class="general_details_body">
+                        <div class="row mt-2">
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="cityCards1" formControlName="city_cards"
+                                    value="Yes">
+                                <label for="cityCards1">Yes</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="cityCards2" formControlName="city_cards"
+                                    value="No">
+                                <label for="cityCards2">No</label>
+                            </div>
+                        </div>
+                        <div *ngIf="submitted && f.city_cards.errors" class="invalid-feedback">
+                            <div *ngIf="f.city_cards.errors.required">City Cards Required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="general_details">
                     <div class="general_details_body">
                         <div>
                             <ion-item>
                                 <ion-label position="floating">From</ion-label>
-                                <ion-datetime formControlName="from_date" min="{{curruntDate}}" max={{nextYear}}></ion-datetime>
+                                <ion-datetime formControlName="from_date" min="{{curruntDate}}" max={{nextYear}}>
+                                </ion-datetime>
                             </ion-item>
                             <div *ngIf="submitted && f.from_date.errors" class="invalid-feedback">
                                 <div *ngIf="f.from_date.errors.required">From Date is Required</div>
@@ -21,7 +44,8 @@
                         <div>
                             <ion-item>
                                 <ion-label position="floating">To</ion-label>
-                                <ion-datetime formControlName="to_date" min="{{transferForm.value.from_date}}" max="{{nextYear}}"></ion-datetime>
+                                <ion-datetime formControlName="to_date" min="{{transferForm.value.from_date}}"
+                                    max="{{nextYear}}"></ion-datetime>
                             </ion-item>
                             <div *ngIf="submitted && f.to_date.errors" class="invalid-feedback">
                                 <div *ngIf="f.to_date.errors.required">To Date is Required</div>
@@ -30,11 +54,13 @@
                         <p class="mt-2">Transfer Basis</p>
                         <div class="row mt-2">
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="Basis1" formControlName="transferBasis" value="Private">
+                                <input type="radio" class="mr-2" id="Basis1" formControlName="transferBasis"
+                                    value="Private">
                                 <label for="Basis1">Private</label>
                             </div>
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="Basis2" formControlName="transferBasis" value="Sharing">
+                                <input type="radio" class="mr-2" id="Basis2" formControlName="transferBasis"
+                                    value="Sharing">
                                 <label for="Basis2">Sharing</label>
                             </div>
                         </div>
@@ -44,8 +70,40 @@
                         </ion-item>
                     </div>
                 </div>
-
                 <div class="general_details">
+                    <div class="general_details_header">
+                        <img src="assets/images/plane1.png">
+                        <p>Transfer Type</p>
+                    </div>
+                    <div class="general_details_body">
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectTransferType($event)"
+                                value="Train"> </ion-checkbox>
+                            <ion-label class="ml-3">Train</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectTransferType($event)"
+                                value="Air"> </ion-checkbox>
+                            <ion-label class="ml-3">Air</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectTransferType($event)"
+                                value="Chauffer"> </ion-checkbox>
+                            <ion-label class="ml-3">Chauffer</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectTransferType($event)"
+                                value="Self Drive"> </ion-checkbox>
+                            <ion-label class="ml-3">Self Drive </ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectTransferType($event)"
+                                value="Cruise"> </ion-checkbox>
+                            <ion-label class="ml-3">Cruise</ion-label>
+                        </div>
+                    </div>
+                </div>
+                <div class="general_details" *ngIf="transferType.includes('Train')">
                     <div class="general_details_header">
                         <img src="assets/images/train.png">
                         <p>Train</p>
@@ -54,11 +112,13 @@
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Meal</ion-label>
-                                <ion-select formControlName="meal" multiple="true">
-                                    <ion-select-option value="Breakfast">Breakfast</ion-select-option>
+                                <ion-select formControlName="meal" >
+                                    <ion-select-option value="Yes">Yes</ion-select-option>
+                                    <ion-select-option value="No">No</ion-select-option>
+                                    <!-- <ion-select-option value="Breakfast">Breakfast</ion-select-option>
                                     <ion-select-option value="Lunch">Lunch</ion-select-option>
                                     <ion-select-option value="Dinner">Dinner</ion-select-option>
-                                    <ion-select-option value="None">None</ion-select-option>
+                                    <ion-select-option value="None">None</ion-select-option> -->
                                 </ion-select>
                             </ion-item>
                         </div>
@@ -83,24 +143,26 @@
                     </div>
                 </div>
 
-                <div class="general_details">
+                <div class="general_details" *ngIf="transferType.includes('Air')">
                     <div class="general_details_header">
                         <img src="assets/images/jounry.png">
                         <p>Air</p>
                     </div>
                     <div class="general_details_body">
                         <div class="select_plan_check">
-                            <ion-checkbox checked="false" (ionChange)="selectAir($event)" value="Heli Taxi"> </ion-checkbox>
+                            <ion-checkbox checked="false" (ionChange)="selectAir($event)" value="Heli Taxi">
+                            </ion-checkbox>
                             <ion-label class="ml-3">Heli Taxi</ion-label>
                         </div>
                         <div class="select_plan_check">
-                            <ion-checkbox checked="false" (ionChange)="selectAir($event)" value="Private Jet"> </ion-checkbox>
+                            <ion-checkbox checked="false" (ionChange)="selectAir($event)" value="Private Jet">
+                            </ion-checkbox>
                             <ion-label class="ml-3">Private Jet</ion-label>
                         </div>
                     </div>
                 </div>
 
-                <div class="general_details">
+                <div class="general_details" *ngIf="transferType.includes('Chauffer')">
                     <div class="general_details_header">
                         <img src="assets/images/chaffur.png">
                         <p>Chauffer </p>
@@ -124,7 +186,7 @@
                     </div>
                 </div>
 
-                <div class="general_details">
+                <div class="general_details" *ngIf="transferType.includes('Self Drive')">
                     <div class="general_details_header">
                         <img src="assets/images/self-drive.png">
                         <p>Self Drive </p>
@@ -149,13 +211,31 @@
                     </div>
                 </div>
 
-                <div class="general_details">
+                <div class="general_details" *ngIf="transferType.includes('Cruise')">
                     <div class="general_details_header">
                         <img src="assets/images/cruise.png">
                         <p>Cruise </p>
                     </div>
                     <div class="general_details_body">
                         <div>
+                            <ion-item>
+                                <ion-label position="floating">Meal Preference</ion-label>
+                                <ion-select formControlName="cruise_meal_preferences">
+                                    <ion-select-option value="Yes">Yes</ion-select-option>
+                                    <ion-select-option value="No">No</ion-select-option>
+                                </ion-select>
+                            </ion-item>
+                        </div>
+                        <div>
+                            <ion-item>
+                                <ion-label position="floating">Tier Preference</ion-label>
+                                <ion-select formControlName="cruise_tier_preferences">
+                                    <ion-select-option value="Upper Deck">Upper Deck</ion-select-option>
+                                    <ion-select-option value="Lower Deck">Lower Deck</ion-select-option>
+                                </ion-select>
+                            </ion-item>
+                        </div>
+                        <!-- <div>
                             <ion-item>
                                 <ion-label position="floating">Cabin Category</ion-label>
                                 <ion-select formControlName="cabin_category">
@@ -177,33 +257,15 @@
                                     <ion-select-option value="Sight-seeing">Sight-seeing</ion-select-option>
                                 </ion-select>
                             </ion-item>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
-                <div class="general_details">
-                    <div class="general_details_header">
-                        <p>City Cards </p>
-                    </div>
-                    <div class="general_details_body">
-                        <div class="row mt-2">
-                            <div class="col-6">
-                                <input type="radio" class="mr-2" id="cityCards1" formControlName="city_cards" value="Yes">
-                                <label for="cityCards1">Yes</label>
-                            </div>
-                            <div class="col-6">
-                                <input type="radio" class="mr-2" id="cityCards2" formControlName="city_cards" value="No">
-                                <label for="cityCards2">No</label>
-                            </div>
-                        </div>
-                        <div *ngIf="submitted && f.city_cards.errors" class="invalid-feedback">
-                            <div *ngIf="f.city_cards.errors.required">City Cards Required</div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <div class="next_btn" *ngIf="formUrl.length">
-                <button type="submit" (click)="nextForm(transferForm.value)">Next<i class="fas fa-arrow-right"></i></button>
+                <button type="submit" (click)="nextForm(transferForm.value)">Next<i
+                        class="fas fa-arrow-right"></i></button>
             </div>
             <div class="submit_btn" *ngIf="!formUrl.length">
                 <button type="submit" routerLink='/home/home-page'><i class="fas fa-save"></i>Submit</button>

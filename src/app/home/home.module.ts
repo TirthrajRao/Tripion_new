@@ -35,6 +35,7 @@ import { AccomodationInquiryComponent } from '../trip-inquiry/accomodation-inqui
 import { ToursInquiryComponent } from '../trip-inquiry/tours-inquiry/tours-inquiry.component';
 import { TransferInquiryComponent } from '../trip-inquiry/transfer-inquiry/transfer-inquiry.component';
 import { OtherDetailsInquiryComponent } from '../trip-inquiry/other-details-inquiry/other-details-inquiry.component';
+import { InformationPackComponent } from '../trip-inquiry/information-pack/information-pack.component';
 import { AmendmentsComponent } from '../amendments/amendments.component';
 import { PremiumAccountPaymentComponent } from '../premium-account-payment/premium-account-payment.component'
 import { TripPlaningComponent } from '../timeline/trip-planing/trip-planing.component';
@@ -51,7 +52,7 @@ import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ng
 import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
+import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { DatePipe } from '@angular/common';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { PreviewAnyFile } from '@ionic-native/preview-any-file/ngx';
@@ -217,6 +218,10 @@ export class IonicGestureConfig extends HammerGestureConfig {
             component: OtherDetailsInquiryComponent
           },
           {
+            path:'information-pack',
+            component:InformationPackComponent
+          },
+          {
             path: 'amendments',
             component: AmendmentsComponent
           },
@@ -280,7 +285,7 @@ export class IonicGestureConfig extends HammerGestureConfig {
             path: 'select-city/:type',
             component: SelectCityComponent
           },
-         
+
         ]
       },
 
@@ -323,6 +328,7 @@ export class IonicGestureConfig extends HammerGestureConfig {
     ToursInquiryComponent,
     TransferInquiryComponent,
     OtherDetailsInquiryComponent,
+    InformationPackComponent,
     AmendmentsComponent,
     PremiumAccountPaymentComponent,
     TripPlaningComponent,

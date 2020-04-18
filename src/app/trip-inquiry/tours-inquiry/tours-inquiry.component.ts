@@ -15,6 +15,8 @@ export class ToursInquiryComponent implements OnInit {
   status: any = 'Relaxed';
   path = 'assets/images/03-Gif.gif';
   languages = data.language;
+  tourTypeArray: any = [];
+  entryPreArray:any = [];
 
   constructor(public route: Router, public _tripService: TripService) {
     this.formUrl = JSON.parse(localStorage.getItem('formId'));
@@ -27,6 +29,8 @@ export class ToursInquiryComponent implements OnInit {
       // itinerary_pace: new FormControl('0')
 
       tour_basis: new FormControl(''),
+      tour_type: new FormControl(''),
+      entery_preference: new FormControl(''),
       language: new FormControl(''),
       duration: new FormControl(''),
       special_request: new FormControl(''),
@@ -144,4 +148,32 @@ export class ToursInquiryComponent implements OnInit {
     }
   }
 
+  /**
+   * Get Tour type Checkbox value
+   * @param {Object} e 
+   */
+  selectTourType(e) {
+    if (!this.tourTypeArray.includes(e.detail.value)) {
+      this.tourTypeArray.push(e.detail.value);
+    } else {
+      var index = this.tourTypeArray.indexOf(e.detail.value);
+      this.tourTypeArray.splice(index, 1);
+    }
+    console.log(this.tourTypeArray);
+    this.tourForm.controls.tour_type.setValue(this.tourTypeArray);
+  }
+  /**
+   * Getentry preference Checkbox value
+   * @param {Object} e 
+   */
+  selectEntry(e) {
+    if (!this.entryPreArray.includes(e.detail.value)) {
+      this.entryPreArray.push(e.detail.value);
+    } else {
+      var index = this.entryPreArray.indexOf(e.detail.value);
+      this.entryPreArray.splice(index, 1);
+    }
+    console.log(this.entryPreArray);
+    this.tourForm.controls.entery_preference.setValue(this.entryPreArray);
+  }
 }

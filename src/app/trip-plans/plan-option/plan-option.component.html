@@ -10,13 +10,13 @@
     <div class="plan_option_content" *ngIf="tripDetail">
 
         <!-- DISPLAY SELECTED PLAN -->
-        <div class="card plan_option_heading  w-100 " routerLink='/home/plan-option-detail/{{tripDetail.plans[0].id}}'
+        <div class="card plan_option_heading row ml-0 w-100 " routerLink='/home/plan-option-detail/{{tripDetail.plans[0].id}}'
             *ngIf="tripDetail.plans.length">
-            <div class="float-left">
+            <div class="float-left col-10 p-0">
                 <span [innerHtml]="tripDetail.plans[0].plan_name"></span>
-                <p *ngIf="tripDetail.plans[0].selected_plan == 2">Booked With Third Party App</p>
+                <p *ngIf="tripDetail.plans[0].selected_plan == 2">Booking With Third Party App</p>
             </div>
-            <div class="calendar_img float-right" [ngStyle]="{'margin-top':tripDetail.plans[0].selected_plan == '2'?'12px':'0'}">
+            <div class="calendar_img float-right col-2" [ngStyle]="{'margin-top':tripDetail.plans[0].selected_plan == '2'?'12px':'0'}">
                 <ion-img src="assets/images/plane.png"></ion-img>
             </div>
         </div>

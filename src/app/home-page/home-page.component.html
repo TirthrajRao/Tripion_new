@@ -3,7 +3,7 @@
         <ion-row>
             <ion-col size='10'>
                 <div class="home_text text-center">
-                    <span>Welcome to Tripion</span>
+                    <span>Welcome to Blue Diamond Voyage</span>
                 </div>
             </ion-col>
             <ion-col size='2'>
@@ -23,30 +23,15 @@
     <div class=" all_content">
         <div class="wether w-100 ">
             <div class="wether_image float-left ">
-
                 <ion-img src="assets/images/wether.png "></ion-img>
-
                 <div class="temprature-select">
-                    <!-- <select id="myselection1" class="form-control w-100 temp" [(ngModel)]="this.tempratureIndex" >
-                        <option style="color: black;" [value]="i" *ngFor="let city of allCites;let i=  index">
-                            {{city.city}}
-                        </option>
-                    </select> -->
                     <p class="temp-city" (click)="selectCity('temperature')" *ngIf="tempratureCity">{{tempratureCity}}
-                    </p>
-                    <!-- <span *ngIf="tempratureCity && !tempratureIndex"
-                        style="position: absolute;">{{tempratureCity}}</span> -->
+                    </p>                  
                 </div>
-
                 <span *ngIf="temperature " class="temprature-text">{{temperature}}°C
                 </span>
             </div>
-            <div class="city_name float-right time-select">
-                <!-- <select id="myselection2" class="form-control w-100" [(ngModel)]="this.timeIndex">
-                    <option style="color: black;" [value]="i" *ngFor="let city of allCites;let i=  index">
-                        {{city.city}}
-                    </option>
-                </select> -->
+            <div class="city_name float-right time-select">         
                 <p class="time-city" (click)="selectCity('time')" *ngIf="timeCity">{{timeCity}}</p>
                 <p *ngIf="currentTime" class="time-txt">{{currentTime}}</p>
             </div>
@@ -58,27 +43,12 @@
                         <p class="float-right">{{trip.status}}</p>
                         <p [innerHtml]="trip.inquiry_name " class="inquiry-title float-left mt-1"></p>
                     </div>
-                    <div class="card_content w-100 ">
-                        <!-- <div>
-                            <p class="float-right">{{trip.status}}</p>
-                            <p [innerHtml]="trip.inquiry_name " class="inquiry-title float-left"></p>
-                        </div> -->
-                        <!-- <div class="booking_details ">
-                           
-                        </div> -->
-                        <!-- <div style="display: flex;"> -->
-                        <div class="country_details">
-                            <!-- <p class="float-right">{{trip.status}}</p>
-                            <p [innerHtml]="trip.inquiry_name " class="inquiry-title float-left"></p> -->
+                    <div class="card_content w-100 ">            
+                        <div class="country_details">                    
                             <ul>
                                 <li *ngFor="let inquiry of trip.list_of_inquiry">{{inquiry}}</li>
                             </ul>
-                        </div>
-                        <!-- <div class="booking_details">
-                                
-                                <p >{{trip.status}}</p>
-                            </div> -->
-                        <!-- </div> -->
+                        </div>                     
                     </div>
                 </div>
             </div>
@@ -107,7 +77,6 @@
                     <button type="submit" (click)="completeProfile()">Ok</button>
                 </div>
             </div>
-
         </div>
     </div>
 

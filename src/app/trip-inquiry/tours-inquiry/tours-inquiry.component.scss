@@ -69,3 +69,32 @@ select#myselection {
 outline: none !important;
 border: none !important;
 }
+.select_plan_check {
+    margin-top: 3px;
+    width     : 100%;
+
+    ion-checkbox {
+        vertical-align: middle;
+        --border-color: #7F8DAB;
+    }
+
+    ion-label {
+        vertical-align: middle;
+        font-size     : 14px !important;
+        color         : #7F8DAB;
+        font-weight   : 500;
+    }
+}
+.general_details .general_details_body p{
+    line-height: unset !important;
+    font-weight: 600 !important;
+}
+.general_details_header{
+    display: flex;
+    p{
+        margin: auto 5px;
+    }
+    img{
+        height: 40px;
+    }
+}

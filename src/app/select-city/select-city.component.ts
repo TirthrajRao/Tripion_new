@@ -41,6 +41,13 @@ export class SelectCityComponent implements OnInit {
     this.allCity = data;
     console.log("type", this.type)
     console.log("all city", this.allCity);
+    const obj = {
+      name:'',
+      lat:'',
+      lng:'',
+      country:''
+    }
+    this.allCity.unshift(obj)
     this.getCityList();
 
   }

@@ -121,8 +121,6 @@ export class ServiceInquiryComponent implements OnInit {
     } else {
       alert('Please select services')
     }
-
-
   }
 
   /**

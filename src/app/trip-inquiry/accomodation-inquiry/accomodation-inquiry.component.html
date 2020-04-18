@@ -8,35 +8,87 @@
             <div class="services_detail">
                 <p class="ml-3 visa_text">Accomodation</p>
                 <div class="general_details">
+                    <div class="general_details_header">
+                        <img src="assets/images/rental.png">
+                        <p>Accomodation Type</p>
+                    </div>
                     <div class="general_details_body">
-                        <div>
-                            <ion-item>
-                                <ion-label position="floating">Accomodation Type</ion-label>
-                                <ion-select formControlName="accomodation_type">
-                                    <ion-select-option value="Hotels">Hotels</ion-select-option>
-                                    <ion-select-option value="Guesthouses">Guesthouses</ion-select-option>
-                                    <ion-select-option value="Apartments">Apartments</ion-select-option>
-                                    <ion-select-option value="Resorts">Resorts</ion-select-option>
-                                    <ion-select-option value="Ski Chalets">Ski Chalets</ion-select-option>
-                                </ion-select>
-                            </ion-item>
-                            <div *ngIf="submitted && f.accomodation_type.errors" class="invalid-feedback">
-                                <div *ngIf="f.accomodation_type.errors.required">Select Accomodation Type</div>
-                            </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectAccommodationType($event)"
+                                value="Luxury Hotels"> </ion-checkbox>
+                            <ion-label class="ml-3">Luxury Hotels</ion-label>
                         </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectAccommodationType($event)"
+                                value="Resorts & Spa"> </ion-checkbox>
+                            <ion-label class="ml-3">Resorts & Spa</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectAccommodationType($event)"
+                                value="Service Apartments"> </ion-checkbox>
+                            <ion-label class="ml-3">Service Apartments</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectAccommodationType($event)"
+                                value="Boutique Hotels"> </ion-checkbox>
+                            <ion-label class="ml-3">Boutique Hotels</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectAccommodationType($event)"
+                                value="Business Hotels"> </ion-checkbox>
+                            <ion-label class="ml-3">Business Hotels</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectAccommodationType($event)"
+                                value="Ocean Cruises"> </ion-checkbox>
+                            <ion-label class="ml-3">Ocean Cruises</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectAccommodationType($event)"
+                                value="Location Specific Accommodation"> </ion-checkbox>
+                            <ion-label class="ml-3">Location Specific Accommodation</ion-label>
+                        </div>
+                        <ion-item *ngIf="acomodationArray.includes('Location Specific Accommodation')">
+                            <ion-label position="floating">Any Special Requirement</ion-label>
+                            <ion-input type="text" formControlName="location_specific_accommodation_detail">
+                            </ion-input>
+                        </ion-item>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectAccommodationType($event)"
+                                value="Amenities Specific Accommodation"> </ion-checkbox>
+                            <ion-label class="ml-3">Amenities Specific Accommodation</ion-label>
+                        </div>
+                        <ion-item *ngIf="acomodationArray.includes('Amenities Specific Accommodation')">
+                            <ion-label position="floating">Any Special Requirement</ion-label>
+                            <ion-input type="text"
+                                formControlName="amenities_specific_accommodation_detail"></ion-input>
+                        </ion-item>
+                    </div>
+                </div>
+                <div class="general_details">
+                    <div class="general_details_body">
                         <div>
                             <div>
                                 <ion-item>
                                     <ion-label position="floating">Room Category Preference</ion-label>
                                     <ion-select formControlName="room_category_preference">
-                                        <ion-select-option value="Queen Room">Queen Room</ion-select-option>
+                                        <ion-select-option value="Basic (Standard) Room">Basic (Standard) Room
+                                        </ion-select-option>
+                                        <ion-select-option value="Room With a View(Beach,City,Valley,Garden,Pool)">Room
+                                            With a View(Beach,City,Valley,Garden,Pool)</ion-select-option>
+                                        <ion-select-option value="Suit">Suit</ion-select-option>
+                                        <ion-select-option value="Villa">Villa</ion-select-option>
+                                        <ion-select-option value="Cottages">Cottages</ion-select-option>
+                                        <ion-select-option value="Balcony">Balcony</ion-select-option>
+                                        <ion-select-option value="Penthouse">Penthouse</ion-select-option>
+                                        <!-- <ion-select-option value="Queen Room">Queen Room</ion-select-option>
                                         <ion-select-option value="Single Room">Single Room</ion-select-option>
                                         <ion-select-option value="Double Room">Double Room</ion-select-option>
                                         <ion-select-option value="Quad Room">Quad Room</ion-select-option>
                                         <ion-select-option value="King Room">King Room</ion-select-option>
                                         <ion-select-option value="Twin Room">Twin Room</ion-select-option>
                                         <ion-select-option value="Triple Room">Triple Room</ion-select-option>
-                                        <ion-select-option value="Studio Room">Studio Room</ion-select-option>
+                                        <ion-select-option value="Studio Room">Studio Room</ion-select-option> -->
                                     </ion-select>
                                 </ion-item>
                             </div>
@@ -45,7 +97,7 @@
                             </div>
                         </div>
                         <!-- <div class="row"> -->
-                        <div class="smoke-icon">
+                        <div class="smoke-icon mt-2">
                             <p>Smoking Room</p>
                             <img src="assets/images/smok.png">
                         </div>
@@ -56,7 +108,8 @@
                                 <label for="Smoking1">Yes</label>
                             </div>
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="Smoking2" formControlName="smoking_room" value="No">
+                                <input type="radio" class="mr-2" id="Smoking2" formControlName="smoking_room"
+                                    value="No">
                                 <label for="Smoking2">No</label>
                             </div>
                         </div>
@@ -66,26 +119,24 @@
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="Accessible1" formControlName="wheelchair_accessible"
-                                    value="Yes">
+                                <input type="radio" class="mr-2" id="Accessible1"
+                                    formControlName="wheelchair_accessible" value="Yes">
                                 <label for="Accessible1">Yes</label>
                             </div>
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="Accessible2" formControlName="wheelchair_accessible"
-                                    value="No">
+                                <input type="radio" class="mr-2" id="Accessible2"
+                                    formControlName="wheelchair_accessible" value="No">
                                 <label for="Accessible2">No</label>
                             </div>
                         </div>
                         <!-- </div> -->
-                        <div>
+                        <!-- <div>
                             <ion-item>
                                 <ion-label position="floating">Any Special Requirement</ion-label>
                                 <ion-input type="text" formControlName="special_request"></ion-input>
                             </ion-item>
-                            <!-- <div *ngIf="submitted && f.specialRequest.errors" class="invalid-feedback">
-                                <div *ngIf="f.specialRequest.errors.required">Please Enter Any Special Request</div>
-                            </div> -->
-                        </div>
+                          
+                        </div> -->
                     </div>
                 </div>
 
@@ -98,18 +149,18 @@
                         <div class="row">
                             <div class="col-12">
                                 <input type="radio" class="mr-2" id="Plans1" formControlName="meal_plan"
-                                    value="CP ( Continental Plan ) - Only Breakfast">
-                                <label for="Plans1">CP ( Continental Plan ) - Only Breakfast</label>
+                                    value="Only Breakfast">
+                                <label for="Plans1">Only Breakfast</label>
                             </div>
                             <div class="col-12">
                                 <input type="radio" class="mr-2" id="Plans2" formControlName="meal_plan"
-                                    value="AP ( American Plan ) - All Meals">
-                                <label for="Plans2">AP ( American Plan ) - All Meals</label>
+                                    value="All Meals">
+                                <label for="Plans2">All Meals</label>
                             </div>
                             <div class="col-12">
                                 <input type="radio" class="mr-2" id="Plans3" formControlName="meal_plan"
-                                    value="MAP - Breakfast & 1 Major Meal">
-                                <label for="Plans3">MAP - Breakfast & 1 Major Meal</label>
+                                    value="Breakfast & 1 Major Meal">
+                                <label for="Plans3">Breakfast & 1 Major Meal</label>
                             </div>
                         </div>
                     </div>
@@ -121,7 +172,38 @@
                         <p>Culinary Preferrence</p>
                     </div>
                     <div class="general_details_body">
-                        <div class="row">
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectCulinary($event)" value="Vegetarian">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Vegetarian</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectCulinary($event)" value="Vegan">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Vegan</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectCulinary($event)"
+                                value="Gluten & Lactose Free"> </ion-checkbox>
+                            <ion-label class="ml-3">Gluten & Lactose Free</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectCulinary($event)" value="Low Calorie Meal">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Low Calorie Meal</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectCulinary($event)" value="Non Veg">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Non Veg</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectCulinary($event)"
+                                value="Jain ( Only where available )"> </ion-checkbox>
+                            <ion-label class="ml-3">Jain ( Only where available )</ion-label>
+                        </div>
+
+                        <!-- <div class="row">
                             <div class="col-12">
                                 <input type="radio" class="mr-2" id="Culinary1" formControlName="culinary_preferrence"
                                     value="Vegetarian">
@@ -152,7 +234,7 @@
                                     value="Other">
                                 <label for="Culinary6">Other</label>
                             </div>
-                        </div>
+                        </div> -->
                         <ion-item>
                             <ion-label position="floating">Any Special Requirement</ion-label>
                             <ion-input type="text" formControlName="culinary_special_request"></ion-input>
@@ -167,10 +249,10 @@
                             <p class="float-left">Room - {{i + 1}}</p>
                             <i class="fas fa-minus-circle float-right" (click)="deleteRoom(i)"></i>
                         </div>
-                       
+
                         <div class="general_details_body">
                             <div class="passengers-details">
-                                <div class="plist">Infants</div>
+                                <div class="plist">Infants (2 Years)</div>
                                 <p></p>
                                 <div class="icon-button">
                                     <div class="icons">
@@ -181,7 +263,7 @@
                                 </div>
                             </div>
                             <div class="passengers-details">
-                                <div class="plist">Children</div>
+                                <div class="plist">Children (2 to 11 Years)</div>
                                 <div class="icon-button">
                                     <div class="icons">
                                         <i class="fa fa-minus" aria-hidden="true" (click)="decrement('children',i)"></i>
@@ -191,7 +273,7 @@
                                 </div>
                             </div>
                             <div class="passengers-details">
-                                <div class="plist">Adults</div>
+                                <div class="plist">Adults (11 to 65 years)</div>
                                 <div class="icon-button">
                                     <div class="icons">
                                         <i class="fa fa-minus" aria-hidden="true" (click)="decrement('adults',i)"></i>

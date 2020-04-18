@@ -18,7 +18,7 @@ export class AirTicketsInquiryComponent implements OnInit {
   childrenPassenger: any = 0;
   adultsPassenger: any = 0;
   seniorPassenger: any = 0;
-
+  flightTireArray:any = [];
 
   constructor(public route: Router, public _tripService: TripService) {
 
@@ -44,7 +44,7 @@ export class AirTicketsInquiryComponent implements OnInit {
       adults_passenger: new FormControl('0'),
       senior_passenger: new FormControl('0'),
       journey_type: new FormControl('Round Trip'),
-      flightTire_preference: new FormControl('Economy'),
+      flightTire_preference: new FormControl(''),
       flightSeat_preferences: new FormControl('Aisle'),
       in_flight_meal: new FormControl(''),
       airline_preference: new FormControl(''),
@@ -151,5 +151,19 @@ export class AirTicketsInquiryComponent implements OnInit {
       console.log("index of air-tickit in localstorage", localStorageFormData);
       localStorage.setItem('form_data', JSON.stringify(localStorageFormData));
     }
+  }
+
+  /**
+   * Set flight tire preferences
+   */
+  selectTier(e){
+    if (!this.flightTireArray.includes(e.detail.value)) {
+      this.flightTireArray.push(e.detail.value);
+    } else {
+      var index = this.flightTireArray.indexOf(e.detail.value);
+      this.flightTireArray.splice(index, 1);
+    }
+    console.log(this.flightTireArray);
+    this.airTickitForm.controls.flightTire_preference.setValue(this.flightTireArray);
   }
 }

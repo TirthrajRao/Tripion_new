@@ -16,6 +16,7 @@ export class TransferInquiryComponent implements OnInit {
   airArray: any = [];
   nextYear;
   curruntDate: string = new Date().toISOString();
+  transferType:any = [];
   // formData = JSON.parse(localStorage.getItem('form_data'));
 
   constructor(public route: Router, public _tripService: TripService) {
@@ -44,13 +45,16 @@ export class TransferInquiryComponent implements OnInit {
       transfer_basis_special_request: new FormControl(''),
       meal: new FormControl(''),
       seat_preference: new FormControl(''),
+      transfer_type:new FormControl(''),
       tyre: new FormControl(''),
       air: new FormControl(''),
       chauffer_car_type: new FormControl(''),
       selfdrive_car_type: new FormControl(''),
       suggest_rental: new FormControl(''),
-      cabin_category: new FormControl(''),
-      shore_excrusion: new FormControl(''),
+      // cabin_category: new FormControl(''),
+      // shore_excrusion: new FormControl(''),
+      cruise_meal_preferences:new FormControl(''),
+      cruise_tier_preferences:new FormControl(''),
       city_cards: new FormControl('No')
     });
 
@@ -129,6 +133,20 @@ export class TransferInquiryComponent implements OnInit {
     this.transferForm.controls.air.setValue(this.airArray);
   }
 
+  /**
+   * Get Transfer type Checkbox value
+   * @param {Object} e 
+   */
+  selectTransferType(e) {
+    if (!this.transferType.includes(e.detail.value)) {
+      this.transferType.push(e.detail.value);
+    } else {
+      var index = this.transferType.indexOf(e.detail.value);
+      this.transferType.splice(index, 1);
+    }
+    console.log(this.transferType);
+    this.transferForm.controls.transfer_type.setValue(this.transferType);
+  }
 
   /**
    * Check and store data in local storage

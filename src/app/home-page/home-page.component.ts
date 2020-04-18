@@ -39,7 +39,6 @@ export class HomePageComponent implements OnInit {
   notificationCount: any;
   homeTownData: any;
   tempratureIndex = localStorage.getItem('temprature');
-  timeIndex = localStorage.getItem('time')
   tempratureCity: any;
   cityRefreshInterval: any;
   searchedResult: any = [];
@@ -67,25 +66,25 @@ export class HomePageComponent implements OnInit {
       console.log("response of notification count in home page =====>", response, this.notificationCount);
 
     })
-    // router.events
-    //   .pipe(
-    //     filter(event => event instanceof RoutesRecognized),
-    //     pairwise()
-    //   )
-    //   .subscribe((e: any) => {
-    //     console.log("eeee", e);
-    //     if (e[1].urlAfterRedirects == '/home/home-page') {
-    //       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    //       // console.log("urllllll", e[0].urlAfterRedirects);
-    //       this.previousUrl = e[0].urlAfterRedirects;
-    //       if (this.previousUrl.includes('other-details') || this.previousUrl.includes('login') || this.previousUrl.includes('general-detail') || this.previousUrl.includes('signup') || this.previousUrl.includes('premium-account') || this.previousUrl.includes('passport') || this.previousUrl.includes('all-plan') || this.previousUrl.includes('plan-option')
-    //       ) {
-    //         console.log("in if");
-    //         this.allTrips = []
-    //         this.getAllTrips();
-    //       }
-    //     }
-    //   });
+    router.events
+      .pipe(
+        filter(event => event instanceof RoutesRecognized),
+        pairwise()
+      )
+      .subscribe((e: any) => {
+        console.log("eeee", e);
+        if (e[1].urlAfterRedirects == '/home/home-page') {
+          this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+          // console.log("urllllll", e[0].urlAfterRedirects);
+          this.previousUrl = e[0].urlAfterRedirects;
+          if (this.previousUrl.includes('other-details') || this.previousUrl.includes('login') || this.previousUrl.includes('general-detail') || this.previousUrl.includes('signup') || this.previousUrl.includes('premium-account') || this.previousUrl.includes('passport') || this.previousUrl.includes('all-plan') || this.previousUrl.includes('plan-option')
+          ) {
+            console.log("in if");
+            this.allTrips = []
+            this.getAllTrips();
+          }
+        }
+      });
     // this.getAllTrips();
   }
 
@@ -93,7 +92,8 @@ export class HomePageComponent implements OnInit {
   }
 
   ionViewWillEnter() {
-    console.log("in enter", this.tempratureIndex);
+    console.log("in enter");
+    // this.allTrips = [];
     this.getAllTrips();
     this.tempratureData = JSON.parse(localStorage.getItem('tempratureData'));
     this.timeData = JSON.parse(localStorage.getItem('timeData'))
@@ -101,7 +101,6 @@ export class HomePageComponent implements OnInit {
 
     //Get Temprature
     if (this.tempratureData) {
-      this.tempratureIndex = localStorage.getItem('temprature');
       this.tempratureCity = this.tempratureData.name;
       this.getWeather(this.tempratureData.lat, this.tempratureData.lng)
     }
@@ -114,11 +113,12 @@ export class HomePageComponent implements OnInit {
 
     this.refreshIntervalId = setInterval(() => {
 
-      this.timeIndex = localStorage.getItem('time');
       if (this.timeData) {
         this.timeData = JSON.parse(localStorage.getItem('timeData'))
-        this.timeCity = this.timeData.name;
-        this.getTime(this.timeData.lat, this.timeData.lng)
+        if (this.timeData) {
+          this.timeCity = this.timeData.name;
+          this.getTime(this.timeData.lat, this.timeData.lng)
+        }
       } else {
         this.getTime(this.latitude, this.longitude)
       }

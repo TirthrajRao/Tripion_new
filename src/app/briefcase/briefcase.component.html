@@ -27,7 +27,7 @@
         <div *ngIf="allFolder.length">
             <div class="card folder_detail" *ngFor="let folder of allFolder;let i= index" routerLink='/home/folder-detail/{{folder}}'>
                 <ion-img [src]="getRandomImgeIcon(i)"></ion-img>
-                <p>{{folder}}</p>
+                <p [innerHtml]="folder"></p>
             </div>
         </div>
         <div *ngIf="loading">

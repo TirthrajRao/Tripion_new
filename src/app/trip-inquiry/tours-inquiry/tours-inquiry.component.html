@@ -25,9 +25,10 @@
                             <ion-item>
                                 <ion-label position="floating">Language Preference</ion-label>
                                 <ion-select formControlName="language">
-                                    <ion-select-option [value]="lan" *ngFor="let lan of languages">{{lan}}</ion-select-option>
+                                    <ion-select-option [value]="lan" *ngFor="let lan of languages">{{lan}}
+                                    </ion-select-option>
                                 </ion-select>
-                              
+
                             </ion-item>
                             <div *ngIf="submitted && f.language.errors" class="invalid-feedback">
                                 <div *ngIf="f.language.errors.required">Language Required</div>
@@ -36,7 +37,8 @@
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Duration Preference</ion-label>
-                                <ion-input type="text" formControlName="duration"></ion-input>
+                                <ion-input type="number" formControlName="duration" placeholder="Enter hours">
+                                </ion-input>
                             </ion-item>
                             <div *ngIf="submitted && f.duration.errors" class="invalid-feedback">
                                 <div *ngIf="f.duration.errors.required">Duration is required</div>
@@ -50,9 +52,80 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="general_details">
                     <div class="general_details_header">
+                        <img src="assets/images/global.png">
+                        <p>Tour Type</p>
+                    </div>
+                    <div class="general_details_body">
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectTourType($event)" value="City Tours">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">City Tours</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectTourType($event)" value="Half Day tour">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Half Day tour</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectTourType($event)" value="Full Day tour">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Full Day tour</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectTourType($event)" value="Hop In - Hop Off">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Hop In - Hop Off</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectTourType($event)"
+                                value="Combination Tours"> </ion-checkbox>
+                            <ion-label class="ml-3">Combination Tours</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectTourType($event)"
+                                value="Independent Tours"> </ion-checkbox>
+                            <ion-label class="ml-3">Independent Tours</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectTourType($event)" value="Hosted Tours">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Hosted Tours</ion-label>
+                        </div>
+                    </div>
+                </div>
+                <div class="general_details">
+                    <div class="general_details_header">
+                        <img src="assets/images/entry.png">
+                        <p>Attractions & Activities Tickets & Entry preference</p>
+                    </div>
+                    <div class="general_details_body">
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectEntry($event)" value="Refundable">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Refundable</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectEntry($event)" value="Non-Refundable">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Non-Refundable</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectEntry($event)" value="Skip the line">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Skip the line</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectEntry($event)" value="No Priority">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">No Priority</ion-label>
+                        </div>
+                    </div>
+                </div>
+                <div class="general_details">
+                    <div class="general_details_header">
+                        <img src="assets/images/beach.png">
                         <p>Itinerary Pace</p>
                     </div>
                     <div class="general_details_body ">
@@ -60,17 +133,20 @@
                             <ion-img [src]="path"></ion-img>
                             <h2 class="text-center">{{status}}</h2>
                             <div class="status_bar">
-                                <input type="range" class="gradient-range" value="0" min="0" max="10" formControlName="itinerary_pace" (input)="changeStatus($event)" />
+                                <input type="range" class="gradient-range" value="0" min="0" max="10"
+                                    formControlName="itinerary_pace" (input)="changeStatus($event)" />
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="next_btn" *ngIf="formUrl.length">
-                <button type="submit" (click)="nextForm(tourForm.value)">Next<i class="fas fa-arrow-right"></i></button>
-            </div>
-            <div class="submit_btn" *ngIf="!formUrl.length">
-                <button type="submit" routerLink='/home/home-page'><i class="fas fa-save"></i>Submit</button>
+
+                <div class="next_btn" *ngIf="formUrl.length">
+                    <button type="submit" (click)="nextForm(tourForm.value)">Next<i
+                            class="fas fa-arrow-right"></i></button>
+                </div>
+                <div class="submit_btn" *ngIf="!formUrl.length">
+                    <button type="submit" routerLink='/home/home-page'><i class="fas fa-save"></i>Submit</button>
+                </div>
             </div>
         </form>
     </div>

@@ -10,7 +10,7 @@
     <div class="plan_option_content" *ngIf="planDetail">
         <div class="card plan_option_heading plan-detail-content w-100 ">
             <h6 [innerHtml]="planDetail.plan_name"></h6>
-            <h3 class="text-center" [innerHtml]="planDetail.inquiry_name + ' tour for ' + planDetail.duration +' Days'">
+            <h3 class="text-center" [innerHtml]="planDetail.inquiry_name + ' tour for ' + planDetail.duration +' Nights'">
             </h3>
             <div class="plan_images" *ngIf="planDetail.images.length">
                 <div class="plan_images_slide" *ngFor="let img of planDetail.images">

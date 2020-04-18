@@ -18,7 +18,6 @@ export class OtherDetailsInquiryComponent implements OnInit {
   submitted: Boolean = false;
   paymentModeArray: any = [];
   communicationModeArray: any = [];
-  amount: any;
   formData = JSON.parse(localStorage.getItem('form_data'));
   isTripInquiry: any = JSON.parse(localStorage.getItem('isTripInquiry'))
   currentUser = JSON.parse(localStorage.getItem('currentUser'))
@@ -45,7 +44,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
       budget_preference: new FormControl(''),
       budget_amount: new FormControl(''),
       payment_mode: new FormControl(''),
-      number_of_plans: new FormControl('')
+      // number_of_plans: new FormControl('')
     })
     // this.getUserDetail();
   }
@@ -96,7 +95,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
       return;
     } else {
       console.log(this.formData);
-      data['total_plan_payment'] = this.amount
+      // data['total_plan_payment'] = this.amount
       const object = {
         "other_detail": data
       }
@@ -127,85 +126,11 @@ export class OtherDetailsInquiryComponent implements OnInit {
         formData.unshift(selectedForms);
       }
       localStorage.setItem('form_data', JSON.stringify(formData));
-      let navigationExtras: NavigationExtras = {
-        state: {
-          type: 'Total no. of Plans',
-          amount: this.amount,
-          noOfPlan:data.number_of_plans
-        }
-      };
       console.log(this.formData);
-      this.route.navigate(['/home/premium-account'], navigationExtras)
+      // this.route.navigate(['/home/premium-account'], navigationExtras);
+      this.route.navigate(['/home/information-pack'])
+
     }
-
-
-
-  }
-
-  /**
-   * Submit General Inquires
-   * @param {Object} data 
-   */
-  submitForm(data) {
-    this.submitted = true;
-    if (this.otherDetailsForm.invalid) {
-      return;
-    }
-    this.checkLocalStorageData();
-    if (!this.currentUser.email) {
-      alert('Please add your email in your Profile');
-      return;
-    } else {
-      console.log(this.formData);
-      data['total_plan_payment'] = this.amount
-      const object = {
-        "other_detail": data
-      }
-
-      this._tripService.storeFormData(object)
-      let formData = JSON.parse(localStorage.getItem('form_data'))
-      console.log("form data", JSON.parse(localStorage.getItem('form_data')));
-      console.log("selected form", JSON.parse(localStorage.getItem('selectedForm')))
-      let formObject = {};
-      _.forEach(JSON.parse(localStorage.getItem('selectedForm')), (form, index) => {
-        formObject[index + 1] = form
-      })
-      const selectedForms = {
-        "selected_forms": formObject
-      }
-      console.log("formobject", formObject, selectedForms);
-      formData.unshift(selectedForms);
-      localStorage.setItem('form_data', JSON.stringify(formData))
-      console.log("form data111", localStorage.getItem('form_data'));
-      const obj = {
-        id: this.currentUser.id,
-        email: this.currentUser.email,
-        form_category: this.selectedFormCategory.toString(),
-        form_data: localStorage.getItem('form_data')
-      }
-      console.log(obj);
-      this.isDisable = true;
-      this.loading = true;
-      this._tripService.addInquiry(obj).subscribe((res: any) => {
-        this.isDisable = false;
-        this.loading = false;
-        console.log("inquiry form res", res);
-        localStorage.removeItem('form_data');
-        localStorage.removeItem('selectedFormCategory');
-        this.appComponent.sucessAlert("Form Submitted")
-        // this._toastService.presentToast(res.message, 'success')
-        this.route.navigate(['/home']);
-      }, (err) => {
-        this.appComponent.errorAlert(err.error.message);
-        this.isDisable = false;
-        this.loading = false;
-        console.log(err);
-        localStorage.removeItem('form_data');
-        localStorage.removeItem('selectedFormCategory');
-      })
-    }
-
-
   }
 
   /**
@@ -235,19 +160,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
     this.otherDetailsForm.controls.communication_mode.setValue(this.communicationModeArray);
   }
 
-  /**
-   * Count payment amount 
-   * @param {Object} event 
-   */
-  numberOfPlan(event) {
-    console.log(event.target.value);
-    if (event.target.value) {
-      this.amount = 1500 * event.target.value
-      console.log(this.amount)
-    } else {
-      this.amount = 0;
-    }
-  }
+
 
   /**
    * Check and store data in local storage

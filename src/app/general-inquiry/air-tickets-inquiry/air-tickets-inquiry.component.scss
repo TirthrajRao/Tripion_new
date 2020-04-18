@@ -61,3 +61,19 @@ div.plist{
         height: 40px;
     }
 }
+.select_plan_check {
+    margin-top: 3px;
+    width     : 100%;
+
+    ion-checkbox {
+        vertical-align: middle;
+        --border-color: #7F8DAB;
+    }
+
+    ion-label {
+        vertical-align: middle;
+        font-size     : 14px !important;
+        color         : #7F8DAB;
+        font-weight   : 500;
+    }
+}

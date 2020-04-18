@@ -14,7 +14,7 @@
                     </div>
                     <div class="general_details_body">
                         <div class="passengers-details">
-                            <div class="plist">Infants</div>
+                            <div class="plist">Infants (2 Years)</div>
                             <div class="icon-button">
                                 <div class="icons">
                                     <i class="fa fa-minus" aria-hidden="true" (click)="decrement('infants')"></i>
@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <div class="passengers-details">
-                            <div class="plist">Children</div>
+                            <div class="plist">Children (2 to 11 Years)</div>
                             <div class="icon-button">
                                 <div class="icons">
                                     <i class="fa fa-minus" aria-hidden="true" (click)="decrement('children')"></i>
@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <div class="passengers-details">
-                            <div class="plist">Adults</div>
+                            <div class="plist">Adults (11 to 65 Years)</div>
                             <div class="icon-button">
                                 <div class="icons">
                                     <i class="fa fa-minus" aria-hidden="true" (click)="decrement('adults')"></i>
@@ -53,7 +53,7 @@
                             </div>
                         </div>
                         <div class="passengers-details">
-                            <div class="plist">Senior Citizens</div>
+                            <div class="plist">Senior Citizens (Above 65 Years)</div>
                             <div class="icon-button">
                                 <div class="icons">
                                     <i class="fa fa-minus" aria-hidden="true" (click)="decrement('senior')"></i>
@@ -105,6 +105,11 @@
                                     formControlName="journey_type">
                                 <label for="Journey2">One Way</label>
                             </div>
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="Journey3" value="Multi City"
+                                    formControlName="journey_type">
+                                <label for="Journey3">Multi City</label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -115,8 +120,28 @@
                         <p>Flight Tier Prefernece</p>
                     </div>
                     <div class="general_details_body">
-                        <div class="row">
-                            <div class="col-6">
+                       
+                            <div class="select_plan_check">
+                                <ion-checkbox checked="false" (ionChange)="selectTier($event)"
+                                    value="Economys"> </ion-checkbox>
+                                <ion-label class="ml-3">Economys</ion-label>
+                            </div>
+                            <div class="select_plan_check">
+                                <ion-checkbox checked="false" (ionChange)="selectTier($event)"
+                                    value="Business Class"> </ion-checkbox>
+                                <ion-label class="ml-3">Business Class</ion-label>
+                            </div>
+                            <div class="select_plan_check">
+                                <ion-checkbox checked="false" (ionChange)="selectTier($event)"
+                                    value="First Class"> </ion-checkbox>
+                                <ion-label class="ml-3">First Class</ion-label>
+                            </div>
+                            <div class="select_plan_check">
+                                <ion-checkbox checked="false" (ionChange)="selectTier($event)"
+                                    value="Premium Economy"> </ion-checkbox>
+                                <ion-label class="ml-3">Premium Economy</ion-label>
+                            </div>
+                            <!-- <div class="col-6">
                                 <input type="radio" class="mr-2" id="Tire1" value="Economy"
                                     formControlName="flightTire_preference">
                                 <label for="Tire1">Economy</label>
@@ -130,8 +155,8 @@
                                 <input type="radio" class="mr-2" id="Tire3" value="First Class"
                                     formControlName="flightTire_preference">
                                 <label for="Tire3">First Class</label>
-                            </div>
-                        </div>
+                            </div> -->
+                        
                     </div>
                 </div>
 
@@ -158,9 +183,9 @@
                                 <label for="Flight3">Window</label>
                             </div>
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="Flight4" value="Emergency Exit Row"
+                                <input type="radio" class="mr-2" id="Flight4" value="Legroom Seats"
                                     formControlName="flightSeat_preferences" (change)="selectVisaType($event)">
-                                <label for="Flight4">Emergency Exit Row</label>
+                                <label for="Flight4">Legroom Seats</label>
                             </div>
                         </div>
                         <div>

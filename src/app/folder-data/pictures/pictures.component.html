@@ -17,7 +17,7 @@
                (press)="longPress(i)">
                 <div class="card p-3">
                     <ion-img [src]="getRandomImgeIcon(i)"  routerLink='/home/inner-folder/{{folder}}'></ion-img>
-                    <p>{{folder}}</p>
+                    <p [innerHtml]="folder"></p>
                 </div>
                 <i class="fa fa-times-circle folder-icon-{{i}}" (click)="removeFolder(folder,i)" ></i>
                 <!-- <i class="fa fa-times-circle-o "></i> -->

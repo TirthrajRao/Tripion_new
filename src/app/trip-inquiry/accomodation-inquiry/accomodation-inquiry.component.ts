@@ -13,6 +13,8 @@ export class AccomodationInquiryComponent implements OnInit {
   accomodationForm: FormGroup;
   submitted: Boolean = false;
   roomsArray: any = [];
+  culinaryArray: any = [];
+  acomodationArray: any = [];
   room: any;
 
 
@@ -20,7 +22,7 @@ export class AccomodationInquiryComponent implements OnInit {
 
   constructor(public route: Router, private fb: FormBuilder, public _tripService: TripService) {
     this.formUrl = JSON.parse(localStorage.getItem('formId'));
-   
+
     this.accomodationForm = this.fb.group({
       // accomodation_type: new FormControl('', [Validators.required]),
       // room_category_preference: new FormControl('', [Validators.required]),
@@ -34,6 +36,8 @@ export class AccomodationInquiryComponent implements OnInit {
 
 
       accomodation_type: new FormControl(''),
+      location_specific_accommodation_detail: new FormControl(''),
+      amenities_specific_accommodation_detail: new FormControl(''),
       room_category_preference: new FormControl(''),
       smoking_room: new FormControl('No'),
       wheelchair_accessible: new FormControl('No'),
@@ -62,6 +66,12 @@ export class AccomodationInquiryComponent implements OnInit {
 
   // Store form data
   storeFormData(data) {
+    if (!data.accomodation_type.includes('Amenities Specific Accommodation')) {
+      delete data.amenities_specific_accommodation_detail
+    }
+    if (!data.accomodation_type.includes('Location Specific Accommodation')) {
+      delete data.location_specific_accommodation_detail
+    }
     console.log("accomodation data", data);
     const obj = {
       'accomodation': data
@@ -143,5 +153,32 @@ export class AccomodationInquiryComponent implements OnInit {
       console.log("index of accomodation in localstorage", localStorageFormData);
       localStorage.setItem('form_data', JSON.stringify(localStorageFormData))
     }
+  }
+
+  /**
+   * Set Value of culinary preferences value
+   */
+  selectCulinary(e) {
+    if (!this.culinaryArray.includes(e.detail.value)) {
+      this.culinaryArray.push(e.detail.value);
+    } else {
+      var index = this.culinaryArray.indexOf(e.detail.value);
+      this.culinaryArray.splice(index, 1);
+    }
+    console.log(this.culinaryArray);
+    this.accomodationForm.controls.culinary_preferrence.setValue(this.culinaryArray);
+  }
+  /**
+   * Set Value o faccommodation type 
+   */
+  selectAccommodationType(e) {
+    if (!this.acomodationArray.includes(e.detail.value)) {
+      this.acomodationArray.push(e.detail.value);
+    } else {
+      var index = this.acomodationArray.indexOf(e.detail.value);
+      this.acomodationArray.splice(index, 1);
+    }
+    console.log(this.acomodationArray);
+    this.accomodationForm.controls.accomodation_type.setValue(this.acomodationArray);
   }
 }
