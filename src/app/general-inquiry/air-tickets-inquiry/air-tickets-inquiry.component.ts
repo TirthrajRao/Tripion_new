@@ -66,7 +66,7 @@ export class AirTicketsInquiryComponent implements OnInit {
       return
     }
     const obj = {
-      "air_tickit": data
+      "air_ticket": data
     }
     this._tripService.storeFormData(obj);
     this.route.navigate(['/home/' + this.formUrl[0]])
