@@ -153,6 +153,7 @@ export class PicturesComponent implements OnInit {
       $('#add-picturess').fadeOut();
       this.files = "";
       this.getAllImages();
+      // this.allImages.push(...res.data)
       this.isDisable = false;
       this.loading = false;
       this.urls = [];

@@ -20,6 +20,7 @@ export class InnerFolderComponent implements OnInit {
   loading: Boolean = false;
   allImages: any = [];
   isDisable: Boolean = false;
+  subFolderName:any;
   constructor(
     public route: ActivatedRoute,
     public _uploadService: UploadService,
@@ -30,6 +31,7 @@ export class InnerFolderComponent implements OnInit {
   ) {
     this.route.params.subscribe((params) => {
       this.folderName = params.foldername;
+      this.subFolderName = params.subfoldername
     });
   }
 
@@ -96,12 +98,13 @@ export class InnerFolderComponent implements OnInit {
       data.append('profile_image[]', this.files[i])
     }
     data.append('id', this.currentUser.id);
-    data.append('folder_name', 'Other Docs/' + this.folderName);
+    data.append('folder_name', 'Other Docs/' + this.folderName + '/'+ this.subFolderName);
     data.append('image_type', 'other')
     this._uploadService.uploadDocuments(data).subscribe((res: any) => {
       console.log("res", res);
       $('#Add-Pictures').fadeOut();
       this.files = "";
+      // this.allImages.push(...res.data)
       this.getAllImages();
       this.isDisable = false;
       this.loading = false;
@@ -151,41 +154,60 @@ export class InnerFolderComponent implements OnInit {
    */
   async removeImage(data, index, type) {
     console.log(data);
-    const alert = await this.alertController.create({
-      header: 'Alert!',
-      message: 'Are you sure you want to delete this ' + type + '?',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-            $('.icons-' + index).css('opacity', 0)
-          }
-        }, {
-          text: 'Yes',
-          handler: () => {
-            console.log('Confirm Okay');
-            this.loading = true;
-            const obj = {
-              image_id: data.id
+    if (data.upload_by_admin == 0) {
+      const alert = await this.alertController.create({
+        header: 'Alert!',
+        message: 'Are you sure you want to delete this ' + type + '?',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: (blah) => {
+              console.log('Confirm Cancel: blah');
+              $('.icons-' + index).css('opacity', 0)
             }
-            this._uploadService.removeImage(obj).subscribe((res: any) => {
-              console.log(res);
-              this.loading = false;
-              this.allImages.splice(this.allImages.indexOf(data), 1);
-            }, (err) => {
-              console.log(err);
-              this.loading = false;
-              this.appComponent.errorAlert(err.error.message);
-            })
+          }, {
+            text: 'Yes',
+            handler: () => {
+              console.log('Confirm Okay');
+              this.loading = true;
+              const obj = {
+                image_id: data.id
+              }
+              this._uploadService.removeImage(obj).subscribe((res: any) => {
+                console.log(res);
+                this.loading = false;
+                this.allImages.splice(this.allImages.indexOf(data), 1);
+              }, (err) => {
+                console.log(err);
+                this.loading = false;
+                this.appComponent.errorAlert(err.error.message);
+              })
+            }
           }
-        }
-      ]
-    });
+        ]
+      });
 
-    await alert.present();
+      await alert.present();
+    } else {
+      const alert = await this.alertController.create({
+        header: 'Alert!',
+        message: "you can't delete this " + type,
+        buttons: [
+          {
+            text: 'Ok',
+            role: 'Ok',
+            cssClass: 'secondary',
+            handler: (blah) => {
+              console.log('Confirm Cancel: blah');
+              $('.icons-' + index).css('opacity', 0)
+            }
+          }
+        ]
+      });
+      await alert.present();
+    }
   }
 
   /**

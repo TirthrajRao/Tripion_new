@@ -608,7 +608,7 @@ let AppComponent = class AppComponent {
             this.statusBar.backgroundColorByHexString('#0575E6');
             setTimeout(() => {
                 this.splashScreen.hide();
-            }, 400);
+            }, 700);
             this.menuRadius(); // call menuRadius method
             this.getCountryList();
         });

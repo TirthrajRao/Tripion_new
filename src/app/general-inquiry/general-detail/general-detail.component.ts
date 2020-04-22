@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TripService } from '../../services/trip.service';
 import { data } from '../../data';
@@ -25,6 +25,11 @@ export class GeneralDetailComponent implements OnInit {
   selectedFormCategory = JSON.parse(localStorage.getItem('selectedFormCategory'));
   isDisable: Boolean = false;
   loading: Boolean = false;
+  groupTravel = 'No';
+  infantsPassenger = 0;
+  childrenPassenger = 0;
+  adultsPassenger = 0;
+  seniorPassenger = 0;
   constructor(
     public route: Router,
     public _tripService: TripService,
@@ -47,18 +52,21 @@ export class GeneralDetailComponent implements OnInit {
 
       name_in_passport: new FormControl(''),
       pssport_number: new FormControl(''),
-      // dob: new FormControl(''),
-      // place_of_birth: new FormControl(''),
-      // address_in_passport: new FormControl(''),
       duration: new FormControl(''),
       desination_country: new FormControl(''),
       place_name: new FormControl(''),
       departure_date: new FormControl(''),
       intende_date: new FormControl(''),
-      // passport_valid_date: new FormControl(''),
       duration_status: new FormControl('Flexible'),
+      group_travel: new FormControl('No'),
+      group_travel_detail: new FormGroup({
+        'infants': new FormControl(''),
+        'children': new FormControl(''),
+        'adults': new FormControl(''),
+        'senior_citizens': new FormControl('')
+      })
     })
-    console.log("lenfgrj",this.counries.length)
+    console.log("lenfgrj", this.counries.length)
   }
 
   ngOnInit() {
@@ -144,7 +152,10 @@ export class GeneralDetailComponent implements OnInit {
 
   // Store form data
   storeFormData(data) {
-    console.log("data", data)
+    if (data.group_travel == 'No') {
+      delete data.group_travel_detail
+    }
+    console.log("data", data);
     const obj = {
       "general_detail": data
     }
@@ -193,10 +204,6 @@ export class GeneralDetailComponent implements OnInit {
    * @param {object} data 
    */
   changeDateFormate(data) {
-    // if (data.dob.includes("T")) {
-    //   data.dob = data.dob.split("T")[0];
-    // }
-
     if (data.departure_date.includes("T")) {
       data.departure_date = data.departure_date.split("T")[0];
     }
@@ -204,10 +211,47 @@ export class GeneralDetailComponent implements OnInit {
     if (data.intende_date.includes("T")) {
       data.intende_date = data.intende_date.split("T")[0];
     }
-    // if (data.passport_valid_date.includes("T")) {
-    //   data.passport_valid_date = data.passport_valid_date.split("T")[0];
-    // }
     return data
+  }
+
+  //Decrement passangers count
+  decrement(type) {
+    console.log("type in dec", type, this.generalDetailsForm.controls.group_travel_detail.value);
+    if (type == "infants") {
+      if (this.infantsPassenger)
+        this.infantsPassenger--;
+      this.generalDetailsForm.controls.group_travel_detail.value.infants = this.infantsPassenger;
+    } else if (type == "children") {
+      if (this.childrenPassenger)
+        this.childrenPassenger--;
+      this.generalDetailsForm.controls.group_travel_detail.value.children = this.childrenPassenger;
+    } else if (type == 'adults') {
+      if (this.adultsPassenger)
+        this.adultsPassenger--;
+      this.generalDetailsForm.controls.group_travel_detail.value.adults = this.adultsPassenger;
+    } else if (type == 'senior') {
+      if (this.seniorPassenger)
+        this.seniorPassenger--;
+      this.generalDetailsForm.controls.group_travel_detail.value.senior_citizens = this.seniorPassenger;
+    }
+  }
+
+  //Increment passangers count
+  increment(type) {
+    console.log("type in inc", type)
+    if (type == "infants") {
+      this.infantsPassenger++;
+      this.generalDetailsForm.controls.group_travel_detail.value.infants = this.infantsPassenger;
+    } else if (type == "children") {
+      this.childrenPassenger++;
+      this.generalDetailsForm.controls.group_travel_detail.value.children = this.childrenPassenger;
+    } else if (type == 'adults') {
+      this.adultsPassenger++;
+      this.generalDetailsForm.controls.group_travel_detail.value.adults = this.adultsPassenger;
+    } else if (type == 'senior') {
+      this.seniorPassenger++;
+      this.generalDetailsForm.controls.group_travel_detail.value.senior_citizens = this.seniorPassenger;
+    }
   }
 
 }

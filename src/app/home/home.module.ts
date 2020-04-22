@@ -48,6 +48,10 @@ import { QuotationsComponent } from '../quotations/quotations.component';
 import { FolderImagesComponent } from '../folder-data/folder-images/folder-images.component';
 import { HeaderComponent } from '../header/header.component';
 import { ImageModalComponent } from '../image-modal/image-modal.component';
+import { DestinationRequestComponent } from '../destination-finder/destination-request/destination-request.component';
+import { OccasionVacationComponent } from '../destination-finder/occasion-vacation/occasion-vacation.component';
+import { TravellingZonesComponent } from '../destination-finder/travelling-zones/travelling-zones.component';
+
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
@@ -218,8 +222,8 @@ export class IonicGestureConfig extends HammerGestureConfig {
             component: OtherDetailsInquiryComponent
           },
           {
-            path:'information-pack',
-            component:InformationPackComponent
+            path: 'information-pack',
+            component: InformationPackComponent
           },
           {
             path: 'amendments',
@@ -278,14 +282,25 @@ export class IonicGestureConfig extends HammerGestureConfig {
             component: SelectLocationComponent
           },
           {
-            path: 'inner-folder/:foldername',
+            path: 'inner-folder/:foldername/:subfoldername',
             component: InnerFolderComponent
           },
           {
             path: 'select-city/:type',
             component: SelectCityComponent
           },
-
+          {
+            path: 'destination-finder',
+            component: DestinationRequestComponent
+          },
+          {
+            path: 'occian-vacation',
+            component: OccasionVacationComponent
+          },
+          {
+            path: 'travelling-zone',
+            component: TravellingZonesComponent
+          },
         ]
       },
 
@@ -344,7 +359,10 @@ export class IonicGestureConfig extends HammerGestureConfig {
     ImageModalComponent,
     SafePipe,
     InnerFolderComponent,
-    SelectCityComponent
+    SelectCityComponent,
+    DestinationRequestComponent,
+    OccasionVacationComponent,
+    TravellingZonesComponent
   ],
   providers: [
     FileTransfer,

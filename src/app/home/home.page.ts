@@ -63,6 +63,11 @@ export class HomePage {
         iconSrc: 'assets/images/7.png'
       },
       {
+        title: 'Destination Finder',
+        url: '/home/destination-finder',
+        iconSrc: 'assets/images/11.png'
+      },
+      {
         title: 'Profile',
         url: '/home/profile',
         iconSrc: 'assets/images/9.png'

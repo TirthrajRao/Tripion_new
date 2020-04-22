@@ -619,7 +619,7 @@ var AppComponent = /** @class */ (function () {
             _this.statusBar.backgroundColorByHexString('#0575E6');
             setTimeout(function () {
                 _this.splashScreen.hide();
-            }, 400);
+            }, 700);
             _this.menuRadius(); // call menuRadius method
             _this.getCountryList();
         });

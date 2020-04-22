@@ -16,7 +16,7 @@
             <div class="col-4 folder_detail" *ngFor="let folder of folderList;let i =index"
                (press)="longPress(i)">
                 <div class="card p-3">
-                    <ion-img [src]="getRandomImgeIcon(i)"  routerLink='/home/inner-folder/{{folder}}'></ion-img>
+                    <ion-img [src]="getRandomImgeIcon(i)"  routerLink='/home/inner-folder/{{folderName}}/{{folder}}'></ion-img>
                     <p [innerHtml]="folder"></p>
                 </div>
                 <i class="fa fa-times-circle folder-icon-{{i}}" (click)="removeFolder(folder,i)" ></i>

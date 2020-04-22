@@ -1,0 +1,30 @@
+<ion-header>
+  <app-header [cname]="'Travelling Zones'"></app-header>
+</ion-header>
+<ion-content>
+  <div class="all_content">
+
+    <article class="page-content mt-3" id="demo-page-continents">
+      <!-- SECTION DEMO -->
+      <section id="section-demo">
+        <!-- MAP -->
+        <div id="display-map" class="display-demo-map">
+          <!-- CSSMap - Continents -->
+          <div id="map-continents">
+            <ul class="continents">
+              <li class="c1" data-interest="Africa"><a href="#africa">Africa</a></li>
+              <li class="c2" data-interest="Asia"><a href="#asia">Asia</a></li>
+              <li class="c3" data-interest="Australia"><a href="#australia">Australia</a></li>
+              <li class="c4" data-interest="Europe"><a href="#europe">Europe</a></li>
+              <li class="c5" data-interest="North America"><a href="#north-america">North America</a></li>
+              <li class="c6" data-interest="South America"><a href="#south-america">South America</a></li>
+            </ul>
+          </div>
+        </div>       
+      </section>
+    </article>
+    <div class="next_btn" (click)="nextForm()">
+      <button>Next</button>
+    </div>
+  </div>
+  </ion-content>

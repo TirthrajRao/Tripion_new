@@ -133,7 +133,103 @@
                                 <label for="date2">Fixed</label>
                             </div>
                         </div>
+                        <p>Group Travel (If more than 10)</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="travel1" value="Yes"
+                                    formControlName="group_travel" [(ngModel)]="groupTraveel">
+                                <label for="travel1">Yes</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="radio" class="mr-2" id="travel2" value="No"
+                                    formControlName="group_travel" [(ngModel)]="groupTraveel">
+                                <label for="travel2">No</label>
+                            </div>
+                        </div>
                     </div>
+                   
+                </div>
+                <div *ngIf="groupTraveel == 'Yes'" class="mt-2">
+                    <div class="general_details">
+                        <div class="general_details_header">
+                            <img src="assets/images/passanger.png">
+                            <p>Passengers</p>
+                        </div>
+                        <div class="general_details_body" formGroupName="group_travel_detail">
+                            <div class="passengers-details">
+                                <div class="plist">Infants (2 Years)</div>
+                                <div class="icon-button">
+                                    <div class="icons">
+                                        <i class="fa fa-minus" aria-hidden="true" (click)="decrement('infants')"></i>
+                                        <span>
+                                            <ion-input type="number" formControlName="infants"
+                                                [(ngModel)]="infantsPassenger" min='0'></ion-input>
+                                        </span>
+                                        <i class="fa fa-plus" aria-hidden="true" (click)="increment('infants')"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="passengers-details">
+                                <div class="plist">Children (2 to 11 Years)</div>
+                                <div class="icon-button">
+                                    <div class="icons">
+                                        <i class="fa fa-minus" aria-hidden="true" (click)="decrement('children')"></i>
+                                        <span>
+                                            <ion-input type="number" formControlName="children"
+                                                [(ngModel)]="childrenPassenger" min='0'></ion-input>
+                                        </span>
+                                        <i class="fa fa-plus" aria-hidden="true" (click)="increment('children')"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="passengers-details">
+                                <div class="plist">Adults (11 to 65 Years)</div>
+                                <div class="icon-button">
+                                    <div class="icons">
+                                        <i class="fa fa-minus" aria-hidden="true" (click)="decrement('adults')"></i>
+                                        <span>
+                                            <ion-input type="number" formControlName="adults"
+                                                [(ngModel)]="adultsPassenger" min='0'></ion-input>
+                                        </span>
+                                        <i class="fa fa-plus" aria-hidden="true" (click)="increment('adults')"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="passengers-details">
+                                <div class="plist">Senior Citizens (Above 65 Years)</div>
+                                <div class="icon-button" >
+                                    <div class="icons">
+                                        <i class="fa fa-minus" aria-hidden="true" (click)="decrement('senior')"></i>
+                                        <span>
+                                            <ion-input type="number" formControlName="senior_citizens"
+                                                [(ngModel)]="seniorPassenger" min='0'></ion-input>
+                                        </span>
+                                        <i class="fa fa-plus" aria-hidden="true" (click)="increment('senior')"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 text-center pl-4">
+                                <img src="assets/images/infants.png" style="height: 35px;">
+                                <p>{{infantsPassenger}}</p>
+                            </div>
+                            <div class="col-3 text-center">
+                                <img src="assets/images/children.svg" style="height: 46px;margin-top:-4px;">
+                                <p style="margin-top: -7px;">{{childrenPassenger}}</p>
+                            </div>
+                            <div class="col-3 text-center">
+                                <img src="assets/images/adults.png" style="height: 33px;margin-top: 4px;">
+                                <p>{{adultsPassenger}}</p>
+                            </div>
+                            <div class="col-3 text-center">
+                                <img src="assets/images/seniorcityzens.png" style="height: 33px;
+                                margin-top: 2px;">
+                                <p>{{seniorPassenger}}</p>
+                            </div>
+    
+                        </div>
+                    </div>      
                 </div>
                 <div class="next_btn">
                     <button type="submit" (click)="nextForm(generalDetailsForm.value)" [disabled]="isDisable"><span

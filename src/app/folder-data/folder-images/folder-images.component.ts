@@ -30,43 +30,61 @@ export class FolderImagesComponent implements OnInit {
   /**
    * Delete Image
    */
-  async removeImage(data, index,type) {
+  async removeImage(data, index, type) {
     console.log(data);
-    const alert = await this.alertController.create({
-      header: 'Alert!',
-      message: 'Are you sure you want to delete this '+type +'?',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-            console.log('Confirm Cancel: blah');
-            $('.icon-' + index).css('opacity', 0)
-          }
-        }, {
-          text: 'Yes',
-          handler: () => {
-            console.log('Confirm Okay');
-            this.loading = true;
-            const obj = {
-              image_id: data.id
+    if (data.upload_by_admin == 0) {
+      const alert = await this.alertController.create({
+        header: 'Alert!',
+        message: 'Are you sure you want to delete this ' + type + '?',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: (blah) => {
+              console.log('Confirm Cancel: blah');
+              $('.icon-' + index).css('opacity', 0)
             }
-            this._uploadService.removeImage(obj).subscribe((res: any) => {
-              console.log(res);
-              this.loading = false;
-              this.allImages.splice(this.allImages.indexOf(data), 1);
-            }, (err) => {
-              console.log(err);
-              this.loading = false;
-              this.appComponent.errorAlert(err.error.message);
-            })
+          }, {
+            text: 'Yes',
+            handler: () => {
+              console.log('Confirm Okay');
+              this.loading = true;
+              const obj = {
+                image_id: data.id
+              }
+              this._uploadService.removeImage(obj).subscribe((res: any) => {
+                console.log(res);
+                this.loading = false;
+                this.allImages.splice(this.allImages.indexOf(data), 1);
+              }, (err) => {
+                console.log(err);
+                this.loading = false;
+                this.appComponent.errorAlert(err.error.message);
+              })
+            }
           }
-        }
-      ]
-    });
-
-    await alert.present();
+        ]
+      });
+      await alert.present();
+    } else {
+      const alert = await this.alertController.create({
+        header: 'Alert!',
+        message: "you can't delete this " + type,
+        buttons: [
+          {
+            text: 'Ok',
+            role: 'Ok',
+            cssClass: 'secondary',
+            handler: (blah) => {
+              console.log('Confirm Cancel: blah');
+              $('.icon-' + index).css('opacity', 0)
+            }
+          }
+        ]
+      });
+      await alert.present();
+    }
   }
 
   /**
