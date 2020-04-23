@@ -3,47 +3,17 @@
 </ion-header>
 <ion-content>
   <div class="all_content">
-    <div class="general_details">
-      <div class="general_details_header">
-        <!-- <img src="assets/images/app.png"> -->
-        <p>Occasion Of the Vacation </p>
-      </div>
-      <div class="general_details_body">
-        <ion-slides [options]="slideOpts">
-          <ion-slide>
-            <div>
-              <div class="image-div">
-                <ion-icon name="heart"></ion-icon>
-                <img src="assets/images/download.jpeg" alt="">
-              </div>
-              <div class="card card-detail">
-                <p>The passage experienced a surge in popularity during the 1960s when Letraset used it on their</p>
-              </div>
-            </div>
-          </ion-slide>
-          <ion-slide>
-            <div>
-              <div class="image-div">
-                <ion-icon name="heart"></ion-icon>
-                <img src="assets/images/download.jpeg" alt="">
-              </div>
-              <div class="card card-detail">
-                <p>The passage experienced a surge in popularity during the 1960s when Letraset used it on their</p>
-              </div>
-            </div>
-          </ion-slide>
-          <ion-slide>
-            <div>
-              <div class="image-div">
-                <ion-icon name="heart"></ion-icon>
-                <img src="assets/images/download.jpeg" alt="">
-              </div>
-              <div class="card card-detail">
-                <p>The passage experienced a surge in popularity during the 1960s when Letraset used it on their</p>
-              </div>
-            </div>
-          </ion-slide>
-        </ion-slides>
+    <h4 class="text-white mb-3">Occasion Of the Vacation </h4>
+    <div>
+      <div class="center">
+        <div *ngFor="let img of occasionOption" class="center-slide">
+          <p>{{img.name}}</p>
+          <div style="position: relative;">
+            <i class="far fa-heart like-icon"></i>
+            <!-- <ion-icon name="ios-heart" class="like-icon"></ion-icon> -->
+            <img [src]="img.url">
+          </div>
+        </div>
       </div>
     </div>
   </div>

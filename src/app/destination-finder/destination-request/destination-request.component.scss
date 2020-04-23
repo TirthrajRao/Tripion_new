@@ -1,0 +1,85 @@
+.benefits_content {
+    padding: 0px 10px 10px 10px;
+    z-index: 11;
+    position: relative;
+}
+
+.country_name {
+    margin-bottom: 8px;
+    background-color: #fff;
+    // display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding: 10px;
+    // padding: 2px 18px;
+    @media (max-height: 750px) {
+        margin-bottom: 5px;
+    }
+    @media (max-height: 600px) {
+        margin-bottom: 2px;
+    }
+    img {
+        height: 46px;
+        width: 65px;
+        position: absolute;
+        right: 10px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+    p {
+        color: #434a5e;
+        font-size: 16px;
+        font-weight: 600;
+        // line-height: 52px;
+        // margin-left: 10px;
+        text-transform: capitalize;
+    }
+}
+* {
+    box-sizing: border-box;
+}
+.success_alert_box1 {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    -ms-flex-align: center;
+    display: flex;
+    overflow: hidden;
+    z-index: 9999;
+}
+.alert_box_content {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    width: 280px;
+    position: relative;
+    margin: auto;
+    display: table;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    transition: all 0.4s;
+    top: 100%;
+}
+
+.animate .alert_box_content {
+    top: 0;
+}
+.alert_box_image img {
+    height: 60px;
+    width: 60px;
+}
+
+.alert_box_text p {
+    margin: 15px;
+    color: #7f8dab;
+    font-size: 18px;
+    line-height: 24px;
+}
+.alert_box_text p span {
+    text-transform: uppercase;
+}

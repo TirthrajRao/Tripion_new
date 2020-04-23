@@ -89,15 +89,8 @@ ion-refresher-content {
 .alert_box_image img {
     height: 60px;
     width: 60px;
-  /*  opacity: 0;
-    transform: scale(4);
-    transition: all 0.2s;
-    transition-delay: 0.4s;*/
 }
-/*.animate .alert_box_image img{
-    opacity: 1;
-    transform: scale(1);
-}*/
+
 
 
 .alert_box_text p {
@@ -109,10 +102,7 @@ ion-refresher-content {
 .alert_box_text p span {
     text-transform: uppercase;
 }
-/*.alert_box_image {
-    top: 50px;
-    position: relative;
-}*/
+
 .row{
     margin-right: unset !important; 
     margin-left: unset !important;

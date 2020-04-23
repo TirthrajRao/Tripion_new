@@ -28,7 +28,7 @@ export class TripService {
       console.log(formRes)
       localStorage.setItem('form_data', JSON.stringify(formRes))
     } else {
-      formRes.push( data)
+      formRes.push(data)
       localStorage.setItem("form_data", JSON.stringify(formRes));
     }
   }
@@ -73,7 +73,7 @@ export class TripService {
     return this.http.post(config.baseApiUrl + 'add-flight', data)
   }
 
-  editFFPRequest(data){
+  editFFPRequest(data) {
     return this.http.post(config.baseApiUrl + 'update-flight', data)
   }
 
@@ -120,14 +120,14 @@ export class TripService {
    * Send Selected Plan
    * @param {object} data 
    */
-  sendPlan(data){
+  sendPlan(data) {
     return this.http.post(config.baseApiUrl + 'book-plan', data);
   }
   /**
    * Get Trip Timeline
    * @param {Object} data 
    */
-  getTripTimeline(data){
+  getTripTimeline(data) {
     return this.http.post(config.baseApiUrl + 'get-timeline', data)
   }
 
@@ -135,7 +135,7 @@ export class TripService {
    * Get Timeline Day details
    * @param {Object} data 
    */
-  getDayDetail(data){
+  getDayDetail(data) {
     return this.http.post(config.baseApiUrl + 'timeline-detail', data)
   }
 
@@ -143,7 +143,7 @@ export class TripService {
    * Get document request of inquiry
    * @param {Object} data 
    */
-  getDocumentReq(data){
+  getDocumentReq(data) {
     return this.http.post(config.baseApiUrl + 'get-doc-request', data);
   }
 
@@ -151,7 +151,7 @@ export class TripService {
    * Get Past trips
    * @param {object} data 
    */
-  getPastTrip(data){
+  getPastTrip(data) {
     return this.http.post(config.baseApiUrl + 'past-trip', data);
   }
 
@@ -159,7 +159,7 @@ export class TripService {
    * Get Quotations of trip
    * @param {object} data 
    */
-  getQuotations(data){
+  getQuotations(data) {
     return this.http.post(config.baseApiUrl + 'get-quotation', data);
   }
 
@@ -167,13 +167,13 @@ export class TripService {
    * Add Passport Inquiry
    * @param {object} data 
    */
-  addPassportForm(data){
+  addPassportForm(data) {
     return this.http.post(config.baseApiUrl + 'submit-form', data);
   }
-/**
- * Trip payment
- */
-  tripPayment(data){
+  /**
+   * Trip payment
+   */
+  tripPayment(data) {
     return this.http.post(config.baseApiUrl + 'pay-now', data);
   }
 
@@ -181,7 +181,22 @@ export class TripService {
    * Do things your way
    * @param {object} data 
    */
-  doThingYourWay(data){
-    return this.http.post(config.baseApiUrl + 'book-with-other',data)
+  doThingYourWay(data) {
+    return this.http.post(config.baseApiUrl + 'book-with-other', data)
+  }
+
+  /**
+   * Get Destination Finder Request
+   */
+  allDestinationReq(data) {
+    return this.http.post(config.baseApiUrl + 'get-destination', data);
+  }
+
+  /**
+   * Get Destination Req Detail
+   * @param {Object} data 
+   */
+  getDestinationReqDetail(data) {
+    return this.http.post(config.baseApiUrl + 'single-destination', data);
   }
 }

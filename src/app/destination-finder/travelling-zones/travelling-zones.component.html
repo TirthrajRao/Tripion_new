@@ -20,11 +20,100 @@
               <li class="c6" data-interest="South America"><a href="#south-america">South America</a></li>
             </ul>
           </div>
-        </div>       
+        </div>
       </section>
     </article>
+    <div *ngIf="continentsList.length">
+      <div *ngFor="let continent of continentsList" class="mt-5">
+        <div class="place-section ">
+          <div>
+            <img src='assets/images/location.png'>
+          </div>
+          <div>
+            <p>
+              Intersting places in <br>
+              <span>{{continent.name}}</span>
+            </p>
+          </div>
+        </div>
+        <div>
+          <div class="center">
+            <div *ngFor="let img of continent.images;let i=index" class="center-slide">
+              <span>{{img.name}}</span>
+              <div style="position: relative;">
+                <img [src]="img.url">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="passport_slider">
+        <div class="passport_slide" style="width: unset !important;">
+          <img src="https://s.ftcdn.net/v2013/pics/all/curated/RKyaEDwp8J7JKeZWQPuOVWvkUjGQfpCx_cover_580.jpg?r=1a0fc22192d0c808b8bb2b9bcfbf4a45b1793687">
+        </div>
+        <div class="passport_slide" style="width: unset !important;">
+          <img src="https://images.unsplash.com/photo-1494548162494-384bba4ab999?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80">
+        </div>
+        <div class="passport_slide" style="width: unset !important;">
+          <img src="assets/images/download.jpeg">
+        </div>
+        <div class="passport_slide" style="width: unset !important;">
+          <img src="https://s.ftcdn.net/v2013/pics/all/curated/RKyaEDwp8J7JKeZWQPuOVWvkUjGQfpCx_cover_580.jpg?r=1a0fc22192d0c808b8bb2b9bcfbf4a45b1793687">
+        </div>
+        <div class="passport_slide" style="width: unset !important;">
+          <img src="https://images.unsplash.com/photo-1494548162494-384bba4ab999?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80">
+        </div>
+        <div class="passport_slide" style="width: unset !important;">
+          <img src="assets/images/download.jpeg">
+        </div>
+    </div> -->
+
+    <!-- <div class="ionic-slider">
+      <ion-slides pager="true" [options]="slideOpts">
+        <ion-slide>
+          <img src="assets/images/download.jpeg">
+        </ion-slide>
+        <ion-slide>
+          <img src="https://images.unsplash.com/photo-1494548162494-384bba4ab999?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80">
+        </ion-slide>
+        <ion-slide>
+          <img src="https://s.ftcdn.net/v2013/pics/all/curated/RKyaEDwp8J7JKeZWQPuOVWvkUjGQfpCx_cover_580.jpg?r=1a0fc22192d0c808b8bb2b9bcfbf4a45b1793687">
+        </ion-slide>
+        <ion-slide>
+          <img src="assets/images/download.jpeg">
+        </ion-slide>
+        <ion-slide>
+          <img src="https://images.unsplash.com/photo-1494548162494-384bba4ab999?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80">
+        </ion-slide>
+        <ion-slide>
+          <img src="https://s.ftcdn.net/v2013/pics/all/curated/RKyaEDwp8J7JKeZWQPuOVWvkUjGQfpCx_cover_580.jpg?r=1a0fc22192d0c808b8bb2b9bcfbf4a45b1793687">
+        </ion-slide>
+      </ion-slides>
+    </div> -->
+    <!-- <div class="center">
+      <div class="center-slide">
+          <img src="https://s.ftcdn.net/v2013/pics/all/curated/RKyaEDwp8J7JKeZWQPuOVWvkUjGQfpCx_cover_580.jpg?r=1a0fc22192d0c808b8bb2b9bcfbf4a45b1793687" alt="offer">
+      </div>
+      <div class="center-slide">
+          <img src="https://images.unsplash.com/photo-1494548162494-384bba4ab999?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="product1">
+      </div>
+      <div class="center-slide">
+          <img src="assets/images/download.jpeg" alt="product2">
+      </div>
+      <div class="center-slide">
+          <img src="assets/images/e.png" alt="product3">
+      </div>
+      <div class="center-slide">
+          <img src="https://s.ftcdn.net/v2013/pics/all/curated/RKyaEDwp8J7JKeZWQPuOVWvkUjGQfpCx_cover_580.jpg?r=1a0fc22192d0c808b8bb2b9bcfbf4a45b1793687" alt="offer">
+      </div>
+      <div class="center-slide">
+          <img src="https://images.unsplash.com/photo-1494548162494-384bba4ab999?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" alt="product1">
+      </div>
+  </div> -->
     <div class="next_btn" (click)="nextForm()">
       <button>Next</button>
     </div>
   </div>
-  </ion-content>
+</ion-content>

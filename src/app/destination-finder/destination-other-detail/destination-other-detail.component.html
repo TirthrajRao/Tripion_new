@@ -1,0 +1,131 @@
+<ion-header>
+  <app-header [cname]="'Other Details'"></app-header>
+</ion-header>
+<ion-content>
+  <div class="all_content">
+    <form [formGroup]="otherDetailsForm">
+      <div class="services_detail">
+        <p class="ml-3 visa_text">Other Details</p>
+        <div class="general_details">
+          <div class="general_details_header">
+            <img src="assets/images/communication.png">
+            <p>Communication Preference </p>
+          </div>
+          <div class="general_details_body">
+            <div class="select_plan_check">
+              <ion-checkbox checked="false" (ionChange)="selectCommunicationMode($event)" value="Whatsapp">
+              </ion-checkbox>
+              <ion-label class="ml-3">Whatsapp</ion-label>
+            </div>
+            <div class="select_plan_check">
+              <ion-checkbox checked="false" (ionChange)="selectCommunicationMode($event)" value="Phone">
+              </ion-checkbox>
+              <ion-label class="ml-3">Phone</ion-label>
+            </div>
+            <div class="select_plan_check">
+              <ion-checkbox checked="false" (ionChange)="selectCommunicationMode($event)" value="Mail">
+              </ion-checkbox>
+              <ion-label class="ml-3">Mail</ion-label>
+            </div>
+            <div class="select_plan_check">
+              <ion-checkbox checked="false" (ionChange)="selectCommunicationMode($event)" value="Visit Us">
+              </ion-checkbox>
+              <ion-label class="ml-3">Visit Us</ion-label>
+            </div>
+            <div class="select_plan_check">
+              <ion-checkbox checked="false" (ionChange)="selectCommunicationMode($event)" value="Message">
+              </ion-checkbox>
+              <ion-label class="ml-3">Message</ion-label>
+            </div>
+          </div>
+        </div>
+
+        <div class="general_details">
+          <div class="general_details_header">
+            <img src="assets/images/budget.png">
+            <p>Budget</p>
+          </div>
+          <div class="general_details_body">
+            <div>
+              <ion-item>
+                <ion-label position="floating">Budget Preference</ion-label>
+                <ion-select formControlName="budget_preference">
+                  <ion-select-option value="Per Person">Per Person</ion-select-option>
+                  <ion-select-option value="Per Family">Per Family</ion-select-option>
+                  <ion-select-option value="Per Couple">Per Couple</ion-select-option>
+                  <ion-select-option value="Per Group">Per Group</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <div *ngIf="submitted && f.budget_preference.errors" class="invalid-feedback">
+                <div *ngIf="f.budget_preference.errors.required">Select Budget Preference</div>
+              </div>
+            </div>
+            <div>
+              <div>
+                <ion-item>
+                  <ion-label position="floating">Budget Amount</ion-label>
+                  <ion-input type="number" formControlName="budget_amount"></ion-input>
+                </ion-item>
+                <div *ngIf="submitted && f.budget_amount.errors" class="invalid-feedback">
+                  <div *ngIf="f.budget_amount.errors.required">Budget Amount is Required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="general_details">
+          <div class="general_details_header">
+            <img src="assets/images/payment.png">
+            <p>Mode of Payment</p>
+          </div>
+          <div class="general_details_body">
+            <div class="select_plan_check">
+              <ion-checkbox checked="false" (ionChange)="selectPaymentMode($event)" value="Cash">
+              </ion-checkbox>
+              <ion-label class="ml-3">Cash</ion-label>
+            </div>
+            <div class="select_plan_check">
+              <ion-checkbox checked="false" (ionChange)="selectPaymentMode($event)" value="Cheque">
+              </ion-checkbox>
+              <ion-label class="ml-3">Cheque</ion-label>
+            </div>
+            <div class="select_plan_check">
+              <ion-checkbox checked="false" (ionChange)="selectPaymentMode($event)" value="Bank Transfer">
+              </ion-checkbox>
+              <ion-label class="ml-3">Bank Transfer</ion-label>
+            </div>
+            <div class="select_plan_check">
+              <ion-checkbox checked="false" (ionChange)="selectPaymentMode($event)" value="NEFT/RTGS">
+              </ion-checkbox>
+              <ion-label class="ml-3">NEFT/RTGS</ion-label>
+            </div>
+            <div class="select_plan_check">
+              <ion-checkbox checked="false" (ionChange)="selectPaymentMode($event)" value="Gpay/Paytm">
+              </ion-checkbox>
+              <ion-label class="ml-3">Gpay/Paytm</ion-label>
+            </div>
+            <div class="select_plan_check">
+              <ion-checkbox checked="false" (ionChange)="selectPaymentMode($event)" value="Credit/Debit Card">
+              </ion-checkbox>
+              <ion-label class="ml-3">Credit/Debit Card</ion-label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="next_btn">
+        <button type="submit" (click)="nextForm(otherDetailsForm.value)">Next<i class="fas fa-arrow-right"></i></button>
+      </div>
+
+    </form>
+
+    <div *ngIf="loading">
+      <div id="loader-wrapper">
+        <div class="heartbeatloader">
+          <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

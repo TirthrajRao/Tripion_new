@@ -16,6 +16,7 @@ export class PremiumAccountPaymentComponent implements OnInit {
   isDisable: Boolean = false;
   loading: Boolean = false;
   noOfPlan: any;
+  destinationFormData:any;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -27,7 +28,8 @@ export class PremiumAccountPaymentComponent implements OnInit {
         this.amount = this.router.getCurrentNavigation().extras.state.amount;
         this.type = this.router.getCurrentNavigation().extras.state.type;
         this.noOfPlan = this.router.getCurrentNavigation().extras.state.noOfPlan;
-        console.log("in payment page", this.amount, this.type)
+        this.destinationFormData = this.router.getCurrentNavigation().extras.state.formData;
+        console.log("in payment page", this.amount, this.type,this.destinationFormData)
       }
     });
   }
@@ -37,11 +39,20 @@ export class PremiumAccountPaymentComponent implements OnInit {
 
   payNow() {
     console.log("pay now");
-    const obj = {
-      id: this.currentUser.id,
-      email: this.currentUser.email,
-      form_category: this.selectedFormCategory.toString(),
-      form_data: localStorage.getItem('form_data')
+    let obj;
+    if (JSON.parse(localStorage.getItem('form_data')).length) {
+      obj = {
+        id: this.currentUser.id,
+        email: this.currentUser.email,
+        form_category: this.selectedFormCategory.toString(),
+        form_data: localStorage.getItem('form_data')
+      }
+    } else {
+      obj = {
+        id: this.currentUser.id,
+        email: this.currentUser.email,
+        form_data:this.destinationFormData
+      }
     }
     console.log(obj);
     this.isDisable = true;

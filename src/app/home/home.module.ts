@@ -51,6 +51,8 @@ import { ImageModalComponent } from '../image-modal/image-modal.component';
 import { DestinationRequestComponent } from '../destination-finder/destination-request/destination-request.component';
 import { OccasionVacationComponent } from '../destination-finder/occasion-vacation/occasion-vacation.component';
 import { TravellingZonesComponent } from '../destination-finder/travelling-zones/travelling-zones.component';
+import { DestinationDetailComponent } from '../destination-finder/destination-detail/destination-detail.component';
+import { DestinationOtherDetailComponent } from '../destination-finder/destination-other-detail/destination-other-detail.component';
 
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file/ngx';
@@ -301,6 +303,14 @@ export class IonicGestureConfig extends HammerGestureConfig {
             path: 'travelling-zone',
             component: TravellingZonesComponent
           },
+          {
+            path: 'destination-detail/:id',
+            component: DestinationDetailComponent
+          },
+          {
+            path: 'destination-other-detail',
+            component: DestinationOtherDetailComponent
+          },
         ]
       },
 
@@ -362,7 +372,9 @@ export class IonicGestureConfig extends HammerGestureConfig {
     SelectCityComponent,
     DestinationRequestComponent,
     OccasionVacationComponent,
-    TravellingZonesComponent
+    TravellingZonesComponent,
+    DestinationDetailComponent,
+    DestinationOtherDetailComponent
   ],
   providers: [
     FileTransfer,

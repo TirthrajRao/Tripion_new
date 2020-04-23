@@ -1,0 +1,22 @@
+<ion-header>
+  <app-header [cname]="'Details'"></app-header>
+</ion-header>
+<ion-content>
+  <div class="all_content">
+    <div *ngIf="details">
+      <div class="next_btn" routerLink="/home/destination-other-detail">
+        <button>Next<i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="loading">
+    <div id="loader-wrapper">
+      <div class="heartbeatloader">
+        <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!loading && !details" class="no_folder">
+    <span class="text-white text-center no-request">We will Working,<br>Will revert soon!!</span>
+  </div>
+</ion-content>
