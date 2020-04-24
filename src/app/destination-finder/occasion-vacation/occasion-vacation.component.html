@@ -3,18 +3,46 @@
 </ion-header>
 <ion-content>
   <div class="all_content">
-    <h4 class="text-white mb-3">Occasion Of the Vacation </h4>
     <div>
-      <div class="center">
-        <div *ngFor="let img of occasionOption" class="center-slide">
-          <p>{{img.name}}</p>
-          <div style="position: relative;">
-            <i class="far fa-heart like-icon"></i>
-            <!-- <ion-icon name="ios-heart" class="like-icon"></ion-icon> -->
-            <img [src]="img.url">
+      <h5 class="text-white mb-3 ml-2">Occasion Of the Vacation </h5>
+      <div>
+        <div class="center">
+          <div *ngFor="let img of occasionOption ;let i =index" class="center-slide">
+            <div class="name-sec">
+              <span data-id="{{img.name}}"></span>
+            </div>
+            <div style="position: relative;">
+              <div class="like-icon" (click)="selectOccianOption(img)">
+                <i [class]="selectIcon"></i>
+              </div>
+              <div class="img-div">
+                <img [src]="img.url">
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="mt-5">
+      <h5 class="text-white mb-3 ml-2">Atmosphere of the Vacation</h5>
+      <div>
+        <div class="center1">
+          <div *ngFor="let img of atmosphereOption ;let i =index" class="center-slide">
+            <div class="name-sec">
+              <p>{{img.name}}</p>
+            </div>
+            <div style="position: relative;">
+              <div class="like-icon" (click)="selectAtmospereOption(img)">
+                <i [class]="selectAtmosphereIcon"></i>
+              </div>
+              <img [src]="img.url">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="next_btn" (click)="nextForm()">
+      <button>Next <i class="fas fa-arrow-right"></i></button>
     </div>
   </div>
 </ion-content>

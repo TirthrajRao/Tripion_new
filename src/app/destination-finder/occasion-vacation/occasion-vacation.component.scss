@@ -17,15 +17,29 @@
         top: 10px;
     }
 }
-.center {
-    img {
-        max-width: 100%;
-        min-width: 100%;
+.center,
+.center1 {
+    .img-div {
         height: 100px;
-        object-fit: fill;
         border-radius: 50%;
-        opacity: 0.5;
+        overflow: hidden;
+        img {
+            max-height: 100%;
+            min-width: 100%;
+            max-height: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+        }
     }
+    // img {
+    //     max-width: 100%;
+    //     min-width: 100%;
+    //     height: 100px;
+    //     object-fit: fill;
+    //     border-radius: 50%;
+    //     opacity: 0.5;
+    // }
     p {
         text-align: center;
         font-size: 12px;
@@ -33,30 +47,112 @@
         margin-bottom: 9px;
         display: none;
     }
+    span{
+        display: none;
+    }
     .center-slide {
         // height: 400px;
         margin: 14px;
-        margin-top: 38px;
-      
+        outline: none;
+        // margin-top: 38px;
+        margin-top: 72px;
     }
     .center-slide.slick-slide.slick-current.slick-active.slick-center {
-        margin: -2px 14px;
-        img {
+        // margin: -2px 14px;
+        margin: 59px 14px 0;
+        outline: none;
+        .img-div {
             height: 130px !important;
-            opacity: unset;
+            img {
+                opacity: unset;
+            }
         }
-        p {
+
+        p,span,
+        .like-icon {
             display: block;
         }
     }
-    .like-icon{
+    .like-icon {
         position: absolute;
-        right: 0;
-        left: 0;
-        display: block;
-        margin: auto;
-        top: 0;
-        bottom: 0;
-        z-index: 1111;
+        top: 43%;
+        left: 47%;
+        display: none;
+        color: white;
     }
+}
+.name-sec {
+    width: 50vh;
+    margin-left: -103px;
+}
+[id] {
+    position: relative; /* opinion 1 */
+}
+
+/* Applies to all tooltips */
+[id]::before,
+[id]::after {
+    text-transform: none;
+    font-size: 0.9em;
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+    position: absolute;
+    display: block;
+    opacity: 1;
+}
+[id]::before {
+    content: "";
+    border: 5px solid transparent;
+    z-index: 1001;
+}
+[id]::after {
+    content: attr(id);
+    background: white;
+    color: #000;
+    z-index: 1000;
+    padding: 4px 7px;
+    text-align: center;
+    // font-family: Helvetica, sans-serif;
+    // text-align: center;
+
+    // min-width: 3em;
+    // max-width: 21em;
+    // white-space: nowrap;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+    // padding: 1ch 1.5ch;
+    // border-radius: 0.3ch;
+
+    // background: white;
+    // color: #000;
+    // z-index: 1000; /* absurdity 2 */
+}
+
+/* Make the tooltips respond to hover */
+
+/* don't show empty tooltips */
+[id=""]::before,
+[id=""]::after {
+    display: none !important;
+}
+
+/* FLOW: UP */
+[id]:not([flow])::before,
+[id][flow^="up"]::before {
+    // bottom: 100%;
+    border-bottom-width: 0;
+    border-top-color: white;
+}
+[id]:not([flow])::after,
+[id][flow^="up"]::after {
+    // bottom: calc(100% + 5px);
+    bottom: -1px;
+}
+[id]:not([flow])::before,
+[id]:not([flow])::after,
+[id][flow^="up"]::before,
+[id][flow^="up"]::after {
+    left: 50%;
+    transform: translate(-50%, -0.5em);
 }

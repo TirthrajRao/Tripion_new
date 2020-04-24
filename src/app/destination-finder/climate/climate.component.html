@@ -1,0 +1,58 @@
+<ion-header>
+  <app-header [cname]="'Destination Finder'"></app-header>
+</ion-header>
+<ion-content>
+  <div class="all_content">
+    <div>
+      <h5 class="text-white mb-3 ml-2">Climate </h5>
+      <div>
+        <div class="center">
+          <div *ngFor="let img of climateOption ;let i =index" class="center-slide">
+            <p>{{img.name}}</p>
+            <div style="position: relative;">
+              <div class="like-icon" (click)="selectClimateOption(img)">
+                <i [class]="selectClimateIcon"></i>
+              </div>
+              <img [src]="img.url">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-5">
+      <h5 class="text-white mb-3 ml-2">Terrain</h5>
+      <div>
+        <div class="center1">
+          <div *ngFor="let img of terrainOption ;let i =index" class="center-slide">
+            <p>{{img.name}}</p>
+            <div style="position: relative;">
+              <div class="like-icon" (click)="selectTerrainOption(img)">
+                <i [class]="selectTerrainIcon"></i>
+              </div>
+              <img [src]="img.url">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-5">
+      <h5 class="text-white mb-3 ml-2">Interests</h5>
+      <div>
+        <div class="center2">
+          <div *ngFor="let img of intrestOption ;let i =index" class="center-slide">
+            <p>{{img.name}}</p>
+            <div style="position: relative;">
+              <div class="like-icon" (click)="selectInterestOption(img)">
+                <i [class]="selectIntrestIcon"></i>
+              </div>
+              <img [src]="img.url">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="next_btn" (click)="nextForm()">
+      <button>Next <i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+</ion-content>

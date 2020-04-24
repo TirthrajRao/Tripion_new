@@ -26,6 +26,7 @@ export class DestinationDetailComponent implements OnInit {
   ngOnInit() { 
     this.getDestinationDetail();
   }
+  
   getDestinationDetail(){
     this.loading = true;
     const obj = {

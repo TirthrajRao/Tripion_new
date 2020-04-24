@@ -5,12 +5,12 @@
   <div class="all_content">
     <div class="benefits_content" *ngIf="destinationReq.length">
       <div *ngFor ="let destination of destinationReq">
-        <div class="row country_name" (click)="getDetails(destination)">
+        <div class="row country_name" (click)="getDetails(destination)" *ngIf="destination.is_plan_selected == 0">
           <div class="col-5">
             <p>{{destination.name}}</p>
           </div>
           <div class="col-5">
-            <p>Answered</p>
+            <p>{{destination.status}}</p>
             <!-- <p *ngIf="!travelres.safe_to_response" class="text-danger">Pending</p> -->
           </div>
           <div class="col-2">

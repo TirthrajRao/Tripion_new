@@ -199,4 +199,20 @@ export class TripService {
   getDestinationReqDetail(data) {
     return this.http.post(config.baseApiUrl + 'single-destination', data);
   }
+
+  /**
+   * Add Destination Finder Request
+   * @param {object} data 
+   */
+  addDestinationReq(data){
+    return this.http.post(config.baseApiUrl + 'add-destination', data);
+  }
+
+  /**
+   * Add Other details for destination finder req.
+   * @param {Object} data 
+   */
+  addDestinationOtherFormData(data){
+    return this.http.post(config.baseApiUrl + 'add-destination-form', data);
+  }
 }

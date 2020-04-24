@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TripService } from '../../services/trip.service';
+import { AppComponent } from '../../app.component';
 declare const $: any;
 
 @Component({
@@ -8,7 +11,10 @@ declare const $: any;
   styleUrls: ['./travelling-zones.component.scss'],
 })
 export class TravellingZonesComponent implements OnInit {
+  currentUser = JSON.parse(localStorage.getItem('currentUser'));
   continentsList: any = [];
+  formData: any;
+  loading:Boolean = false;
   NorthAmerica = [
     {
       url: 'assets/images/download.jpeg',
@@ -120,32 +126,22 @@ export class TravellingZonesComponent implements OnInit {
       name: 'Cap Town'
     },
   ];
-  slideOpts = {
-    initialSlide: 2,
-    slidesPerView: 3,
-    speed: 400,
-    loop: true
-  };
-  constructor() {
-    setTimeout(() => {
-      $('.center').slick({
-        centerMode: true,
-        centerPadding: '100px',
-        slidesToShow: 1,
-      });
-      this.createSlider();
-      // $('.passport_slider').slick({
-      //   centerMode: true,
-      //   slidesToShow: 3,
-      //   // arrows: true,  
-      //   swipe: true,
-      //   swipeToSlide: true,
-      //   slidesToScroll: 1,
-      //   draggable: true,
 
+  constructor(
+    public route: ActivatedRoute,
+    public router: Router,
+    public _tripService: TripService,
+    public appComponant: AppComponent
+  ) {
 
-      // });
-    }, 100)
+    this.route.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.formData = this.router.getCurrentNavigation().extras.state.data;
+        console.log("form data", this.formData)
+        this.formData = JSON.parse(this.formData)
+        console.log("form data", this.formData)
+      }
+    });
 
   }
 
@@ -212,20 +208,11 @@ export class TravellingZonesComponent implements OnInit {
       });
     }, 10)
     setTimeout(() => {
-
-    }, 300)
-
+      this.createSlider();
+    }, 100)
   }
+
   createSlider() {
-    // $('.passport_slider').not('.slick-initialized').slick({
-    //   centerMode: true,
-    //   slidesToShow: 1,
-    //   // arrows: true,  
-    //   swipe: true,
-    //   swipeToSlide: true,
-    //   slidesToScroll: 1,
-    //   draggable: true,
-    // })
     $('.center').not('.slick-initialized').slick({
       centerMode: true,
       centerPadding: '100px',
@@ -235,11 +222,23 @@ export class TravellingZonesComponent implements OnInit {
 
 
   nextForm() {
-    this.continentsList = _.uniq(this.continentsList);
     const selectedContinent = []
     this.continentsList.map((continent) => {
       selectedContinent.push(continent.name)
     })
-    console.log("contrnant list", selectedContinent)
+    console.log("contrnant list", selectedContinent);
+    this.formData['map'] = selectedContinent.toString();
+    this.formData['id'] = this.currentUser.id;
+    console.log("final form dtaa",this.formData);
+    this.loading = true;
+    this._tripService.addDestinationReq(this.formData).subscribe((res:any)=>{
+      console.log("res",res);
+      this.router.navigate(['/home/destination-finder'])
+      this.loading = false;
+    },err=>{
+      console.log("err",err);
+      this.loading = false;
+      this.appComponant.errorAlert(err.error.message)
+    })
   }
 }

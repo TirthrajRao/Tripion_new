@@ -9,21 +9,23 @@ import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 export class InformationPackComponent implements OnInit {
   amount: any;
   totalPlan: any;
-  formData:any;
+  formData: any;
+  destinationId: any;
   constructor(
     public router: Router,
-    public route:ActivatedRoute
+    public route: ActivatedRoute
   ) {
 
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.formData = this.router.getCurrentNavigation().extras.state.formData;
+        this.destinationId = this.router.getCurrentNavigation().extras.state.destinationId
         this.formData = JSON.parse(this.formData)
         console.log("in information page", this.formData)
       }
     });
 
-   }
+  }
 
   ngOnInit() { }
 
@@ -76,7 +78,8 @@ export class InformationPackComponent implements OnInit {
         type: 'Total no. of Plans',
         amount: this.amount,
         noOfPlan: this.totalPlan,
-        formData:JSON.stringify(this.formData)
+        formData: JSON.stringify(this.formData),
+        destinationId: this.destinationId
       }
     };
     this.router.navigate(['/home/premium-account'], navigationExtras);

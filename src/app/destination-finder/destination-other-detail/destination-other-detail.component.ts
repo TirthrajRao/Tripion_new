@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-destination-other-detail',
@@ -12,23 +12,21 @@ export class DestinationOtherDetailComponent implements OnInit {
   submitted: Boolean = false;
   paymentModeArray: any = [];
   communicationModeArray: any = [];
+  destinationId: any;
   constructor(
-    public router: Router
+    public router: Router,
+    public route: ActivatedRoute
   ) {
 
     this.otherDetailsForm = new FormGroup({
-      // communication_mode: new FormControl(''),
-      // budget_preference: new FormControl('', [Validators.required]),
-      // budget_amount: new FormControl('', [Validators.required]),
-      // payment_mode: new FormControl(''),
-      // number_of_plans: new FormControl('')
-
-
       communication_mode: new FormControl(''),
       budget_preference: new FormControl(''),
       budget_amount: new FormControl(''),
-      payment_mode: new FormControl(''),
-      // number_of_plans: new FormControl('')
+      payment_mode: new FormControl('')
+    })
+
+    this.route.params.subscribe((param) => {
+      this.destinationId = param.id
     })
   }
 
@@ -48,7 +46,8 @@ export class DestinationOtherDetailComponent implements OnInit {
     console.log("data", data);
     let navigationExtras: NavigationExtras = {
       state: {
-        formData: JSON.stringify(data)
+        formData: JSON.stringify(data),
+        destinationId:this.destinationId
       }
     };
     this.router.navigate(['/home/information-pack'], navigationExtras)

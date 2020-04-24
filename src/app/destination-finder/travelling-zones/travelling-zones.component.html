@@ -113,7 +113,15 @@
       </div>
   </div> -->
     <div class="next_btn" (click)="nextForm()">
-      <button>Next</button>
+      <button>Submit</button>
     </div>
   </div>
+
+  <div *ngIf="loading">
+    <div id="loader-wrapper">
+        <div class="heartbeatloader">
+            <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
+        </div>
+    </div>
+</div>
 </ion-content>

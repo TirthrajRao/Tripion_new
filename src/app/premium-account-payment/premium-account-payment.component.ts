@@ -16,7 +16,8 @@ export class PremiumAccountPaymentComponent implements OnInit {
   isDisable: Boolean = false;
   loading: Boolean = false;
   noOfPlan: any;
-  destinationFormData:any;
+  destinationFormData: any;
+  destinationId: any;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -29,7 +30,8 @@ export class PremiumAccountPaymentComponent implements OnInit {
         this.type = this.router.getCurrentNavigation().extras.state.type;
         this.noOfPlan = this.router.getCurrentNavigation().extras.state.noOfPlan;
         this.destinationFormData = this.router.getCurrentNavigation().extras.state.formData;
-        console.log("in payment page", this.amount, this.type,this.destinationFormData)
+        this.destinationId = this.router.getCurrentNavigation().extras.state.destinationId;
+        console.log("in payment page", this.amount, this.type, this.destinationFormData)
       }
     });
   }
@@ -47,32 +49,51 @@ export class PremiumAccountPaymentComponent implements OnInit {
         form_category: this.selectedFormCategory.toString(),
         form_data: localStorage.getItem('form_data')
       }
+      console.log(obj);
+      this.isDisable = true;
+      this.loading = true;
+      this._tripService.addInquiry(obj).subscribe((res: any) => {
+        this.isDisable = false;
+        this.loading = false;
+        console.log("inquiry form res", res);
+        localStorage.removeItem('form_data');
+        localStorage.removeItem('selectedFormCategory');
+        this.appComponent.sucessAlert("We got your money!!", "WoW")
+        this.router.navigate(['/home']);
+      }, (err) => {
+        this.appComponent.errorAlert(err.error.message);
+        this.isDisable = false;
+        this.loading = false;
+        console.log(err);
+        localStorage.removeItem('form_data');
+        localStorage.removeItem('selectedFormCategory');
+      })
     } else {
+      const data= {
+        'other-details': this.destinationFormData
+      }
       obj = {
         id: this.currentUser.id,
-        email: this.currentUser.email,
-        form_data:this.destinationFormData
+        destination_id: this.destinationId,
+        form_data: JSON.stringify(data)
       }
+      console.log(obj);
+      this.loading = true;
+      this.isDisable = true;
+      this._tripService.addDestinationOtherFormData(obj).subscribe((res: any) => {
+        console.log("res", res);
+        this.loading = false;
+        this.isDisable = false;
+        this.appComponent.sucessAlert("We got your money!!", "WoW")
+        this.router.navigate(['/home']);
+      }, (err) => {
+        this.appComponent.errorAlert(err.error.message);
+        this.isDisable = false;
+        this.loading = false;
+        console.log(err);
+      })
     }
-    console.log(obj);
-    this.isDisable = true;
-    this.loading = true;
-    this._tripService.addInquiry(obj).subscribe((res: any) => {
-      this.isDisable = false;
-      this.loading = false;
-      console.log("inquiry form res", res);
-      localStorage.removeItem('form_data');
-      localStorage.removeItem('selectedFormCategory');
-      this.appComponent.sucessAlert("We got your money!!", "WoW")
-      this.router.navigate(['/home']);
-    }, (err) => {
-      this.appComponent.errorAlert(err.error.message);
-      this.isDisable = false;
-      this.loading = false;
-      console.log(err);
-      localStorage.removeItem('form_data');
-      localStorage.removeItem('selectedFormCategory');
-    })
+
   }
 
 }

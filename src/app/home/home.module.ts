@@ -53,6 +53,8 @@ import { OccasionVacationComponent } from '../destination-finder/occasion-vacati
 import { TravellingZonesComponent } from '../destination-finder/travelling-zones/travelling-zones.component';
 import { DestinationDetailComponent } from '../destination-finder/destination-detail/destination-detail.component';
 import { DestinationOtherDetailComponent } from '../destination-finder/destination-other-detail/destination-other-detail.component';
+import { ClimateComponent } from '../destination-finder/climate/climate.component';
+import { PopularityOfDestinationComponent } from '../destination-finder/popularity-of-destination/popularity-of-destination.component';
 
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { File } from '@ionic-native/file/ngx';
@@ -308,8 +310,16 @@ export class IonicGestureConfig extends HammerGestureConfig {
             component: DestinationDetailComponent
           },
           {
-            path: 'destination-other-detail',
+            path: 'destination-other-detail/:id',
             component: DestinationOtherDetailComponent
+          },
+          {
+            path: 'climate',
+            component: ClimateComponent
+          },
+          {
+            path: 'popularity-of-destination',
+            component: PopularityOfDestinationComponent
           },
         ]
       },
@@ -374,7 +384,9 @@ export class IonicGestureConfig extends HammerGestureConfig {
     OccasionVacationComponent,
     TravellingZonesComponent,
     DestinationDetailComponent,
-    DestinationOtherDetailComponent
+    DestinationOtherDetailComponent,
+    ClimateComponent,
+    PopularityOfDestinationComponent
   ],
   providers: [
     FileTransfer,

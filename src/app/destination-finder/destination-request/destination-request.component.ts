@@ -17,11 +17,15 @@ export class DestinationRequestComponent implements OnInit {
     public _tripService: TripService,
     public appComponent: AppComponent,
   ) {
-    this.getAllInquiry()
+    
   }
 
   ngOnInit() { }
 
+  ionViewWillEnter(){
+    this.destinationReq = []
+    this.getAllInquiry();
+  }
   getAllInquiry() {
     this.loading = true;
     const data = {
@@ -31,7 +35,6 @@ export class DestinationRequestComponent implements OnInit {
       console.log("res", res);
       this.destinationReq = res.data;
       this.loading = false;
-
     }, err => {
       console.log("err", err);
       this.loading = false;
@@ -45,7 +48,7 @@ export class DestinationRequestComponent implements OnInit {
    */
   async getDetails(data) {
     console.log(data);
-    if(data.status != "Pending"){
+    if(data.status == "Pending"){
       $('.success_alert_box1').fadeIn().addClass('animate');
       $('.success_alert_box1').click(function () {
         $(this).hide().removeClass('animate');
