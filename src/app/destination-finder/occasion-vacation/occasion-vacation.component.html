@@ -2,9 +2,9 @@
   <app-header [cname]="'Destination Finder'"></app-header>
 </ion-header>
 <ion-content>
-  <div class="all_content">
+  <div class="all_content destination-content">
     <div>
-      <h5 class="text-white mb-3 ml-2">Occasion Of the Vacation </h5>
+      <h5 class="text-white mb-3 ml-2 mt-2">Occasion Of the Vacation </h5>
       <div>
         <div class="center">
           <div *ngFor="let img of occasionOption ;let i =index" class="center-slide">
@@ -15,7 +15,7 @@
               <div class="like-icon" (click)="selectOccianOption(img)">
                 <i [class]="selectIcon"></i>
               </div>
-              <div class="img-div">
+              <div class="img-div" (click)="getDescription(img.des)">
                 <img [src]="img.url">
               </div>
             </div>
@@ -29,13 +29,15 @@
         <div class="center1">
           <div *ngFor="let img of atmosphereOption ;let i =index" class="center-slide">
             <div class="name-sec">
-              <p>{{img.name}}</p>
+              <span data-id="{{img.name}}"></span>
             </div>
             <div style="position: relative;">
               <div class="like-icon" (click)="selectAtmospereOption(img)">
                 <i [class]="selectAtmosphereIcon"></i>
               </div>
-              <img [src]="img.url">
+              <div class="img-div" (click)="getDescription(img.des)">
+                <img [src]="img.url">
+              </div>
             </div>
           </div>
         </div>
@@ -43,6 +45,16 @@
     </div>
     <div class="next_btn" (click)="nextForm()">
       <button>Next <i class="fas fa-arrow-right"></i></button>
+    </div>
+
+    <div class="des_alert_box" style="display: none;">
+      <div class="alert_box_content">
+        <div class="alert_box_text">
+          <p>
+            {{optionDescription}}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </ion-content>

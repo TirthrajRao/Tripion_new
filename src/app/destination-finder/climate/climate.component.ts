@@ -13,105 +13,124 @@ export class ClimateComponent implements OnInit {
   climate: any;
   terrain: any;
   interests: any;
-  formData: any
+  formData: any;
+  optionDescription:any;
   climateOption = [
     {
       name: 'Tropical',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/climate/1.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Dry',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/climate/2.png',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Temperate',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/climate/3.png',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Polar',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/climate/4.png',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Continental',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/climate/5.png',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
 
   ];
   terrainOption = [
     {
       name: 'Canyon',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/terrain/1.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Desert',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/terrain/2.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Forest',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/terrain/3.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Glacier',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/terrain/4.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Mountain',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/terrain/5.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Valley',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/terrain/6.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Open',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/terrain/7.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'River',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/terrain/8.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Ocean',
-      url: 'assets/images/download.jpeg'
-    },
-    {
-      name: 'Urban',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/terrain/9.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
 
   ];
   intrestOption = [
     {
       name: 'Food & Bevrages',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/download.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Nightlife & Casino',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/download.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'History & Art',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/download.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Shopping',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/download.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Adventure',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/download.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Spa & Wellness',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/download.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Dance & Music',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/download.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Wildlife',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/download.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
 
 
@@ -136,7 +155,7 @@ export class ClimateComponent implements OnInit {
       this.createClimateSlider();
       this.createTerrainSlider();
       this.createInterestSlider();
-    }, 100)
+    }, 10)
   }
 
 
@@ -200,6 +219,7 @@ export class ClimateComponent implements OnInit {
     console.log("intrest of the vacation", this.interests);
   }
 
+
   nextForm() {
     this.formData['climate'] = this.climate;
     this.formData['terrain'] = this.terrain;
@@ -210,5 +230,17 @@ export class ClimateComponent implements OnInit {
       }
     }
     this.router.navigate(['/home/popularity-of-destination'], navigationExtras)
+  }
+
+  getDescription(data) {
+    this.optionDescription = data;
+    console.log("=========")
+    $('.des_alert_box').fadeIn().addClass('animate');
+    $('.des_alert_box').click(function () {
+      $(this).hide().removeClass('animate');
+    });
+    $('.des_alert_box .alert_box_content').click(function (event) {
+      event.stopPropagation();
+    });
   }
 }

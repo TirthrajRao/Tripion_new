@@ -13,10 +13,10 @@
             </div>
         </div>
         <div class="mt-2" *ngIf="details.pdfUrl.id">
-            <div (click)="previewImage(details.pdfUrl.image_url)">
-                <ion-img src="{{details.pdfUrl.image_url || 'assets/images/placeholder.png'}}" (ionError)="onErrorImage()" (ionImgWillLoad)="ionImgWillLoad()" (ionImgDidLoad)="ionImgDidLoad()" *ngIf="details.pdfUrl.image_extension == 'jpg' || details.pdfUrl.image_extension == 'jpeg' || details.pdfUrl.image_extension == 'png'">
+            <div (click)="previewImage(details.pdfUrl.image_url)"  *ngIf="details.pdfUrl.image_extension == 'jpg' || details.pdfUrl.image_extension == 'jpeg' || details.pdfUrl.image_extension == 'png'" >
+                <ion-img src="{{details.pdfUrl.image_url || 'assets/images/placeholder.png'}}" (ionError)="onErrorImage()" (ionImgWillLoad)="ionImgWillLoad()" (ionImgDidLoad)="ionImgDidLoad()" [hidden]="!imgLoaded">
                 </ion-img>
-                <ion-spinner [hidden]="imgLoading"></ion-spinner>
+                <ion-spinner [hidden]="imgLoaded"></ion-spinner>
             </div>
             <div class="mt-3 text-center text-white view_pdf" *ngIf="details.pdfUrl.image_extension != 'jpg' && details.pdfUrl.image_extension != 'jpeg' && details.pdfUrl.image_extension != 'png'">
                 <i class="fa fa-file-pdf pr-2"></i>

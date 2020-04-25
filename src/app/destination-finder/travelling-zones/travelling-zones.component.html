@@ -39,7 +39,7 @@
         <div>
           <div class="center">
             <div *ngFor="let img of continent.images;let i=index" class="center-slide">
-              <span>{{img.name}}</span>
+              <span data-id="{{img.name}}"></span>
               <div style="position: relative;">
                 <img [src]="img.url">
               </div>

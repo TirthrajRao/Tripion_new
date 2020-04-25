@@ -12,100 +12,124 @@ export class OccasionVacationComponent implements OnInit {
   selectAtmosphereIcon = 'far fa-heart';
   occasionOfTheVacation: any;
   atmosphereOfTheVacation: any;
+  optionDescription:any;
   occasionOption = [
     {
       name: 'Marriage Proposal',
-      url: 'assets/images/occian/1.jpeg'
+      url: 'assets/images/occian/1.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Bachelor/Bachelorette Party',
-      url: 'assets/images/occian/2.jpeg'
+      url: 'assets/images/occian/2.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Honeymoon',
-      url: 'assets/images/occian/3.jpeg'
+      url: 'assets/images/occian/3.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Family Reunion',
-      url: 'assets/images/occian/4.jpeg'
+      url: 'assets/images/occian/4.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Aniversary',
-      url: 'assets/images/occian/5.jpeg'
+      url: 'assets/images/occian/5.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Guys Getaway (mancation)',
-      url: 'assets/images/occian/6.jpeg'
+      url: 'assets/images/occian/6.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Girlfriends Getaway',
-      url: 'assets/images/occian/7.jpeg'
+      url: 'assets/images/occian/7.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Business Appraisal',
-      url: 'assets/images/occian/8.jpeg'
+      url: 'assets/images/occian/8.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Babymoon',
-      url: 'assets/images/occian/9.jpeg'
+      url: 'assets/images/occian/9.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Annual Holidays',
-      url: 'assets/images/occian/10.jpeg'
+      url: 'assets/images/occian/10.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Festival Holidays',
-      url: 'assets/images/occian/11.jpeg'
+      url: 'assets/images/occian/11.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'School/College Friends Reunion',
-      url: 'assets/images/occian/12.jpeg'
+      url: 'assets/images/occian/12.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Incentive Celebration',
-      url: 'assets/images/occian/13.jpeg'
+      url: 'assets/images/occian/13.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     }
   ];
   atmosphereOption = [
     {
       name: 'Relaxation',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/atmosphere/1.png',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Adventure/Lost To Do',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/atmosphere/2.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Romantic',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/atmosphere/3.png',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Cltural Immersion',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/atmosphere/4.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Historic Significance',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/atmosphere/5.png',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Leisure & Luxury',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/atmosphere/6.png',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Family Friendly',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/atmosphere/7.png',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Nightlife',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/atmosphere/8.png',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Nature Friendly',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/atmosphere/9.png',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Cozy & Lazy',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/atmosphere/10.png',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
   ]
   constructor(
@@ -116,7 +140,7 @@ export class OccasionVacationComponent implements OnInit {
     setTimeout(() => {
       this.createOccasionSlider();
       this.createAtmospereSlider();
-    }, 100)
+    }, 1)
   }
 
   createOccasionSlider() {
@@ -172,4 +196,19 @@ export class OccasionVacationComponent implements OnInit {
     this.router.navigate(['/home/climate'], navigationExtras)
   }
 
+  /**
+   * Display Image Description
+   * @param {String} data 
+   */
+  getDescription(data) {
+    this.optionDescription = data;
+    console.log("=========")
+    $('.des_alert_box').fadeIn().addClass('animate');
+    $('.des_alert_box').click(function () {
+      $(this).hide().removeClass('animate');
+    });
+    $('.des_alert_box .alert_box_content').click(function (event) {
+      event.stopPropagation();
+    });
+  }
 }

@@ -16,7 +16,8 @@ export class SafeTravelDetailComponent implements OnInit {
   public progress: any;
   downloading: Boolean = false;
   pathToPreview: any;
-  imgLoading:Boolean = true;
+  imgLoaded: Boolean = true;
+  imgLoading: Boolean = true;
   constructor(
     public route: ActivatedRoute,
     public router: Router,
@@ -94,29 +95,31 @@ export class SafeTravelDetailComponent implements OnInit {
   }
 
   /**
-   * Image pop up
+     * Image pop up
    * @param {URL} img 
-   */
-  previewImage(img) {
+   */ 
+  previewImage(img) { 
     console.log(img)
     this.photoViewer.show(img)
   }
 
-   /**
-   * set fallback image on error
-   * @param {Number} index 
-   */
+  /**
+  * set fallback image on error
+  * @param {Number} index 
+  */
   onErrorImage(index) {
     console.log("index", index);
     this.details.pdfUrl.image_url = 'assets/images/placeholder.png'
   }
 
-  ionImgWillLoad(){
+  ionImgWillLoad() {
     console.log("image loading");
-    this.imgLoading = false;
+    this.imgLoaded = false;
+
   }
-  ionImgDidLoad(){
+  ionImgDidLoad() {
     console.log("image loaded");
-    this.imgLoading = true;
+    this.imgLoaded = true;  
+    this.imgLoading = false;
   }
 }

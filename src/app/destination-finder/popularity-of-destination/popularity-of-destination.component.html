@@ -2,18 +2,22 @@
   <app-header [cname]="'Destination Finder'"></app-header>
 </ion-header>
 <ion-content>
-  <div class="all_content">
+  <div class="all_content destination-content">
     <div>
       <h5 class="text-white mb-3 ml-2">Popularity Of Destination </h5>
       <div>
         <div class="center">
           <div *ngFor="let img of popularityOption ;let i =index" class="center-slide">
-            <p>{{img.name}}</p>
+            <div class="name-sec">
+              <span data-id="{{img.name}}"></span>
+            </div>
             <div style="position: relative;">
               <div class="like-icon" (click)="selectPopularityOption(img)">
                 <i [class]="selectPopularityIcon"></i>
               </div>
-              <img [src]="img.url">
+              <div class="img-div" (click)="getDescription(img.des)">
+                <img [src]="img.url">
+              </div>
             </div>
           </div>
         </div>
@@ -24,12 +28,16 @@
       <div>
         <div class="center1">
           <div *ngFor="let img of travelOption ;let i =index" class="center-slide">
-            <p>{{img.name}}</p>
+            <div class="name-sec">
+              <span data-id="{{img.name}}"></span>
+            </div>
             <div style="position: relative;">
               <div class="like-icon" (click)="selectTravelOption(img)">
                 <i [class]="selectTravelIcon"></i>
               </div>
-              <img [src]="img.url">
+              <div class="img-div" (click)="getDescription(img.des)">
+                <img [src]="img.url">
+              </div>
             </div>
           </div>
         </div>
@@ -40,12 +48,16 @@
       <div>
         <div class="center">
           <div *ngFor="let img of intrestOption ;let i =index" class="center-slide">
-            <p>{{img.name}}</p>
+            <div class="name-sec">
+              <span  data-id="{{img.name}}"></span>
+            </div>
             <div style="position: relative;">
               <div class="like-icon" (click)="selectInterestOption(img)">
                 <i [class]="selectIntrestIcon"></i>
               </div>
-              <img [src]="img.url">
+             <div class="img-div">
+                <img [src]="img.url">
+              </div>
             </div>
           </div>
         </div>
@@ -53,6 +65,16 @@
     </div> -->
     <div class="next_btn" (click)="nextForm()">
       <button>Next <i class="fas fa-arrow-right"></i></button>
+    </div>
+
+    <div class="des_alert_box" style="display: none;">
+      <div class="alert_box_content">
+        <div class="alert_box_text">
+          <p>
+            {{optionDescription}}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </ion-content>

@@ -3,19 +3,13 @@
 </ion-header>
 <ion-content>
   <div class="all_content">
-    <div class="benefits_content" *ngIf="destinationReq.length">
-      <div *ngFor ="let destination of destinationReq">
-        <div class="row country_name" (click)="getDetails(destination)" *ngIf="destination.is_plan_selected == 0">
-          <div class="col-5">
-            <p>{{destination.name}}</p>
-          </div>
-          <div class="col-5">
-            <p>{{destination.status}}</p>
-            <!-- <p *ngIf="!travelres.safe_to_response" class="text-danger">Pending</p> -->
-          </div>
-          <div class="col-2">
-            <img src="assets/images/location.png">
-          </div>
+    <div *ngIf="destinationReq.length">
+      <div *ngFor="let destination of destinationReq">
+        <div class="country_name" (click)="getDetails(destination)" *ngIf="destination.is_plan_selected == 0">
+          <p class="des-title">{{destination.name}}</p>
+          <p class="des-status mt-2">{{destination.status}}</p>
+          <i *ngIf="destination.status != 'Here is your Answer'" class="fa fa-ellipsis-h status-icon" ></i>
+          <img class="status-icon" *ngIf="destination.status == 'Here is your Answer'" src="assets/images/success.png">
         </div>
       </div>
     </div>
@@ -28,26 +22,26 @@
 
   <div class="success_alert_box1" style="display: none;">
     <div class="alert_box_content">
-        <div class="alert_box_text">
-            <div class="alert_box_image">
-                <img src="assets/images/safetravel.png" alt="image icon">
-            </div>
-            <p>
-                We are working,<br>
-                will revert soon !!
-            </p>
+      <div class="alert_box_text">
+        <div class="alert_box_image">
+          <img src="assets/images/safetravel.png" alt="image icon">
         </div>
-    </div>
-</div>
-
-<div *ngIf="loading">
-  <div id="loader-wrapper">
-      <div class="heartbeatloader">
-          <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
+        <p>
+          We are working,<br>
+          will revert soon !!
+        </p>
       </div>
+    </div>
   </div>
-</div>
-<div *ngIf="!loading && !destinationReq.length" class="no_folder">
-  <span class="text-white text-center no-request">No Inquiry</span>
-</div>
+
+  <div *ngIf="loading">
+    <div id="loader-wrapper">
+      <div class="heartbeatloader">
+        <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!loading && !destinationReq.length" class="no_folder">
+    <span class="text-white text-center no-request">No Inquiry</span>
+  </div>
 </ion-content>

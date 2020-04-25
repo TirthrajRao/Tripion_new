@@ -5,35 +5,37 @@
 }
 
 .country_name {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     background-color: #fff;
-    // display: inline-block;
     cursor: pointer;
     position: relative;
-    padding: 10px;
-    // padding: 2px 18px;
+    padding: 10px 15px 19px;
+    border-radius: 10px;
     @media (max-height: 750px) {
-        margin-bottom: 5px;
+        margin-bottom: 10px;
     }
     @media (max-height: 600px) {
-        margin-bottom: 2px;
+        margin-bottom: 8px;
     }
-    img {
-        height: 46px;
-        width: 65px;
+    .status-icon {
+        height: 15px;
+        width: 15px;
         position: absolute;
         right: 10px;
-        top: 0;
-        bottom: 0;
-        margin: auto;
+        bottom: 6px;
+        color: #7f8dab;
     }
-    p {
-        color: #434a5e;
+    .fa-ellipsis-h{
+        bottom:3px;
+    }
+    .des-title {
         font-size: 16px;
         font-weight: 600;
-        // line-height: 52px;
-        // margin-left: 10px;
         text-transform: capitalize;
+    }
+    .des-status {
+        font-size: 14px;
+        color: #7f8dab;
     }
 }
 * {

@@ -4,7 +4,6 @@ ion-content {
 .next_btn button {
   padding: 14px 67px;
   width: unset;
-  // background-color: #ebbb15;
 }
 .place-section {
   display: flex;
@@ -18,63 +17,8 @@ ion-content {
     }
   }
 }
-// .passport_slide {
-//     z-index: 1111;
-//     width: 100%;
-//     ion-img {
-//         height: 60px;
-//         border-radius: 15px;
 
-//     }
-// }
-.passport_slider {
-  width: 100%;
-  p {
-    font-size: 11px;
-    margin-bottom: 10px;
-    color: #0374e6;
-    display: none;
-  }
-  img {
-    height: 80px;
-    // width: 115px;
-    border-radius: 6px;
-  }
-  background-color: transparent;
-  .slick-track {
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
-    height: 100px;
-    justify-content: center;
-  }
-  .slick-slide {
-    float: none;
-    display: inline-block;
-    vertical-align: middle;
-    padding: 10px 0px;
-    margin: 0 7px;
-    // background-color: red;
-    transition: all 0.3s ease;
-    height: auto;
-    text-align: center;
-    &.slick-current {
-      img {
-        height: 106px;
-        margin-bottom: 25px;
-      }
-      p {
-        display: block;
-      }
-    }
-    // &.slick-current,
-    // &.slick-center {
-    //   img {
-    //     height: 106px;
-    //   }
-    // }
-  }
-}
+
 .center {
   img {
     max-width: 100%;
@@ -87,17 +31,16 @@ ion-content {
   span {
     text-align: center;
     font-size: 12px;
-    color: #0374e6;
+    color: #0374e6 !important;
     margin-bottom: 9px;
     display: none;
   }
   .center-slide {
-    // height: 400px;
     margin: 14px;
-    margin-top: 38px;
+    margin-top: 82px;
   }
   .center-slide.slick-slide.slick-current.slick-active.slick-center {
-    margin: -2px 14px;
+
     img {
       height: 130px !important;
       opacity: unset;
@@ -107,19 +50,7 @@ ion-content {
     }
   }
 }
-.ionic-slider {
-  ion-slide {
-    margin: 0 5px;
-    img {
-      height: 100px;
-      object-fit: cover;
-      border-radius: 8px;
-      width: 150px;
-    }
-  }
-  ion-slide.md.swiper-slide.swiper-zoom-container.hydrated.swiper-slide-active {
-    img {
-      height: 140px;
-    }
-  }
+.center [id]::after, .center1 [id]::after, .center2 [id]::after{
+  color:#0374e6 ;
+  padding: unset;
 }

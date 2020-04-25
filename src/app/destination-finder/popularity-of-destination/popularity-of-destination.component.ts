@@ -14,48 +14,59 @@ export class PopularityOfDestinationComponent implements OnInit {
   additionalTravelExperience: any;
   // distance_from_you:any;
   formData: any;
+  optionDescription: any;
   popularityOption = [
     {
       name: 'Trending Bucket List',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/download.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Explored',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/download.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Unexplored',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/download.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Off Beat',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/download.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     }
   ];
   travelOption = [
     {
       name: 'Eco-Friendly',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/download.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Singles Trip',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/download.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Couple Friendly',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/download.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'LGBTQ + Friendly',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/download.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Volunteerism',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/download.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Learning Experiences',
-      url: 'assets/images/download.jpeg'
+      url: 'assets/images/download.jpeg',
+      des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
   ];
 
@@ -78,7 +89,7 @@ export class PopularityOfDestinationComponent implements OnInit {
       this.createPopularitySlider();
       this.createTravelSlider();
       // this.createInterestSlider();
-    }, 100)
+    }, 10)
   }
 
 
@@ -152,5 +163,21 @@ export class PopularityOfDestinationComponent implements OnInit {
       }
     }
     this.router.navigate(['/home/travelling-zone'], navigationExtras)
+  }
+
+  /**
+   * Display Image Description
+   * @param {String} data 
+   */
+  getDescription(data) {
+    this.optionDescription = data;
+    console.log("=========")
+    $('.des_alert_box').fadeIn().addClass('animate');
+    $('.des_alert_box').click(function () {
+      $(this).hide().removeClass('animate');
+    });
+    $('.des_alert_box .alert_box_content').click(function (event) {
+      event.stopPropagation();
+    });
   }
 }

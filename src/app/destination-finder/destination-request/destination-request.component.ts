@@ -48,7 +48,7 @@ export class DestinationRequestComponent implements OnInit {
    */
   async getDetails(data) {
     console.log(data);
-    if(data.status == "Pending"){
+    if(data.status != "Here is your Answer"){
       $('.success_alert_box1').fadeIn().addClass('animate');
       $('.success_alert_box1').click(function () {
         $(this).hide().removeClass('animate');
