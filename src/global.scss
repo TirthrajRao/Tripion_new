@@ -775,7 +775,10 @@ span.select2-selection__placeholder {
 .infinite-loading {
     background: white !important;
 }
-.plans_details ,.quotation-content,.trip_plan_top,.safet-to-travel-detail{
+.plans_details,
+.quotation-content,
+.trip_plan_top,
+.safet-to-travel-detail {
     ul {
         padding: 0px 0 0 40px !important;
         margin: 0px 0 16px 0px !important;
@@ -783,11 +786,13 @@ span.select2-selection__placeholder {
 }
 
 .center,
-.center1,.center2 {
+.center1,
+.center2,
+.map-slider {
     .img-div {
-        height: 100px;
-        border-radius: 50%;
-        overflow: hidden;
+        height: 195px;
+        // border-radius: 50%;
+        // overflow: hidden;
         img {
             max-height: 100%;
             min-width: 100%;
@@ -796,17 +801,16 @@ span.select2-selection__placeholder {
             object-fit: fill;
             opacity: 0.5;
             background: white;
+            border-radius: 5px;
         }
     }
     p {
-        text-align: center;
-        font-size: 12px;
-        color: white;
+        font-size: 17px;
         margin-bottom: 9px;
-        display: none;
+        font-weight: 600;
     }
     span {
-        display: none;
+        font-size: 13px;
     }
     .center-slide {
         margin: 14px;
@@ -814,10 +818,10 @@ span.select2-selection__placeholder {
         margin-top: 72px;
     }
     .center-slide.slick-slide.slick-current.slick-active.slick-center {
-        margin: 59px 14px 0;
+        margin: 45px 14px 0;
         outline: none;
         .img-div {
-            height: 130px !important;
+            height: 260px !important;
             img {
                 opacity: unset;
             }
@@ -830,11 +834,18 @@ span.select2-selection__placeholder {
         }
     }
     .like-icon {
+        padding: 0;
+        font-size: 20px;
         position: absolute;
-        top: 43%;
-        left: 47%;
-        display: none;
-        color: white;
+        right: 10px;
+        bottom: 8px;
+        color: orange;
+        background: white;
+        border-radius: 50%;
+        height: 35px;
+        width: 35px;
+        line-height: 35px;
+        text-align: center;
     }
     [id] {
         position: relative;
@@ -880,7 +891,7 @@ span.select2-selection__placeholder {
         transform: translate(-50%, -0.5em);
     }
 }
-.destination-content{
+.destination-content {
     .des_alert_box {
         position: fixed;
         top: 0;
@@ -907,14 +918,18 @@ span.select2-selection__placeholder {
         transition: all 0.4s;
         top: 100%;
     }
-    
-    .animate .alert_box_content{
+
+    .animate .alert_box_content {
         top: 0;
     }
     .alert_box_text p {
         margin: 15px;
-        color: #7F8DAB;
+        color: #7f8dab;
         font-size: 18px;
         line-height: 24px;
     }
 }
+
+
+
+

@@ -1,27 +1,27 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[43],{
 
-/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-nav_5.entry.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-nav_5.entry.js ***!
-  \******************************************************************/
-/*! exports provided: ion_nav, ion_nav_link, ion_nav_pop, ion_nav_push, ion_nav_set_root */
+/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-menu_4-md.entry.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-menu_4-md.entry.js ***!
+  \**********************************************************************/
+/*! exports provided: ion_menu, ion_menu_button, ion_menu_controller, ion_menu_toggle */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_nav", function() { return Nav; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_nav_link", function() { return NavLink; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_nav_pop", function() { return NavPop; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_nav_push", function() { return NavPush; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_nav_set_root", function() { return NavSetRoot; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_menu", function() { return Menu; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_menu_button", function() { return MenuButton; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_menu_controller", function() { return MenuController; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_menu_toggle", function() { return MenuToggle; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-ca0488fc.js */ "./node_modules/@ionic/core/dist/esm-es5/core-ca0488fc.js");
 /* harmony import */ var _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config-3c7f3790.js */ "./node_modules/@ionic/core/dist/esm-es5/config-3c7f3790.js");
 /* harmony import */ var _helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helpers-46f4a262.js */ "./node_modules/@ionic/core/dist/esm-es5/helpers-46f4a262.js");
-/* harmony import */ var _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./constants-3c3e1099.js */ "./node_modules/@ionic/core/dist/esm-es5/constants-3c3e1099.js");
-/* harmony import */ var _framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./framework-delegate-c2e2e1f4.js */ "./node_modules/@ionic/core/dist/esm-es5/framework-delegate-c2e2e1f4.js");
-/* harmony import */ var _index_6826f2f6_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./index-6826f2f6.js */ "./node_modules/@ionic/core/dist/esm-es5/index-6826f2f6.js");
-/* harmony import */ var _cubic_bezier_2812fda3_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./cubic-bezier-2812fda3.js */ "./node_modules/@ionic/core/dist/esm-es5/cubic-bezier-2812fda3.js");
+/* harmony import */ var _animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./animation-af478fe9.js */ "./node_modules/@ionic/core/dist/esm-es5/animation-af478fe9.js");
+/* harmony import */ var _index_624eea58_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./index-624eea58.js */ "./node_modules/@ionic/core/dist/esm-es5/index-624eea58.js");
+/* harmony import */ var _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./index-1e5940d5.js */ "./node_modules/@ionic/core/dist/esm-es5/index-1e5940d5.js");
+/* harmony import */ var _theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./theme-18cbe2cc.js */ "./node_modules/@ionic/core/dist/esm-es5/theme-18cbe2cc.js");
+/* harmony import */ var _cubic_bezier_2812fda3_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./cubic-bezier-2812fda3.js */ "./node_modules/@ionic/core/dist/esm-es5/cubic-bezier-2812fda3.js");
 
 
 
@@ -30,872 +30,454 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var VIEW_STATE_NEW = 1;
-var VIEW_STATE_ATTACHED = 2;
-var VIEW_STATE_DESTROYED = 3;
-var ViewController = /** @class */ (function () {
-    function ViewController(component, params) {
-        this.component = component;
-        this.params = params;
-        this.state = VIEW_STATE_NEW;
-    }
-    ViewController.prototype.init = function (container) {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-            var component, _a;
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        this.state = VIEW_STATE_ATTACHED;
-                        if (!!this.element) return [3 /*break*/, 2];
-                        component = this.component;
-                        _a = this;
-                        return [4 /*yield*/, Object(_framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_5__["a"])(this.delegate, container, component, ['ion-page', 'ion-page-invisible'], this.params)];
-                    case 1:
-                        _a.element = _b.sent();
-                        _b.label = 2;
-                    case 2: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    /**
-     * DOM WRITE
-     */
-    ViewController.prototype._destroy = function () {
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(this.state !== VIEW_STATE_DESTROYED, 'view state must be ATTACHED');
-        var element = this.element;
-        if (element) {
-            if (this.delegate) {
-                this.delegate.removeViewFromDom(element.parentElement, element);
-            }
-            else {
-                element.remove();
-            }
-        }
-        this.nav = undefined;
-        this.state = VIEW_STATE_DESTROYED;
-    };
-    return ViewController;
-}());
-var matches = function (view, id, params) {
-    if (!view) {
-        return false;
-    }
-    if (view.component !== id) {
-        return false;
-    }
-    var currentParams = view.params;
-    if (currentParams === params) {
-        return true;
-    }
-    if (!currentParams && !params) {
-        return true;
-    }
-    if (!currentParams || !params) {
-        return false;
-    }
-    var keysA = Object.keys(currentParams);
-    var keysB = Object.keys(params);
-    if (keysA.length !== keysB.length) {
-        return false;
-    }
-    // Test for A's keys different from B.
-    for (var _i = 0, keysA_1 = keysA; _i < keysA_1.length; _i++) {
-        var key = keysA_1[_i];
-        if (currentParams[key] !== params[key]) {
-            return false;
-        }
-    }
-    return true;
-};
-var convertToView = function (page, params) {
-    if (!page) {
-        return null;
-    }
-    if (page instanceof ViewController) {
-        return page;
-    }
-    return new ViewController(page, params);
-};
-var convertToViews = function (pages) {
-    return pages.map(function (page) {
-        if (page instanceof ViewController) {
-            return page;
-        }
-        if ('page' in page) {
-            return convertToView(page.page, page.params);
-        }
-        return convertToView(page, undefined);
-    }).filter(function (v) { return v !== null; });
-};
-var Nav = /** @class */ (function () {
+
+var Menu = /** @class */ (function () {
     function class_1(hostRef) {
         Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
-        this.transInstr = [];
-        this.animationEnabled = true;
-        this.useRouter = false;
-        this.isTransitioning = false;
-        this.destroyed = false;
-        this.views = [];
+        this.lastOnEnd = 0;
+        this.blocker = _index_624eea58_js__WEBPACK_IMPORTED_MODULE_5__["GESTURE_CONTROLLER"].createBlocker({ disableScroll: true });
+        this.mode = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+        this.isAnimating = false;
+        this._isOpen = false;
+        this.isPaneVisible = false;
+        this.isEndSide = false;
         /**
-         * If `true`, the nav should animate the transition of components.
+         * If `true`, the menu is disabled.
          */
-        this.animated = true;
-        this.ionNavWillLoad = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionNavWillLoad", 7);
-        this.ionNavWillChange = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionNavWillChange", 3);
-        this.ionNavDidChange = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionNavDidChange", 3);
+        this.disabled = false;
+        /**
+         * Which side of the view the menu should be placed.
+         */
+        this.side = 'start';
+        /**
+         * If `true`, swiping the menu is enabled.
+         */
+        this.swipeGesture = true;
+        /**
+         * The edge threshold for dragging the menu open.
+         * If a drag/swipe happens over this value, the menu is not triggered.
+         */
+        this.maxEdgeStart = 50;
+        this.ionWillOpen = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionWillOpen", 7);
+        this.ionWillClose = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionWillClose", 7);
+        this.ionDidOpen = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionDidOpen", 7);
+        this.ionDidClose = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionDidClose", 7);
+        this.ionMenuChange = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionMenuChange", 7);
     }
-    class_1.prototype.swipeGestureChanged = function () {
-        if (this.gesture) {
-            this.gesture.setDisabled(this.swipeGesture !== true);
-        }
-    };
-    class_1.prototype.rootChanged = function () {
-        if (this.root !== undefined) {
-            if (!this.useRouter) {
-                this.setRoot(this.root, this.rootParams);
+    class_1.prototype.typeChanged = function (type, oldType) {
+        var contentEl = this.contentEl;
+        if (contentEl) {
+            if (oldType !== undefined) {
+                contentEl.classList.remove("menu-content-" + oldType);
             }
+            contentEl.classList.add("menu-content-" + type);
+            contentEl.removeAttribute('style');
         }
-    };
-    class_1.prototype.componentWillLoad = function () {
-        this.useRouter =
-            !!document.querySelector('ion-router') &&
-                !this.el.closest('[no-router]');
-        if (this.swipeGesture === undefined) {
-            var mode = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
-            this.swipeGesture = _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__["b"].getBoolean('swipeBackEnabled', mode === 'ios');
+        if (this.menuInnerEl) {
+            // Remove effects of previous animations
+            this.menuInnerEl.removeAttribute('style');
         }
-        this.ionNavWillLoad.emit();
+        this.animation = undefined;
     };
-    class_1.prototype.componentDidLoad = function () {
+    class_1.prototype.disabledChanged = function () {
+        this.updateState();
+        this.ionMenuChange.emit({
+            disabled: this.disabled,
+            open: this._isOpen
+        });
+    };
+    class_1.prototype.sideChanged = function () {
+        this.isEndSide = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["i"])(this.side);
+    };
+    class_1.prototype.swipeGestureChanged = function () {
+        this.updateState();
+    };
+    class_1.prototype.connectedCallback = function () {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-            var _a;
+            var el, parent, content, _a;
+            var _this = this;
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        this.rootChanged();
+                        if (this.type === undefined) {
+                            this.type = _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__["b"].get('menuType', this.mode === 'ios' ? 'reveal' : 'overlay');
+                        }
+                        el = this.el;
+                        parent = el.parentNode;
+                        if (this.contentId === undefined) {
+                            console.warn("[DEPRECATED][ion-menu] Using the [main] attribute is deprecated, please use the \"contentId\" property instead:\nBEFORE:\n  <ion-menu>...</ion-menu>\n  <div main>...</div>\n\nAFTER:\n  <ion-menu contentId=\"my-content\"></ion-menu>\n  <div id=\"my-content\">...</div>\n");
+                        }
+                        content = this.contentId !== undefined
+                            ? document.getElementById(this.contentId)
+                            : parent && parent.querySelector && parent.querySelector('[main]');
+                        if (!content || !content.tagName) {
+                            // requires content element
+                            console.error('Menu: must have a "content" element to listen for drag events on.');
+                            return [2 /*return*/];
+                        }
+                        this.contentEl = content;
+                        // add menu's content classes
+                        content.classList.add('menu-content');
+                        this.typeChanged(this.type, undefined);
+                        this.sideChanged();
+                        // register this menu with the app's menu controller
+                        _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"]._register(this);
                         _a = this;
-                        return [4 /*yield*/, __webpack_require__.e(/*! import() | swipe-back-35ad8e37-js */ "swipe-back-35ad8e37-js").then(__webpack_require__.bind(null, /*! ./swipe-back-35ad8e37.js */ "./node_modules/@ionic/core/dist/esm-es5/swipe-back-35ad8e37.js"))];
+                        return [4 /*yield*/, Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-624eea58.js */ "./node_modules/@ionic/core/dist/esm-es5/index-624eea58.js"))];
                     case 1:
-                        _a.gesture = (_b.sent()).createSwipeBackGesture(this.el, this.canStart.bind(this), this.onStart.bind(this), this.onMove.bind(this), this.onEnd.bind(this));
-                        this.swipeGestureChanged();
+                        _a.gesture = (_b.sent()).createGesture({
+                            el: document,
+                            gestureName: 'menu-swipe',
+                            gesturePriority: 30,
+                            threshold: 10,
+                            canStart: function (ev) { return _this.canStart(ev); },
+                            onWillStart: function () { return _this.onWillStart(); },
+                            onStart: function () { return _this.onStart(); },
+                            onMove: function (ev) { return _this.onMove(ev); },
+                            onEnd: function (ev) { return _this.onEnd(ev); },
+                        });
+                        this.updateState();
                         return [2 /*return*/];
                 }
             });
         });
     };
-    class_1.prototype.componentDidUnload = function () {
-        for (var _i = 0, _a = this.views; _i < _a.length; _i++) {
-            var view = _a[_i];
-            Object(_index_6826f2f6_js__WEBPACK_IMPORTED_MODULE_6__["l"])(view.element, _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_4__["d"]);
-            view._destroy();
+    class_1.prototype.componentDidLoad = function () {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
+                this.ionMenuChange.emit({ disabled: this.disabled, open: this._isOpen });
+                this.updateState();
+                return [2 /*return*/];
+            });
+        });
+    };
+    class_1.prototype.disconnectedCallback = function () {
+        this.blocker.destroy();
+        _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"]._unregister(this);
+        if (this.animation) {
+            this.animation.destroy();
         }
         if (this.gesture) {
             this.gesture.destroy();
             this.gesture = undefined;
         }
-        // release swipe back gesture and transition
-        this.transInstr.length = this.views.length = 0;
-        this.destroyed = true;
+        this.animation = undefined;
+        this.contentEl = this.backdropEl = this.menuInnerEl = undefined;
     };
-    /**
-     * Push a new component onto the current navigation stack. Pass any additional
-     * information along as an object. This additional information is accessible
-     * through NavParams.
-     *
-     * @param component The component to push onto the navigation stack.
-     * @param componentProps Any properties of the component.
-     * @param opts The navigation options.
-     * @param done The transition complete function.
-     */
-    class_1.prototype.push = function (component, componentProps, opts, done) {
-        return this.queueTrns({
-            insertStart: -1,
-            insertViews: [{ page: component, params: componentProps }],
-            opts: opts
-        }, done);
+    class_1.prototype.onSplitPaneChanged = function (ev) {
+        this.isPaneVisible = ev.detail.isPane(this.el);
+        this.updateState();
     };
-    /**
-     * Inserts a component into the navigation stack at the specified index.
-     * This is useful to add a component at any point in the navigation stack.
-     *
-     * @param insertIndex The index to insert the component at in the stack.
-     * @param component The component to insert into the navigation stack.
-     * @param componentProps Any properties of the component.
-     * @param opts The navigation options.
-     * @param done The transition complete function.
-     */
-    class_1.prototype.insert = function (insertIndex, component, componentProps, opts, done) {
-        return this.queueTrns({
-            insertStart: insertIndex,
-            insertViews: [{ page: component, params: componentProps }],
-            opts: opts
-        }, done);
-    };
-    /**
-     * Inserts an array of components into the navigation stack at the specified index.
-     * The last component in the array will become instantiated as a view, and animate
-     * in to become the active view.
-     *
-     * @param insertIndex The index to insert the components at in the stack.
-     * @param insertComponents The components to insert into the navigation stack.
-     * @param opts The navigation options.
-     * @param done The transition complete function.
-     */
-    class_1.prototype.insertPages = function (insertIndex, insertComponents, opts, done) {
-        return this.queueTrns({
-            insertStart: insertIndex,
-            insertViews: insertComponents,
-            opts: opts
-        }, done);
-    };
-    /**
-     * Pop a component off of the navigation stack. Navigates back from the current
-     * component.
-     *
-     * @param opts The navigation options.
-     * @param done The transition complete function.
-     */
-    class_1.prototype.pop = function (opts, done) {
-        return this.queueTrns({
-            removeStart: -1,
-            removeCount: 1,
-            opts: opts
-        }, done);
-    };
-    /**
-     * Pop to a specific index in the navigation stack.
-     *
-     * @param indexOrViewCtrl The index or view controller to pop to.
-     * @param opts The navigation options.
-     * @param done The transition complete function.
-     */
-    class_1.prototype.popTo = function (indexOrViewCtrl, opts, done) {
-        var tiConfig = {
-            removeStart: -1,
-            removeCount: -1,
-            opts: opts
-        };
-        if (typeof indexOrViewCtrl === 'object' && indexOrViewCtrl.component) {
-            tiConfig.removeView = indexOrViewCtrl;
-            tiConfig.removeStart = 1;
-        }
-        else if (typeof indexOrViewCtrl === 'number') {
-            tiConfig.removeStart = indexOrViewCtrl + 1;
-        }
-        return this.queueTrns(tiConfig, done);
-    };
-    /**
-     * Navigate back to the root of the stack, no matter how far back that is.
-     *
-     * @param opts The navigation options.
-     * @param done The transition complete function.
-     */
-    class_1.prototype.popToRoot = function (opts, done) {
-        return this.queueTrns({
-            removeStart: 1,
-            removeCount: -1,
-            opts: opts
-        }, done);
-    };
-    /**
-     * Removes a component from the navigation stack at the specified index.
-     *
-     * @param startIndex The number to begin removal at.
-     * @param removeCount The number of components to remove.
-     * @param opts The navigation options.
-     * @param done The transition complete function.
-     */
-    class_1.prototype.removeIndex = function (startIndex, removeCount, opts, done) {
-        if (removeCount === void 0) { removeCount = 1; }
-        return this.queueTrns({
-            removeStart: startIndex,
-            removeCount: removeCount,
-            opts: opts
-        }, done);
-    };
-    /**
-     * Set the root for the current navigation stack to a component.
-     *
-     * @param component The component to set as the root of the navigation stack.
-     * @param componentProps Any properties of the component.
-     * @param opts The navigation options.
-     * @param done The transition complete function.
-     */
-    class_1.prototype.setRoot = function (component, componentProps, opts, done) {
-        return this.setPages([{ page: component, params: componentProps }], opts, done);
-    };
-    /**
-     * Set the views of the current navigation stack and navigate to the last view.
-     * By default animations are disabled, but they can be enabled by passing options
-     * to the navigation controller. Navigation parameters can also be passed to the
-     * individual pages in the array.
-     *
-     * @param views The list of views to set as the navigation stack.
-     * @param opts The navigation options.
-     * @param done The transition complete function.
-     */
-    class_1.prototype.setPages = function (views, opts, done) {
-        if (opts == null) {
-            opts = {};
-        }
-        // if animation wasn't set to true then default it to NOT animate
-        if (opts.animated !== true) {
-            opts.animated = false;
-        }
-        return this.queueTrns({
-            insertStart: 0,
-            insertViews: views,
-            removeStart: 0,
-            removeCount: -1,
-            opts: opts
-        }, done);
-    };
-    /** @internal */
-    class_1.prototype.setRouteId = function (id, params, direction) {
-        var _this = this;
-        var active = this.getActiveSync();
-        if (matches(active, id, params)) {
-            return Promise.resolve({
-                changed: false,
-                element: active.element
-            });
-        }
-        var resolve;
-        var promise = new Promise(function (r) { return (resolve = r); });
-        var finish;
-        var commonOpts = {
-            updateURL: false,
-            viewIsReady: function (enteringEl) {
-                var mark;
-                var p = new Promise(function (r) { return (mark = r); });
-                resolve({
-                    changed: true,
-                    element: enteringEl,
-                    markVisible: function () { return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, function () {
-                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-                            switch (_a.label) {
-                                case 0:
-                                    mark();
-                                    return [4 /*yield*/, finish];
-                                case 1:
-                                    _a.sent();
-                                    return [2 /*return*/];
-                            }
-                        });
-                    }); }
-                });
-                return p;
-            }
-        };
-        if (direction === 'root') {
-            finish = this.setRoot(id, params, commonOpts);
-        }
-        else {
-            var viewController = this.views.find(function (v) { return matches(v, id, params); });
-            if (viewController) {
-                finish = this.popTo(viewController, Object.assign(Object.assign({}, commonOpts), { direction: 'back' }));
-            }
-            else if (direction === 'forward') {
-                finish = this.push(id, params, commonOpts);
-            }
-            else if (direction === 'back') {
-                finish = this.setRoot(id, params, Object.assign(Object.assign({}, commonOpts), { direction: 'back', animated: true }));
+    class_1.prototype.onBackdropClick = function (ev) {
+        if (this._isOpen && this.lastOnEnd < ev.timeStamp - 100) {
+            var shouldClose = (ev.composedPath)
+                ? !ev.composedPath().includes(this.menuInnerEl)
+                : false;
+            if (shouldClose) {
+                ev.preventDefault();
+                ev.stopPropagation();
+                this.close();
             }
         }
-        return promise;
     };
-    /** @internal */
-    class_1.prototype.getRouteId = function () {
+    /**
+     * Returns `true` is the menu is open.
+     */
+    class_1.prototype.isOpen = function () {
+        return Promise.resolve(this._isOpen);
+    };
+    /**
+     * Returns `true` is the menu is active.
+     *
+     * A menu is active when it can be opened or closed, meaning it's enabled
+     * and it's not part of a `ion-split-pane`.
+     */
+    class_1.prototype.isActive = function () {
+        return Promise.resolve(this._isActive());
+    };
+    /**
+     * Opens the menu. If the menu is already open or it can't be opened,
+     * it returns `false`.
+     */
+    class_1.prototype.open = function (animated) {
+        if (animated === void 0) { animated = true; }
+        return this.setOpen(true, animated);
+    };
+    /**
+     * Closes the menu. If the menu is already closed or it can't be closed,
+     * it returns `false`.
+     */
+    class_1.prototype.close = function (animated) {
+        if (animated === void 0) { animated = true; }
+        return this.setOpen(false, animated);
+    };
+    /**
+     * Toggles the menu. If the menu is already open, it will try to close, otherwise it will try to open it.
+     * If the operation can't be completed successfully, it returns `false`.
+     */
+    class_1.prototype.toggle = function (animated) {
+        if (animated === void 0) { animated = true; }
+        return this.setOpen(!this._isOpen, animated);
+    };
+    /**
+     * Opens or closes the button.
+     * If the operation can't be completed successfully, it returns `false`.
+     */
+    class_1.prototype.setOpen = function (shouldOpen, animated) {
+        if (animated === void 0) { animated = true; }
+        return _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"]._setOpen(this, shouldOpen, animated);
+    };
+    class_1.prototype._setOpen = function (shouldOpen, animated) {
+        if (animated === void 0) { animated = true; }
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-            var active;
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-                active = this.getActiveSync();
-                return [2 /*return*/, active
-                        ? {
-                            id: active.element.tagName,
-                            params: active.params,
-                            element: active.element
+                switch (_a.label) {
+                    case 0:
+                        // If the menu is disabled or it is currently being animated, let's do nothing
+                        if (!this._isActive() || this.isAnimating || shouldOpen === this._isOpen) {
+                            return [2 /*return*/, false];
                         }
-                        : undefined];
+                        this.beforeAnimation(shouldOpen);
+                        return [4 /*yield*/, this.loadAnimation()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, this.startAnimation(shouldOpen, animated)];
+                    case 2:
+                        _a.sent();
+                        this.afterAnimation(shouldOpen);
+                        return [2 /*return*/, true];
+                }
             });
         });
     };
-    /**
-     * Get the active view.
-     */
-    class_1.prototype.getActive = function () {
-        return Promise.resolve(this.getActiveSync());
-    };
-    /**
-     * Get the view at the specified index.
-     *
-     * @param index The index of the view.
-     */
-    class_1.prototype.getByIndex = function (index) {
-        return Promise.resolve(this.views[index]);
-    };
-    /**
-     * Returns `true` if the current view can go back.
-     *
-     * @param view The view to check.
-     */
-    class_1.prototype.canGoBack = function (view) {
-        return Promise.resolve(this.canGoBackSync(view));
-    };
-    /**
-     * Get the previous view.
-     *
-     * @param view The view to get.
-     */
-    class_1.prototype.getPrevious = function (view) {
-        return Promise.resolve(this.getPreviousSync(view));
-    };
-    class_1.prototype.getLength = function () {
-        return this.views.length;
-    };
-    class_1.prototype.getActiveSync = function () {
-        return this.views[this.views.length - 1];
-    };
-    class_1.prototype.canGoBackSync = function (view) {
-        if (view === void 0) { view = this.getActiveSync(); }
-        return !!(view && this.getPreviousSync(view));
-    };
-    class_1.prototype.getPreviousSync = function (view) {
-        if (view === void 0) { view = this.getActiveSync(); }
-        if (!view) {
-            return undefined;
-        }
-        var views = this.views;
-        var index = views.indexOf(view);
-        return index > 0 ? views[index - 1] : undefined;
-    };
-    // _queueTrns() adds a navigation stack change to the queue and schedules it to run:
-    // 1. _nextTrns(): consumes the next transition in the queue
-    // 2. _viewInit(): initializes enteringView if required
-    // 3. _viewTest(): ensures canLeave/canEnter Returns `true`, so the operation can continue
-    // 4. _postViewInit(): add/remove the views from the navigation stack
-    // 5. _transitionInit(): initializes the visual transition if required and schedules it to run
-    // 6. _viewAttachToDOM(): attaches the enteringView to the DOM
-    // 7. _transitionStart(): called once the transition actually starts, it initializes the Animation underneath.
-    // 8. _transitionFinish(): called once the transition finishes
-    // 9. _cleanup(): syncs the navigation internal state with the DOM. For example it removes the pages from the DOM or hides/show them.
-    class_1.prototype.queueTrns = function (ti, done) {
-        if (this.isTransitioning && ti.opts != null && ti.opts.skipIfBusy) {
-            return Promise.resolve(false);
-        }
-        var promise = new Promise(function (resolve, reject) {
-            ti.resolve = resolve;
-            ti.reject = reject;
-        });
-        ti.done = done;
-        // Normalize empty
-        if (ti.insertViews && ti.insertViews.length === 0) {
-            ti.insertViews = undefined;
-        }
-        // Enqueue transition instruction
-        this.transInstr.push(ti);
-        // if there isn't a transition already happening
-        // then this will kick off this transition
-        this.nextTrns();
-        return promise;
-    };
-    class_1.prototype.success = function (result, ti) {
-        if (this.destroyed) {
-            this.fireError('nav controller was destroyed', ti);
-            return;
-        }
-        if (ti.done) {
-            ti.done(result.hasCompleted, result.requiresTransition, result.enteringView, result.leavingView, result.direction);
-        }
-        ti.resolve(result.hasCompleted);
-        if (ti.opts.updateURL !== false && this.useRouter) {
-            var router = document.querySelector('ion-router');
-            if (router) {
-                var direction = result.direction === 'back' ? 'back' : 'forward';
-                router.navChanged(direction);
-            }
-        }
-    };
-    class_1.prototype.failed = function (rejectReason, ti) {
-        if (this.destroyed) {
-            this.fireError('nav controller was destroyed', ti);
-            return;
-        }
-        this.transInstr.length = 0;
-        this.fireError(rejectReason, ti);
-    };
-    class_1.prototype.fireError = function (rejectReason, ti) {
-        if (ti.done) {
-            ti.done(false, false, rejectReason);
-        }
-        if (ti.reject && !this.destroyed) {
-            ti.reject(rejectReason);
-        }
-        else {
-            ti.resolve(false);
-        }
-    };
-    class_1.prototype.nextTrns = function () {
-        // this is the framework's bread 'n butta function
-        // only one transition is allowed at any given time
-        if (this.isTransitioning) {
-            return false;
-        }
-        // there is no transition happening right now
-        // get the next instruction
-        var ti = this.transInstr.shift();
-        if (!ti) {
-            return false;
-        }
-        this.runTransition(ti);
-        return true;
-    };
-    class_1.prototype.runTransition = function (ti) {
+    class_1.prototype.loadAnimation = function () {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-            var leavingView, enteringView, requiresTransition, result, _a, rejectReason_1;
+            var width, _a;
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _b.trys.push([0, 6, , 7]);
-                        // set that this nav is actively transitioning
-                        this.ionNavWillChange.emit();
-                        this.isTransitioning = true;
-                        this.prepareTI(ti);
-                        leavingView = this.getActiveSync();
-                        enteringView = this.getEnteringView(ti, leavingView);
-                        if (!leavingView && !enteringView) {
-                            throw new Error('no views in the stack to be removed');
+                        width = this.menuInnerEl.offsetWidth;
+                        if (width === this.width && this.animation !== undefined) {
+                            return [2 /*return*/];
                         }
-                        if (!(enteringView && enteringView.state === VIEW_STATE_NEW)) return [3 /*break*/, 2];
-                        return [4 /*yield*/, enteringView.init(this.el)];
+                        this.width = width;
+                        // Destroy existing animation
+                        if (this.animation) {
+                            this.animation.destroy();
+                            this.animation = undefined;
+                        }
+                        // Create new animation
+                        _a = this;
+                        return [4 /*yield*/, _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"]._createAnimation(this.type, this)];
                     case 1:
-                        _b.sent();
-                        _b.label = 2;
-                    case 2:
-                        this.postViewInit(enteringView, leavingView, ti);
-                        requiresTransition = (ti.enteringRequiresTransition || ti.leavingRequiresTransition) &&
-                            enteringView !== leavingView;
-                        if (!requiresTransition) return [3 /*break*/, 4];
-                        return [4 /*yield*/, this.transition(enteringView, leavingView, ti)];
-                    case 3:
-                        _a = _b.sent();
-                        return [3 /*break*/, 5];
-                    case 4:
-                        _a = {
-                            // transition is not required, so we are already done!
-                            // they're inserting/removing the views somewhere in the middle or
-                            // beginning, so visually nothing needs to animate/transition
-                            // resolve immediately because there's no animation that's happening
-                            hasCompleted: true,
-                            requiresTransition: false
-                        };
-                        _b.label = 5;
-                    case 5:
-                        result = _a;
-                        this.success(result, ti);
-                        this.ionNavDidChange.emit();
-                        return [3 /*break*/, 7];
-                    case 6:
-                        rejectReason_1 = _b.sent();
-                        this.failed(rejectReason_1, ti);
-                        return [3 /*break*/, 7];
-                    case 7:
-                        this.isTransitioning = false;
-                        this.nextTrns();
+                        // Create new animation
+                        _a.animation = _b.sent();
+                        if (!_config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__["b"].getBoolean('animated', true)) {
+                            this.animation.duration(0);
+                        }
+                        this.animation.fill('both');
                         return [2 /*return*/];
                 }
             });
         });
     };
-    class_1.prototype.prepareTI = function (ti) {
-        var viewsLength = this.views.length;
-        ti.opts = ti.opts || {};
-        if (ti.opts.delegate === undefined) {
-            ti.opts.delegate = this.delegate;
-        }
-        if (ti.removeView !== undefined) {
-            Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(ti.removeStart !== undefined, 'removeView needs removeStart');
-            Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(ti.removeCount !== undefined, 'removeView needs removeCount');
-            var index = this.views.indexOf(ti.removeView);
-            if (index < 0) {
-                throw new Error('removeView was not found');
-            }
-            ti.removeStart += index;
-        }
-        if (ti.removeStart !== undefined) {
-            if (ti.removeStart < 0) {
-                ti.removeStart = viewsLength - 1;
-            }
-            if (ti.removeCount < 0) {
-                ti.removeCount = viewsLength - ti.removeStart;
-            }
-            ti.leavingRequiresTransition =
-                ti.removeCount > 0 && ti.removeStart + ti.removeCount === viewsLength;
-        }
-        if (ti.insertViews) {
-            // allow -1 to be passed in to auto push it on the end
-            // and clean up the index if it's larger then the size of the stack
-            if (ti.insertStart < 0 || ti.insertStart > viewsLength) {
-                ti.insertStart = viewsLength;
-            }
-            ti.enteringRequiresTransition = ti.insertStart === viewsLength;
-        }
-        var insertViews = ti.insertViews;
-        if (!insertViews) {
-            return;
-        }
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(insertViews.length > 0, 'length can not be zero');
-        var viewControllers = convertToViews(insertViews);
-        if (viewControllers.length === 0) {
-            throw new Error('invalid views to insert');
-        }
-        // Check all the inserted view are correct
-        for (var _i = 0, viewControllers_1 = viewControllers; _i < viewControllers_1.length; _i++) {
-            var view = viewControllers_1[_i];
-            view.delegate = ti.opts.delegate;
-            var nav = view.nav;
-            if (nav && nav !== this) {
-                throw new Error('inserted view was already inserted');
-            }
-            if (view.state === VIEW_STATE_DESTROYED) {
-                throw new Error('inserted view was already destroyed');
-            }
-        }
-        ti.insertViews = viewControllers;
-    };
-    class_1.prototype.getEnteringView = function (ti, leavingView) {
-        var insertViews = ti.insertViews;
-        if (insertViews !== undefined) {
-            // grab the very last view of the views to be inserted
-            // and initialize it as the new entering view
-            return insertViews[insertViews.length - 1];
-        }
-        var removeStart = ti.removeStart;
-        if (removeStart !== undefined) {
-            var views = this.views;
-            var removeEnd = removeStart + ti.removeCount;
-            for (var i = views.length - 1; i >= 0; i--) {
-                var view = views[i];
-                if ((i < removeStart || i >= removeEnd) && view !== leavingView) {
-                    return view;
-                }
-            }
-        }
-        return undefined;
-    };
-    class_1.prototype.postViewInit = function (enteringView, leavingView, ti) {
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(leavingView || enteringView, 'Both leavingView and enteringView are null');
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(ti.resolve, 'resolve must be valid');
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(ti.reject, 'reject must be valid');
-        var opts = ti.opts;
-        var insertViews = ti.insertViews;
-        var removeStart = ti.removeStart;
-        var removeCount = ti.removeCount;
-        var destroyQueue;
-        // there are views to remove
-        if (removeStart !== undefined && removeCount !== undefined) {
-            Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(removeStart >= 0, 'removeStart can not be negative');
-            Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(removeCount >= 0, 'removeCount can not be negative');
-            destroyQueue = [];
-            for (var i = 0; i < removeCount; i++) {
-                var view = this.views[i + removeStart];
-                if (view && view !== enteringView && view !== leavingView) {
-                    destroyQueue.push(view);
-                }
-            }
-            // default the direction to "back"
-            opts.direction = opts.direction || 'back';
-        }
-        var finalBalance = this.views.length +
-            (insertViews !== undefined ? insertViews.length : 0) -
-            (removeCount !== undefined ? removeCount : 0);
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(finalBalance >= 0, 'final balance can not be negative');
-        if (finalBalance === 0) {
-            console.warn("You can't remove all the pages in the navigation stack. nav.pop() is probably called too many times.", this, this.el);
-            throw new Error('navigation stack needs at least one root page');
-        }
-        // At this point the transition can not be rejected, any throw should be an error
-        // there are views to insert
-        if (insertViews) {
-            // add the views to the
-            var insertIndex = ti.insertStart;
-            for (var _i = 0, insertViews_1 = insertViews; _i < insertViews_1.length; _i++) {
-                var view = insertViews_1[_i];
-                this.insertViewAt(view, insertIndex);
-                insertIndex++;
-            }
-            if (ti.enteringRequiresTransition) {
-                // default to forward if not already set
-                opts.direction = opts.direction || 'forward';
-            }
-        }
-        // if the views to be removed are in the beginning or middle
-        // and there is not a view that needs to visually transition out
-        // then just destroy them and don't transition anything
-        // batch all of lifecycles together
-        // let's make sure, callbacks are zoned
-        if (destroyQueue && destroyQueue.length > 0) {
-            for (var _a = 0, destroyQueue_1 = destroyQueue; _a < destroyQueue_1.length; _a++) {
-                var view = destroyQueue_1[_a];
-                Object(_index_6826f2f6_js__WEBPACK_IMPORTED_MODULE_6__["l"])(view.element, _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_4__["b"]);
-                Object(_index_6826f2f6_js__WEBPACK_IMPORTED_MODULE_6__["l"])(view.element, _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_4__["c"]);
-                Object(_index_6826f2f6_js__WEBPACK_IMPORTED_MODULE_6__["l"])(view.element, _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_4__["d"]);
-            }
-            // once all lifecycle events has been delivered, we can safely detroy the views
-            for (var _b = 0, destroyQueue_2 = destroyQueue; _b < destroyQueue_2.length; _b++) {
-                var view = destroyQueue_2[_b];
-                this.destroyView(view);
-            }
-        }
-    };
-    class_1.prototype.transition = function (enteringView, leavingView, ti) {
+    class_1.prototype.startAnimation = function (shouldOpen, animated) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-            var opts, progressCallback, mode, enteringEl, leavingEl, animationOpts, hasCompleted;
-            var _this = this;
+            var isReversed, ani;
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        opts = ti.opts;
-                        progressCallback = opts.progressAnimation
-                            ? function (ani) { return _this.sbAni = ani; }
-                            : undefined;
-                        mode = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
-                        enteringEl = enteringView.element;
-                        leavingEl = leavingView && leavingView.element;
-                        animationOpts = Object.assign({ mode: mode, showGoBack: this.canGoBackSync(enteringView), baseEl: this.el, animationBuilder: this.animation || opts.animationBuilder || _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__["b"].get('navAnimation'), progressCallback: progressCallback, animated: this.animated && _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__["b"].getBoolean('animated', true), enteringEl: enteringEl,
-                            leavingEl: leavingEl }, opts);
-                        return [4 /*yield*/, Object(_index_6826f2f6_js__WEBPACK_IMPORTED_MODULE_6__["t"])(animationOpts)];
+                        isReversed = !shouldOpen;
+                        ani = this.animation
+                            .direction((isReversed) ? 'reverse' : 'normal')
+                            .easing((isReversed) ? 'cubic-bezier(0.4, 0.0, 0.6, 1)' : 'cubic-bezier(0.0, 0.0, 0.2, 1)');
+                        if (!animated) return [3 /*break*/, 2];
+                        return [4 /*yield*/, ani.playAsync()];
                     case 1:
-                        hasCompleted = (_a.sent()).hasCompleted;
-                        return [2 /*return*/, this.transitionFinish(hasCompleted, enteringView, leavingView, opts)];
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        ani.playSync();
+                        _a.label = 3;
+                    case 3: return [2 /*return*/];
                 }
             });
         });
     };
-    class_1.prototype.transitionFinish = function (hasCompleted, enteringView, leavingView, opts) {
-        var cleanupView = hasCompleted ? enteringView : leavingView;
-        if (cleanupView) {
-            this.cleanup(cleanupView);
-        }
-        return {
-            hasCompleted: hasCompleted,
-            requiresTransition: true,
-            enteringView: enteringView,
-            leavingView: leavingView,
-            direction: opts.direction
-        };
+    class_1.prototype._isActive = function () {
+        return !this.disabled && !this.isPaneVisible;
     };
-    class_1.prototype.insertViewAt = function (view, index) {
-        var views = this.views;
-        var existingIndex = views.indexOf(view);
-        if (existingIndex > -1) {
-            // this view is already in the stack!!
-            // move it to its new location
-            Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(view.nav === this, 'view is not part of the nav');
-            views.splice(index, 0, views.splice(existingIndex, 1)[0]);
-        }
-        else {
-            Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(!view.nav, 'nav is used');
-            // this is a new view to add to the stack
-            // create the new entering view
-            view.nav = this;
-            // insert the entering view into the correct index in the stack
-            views.splice(index, 0, view);
-        }
+    class_1.prototype.canSwipe = function () {
+        return this.swipeGesture && !this.isAnimating && this._isActive();
     };
-    class_1.prototype.removeView = function (view) {
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(view.state === VIEW_STATE_ATTACHED || view.state === VIEW_STATE_DESTROYED, 'view state should be loaded or destroyed');
-        var views = this.views;
-        var index = views.indexOf(view);
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(index > -1, 'view must be part of the stack');
-        if (index >= 0) {
-            views.splice(index, 1);
+    class_1.prototype.canStart = function (detail) {
+        if (!this.canSwipe()) {
+            return false;
         }
-    };
-    class_1.prototype.destroyView = function (view) {
-        view._destroy();
-        this.removeView(view);
-    };
-    /**
-     * DOM WRITE
-     */
-    class_1.prototype.cleanup = function (activeView) {
-        // ok, cleanup time!! Destroy all of the views that are
-        // INACTIVE and come after the active view
-        // only do this if the views exist, though
-        if (this.destroyed) {
-            return;
+        if (this._isOpen) {
+            return true;
+            // TODO error
         }
-        var views = this.views;
-        var activeViewIndex = views.indexOf(activeView);
-        for (var i = views.length - 1; i >= 0; i--) {
-            var view = views[i];
-            var element = view.element;
-            if (i > activeViewIndex) {
-                // this view comes after the active view
-                // let's unload it
-                Object(_index_6826f2f6_js__WEBPACK_IMPORTED_MODULE_6__["l"])(element, _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_4__["d"]);
-                this.destroyView(view);
-            }
-            else if (i < activeViewIndex) {
-                // this view comes before the active view
-                // and it is not a portal then ensure it is hidden
-                Object(_index_6826f2f6_js__WEBPACK_IMPORTED_MODULE_6__["s"])(element, true);
-            }
+        else if (_index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"]._getOpenSync()) {
+            return false;
         }
+        return checkEdgeSide(window, detail.currentX, this.isEndSide, this.maxEdgeStart);
     };
-    class_1.prototype.canStart = function () {
-        return (!!this.swipeGesture &&
-            !this.isTransitioning &&
-            this.transInstr.length === 0 &&
-            this.animationEnabled &&
-            this.canGoBackSync());
+    class_1.prototype.onWillStart = function () {
+        this.beforeAnimation(!this._isOpen);
+        return this.loadAnimation();
     };
     class_1.prototype.onStart = function () {
-        this.queueTrns({
-            removeStart: -1,
-            removeCount: 1,
-            opts: {
-                direction: 'back',
-                progressAnimation: true
-            }
-        }, undefined);
-    };
-    class_1.prototype.onMove = function (stepValue) {
-        if (this.sbAni) {
-            this.sbAni.progressStep(stepValue);
+        if (!this.isAnimating || !this.animation) {
+            Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(false, 'isAnimating has to be true');
+            return;
         }
+        // the cloned animation should not use an easing curve during seek
+        this.animation
+            .direction((this._isOpen) ? 'reverse' : 'normal')
+            .progressStart(true);
     };
-    class_1.prototype.onEnd = function (shouldComplete, stepValue, dur) {
+    class_1.prototype.onMove = function (detail) {
+        if (!this.isAnimating || !this.animation) {
+            Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(false, 'isAnimating has to be true');
+            return;
+        }
+        var delta = computeDelta(detail.deltaX, this._isOpen, this.isEndSide);
+        var stepValue = delta / this.width;
+        this.animation.progressStep(stepValue);
+    };
+    class_1.prototype.onEnd = function (detail) {
         var _this = this;
-        if (this.sbAni) {
-            this.animationEnabled = false;
-            this.sbAni.onFinish(function () {
-                _this.animationEnabled = true;
-            }, { oneTimeCallback: true });
-            // Account for rounding errors in JS
-            var newStepValue = (shouldComplete) ? -0.001 : 0.001;
-            /**
-             * Animation will be reversed here, so need to
-             * reverse the easing curve as well
-             *
-             * Additionally, we need to account for the time relative
-             * to the new easing curve, as `stepValue` is going to be given
-             * in terms of a linear curve.
-             */
-            if (!shouldComplete) {
-                this.sbAni.easing('cubic-bezier(1, 0, 0.68, 0.28)');
-                newStepValue += Object(_cubic_bezier_2812fda3_js__WEBPACK_IMPORTED_MODULE_7__["g"])(new _cubic_bezier_2812fda3_js__WEBPACK_IMPORTED_MODULE_7__["P"](0, 0), new _cubic_bezier_2812fda3_js__WEBPACK_IMPORTED_MODULE_7__["P"](1, 0), new _cubic_bezier_2812fda3_js__WEBPACK_IMPORTED_MODULE_7__["P"](0.68, 0.28), new _cubic_bezier_2812fda3_js__WEBPACK_IMPORTED_MODULE_7__["P"](1, 1), stepValue);
-            }
-            else {
-                newStepValue += Object(_cubic_bezier_2812fda3_js__WEBPACK_IMPORTED_MODULE_7__["g"])(new _cubic_bezier_2812fda3_js__WEBPACK_IMPORTED_MODULE_7__["P"](0, 0), new _cubic_bezier_2812fda3_js__WEBPACK_IMPORTED_MODULE_7__["P"](0.32, 0.72), new _cubic_bezier_2812fda3_js__WEBPACK_IMPORTED_MODULE_7__["P"](0, 1), new _cubic_bezier_2812fda3_js__WEBPACK_IMPORTED_MODULE_7__["P"](1, 1), stepValue);
-            }
-            this.sbAni.progressEnd(shouldComplete ? 1 : 0, newStepValue, dur);
+        if (!this.isAnimating || !this.animation) {
+            Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(false, 'isAnimating has to be true');
+            return;
         }
+        var isOpen = this._isOpen;
+        var isEndSide = this.isEndSide;
+        var delta = computeDelta(detail.deltaX, isOpen, isEndSide);
+        var width = this.width;
+        var stepValue = delta / width;
+        var velocity = detail.velocityX;
+        var z = width / 2.0;
+        var shouldCompleteRight = velocity >= 0 && (velocity > 0.2 || detail.deltaX > z);
+        var shouldCompleteLeft = velocity <= 0 && (velocity < -0.2 || detail.deltaX < -z);
+        var shouldComplete = isOpen
+            ? isEndSide ? shouldCompleteRight : shouldCompleteLeft
+            : isEndSide ? shouldCompleteLeft : shouldCompleteRight;
+        var shouldOpen = !isOpen && shouldComplete;
+        if (isOpen && !shouldComplete) {
+            shouldOpen = true;
+        }
+        this.lastOnEnd = detail.timeStamp;
+        // Account for rounding errors in JS
+        var newStepValue = (shouldComplete) ? 0.001 : -0.001;
+        /**
+         * TODO: stepValue can sometimes return a negative
+         * value, but you can't have a negative time value
+         * for the cubic bezier curve (at least with web animations)
+         * Not sure if the negative step value is an error or not
+         */
+        var adjustedStepValue = (stepValue <= 0) ? 0.01 : stepValue;
+        /**
+         * Animation will be reversed here, so need to
+         * reverse the easing curve as well
+         *
+         * Additionally, we need to account for the time relative
+         * to the new easing curve, as `stepValue` is going to be given
+         * in terms of a linear curve.
+         */
+        newStepValue += Object(_cubic_bezier_2812fda3_js__WEBPACK_IMPORTED_MODULE_8__["g"])(new _cubic_bezier_2812fda3_js__WEBPACK_IMPORTED_MODULE_8__["P"](0, 0), new _cubic_bezier_2812fda3_js__WEBPACK_IMPORTED_MODULE_8__["P"](0.4, 0), new _cubic_bezier_2812fda3_js__WEBPACK_IMPORTED_MODULE_8__["P"](0.6, 1), new _cubic_bezier_2812fda3_js__WEBPACK_IMPORTED_MODULE_8__["P"](1, 1), Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["c"])(0, adjustedStepValue, 1));
+        this.animation
+            .easing('cubic-bezier(0.4, 0.0, 0.6, 1)')
+            .onFinish(function () { return _this.afterAnimation(shouldOpen); }, { oneTimeCallback: true })
+            .progressEnd(shouldComplete ? 1 : 0, newStepValue, 300);
+    };
+    class_1.prototype.beforeAnimation = function (shouldOpen) {
+        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(!this.isAnimating, '_before() should not be called while animating');
+        // this places the menu into the correct location before it animates in
+        // this css class doesn't actually kick off any animations
+        this.el.classList.add(SHOW_MENU);
+        if (this.backdropEl) {
+            this.backdropEl.classList.add(SHOW_BACKDROP);
+        }
+        this.blocker.block();
+        this.isAnimating = true;
+        if (shouldOpen) {
+            this.ionWillOpen.emit();
+        }
+        else {
+            this.ionWillClose.emit();
+        }
+    };
+    class_1.prototype.afterAnimation = function (isOpen) {
+        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(this.isAnimating, '_before() should be called while animating');
+        // keep opening/closing the menu disabled for a touch more yet
+        // only add listeners/css if it's enabled and isOpen
+        // and only remove listeners/css if it's not open
+        // emit opened/closed events
+        this._isOpen = isOpen;
+        this.isAnimating = false;
+        if (!this._isOpen) {
+            this.blocker.unblock();
+        }
+        if (isOpen) {
+            // add css class
+            if (this.contentEl) {
+                this.contentEl.classList.add(MENU_CONTENT_OPEN);
+            }
+            // emit open event
+            this.ionDidOpen.emit();
+        }
+        else {
+            // remove css classes
+            this.el.classList.remove(SHOW_MENU);
+            if (this.contentEl) {
+                this.contentEl.classList.remove(MENU_CONTENT_OPEN);
+            }
+            if (this.backdropEl) {
+                this.backdropEl.classList.remove(SHOW_BACKDROP);
+            }
+            if (this.animation) {
+                this.animation.stop();
+            }
+            // emit close event
+            this.ionDidClose.emit();
+        }
+    };
+    class_1.prototype.updateState = function () {
+        var isActive = this._isActive();
+        if (this.gesture) {
+            this.gesture.setDisabled(!isActive || !this.swipeGesture);
+        }
+        // Close menu immediately
+        if (!isActive && this._isOpen) {
+            // close if this menu is open, and should not be enabled
+            this.forceClosing();
+        }
+        if (!this.disabled) {
+            _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"]._setActiveMenu(this);
+        }
+        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(!this.isAnimating, 'can not be animating');
+    };
+    class_1.prototype.forceClosing = function () {
+        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["b"])(this._isOpen, 'menu cannot be closed');
+        this.isAnimating = true;
+        var ani = this.animation.direction('reverse');
+        ani.playSync();
+        this.afterAnimation(false);
     };
     class_1.prototype.render = function () {
-        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("slot", null));
+        var _a;
+        var _this = this;
+        var _b = this, isEndSide = _b.isEndSide, type = _b.type, disabled = _b.disabled, mode = _b.mode, isPaneVisible = _b.isPaneVisible;
+        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["H"], { role: "navigation", class: (_a = {},
+                _a[mode] = true,
+                _a["menu-type-" + type] = true,
+                _a['menu-enabled'] = !disabled,
+                _a['menu-side-end'] = isEndSide,
+                _a['menu-side-start'] = !isEndSide,
+                _a['menu-pane-visible'] = isPaneVisible,
+                _a) }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "menu-inner", ref: function (el) { return _this.menuInnerEl = el; } }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("slot", null)), Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-backdrop", { ref: function (el) { return _this.backdropEl = el; }, class: "menu-backdrop", tappable: false, stopPropagation: false })));
     };
     Object.defineProperty(class_1.prototype, "el", {
         get: function () { return Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
@@ -905,123 +487,286 @@ var Nav = /** @class */ (function () {
     Object.defineProperty(class_1, "watchers", {
         get: function () {
             return {
-                "swipeGesture": ["swipeGestureChanged"],
-                "root": ["rootChanged"]
+                "type": ["typeChanged"],
+                "disabled": ["disabledChanged"],
+                "side": ["sideChanged"],
+                "swipeGesture": ["swipeGestureChanged"]
             };
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(class_1, "style", {
-        get: function () { return ":host{left:0;right:0;top:0;bottom:0;position:absolute;contain:layout size style;overflow:hidden;z-index:0}"; },
+        get: function () { return ":host{--width:304px;--min-width:auto;--max-width:auto;--height:100%;--min-height:auto;--max-height:auto;--background:var(--ion-background-color,#fff);left:0;right:0;top:0;bottom:0;display:none;position:absolute;contain:strict}:host(.show-menu){display:block}.menu-inner{left:0;right:auto;top:0;bottom:0;-webkit-transform:translate3d(-9999px,0,0);transform:translate3d(-9999px,0,0);display:-ms-flexbox;display:flex;position:absolute;-ms-flex-direction:column;flex-direction:column;-ms-flex-pack:justify;justify-content:space-between;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);background:var(--background);contain:strict}:host-context([dir=rtl]) .menu-inner,[dir=rtl] .menu-inner{left:unset;right:unset;left:auto;right:0;-webkit-transform:translate3d(calc(-1 * -9999px),0,0);transform:translate3d(calc(-1 * -9999px),0,0)}:host(.menu-side-start) .menu-inner{--ion-safe-area-right:0px;right:auto;left:0}:host(.menu-side-end) .menu-inner{--ion-safe-area-left:0px;right:0;left:auto}ion-backdrop{display:none;opacity:.01;z-index:-1}\@media (max-width:340px){.menu-inner{--width:264px}}:host(.menu-type-reveal){z-index:0}:host(.menu-type-reveal.show-menu) .menu-inner{-webkit-transform:translateZ(0);transform:translateZ(0)}:host(.menu-type-overlay){z-index:1000}:host(.menu-type-overlay) .show-backdrop{display:block;cursor:pointer}:host(.menu-pane-visible) .menu-inner{left:0;right:0;width:auto;-webkit-transform:none!important;transform:none!important;-webkit-box-shadow:none!important;box-shadow:none!important}:host(.menu-pane-visible) ion-backdrop{display:hidden!important}:host(.menu-type-overlay) .menu-inner{-webkit-box-shadow:0 2px 22px 0 rgba(0,0,0,.09),4px 0 16px 0 rgba(0,0,0,.18);box-shadow:0 2px 22px 0 rgba(0,0,0,.09),4px 0 16px 0 rgba(0,0,0,.18)}"; },
         enumerable: true,
         configurable: true
     });
     return class_1;
 }());
-var navLink = function (el, routerDirection, component, componentProps) {
-    var nav = el.closest('ion-nav');
-    if (nav) {
-        if (routerDirection === 'forward') {
-            if (component !== undefined) {
-                return nav.push(component, componentProps, { skipIfBusy: true });
-            }
-        }
-        else if (routerDirection === 'root') {
-            if (component !== undefined) {
-                return nav.setRoot(component, componentProps, { skipIfBusy: true });
-            }
-        }
-        else if (routerDirection === 'back') {
-            return nav.pop({ skipIfBusy: true });
-        }
-    }
-    return Promise.resolve(false);
+var computeDelta = function (deltaX, isOpen, isEndSide) {
+    return Math.max(0, isOpen !== isEndSide ? -deltaX : deltaX);
 };
-var NavLink = /** @class */ (function () {
-    function NavLink(hostRef) {
+var checkEdgeSide = function (win, posX, isEndSide, maxEdgeStart) {
+    if (isEndSide) {
+        return posX >= win.innerWidth - maxEdgeStart;
+    }
+    else {
+        return posX <= maxEdgeStart;
+    }
+};
+var SHOW_MENU = 'show-menu';
+var SHOW_BACKDROP = 'show-backdrop';
+var MENU_CONTENT_OPEN = 'menu-content-open';
+// Given a menu, return whether or not the menu toggle should be visible
+var updateVisibility = function (menu) { return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(void 0, void 0, void 0, function () {
+    var menuEl, _a;
+    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_b) {
+        switch (_b.label) {
+            case 0: return [4 /*yield*/, _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"].get(menu)];
+            case 1:
+                menuEl = _b.sent();
+                _a = menuEl;
+                if (!_a) return [3 /*break*/, 3];
+                return [4 /*yield*/, menuEl.isActive()];
+            case 2:
+                _a = (_b.sent());
+                _b.label = 3;
+            case 3: return [2 /*return*/, !!(_a)];
+        }
+    });
+}); };
+var MenuButton = /** @class */ (function () {
+    function class_2(hostRef) {
         var _this = this;
         Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+        this.visible = false;
         /**
-         * The transition direction when navigating to another page.
+         * If `true`, the user cannot interact with the menu button.
          */
-        this.routerDirection = 'forward';
+        this.disabled = false;
+        /**
+         * Automatically hides the menu button when the corresponding menu is not active
+         */
+        this.autoHide = true;
+        /**
+         * The type of the button.
+         */
+        this.type = 'button';
+        this.onClick = function () { return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, function () {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
+                return [2 /*return*/, _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"].toggle(this.menu)];
+            });
+        }); };
+    }
+    class_2.prototype.componentDidLoad = function () {
+        this.visibilityChanged();
+    };
+    class_2.prototype.visibilityChanged = function () {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
+            var _a;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, updateVisibility(this.menu)];
+                    case 1:
+                        _a.visible = _b.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    class_2.prototype.render = function () {
+        var _a;
+        var _b = this, color = _b.color, disabled = _b.disabled;
+        var mode = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+        var menuIcon = _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__["b"].get('menuIcon', 'menu');
+        var hidden = this.autoHide && !this.visible;
+        var attrs = {
+            type: this.type
+        };
+        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.onClick, "aria-disabled": disabled ? 'true' : null, "aria-hidden": hidden ? 'true' : null, class: Object.assign(Object.assign((_a = {}, _a[mode] = true, _a), Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_7__["c"])(color)), { 'button': true, 'menu-button-hidden': hidden, 'menu-button-disabled': disabled, 'ion-activatable': true, 'ion-focusable': true }) }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("button", Object.assign({}, attrs, { disabled: disabled, class: "button-native" }), Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("slot", null, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-icon", { icon: menuIcon, mode: mode, lazy: false })), mode === 'md' && Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-ripple-effect", { type: "unbounded" }))));
+    };
+    Object.defineProperty(class_2, "style", {
+        get: function () { return ":host{--background:transparent;--color-focused:var(--color);--border-radius:initial;--padding-top:0;--padding-bottom:0;color:var(--color);text-align:center;text-decoration:none;text-overflow:ellipsis;text-transform:none;white-space:nowrap;-webkit-font-kerning:none;font-kerning:none}.button-native{border-radius:var(--border-radius);font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;text-decoration:inherit;text-overflow:inherit;text-transform:inherit;text-align:inherit;white-space:inherit;color:inherit;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding-left:var(--padding-start);padding-right:var(--padding-end);padding-top:var(--padding-top);padding-bottom:var(--padding-bottom);-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:-ms-flexbox;display:flex;position:relative;-ms-flex-flow:row nowrap;flex-flow:row nowrap;-ms-flex-negative:0;flex-shrink:0;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;width:100%;height:100%;border:0;outline:none;background:var(--background);line-height:1;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:0;-webkit-appearance:none;-moz-appearance:none;appearance:none}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.button-native{padding-left:unset;padding-right:unset;-webkit-padding-start:var(--padding-start);padding-inline-start:var(--padding-start);-webkit-padding-end:var(--padding-end);padding-inline-end:var(--padding-end)}}ion-icon{margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding-left:0;padding-right:0;padding-top:0;padding-bottom:0;pointer-events:none}:host(.menu-button-hidden){display:none}:host(.menu-button-disabled){cursor:default;opacity:.5;pointer-events:none}\@media (any-hover:hover){:host(:hover) .button-native{background:var(--background-hover);color:var(--color-hover)}}:host(.ion-focused) .button-native{background:var(--background-focused);color:var(--color-focused)}:host(.ion-color) .button-native{color:var(--ion-color-base)}:host-context(ion-toolbar:not(.ion-color)){color:var(--ion-toolbar-color,var(--color))}:host{--background-focused:rgba(66,66,66,0.24);--background-hover:rgba(66,66,66,0.08);--border-radius:50%;--color:initial;--padding-start:8px;--padding-end:8px;width:48px;height:48px;font-size:24px}\@media (any-hover:hover){:host(.ion-color:hover) .button-native{background:rgba(var(--ion-color-base-rgb),.08)}}:host(.ion-color.ion-focused) .button-native{background:rgba(var(--ion-color-base-rgb),.24);color:var(--ion-color-base)}"; },
+        enumerable: true,
+        configurable: true
+    });
+    return class_2;
+}());
+var MenuController = /** @class */ (function () {
+    function class_3(hostRef) {
+        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+    }
+    /**
+     * Open the menu. If a menu is not provided then it will open the first
+     * menu found. If the specified menu is `start` or `end`, then it will open
+     * the enabled menu on that side. Otherwise, it will try to find the menu
+     * using the menu's `id` property. If a menu is not found then it will
+     * return `false`.
+     *
+     * @param menu The menuId or side of the menu to open.
+     */
+    class_3.prototype.open = function (menu) {
+        return _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"].open(menu);
+    };
+    /**
+     * Close the menu. If a menu is specified, it will close that menu.
+     * If no menu is specified, then it will close any menu that is open.
+     * If it does not find any open menus, it will return `false`.
+     *
+     * @param menu The menuId or side of the menu to close.
+     */
+    class_3.prototype.close = function (menu) {
+        return _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"].close(menu);
+    };
+    /**
+     * Toggle the menu open or closed. If the menu is already open, it will try to
+     * close the menu, otherwise it will try to open it. Returns `false` if
+     * a menu is not found.
+     *
+     * @param menu The menuId or side of the menu to toggle.
+     */
+    class_3.prototype.toggle = function (menu) {
+        return _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"].toggle(menu);
+    };
+    /**
+     * Enable or disable a menu. Disabling a menu will not allow gestures
+     * for that menu or any calls to open it. This is useful when there are
+     * multiple menus on the same side and only one of them should be allowed
+     * to open. Enabling a menu will automatically disable all other menus
+     * on that side.
+     *
+     * @param enable If `true`, the menu should be enabled.
+     * @param menu The menuId or side of the menu to enable or disable.
+     */
+    class_3.prototype.enable = function (enable, menu) {
+        return _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"].enable(enable, menu);
+    };
+    /**
+     * Enable or disable the ability to swipe open the menu.
+     *
+     * @param enable If `true`, the menu swipe gesture should be enabled.
+     * @param menu The menuId or side of the menu to enable or disable the swipe gesture on.
+     */
+    class_3.prototype.swipeGesture = function (enable, menu) {
+        return _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"].swipeGesture(enable, menu);
+    };
+    /**
+     * Get whether or not the menu is open. Returns `true` if the specified
+     * menu is open. If a menu is not specified, it will return `true` if
+     * any menu is currently open.
+     *
+     * @param menu The menuId or side of the menu that is being checked.
+     */
+    class_3.prototype.isOpen = function (menu) {
+        return _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"].isOpen(menu);
+    };
+    /**
+     * Get whether or not the menu is enabled. Returns `true` if the
+     * specified menu is enabled. Returns `false` if a menu is disabled
+     * or not found.
+     *
+     * @param menu The menuId or side of the menu that is being checked.
+     */
+    class_3.prototype.isEnabled = function (menu) {
+        return _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"].isEnabled(menu);
+    };
+    /**
+     * Get a menu instance. If a menu is not provided then it will return the first
+     * menu found. If the specified menu is `start` or `end`, then it will return the
+     * enabled menu on that side. Otherwise, it will try to find the menu using the menu's
+     * `id` property. If a menu is not found then it will return `null`.
+     *
+     * @param menu The menuId or side of the menu.
+     */
+    class_3.prototype.get = function (menu) {
+        return _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"].get(menu);
+    };
+    /**
+     * Get the instance of the opened menu. Returns `null` if a menu is not found.
+     */
+    class_3.prototype.getOpen = function () {
+        return _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"].getOpen();
+    };
+    /**
+     * Get all menu instances.
+     */
+    class_3.prototype.getMenus = function () {
+        return _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"].getMenus();
+    };
+    /**
+     * Get whether or not a menu is animating. Returns `true` if any
+     * menu is currently animating.
+     */
+    class_3.prototype.isAnimating = function () {
+        return _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"].isAnimating();
+    };
+    /**
+     * Registers a new animation that can be used with any `ion-menu` by
+     * passing the name of the animation in its `type` property.
+     *
+     * @param name The name of the animation to register.
+     * @param animation The animation function to register.
+     */
+    class_3.prototype.registerAnimation = function (name, animation) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
+                return [2 /*return*/, _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"].registerAnimation(name, animation)];
+            });
+        });
+    };
+    return class_3;
+}());
+var MenuToggle = /** @class */ (function () {
+    function class_4(hostRef) {
+        var _this = this;
+        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+        this.visible = false;
+        /**
+         * Automatically hides the content when the corresponding menu is not active.
+         *
+         * By default, it's `true`. Change it to `false` in order to
+         * keep `ion-menu-toggle` always visible regardless the state of the menu.
+         */
+        this.autoHide = true;
         this.onClick = function () {
-            return navLink(_this.el, _this.routerDirection, _this.component, _this.componentProps);
+            return _index_1e5940d5_js__WEBPACK_IMPORTED_MODULE_6__["m"].toggle(_this.menu);
         };
     }
-    NavLink.prototype.render = function () {
-        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.onClick }));
+    class_4.prototype.connectedCallback = function () {
+        this.visibilityChanged();
     };
-    Object.defineProperty(NavLink.prototype, "el", {
-        get: function () { return Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
+    class_4.prototype.visibilityChanged = function () {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
+            var _a;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, updateVisibility(this.menu)];
+                    case 1:
+                        _a.visible = _b.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    class_4.prototype.render = function () {
+        var _a;
+        var mode = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+        var hidden = this.autoHide && !this.visible;
+        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.onClick, "aria-hidden": hidden ? 'true' : null, class: (_a = {},
+                _a[mode] = true,
+                _a['menu-toggle-hidden'] = hidden,
+                _a) }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("slot", null)));
+    };
+    Object.defineProperty(class_4, "style", {
+        get: function () { return ":host(.menu-toggle-hidden){display:none}"; },
         enumerable: true,
         configurable: true
     });
-    return NavLink;
-}());
-var NavPop = /** @class */ (function () {
-    function NavPop(hostRef) {
-        var _this = this;
-        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
-        this.pop = function () {
-            return navLink(_this.el, 'back');
-        };
-    }
-    NavPop.prototype.componentDidLoad = function () {
-        console.warn('[DEPRECATED][ion-nav-pop] <ion-nav-pop> is deprecated. Use `<ion-nav-link routerDirection="back">` instead.');
-    };
-    NavPop.prototype.render = function () {
-        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.pop }));
-    };
-    Object.defineProperty(NavPop.prototype, "el", {
-        get: function () { return Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
-        enumerable: true,
-        configurable: true
-    });
-    return NavPop;
-}());
-var NavPush = /** @class */ (function () {
-    function NavPush(hostRef) {
-        var _this = this;
-        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
-        this.push = function () {
-            return navLink(_this.el, 'forward', _this.component, _this.componentProps);
-        };
-    }
-    NavPush.prototype.componentDidLoad = function () {
-        console.warn('[DEPRECATED][ion-nav-push] `<ion-nav-push component="MyComponent">` is deprecated. Use `<ion-nav-link component="MyComponent">` instead.');
-    };
-    NavPush.prototype.render = function () {
-        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.push }));
-    };
-    Object.defineProperty(NavPush.prototype, "el", {
-        get: function () { return Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
-        enumerable: true,
-        configurable: true
-    });
-    return NavPush;
-}());
-var NavSetRoot = /** @class */ (function () {
-    function NavSetRoot(hostRef) {
-        var _this = this;
-        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
-        this.setRoot = function () {
-            return navLink(_this.el, 'root', _this.component, _this.componentProps);
-        };
-    }
-    NavSetRoot.prototype.componentDidLoad = function () {
-        console.warn('[DEPRECATED][ion-nav-set-root] `<ion-nav-set-root component="MyComponent">` is deprecated. Use `<ion-nav-link component="MyComponent" routerDirection="root">` instead.');
-    };
-    NavSetRoot.prototype.render = function () {
-        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.setRoot }));
-    };
-    Object.defineProperty(NavSetRoot.prototype, "el", {
-        get: function () { return Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
-        enumerable: true,
-        configurable: true
-    });
-    return NavSetRoot;
+    return class_4;
 }());
 
 

@@ -1,0 +1,66 @@
+.attachment-list{
+    margin-top: 10px;
+    p{
+        font-size: 17px;
+        font-weight: 600;
+    }
+}
+.plan_option_content {
+    padding: 0px 10px;
+    position: relative;
+    z-index: 11;
+    .card {
+        border: none;
+        cursor: pointer;
+        h6 {
+            color: #434a5e;
+            font-size: 17px;
+            padding: 18px 15px;
+            font-weight: 500;
+            border-bottom: 1px solid #c7cbd6;
+            text-transform: capitalize;
+            @media (max-height: 750px) {
+                padding: 12px 10px;
+            }
+            @media (max-height: 600px) {
+                font-size: 16px;
+                padding: 10px 10px;
+            }
+        }
+        h3 {
+            color: #434a5e;
+            font-size: 18px;
+            padding: 18px 3px;
+        }
+        p {
+            padding: 0px 12px 20px 12px;
+            font-size: 15px;
+            color: #434a5e;
+            line-height: 23px;
+        }
+    }
+    
+}
+
+.plan_images_slide {
+    height: 250px;
+    background: url("../../../assets/images/imgloader.gif") center center no-repeat;
+    background-size: 50px 50px;
+    img {
+        max-width: 100%;
+        min-width: 100%;
+        min-height: 100%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+}
+::ng-deep .plan_images .slick-dots li button:before {
+    font-size: 40px;
+}
+
+::ng-deep .plan_images .slick-dots li {
+    margin: 0;
+}
+.holds-the-iframe {
+    background: url("../../../assets/images/pdfloader.gif") center center no-repeat;
+}

@@ -1,223 +1,367 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[46],{
 
-/***/ "./node_modules/@ionic/core/dist/esm/ion-radio_2-ios.entry.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/ion-radio_2-ios.entry.js ***!
-  \********************************************************************/
-/*! exports provided: ion_radio, ion_radio_group */
+/***/ "./node_modules/@ionic/core/dist/esm/ion-popover-md.entry.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm/ion-popover-md.entry.js ***!
+  \*******************************************************************/
+/*! exports provided: ion_popover */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_radio", function() { return Radio; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_radio_group", function() { return RadioGroup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_popover", function() { return Popover; });
 /* harmony import */ var _core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core-ca0488fc.js */ "./node_modules/@ionic/core/dist/esm/core-ca0488fc.js");
 /* harmony import */ var _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config-3c7f3790.js */ "./node_modules/@ionic/core/dist/esm/config-3c7f3790.js");
 /* harmony import */ var _helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-46f4a262.js */ "./node_modules/@ionic/core/dist/esm/helpers-46f4a262.js");
-/* harmony import */ var _theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./theme-18cbe2cc.js */ "./node_modules/@ionic/core/dist/esm/theme-18cbe2cc.js");
-/* harmony import */ var _watch_options_2af96011_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./watch-options-2af96011.js */ "./node_modules/@ionic/core/dist/esm/watch-options-2af96011.js");
+/* harmony import */ var _animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./animation-af478fe9.js */ "./node_modules/@ionic/core/dist/esm/animation-af478fe9.js");
+/* harmony import */ var _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./constants-3c3e1099.js */ "./node_modules/@ionic/core/dist/esm/constants-3c3e1099.js");
+/* harmony import */ var _overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./overlays-10640d86.js */ "./node_modules/@ionic/core/dist/esm/overlays-10640d86.js");
+/* harmony import */ var _theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./theme-18cbe2cc.js */ "./node_modules/@ionic/core/dist/esm/theme-18cbe2cc.js");
+/* harmony import */ var _framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./framework-delegate-c2e2e1f4.js */ "./node_modules/@ionic/core/dist/esm/framework-delegate-c2e2e1f4.js");
+/* harmony import */ var _index_6826f2f6_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./index-6826f2f6.js */ "./node_modules/@ionic/core/dist/esm/index-6826f2f6.js");
 
 
 
 
 
 
-const Radio = class {
-    constructor(hostRef) {
-        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        this.inputId = `ion-rb-${radioButtonIds++}`;
-        /**
-         * The name of the control, which is submitted with the form data.
-         */
-        this.name = this.inputId;
-        /**
-         * If `true`, the user cannot interact with the radio.
-         */
-        this.disabled = false;
-        /**
-         * If `true`, the radio is selected.
-         */
-        this.checked = false;
-        this.onFocus = () => {
-            this.ionFocus.emit();
-        };
-        this.onBlur = () => {
-            this.ionBlur.emit();
-        };
-        this.onClick = () => {
-            if (this.checked) {
-                this.ionDeselect.emit();
-            }
-            else {
-                this.checked = true;
-            }
-        };
-        this.ionStyle = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionStyle", 7);
-        this.ionSelect = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionSelect", 7);
-        this.ionDeselect = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionDeselect", 7);
-        this.ionFocus = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionFocus", 7);
-        this.ionBlur = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionBlur", 7);
+
+
+
+
+/**
+ * iOS Popover Enter Animation
+ */
+const iosEnterAnimation = (baseEl, ev) => {
+    let originY = 'top';
+    let originX = 'left';
+    const contentEl = baseEl.querySelector('.popover-content');
+    const contentDimentions = contentEl.getBoundingClientRect();
+    const contentWidth = contentDimentions.width;
+    const contentHeight = contentDimentions.height;
+    const bodyWidth = baseEl.ownerDocument.defaultView.innerWidth;
+    const bodyHeight = baseEl.ownerDocument.defaultView.innerHeight;
+    // If ev was passed, use that for target element
+    const targetDim = ev && ev.target && ev.target.getBoundingClientRect();
+    const targetTop = targetDim != null && 'top' in targetDim ? targetDim.top : bodyHeight / 2 - contentHeight / 2;
+    const targetLeft = targetDim != null && 'left' in targetDim ? targetDim.left : bodyWidth / 2;
+    const targetWidth = (targetDim && targetDim.width) || 0;
+    const targetHeight = (targetDim && targetDim.height) || 0;
+    const arrowEl = baseEl.querySelector('.popover-arrow');
+    const arrowDim = arrowEl.getBoundingClientRect();
+    const arrowWidth = arrowDim.width;
+    const arrowHeight = arrowDim.height;
+    if (targetDim == null) {
+        arrowEl.style.display = 'none';
     }
-    colorChanged() {
-        this.emitStyle();
+    const arrowCSS = {
+        top: targetTop + targetHeight,
+        left: targetLeft + targetWidth / 2 - arrowWidth / 2
+    };
+    const popoverCSS = {
+        top: targetTop + targetHeight + (arrowHeight - 1),
+        left: targetLeft + targetWidth / 2 - contentWidth / 2
+    };
+    // If the popover left is less than the padding it is off screen
+    // to the left so adjust it, else if the width of the popover
+    // exceeds the body width it is off screen to the right so adjust
+    //
+    let checkSafeAreaLeft = false;
+    let checkSafeAreaRight = false;
+    // If the popover left is less than the padding it is off screen
+    // to the left so adjust it, else if the width of the popover
+    // exceeds the body width it is off screen to the right so adjust
+    // 25 is a random/arbitrary number. It seems to work fine for ios11
+    // and iPhoneX. Is it perfect? No. Does it work? Yes.
+    if (popoverCSS.left < POPOVER_IOS_BODY_PADDING + 25) {
+        checkSafeAreaLeft = true;
+        popoverCSS.left = POPOVER_IOS_BODY_PADDING;
     }
-    checkedChanged(isChecked) {
-        if (isChecked) {
-            this.ionSelect.emit({
-                checked: true,
-                value: this.value
-            });
-        }
-        this.emitStyle();
+    else if (contentWidth + POPOVER_IOS_BODY_PADDING + popoverCSS.left + 25 > bodyWidth) {
+        // Ok, so we're on the right side of the screen,
+        // but now we need to make sure we're still a bit further right
+        // cus....notchurally... Again, 25 is random. It works tho
+        checkSafeAreaRight = true;
+        popoverCSS.left = bodyWidth - contentWidth - POPOVER_IOS_BODY_PADDING;
+        originX = 'right';
     }
-    disabledChanged() {
-        this.emitStyle();
+    // make it pop up if there's room above
+    if (targetTop + targetHeight + contentHeight > bodyHeight && targetTop - contentHeight > 0) {
+        arrowCSS.top = targetTop - (arrowHeight + 1);
+        popoverCSS.top = targetTop - contentHeight - (arrowHeight - 1);
+        baseEl.className = baseEl.className + ' popover-bottom';
+        originY = 'bottom';
+        // If there isn't room for it to pop up above the target cut it off
     }
-    componentWillLoad() {
-        if (this.value === undefined) {
-            this.value = this.inputId;
-        }
-        this.emitStyle();
+    else if (targetTop + targetHeight + contentHeight > bodyHeight) {
+        contentEl.style.bottom = POPOVER_IOS_BODY_PADDING + '%';
     }
-    emitStyle() {
-        this.ionStyle.emit({
-            'radio-checked': this.checked,
-            'interactive-disabled': this.disabled,
-        });
+    arrowEl.style.top = arrowCSS.top + 'px';
+    arrowEl.style.left = arrowCSS.left + 'px';
+    contentEl.style.top = popoverCSS.top + 'px';
+    contentEl.style.left = popoverCSS.left + 'px';
+    if (checkSafeAreaLeft) {
+        contentEl.style.left = `calc(${popoverCSS.left}px + var(--ion-safe-area-left, 0px))`;
     }
-    render() {
-        const { inputId, disabled, checked, color, el } = this;
-        const mode = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this);
-        const labelId = inputId + '-lbl';
-        const label = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["f"])(el);
-        if (label) {
-            label.id = labelId;
-        }
-        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["H"], { onClick: this.onClick, role: "radio", "aria-disabled": disabled ? 'true' : null, "aria-checked": `${checked}`, "aria-labelledby": labelId, class: Object.assign(Object.assign({}, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["c"])(color)), { [mode]: true, 'in-item': Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["h"])('ion-item', el), 'interactive': true, 'radio-checked': checked, 'radio-disabled': disabled }) }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "radio-icon" }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "radio-inner" })), Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", { type: "button", onFocus: this.onFocus, onBlur: this.onBlur, disabled: disabled })));
+    if (checkSafeAreaRight) {
+        contentEl.style.left = `calc(${popoverCSS.left}px - var(--ion-safe-area-right, 0px))`;
     }
-    get el() { return Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this); }
-    static get watchers() { return {
-        "color": ["colorChanged"],
-        "checked": ["checkedChanged"],
-        "disabled": ["disabledChanged"]
-    }; }
-    static get style() { return ":host{display:inline-block;position:relative;-webkit-box-sizing:border-box;box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:2}:host(.radio-disabled){pointer-events:none}.radio-icon{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;contain:layout size style}.radio-icon,button{width:100%;height:100%}button{left:0;top:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;position:absolute;border:0;background:transparent;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:none}:host-context([dir=rtl]) button,[dir=rtl] button{left:unset;right:unset;right:0}button::-moz-focus-inner{border:0}.radio-icon,.radio-inner{-webkit-box-sizing:border-box;box-sizing:border-box}:host{--color-checked:var(--ion-color-primary,#3880ff);width:15px;height:24px}:host(.ion-color.radio-checked) .radio-inner{border-color:var(--ion-color-base)}.item-radio.item-ios ion-label{margin-left:0}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.item-radio.item-ios ion-label{margin-left:unset;-webkit-margin-start:0;margin-inline-start:0}}.radio-inner{width:33%;height:50%}:host(.radio-checked) .radio-inner{-webkit-transform:rotate(45deg);transform:rotate(45deg);border-width:2px;border-top-width:0;border-left-width:0;border-style:solid;border-color:var(--color-checked)}:host(.radio-disabled){opacity:.3}:host(.ion-focused) .radio-icon:after{border-radius:50%;left:-9px;top:-8px;display:block;position:absolute;width:36px;height:36px;background:var(--ion-color-primary-tint,#4c8dff);content:\"\";opacity:.2}:host-context([dir=rtl]).ion-focused .radio-icon:after,:host-context([dir=rtl]):host(.ion-focused) .radio-icon:after{left:unset;right:unset;right:-9px}:host(.in-item){margin-left:8px;margin-right:11px;margin-top:8px;margin-bottom:8px;display:block;position:static}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.in-item){margin-left:unset;margin-right:unset;-webkit-margin-start:8px;margin-inline-start:8px;-webkit-margin-end:11px;margin-inline-end:11px}}:host(.in-item[slot=start]){margin-left:3px;margin-right:21px;margin-top:8px;margin-bottom:8px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.in-item[slot=start]){margin-left:unset;margin-right:unset;-webkit-margin-start:3px;margin-inline-start:3px;-webkit-margin-end:21px;margin-inline-end:21px}}"; }
+    contentEl.style.transformOrigin = originY + ' ' + originX;
+    const baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const backdropAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    backdropAnimation
+        .addElement(baseEl.querySelector('ion-backdrop'))
+        .fromTo('opacity', 0.01, 0.08);
+    wrapperAnimation
+        .addElement(baseEl.querySelector('.popover-wrapper'))
+        .fromTo('opacity', 0.01, 1);
+    return baseAnimation
+        .addElement(baseEl)
+        .easing('ease')
+        .duration(100)
+        .addAnimation([backdropAnimation, wrapperAnimation]);
 };
-let radioButtonIds = 0;
+const POPOVER_IOS_BODY_PADDING = 5;
 
-const RadioGroup = class {
+/**
+ * iOS Popover Leave Animation
+ */
+const iosLeaveAnimation = (baseEl) => {
+    const baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const backdropAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    backdropAnimation
+        .addElement(baseEl.querySelector('ion-backdrop'))
+        .fromTo('opacity', 0.08, 0);
+    wrapperAnimation
+        .addElement(baseEl.querySelector('.popover-wrapper'))
+        .fromTo('opacity', 0.99, 0);
+    return baseAnimation
+        .addElement(baseEl)
+        .easing('ease')
+        .duration(500)
+        .addAnimation([backdropAnimation, wrapperAnimation]);
+};
+
+/**
+ * Md Popover Enter Animation
+ */
+const mdEnterAnimation = (baseEl, ev) => {
+    const POPOVER_MD_BODY_PADDING = 12;
+    const doc = baseEl.ownerDocument;
+    const isRTL = doc.dir === 'rtl';
+    let originY = 'top';
+    let originX = isRTL ? 'right' : 'left';
+    const contentEl = baseEl.querySelector('.popover-content');
+    const contentDimentions = contentEl.getBoundingClientRect();
+    const contentWidth = contentDimentions.width;
+    const contentHeight = contentDimentions.height;
+    const bodyWidth = doc.defaultView.innerWidth;
+    const bodyHeight = doc.defaultView.innerHeight;
+    // If ev was passed, use that for target element
+    const targetDim = ev && ev.target && ev.target.getBoundingClientRect();
+    // As per MD spec, by default position the popover below the target (trigger) element
+    const targetTop = targetDim != null && 'bottom' in targetDim
+        ? targetDim.bottom
+        : bodyHeight / 2 - contentHeight / 2;
+    const targetLeft = targetDim != null && 'left' in targetDim
+        ? isRTL
+            ? targetDim.left - contentWidth + targetDim.width
+            : targetDim.left
+        : bodyWidth / 2 - contentWidth / 2;
+    const targetHeight = (targetDim && targetDim.height) || 0;
+    const popoverCSS = {
+        top: targetTop,
+        left: targetLeft
+    };
+    // If the popover left is less than the padding it is off screen
+    // to the left so adjust it, else if the width of the popover
+    // exceeds the body width it is off screen to the right so adjust
+    if (popoverCSS.left < POPOVER_MD_BODY_PADDING) {
+        popoverCSS.left = POPOVER_MD_BODY_PADDING;
+        // Same origin in this case for both LTR & RTL
+        // Note: in LTR, originX is already 'left'
+        originX = 'left';
+    }
+    else if (contentWidth + POPOVER_MD_BODY_PADDING + popoverCSS.left >
+        bodyWidth) {
+        popoverCSS.left = bodyWidth - contentWidth - POPOVER_MD_BODY_PADDING;
+        // Same origin in this case for both LTR & RTL
+        // Note: in RTL, originX is already 'right'
+        originX = 'right';
+    }
+    // If the popover when popped down stretches past bottom of screen,
+    // make it pop up if there's room above
+    if (targetTop + targetHeight + contentHeight > bodyHeight &&
+        targetTop - contentHeight > 0) {
+        popoverCSS.top = targetTop - contentHeight - targetHeight;
+        baseEl.className = baseEl.className + ' popover-bottom';
+        originY = 'bottom';
+        // If there isn't room for it to pop up above the target cut it off
+    }
+    else if (targetTop + targetHeight + contentHeight > bodyHeight) {
+        contentEl.style.bottom = POPOVER_MD_BODY_PADDING + 'px';
+    }
+    const baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const backdropAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const contentAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const viewportAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    backdropAnimation
+        .addElement(baseEl.querySelector('ion-backdrop'))
+        .fromTo('opacity', 0.01, 0.32);
+    wrapperAnimation
+        .addElement(baseEl.querySelector('.popover-wrapper'))
+        .fromTo('opacity', 0.01, 1);
+    contentAnimation
+        .addElement(contentEl)
+        .beforeStyles({
+        'top': `${popoverCSS.top}px`,
+        'left': `${popoverCSS.left}px`,
+        'transform-origin': `${originY} ${originX}`
+    })
+        .fromTo('transform', 'scale(0.001)', 'scale(1)');
+    viewportAnimation
+        .addElement(baseEl.querySelector('.popover-viewport'))
+        .fromTo('opacity', 0.01, 1);
+    return baseAnimation
+        .addElement(baseEl)
+        .easing('cubic-bezier(0.36,0.66,0.04,1)')
+        .duration(300)
+        .addAnimation([backdropAnimation, wrapperAnimation, contentAnimation, viewportAnimation]);
+};
+
+/**
+ * Md Popover Leave Animation
+ */
+const mdLeaveAnimation = (baseEl) => {
+    const baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const backdropAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    const wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    backdropAnimation
+        .addElement(baseEl.querySelector('ion-backdrop'))
+        .fromTo('opacity', 0.32, 0);
+    wrapperAnimation
+        .addElement(baseEl.querySelector('.popover-wrapper'))
+        .fromTo('opacity', 0.99, 0);
+    return baseAnimation
+        .addElement(baseEl)
+        .easing('ease')
+        .duration(500)
+        .addAnimation([backdropAnimation, wrapperAnimation]);
+};
+
+const Popover = class {
     constructor(hostRef) {
         Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        this.inputId = `ion-rg-${radioGroupIds++}`;
-        this.labelId = `${this.inputId}-lbl`;
+        this.presented = false;
+        this.mode = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this);
         /**
-         * If `true`, the radios can be deselected.
+         * If `true`, the keyboard will be automatically dismissed when the overlay is presented.
          */
-        this.allowEmptySelection = false;
+        this.keyboardClose = true;
         /**
-         * The name of the control, which is submitted with the form data.
+         * If `true`, the popover will be dismissed when the backdrop is clicked.
          */
-        this.name = this.inputId;
-        this.onSelect = (ev) => {
-            const selectedRadio = ev.target;
-            if (selectedRadio) {
-                this.value = selectedRadio.value;
-            }
+        this.backdropDismiss = true;
+        /**
+         * If `true`, a backdrop will be displayed behind the popover.
+         */
+        this.showBackdrop = true;
+        /**
+         * If `true`, the popover will be translucent.
+         * Only applies when the mode is `"ios"` and the device supports
+         * [`backdrop-filter`](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility).
+         */
+        this.translucent = false;
+        /**
+         * If `true`, the popover will animate.
+         */
+        this.animated = true;
+        this.onDismiss = (ev) => {
+            ev.stopPropagation();
+            ev.preventDefault();
+            this.dismiss();
         };
-        this.onDeselect = (ev) => {
-            const selectedRadio = ev.target;
-            if (selectedRadio) {
-                selectedRadio.checked = false;
-                this.value = undefined;
-            }
+        this.onBackdropTap = () => {
+            this.dismiss(undefined, _overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["B"]);
         };
-        this.ionChange = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionChange", 7);
-    }
-    valueChanged(value) {
-        this.updateRadios();
-        this.ionChange.emit({ value });
-    }
-    async connectedCallback() {
-        // Get the list header if it exists and set the id
-        // this is used to set aria-labelledby
-        const el = this.el;
-        const header = el.querySelector('ion-list-header') || el.querySelector('ion-item-divider');
-        if (header) {
-            const label = header.querySelector('ion-label');
-            if (label) {
-                this.labelId = label.id = this.name + '-lbl';
-            }
-        }
-        if (this.value === undefined) {
-            const radio = Object(_watch_options_2af96011_js__WEBPACK_IMPORTED_MODULE_4__["f"])(el, 'ion-radio');
-            if (radio !== undefined) {
-                await radio.componentOnReady();
-                if (this.value === undefined) {
-                    this.value = radio.value;
-                }
-            }
-        }
-        this.mutationO = Object(_watch_options_2af96011_js__WEBPACK_IMPORTED_MODULE_4__["w"])(el, 'ion-radio', newOption => {
-            if (newOption !== undefined) {
-                newOption.componentOnReady().then(() => {
-                    this.value = newOption.value;
+        this.onLifecycle = (modalEvent) => {
+            const el = this.usersElement;
+            const name = LIFECYCLE_MAP[modalEvent.type];
+            if (el && name) {
+                const event = new CustomEvent(name, {
+                    bubbles: false,
+                    cancelable: false,
+                    detail: modalEvent.detail
                 });
+                el.dispatchEvent(event);
             }
-            else {
-                this.updateRadios();
-            }
-        });
-        this.updateRadios();
+        };
+        Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["d"])(this.el);
+        this.didPresent = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionPopoverDidPresent", 7);
+        this.willPresent = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionPopoverWillPresent", 7);
+        this.willDismiss = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionPopoverWillDismiss", 7);
+        this.didDismiss = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionPopoverDidDismiss", 7);
     }
-    disconnectedCallback() {
-        if (this.mutationO) {
-            this.mutationO.disconnect();
-            this.mutationO = undefined;
+    /**
+     * Present the popover overlay after it has been created.
+     */
+    async present() {
+        if (this.presented) {
+            return;
         }
+        const container = this.el.querySelector('.popover-content');
+        if (!container) {
+            throw new Error('container is undefined');
+        }
+        const data = Object.assign(Object.assign({}, this.componentProps), { popover: this.el });
+        this.usersElement = await Object(_framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_7__["a"])(this.delegate, container, this.component, ['popover-viewport', this.el['s-sc']], data);
+        await Object(_index_6826f2f6_js__WEBPACK_IMPORTED_MODULE_8__["d"])(this.usersElement);
+        return Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["e"])(this, 'popoverEnter', iosEnterAnimation, mdEnterAnimation, this.event);
     }
-    async updateRadios() {
-        /**
-         * Make sure we get all radios first
-         * so values are up to date prior
-         * to caching the radio group value
-         */
-        const radios = await this.getRadios();
-        const { value } = this;
-        let hasChecked = false;
-        // Walk the DOM in reverse order, since the last selected one wins!
-        for (const radio of radios) {
-            if (!hasChecked && radio.value === value) {
-                // correct value for this radio
-                // but this radio isn't checked yet
-                // and we haven't found a checked yet
-                hasChecked = true;
-                radio.checked = true;
-            }
-            else {
-                // this radio doesn't have the correct value
-                // or the radio group has been already checked
-                radio.checked = false;
-            }
+    /**
+     * Dismiss the popover overlay after it has been presented.
+     *
+     * @param data Any data to emit in the dismiss events.
+     * @param role The role of the element that is dismissing the popover. For example, 'cancel' or 'backdrop'.
+     */
+    async dismiss(data, role) {
+        const shouldDismiss = await Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["f"])(this, data, role, 'popoverLeave', iosLeaveAnimation, mdLeaveAnimation, this.event);
+        if (shouldDismiss) {
+            await Object(_framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_7__["d"])(this.delegate, this.usersElement);
         }
-        // Reset value if
-        if (!hasChecked) {
-            this.value = undefined;
-        }
+        return shouldDismiss;
     }
-    getRadios() {
-        return Promise.all(Array
-            .from(this.el.querySelectorAll('ion-radio'))
-            .map(r => r.componentOnReady()));
+    /**
+     * Returns a promise that resolves when the popover did dismiss.
+     */
+    onDidDismiss() {
+        return Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionPopoverDidDismiss');
+    }
+    /**
+     * Returns a promise that resolves when the popover will dismiss.
+     */
+    onWillDismiss() {
+        return Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionPopoverWillDismiss');
     }
     render() {
-        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["H"], { role: "radiogroup", "aria-labelledby": this.labelId, onIonSelect: this.onSelect, onIonDeselect: this.allowEmptySelection ? this.onDeselect : undefined, class: Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this) }));
+        const mode = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this);
+        const { onLifecycle } = this;
+        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["H"], { "aria-modal": "true", "no-router": true, style: {
+                zIndex: `${20000 + this.overlayIndex}`,
+            }, class: Object.assign(Object.assign({}, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_6__["g"])(this.cssClass)), { [mode]: true, 'popover-translucent': this.translucent }), onIonPopoverDidPresent: onLifecycle, onIonPopoverWillPresent: onLifecycle, onIonPopoverWillDismiss: onLifecycle, onIonPopoverDidDismiss: onLifecycle, onIonDismiss: this.onDismiss, onIonBackdropTap: this.onBackdropTap }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-backdrop", { tappable: this.backdropDismiss, visible: this.showBackdrop }), Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "popover-wrapper" }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "popover-arrow" }), Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "popover-content" }))));
     }
     get el() { return Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this); }
-    static get watchers() { return {
-        "value": ["valueChanged"]
-    }; }
+    static get style() { return ".sc-ion-popover-md-h{--background:var(--ion-background-color,#fff);--min-width:0;--min-height:0;--max-width:auto;--height:auto;left:0;right:0;top:0;bottom:0;display:-ms-flexbox;display:flex;position:fixed;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;color:var(--ion-text-color,#000);z-index:1001}.overlay-hidden.sc-ion-popover-md-h{display:none}.popover-wrapper.sc-ion-popover-md{opacity:0;z-index:10}.popover-content.sc-ion-popover-md{display:-ms-flexbox;display:flex;position:absolute;-ms-flex-direction:column;flex-direction:column;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);background:var(--background);-webkit-box-shadow:var(--box-shadow);box-shadow:var(--box-shadow);overflow:auto;z-index:10}.popover-viewport.sc-ion-popover-md{--ion-safe-area-top:0px;--ion-safe-area-right:0px;--ion-safe-area-bottom:0px;--ion-safe-area-left:0px}.sc-ion-popover-md-h{--width:250px;--max-height:90%;--box-shadow:0 5px 5px -3px rgba(0,0,0,0.2),0 8px 10px 1px rgba(0,0,0,0.14),0 3px 14px 2px rgba(0,0,0,0.12)}.popover-content.sc-ion-popover-md{border-radius:4px;-webkit-transform-origin:left top;transform-origin:left top}[dir=rtl].sc-ion-popover-md-h .popover-content.sc-ion-popover-md, [dir=rtl] .sc-ion-popover-md-h .popover-content.sc-ion-popover-md, [dir=rtl].sc-ion-popover-md .popover-content.sc-ion-popover-md{-webkit-transform-origin:right top;transform-origin:right top}.popover-viewport.sc-ion-popover-md{-webkit-transition-delay:.1s;transition-delay:.1s}"; }
 };
-let radioGroupIds = 0;
+const LIFECYCLE_MAP = {
+    'ionPopoverDidPresent': 'ionViewDidEnter',
+    'ionPopoverWillPresent': 'ionViewWillEnter',
+    'ionPopoverWillDismiss': 'ionViewWillLeave',
+    'ionPopoverDidDismiss': 'ionViewDidLeave',
+};
 
 
 

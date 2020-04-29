@@ -164,6 +164,7 @@ export class ClimateComponent implements OnInit {
       centerMode: true,
       centerPadding: '100px',
       slidesToShow: 1,
+      speed: 100,
     }).on('beforeChange', () => {
       console.log("change");
       this.selectClimateIcon = 'far fa-heart';
@@ -177,6 +178,7 @@ export class ClimateComponent implements OnInit {
       centerMode: true,
       centerPadding: '100px',
       slidesToShow: 1,
+      speed: 100,
     }).on('beforeChange', () => {
       console.log("change");
       this.selectTerrainIcon = 'far fa-heart';
@@ -190,6 +192,7 @@ export class ClimateComponent implements OnInit {
       centerMode: true,
       centerPadding: '100px',
       slidesToShow: 1,
+      speed: 100,
     }).on('beforeChange', () => {
       console.log("change");
       this.selectIntrestIcon = 'far fa-heart';

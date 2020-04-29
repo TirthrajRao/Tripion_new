@@ -1,723 +1,305 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[55],{
 
-/***/ "./node_modules/@ionic/core/dist/esm/ion-route_4.entry.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/ion-route_4.entry.js ***!
-  \****************************************************************/
-/*! exports provided: ion_route, ion_route_redirect, ion_router, ion_router_link */
+/***/ "./node_modules/@ionic/core/dist/esm/ion-reorder_2-ios.entry.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm/ion-reorder_2-ios.entry.js ***!
+  \**********************************************************************/
+/*! exports provided: ion_reorder, ion_reorder_group */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_route", function() { return Route; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_route_redirect", function() { return RouteRedirect; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_router", function() { return Router; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_router_link", function() { return RouterLink; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_reorder", function() { return Reorder; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_reorder_group", function() { return ReorderGroup; });
 /* harmony import */ var _core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core-ca0488fc.js */ "./node_modules/@ionic/core/dist/esm/core-ca0488fc.js");
 /* harmony import */ var _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config-3c7f3790.js */ "./node_modules/@ionic/core/dist/esm/config-3c7f3790.js");
-/* harmony import */ var _helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-46f4a262.js */ "./node_modules/@ionic/core/dist/esm/helpers-46f4a262.js");
-/* harmony import */ var _theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./theme-18cbe2cc.js */ "./node_modules/@ionic/core/dist/esm/theme-18cbe2cc.js");
+/* harmony import */ var _haptic_c8f1473e_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./haptic-c8f1473e.js */ "./node_modules/@ionic/core/dist/esm/haptic-c8f1473e.js");
 
 
 
 
-
-const Route = class {
+const Reorder = class {
     constructor(hostRef) {
         Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+    }
+    onClick(ev) {
+        ev.preventDefault();
+        ev.stopImmediatePropagation();
+    }
+    render() {
+        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["H"], { class: Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this) }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-icon", { name: "reorder", lazy: false, class: "reorder-icon" }))));
+    }
+    static get style() { return ":host([slot]){display:none;line-height:0;z-index:100}.reorder-icon{display:block;font-size:22px;font-size:34px;opacity:.4}"; }
+};
+
+const ReorderGroup = class {
+    constructor(hostRef) {
+        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+        this.lastToIndex = -1;
+        this.cachedHeights = [];
+        this.scrollElTop = 0;
+        this.scrollElBottom = 0;
+        this.scrollElInitial = 0;
+        this.containerTop = 0;
+        this.containerBottom = 0;
+        this.state = 0 /* Idle */;
         /**
-         * Relative path that needs to match in order for this route to apply.
-         *
-         * Accepts paths similar to expressjs so that you can define parameters
-         * in the url /foo/:bar where bar would be available in incoming props.
+         * If `true`, the reorder will be hidden.
          */
-        this.url = '';
-        this.ionRouteDataChanged = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionRouteDataChanged", 7);
+        this.disabled = true;
+        this.ionItemReorder = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionItemReorder", 7);
     }
-    onUpdate(newValue) {
-        this.ionRouteDataChanged.emit(newValue);
+    disabledChanged() {
+        if (this.gesture) {
+            this.gesture.setDisabled(this.disabled);
+        }
     }
-    onComponentProps(newValue, oldValue) {
-        if (newValue === oldValue) {
+    async connectedCallback() {
+        const contentEl = this.el.closest('ion-content');
+        if (contentEl) {
+            this.scrollEl = await contentEl.getScrollElement();
+        }
+        this.gesture = (await Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-624eea58.js */ "./node_modules/@ionic/core/dist/esm/index-624eea58.js"))).createGesture({
+            el: this.el,
+            gestureName: 'reorder',
+            gesturePriority: 110,
+            threshold: 0,
+            direction: 'y',
+            passive: false,
+            canStart: detail => this.canStart(detail),
+            onStart: ev => this.onStart(ev),
+            onMove: ev => this.onMove(ev),
+            onEnd: () => this.onEnd(),
+        });
+        this.disabledChanged();
+    }
+    disconnectedCallback() {
+        this.onEnd();
+        if (this.gesture) {
+            this.gesture.destroy();
+            this.gesture = undefined;
+        }
+    }
+    /**
+     * Completes the reorder operation. Must be called by the `ionItemReorder` event.
+     *
+     * If a list of items is passed, the list will be reordered and returned in the
+     * proper order.
+     *
+     * If no parameters are passed or if `true` is passed in, the reorder will complete
+     * and the item will remain in the position it was dragged to. If `false` is passed,
+     * the reorder will complete and the item will bounce back to its original position.
+     *
+     * @param listOrReorder A list of items to be sorted and returned in the new order or a
+     * boolean of whether or not the reorder should reposition the item.
+     */
+    complete(listOrReorder) {
+        return Promise.resolve(this.completeSync(listOrReorder));
+    }
+    canStart(ev) {
+        if (this.selectedItemEl || this.state !== 0 /* Idle */) {
+            return false;
+        }
+        const target = ev.event.target;
+        const reorderEl = target.closest('ion-reorder');
+        if (!reorderEl) {
+            return false;
+        }
+        const item = findReorderItem(reorderEl, this.el);
+        if (!item) {
+            return false;
+        }
+        ev.data = item;
+        return true;
+    }
+    onStart(ev) {
+        ev.event.preventDefault();
+        const item = this.selectedItemEl = ev.data;
+        const heights = this.cachedHeights;
+        heights.length = 0;
+        const el = this.el;
+        const children = el.children;
+        if (!children || children.length === 0) {
             return;
         }
-        const keys1 = newValue ? Object.keys(newValue) : [];
-        const keys2 = oldValue ? Object.keys(oldValue) : [];
-        if (keys1.length !== keys2.length) {
-            this.onUpdate(newValue);
+        let sum = 0;
+        for (let i = 0; i < children.length; i++) {
+            const child = children[i];
+            sum += child.offsetHeight;
+            heights.push(sum);
+            child.$ionIndex = i;
+        }
+        const box = el.getBoundingClientRect();
+        this.containerTop = box.top;
+        this.containerBottom = box.bottom;
+        if (this.scrollEl) {
+            const scrollBox = this.scrollEl.getBoundingClientRect();
+            this.scrollElInitial = this.scrollEl.scrollTop;
+            this.scrollElTop = scrollBox.top + AUTO_SCROLL_MARGIN;
+            this.scrollElBottom = scrollBox.bottom - AUTO_SCROLL_MARGIN;
+        }
+        else {
+            this.scrollElInitial = 0;
+            this.scrollElTop = 0;
+            this.scrollElBottom = 0;
+        }
+        this.lastToIndex = indexForItem(item);
+        this.selectedItemHeight = item.offsetHeight;
+        this.state = 1 /* Active */;
+        item.classList.add(ITEM_REORDER_SELECTED);
+        Object(_haptic_c8f1473e_js__WEBPACK_IMPORTED_MODULE_2__["a"])();
+    }
+    onMove(ev) {
+        const selectedItem = this.selectedItemEl;
+        if (!selectedItem) {
             return;
         }
-        for (const key of keys1) {
-            if (newValue[key] !== oldValue[key]) {
-                this.onUpdate(newValue);
-                return;
+        // Scroll if we reach the scroll margins
+        const scroll = this.autoscroll(ev.currentY);
+        // // Get coordinate
+        const top = this.containerTop - scroll;
+        const bottom = this.containerBottom - scroll;
+        const currentY = Math.max(top, Math.min(ev.currentY, bottom));
+        const deltaY = scroll + currentY - ev.startY;
+        const normalizedY = currentY - top;
+        const toIndex = this.itemIndexForTop(normalizedY);
+        if (toIndex !== this.lastToIndex) {
+            const fromIndex = indexForItem(selectedItem);
+            this.lastToIndex = toIndex;
+            Object(_haptic_c8f1473e_js__WEBPACK_IMPORTED_MODULE_2__["b"])();
+            this.reorderMove(fromIndex, toIndex);
+        }
+        // Update selected item position
+        selectedItem.style.transform = `translateY(${deltaY}px)`;
+    }
+    onEnd() {
+        const selectedItemEl = this.selectedItemEl;
+        this.state = 2 /* Complete */;
+        if (!selectedItemEl) {
+            this.state = 0 /* Idle */;
+            return;
+        }
+        const toIndex = this.lastToIndex;
+        const fromIndex = indexForItem(selectedItemEl);
+        if (toIndex === fromIndex) {
+            this.completeSync();
+        }
+        else {
+            this.ionItemReorder.emit({
+                from: fromIndex,
+                to: toIndex,
+                complete: this.completeSync.bind(this)
+            });
+        }
+        Object(_haptic_c8f1473e_js__WEBPACK_IMPORTED_MODULE_2__["c"])();
+    }
+    completeSync(listOrReorder) {
+        const selectedItemEl = this.selectedItemEl;
+        if (selectedItemEl && this.state === 2 /* Complete */) {
+            const children = this.el.children;
+            const len = children.length;
+            const toIndex = this.lastToIndex;
+            const fromIndex = indexForItem(selectedItemEl);
+            if (toIndex !== fromIndex && (!listOrReorder || listOrReorder === true)) {
+                const ref = (fromIndex < toIndex)
+                    ? children[toIndex + 1]
+                    : children[toIndex];
+                this.el.insertBefore(selectedItemEl, ref);
             }
-        }
-    }
-    connectedCallback() {
-        this.ionRouteDataChanged.emit();
-    }
-    static get watchers() { return {
-        "url": ["onUpdate"],
-        "component": ["onUpdate"],
-        "componentProps": ["onComponentProps"]
-    }; }
-};
-
-const RouteRedirect = class {
-    constructor(hostRef) {
-        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        this.ionRouteRedirectChanged = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionRouteRedirectChanged", 7);
-    }
-    propDidChange() {
-        this.ionRouteRedirectChanged.emit();
-    }
-    connectedCallback() {
-        this.ionRouteRedirectChanged.emit();
-    }
-    static get watchers() { return {
-        "from": ["propDidChange"],
-        "to": ["propDidChange"]
-    }; }
-};
-
-const ROUTER_INTENT_NONE = 'root';
-const ROUTER_INTENT_FORWARD = 'forward';
-const ROUTER_INTENT_BACK = 'back';
-
-const generatePath = (segments) => {
-    const path = segments
-        .filter(s => s.length > 0)
-        .join('/');
-    return '/' + path;
-};
-const chainToPath = (chain) => {
-    const path = [];
-    for (const route of chain) {
-        for (const segment of route.path) {
-            if (segment[0] === ':') {
-                const param = route.params && route.params[segment.slice(1)];
-                if (!param) {
-                    return null;
-                }
-                path.push(param);
+            if (Array.isArray(listOrReorder)) {
+                listOrReorder = reorderArray(listOrReorder, fromIndex, toIndex);
             }
-            else if (segment !== '') {
-                path.push(segment);
+            for (let i = 0; i < len; i++) {
+                children[i].style['transform'] = '';
             }
+            selectedItemEl.style.transition = '';
+            selectedItemEl.classList.remove(ITEM_REORDER_SELECTED);
+            this.selectedItemEl = undefined;
+            this.state = 0 /* Idle */;
         }
+        return listOrReorder;
     }
-    return path;
-};
-const writePath = (history, root, useHash, path, direction, state) => {
-    let url = generatePath([
-        ...parsePath(root),
-        ...path
-    ]);
-    if (useHash) {
-        url = '#' + url;
-    }
-    if (direction === ROUTER_INTENT_FORWARD) {
-        history.pushState(state, '', url);
-    }
-    else {
-        history.replaceState(state, '', url);
-    }
-};
-const removePrefix = (prefix, path) => {
-    if (prefix.length > path.length) {
-        return null;
-    }
-    if (prefix.length <= 1 && prefix[0] === '') {
-        return path;
-    }
-    for (let i = 0; i < prefix.length; i++) {
-        if (prefix[i].length > 0 && prefix[i] !== path[i]) {
-            return null;
-        }
-    }
-    if (path.length === prefix.length) {
-        return [''];
-    }
-    return path.slice(prefix.length);
-};
-const readPath = (loc, root, useHash) => {
-    let pathname = loc.pathname;
-    if (useHash) {
-        const hash = loc.hash;
-        pathname = (hash[0] === '#')
-            ? hash.slice(1)
-            : '';
-    }
-    const prefix = parsePath(root);
-    const path = parsePath(pathname);
-    return removePrefix(prefix, path);
-};
-const parsePath = (path) => {
-    if (path == null) {
-        return [''];
-    }
-    const segments = path.split('/')
-        .map(s => s.trim())
-        .filter(s => s.length > 0);
-    if (segments.length === 0) {
-        return [''];
-    }
-    else {
-        return segments;
-    }
-};
-
-const printRoutes = (routes) => {
-    console.group(`[ion-core] ROUTES[${routes.length}]`);
-    for (const chain of routes) {
-        const path = [];
-        chain.forEach(r => path.push(...r.path));
-        const ids = chain.map(r => r.id);
-        console.debug(`%c ${generatePath(path)}`, 'font-weight: bold; padding-left: 20px', '=>\t', `(${ids.join(', ')})`);
-    }
-    console.groupEnd();
-};
-const printRedirects = (redirects) => {
-    console.group(`[ion-core] REDIRECTS[${redirects.length}]`);
-    for (const redirect of redirects) {
-        if (redirect.to) {
-            console.debug('FROM: ', `$c ${generatePath(redirect.from)}`, 'font-weight: bold', ' TO: ', `$c ${generatePath(redirect.to)}`, 'font-weight: bold');
-        }
-    }
-    console.groupEnd();
-};
-
-const writeNavState = async (root, chain, direction, index, changed = false) => {
-    try {
-        // find next navigation outlet in the DOM
-        const outlet = searchNavNode(root);
-        // make sure we can continue interacting the DOM, otherwise abort
-        if (index >= chain.length || !outlet) {
-            return changed;
-        }
-        await outlet.componentOnReady();
-        const route = chain[index];
-        const result = await outlet.setRouteId(route.id, route.params, direction);
-        // if the outlet changed the page, reset navigation to neutral (no direction)
-        // this means nested outlets will not animate
-        if (result.changed) {
-            direction = ROUTER_INTENT_NONE;
-            changed = true;
-        }
-        // recursively set nested outlets
-        changed = await writeNavState(result.element, chain, direction, index + 1, changed);
-        // once all nested outlets are visible let's make the parent visible too,
-        // using markVisible prevents flickering
-        if (result.markVisible) {
-            await result.markVisible();
-        }
-        return changed;
-    }
-    catch (e) {
-        console.error(e);
-        return false;
-    }
-};
-const readNavState = async (root) => {
-    const ids = [];
-    let outlet;
-    let node = root;
-    // tslint:disable-next-line:no-constant-condition
-    while (true) {
-        outlet = searchNavNode(node);
-        if (outlet) {
-            const id = await outlet.getRouteId();
-            if (id) {
-                node = id.element;
-                id.element = undefined;
-                ids.push(id);
-            }
-            else {
+    itemIndexForTop(deltaY) {
+        const heights = this.cachedHeights;
+        let i = 0;
+        // TODO: since heights is a sorted array of integers, we can do
+        // speed up the search using binary search. Remember that linear-search is still
+        // faster than binary-search for small arrays (<64) due CPU branch misprediction.
+        for (i = 0; i < heights.length; i++) {
+            if (heights[i] > deltaY) {
                 break;
             }
         }
-        else {
-            break;
-        }
+        return i;
     }
-    return { ids, outlet };
-};
-const waitUntilNavNode = () => {
-    if (searchNavNode(document.body)) {
-        return Promise.resolve();
-    }
-    return new Promise(resolve => {
-        window.addEventListener('ionNavWillLoad', resolve, { once: true });
-    });
-};
-const QUERY = ':not([no-router]) ion-nav, :not([no-router]) ion-tabs, :not([no-router]) ion-router-outlet';
-const searchNavNode = (root) => {
-    if (!root) {
-        return undefined;
-    }
-    if (root.matches(QUERY)) {
-        return root;
-    }
-    const outlet = root.querySelector(QUERY);
-    return outlet ? outlet : undefined;
-};
-
-const matchesRedirect = (input, route) => {
-    const { from, to } = route;
-    if (to === undefined) {
-        return false;
-    }
-    if (from.length > input.length) {
-        return false;
-    }
-    for (let i = 0; i < from.length; i++) {
-        const expected = from[i];
-        if (expected === '*') {
-            return true;
-        }
-        if (expected !== input[i]) {
-            return false;
-        }
-    }
-    return from.length === input.length;
-};
-const routeRedirect = (path, routes) => {
-    return routes.find(route => matchesRedirect(path, route));
-};
-const matchesIDs = (ids, chain) => {
-    const len = Math.min(ids.length, chain.length);
-    let i = 0;
-    for (; i < len; i++) {
-        if (ids[i].toLowerCase() !== chain[i].id) {
-            break;
-        }
-    }
-    return i;
-};
-const matchesPath = (inputPath, chain) => {
-    const segments = new RouterSegments(inputPath);
-    let matchesDefault = false;
-    let allparams;
-    for (let i = 0; i < chain.length; i++) {
-        const path = chain[i].path;
-        if (path[0] === '') {
-            matchesDefault = true;
-        }
-        else {
-            for (const segment of path) {
-                const data = segments.next();
-                // data param
-                if (segment[0] === ':') {
-                    if (data === '') {
-                        return null;
-                    }
-                    allparams = allparams || [];
-                    const params = allparams[i] || (allparams[i] = {});
-                    params[segment.slice(1)] = data;
-                }
-                else if (data !== segment) {
-                    return null;
-                }
+    /********* DOM WRITE ********* */
+    reorderMove(fromIndex, toIndex) {
+        const itemHeight = this.selectedItemHeight;
+        const children = this.el.children;
+        for (let i = 0; i < children.length; i++) {
+            const style = children[i].style;
+            let value = '';
+            if (i > fromIndex && i <= toIndex) {
+                value = `translateY(${-itemHeight}px)`;
             }
-            matchesDefault = false;
-        }
-    }
-    const matches = (matchesDefault)
-        ? matchesDefault === (segments.next() === '')
-        : true;
-    if (!matches) {
-        return null;
-    }
-    if (allparams) {
-        return chain.map((route, i) => ({
-            id: route.id,
-            path: route.path,
-            params: mergeParams(route.params, allparams[i])
-        }));
-    }
-    return chain;
-};
-const mergeParams = (a, b) => {
-    if (!a && b) {
-        return b;
-    }
-    else if (a && !b) {
-        return a;
-    }
-    else if (a && b) {
-        return Object.assign(Object.assign({}, a), b);
-    }
-    return undefined;
-};
-const routerIDsToChain = (ids, chains) => {
-    let match = null;
-    let maxMatches = 0;
-    const plainIDs = ids.map(i => i.id);
-    for (const chain of chains) {
-        const score = matchesIDs(plainIDs, chain);
-        if (score > maxMatches) {
-            match = chain;
-            maxMatches = score;
-        }
-    }
-    if (match) {
-        return match.map((route, i) => ({
-            id: route.id,
-            path: route.path,
-            params: mergeParams(route.params, ids[i] && ids[i].params)
-        }));
-    }
-    return null;
-};
-const routerPathToChain = (path, chains) => {
-    let match = null;
-    let matches = 0;
-    for (const chain of chains) {
-        const matchedChain = matchesPath(path, chain);
-        if (matchedChain !== null) {
-            const score = computePriority(matchedChain);
-            if (score > matches) {
-                matches = score;
-                match = matchedChain;
+            else if (i < fromIndex && i >= toIndex) {
+                value = `translateY(${itemHeight}px)`;
             }
+            style['transform'] = value;
         }
     }
-    return match;
-};
-const computePriority = (chain) => {
-    let score = 1;
-    let level = 1;
-    for (const route of chain) {
-        for (const path of route.path) {
-            if (path[0] === ':') {
-                score += Math.pow(1, level);
-            }
-            else if (path !== '') {
-                score += Math.pow(2, level);
-            }
-            level++;
+    autoscroll(posY) {
+        if (!this.scrollEl) {
+            return 0;
         }
-    }
-    return score;
-};
-class RouterSegments {
-    constructor(path) {
-        this.path = path.slice();
-    }
-    next() {
-        if (this.path.length > 0) {
-            return this.path.shift();
+        let amount = 0;
+        if (posY < this.scrollElTop) {
+            amount = -SCROLL_JUMP;
         }
-        return '';
-    }
-}
-
-const readRedirects = (root) => {
-    return Array.from(root.children)
-        .filter(el => el.tagName === 'ION-ROUTE-REDIRECT')
-        .map(el => {
-        const to = readProp(el, 'to');
-        return {
-            from: parsePath(readProp(el, 'from')),
-            to: to == null ? undefined : parsePath(to),
-        };
-    });
-};
-const readRoutes = (root) => {
-    return flattenRouterTree(readRouteNodes(root));
-};
-const readRouteNodes = (root, node = root) => {
-    return Array.from(node.children)
-        .filter(el => el.tagName === 'ION-ROUTE' && el.component)
-        .map(el => {
-        const component = readProp(el, 'component');
-        if (component == null) {
-            throw new Error('component missing in ion-route');
+        else if (posY > this.scrollElBottom) {
+            amount = SCROLL_JUMP;
         }
-        return {
-            path: parsePath(readProp(el, 'url')),
-            id: component.toLowerCase(),
-            params: el.componentProps,
-            children: readRouteNodes(root, el)
-        };
-    });
-};
-const readProp = (el, prop) => {
-    if (prop in el) {
-        return el[prop];
-    }
-    if (el.hasAttribute(prop)) {
-        return el.getAttribute(prop);
-    }
-    return null;
-};
-const flattenRouterTree = (nodes) => {
-    const routes = [];
-    for (const node of nodes) {
-        flattenNode([], routes, node);
-    }
-    return routes;
-};
-const flattenNode = (chain, routes, node) => {
-    const s = chain.slice();
-    s.push({
-        id: node.id,
-        path: node.path,
-        params: node.params
-    });
-    if (node.children.length === 0) {
-        routes.push(s);
-        return;
-    }
-    for (const sub of node.children) {
-        flattenNode(s, routes, sub);
-    }
-};
-
-const Router = class {
-    constructor(hostRef) {
-        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        this.previousPath = null;
-        this.busy = false;
-        this.state = 0;
-        this.lastState = 0;
-        /**
-         * By default `ion-router` will match the routes at the root path ("/").
-         * That can be changed when
-         *
-         */
-        this.root = '/';
-        /**
-         * The router can work in two "modes":
-         * - With hash: `/index.html#/path/to/page`
-         * - Without hash: `/path/to/page`
-         *
-         * Using one or another might depend in the requirements of your app and/or where it's deployed.
-         *
-         * Usually "hash-less" navigation works better for SEO and it's more user friendly too, but it might
-         * requires additional server-side configuration in order to properly work.
-         *
-         * On the otherside hash-navigation is much easier to deploy, it even works over the file protocol.
-         *
-         * By default, this property is `true`, change to `false` to allow hash-less URLs.
-         */
-        this.useHash = true;
-        this.ionRouteWillChange = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionRouteWillChange", 7);
-        this.ionRouteDidChange = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionRouteDidChange", 7);
-    }
-    async componentWillLoad() {
-        console.debug('[ion-router] router will load');
-        await waitUntilNavNode();
-        console.debug('[ion-router] found nav');
-        await this.onRoutesChanged();
-    }
-    componentDidLoad() {
-        window.addEventListener('ionRouteRedirectChanged', Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["e"])(this.onRedirectChanged.bind(this), 10));
-        window.addEventListener('ionRouteDataChanged', Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["e"])(this.onRoutesChanged.bind(this), 100));
-    }
-    onPopState() {
-        const direction = this.historyDirection();
-        const path = this.getPath();
-        console.debug('[ion-router] URL changed -> update nav', path, direction);
-        return this.writeNavStateRoot(path, direction);
-    }
-    onBackButton(ev) {
-        ev.detail.register(0, () => this.back());
-    }
-    /**
-     * Navigate to the specified URL.
-     *
-     * @param url The url to navigate to.
-     * @param direction The direction of the animation. Defaults to `"forward"`.
-     */
-    push(url, direction = 'forward') {
-        if (url.startsWith('.')) {
-            url = (new URL(url, window.location.href)).pathname;
+        if (amount !== 0) {
+            this.scrollEl.scrollBy(0, amount);
         }
-        console.debug('[ion-router] URL pushed -> updating nav', url, direction);
-        const path = parsePath(url);
-        this.setPath(path, direction);
-        return this.writeNavStateRoot(path, direction);
-    }
-    /**
-     * Go back to previous page in the window.history.
-     */
-    back() {
-        window.history.back();
-        return Promise.resolve(this.waitPromise);
-    }
-    /** @internal */
-    async printDebug() {
-        console.debug('CURRENT PATH', this.getPath());
-        console.debug('PREVIOUS PATH', this.previousPath);
-        printRoutes(readRoutes(this.el));
-        printRedirects(readRedirects(this.el));
-    }
-    /** @internal */
-    async navChanged(direction) {
-        if (this.busy) {
-            console.warn('[ion-router] router is busy, navChanged was cancelled');
-            return false;
-        }
-        const { ids, outlet } = await readNavState(window.document.body);
-        const routes = readRoutes(this.el);
-        const chain = routerIDsToChain(ids, routes);
-        if (!chain) {
-            console.warn('[ion-router] no matching URL for ', ids.map(i => i.id));
-            return false;
-        }
-        const path = chainToPath(chain);
-        if (!path) {
-            console.warn('[ion-router] router could not match path because some required param is missing');
-            return false;
-        }
-        console.debug('[ion-router] nav changed -> update URL', ids, path);
-        this.setPath(path, direction);
-        await this.safeWriteNavState(outlet, chain, ROUTER_INTENT_NONE, path, null, ids.length);
-        return true;
-    }
-    onRedirectChanged() {
-        const path = this.getPath();
-        if (path && routeRedirect(path, readRedirects(this.el))) {
-            this.writeNavStateRoot(path, ROUTER_INTENT_NONE);
-        }
-    }
-    onRoutesChanged() {
-        return this.writeNavStateRoot(this.getPath(), ROUTER_INTENT_NONE);
-    }
-    historyDirection() {
-        const win = window;
-        if (win.history.state === null) {
-            this.state++;
-            win.history.replaceState(this.state, win.document.title, win.document.location && win.document.location.href);
-        }
-        const state = win.history.state;
-        const lastState = this.lastState;
-        this.lastState = state;
-        if (state > lastState) {
-            return ROUTER_INTENT_FORWARD;
-        }
-        else if (state < lastState) {
-            return ROUTER_INTENT_BACK;
-        }
-        else {
-            return ROUTER_INTENT_NONE;
-        }
-    }
-    async writeNavStateRoot(path, direction) {
-        if (!path) {
-            console.error('[ion-router] URL is not part of the routing set');
-            return false;
-        }
-        // lookup redirect rule
-        const redirects = readRedirects(this.el);
-        const redirect = routeRedirect(path, redirects);
-        let redirectFrom = null;
-        if (redirect) {
-            this.setPath(redirect.to, direction);
-            redirectFrom = redirect.from;
-            path = redirect.to;
-        }
-        // lookup route chain
-        const routes = readRoutes(this.el);
-        const chain = routerPathToChain(path, routes);
-        if (!chain) {
-            console.error('[ion-router] the path does not match any route');
-            return false;
-        }
-        // write DOM give
-        return this.safeWriteNavState(document.body, chain, direction, path, redirectFrom);
-    }
-    async safeWriteNavState(node, chain, direction, path, redirectFrom, index = 0) {
-        const unlock = await this.lock();
-        let changed = false;
-        try {
-            changed = await this.writeNavState(node, chain, direction, path, redirectFrom, index);
-        }
-        catch (e) {
-            console.error(e);
-        }
-        unlock();
-        return changed;
-    }
-    async lock() {
-        const p = this.waitPromise;
-        let resolve;
-        this.waitPromise = new Promise(r => resolve = r);
-        if (p !== undefined) {
-            await p;
-        }
-        return resolve;
-    }
-    async writeNavState(node, chain, direction, path, redirectFrom, index = 0) {
-        if (this.busy) {
-            console.warn('[ion-router] router is busy, transition was cancelled');
-            return false;
-        }
-        this.busy = true;
-        // generate route event and emit will change
-        const routeEvent = this.routeChangeEvent(path, redirectFrom);
-        if (routeEvent) {
-            this.ionRouteWillChange.emit(routeEvent);
-        }
-        const changed = await writeNavState(node, chain, direction, index);
-        this.busy = false;
-        if (changed) {
-            console.debug('[ion-router] route changed', path);
-        }
-        // emit did change
-        if (routeEvent) {
-            this.ionRouteDidChange.emit(routeEvent);
-        }
-        return changed;
-    }
-    setPath(path, direction) {
-        this.state++;
-        writePath(window.history, this.root, this.useHash, path, direction, this.state);
-    }
-    getPath() {
-        return readPath(window.location, this.root, this.useHash);
-    }
-    routeChangeEvent(path, redirectFromPath) {
-        const from = this.previousPath;
-        const to = generatePath(path);
-        this.previousPath = to;
-        if (to === from) {
-            return null;
-        }
-        const redirectedFrom = redirectFromPath ? generatePath(redirectFromPath) : null;
-        return {
-            from,
-            redirectedFrom,
-            to,
-        };
-    }
-    get el() { return Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this); }
-};
-
-const RouterLink = class {
-    constructor(hostRef) {
-        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        /**
-         * When using a router, it specifies the transition direction when navigating to
-         * another page using `href`.
-         */
-        this.routerDirection = 'forward';
-        this.onClick = (ev) => {
-            Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["o"])(this.href, ev, this.routerDirection);
-        };
+        return this.scrollEl.scrollTop - this.scrollElInitial;
     }
     render() {
         const mode = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this);
-        const attrs = {
-            href: this.href,
-            rel: this.rel,
-            target: this.target
-        };
-        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["H"], { onClick: this.onClick, class: Object.assign(Object.assign({}, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["c"])(this.color)), { [mode]: true, 'ion-activatable': true }) }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("a", Object.assign({}, attrs), Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null))));
+        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["H"], { class: {
+                [mode]: true,
+                'reorder-enabled': !this.disabled,
+                'reorder-list-active': this.state !== 0 /* Idle */,
+            } }));
     }
-    static get style() { return ":host{--background:transparent;--color:var(--ion-color-primary,#3880ff);background:var(--background);color:var(--color)}:host(.ion-color){color:var(--ion-color-base)}a{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;text-decoration:inherit;text-overflow:inherit;text-transform:inherit;text-align:inherit;white-space:inherit;color:inherit}"; }
+    get el() { return Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this); }
+    static get watchers() { return {
+        "disabled": ["disabledChanged"]
+    }; }
+    static get style() { return ".reorder-list-active>*{-webkit-transition:-webkit-transform .3s;transition:-webkit-transform .3s;transition:transform .3s;transition:transform .3s,-webkit-transform .3s;will-change:transform}.reorder-enabled{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.reorder-enabled ion-reorder{display:block;cursor:-webkit-grab;cursor:grab;pointer-events:all;-ms-touch-action:none;touch-action:none}.reorder-selected,.reorder-selected ion-reorder{cursor:-webkit-grabbing;cursor:grabbing}.reorder-selected{position:relative;-webkit-transition:none!important;transition:none!important;-webkit-box-shadow:0 0 10px rgba(0,0,0,.4);box-shadow:0 0 10px rgba(0,0,0,.4);opacity:.8;z-index:100}.reorder-visible ion-reorder .reorder-icon{-webkit-transform:translateZ(0);transform:translateZ(0)}"; }
+};
+const indexForItem = (element) => {
+    return element['$ionIndex'];
+};
+const findReorderItem = (node, container) => {
+    let parent;
+    while (node) {
+        parent = node.parentElement;
+        if (parent === container) {
+            return node;
+        }
+        node = parent;
+    }
+    return undefined;
+};
+const AUTO_SCROLL_MARGIN = 60;
+const SCROLL_JUMP = 10;
+const ITEM_REORDER_SELECTED = 'reorder-selected';
+const reorderArray = (array, from, to) => {
+    const element = array[from];
+    array.splice(from, 1);
+    array.splice(to, 0, element);
+    return array.slice();
 };
 
 

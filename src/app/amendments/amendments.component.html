@@ -16,7 +16,8 @@
                     </ion-badge>
                 </ion-row>
                 <div *ngIf="msg.message.sender_id == currentUser.id" class="send_msg d-flex justify-content-end mb-4">
-                    <div class="user_msg">
+                    <div class="user_msg"
+                        [ngStyle]="{'border-radius':msg.message.message_type == 'text' || msg.message.message_type == 'audio'?'181px 0px 181px 181px':''}">
                         <p *ngIf="msg.message.message_type == 'text'">{{msg.message.msg}}</p>
                         <div *ngIf="msg.message.message_type == 'latlon'"
                             (click)="openMap(msg.message.msg.lat,msg.message.msg.lon,msg.message.msg.name)">
@@ -84,7 +85,7 @@
                             <p [innerHtml]="msg.message.msg.location"></p>
                         </div>
 
-                        <small>{{ changeDateFormate(msg.message.date)}}</small>
+                        <small class="mr-1">{{ changeDateFormate(msg.message.date)}}</small>
                     </div>
                     <div class="user_profile">
                         <!-- <ion-img src="../../assets/images/avatar1.png"></ion-img> -->
@@ -175,7 +176,9 @@
             <form [formGroup]="addMessageForm">
                 <div class="input-group">
                     <div class="input-group-prepend" id="open_attachment">
-                        <span class="input-group-text"><i class="fas fa-angle-down"></i></span>
+                        <span class="input-group-text">
+                            <i [class]="arrowIcon"></i>
+                        </span>
                     </div>
                     <input *ngIf="!recording" type="text" class="form-control" formControlName="message"
                         placeholder="Say something" (keyup.enter)="send(addMessageForm.value,'text')">

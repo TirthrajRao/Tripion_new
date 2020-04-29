@@ -1,160 +1,220 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[76],{
 
-/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-toggle-ios.entry.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-toggle-ios.entry.js ***!
-  \***********************************************************************/
-/*! exports provided: ion_toggle */
+/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-textarea-md.entry.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-textarea-md.entry.js ***!
+  \************************************************************************/
+/*! exports provided: ion_textarea */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_toggle", function() { return Toggle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_textarea", function() { return Textarea; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-ca0488fc.js */ "./node_modules/@ionic/core/dist/esm-es5/core-ca0488fc.js");
 /* harmony import */ var _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config-3c7f3790.js */ "./node_modules/@ionic/core/dist/esm-es5/config-3c7f3790.js");
 /* harmony import */ var _helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helpers-46f4a262.js */ "./node_modules/@ionic/core/dist/esm-es5/helpers-46f4a262.js");
 /* harmony import */ var _theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./theme-18cbe2cc.js */ "./node_modules/@ionic/core/dist/esm-es5/theme-18cbe2cc.js");
-/* harmony import */ var _haptic_c8f1473e_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./haptic-c8f1473e.js */ "./node_modules/@ionic/core/dist/esm-es5/haptic-c8f1473e.js");
 
 
 
 
 
-
-var Toggle = /** @class */ (function () {
+var Textarea = /** @class */ (function () {
     function class_1(hostRef) {
         var _this = this;
         Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
-        this.inputId = "ion-tg-" + toggleIds++;
-        this.lastDrag = 0;
-        this.activated = false;
+        this.inputId = "ion-input-" + textareaIds++;
+        this.didBlurAfterEdit = false;
+        this.hasFocus = false;
+        /**
+         * Indicates whether and how the text value should be automatically capitalized as it is entered/edited by the user.
+         */
+        this.autocapitalize = 'none';
+        /**
+         * This Boolean attribute lets you specify that a form control should have input focus when the page loads.
+         */
+        this.autofocus = false;
+        /**
+         * If `true`, the value will be cleared after focus upon edit. Defaults to `true` when `type` is `"password"`, `false` for all other types.
+         */
+        this.clearOnEdit = false;
+        /**
+         * Set the amount of time, in milliseconds, to wait to trigger the `ionChange` event after each keystroke.
+         */
+        this.debounce = 0;
+        /**
+         * If `true`, the user cannot interact with the textarea.
+         */
+        this.disabled = false;
         /**
          * The name of the control, which is submitted with the form data.
          */
         this.name = this.inputId;
         /**
-         * If `true`, the toggle is selected.
+         * If `true`, the user cannot modify the value.
          */
-        this.checked = false;
+        this.readonly = false;
         /**
-         * If `true`, the user cannot interact with the toggle.
+         * If `true`, the user must fill in a value before submitting a form.
          */
-        this.disabled = false;
+        this.required = false;
         /**
-         * The value of the toggle does not mean if it's checked or not, use the `checked`
-         * property for that.
-         *
-         * The value of a toggle is analogous to the value of a `<input type="checkbox">`,
-         * it's only used when the toggle participates in a native `<form>`.
+         * If `true`, the element will have its spelling and grammar checked.
          */
-        this.value = 'on';
-        this.onClick = function () {
-            if (_this.lastDrag + 300 < Date.now()) {
-                _this.checked = !_this.checked;
+        this.spellcheck = false;
+        /**
+         * If `true`, the element height will increase based on the value.
+         */
+        this.autoGrow = false;
+        /**
+         * The value of the textarea.
+         */
+        this.value = '';
+        this.onInput = function (ev) {
+            if (_this.nativeInput) {
+                _this.value = _this.nativeInput.value;
             }
+            _this.emitStyle();
+            _this.ionInput.emit(ev);
         };
         this.onFocus = function () {
+            _this.hasFocus = true;
+            _this.focusChange();
             _this.ionFocus.emit();
         };
         this.onBlur = function () {
+            _this.hasFocus = false;
+            _this.focusChange();
             _this.ionBlur.emit();
         };
+        this.onKeyDown = function () {
+            _this.checkClearOnEdit();
+        };
         this.ionChange = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionChange", 7);
-        this.ionFocus = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionFocus", 7);
-        this.ionBlur = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionBlur", 7);
+        this.ionInput = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionInput", 7);
         this.ionStyle = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionStyle", 7);
+        this.ionBlur = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionBlur", 7);
+        this.ionFocus = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionFocus", 7);
     }
-    class_1.prototype.checkedChanged = function (isChecked) {
-        this.ionChange.emit({
-            checked: isChecked,
-            value: this.value
-        });
+    class_1.prototype.debounceChanged = function () {
+        this.ionChange = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["d"])(this.ionChange, this.debounce);
     };
     class_1.prototype.disabledChanged = function () {
         this.emitStyle();
-        if (this.gesture) {
-            this.gesture.setDisabled(this.disabled);
+    };
+    /**
+     * Update the native input element when the value changes
+     */
+    class_1.prototype.valueChanged = function () {
+        var nativeInput = this.nativeInput;
+        var value = this.getValue();
+        if (nativeInput && nativeInput.value !== value) {
+            nativeInput.value = value;
         }
+        this.runAutoGrow();
+        this.emitStyle();
+        this.ionChange.emit({ value: value });
     };
     class_1.prototype.connectedCallback = function () {
+        this.emitStyle();
+        this.debounceChanged();
+        {
+            this.el.dispatchEvent(new CustomEvent('ionInputDidLoad', {
+                detail: this.el
+            }));
+        }
+    };
+    class_1.prototype.disconnectedCallback = function () {
+        {
+            document.dispatchEvent(new CustomEvent('ionInputDidUnload', {
+                detail: this.el
+            }));
+        }
+    };
+    class_1.prototype.componentDidLoad = function () {
+        this.runAutoGrow();
+    };
+    // TODO: performance hit, this cause layout thrashing
+    class_1.prototype.runAutoGrow = function () {
+        var nativeInput = this.nativeInput;
+        if (nativeInput && this.autoGrow) {
+            Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["f"])(function () {
+                nativeInput.style.height = 'inherit';
+                nativeInput.style.height = nativeInput.scrollHeight + 'px';
+            });
+        }
+    };
+    /**
+     * Sets focus on the specified `ion-textarea`. Use this method instead of the global
+     * `input.focus()`.
+     */
+    class_1.prototype.setFocus = function () {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-            var _a;
-            var _this = this;
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        _a = this;
-                        return [4 /*yield*/, Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-624eea58.js */ "./node_modules/@ionic/core/dist/esm-es5/index-624eea58.js"))];
-                    case 1:
-                        _a.gesture = (_b.sent()).createGesture({
-                            el: this.el,
-                            gestureName: 'toggle',
-                            gesturePriority: 100,
-                            threshold: 5,
-                            passive: false,
-                            onStart: function () { return _this.onStart(); },
-                            onMove: function (ev) { return _this.onMove(ev); },
-                            onEnd: function (ev) { return _this.onEnd(ev); },
-                        });
-                        this.disabledChanged();
-                        return [2 /*return*/];
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
+                if (this.nativeInput) {
+                    this.nativeInput.focus();
                 }
+                return [2 /*return*/];
             });
         });
     };
-    class_1.prototype.disconnectedCallback = function () {
-        if (this.gesture) {
-            this.gesture.destroy();
-            this.gesture = undefined;
-        }
-    };
-    class_1.prototype.componentWillLoad = function () {
-        this.emitStyle();
+    /**
+     * Returns the native `<textarea>` element used under the hood.
+     */
+    class_1.prototype.getInputElement = function () {
+        return Promise.resolve(this.nativeInput);
     };
     class_1.prototype.emitStyle = function () {
         this.ionStyle.emit({
+            'interactive': true,
+            'textarea': true,
+            'input': true,
             'interactive-disabled': this.disabled,
+            'has-placeholder': this.placeholder != null,
+            'has-value': this.hasValue(),
+            'has-focus': this.hasFocus
         });
     };
-    class_1.prototype.onStart = function () {
-        this.activated = true;
-        // touch-action does not work in iOS
-        this.setFocus();
-    };
-    class_1.prototype.onMove = function (detail) {
-        if (shouldToggle(document, this.checked, detail.deltaX, -10)) {
-            this.checked = !this.checked;
-            Object(_haptic_c8f1473e_js__WEBPACK_IMPORTED_MODULE_5__["h"])();
+    /**
+     * Check if we need to clear the text input if clearOnEdit is enabled
+     */
+    class_1.prototype.checkClearOnEdit = function () {
+        if (!this.clearOnEdit) {
+            return;
         }
+        // Did the input value change after it was blurred and edited?
+        if (this.didBlurAfterEdit && this.hasValue()) {
+            // Clear the input
+            this.value = '';
+        }
+        // Reset the flag
+        this.didBlurAfterEdit = false;
     };
-    class_1.prototype.onEnd = function (ev) {
-        this.activated = false;
-        this.lastDrag = Date.now();
-        ev.event.preventDefault();
-        ev.event.stopImmediatePropagation();
+    class_1.prototype.focusChange = function () {
+        // If clearOnEdit is enabled and the input blurred but has a value, set a flag
+        if (this.clearOnEdit && !this.hasFocus && this.hasValue()) {
+            this.didBlurAfterEdit = true;
+        }
+        this.emitStyle();
+    };
+    class_1.prototype.hasValue = function () {
+        return this.getValue() !== '';
     };
     class_1.prototype.getValue = function () {
         return this.value || '';
     };
-    class_1.prototype.setFocus = function () {
-        if (this.buttonEl) {
-            this.buttonEl.focus();
-        }
-    };
     class_1.prototype.render = function () {
         var _a;
         var _this = this;
-        var _b = this, inputId = _b.inputId, disabled = _b.disabled, checked = _b.checked, activated = _b.activated, color = _b.color, el = _b.el;
         var mode = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
-        var labelId = inputId + '-lbl';
-        var label = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["f"])(el);
         var value = this.getValue();
+        var labelId = this.inputId + '-lbl';
+        var label = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["f"])(this.el);
         if (label) {
             label.id = labelId;
         }
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__["a"])(true, el, this.name, (checked ? value : ''), disabled);
-        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.onClick, role: "checkbox", "aria-disabled": disabled ? 'true' : null, "aria-checked": "" + checked, "aria-labelledby": labelId, class: Object.assign(Object.assign({}, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_4__["c"])(color)), (_a = {}, _a[mode] = true, _a['in-item'] = Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_4__["h"])('ion-item', el), _a['toggle-activated'] = activated, _a['toggle-checked'] = checked, _a['toggle-disabled'] = disabled, _a['interactive'] = true, _a)) }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toggle-icon" }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toggle-inner" })), Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("button", { type: "button", onFocus: this.onFocus, onBlur: this.onBlur, disabled: disabled, ref: function (btnEl) { return _this.buttonEl = btnEl; } })));
+        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["H"], { "aria-disabled": this.disabled ? 'true' : null, class: Object.assign(Object.assign({}, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_4__["c"])(this.color)), (_a = {}, _a[mode] = true, _a)) }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("textarea", { class: "native-textarea", ref: function (el) { return _this.nativeInput = el; }, autoCapitalize: this.autocapitalize, autoFocus: this.autofocus, disabled: this.disabled, maxLength: this.maxlength, minLength: this.minlength, name: this.name, placeholder: this.placeholder || '', readOnly: this.readonly, required: this.required, spellCheck: this.spellcheck, cols: this.cols, rows: this.rows, wrap: this.wrap, onInput: this.onInput, onBlur: this.onBlur, onFocus: this.onFocus, onKeyDown: this.onKeyDown }, value)));
     };
     Object.defineProperty(class_1.prototype, "el", {
         get: function () { return Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
@@ -164,32 +224,22 @@ var Toggle = /** @class */ (function () {
     Object.defineProperty(class_1, "watchers", {
         get: function () {
             return {
-                "checked": ["checkedChanged"],
-                "disabled": ["disabledChanged"]
+                "debounce": ["debounceChanged"],
+                "disabled": ["disabledChanged"],
+                "value": ["valueChanged"]
             };
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(class_1, "style", {
-        get: function () { return ":host{-webkit-box-sizing:content-box!important;box-sizing:content-box!important;display:inline-block;outline:none;contain:content;cursor:pointer;-ms-touch-action:none;touch-action:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:2}:host(.ion-focused) input{border:2px solid #5e9ed6}:host(.toggle-disabled){pointer-events:none}button{left:0;top:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;position:absolute;width:100%;height:100%;border:0;background:transparent;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:none}:host-context([dir=rtl]) button,[dir=rtl] button{left:unset;right:unset;right:0}button::-moz-focus-inner{border:0}:host{--background:rgba(var(--ion-text-color-rgb,0,0,0),0.088);--background-checked:var(--ion-color-primary,#3880ff);--handle-background:#fff;--handle-background-checked:#fff;-webkit-box-sizing:content-box;box-sizing:content-box;position:relative;width:51px;height:32px;contain:strict}:host(.ion-color.toggle-checked) .toggle-icon{background:var(--ion-color-base)}.toggle-icon{border-radius:16px;display:block;position:relative;width:100%;height:100%;-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-transition:background-color .3s;transition:background-color .3s;background:var(--background);overflow:hidden;pointer-events:none}.toggle-inner{left:2px;top:2px;border-radius:14px;position:absolute;width:28px;height:28px;-webkit-transition:width .12s ease-in-out 80ms,left .11s ease-in-out 80ms,right .11s ease-in-out 80ms,-webkit-transform .3s;transition:width .12s ease-in-out 80ms,left .11s ease-in-out 80ms,right .11s ease-in-out 80ms,-webkit-transform .3s;transition:transform .3s,width .12s ease-in-out 80ms,left .11s ease-in-out 80ms,right .11s ease-in-out 80ms;transition:transform .3s,width .12s ease-in-out 80ms,left .11s ease-in-out 80ms,right .11s ease-in-out 80ms,-webkit-transform .3s;background:var(--handle-background);-webkit-box-shadow:0 3px 12px rgba(0,0,0,.16),0 3px 1px rgba(0,0,0,.1);box-shadow:0 3px 12px rgba(0,0,0,.16),0 3px 1px rgba(0,0,0,.1);will-change:transform;contain:strict}:host-context([dir=rtl]) .toggle-inner,[dir=rtl] .toggle-inner{left:unset;right:unset;right:2px}:host(.toggle-checked) .toggle-icon{background:var(--background-checked)}:host(.toggle-activated) .toggle-icon:before,:host(.toggle-checked) .toggle-icon:before{-webkit-transform:scale3d(0,0,0);transform:scale3d(0,0,0)}:host(.toggle-checked) .toggle-inner{-webkit-transform:translate3d(19px,0,0);transform:translate3d(19px,0,0);background:var(--handle-background-checked)}:host-context([dir=rtl]).toggle-checked .toggle-inner,:host-context([dir=rtl]):host(.toggle-checked) .toggle-inner{-webkit-transform:translate3d(calc(-1 * 19px),0,0);transform:translate3d(calc(-1 * 19px),0,0)}:host(.toggle-activated.toggle-checked) .toggle-inner:before{-webkit-transform:scale3d(0,0,0);transform:scale3d(0,0,0)}:host(.toggle-activated) .toggle-inner{width:34px}:host(.toggle-activated.toggle-checked) .toggle-inner{left:-4px}:host-context([dir=rtl]).toggle-activated.toggle-checked .toggle-inner,:host-context([dir=rtl]):host(.toggle-activated.toggle-checked) .toggle-inner{left:unset;right:unset;right:-4px}:host(.toggle-disabled){opacity:.3}:host(.in-item[slot]){margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding-left:16px;padding-right:8px;padding-top:6px;padding-bottom:5px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.in-item[slot]){padding-left:unset;padding-right:unset;-webkit-padding-start:16px;padding-inline-start:16px;-webkit-padding-end:8px;padding-inline-end:8px}}:host(.in-item[slot=start]){padding-left:0;padding-right:16px;padding-top:6px;padding-bottom:5px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.in-item[slot=start]){padding-left:unset;padding-right:unset;-webkit-padding-start:0;padding-inline-start:0;-webkit-padding-end:16px;padding-inline-end:16px}}"; },
+        get: function () { return ".sc-ion-textarea-md-h{--background:initial;--color:initial;--placeholder-color:initial;--placeholder-font-style:initial;--placeholder-font-weight:initial;--placeholder-opacity:.5;--padding-top:0;--padding-bottom:0;--padding-start:0;--border-radius:0;display:block;position:relative;-ms-flex:1;flex:1;width:100%;-webkit-box-sizing:border-box;box-sizing:border-box;background:var(--background);color:var(--color);font-family:var(--ion-font-family,inherit);white-space:pre-wrap;z-index:2}.ion-color.sc-ion-textarea-md-h{background:initial;color:var(--ion-color-base)}ion-item.sc-ion-textarea-md-h, ion-item .sc-ion-textarea-md-h{-ms-flex-item-align:baseline;align-self:baseline}ion-item.sc-ion-textarea-md-h:not(.item-label), ion-item:not(.item-label) .sc-ion-textarea-md-h{--padding-start:0}.native-textarea.sc-ion-textarea-md{border-radius:var(--border-radius);margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding-left:var(--padding-start);padding-right:var(--padding-end);padding-top:var(--padding-top);padding-bottom:var(--padding-bottom);font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;text-decoration:inherit;text-overflow:inherit;text-transform:inherit;text-align:inherit;white-space:inherit;color:inherit;display:block;width:100%;max-width:100%;max-height:100%;border:0;outline:none;background:transparent;-webkit-box-sizing:border-box;box-sizing:border-box;resize:none;-webkit-appearance:none;-moz-appearance:none;appearance:none}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.native-textarea.sc-ion-textarea-md{padding-left:unset;padding-right:unset;-webkit-padding-start:var(--padding-start);padding-inline-start:var(--padding-start);-webkit-padding-end:var(--padding-end);padding-inline-end:var(--padding-end)}}.native-textarea.sc-ion-textarea-md::-webkit-input-placeholder{color:var(--placeholder-color);font-family:inherit;font-style:var(--placeholder-font-style);font-weight:var(--placeholder-font-weight);opacity:var(--placeholder-opacity)}.native-textarea.sc-ion-textarea-md::-moz-placeholder{color:var(--placeholder-color);font-family:inherit;font-style:var(--placeholder-font-style);font-weight:var(--placeholder-font-weight);opacity:var(--placeholder-opacity)}.native-textarea.sc-ion-textarea-md:-ms-input-placeholder{color:var(--placeholder-color);font-family:inherit;font-style:var(--placeholder-font-style);font-weight:var(--placeholder-font-weight);opacity:var(--placeholder-opacity)}.native-textarea.sc-ion-textarea-md::-ms-input-placeholder{color:var(--placeholder-color);font-family:inherit;font-style:var(--placeholder-font-style);font-weight:var(--placeholder-font-weight);opacity:var(--placeholder-opacity)}.native-textarea.sc-ion-textarea-md::placeholder{color:var(--placeholder-color);font-family:inherit;font-style:var(--placeholder-font-style);font-weight:var(--placeholder-font-weight);opacity:var(--placeholder-opacity)}.native-textarea[disabled].sc-ion-textarea-md{opacity:.4}.cloned-input.sc-ion-textarea-md{left:0;top:0;position:absolute;pointer-events:none}[dir=rtl].sc-ion-textarea-md-h .cloned-input.sc-ion-textarea-md, [dir=rtl] .sc-ion-textarea-md-h .cloned-input.sc-ion-textarea-md, [dir=rtl].sc-ion-textarea-md .cloned-input.sc-ion-textarea-md{left:unset;right:unset;right:0}.sc-ion-textarea-md-h{--padding-top:10px;--padding-end:0;--padding-bottom:11px;--padding-start:8px;margin-left:0;margin-right:0;margin-top:8px;margin-bottom:0;font-size:inherit}.item-label-floating.sc-ion-textarea-md-h, .item-label-floating .sc-ion-textarea-md-h, .item-label-stacked.sc-ion-textarea-md-h, .item-label-stacked .sc-ion-textarea-md-h{--padding-top:8px;--padding-bottom:8px;--padding-start:0}"; },
         enumerable: true,
         configurable: true
     });
     return class_1;
 }());
-var shouldToggle = function (doc, checked, deltaX, margin) {
-    var isRTL = doc.dir === 'rtl';
-    if (checked) {
-        return (!isRTL && (margin > deltaX)) ||
-            (isRTL && (-margin < deltaX));
-    }
-    else {
-        return (!isRTL && (-margin < deltaX)) ||
-            (isRTL && (margin > deltaX));
-    }
-};
-var toggleIds = 0;
+var textareaIds = 0;
 
 
 

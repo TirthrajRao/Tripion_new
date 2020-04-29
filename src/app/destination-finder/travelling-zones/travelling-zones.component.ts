@@ -149,11 +149,13 @@ export class TravellingZonesComponent implements OnInit {
     setTimeout(() => {
       // CSSMap;
       $("#map-continents").CSSMap({
-        "size": 320,
+        "size": 1450,
         "mobileSupport": true,
         'multipleClick': {
           'enable': true,
-          'hideSearchLink': true
+          'hideSearchLink': true,
+          'clicksLimit':3,
+          'clicksLimitAlert':"You can select only %d region! || regions!"
         },
         onClick: (listItem) => {
           const name = listItem[0].textContent
@@ -217,6 +219,7 @@ export class TravellingZonesComponent implements OnInit {
       centerMode: true,
       centerPadding: '100px',
       slidesToShow: 1,
+      speed: 100,
     });
   }
 

@@ -86,7 +86,6 @@ export class PlanOptionDetailComponent implements OnInit {
        slidesToScroll: 1,
        dots: true
      });
-
    }
 
   /**

@@ -1,147 +1,723 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[58],{
 
-/***/ "./node_modules/@ionic/core/dist/esm/ion-segment_2-ios.entry.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/ion-segment_2-ios.entry.js ***!
-  \**********************************************************************/
-/*! exports provided: ion_segment, ion_segment_button */
+/***/ "./node_modules/@ionic/core/dist/esm/ion-route_4.entry.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm/ion-route_4.entry.js ***!
+  \****************************************************************/
+/*! exports provided: ion_route, ion_route_redirect, ion_router, ion_router_link */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_segment", function() { return Segment; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_segment_button", function() { return SegmentButton; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_route", function() { return Route; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_route_redirect", function() { return RouteRedirect; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_router", function() { return Router; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_router_link", function() { return RouterLink; });
 /* harmony import */ var _core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core-ca0488fc.js */ "./node_modules/@ionic/core/dist/esm/core-ca0488fc.js");
 /* harmony import */ var _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config-3c7f3790.js */ "./node_modules/@ionic/core/dist/esm/config-3c7f3790.js");
-/* harmony import */ var _theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./theme-18cbe2cc.js */ "./node_modules/@ionic/core/dist/esm/theme-18cbe2cc.js");
+/* harmony import */ var _helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-46f4a262.js */ "./node_modules/@ionic/core/dist/esm/helpers-46f4a262.js");
+/* harmony import */ var _theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./theme-18cbe2cc.js */ "./node_modules/@ionic/core/dist/esm/theme-18cbe2cc.js");
 
 
 
 
-const Segment = class {
+
+const Route = class {
     constructor(hostRef) {
         Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        this.didInit = false;
         /**
-         * If `true`, the user cannot interact with the segment.
+         * Relative path that needs to match in order for this route to apply.
+         *
+         * Accepts paths similar to expressjs so that you can define parameters
+         * in the url /foo/:bar where bar would be available in incoming props.
          */
-        this.disabled = false;
-        /**
-         * If `true`, the segment buttons will overflow and the user can swipe to see them.
-         */
-        this.scrollable = false;
-        this.ionChange = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionChange", 7);
-        this.ionStyle = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionStyle", 7);
+        this.url = '';
+        this.ionRouteDataChanged = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionRouteDataChanged", 7);
     }
-    valueChanged(value) {
-        if (this.didInit) {
-            this.updateButtons();
-            this.ionChange.emit({ value });
+    onUpdate(newValue) {
+        this.ionRouteDataChanged.emit(newValue);
+    }
+    onComponentProps(newValue, oldValue) {
+        if (newValue === oldValue) {
+            return;
         }
-    }
-    segmentClick(ev) {
-        const selectedButton = ev.target;
-        this.value = selectedButton.value;
-    }
-    connectedCallback() {
-        if (this.value === undefined) {
-            const checked = this.getButtons().find(b => b.checked);
-            if (checked) {
-                this.value = checked.value;
+        const keys1 = newValue ? Object.keys(newValue) : [];
+        const keys2 = oldValue ? Object.keys(oldValue) : [];
+        if (keys1.length !== keys2.length) {
+            this.onUpdate(newValue);
+            return;
+        }
+        for (const key of keys1) {
+            if (newValue[key] !== oldValue[key]) {
+                this.onUpdate(newValue);
+                return;
             }
         }
-        this.emitStyle();
     }
-    componentDidLoad() {
-        this.updateButtons();
-        this.didInit = true;
+    connectedCallback() {
+        this.ionRouteDataChanged.emit();
     }
-    emitStyle() {
-        this.ionStyle.emit({
-            'segment': true
-        });
-    }
-    updateButtons() {
-        const value = this.value;
-        for (const button of this.getButtons()) {
-            button.checked = (button.value === value);
-        }
-    }
-    getButtons() {
-        return Array.from(this.el.querySelectorAll('ion-segment-button'));
-    }
-    render() {
-        const mode = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this);
-        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["H"], { class: Object.assign(Object.assign({}, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_2__["c"])(this.color)), { [mode]: true, 'segment-disabled': this.disabled, 'segment-scrollable': this.scrollable }) }));
-    }
-    get el() { return Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this); }
     static get watchers() { return {
-        "value": ["valueChanged"]
+        "url": ["onUpdate"],
+        "component": ["onUpdate"],
+        "componentProps": ["onComponentProps"]
     }; }
-    static get style() { return ".sc-ion-segment-ios-h{--indicator-color-checked:initial;--ripple-color:currentColor;--color-activated:initial;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:-ms-flexbox;display:flex;-ms-flex-align:stretch;align-items:stretch;-ms-flex-pack:center;justify-content:center;width:100%;font-family:var(--ion-font-family,inherit);text-align:center}.sc-ion-segment-ios-s > .segment-button-disabled, .segment-disabled.sc-ion-segment-ios-h{pointer-events:none}.segment-scrollable.sc-ion-segment-ios-h{-ms-flex-pack:start;justify-content:start;width:auto;overflow-x:scroll}.segment-scrollable.sc-ion-segment-ios-h::-webkit-scrollbar{display:none}.sc-ion-segment-ios-h{--background:transparent;--background-hover:rgba(var(--ion-color-primary-rgb,56,128,255),0.1);--background-activated:rgba(var(--ion-color-primary-rgb,56,128,255),0.16);--background-checked:var(--ion-color-primary,#3880ff);--color:var(--ion-color-primary,#3880ff);--color-checked:var(--ion-color-primary-contrast,#fff);--color-disabled:rgba(var(--ion-color-primary-rgb,56,128,255),0.3);--color-checked-disabled:rgba(var(--ion-color-primary-contrast-rgb,255,255,255),0.3);--border-color:var(--ion-color-primary,#3880ff);--indicator-color:transparent}.segment-disabled.sc-ion-segment-ios-h{opacity:.3}.sc-ion-segment-ios-h.ion-color.sc-ion-segment-ios-s > ion-segment-button{--border-color:var(--ion-color-base);background:transparent;color:var(--ion-color-base)}.sc-ion-segment-ios-h.ion-color.sc-ion-segment-ios-s > .activated{background:rgba(var(--ion-color-base-rgb),.16);color:var(--ion-color-base)}.sc-ion-segment-ios-h.ion-color.sc-ion-segment-ios-s > .segment-button-checked, .sc-ion-segment-ios-h.ion-color.sc-ion-segment-ios-s > .segment-button-checked.activated{background:var(--ion-color-base);color:var(--ion-color-contrast)}.sc-ion-segment-ios-h.ion-color.sc-ion-segment-ios-s > .segment-button-disabled{color:rgba(var(--ion-color-base-rgb),.3)}.sc-ion-segment-ios-h.ion-color.sc-ion-segment-ios-s > .segment-button-checked.segment-button-disabled{color:rgba(var(--ion-color-contrast-rgb),.3)}\@media (any-hover:hover){.sc-ion-segment-ios-h.ion-color.sc-ion-segment-ios-s > ion-segment-button:hover:not(.segment-button-checked){background:rgba(var(--ion-color-base-rgb),.1)}}.sc-ion-segment-ios-hion-toolbar.sc-ion-segment-ios-s > ion-segment-button, ion-toolbar .sc-ion-segment-ios-h.sc-ion-segment-ios-s > ion-segment-button{max-width:100px;font-size:12px;line-height:22px}.sc-ion-segment-ios-hion-toolbar:not(.ion-color):not(.ion-color).sc-ion-segment-ios-s > ion-segment-button, ion-toolbar:not(.ion-color) .sc-ion-segment-ios-h:not(.ion-color).sc-ion-segment-ios-s > ion-segment-button{border-color:var(--ion-toolbar-color-checked,var(--border-color));color:var(--ion-toolbar-color-unchecked,var(--color))}.sc-ion-segment-ios-hion-toolbar:not(.ion-color):not(.ion-color).sc-ion-segment-ios-s > .segment-button-checked, ion-toolbar:not(.ion-color) .sc-ion-segment-ios-h:not(.ion-color).sc-ion-segment-ios-s > .segment-button-checked{background:var(--ion-toolbar-color-checked,var(--background-checked));color:var(--ion-toolbar-background,var(--color-checked))}.sc-ion-segment-ios-hion-toolbar.ion-color:not(.ion-color).sc-ion-segment-ios-s > ion-segment-button, ion-toolbar.ion-color .sc-ion-segment-ios-h:not(.ion-color).sc-ion-segment-ios-s > ion-segment-button{--color:var(--ion-color-contrast);--color-disabled:rgba(var(--ion-color-contrast-rgb),0.3);--color-checked:var(--ion-color-base);--color-checked-disabled:rgba(var(--ion-color-contrast-rgb),0.3);--background-hover:rgba(var(--ion-color-contrast-rgb),0.1);--background-activated:rgba(var(--ion-color-contrast-rgb),0.16);--background-checked:var(--ion-color-contrast);--border-color:var(--ion-color-contrast)}"; }
 };
 
-let ids = 0;
-const SegmentButton = class {
+const RouteRedirect = class {
+    constructor(hostRef) {
+        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+        this.ionRouteRedirectChanged = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionRouteRedirectChanged", 7);
+    }
+    propDidChange() {
+        this.ionRouteRedirectChanged.emit();
+    }
+    connectedCallback() {
+        this.ionRouteRedirectChanged.emit();
+    }
+    static get watchers() { return {
+        "from": ["propDidChange"],
+        "to": ["propDidChange"]
+    }; }
+};
+
+const ROUTER_INTENT_NONE = 'root';
+const ROUTER_INTENT_FORWARD = 'forward';
+const ROUTER_INTENT_BACK = 'back';
+
+const generatePath = (segments) => {
+    const path = segments
+        .filter(s => s.length > 0)
+        .join('/');
+    return '/' + path;
+};
+const chainToPath = (chain) => {
+    const path = [];
+    for (const route of chain) {
+        for (const segment of route.path) {
+            if (segment[0] === ':') {
+                const param = route.params && route.params[segment.slice(1)];
+                if (!param) {
+                    return null;
+                }
+                path.push(param);
+            }
+            else if (segment !== '') {
+                path.push(segment);
+            }
+        }
+    }
+    return path;
+};
+const writePath = (history, root, useHash, path, direction, state) => {
+    let url = generatePath([
+        ...parsePath(root),
+        ...path
+    ]);
+    if (useHash) {
+        url = '#' + url;
+    }
+    if (direction === ROUTER_INTENT_FORWARD) {
+        history.pushState(state, '', url);
+    }
+    else {
+        history.replaceState(state, '', url);
+    }
+};
+const removePrefix = (prefix, path) => {
+    if (prefix.length > path.length) {
+        return null;
+    }
+    if (prefix.length <= 1 && prefix[0] === '') {
+        return path;
+    }
+    for (let i = 0; i < prefix.length; i++) {
+        if (prefix[i].length > 0 && prefix[i] !== path[i]) {
+            return null;
+        }
+    }
+    if (path.length === prefix.length) {
+        return [''];
+    }
+    return path.slice(prefix.length);
+};
+const readPath = (loc, root, useHash) => {
+    let pathname = loc.pathname;
+    if (useHash) {
+        const hash = loc.hash;
+        pathname = (hash[0] === '#')
+            ? hash.slice(1)
+            : '';
+    }
+    const prefix = parsePath(root);
+    const path = parsePath(pathname);
+    return removePrefix(prefix, path);
+};
+const parsePath = (path) => {
+    if (path == null) {
+        return [''];
+    }
+    const segments = path.split('/')
+        .map(s => s.trim())
+        .filter(s => s.length > 0);
+    if (segments.length === 0) {
+        return [''];
+    }
+    else {
+        return segments;
+    }
+};
+
+const printRoutes = (routes) => {
+    console.group(`[ion-core] ROUTES[${routes.length}]`);
+    for (const chain of routes) {
+        const path = [];
+        chain.forEach(r => path.push(...r.path));
+        const ids = chain.map(r => r.id);
+        console.debug(`%c ${generatePath(path)}`, 'font-weight: bold; padding-left: 20px', '=>\t', `(${ids.join(', ')})`);
+    }
+    console.groupEnd();
+};
+const printRedirects = (redirects) => {
+    console.group(`[ion-core] REDIRECTS[${redirects.length}]`);
+    for (const redirect of redirects) {
+        if (redirect.to) {
+            console.debug('FROM: ', `$c ${generatePath(redirect.from)}`, 'font-weight: bold', ' TO: ', `$c ${generatePath(redirect.to)}`, 'font-weight: bold');
+        }
+    }
+    console.groupEnd();
+};
+
+const writeNavState = async (root, chain, direction, index, changed = false) => {
+    try {
+        // find next navigation outlet in the DOM
+        const outlet = searchNavNode(root);
+        // make sure we can continue interacting the DOM, otherwise abort
+        if (index >= chain.length || !outlet) {
+            return changed;
+        }
+        await outlet.componentOnReady();
+        const route = chain[index];
+        const result = await outlet.setRouteId(route.id, route.params, direction);
+        // if the outlet changed the page, reset navigation to neutral (no direction)
+        // this means nested outlets will not animate
+        if (result.changed) {
+            direction = ROUTER_INTENT_NONE;
+            changed = true;
+        }
+        // recursively set nested outlets
+        changed = await writeNavState(result.element, chain, direction, index + 1, changed);
+        // once all nested outlets are visible let's make the parent visible too,
+        // using markVisible prevents flickering
+        if (result.markVisible) {
+            await result.markVisible();
+        }
+        return changed;
+    }
+    catch (e) {
+        console.error(e);
+        return false;
+    }
+};
+const readNavState = async (root) => {
+    const ids = [];
+    let outlet;
+    let node = root;
+    // tslint:disable-next-line:no-constant-condition
+    while (true) {
+        outlet = searchNavNode(node);
+        if (outlet) {
+            const id = await outlet.getRouteId();
+            if (id) {
+                node = id.element;
+                id.element = undefined;
+                ids.push(id);
+            }
+            else {
+                break;
+            }
+        }
+        else {
+            break;
+        }
+    }
+    return { ids, outlet };
+};
+const waitUntilNavNode = () => {
+    if (searchNavNode(document.body)) {
+        return Promise.resolve();
+    }
+    return new Promise(resolve => {
+        window.addEventListener('ionNavWillLoad', resolve, { once: true });
+    });
+};
+const QUERY = ':not([no-router]) ion-nav, :not([no-router]) ion-tabs, :not([no-router]) ion-router-outlet';
+const searchNavNode = (root) => {
+    if (!root) {
+        return undefined;
+    }
+    if (root.matches(QUERY)) {
+        return root;
+    }
+    const outlet = root.querySelector(QUERY);
+    return outlet ? outlet : undefined;
+};
+
+const matchesRedirect = (input, route) => {
+    const { from, to } = route;
+    if (to === undefined) {
+        return false;
+    }
+    if (from.length > input.length) {
+        return false;
+    }
+    for (let i = 0; i < from.length; i++) {
+        const expected = from[i];
+        if (expected === '*') {
+            return true;
+        }
+        if (expected !== input[i]) {
+            return false;
+        }
+    }
+    return from.length === input.length;
+};
+const routeRedirect = (path, routes) => {
+    return routes.find(route => matchesRedirect(path, route));
+};
+const matchesIDs = (ids, chain) => {
+    const len = Math.min(ids.length, chain.length);
+    let i = 0;
+    for (; i < len; i++) {
+        if (ids[i].toLowerCase() !== chain[i].id) {
+            break;
+        }
+    }
+    return i;
+};
+const matchesPath = (inputPath, chain) => {
+    const segments = new RouterSegments(inputPath);
+    let matchesDefault = false;
+    let allparams;
+    for (let i = 0; i < chain.length; i++) {
+        const path = chain[i].path;
+        if (path[0] === '') {
+            matchesDefault = true;
+        }
+        else {
+            for (const segment of path) {
+                const data = segments.next();
+                // data param
+                if (segment[0] === ':') {
+                    if (data === '') {
+                        return null;
+                    }
+                    allparams = allparams || [];
+                    const params = allparams[i] || (allparams[i] = {});
+                    params[segment.slice(1)] = data;
+                }
+                else if (data !== segment) {
+                    return null;
+                }
+            }
+            matchesDefault = false;
+        }
+    }
+    const matches = (matchesDefault)
+        ? matchesDefault === (segments.next() === '')
+        : true;
+    if (!matches) {
+        return null;
+    }
+    if (allparams) {
+        return chain.map((route, i) => ({
+            id: route.id,
+            path: route.path,
+            params: mergeParams(route.params, allparams[i])
+        }));
+    }
+    return chain;
+};
+const mergeParams = (a, b) => {
+    if (!a && b) {
+        return b;
+    }
+    else if (a && !b) {
+        return a;
+    }
+    else if (a && b) {
+        return Object.assign(Object.assign({}, a), b);
+    }
+    return undefined;
+};
+const routerIDsToChain = (ids, chains) => {
+    let match = null;
+    let maxMatches = 0;
+    const plainIDs = ids.map(i => i.id);
+    for (const chain of chains) {
+        const score = matchesIDs(plainIDs, chain);
+        if (score > maxMatches) {
+            match = chain;
+            maxMatches = score;
+        }
+    }
+    if (match) {
+        return match.map((route, i) => ({
+            id: route.id,
+            path: route.path,
+            params: mergeParams(route.params, ids[i] && ids[i].params)
+        }));
+    }
+    return null;
+};
+const routerPathToChain = (path, chains) => {
+    let match = null;
+    let matches = 0;
+    for (const chain of chains) {
+        const matchedChain = matchesPath(path, chain);
+        if (matchedChain !== null) {
+            const score = computePriority(matchedChain);
+            if (score > matches) {
+                matches = score;
+                match = matchedChain;
+            }
+        }
+    }
+    return match;
+};
+const computePriority = (chain) => {
+    let score = 1;
+    let level = 1;
+    for (const route of chain) {
+        for (const path of route.path) {
+            if (path[0] === ':') {
+                score += Math.pow(1, level);
+            }
+            else if (path !== '') {
+                score += Math.pow(2, level);
+            }
+            level++;
+        }
+    }
+    return score;
+};
+class RouterSegments {
+    constructor(path) {
+        this.path = path.slice();
+    }
+    next() {
+        if (this.path.length > 0) {
+            return this.path.shift();
+        }
+        return '';
+    }
+}
+
+const readRedirects = (root) => {
+    return Array.from(root.children)
+        .filter(el => el.tagName === 'ION-ROUTE-REDIRECT')
+        .map(el => {
+        const to = readProp(el, 'to');
+        return {
+            from: parsePath(readProp(el, 'from')),
+            to: to == null ? undefined : parsePath(to),
+        };
+    });
+};
+const readRoutes = (root) => {
+    return flattenRouterTree(readRouteNodes(root));
+};
+const readRouteNodes = (root, node = root) => {
+    return Array.from(node.children)
+        .filter(el => el.tagName === 'ION-ROUTE' && el.component)
+        .map(el => {
+        const component = readProp(el, 'component');
+        if (component == null) {
+            throw new Error('component missing in ion-route');
+        }
+        return {
+            path: parsePath(readProp(el, 'url')),
+            id: component.toLowerCase(),
+            params: el.componentProps,
+            children: readRouteNodes(root, el)
+        };
+    });
+};
+const readProp = (el, prop) => {
+    if (prop in el) {
+        return el[prop];
+    }
+    if (el.hasAttribute(prop)) {
+        return el.getAttribute(prop);
+    }
+    return null;
+};
+const flattenRouterTree = (nodes) => {
+    const routes = [];
+    for (const node of nodes) {
+        flattenNode([], routes, node);
+    }
+    return routes;
+};
+const flattenNode = (chain, routes, node) => {
+    const s = chain.slice();
+    s.push({
+        id: node.id,
+        path: node.path,
+        params: node.params
+    });
+    if (node.children.length === 0) {
+        routes.push(s);
+        return;
+    }
+    for (const sub of node.children) {
+        flattenNode(s, routes, sub);
+    }
+};
+
+const Router = class {
+    constructor(hostRef) {
+        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+        this.previousPath = null;
+        this.busy = false;
+        this.state = 0;
+        this.lastState = 0;
+        /**
+         * By default `ion-router` will match the routes at the root path ("/").
+         * That can be changed when
+         *
+         */
+        this.root = '/';
+        /**
+         * The router can work in two "modes":
+         * - With hash: `/index.html#/path/to/page`
+         * - Without hash: `/path/to/page`
+         *
+         * Using one or another might depend in the requirements of your app and/or where it's deployed.
+         *
+         * Usually "hash-less" navigation works better for SEO and it's more user friendly too, but it might
+         * requires additional server-side configuration in order to properly work.
+         *
+         * On the otherside hash-navigation is much easier to deploy, it even works over the file protocol.
+         *
+         * By default, this property is `true`, change to `false` to allow hash-less URLs.
+         */
+        this.useHash = true;
+        this.ionRouteWillChange = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionRouteWillChange", 7);
+        this.ionRouteDidChange = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionRouteDidChange", 7);
+    }
+    async componentWillLoad() {
+        console.debug('[ion-router] router will load');
+        await waitUntilNavNode();
+        console.debug('[ion-router] found nav');
+        await this.onRoutesChanged();
+    }
+    componentDidLoad() {
+        window.addEventListener('ionRouteRedirectChanged', Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["e"])(this.onRedirectChanged.bind(this), 10));
+        window.addEventListener('ionRouteDataChanged', Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["e"])(this.onRoutesChanged.bind(this), 100));
+    }
+    onPopState() {
+        const direction = this.historyDirection();
+        const path = this.getPath();
+        console.debug('[ion-router] URL changed -> update nav', path, direction);
+        return this.writeNavStateRoot(path, direction);
+    }
+    onBackButton(ev) {
+        ev.detail.register(0, () => this.back());
+    }
+    /**
+     * Navigate to the specified URL.
+     *
+     * @param url The url to navigate to.
+     * @param direction The direction of the animation. Defaults to `"forward"`.
+     */
+    push(url, direction = 'forward') {
+        if (url.startsWith('.')) {
+            url = (new URL(url, window.location.href)).pathname;
+        }
+        console.debug('[ion-router] URL pushed -> updating nav', url, direction);
+        const path = parsePath(url);
+        this.setPath(path, direction);
+        return this.writeNavStateRoot(path, direction);
+    }
+    /**
+     * Go back to previous page in the window.history.
+     */
+    back() {
+        window.history.back();
+        return Promise.resolve(this.waitPromise);
+    }
+    /** @internal */
+    async printDebug() {
+        console.debug('CURRENT PATH', this.getPath());
+        console.debug('PREVIOUS PATH', this.previousPath);
+        printRoutes(readRoutes(this.el));
+        printRedirects(readRedirects(this.el));
+    }
+    /** @internal */
+    async navChanged(direction) {
+        if (this.busy) {
+            console.warn('[ion-router] router is busy, navChanged was cancelled');
+            return false;
+        }
+        const { ids, outlet } = await readNavState(window.document.body);
+        const routes = readRoutes(this.el);
+        const chain = routerIDsToChain(ids, routes);
+        if (!chain) {
+            console.warn('[ion-router] no matching URL for ', ids.map(i => i.id));
+            return false;
+        }
+        const path = chainToPath(chain);
+        if (!path) {
+            console.warn('[ion-router] router could not match path because some required param is missing');
+            return false;
+        }
+        console.debug('[ion-router] nav changed -> update URL', ids, path);
+        this.setPath(path, direction);
+        await this.safeWriteNavState(outlet, chain, ROUTER_INTENT_NONE, path, null, ids.length);
+        return true;
+    }
+    onRedirectChanged() {
+        const path = this.getPath();
+        if (path && routeRedirect(path, readRedirects(this.el))) {
+            this.writeNavStateRoot(path, ROUTER_INTENT_NONE);
+        }
+    }
+    onRoutesChanged() {
+        return this.writeNavStateRoot(this.getPath(), ROUTER_INTENT_NONE);
+    }
+    historyDirection() {
+        const win = window;
+        if (win.history.state === null) {
+            this.state++;
+            win.history.replaceState(this.state, win.document.title, win.document.location && win.document.location.href);
+        }
+        const state = win.history.state;
+        const lastState = this.lastState;
+        this.lastState = state;
+        if (state > lastState) {
+            return ROUTER_INTENT_FORWARD;
+        }
+        else if (state < lastState) {
+            return ROUTER_INTENT_BACK;
+        }
+        else {
+            return ROUTER_INTENT_NONE;
+        }
+    }
+    async writeNavStateRoot(path, direction) {
+        if (!path) {
+            console.error('[ion-router] URL is not part of the routing set');
+            return false;
+        }
+        // lookup redirect rule
+        const redirects = readRedirects(this.el);
+        const redirect = routeRedirect(path, redirects);
+        let redirectFrom = null;
+        if (redirect) {
+            this.setPath(redirect.to, direction);
+            redirectFrom = redirect.from;
+            path = redirect.to;
+        }
+        // lookup route chain
+        const routes = readRoutes(this.el);
+        const chain = routerPathToChain(path, routes);
+        if (!chain) {
+            console.error('[ion-router] the path does not match any route');
+            return false;
+        }
+        // write DOM give
+        return this.safeWriteNavState(document.body, chain, direction, path, redirectFrom);
+    }
+    async safeWriteNavState(node, chain, direction, path, redirectFrom, index = 0) {
+        const unlock = await this.lock();
+        let changed = false;
+        try {
+            changed = await this.writeNavState(node, chain, direction, path, redirectFrom, index);
+        }
+        catch (e) {
+            console.error(e);
+        }
+        unlock();
+        return changed;
+    }
+    async lock() {
+        const p = this.waitPromise;
+        let resolve;
+        this.waitPromise = new Promise(r => resolve = r);
+        if (p !== undefined) {
+            await p;
+        }
+        return resolve;
+    }
+    async writeNavState(node, chain, direction, path, redirectFrom, index = 0) {
+        if (this.busy) {
+            console.warn('[ion-router] router is busy, transition was cancelled');
+            return false;
+        }
+        this.busy = true;
+        // generate route event and emit will change
+        const routeEvent = this.routeChangeEvent(path, redirectFrom);
+        if (routeEvent) {
+            this.ionRouteWillChange.emit(routeEvent);
+        }
+        const changed = await writeNavState(node, chain, direction, index);
+        this.busy = false;
+        if (changed) {
+            console.debug('[ion-router] route changed', path);
+        }
+        // emit did change
+        if (routeEvent) {
+            this.ionRouteDidChange.emit(routeEvent);
+        }
+        return changed;
+    }
+    setPath(path, direction) {
+        this.state++;
+        writePath(window.history, this.root, this.useHash, path, direction, this.state);
+    }
+    getPath() {
+        return readPath(window.location, this.root, this.useHash);
+    }
+    routeChangeEvent(path, redirectFromPath) {
+        const from = this.previousPath;
+        const to = generatePath(path);
+        this.previousPath = to;
+        if (to === from) {
+            return null;
+        }
+        const redirectedFrom = redirectFromPath ? generatePath(redirectFromPath) : null;
+        return {
+            from,
+            redirectedFrom,
+            to,
+        };
+    }
+    get el() { return Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this); }
+};
+
+const RouterLink = class {
     constructor(hostRef) {
         Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
         /**
-         * If `true`, the segment button is selected.
+         * When using a router, it specifies the transition direction when navigating to
+         * another page using `href`.
          */
-        this.checked = false;
-        /**
-         * If `true`, the user cannot interact with the segment button.
-         */
-        this.disabled = false;
-        /**
-         * Set the layout of the text and icon in the segment.
-         */
-        this.layout = 'icon-top';
-        /**
-         * The type of the button.
-         */
-        this.type = 'button';
-        /**
-         * The value of the segment button.
-         */
-        this.value = 'ion-sb-' + (ids++);
-        this.onClick = () => {
-            this.checked = true;
+        this.routerDirection = 'forward';
+        this.onClick = (ev) => {
+            Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["o"])(this.href, ev, this.routerDirection);
         };
-        this.ionSelect = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionSelect", 7);
-    }
-    checkedChanged(checked, prev) {
-        if (checked && !prev) {
-            this.ionSelect.emit();
-        }
-    }
-    get hasLabel() {
-        return !!this.el.querySelector('ion-label');
-    }
-    get hasIcon() {
-        return !!this.el.querySelector('ion-icon');
     }
     render() {
-        const { checked, type, disabled, hasIcon, hasLabel, layout } = this;
         const mode = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this);
-        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["H"], { onClick: this.onClick, "aria-disabled": disabled ? 'true' : null, class: {
-                [mode]: true,
-                'segment-button-has-label': hasLabel,
-                'segment-button-has-icon': hasIcon,
-                'segment-button-has-label-only': hasLabel && !hasIcon,
-                'segment-button-has-icon-only': hasIcon && !hasLabel,
-                'segment-button-disabled': disabled,
-                'segment-button-checked': checked,
-                [`segment-button-layout-${layout}`]: true,
-                'ion-activatable': true,
-                'ion-activatable-instant': true,
-            } }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", { type: type, "aria-pressed": checked ? 'true' : null, class: "button-native", disabled: disabled }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null), mode === 'md' && Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-ripple-effect", null)), Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "segment-button-indicator" })));
+        const attrs = {
+            href: this.href,
+            rel: this.rel,
+            target: this.target
+        };
+        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["H"], { onClick: this.onClick, class: Object.assign(Object.assign({}, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["c"])(this.color)), { [mode]: true, 'ion-activatable': true }) }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("a", Object.assign({}, attrs), Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null))));
     }
-    get el() { return Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this); }
-    static get watchers() { return {
-        "checked": ["checkedChanged"]
-    }; }
-    static get style() { return ":host{--padding-start:0;--padding-end:0;--padding-top:0;--padding-bottom:0;display:-ms-flexbox;display:flex;-ms-flex:1 0 auto;flex:1 0 auto;-ms-flex-direction:column;flex-direction:column;height:auto;border-width:var(--border-width);border-style:var(--border-style);border-color:var(--border-color);background:var(--background);color:var(--color);text-decoration:none;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;-webkit-font-kerning:none;font-kerning:none}:host(:first-of-type){border-top-left-radius:var(--border-radius);border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:var(--border-radius)}:host-context([dir=rtl]):first-of-type,:host-context([dir=rtl]):host(:first-of-type){border-top-left-radius:0;border-top-right-radius:var(--border-radius);border-bottom-right-radius:var(--border-radius);border-bottom-left-radius:0}:host(:not(:first-of-type)){border-left-width:0}:host-context([dir=rtl]):host(:not(:first-of-type)),:host-context([dir=rtl]):not(:first-of-type){border-right-width:0;border-left-width:var(--border-width)}:host(:last-of-type){border-top-left-radius:0;border-top-right-radius:var(--border-radius);border-bottom-right-radius:var(--border-radius);border-bottom-left-radius:0}:host-context([dir=rtl]):host(:last-of-type),:host-context([dir=rtl]):last-of-type{border-top-left-radius:var(--border-radius);border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:var(--border-radius)}.button-native{border-radius:inherit;font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;text-decoration:inherit;text-overflow:inherit;text-transform:inherit;text-align:inherit;white-space:inherit;color:inherit;margin-left:var(--margin-start);margin-right:var(--margin-end);margin-top:var(--margin-top);margin-bottom:var(--margin-bottom);padding-left:var(--padding-start);padding-right:var(--padding-end);padding-top:var(--padding-top);padding-bottom:var(--padding-bottom);display:-ms-flexbox;display:flex;position:relative;-ms-flex-direction:inherit;flex-direction:inherit;-ms-flex-positive:1;flex-grow:1;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;width:100%;min-width:inherit;max-width:inherit;height:auto;min-height:inherit;max-height:inherit;-webkit-transition:var(--transition);transition:var(--transition);border:none;outline:none;background:transparent;contain:content;cursor:pointer}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.button-native{margin-left:unset;margin-right:unset;-webkit-margin-start:var(--margin-start);margin-inline-start:var(--margin-start);-webkit-margin-end:var(--margin-end);margin-inline-end:var(--margin-end);padding-left:unset;padding-right:unset;-webkit-padding-start:var(--padding-start);padding-inline-start:var(--padding-start);-webkit-padding-end:var(--padding-end);padding-inline-end:var(--padding-end)}}.segment-button-indicator{-ms-flex-item-align:end;align-self:flex-end;width:100%;height:2px;background-color:var(--indicator-color);opacity:1}:host(.segment-button-checked){background:var(--background-checked);color:var(--color-checked)}:host(.segment-button-checked) .segment-button-indicator{background-color:var(--indicator-color-checked,var(--color-checked))}:host(.activated){color:var(--color-activated,var(--color))}:host(.segment-button-disabled){color:var(--color-disabled)}:host(.segment-button-disabled.segment-button-checked){color:var(--color-checked-disabled)}::slotted(ion-icon){-ms-flex-order:-1;order:-1}::slotted(ion-label){display:block;-ms-flex-item-align:center;align-self:center;line-height:22px;text-overflow:ellipsis;white-space:nowrap;-webkit-box-sizing:border-box;box-sizing:border-box}:host(.segment-button-layout-icon-start) .button-native{-ms-flex-direction:row;flex-direction:row}:host(.segment-button-layout-icon-end) .button-native{-ms-flex-direction:row-reverse;flex-direction:row-reverse}:host(.segment-button-layout-icon-bottom) .button-native{-ms-flex-direction:column-reverse;flex-direction:column-reverse}:host(.segment-button-layout-icon-hide) ::slotted(ion-icon),:host(.segment-button-layout-label-hide) ::slotted(ion-label){display:none}ion-ripple-effect{color:var(--ripple-color,var(--color-checked))}:host{--border-radius:4px;--border-width:1px;--border-style:solid;--transition:100ms all linear;min-height:24px;font-size:13px;line-height:37px}.segment-button-indicator{display:none}::slotted(ion-icon){font-size:24px}:host(.segment-button-layout-icon-start) ::slotted(ion-label){margin-left:2px;margin-right:0}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.segment-button-layout-icon-start) ::slotted(ion-label){margin-left:unset;margin-right:unset;-webkit-margin-start:2px;margin-inline-start:2px;-webkit-margin-end:0;margin-inline-end:0}}:host(.segment-button-layout-icon-end) ::slotted(ion-label){margin-left:0;margin-right:2px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.segment-button-layout-icon-end) ::slotted(ion-label){margin-left:unset;margin-right:unset;-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:2px;margin-inline-end:2px}}\@media (any-hover:hover){:host(:hover:not(.segment-button-checked)){background:var(--background-hover)}}:host(.activated){background:var(--background-activated)}:host(.segment-button-checked.activated){background:var(--background-checked);color:var(--color-checked)}"; }
+    static get style() { return ":host{--background:transparent;--color:var(--ion-color-primary,#3880ff);background:var(--background);color:var(--color)}:host(.ion-color){color:var(--ion-color-base)}a{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;text-decoration:inherit;text-overflow:inherit;text-transform:inherit;text-align:inherit;white-space:inherit;color:inherit}"; }
 };
 
 

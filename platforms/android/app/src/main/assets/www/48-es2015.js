@@ -1,15 +1,15 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[48],{
 
-/***/ "./node_modules/@ionic/core/dist/esm/ion-range-ios.entry.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/ion-range-ios.entry.js ***!
-  \******************************************************************/
-/*! exports provided: ion_range */
+/***/ "./node_modules/@ionic/core/dist/esm/ion-progress-bar-md.entry.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm/ion-progress-bar-md.entry.js ***!
+  \************************************************************************/
+/*! exports provided: ion_progress_bar */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_range", function() { return Range; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_progress_bar", function() { return ProgressBar; });
 /* harmony import */ var _core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core-ca0488fc.js */ "./node_modules/@ionic/core/dist/esm/core-ca0488fc.js");
 /* harmony import */ var _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config-3c7f3790.js */ "./node_modules/@ionic/core/dist/esm/config-3c7f3790.js");
 /* harmony import */ var _helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-46f4a262.js */ "./node_modules/@ionic/core/dist/esm/helpers-46f4a262.js");
@@ -19,382 +19,54 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const Range = class {
+const ProgressBar = class {
     constructor(hostRef) {
         Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        this.noUpdate = false;
-        this.hasFocus = false;
-        this.ratioA = 0;
-        this.ratioB = 0;
         /**
-         * How long, in milliseconds, to wait to trigger the
-         * `ionChange` event after each change in the range value.
+         * The state of the progress bar, based on if the time the process takes is known or not.
+         * Default options are: `"determinate"` (no animation), `"indeterminate"` (animate from left to right).
          */
-        this.debounce = 0;
+        this.type = 'determinate';
         /**
-         * The name of the control, which is submitted with the form data.
+         * If true, reverse the progress bar direction.
          */
-        this.name = '';
+        this.reversed = false;
         /**
-         * Show two knobs.
-         */
-        this.dualKnobs = false;
-        /**
-         * Minimum integer value of the range.
-         */
-        this.min = 0;
-        /**
-         * Maximum integer value of the range.
-         */
-        this.max = 100;
-        /**
-         * If `true`, a pin with integer value is shown when the knob
-         * is pressed.
-         */
-        this.pin = false;
-        /**
-         * If `true`, the knob snaps to tick marks evenly spaced based
-         * on the step property value.
-         */
-        this.snaps = false;
-        /**
-         * Specifies the value granularity.
-         */
-        this.step = 1;
-        /**
-         * If `true`, tick marks are displayed based on the step value.
-         * Only applies when `snaps` is `true`.
-         */
-        this.ticks = true;
-        /**
-         * If `true`, the user cannot interact with the range.
-         */
-        this.disabled = false;
-        /**
-         * the value of the range.
+         * The value determines how much of the active bar should display when the
+         * `type` is `"determinate"`.
+         * The value should be between [0, 1].
          */
         this.value = 0;
-        this.clampBounds = (value) => {
-            return Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(this.min, value, this.max);
-        };
-        this.ensureValueInBounds = (value) => {
-            if (this.dualKnobs) {
-                return {
-                    lower: this.clampBounds(value.lower),
-                    upper: this.clampBounds(value.upper)
-                };
-            }
-            else {
-                return this.clampBounds(value);
-            }
-        };
-        this.handleKeyboard = (knob, isIncrease) => {
-            let step = this.step;
-            step = step > 0 ? step : 1;
-            step = step / (this.max - this.min);
-            if (!isIncrease) {
-                step *= -1;
-            }
-            if (knob === 'A') {
-                this.ratioA = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0, this.ratioA + step, 1);
-            }
-            else {
-                this.ratioB = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0, this.ratioB + step, 1);
-            }
-            this.updateValue();
-        };
-        this.onBlur = () => {
-            if (this.hasFocus) {
-                this.hasFocus = false;
-                this.ionBlur.emit();
-                this.emitStyle();
-            }
-        };
-        this.onFocus = () => {
-            if (!this.hasFocus) {
-                this.hasFocus = true;
-                this.ionFocus.emit();
-                this.emitStyle();
-            }
-        };
-        this.ionChange = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionChange", 7);
-        this.ionStyle = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionStyle", 7);
-        this.ionFocus = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionFocus", 7);
-        this.ionBlur = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionBlur", 7);
-    }
-    debounceChanged() {
-        this.ionChange = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["d"])(this.ionChange, this.debounce);
-    }
-    minChanged() {
-        if (!this.noUpdate) {
-            this.updateRatio();
-        }
-    }
-    maxChanged() {
-        if (!this.noUpdate) {
-            this.updateRatio();
-        }
-    }
-    disabledChanged() {
-        if (this.gesture) {
-            this.gesture.setDisabled(this.disabled);
-        }
-        this.emitStyle();
-    }
-    valueChanged(value) {
-        if (!this.noUpdate) {
-            this.updateRatio();
-        }
-        value = this.ensureValueInBounds(value);
-        this.ionChange.emit({ value });
-    }
-    connectedCallback() {
-        this.updateRatio();
-        this.debounceChanged();
-        this.disabledChanged();
-    }
-    disconnectedCallback() {
-        if (this.gesture) {
-            this.gesture.destroy();
-            this.gesture = undefined;
-        }
-    }
-    async componentDidLoad() {
-        const rangeSlider = this.rangeSlider;
-        if (rangeSlider) {
-            this.gesture = (await Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-624eea58.js */ "./node_modules/@ionic/core/dist/esm/index-624eea58.js"))).createGesture({
-                el: rangeSlider,
-                gestureName: 'range',
-                gesturePriority: 100,
-                threshold: 0,
-                onStart: ev => this.onStart(ev),
-                onMove: ev => this.onMove(ev),
-                onEnd: ev => this.onEnd(ev),
-            });
-            this.gesture.setDisabled(this.disabled);
-        }
-    }
-    getValue() {
-        const value = this.value || 0;
-        if (this.dualKnobs) {
-            if (typeof value === 'object') {
-                return value;
-            }
-            return {
-                lower: 0,
-                upper: value
-            };
-        }
-        else {
-            if (typeof value === 'object') {
-                return value.upper;
-            }
-            return value;
-        }
-    }
-    emitStyle() {
-        this.ionStyle.emit({
-            'interactive': true,
-            'interactive-disabled': this.disabled
-        });
-    }
-    onStart(detail) {
-        const rect = this.rect = this.rangeSlider.getBoundingClientRect();
-        const currentX = detail.currentX;
-        // figure out which knob they started closer to
-        let ratio = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0, (currentX - rect.left) / rect.width, 1);
-        if (document.dir === 'rtl') {
-            ratio = 1 - ratio;
-        }
-        this.pressedKnob =
-            !this.dualKnobs ||
-                Math.abs(this.ratioA - ratio) < Math.abs(this.ratioB - ratio)
-                ? 'A'
-                : 'B';
-        this.setFocus(this.pressedKnob);
-        // update the active knob's position
-        this.update(currentX);
-    }
-    onMove(detail) {
-        this.update(detail.currentX);
-    }
-    onEnd(detail) {
-        this.update(detail.currentX);
-        this.pressedKnob = undefined;
-    }
-    update(currentX) {
-        // figure out where the pointer is currently at
-        // update the knob being interacted with
-        const rect = this.rect;
-        let ratio = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0, (currentX - rect.left) / rect.width, 1);
-        if (document.dir === 'rtl') {
-            ratio = 1 - ratio;
-        }
-        if (this.snaps) {
-            // snaps the ratio to the current value
-            ratio = valueToRatio(ratioToValue(ratio, this.min, this.max, this.step), this.min, this.max);
-        }
-        // update which knob is pressed
-        if (this.pressedKnob === 'A') {
-            this.ratioA = ratio;
-        }
-        else {
-            this.ratioB = ratio;
-        }
-        // Update input value
-        this.updateValue();
-    }
-    get valA() {
-        return ratioToValue(this.ratioA, this.min, this.max, this.step);
-    }
-    get valB() {
-        return ratioToValue(this.ratioB, this.min, this.max, this.step);
-    }
-    get ratioLower() {
-        if (this.dualKnobs) {
-            return Math.min(this.ratioA, this.ratioB);
-        }
-        return 0;
-    }
-    get ratioUpper() {
-        if (this.dualKnobs) {
-            return Math.max(this.ratioA, this.ratioB);
-        }
-        return this.ratioA;
-    }
-    updateRatio() {
-        const value = this.getValue();
-        const { min, max } = this;
-        if (this.dualKnobs) {
-            this.ratioA = valueToRatio(value.lower, min, max);
-            this.ratioB = valueToRatio(value.upper, min, max);
-        }
-        else {
-            this.ratioA = valueToRatio(value, min, max);
-        }
-    }
-    updateValue() {
-        this.noUpdate = true;
-        const { valA, valB } = this;
-        this.value = !this.dualKnobs
-            ? valA
-            : {
-                lower: Math.min(valA, valB),
-                upper: Math.max(valA, valB)
-            };
-        this.noUpdate = false;
-    }
-    setFocus(knob) {
-        if (this.el.shadowRoot) {
-            const knobEl = this.el.shadowRoot.querySelector(knob === 'A' ? '.range-knob-a' : '.range-knob-b');
-            if (knobEl) {
-                knobEl.focus();
-            }
-        }
+        /**
+         * If the buffer and value are smaller than 1, the buffer circles will show.
+         * The buffer should be between [0, 1].
+         */
+        this.buffer = 1;
     }
     render() {
-        const { min, max, step, el, handleKeyboard, pressedKnob, disabled, pin, ratioLower, ratioUpper } = this;
+        const { color, type, reversed, value, buffer } = this;
+        const paused = _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__["b"].getBoolean('_testing');
         const mode = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this);
-        const barStart = `${ratioLower * 100}%`;
-        const barEnd = `${100 - ratioUpper * 100}%`;
-        const doc = document;
-        const isRTL = doc.dir === 'rtl';
-        const start = isRTL ? 'right' : 'left';
-        const end = isRTL ? 'left' : 'right';
-        const tickStyle = (tick) => {
-            return {
-                [start]: tick[start]
-            };
-        };
-        const barStyle = {
-            [start]: barStart,
-            [end]: barEnd
-        };
-        const ticks = [];
-        if (this.snaps && this.ticks) {
-            for (let value = min; value <= max; value += step) {
-                const ratio = valueToRatio(value, min, max);
-                const tick = {
-                    ratio,
-                    active: ratio >= ratioLower && ratio <= ratioUpper,
-                };
-                tick[start] = `${ratio * 100}%`;
-                ticks.push(tick);
-            }
-        }
-        Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["a"])(true, el, this.name, JSON.stringify(this.getValue()), disabled);
-        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["H"], { onFocusin: this.onFocus, onFocusout: this.onBlur, class: Object.assign(Object.assign({}, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["c"])(this.color)), { [mode]: true, 'in-item': Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["h"])('ion-item', el), 'range-disabled': disabled, 'range-pressed': pressedKnob !== undefined, 'range-has-pin': pin }) }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", { name: "start" }), Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "range-slider", ref: rangeEl => this.rangeSlider = rangeEl }, ticks.map(tick => (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { style: tickStyle(tick), role: "presentation", class: {
-                'range-tick': true,
-                'range-tick-active': tick.active
-            } }))), Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "range-bar", role: "presentation" }), Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "range-bar range-bar-active", role: "presentation", style: barStyle }), renderKnob(isRTL, {
-            knob: 'A',
-            pressed: pressedKnob === 'A',
-            value: this.valA,
-            ratio: this.ratioA,
-            pin,
-            disabled,
-            handleKeyboard,
-            min,
-            max
-        }), this.dualKnobs && renderKnob(isRTL, {
-            knob: 'B',
-            pressed: pressedKnob === 'B',
-            value: this.valB,
-            ratio: this.ratioB,
-            pin,
-            disabled,
-            handleKeyboard,
-            min,
-            max
-        })), Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", { name: "end" })));
+        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["H"], { role: "progressbar", "aria-valuenow": type === 'determinate' ? value : null, "aria-valuemin": "0", "aria-valuemax": "1", class: Object.assign(Object.assign({}, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["c"])(color)), { [mode]: true, [`progress-bar-${type}`]: true, 'progress-paused': paused, 'progress-bar-reversed': document.dir === 'rtl' ? !reversed : reversed }) }, type === 'indeterminate'
+            ? renderIndeterminate()
+            : renderProgress(value, buffer)));
     }
-    get el() { return Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this); }
-    static get watchers() { return {
-        "debounce": ["debounceChanged"],
-        "min": ["minChanged"],
-        "max": ["maxChanged"],
-        "disabled": ["disabledChanged"],
-        "value": ["valueChanged"]
-    }; }
-    static get style() { return ":host{--knob-handle-size:calc(var(--knob-size) * 2);display:-ms-flexbox;display:flex;position:relative;-ms-flex:3;flex:3;-ms-flex-align:center;align-items:center;font-family:var(--ion-font-family,inherit);-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:2}:host(.range-disabled){pointer-events:none}::slotted(ion-label){-ms-flex:initial;flex:initial}::slotted(ion-icon[slot]){font-size:24px}.range-slider{position:relative;-ms-flex:1;flex:1;width:100%;height:var(--height);contain:size layout style;cursor:-webkit-grab;cursor:grab;-ms-touch-action:pan-y;touch-action:pan-y}:host(.range-pressed) .range-slider{cursor:-webkit-grabbing;cursor:grabbing}.range-pin{position:absolute;background:var(--ion-color-base);color:var(--ion-color-contrast);-webkit-box-sizing:border-box;box-sizing:border-box}.range-knob-handle{left:0;top:calc((var(--height) - var(--knob-handle-size)) / 2);margin-left:calc(0px - var(--knob-handle-size) / 2);position:absolute;width:var(--knob-handle-size);height:var(--knob-handle-size);text-align:center}:host-context([dir=rtl]) .range-knob-handle,[dir=rtl] .range-knob-handle{right:unset;right:0}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.range-knob-handle{margin-left:unset;-webkit-margin-start:calc(0px - var(--knob-handle-size) / 2);margin-inline-start:calc(0px - var(--knob-handle-size) / 2)}}:host-context([dir=rtl]) .range-knob-handle,[dir=rtl] .range-knob-handle{left:unset}.range-knob-handle:active,.range-knob-handle:focus{outline:none}.range-bar{border-radius:var(--bar-border-radius);left:0;top:calc((var(--height) - var(--bar-height)) / 2);position:absolute;width:100%;height:var(--bar-height);background:var(--bar-background);pointer-events:none}:host-context([dir=rtl]) .range-bar,[dir=rtl] .range-bar{right:unset;right:0;left:unset}.range-knob{border-radius:var(--knob-border-radius);left:calc(50% - var(--knob-size) / 2);top:calc(50% - var(--knob-size) / 2);position:absolute;width:var(--knob-size);height:var(--knob-size);background:var(--knob-background);-webkit-box-shadow:var(--knob-box-shadow);box-shadow:var(--knob-box-shadow);z-index:2;pointer-events:none}:host-context([dir=rtl]) .range-knob,[dir=rtl] .range-knob{right:unset;right:calc(50% - var(--knob-size) / 2);left:unset}:host(.range-pressed) .range-bar-active{will-change:left,right}:host(.in-item){width:100%}:host(.in-item) ::slotted(ion-label){-ms-flex-item-align:center;align-self:center}:host{--knob-border-radius:50%;--knob-background:#fff;--knob-box-shadow:0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02);--knob-size:28px;--bar-height:2px;--bar-background:rgba(var(--ion-text-color-rgb,0,0,0),0.1);--bar-background-active:var(--ion-color-primary,#3880ff);--bar-border-radius:0;--height:42px;padding-left:16px;padding-right:16px;padding-top:8px;padding-bottom:8px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host{padding-left:unset;padding-right:unset;-webkit-padding-start:16px;padding-inline-start:16px;-webkit-padding-end:16px;padding-inline-end:16px}}:host(.ion-color) .range-bar-active,:host(.ion-color) .range-tick-active{background:var(--ion-color-base)}::slotted([slot=start]){margin-left:0;margin-right:16px;margin-top:0;margin-bottom:0}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){::slotted([slot=start]){margin-left:unset;margin-right:unset;-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:16px;margin-inline-end:16px}}::slotted([slot=end]){margin-left:16px;margin-right:0;margin-top:0;margin-bottom:0}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){::slotted([slot=end]){margin-left:unset;margin-right:unset;-webkit-margin-start:16px;margin-inline-start:16px;-webkit-margin-end:0;margin-inline-end:0}}:host(.range-has-pin){padding-top:20px}.range-bar-active{bottom:0;width:auto;background:var(--bar-background-active)}.range-tick{margin-left:-1px;border-radius:0;position:absolute;top:18px;width:2px;height:8px;background:rgba(var(--ion-text-color-rgb,0,0,0),.1);pointer-events:none}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.range-tick{margin-left:unset;-webkit-margin-start:-1px;margin-inline-start:-1px}}.range-tick-active{background:var(--bar-background-active)}.range-pin{-webkit-transform:translate3d(0,28px,0) scale(.01);transform:translate3d(0,28px,0) scale(.01);padding-left:8px;padding-right:8px;padding-top:8px;padding-bottom:8px;display:inline-block;position:relative;top:-20px;min-width:28px;-webkit-transition:-webkit-transform .12s ease;transition:-webkit-transform .12s ease;transition:transform .12s ease;transition:transform .12s ease,-webkit-transform .12s ease;background:transparent;color:var(--ion-text-color,#000);font-size:12px;text-align:center}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.range-pin{padding-left:unset;padding-right:unset;-webkit-padding-start:8px;padding-inline-start:8px;-webkit-padding-end:8px;padding-inline-end:8px}}.range-knob-pressed .range-pin{-webkit-transform:translateZ(0) scale(1);transform:translateZ(0) scale(1)}:host(.range-disabled){opacity:.5}"; }
+    static get style() { return ":host{--background:rgba(var(--ion-color-primary-rgb,56,128,255),0.2);--progress-background:var(--ion-color-primary,#3880ff);--buffer-background:var(--background);display:block;position:relative;width:100%;contain:strict;direction:ltr;overflow:hidden}:host(.ion-color){--progress-background:var(--ion-color-base);--buffer-background:rgba(var(--ion-color-base-rgb),0.2)}:host(.progress-bar-indeterminate){background:var(--buffer-background)}.buffer-circles,.indeterminate-bar-primary,.indeterminate-bar-secondary,.progress,.progress-buffer-bar,.progress-buffer-bar:before,.progress-indeterminate{left:0;right:0;top:0;bottom:0;position:absolute;width:100%;height:100%}.progress,.progress-buffer-bar{-webkit-transform-origin:left top;transform-origin:left top;-webkit-transition:-webkit-transform .15s linear;transition:-webkit-transform .15s linear;transition:transform .15s linear;transition:transform .15s linear,-webkit-transform .15s linear}.progress,.progress-indeterminate{background:var(--progress-background);z-index:2}.progress-buffer-bar{background:#fff;z-index:1}.progress-buffer-bar:before{background:var(--buffer-background);content:\"\"}.indeterminate-bar-primary{top:0;right:0;bottom:0;left:-145.166611%;-webkit-animation:primary-indeterminate-translate 2s linear infinite;animation:primary-indeterminate-translate 2s linear infinite}.indeterminate-bar-primary .progress-indeterminate{-webkit-animation:primary-indeterminate-scale 2s linear infinite;animation:primary-indeterminate-scale 2s linear infinite;-webkit-animation-play-state:inherit;animation-play-state:inherit}.indeterminate-bar-secondary{top:0;right:0;bottom:0;left:-54.888891%;-webkit-animation:secondary-indeterminate-translate 2s linear infinite;animation:secondary-indeterminate-translate 2s linear infinite}.indeterminate-bar-secondary .progress-indeterminate{-webkit-animation:secondary-indeterminate-scale 2s linear infinite;animation:secondary-indeterminate-scale 2s linear infinite;-webkit-animation-play-state:inherit;animation-play-state:inherit}.buffer-circles{background:radial-gradient(ellipse at center,var(--buffer-background) 0,var(--buffer-background) 30%,transparent 0) repeat-x 5px;background-size:10px 10px;z-index:0;-webkit-animation:buffering .45s linear infinite;animation:buffering .45s linear infinite}:host(.progress-bar-reversed) .progress,:host(.progress-bar-reversed) .progress-buffer-bar{-webkit-transform-origin:right top;transform-origin:right top}:host(.progress-bar-reversed) .buffer-circles,:host(.progress-bar-reversed) .indeterminate-bar-primary,:host(.progress-bar-reversed) .indeterminate-bar-secondary,:host(.progress-bar-reversed) .progress-indeterminate{animation-direction:reverse}:host(.progress-paused) .buffer-circles,:host(.progress-paused) .indeterminate-bar-primary,:host(.progress-paused) .indeterminate-bar-secondary{-webkit-animation-play-state:paused;animation-play-state:paused}\@-webkit-keyframes primary-indeterminate-translate{0%{-webkit-transform:translateX(0);transform:translateX(0)}20%{-webkit-animation-timing-function:cubic-bezier(.5,0,.701732,.495819);animation-timing-function:cubic-bezier(.5,0,.701732,.495819);-webkit-transform:translateX(0);transform:translateX(0)}59.15%{-webkit-animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);-webkit-transform:translateX(83.67142%);transform:translateX(83.67142%)}to{-webkit-transform:translateX(200.611057%);transform:translateX(200.611057%)}}\@keyframes primary-indeterminate-translate{0%{-webkit-transform:translateX(0);transform:translateX(0)}20%{-webkit-animation-timing-function:cubic-bezier(.5,0,.701732,.495819);animation-timing-function:cubic-bezier(.5,0,.701732,.495819);-webkit-transform:translateX(0);transform:translateX(0)}59.15%{-webkit-animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);animation-timing-function:cubic-bezier(.302435,.381352,.55,.956352);-webkit-transform:translateX(83.67142%);transform:translateX(83.67142%)}to{-webkit-transform:translateX(200.611057%);transform:translateX(200.611057%)}}\@-webkit-keyframes primary-indeterminate-scale{0%{-webkit-transform:scaleX(.08);transform:scaleX(.08)}36.65%{-webkit-animation-timing-function:cubic-bezier(.334731,.12482,.785844,1);animation-timing-function:cubic-bezier(.334731,.12482,.785844,1);-webkit-transform:scaleX(.08);transform:scaleX(.08)}69.15%{-webkit-animation-timing-function:cubic-bezier(.06,.11,.6,1);animation-timing-function:cubic-bezier(.06,.11,.6,1);-webkit-transform:scaleX(.661479);transform:scaleX(.661479)}to{-webkit-transform:scaleX(.08);transform:scaleX(.08)}}\@keyframes primary-indeterminate-scale{0%{-webkit-transform:scaleX(.08);transform:scaleX(.08)}36.65%{-webkit-animation-timing-function:cubic-bezier(.334731,.12482,.785844,1);animation-timing-function:cubic-bezier(.334731,.12482,.785844,1);-webkit-transform:scaleX(.08);transform:scaleX(.08)}69.15%{-webkit-animation-timing-function:cubic-bezier(.06,.11,.6,1);animation-timing-function:cubic-bezier(.06,.11,.6,1);-webkit-transform:scaleX(.661479);transform:scaleX(.661479)}to{-webkit-transform:scaleX(.08);transform:scaleX(.08)}}\@-webkit-keyframes secondary-indeterminate-translate{0%{-webkit-animation-timing-function:cubic-bezier(.15,0,.515058,.409685);animation-timing-function:cubic-bezier(.15,0,.515058,.409685);-webkit-transform:translateX(0);transform:translateX(0)}25%{-webkit-animation-timing-function:cubic-bezier(.31033,.284058,.8,.733712);animation-timing-function:cubic-bezier(.31033,.284058,.8,.733712);-webkit-transform:translateX(37.651913%);transform:translateX(37.651913%)}48.35%{-webkit-animation-timing-function:cubic-bezier(.4,.627035,.6,.902026);animation-timing-function:cubic-bezier(.4,.627035,.6,.902026);-webkit-transform:translateX(84.386165%);transform:translateX(84.386165%)}to{-webkit-transform:translateX(160.277782%);transform:translateX(160.277782%)}}\@keyframes secondary-indeterminate-translate{0%{-webkit-animation-timing-function:cubic-bezier(.15,0,.515058,.409685);animation-timing-function:cubic-bezier(.15,0,.515058,.409685);-webkit-transform:translateX(0);transform:translateX(0)}25%{-webkit-animation-timing-function:cubic-bezier(.31033,.284058,.8,.733712);animation-timing-function:cubic-bezier(.31033,.284058,.8,.733712);-webkit-transform:translateX(37.651913%);transform:translateX(37.651913%)}48.35%{-webkit-animation-timing-function:cubic-bezier(.4,.627035,.6,.902026);animation-timing-function:cubic-bezier(.4,.627035,.6,.902026);-webkit-transform:translateX(84.386165%);transform:translateX(84.386165%)}to{-webkit-transform:translateX(160.277782%);transform:translateX(160.277782%)}}\@-webkit-keyframes secondary-indeterminate-scale{0%{-webkit-animation-timing-function:cubic-bezier(.205028,.057051,.57661,.453971);animation-timing-function:cubic-bezier(.205028,.057051,.57661,.453971);-webkit-transform:scaleX(.08);transform:scaleX(.08)}19.15%{-webkit-animation-timing-function:cubic-bezier(.152313,.196432,.648374,1.004315);animation-timing-function:cubic-bezier(.152313,.196432,.648374,1.004315);-webkit-transform:scaleX(.457104);transform:scaleX(.457104)}44.15%{-webkit-animation-timing-function:cubic-bezier(.257759,-.003163,.211762,1.38179);animation-timing-function:cubic-bezier(.257759,-.003163,.211762,1.38179);-webkit-transform:scaleX(.72796);transform:scaleX(.72796)}to{-webkit-transform:scaleX(.08);transform:scaleX(.08)}}\@keyframes secondary-indeterminate-scale{0%{-webkit-animation-timing-function:cubic-bezier(.205028,.057051,.57661,.453971);animation-timing-function:cubic-bezier(.205028,.057051,.57661,.453971);-webkit-transform:scaleX(.08);transform:scaleX(.08)}19.15%{-webkit-animation-timing-function:cubic-bezier(.152313,.196432,.648374,1.004315);animation-timing-function:cubic-bezier(.152313,.196432,.648374,1.004315);-webkit-transform:scaleX(.457104);transform:scaleX(.457104)}44.15%{-webkit-animation-timing-function:cubic-bezier(.257759,-.003163,.211762,1.38179);animation-timing-function:cubic-bezier(.257759,-.003163,.211762,1.38179);-webkit-transform:scaleX(.72796);transform:scaleX(.72796)}to{-webkit-transform:scaleX(.08);transform:scaleX(.08)}}\@-webkit-keyframes buffering{to{-webkit-transform:translateX(-10px);transform:translateX(-10px)}}\@keyframes buffering{to{-webkit-transform:translateX(-10px);transform:translateX(-10px)}}:host{height:4px}"; }
 };
-const renderKnob = (isRTL, { knob, value, ratio, min, max, disabled, pressed, pin, handleKeyboard }) => {
-    const start = isRTL ? 'right' : 'left';
-    const knobStyle = () => {
-        const style = {};
-        style[start] = `${ratio * 100}%`;
-        return style;
-    };
-    return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { onKeyDown: (ev) => {
-            const key = ev.key;
-            if (key === 'ArrowLeft' || key === 'ArrowDown') {
-                handleKeyboard(knob, false);
-                ev.preventDefault();
-                ev.stopPropagation();
-            }
-            else if (key === 'ArrowRight' || key === 'ArrowUp') {
-                handleKeyboard(knob, true);
-                ev.preventDefault();
-                ev.stopPropagation();
-            }
-        }, class: {
-            'range-knob-handle': true,
-            'range-knob-a': knob === 'A',
-            'range-knob-b': knob === 'B',
-            'range-knob-pressed': pressed,
-            'range-knob-min': value === min,
-            'range-knob-max': value === max
-        }, style: knobStyle(), role: "slider", tabindex: disabled ? -1 : 0, "aria-valuemin": min, "aria-valuemax": max, "aria-disabled": disabled ? 'true' : null, "aria-valuenow": value }, pin && Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "range-pin", role: "presentation" }, Math.round(value)), Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "range-knob", role: "presentation" })));
+const renderIndeterminate = () => {
+    return [
+        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "indeterminate-bar-primary" }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("span", { class: "progress-indeterminate" })),
+        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "indeterminate-bar-secondary" }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("span", { class: "progress-indeterminate" }))
+    ];
 };
-const ratioToValue = (ratio, min, max, step) => {
-    let value = (max - min) * ratio;
-    if (step > 0) {
-        value = Math.round(value / step) * step + min;
-    }
-    return Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(min, value, max);
-};
-const valueToRatio = (value, min, max) => {
-    return Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0, (value - min) / (max - min), 1);
+const renderProgress = (value, buffer) => {
+    const finalValue = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0, value, 1);
+    const finalBuffer = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["c"])(0, buffer, 1);
+    return [
+        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "progress", style: { transform: `scaleX(${finalValue})` } }),
+        finalBuffer !== 1 && Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "buffer-circles" }),
+        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "progress-buffer-bar", style: { transform: `scaleX(${finalBuffer})` } }),
+    ];
 };
 
 

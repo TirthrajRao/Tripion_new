@@ -153,6 +153,7 @@ export class UserPassportDetailComponent implements OnInit {
       })
     }
   }
+  
   /**
    * Create Slider
    */

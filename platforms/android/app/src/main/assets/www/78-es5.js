@@ -1,606 +1,336 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[78],{
 
-/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-virtual-scroll.entry.js":
-/*!***************************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-virtual-scroll.entry.js ***!
-  \***************************************************************************/
-/*! exports provided: ion_virtual_scroll */
+/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-toast-md.entry.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-toast-md.entry.js ***!
+  \*********************************************************************/
+/*! exports provided: ion_toast */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_virtual_scroll", function() { return VirtualScroll; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_toast", function() { return Toast; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-ca0488fc.js */ "./node_modules/@ionic/core/dist/esm-es5/core-ca0488fc.js");
 /* harmony import */ var _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config-3c7f3790.js */ "./node_modules/@ionic/core/dist/esm-es5/config-3c7f3790.js");
+/* harmony import */ var _helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helpers-46f4a262.js */ "./node_modules/@ionic/core/dist/esm-es5/helpers-46f4a262.js");
+/* harmony import */ var _animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./animation-af478fe9.js */ "./node_modules/@ionic/core/dist/esm-es5/animation-af478fe9.js");
+/* harmony import */ var _overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./overlays-10640d86.js */ "./node_modules/@ionic/core/dist/esm-es5/overlays-10640d86.js");
+/* harmony import */ var _theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./theme-18cbe2cc.js */ "./node_modules/@ionic/core/dist/esm-es5/theme-18cbe2cc.js");
+/* harmony import */ var _index_3476b023_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./index-3476b023.js */ "./node_modules/@ionic/core/dist/esm-es5/index-3476b023.js");
 
 
 
-var CELL_TYPE_ITEM = 'item';
-var CELL_TYPE_HEADER = 'header';
-var CELL_TYPE_FOOTER = 'footer';
-var NODE_CHANGE_NONE = 0;
-var NODE_CHANGE_POSITION = 1;
-var NODE_CHANGE_CELL = 2;
-var MIN_READS = 2;
-var updateVDom = function (dom, heightIndex, cells, range) {
-    // reset dom
-    for (var _i = 0, dom_1 = dom; _i < dom_1.length; _i++) {
-        var node = dom_1[_i];
-        node.change = NODE_CHANGE_NONE;
-        node.d = true;
-    }
-    // try to match into exisiting dom
-    var toMutate = [];
-    var end = range.offset + range.length;
-    var _loop_1 = function (i) {
-        var cell = cells[i];
-        var node = dom.find(function (n) { return n.d && n.cell === cell; });
-        if (node) {
-            var top = heightIndex[i];
-            if (top !== node.top) {
-                node.top = top;
-                node.change = NODE_CHANGE_POSITION;
-            }
-            node.d = false;
-        }
-        else {
-            toMutate.push(cell);
-        }
-    };
-    for (var i = range.offset; i < end; i++) {
-        _loop_1(i);
-    }
-    // needs to append
-    var pool = dom.filter(function (n) { return n.d; });
-    var _loop_2 = function (cell) {
-        var node = pool.find(function (n) { return n.d && n.cell.type === cell.type; });
-        var index = cell.i;
-        if (node) {
-            node.d = false;
-            node.change = NODE_CHANGE_CELL;
-            node.cell = cell;
-            node.top = heightIndex[index];
-        }
-        else {
-            dom.push({
-                d: false,
-                cell: cell,
-                visible: true,
-                change: NODE_CHANGE_CELL,
-                top: heightIndex[index],
-            });
-        }
-    };
-    for (var _a = 0, toMutate_1 = toMutate; _a < toMutate_1.length; _a++) {
-        var cell = toMutate_1[_a];
-        _loop_2(cell);
-    }
-    dom
-        .filter(function (n) { return n.d && n.top !== -9999; })
-        .forEach(function (n) {
-        n.change = NODE_CHANGE_POSITION;
-        n.top = -9999;
-    });
-};
-var doRender = function (el, nodeRender, dom, updateCellHeight) {
-    var children = Array.from(el.children).filter(function (n) { return n.tagName !== 'TEMPLATE'; });
-    var childrenNu = children.length;
-    var child;
-    for (var i = 0; i < dom.length; i++) {
-        var node = dom[i];
-        var cell = node.cell;
-        // the cell change, the content must be updated
-        if (node.change === NODE_CHANGE_CELL) {
-            if (i < childrenNu) {
-                child = children[i];
-                nodeRender(child, cell, i);
-            }
-            else {
-                var newChild = createNode(el, cell.type);
-                child = nodeRender(newChild, cell, i) || newChild;
-                child.classList.add('virtual-item');
-                el.appendChild(child);
-            }
-            child['$ionCell'] = cell;
-        }
-        else {
-            child = children[i];
-        }
-        // only update position when it changes
-        if (node.change !== NODE_CHANGE_NONE) {
-            child.style.transform = "translate3d(0," + node.top + "px,0)";
-        }
-        // update visibility
-        var visible = cell.visible;
-        if (node.visible !== visible) {
-            if (visible) {
-                child.classList.remove('virtual-loading');
-            }
-            else {
-                child.classList.add('virtual-loading');
-            }
-            node.visible = visible;
-        }
-        // dynamic height
-        if (cell.reads > 0) {
-            updateCellHeight(cell, child);
-            cell.reads--;
-        }
-    }
-};
-var createNode = function (el, type) {
-    var template = getTemplate(el, type);
-    if (template && el.ownerDocument) {
-        return el.ownerDocument.importNode(template.content, true).children[0];
-    }
-    return null;
-};
-var getTemplate = function (el, type) {
-    switch (type) {
-        case CELL_TYPE_ITEM: return el.querySelector('template:not([name])');
-        case CELL_TYPE_HEADER: return el.querySelector('template[name=header]');
-        case CELL_TYPE_FOOTER: return el.querySelector('template[name=footer]');
-    }
-};
-var getViewport = function (scrollTop, vierportHeight, margin) {
-    return {
-        top: Math.max(scrollTop - margin, 0),
-        bottom: scrollTop + vierportHeight + margin
-    };
-};
-var getRange = function (heightIndex, viewport, buffer) {
-    var topPos = viewport.top;
-    var bottomPos = viewport.bottom;
-    // find top index
-    var i = 0;
-    for (; i < heightIndex.length; i++) {
-        if (heightIndex[i] > topPos) {
+
+
+
+
+
+/**
+ * iOS Toast Enter Animation
+ */
+var iosEnterAnimation = function (baseEl, position) {
+    var baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_4__["c"])();
+    var wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_4__["c"])();
+    var hostEl = baseEl.host || baseEl;
+    var wrapperEl = baseEl.querySelector('.toast-wrapper');
+    var bottom = "calc(-10px - var(--ion-safe-area-bottom, 0px))";
+    var top = "calc(10px + var(--ion-safe-area-top, 0px))";
+    wrapperAnimation.addElement(wrapperEl);
+    switch (position) {
+        case 'top':
+            wrapperAnimation.fromTo('transform', 'translateY(-100%)', "translateY(" + top + ")");
             break;
-        }
-    }
-    var offset = Math.max(i - buffer - 1, 0);
-    // find bottom index
-    for (; i < heightIndex.length; i++) {
-        if (heightIndex[i] >= bottomPos) {
+        case 'middle':
+            var topPosition = Math.floor(hostEl.clientHeight / 2 - wrapperEl.clientHeight / 2);
+            wrapperEl.style.top = topPosition + "px";
+            wrapperAnimation.fromTo('opacity', 0.01, 1);
             break;
-        }
+        default:
+            wrapperAnimation.fromTo('transform', 'translateY(100%)', "translateY(" + bottom + ")");
+            break;
     }
-    var end = Math.min(i + buffer, heightIndex.length);
-    var length = end - offset;
-    return { offset: offset, length: length };
+    return baseAnimation
+        .addElement(hostEl)
+        .easing('cubic-bezier(.155,1.105,.295,1.12)')
+        .duration(400)
+        .addAnimation(wrapperAnimation);
 };
-var getShouldUpdate = function (dirtyIndex, currentRange, range) {
-    var end = range.offset + range.length;
-    return (dirtyIndex <= end ||
-        currentRange.offset !== range.offset ||
-        currentRange.length !== range.length);
+/**
+ * iOS Toast Leave Animation
+ */
+var iosLeaveAnimation = function (baseEl, position) {
+    var baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_4__["c"])();
+    var wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_4__["c"])();
+    var hostEl = baseEl.host || baseEl;
+    var wrapperEl = baseEl.querySelector('.toast-wrapper');
+    var bottom = "calc(-10px - var(--ion-safe-area-bottom, 0px))";
+    var top = "calc(10px + var(--ion-safe-area-top, 0px))";
+    wrapperAnimation.addElement(wrapperEl);
+    switch (position) {
+        case 'top':
+            wrapperAnimation.fromTo('transform', "translateY(" + top + ")", 'translateY(-100%)');
+            break;
+        case 'middle':
+            wrapperAnimation.fromTo('opacity', 0.99, 0);
+            break;
+        default:
+            wrapperAnimation.fromTo('transform', "translateY(" + bottom + ")", 'translateY(100%)');
+            break;
+    }
+    return baseAnimation
+        .addElement(hostEl)
+        .easing('cubic-bezier(.36,.66,.04,1)')
+        .duration(300)
+        .addAnimation(wrapperAnimation);
 };
-var findCellIndex = function (cells, index) {
-    var max = cells.length > 0 ? cells[cells.length - 1].index : 0;
-    if (index === 0) {
-        return 0;
+/**
+ * MD Toast Enter Animation
+ */
+var mdEnterAnimation = function (baseEl, position) {
+    var baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_4__["c"])();
+    var wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_4__["c"])();
+    var hostEl = baseEl.host || baseEl;
+    var wrapperEl = baseEl.querySelector('.toast-wrapper');
+    var bottom = "calc(8px + var(--ion-safe-area-bottom, 0px))";
+    var top = "calc(8px + var(--ion-safe-area-top, 0px))";
+    wrapperAnimation.addElement(wrapperEl);
+    switch (position) {
+        case 'top':
+            wrapperEl.style.top = top;
+            wrapperAnimation.fromTo('opacity', 0.01, 1);
+            break;
+        case 'middle':
+            var topPosition = Math.floor(hostEl.clientHeight / 2 - wrapperEl.clientHeight / 2);
+            wrapperEl.style.top = topPosition + "px";
+            wrapperAnimation.fromTo('opacity', 0.01, 1);
+            break;
+        default:
+            wrapperEl.style.bottom = bottom;
+            wrapperAnimation.fromTo('opacity', 0.01, 1);
+            break;
     }
-    else if (index === max + 1) {
-        return cells.length;
-    }
-    else {
-        return cells.findIndex(function (c) { return c.index === index; });
-    }
+    return baseAnimation
+        .addElement(hostEl)
+        .easing('cubic-bezier(.36,.66,.04,1)')
+        .duration(400)
+        .addAnimation(wrapperAnimation);
 };
-var inplaceUpdate = function (dst, src, offset) {
-    if (offset === 0 && src.length >= dst.length) {
-        return src;
-    }
-    for (var i = 0; i < src.length; i++) {
-        dst[i + offset] = src[i];
-    }
-    return dst;
+/**
+ * md Toast Leave Animation
+ */
+var mdLeaveAnimation = function (baseEl) {
+    var baseAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_4__["c"])();
+    var wrapperAnimation = Object(_animation_af478fe9_js__WEBPACK_IMPORTED_MODULE_4__["c"])();
+    var hostEl = baseEl.host || baseEl;
+    var wrapperEl = baseEl.querySelector('.toast-wrapper');
+    wrapperAnimation
+        .addElement(wrapperEl)
+        .fromTo('opacity', 0.99, 0);
+    return baseAnimation
+        .addElement(hostEl)
+        .easing('cubic-bezier(.36,.66,.04,1)')
+        .duration(300)
+        .addAnimation(wrapperAnimation);
 };
-var calcCells = function (items, itemHeight, headerHeight, footerHeight, headerFn, footerFn, approxHeaderHeight, approxFooterHeight, approxItemHeight, j, offset, len) {
-    var cells = [];
-    var end = len + offset;
-    for (var i = offset; i < end; i++) {
-        var item = items[i];
-        if (headerFn) {
-            var value = headerFn(item, i, items);
-            if (value != null) {
-                cells.push({
-                    i: j++,
-                    type: CELL_TYPE_HEADER,
-                    value: value,
-                    index: i,
-                    height: headerHeight ? headerHeight(value, i) : approxHeaderHeight,
-                    reads: headerHeight ? 0 : MIN_READS,
-                    visible: !!headerHeight,
-                });
-            }
-        }
-        cells.push({
-            i: j++,
-            type: CELL_TYPE_ITEM,
-            value: item,
-            index: i,
-            height: itemHeight ? itemHeight(item, i) : approxItemHeight,
-            reads: itemHeight ? 0 : MIN_READS,
-            visible: !!itemHeight,
-        });
-        if (footerFn) {
-            var value = footerFn(item, i, items);
-            if (value != null) {
-                cells.push({
-                    i: j++,
-                    type: CELL_TYPE_FOOTER,
-                    value: value,
-                    index: i,
-                    height: footerHeight ? footerHeight(value, i) : approxFooterHeight,
-                    reads: footerHeight ? 0 : MIN_READS,
-                    visible: !!footerHeight,
-                });
-            }
-        }
-    }
-    return cells;
-};
-var calcHeightIndex = function (buf, cells, index) {
-    var acum = buf[index];
-    for (var i = index; i < buf.length; i++) {
-        buf[i] = acum;
-        acum += cells[i].height;
-    }
-    return acum;
-};
-var resizeBuffer = function (buf, len) {
-    if (!buf) {
-        return new Uint32Array(len);
-    }
-    if (buf.length === len) {
-        return buf;
-    }
-    else if (len > buf.length) {
-        var newBuf = new Uint32Array(len);
-        newBuf.set(buf);
-        return newBuf;
-    }
-    else {
-        return buf.subarray(0, len);
-    }
-};
-var positionForIndex = function (index, cells, heightIndex) {
-    var cell = cells.find(function (c) { return c.type === CELL_TYPE_ITEM && c.index === index; });
-    if (cell) {
-        return heightIndex[cell.i];
-    }
-    return -1;
-};
-var VirtualScroll = /** @class */ (function () {
+var Toast = /** @class */ (function () {
     function class_1(hostRef) {
-        var _this = this;
         Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
-        this.range = { offset: 0, length: 0 };
-        this.viewportHeight = 0;
-        this.cells = [];
-        this.virtualDom = [];
-        this.isEnabled = false;
-        this.viewportOffset = 0;
-        this.currentScrollTop = 0;
-        this.indexDirty = 0;
-        this.lastItemLen = 0;
-        this.totalHeight = 0;
+        this.presented = false;
+        this.mode = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
         /**
-         * It is important to provide this
-         * if virtual item height will be significantly larger than the default
-         * The approximate height of each virtual item template's cell.
-         * This dimension is used to help determine how many cells should
-         * be created when initialized, and to help calculate the height of
-         * the scrollable area. This height value can only use `px` units.
-         * Note that the actual rendered size of each cell comes from the
-         * app's CSS, whereas this approximation is used to help calculate
-         * initial dimensions before the item has been rendered.
+         * How many milliseconds to wait before hiding the toast. By default, it will show
+         * until `dismiss()` is called.
          */
-        this.approxItemHeight = 45;
+        this.duration = 0;
         /**
-         * The approximate height of each header template's cell.
-         * This dimension is used to help determine how many cells should
-         * be created when initialized, and to help calculate the height of
-         * the scrollable area. This height value can only use `px` units.
-         * Note that the actual rendered size of each cell comes from the
-         * app's CSS, whereas this approximation is used to help calculate
-         * initial dimensions before the item has been rendered.
+         * If `true`, the keyboard will be automatically dismissed when the overlay is presented.
          */
-        this.approxHeaderHeight = 30;
+        this.keyboardClose = false;
         /**
-         * The approximate width of each footer template's cell.
-         * This dimension is used to help determine how many cells should
-         * be created when initialized, and to help calculate the height of
-         * the scrollable area. This height value can only use `px` units.
-         * Note that the actual rendered size of each cell comes from the
-         * app's CSS, whereas this approximation is used to help calculate
-         * initial dimensions before the item has been rendered.
+         * The position of the toast on the screen.
          */
-        this.approxFooterHeight = 30;
-        this.onScroll = function () {
-            _this.updateVirtualScroll();
-        };
+        this.position = 'bottom';
+        /**
+         * @deprecated Use `buttons` instead. If `true`, the close button will be displayed.
+         */
+        this.showCloseButton = false;
+        /**
+         * If `true`, the toast will be translucent.
+         * Only applies when the mode is `"ios"` and the device supports
+         * [`backdrop-filter`](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility).
+         */
+        this.translucent = false;
+        /**
+         * If `true`, the toast will animate.
+         */
+        this.animated = true;
+        Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["d"])(this.el);
+        this.didPresent = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionToastDidPresent", 7);
+        this.willPresent = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionToastWillPresent", 7);
+        this.willDismiss = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionToastWillDismiss", 7);
+        this.didDismiss = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionToastDidDismiss", 7);
     }
-    class_1.prototype.itemsChanged = function () {
-        this.calcCells();
-        this.updateVirtualScroll();
-    };
-    class_1.prototype.connectedCallback = function () {
+    /**
+     * Present the toast overlay after it has been created.
+     */
+    class_1.prototype.present = function () {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-            var contentEl, _a;
-            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        contentEl = this.el.closest('ion-content');
-                        if (!contentEl) {
-                            console.error('<ion-virtual-scroll> must be used inside an <ion-content>');
-                            return [2 /*return*/];
-                        }
-                        _a = this;
-                        return [4 /*yield*/, contentEl.getScrollElement()];
+            var _this = this;
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["e"])(this, 'toastEnter', iosEnterAnimation, mdEnterAnimation, this.position)];
                     case 1:
-                        _a.scrollEl = _b.sent();
-                        this.contentEl = contentEl;
-                        this.calcCells();
-                        this.updateState();
+                        _a.sent();
+                        if (this.duration > 0) {
+                            this.durationTimeout = setTimeout(function () { return _this.dismiss(undefined, 'timeout'); }, this.duration);
+                        }
                         return [2 /*return*/];
                 }
             });
         });
     };
-    class_1.prototype.componentDidUpdate = function () {
-        this.updateState();
-    };
-    class_1.prototype.disconnectedCallback = function () {
-        this.scrollEl = undefined;
-    };
-    class_1.prototype.onResize = function () {
-        this.calcCells();
-        this.updateVirtualScroll();
-    };
     /**
-     * Returns the position of the virtual item at the given index.
-     */
-    class_1.prototype.positionForItem = function (index) {
-        return Promise.resolve(positionForIndex(index, this.cells, this.getHeightIndex()));
-    };
-    /**
-     * This method marks a subset of items as dirty, so they can be re-rendered. Items should be marked as
-     * dirty any time the content or their style changes.
+     * Dismiss the toast overlay after it has been presented.
      *
-     * The subset of items to be updated can are specifing by an offset and a length.
+     * @param data Any data to emit in the dismiss events.
+     * @param role The role of the element that is dismissing the toast.
+     * This can be useful in a button handler for determining which button was
+     * clicked to dismiss the toast.
+     * Some examples include: ``"cancel"`, `"destructive"`, "selected"`, and `"backdrop"`.
      */
-    class_1.prototype.checkRange = function (offset, len) {
-        if (len === void 0) { len = -1; }
+    class_1.prototype.dismiss = function (data, role) {
+        if (this.durationTimeout) {
+            clearTimeout(this.durationTimeout);
+        }
+        return Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["f"])(this, data, role, 'toastLeave', iosLeaveAnimation, mdLeaveAnimation, this.position);
+    };
+    /**
+     * Returns a promise that resolves when the toast did dismiss.
+     */
+    class_1.prototype.onDidDismiss = function () {
+        return Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionToastDidDismiss');
+    };
+    /**
+     * Returns a promise that resolves when the toast will dismiss.
+     */
+    class_1.prototype.onWillDismiss = function () {
+        return Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionToastWillDismiss');
+    };
+    class_1.prototype.getButtons = function () {
+        var _this = this;
+        var buttons = this.buttons
+            ? this.buttons.map(function (b) {
+                return (typeof b === 'string')
+                    ? { text: b }
+                    : b;
+            })
+            : [];
+        // tslint:disable-next-line: deprecation
+        if (this.showCloseButton) {
+            buttons.push({
+                // tslint:disable-next-line: deprecation
+                text: this.closeButtonText || 'Close',
+                handler: function () { return _this.dismiss(undefined, 'cancel'); }
+            });
+        }
+        return buttons;
+    };
+    class_1.prototype.buttonClick = function (button) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
-            var length, cellIndex, cells;
+            var role, shouldDismiss;
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-                // TODO: kind of hacky how we do in-place updated of the cells
-                // array. this part needs a complete refactor
-                if (!this.items) {
-                    return [2 /*return*/];
+                switch (_a.label) {
+                    case 0:
+                        role = button.role;
+                        if (Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["i"])(role)) {
+                            return [2 /*return*/, this.dismiss(undefined, role)];
+                        }
+                        return [4 /*yield*/, this.callButtonHandler(button)];
+                    case 1:
+                        shouldDismiss = _a.sent();
+                        if (shouldDismiss) {
+                            return [2 /*return*/, this.dismiss(undefined, button.role)];
+                        }
+                        return [2 /*return*/, Promise.resolve()];
                 }
-                length = (len === -1)
-                    ? this.items.length - offset
-                    : len;
-                cellIndex = findCellIndex(this.cells, offset);
-                cells = calcCells(this.items, this.itemHeight, this.headerHeight, this.footerHeight, this.headerFn, this.footerFn, this.approxHeaderHeight, this.approxFooterHeight, this.approxItemHeight, cellIndex, offset, length);
-                this.cells = inplaceUpdate(this.cells, cells, cellIndex);
-                this.lastItemLen = this.items.length;
-                this.indexDirty = Math.max(offset - 1, 0);
-                this.scheduleUpdate();
-                return [2 /*return*/];
             });
         });
     };
-    /**
-     * This method marks the tail the items array as dirty, so they can be re-rendered.
-     *
-     * It's equivalent to calling:
-     *
-     * ```js
-     * virtualScroll.checkRange(lastItemLen);
-     * ```
-     */
-    class_1.prototype.checkEnd = function () {
+    class_1.prototype.callButtonHandler = function (button) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
+            var rtn, e_1;
             return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
-                if (this.items) {
-                    this.checkRange(this.lastItemLen);
+                switch (_a.label) {
+                    case 0:
+                        if (!(button && button.handler)) return [3 /*break*/, 4];
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, Object(_overlays_10640d86_js__WEBPACK_IMPORTED_MODULE_5__["s"])(button.handler)];
+                    case 2:
+                        rtn = _a.sent();
+                        if (rtn === false) {
+                            // if the return value of the handler is false then do not dismiss
+                            return [2 /*return*/, false];
+                        }
+                        return [3 /*break*/, 4];
+                    case 3:
+                        e_1 = _a.sent();
+                        console.error(e_1);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/, true];
                 }
-                return [2 /*return*/];
             });
         });
     };
-    class_1.prototype.updateVirtualScroll = function () {
-        // do nothing if virtual-scroll is disabled
-        if (!this.isEnabled || !this.scrollEl) {
-            return;
-        }
-        // unschedule future updates
-        if (this.timerUpdate) {
-            clearTimeout(this.timerUpdate);
-            this.timerUpdate = undefined;
-        }
-        // schedule DOM operations into the stencil queue
-        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["f"])(this.readVS.bind(this));
-        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["w"])(this.writeVS.bind(this));
-    };
-    class_1.prototype.readVS = function () {
-        var _a = this, contentEl = _a.contentEl, scrollEl = _a.scrollEl, el = _a.el;
-        var topOffset = 0;
-        var node = el;
-        while (node && node !== contentEl) {
-            topOffset += node.offsetTop;
-            node = node.parentElement;
-        }
-        this.viewportOffset = topOffset;
-        if (scrollEl) {
-            this.viewportHeight = scrollEl.offsetHeight;
-            this.currentScrollTop = scrollEl.scrollTop;
-        }
-    };
-    class_1.prototype.writeVS = function () {
-        var dirtyIndex = this.indexDirty;
-        // get visible viewport
-        var scrollTop = this.currentScrollTop - this.viewportOffset;
-        var viewport = getViewport(scrollTop, this.viewportHeight, 100);
-        // compute lazily the height index
-        var heightIndex = this.getHeightIndex();
-        // get array bounds of visible cells base in the viewport
-        var range = getRange(heightIndex, viewport, 2);
-        // fast path, do nothing
-        var shouldUpdate = getShouldUpdate(dirtyIndex, this.range, range);
-        if (!shouldUpdate) {
-            return;
-        }
-        this.range = range;
-        // in place mutation of the virtual DOM
-        updateVDom(this.virtualDom, heightIndex, this.cells, range);
-        // Write DOM
-        // Different code paths taken depending of the render API used
-        if (this.nodeRender) {
-            doRender(this.el, this.nodeRender, this.virtualDom, this.updateCellHeight.bind(this));
-        }
-        else if (this.domRender) {
-            this.domRender(this.virtualDom);
-        }
-        else if (this.renderItem) {
-            this.el.forceUpdate();
-        }
-    };
-    class_1.prototype.updateCellHeight = function (cell, node) {
+    class_1.prototype.renderButtons = function (buttons, side) {
+        var _a;
         var _this = this;
-        var update = function () {
-            if (node['$ionCell'] === cell) {
-                var style = window.getComputedStyle(node);
-                var height = node.offsetHeight + parseFloat(style.getPropertyValue('margin-bottom'));
-                _this.setCellHeight(cell, height);
-            }
-        };
-        if (node && node.componentOnReady) {
-            node.componentOnReady().then(update);
-        }
-        else {
-            update();
-        }
-    };
-    class_1.prototype.setCellHeight = function (cell, height) {
-        var index = cell.i;
-        // the cell might changed since the height update was scheduled
-        if (cell !== this.cells[index]) {
+        if (buttons.length === 0) {
             return;
         }
-        if (cell.height !== height || cell.visible !== true) {
-            cell.visible = true;
-            cell.height = height;
-            this.indexDirty = Math.min(this.indexDirty, index);
-            this.scheduleUpdate();
-        }
-    };
-    class_1.prototype.scheduleUpdate = function () {
-        var _this = this;
-        clearTimeout(this.timerUpdate);
-        this.timerUpdate = setTimeout(function () { return _this.updateVirtualScroll(); }, 100);
-    };
-    class_1.prototype.updateState = function () {
-        var shouldEnable = !!(this.scrollEl &&
-            this.cells);
-        if (shouldEnable !== this.isEnabled) {
-            this.enableScrollEvents(shouldEnable);
-            if (shouldEnable) {
-                this.updateVirtualScroll();
-            }
-        }
-    };
-    class_1.prototype.calcCells = function () {
-        if (!this.items) {
-            return;
-        }
-        this.lastItemLen = this.items.length;
-        this.cells = calcCells(this.items, this.itemHeight, this.headerHeight, this.footerHeight, this.headerFn, this.footerFn, this.approxHeaderHeight, this.approxFooterHeight, this.approxItemHeight, 0, 0, this.lastItemLen);
-        this.indexDirty = 0;
-    };
-    class_1.prototype.getHeightIndex = function () {
-        if (this.indexDirty !== Infinity) {
-            this.calcHeightIndex(this.indexDirty);
-        }
-        return this.heightIndex;
-    };
-    class_1.prototype.calcHeightIndex = function (index) {
-        if (index === void 0) { index = 0; }
-        // TODO: optimize, we don't need to calculate all the cells
-        this.heightIndex = resizeBuffer(this.heightIndex, this.cells.length);
-        this.totalHeight = calcHeightIndex(this.heightIndex, this.cells, index);
-        this.indexDirty = Infinity;
-    };
-    class_1.prototype.enableScrollEvents = function (shouldListen) {
-        var _this = this;
-        if (this.rmEvent) {
-            this.rmEvent();
-            this.rmEvent = undefined;
-        }
-        var scrollEl = this.scrollEl;
-        if (scrollEl) {
-            this.isEnabled = shouldListen;
-            scrollEl.addEventListener('scroll', this.onScroll);
-            this.rmEvent = function () {
-                scrollEl.removeEventListener('scroll', _this.onScroll);
-            };
-        }
-    };
-    class_1.prototype.renderVirtualNode = function (node) {
-        var _a = node.cell, type = _a.type, value = _a.value, index = _a.index;
-        switch (type) {
-            case CELL_TYPE_ITEM: return this.renderItem(value, index);
-            case CELL_TYPE_HEADER: return this.renderHeader(value, index);
-            case CELL_TYPE_FOOTER: return this.renderFooter(value, index);
-        }
+        var mode = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+        var buttonGroupsClasses = (_a = {
+                'toast-button-group': true
+            },
+            _a["toast-button-group-" + side] = true,
+            _a);
+        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: buttonGroupsClasses }, buttons.map(function (b) { return Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("button", { type: "button", class: buttonClass(b), tabIndex: 0, onClick: function () { return _this.buttonClick(b); } }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-button-inner" }, b.icon &&
+            Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-icon", { icon: b.icon, slot: b.text === undefined ? 'icon-only' : undefined, class: "toast-icon" }), b.text), mode === 'md' && Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-ripple-effect", { type: b.icon !== undefined && b.text === undefined ? 'unbounded' : 'bounded' })); })));
     };
     class_1.prototype.render = function () {
-        var _this = this;
+        var _a, _b;
+        var allButtons = this.getButtons();
+        var startButtons = allButtons.filter(function (b) { return b.side === 'start'; });
+        var endButtons = allButtons.filter(function (b) { return b.side !== 'start'; });
+        var mode = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+        var wrapperClass = (_a = {
+                'toast-wrapper': true
+            },
+            _a["toast-" + this.position] = true,
+            _a);
         return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["H"], { style: {
-                height: this.totalHeight + "px"
-            } }, this.renderItem && (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])(VirtualProxy, { dom: this.virtualDom }, this.virtualDom.map(function (node) { return _this.renderVirtualNode(node); })))));
+                zIndex: "" + (60000 + this.overlayIndex),
+            }, class: Object.assign(Object.assign(Object.assign((_b = {}, _b[mode] = true, _b), Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_6__["c"])(this.color)), Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_6__["g"])(this.cssClass)), { 'toast-translucent': this.translucent }) }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: wrapperClass }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-container" }, this.renderButtons(startButtons, 'start'), Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-content" }, this.header !== undefined &&
+            Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-header" }, this.header), this.message !== undefined &&
+            Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-message", innerHTML: Object(_index_3476b023_js__WEBPACK_IMPORTED_MODULE_7__["s"])(this.message) })), this.renderButtons(endButtons, 'end')))));
     };
     Object.defineProperty(class_1.prototype, "el", {
         get: function () { return Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(class_1, "watchers", {
-        get: function () {
-            return {
-                "itemHeight": ["itemsChanged"],
-                "headerHeight": ["itemsChanged"],
-                "footerHeight": ["itemsChanged"],
-                "items": ["itemsChanged"]
-            };
-        },
-        enumerable: true,
-        configurable: true
-    });
     Object.defineProperty(class_1, "style", {
-        get: function () { return "ion-virtual-scroll{display:block;position:relative;width:100%;contain:strict;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}ion-virtual-scroll>.virtual-loading{opacity:0}ion-virtual-scroll>.virtual-item{position:absolute!important;top:0!important;right:0!important;left:0!important;-webkit-transition-duration:0ms;transition-duration:0ms;will-change:transform}"; },
+        get: function () { return ":host{--border-width:0;--border-style:none;--border-color:initial;--box-shadow:none;--min-width:auto;--width:auto;--min-height:auto;--height:auto;--max-height:auto;left:0;top:0;display:block;position:absolute;width:100%;height:100%;color:var(--color);font-family:var(--ion-font-family,inherit);contain:strict;z-index:1001;pointer-events:none}:host-context([dir=rtl]){left:unset;right:unset;right:0}:host(.overlay-hidden){display:none}:host(.ion-color){--button-color:inherit;color:var(--ion-color-contrast)}:host(.ion-color) .toast-wrapper{background:var(--ion-color-base)}.toast-wrapper{border-radius:var(--border-radius);left:var(--start);right:var(--end);width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);border-width:var(--border-width);border-style:var(--border-style);border-color:var(--border-color);background:var(--background);-webkit-box-shadow:var(--box-shadow);box-shadow:var(--box-shadow)}:host-context([dir=rtl]) .toast-wrapper,[dir=rtl] .toast-wrapper{left:unset;right:unset;left:var(--end);right:var(--start)}.toast-container{-ms-flex-align:center;align-items:center;pointer-events:auto;contain:content}.toast-container,.toast-content{display:-ms-flexbox;display:flex}.toast-content{-ms-flex:1;flex:1;-ms-flex-direction:column;flex-direction:column;-ms-flex-pack:center;justify-content:center}.toast-message{-ms-flex:1;flex:1;white-space:pre-wrap}.toast-button-group{display:-ms-flexbox;display:flex}.toast-button{border:0;outline:none;color:var(--button-color);z-index:0}.toast-icon{font-size:1.4em}.toast-button-inner{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center}\@media (any-hover:hover){.toast-button:hover{cursor:pointer}}:host{--background:var(--ion-color-step-800,#333);--border-radius:4px;--box-shadow:0 3px 5px -1px rgba(0,0,0,0.2),0 6px 10px 0 rgba(0,0,0,0.14),0 1px 18px 0 rgba(0,0,0,0.12);--button-color:var(--ion-color-primary,#3880ff);--color:var(--ion-color-step-50,#f2f2f2);--max-width:700px;--start:8px;--end:8px;font-size:14px}.toast-wrapper{margin-left:auto;margin-right:auto;margin-top:auto;margin-bottom:auto;display:block;position:absolute;opacity:.01;z-index:10}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.toast-wrapper{margin-left:unset;margin-right:unset;-webkit-margin-start:auto;margin-inline-start:auto;-webkit-margin-end:auto;margin-inline-end:auto}}.toast-content{padding-left:16px;padding-right:16px;padding-top:14px;padding-bottom:14px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.toast-content{padding-left:unset;padding-right:unset;-webkit-padding-start:16px;padding-inline-start:16px;-webkit-padding-end:16px;padding-inline-end:16px}}.toast-header{margin-bottom:2px;font-weight:500}.toast-header,.toast-message{line-height:20px}.toast-button-group-start{margin-left:8px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.toast-button-group-start{margin-left:unset;-webkit-margin-start:8px;margin-inline-start:8px}}.toast-button-group-end{margin-right:8px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.toast-button-group-end{margin-right:unset;-webkit-margin-end:8px;margin-inline-end:8px}}.toast-button{padding-left:15px;padding-right:15px;padding-top:10px;padding-bottom:10px;position:relative;background-color:transparent;font-family:var(--ion-font-family);font-size:14px;font-weight:500;letter-spacing:.84px;text-transform:uppercase;overflow:hidden}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.toast-button{padding-left:unset;padding-right:unset;-webkit-padding-start:15px;padding-inline-start:15px;-webkit-padding-end:15px;padding-inline-end:15px}}.toast-button-cancel{color:var(--ion-color-step-100,#e6e6e6)}.toast-button-icon-only{border-radius:50%;padding-left:9px;padding-right:9px;padding-top:9px;padding-bottom:9px;width:36px;height:36px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.toast-button-icon-only{padding-left:unset;padding-right:unset;-webkit-padding-start:9px;padding-inline-start:9px;-webkit-padding-end:9px;padding-inline-end:9px}}\@media (any-hover:hover){.toast-button:hover{background-color:rgba(var(--ion-color-primary-rgb,56,128,255),.08)}.toast-button-cancel:hover{background-color:rgba(var(--ion-background-color-rgb,255,255,255),.08)}}"; },
         enumerable: true,
         configurable: true
     });
     return class_1;
 }());
-var VirtualProxy = function (_a, children, utils) {
-    var dom = _a.dom;
-    return utils.map(children, function (child, i) {
-        var node = dom[i];
-        var vattrs = child.vattrs || {};
-        var classes = vattrs.class || '';
-        classes += 'virtual-item ';
-        if (!node.visible) {
-            classes += 'virtual-loading';
-        }
-        return Object.assign(Object.assign({}, child), { vattrs: Object.assign(Object.assign({}, vattrs), { class: classes, style: Object.assign(Object.assign({}, vattrs.style), { transform: "translate3d(0," + node.top + "px,0)" }) }) });
-    });
+var buttonClass = function (button) {
+    var _a;
+    return Object.assign((_a = { 'toast-button': true, 'toast-button-icon-only': button.icon !== undefined && button.text === undefined }, _a["toast-button-" + button.role] = button.role !== undefined, _a['ion-focusable'] = true, _a['ion-activatable'] = true, _a), Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_6__["g"])(button.cssClass));
 };
 
 

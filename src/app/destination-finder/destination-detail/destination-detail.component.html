@@ -2,14 +2,25 @@
   <app-header [cname]="'Details'"></app-header>
 </ion-header>
 <ion-content>
-  <div class="all_content">
+  <div class="plan_option_content">
     <div *ngIf="details">
-      <div class="general_details">
-        <div class="general_details_header">
-          <p>{{details.form_response.destination_title}}</p>
+      <div class="card plan_option_heading plan-detail-content w-100 ">
+        <h6>{{details.form_response.destination_title}}</h6>
+        <div class="plan_images" *ngIf="images.length">
+          <div class="plan_images_slide" *ngFor="let img of images">
+            <img [src]="img.image_url" onError="src = 'assets/images/placeholder.png'"
+              *ngIf="img.mime_type.includes('image')">
+          </div>
         </div>
-        <div class="general_details_body">
-          <div [innerHtml]="details.form_response.destination_data"></div>
+        <p [innerHtml]="details.form_response.destination_data"></p>
+      </div>
+      <div class="attachment-list" *ngIf="documents.length">
+        <p class="text-white ml-2 mb-2">Attachments</p>
+        <div *ngFor="let doc of documents" class="holds-the-iframe">
+          <iframe style="height:230px;cursor: pointer;padding: 5px;" class="w-100"
+            [src]="'https://docs.google.com/viewerng/viewer?url=' + doc.image_url +'&embedded=true' | safe:'resourceUrl'"
+            frameborder="0">
+          </iframe>
         </div>
       </div>
       <div class="next_btn" routerLink="/home/destination-other-detail/{{destinationId}}">

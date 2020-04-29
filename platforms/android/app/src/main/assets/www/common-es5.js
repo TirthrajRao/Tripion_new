@@ -1,5 +1,130 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["common"],{
 
+/***/ "./node_modules/@ionic-super-tabs/core/dist/esm-es5/utils-5174e079.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@ionic-super-tabs/core/dist/esm-es5/utils-5174e079.js ***!
+  \****************************************************************************/
+/*! exports provided: D, a, b, c, d, g, p, s */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return DEFAULT_CONFIG; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getNormalizedScrollX; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getTs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return checkGesture; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return debugLog; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return getScrollX; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return pointerCoord; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return scrollEl; });
+var __spreadArrays = (undefined && undefined.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
+var DEFAULT_CONFIG = {
+    dragThreshold: 10,
+    allowElementScroll: false,
+    maxDragAngle: 40,
+    sideMenuThreshold: 50,
+    transitionDuration: 300,
+    shortSwipeDuration: 300,
+    debug: false,
+    avoidElements: false,
+};
+function pointerCoord(ev) {
+    // get X coordinates for either a mouse click
+    // or a touch depending on the given event
+    if (ev) {
+        var changedTouches = ev.changedTouches;
+        if (changedTouches && changedTouches.length > 0) {
+            var touch = changedTouches[0];
+            return { x: touch.clientX, y: touch.clientY };
+        }
+        if (ev.pageX !== undefined) {
+            return { x: ev.pageX, y: ev.pageY };
+        }
+    }
+    return { x: 0, y: 0 };
+}
+var getTs = function () { return window.performance && window.performance.now ? window.performance.now() : Date.now(); };
+var easeInOutCubic = function (t) { return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1; };
+function getScrollCoord(start, dest, startTime, currentTime, duration) {
+    var time = Math.min(1, (currentTime - startTime) / duration);
+    var timeFn = easeInOutCubic(time);
+    return Math.ceil((timeFn * (dest - start)) + start);
+}
+function scroll(el, startX, startY, x, y, startTime, duration) {
+    var currentTime = getTs();
+    var scrollX = startX === x ? x : getScrollCoord(startX, x, startTime, currentTime, duration);
+    var scrollY = startY === y ? y : getScrollCoord(startY, y, startTime, currentTime, duration);
+    el.scrollTo(scrollX, scrollY);
+    if (currentTime - startTime >= duration) {
+        return;
+    }
+    requestAnimationFrame(function () {
+        scroll(el, startX, startY, x, y, startTime, duration);
+    });
+}
+var scrollEl = function (el, x, y, duration) {
+    if (duration === void 0) { duration = 300; }
+    if (duration <= 0) {
+        requestAnimationFrame(function () {
+            el.scrollTo(x, y);
+        });
+        return;
+    }
+    requestAnimationFrame(function () {
+        var startX = el.scrollLeft;
+        var startY = el.scrollTop;
+        var now = getTs();
+        scroll(el, startX, startY, x, y, now, duration);
+    });
+};
+function checkGesture(newCoords, initialCoords, config) {
+    if (!initialCoords) {
+        return false;
+    }
+    var radians = config.maxDragAngle * (Math.PI / 180);
+    var maxCosine = Math.cos(radians);
+    var deltaX = newCoords.x - initialCoords.x;
+    var deltaY = newCoords.y - initialCoords.y;
+    var distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+    if (distance >= config.dragThreshold) {
+        // swipe is long enough
+        // lets check the angle
+        var angle = Math.atan2(deltaY, deltaX);
+        var cosine = Math.cos(angle);
+        return Math.abs(cosine) > maxCosine;
+    }
+    return false;
+}
+function getScrollX(el, delta) {
+    return el.scrollLeft + (typeof delta === 'number' ? delta : 0);
+}
+function getNormalizedScrollX(el, delta) {
+    var minX = 0;
+    var maxX = el.scrollWidth - el.clientWidth;
+    var scrollX = getScrollX(el, delta);
+    scrollX = Math.max(minX, Math.min(maxX, scrollX));
+    return scrollX;
+}
+var debugStyle1 = 'background: linear-gradient(135deg,#4150b2,#f71947); border: 1px solid #9a9a9a; color: #ffffff; border-bottom-left-radius: 2px; border-top-left-radius: 2px; padding: 2px 0 2px 4px;';
+var debugStyle2 = 'background: #252b3e; border: 1px solid #9a9a9a; border-top-right-radius: 2px; border-bottom-right-radius: 2px; margin-left: -2px; padding: 2px 4px; color: white;';
+function debugLog(config, tag, vals) {
+    if (!config || !config.debug) {
+        return;
+    }
+    // Some gorgeous logging, because apparently I have lots of free time to style console logs and write this comment
+    console.log.apply(console, __spreadArrays(["%csuper-tabs %c%s", debugStyle1, debugStyle2, ' '.repeat(10 - tag.length) + tag], vals));
+}
+
+
+
+/***/ }),
+
 /***/ "./node_modules/@ionic/core/dist/esm-es5/cubic-bezier-2812fda3.js":
 /*!************************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm-es5/cubic-bezier-2812fda3.js ***!

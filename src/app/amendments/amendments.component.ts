@@ -62,6 +62,7 @@ export class AmendmentsComponent implements OnInit {
   // player: Howl = null;
   isPlaying: Boolean = false;
   progress = 0;
+  arrowIcon: any = 'fas fa-angle-down'
   constructor(
     public router: Router,
     public _userService: UserService,
@@ -156,8 +157,9 @@ export class AmendmentsComponent implements OnInit {
 
   ngOnInit() {
     // Open Footer
-    $(document).ready(function () {
-      $("#open_attachment").click(function () {
+    $(document).ready( () =>{
+      $("#open_attachment").click( ()=> {
+        this.arrowIcon = this.arrowIcon === 'fas fa-angle-down' ? 'fas fa-angle-up' : 'fas fa-angle-down'
         $(".attechments").slideToggle();
       });
     });

@@ -98,6 +98,7 @@ export class PopularityOfDestinationComponent implements OnInit {
       centerMode: true,
       centerPadding: '100px',
       slidesToShow: 1,
+      speed: 100,
     }).on('beforeChange', () => {
       console.log("change");
       this.selectPopularityIcon = 'far fa-heart';
@@ -111,6 +112,7 @@ export class PopularityOfDestinationComponent implements OnInit {
       centerMode: true,
       centerPadding: '100px',
       slidesToShow: 1,
+      speed: 100,
     }).on('beforeChange', () => {
       console.log("change");
       this.selectTravelIcon = 'far fa-heart';

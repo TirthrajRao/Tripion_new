@@ -82,6 +82,7 @@ import { MediaCapture } from '@ionic-native/media-capture/ngx';
 import { Media } from '@ionic-native/media/ngx';
 import { SafePipe } from '.././safe.pipe';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { SuperTabsModule } from '@ionic-super-tabs/angular';
 
 export class IonicGestureConfig extends HammerGestureConfig {
   buildHammer(element: HTMLElement) {
@@ -107,6 +108,7 @@ export class IonicGestureConfig extends HammerGestureConfig {
     ReactiveFormsModule,
     LongPressModule,
     NgxDocViewerModule,
+    SuperTabsModule,
     RouterModule.forChild([
       {
         path: '',

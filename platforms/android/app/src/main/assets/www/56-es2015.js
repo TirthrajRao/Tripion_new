@@ -1,372 +1,305 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[56],{
 
-/***/ "./node_modules/@ionic/core/dist/esm/ion-searchbar-ios.entry.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/ion-searchbar-ios.entry.js ***!
-  \**********************************************************************/
-/*! exports provided: ion_searchbar */
+/***/ "./node_modules/@ionic/core/dist/esm/ion-reorder_2-md.entry.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm/ion-reorder_2-md.entry.js ***!
+  \*********************************************************************/
+/*! exports provided: ion_reorder, ion_reorder_group */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_searchbar", function() { return Searchbar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_reorder", function() { return Reorder; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_reorder_group", function() { return ReorderGroup; });
 /* harmony import */ var _core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core-ca0488fc.js */ "./node_modules/@ionic/core/dist/esm/core-ca0488fc.js");
 /* harmony import */ var _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config-3c7f3790.js */ "./node_modules/@ionic/core/dist/esm/config-3c7f3790.js");
-/* harmony import */ var _helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers-46f4a262.js */ "./node_modules/@ionic/core/dist/esm/helpers-46f4a262.js");
-/* harmony import */ var _theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./theme-18cbe2cc.js */ "./node_modules/@ionic/core/dist/esm/theme-18cbe2cc.js");
-/* harmony import */ var _index_3476b023_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./index-3476b023.js */ "./node_modules/@ionic/core/dist/esm/index-3476b023.js");
+/* harmony import */ var _haptic_c8f1473e_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./haptic-c8f1473e.js */ "./node_modules/@ionic/core/dist/esm/haptic-c8f1473e.js");
 
 
 
 
-
-
-const Searchbar = class {
+const Reorder = class {
     constructor(hostRef) {
         Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
-        this.isCancelVisible = false;
-        this.shouldAlignLeft = true;
-        this.focused = false;
-        this.noAnimate = true;
-        /**
-         * If `true`, enable searchbar animation.
-         */
-        this.animated = false;
-        /**
-         * Set the input's autocomplete property.
-         */
-        this.autocomplete = 'off';
-        /**
-         * Set the input's autocorrect property.
-         */
-        this.autocorrect = 'off';
-        /**
-         * Set the cancel button icon. Only applies to `md` mode.
-         */
-        this.cancelButtonIcon = 'md-arrow-back';
-        /**
-         * Set the the cancel button text. Only applies to `ios` mode.
-         */
-        this.cancelButtonText = 'Cancel';
-        /**
-         * Set the amount of time, in milliseconds, to wait to trigger the `ionChange` event after each keystroke.
-         */
-        this.debounce = 250;
-        /**
-         * If `true`, the user cannot interact with the input.
-         */
-        this.disabled = false;
-        /**
-         * A hint to the browser for which keyboard to display.
-         * Possible values: `"none"`, `"text"`, `"tel"`, `"url"`,
-         * `"email"`, `"numeric"`, `"decimal"`, and `"search"`.
-         */
-        this.inputmode = 'search';
-        /**
-         * Set the input's placeholder.
-         * `placeholder` can accept either plaintext or HTML as a string.
-         * To display characters normally reserved for HTML, they
-         * must be escaped. For example `<Ionic>` would become
-         * `&lt;Ionic&gt;`
-         *
-         * For more information: [Security Documentation](https://ionicframework.com/docs/faq/security)
-         */
-        this.placeholder = 'Search';
-        /**
-         * The icon to use as the search icon.
-         */
-        this.searchIcon = 'search';
-        /**
-         * Sets the behavior for the cancel button. Defaults to `"never"`.
-         * Setting to `"focus"` shows the cancel button on focus.
-         * Setting to `"never"` hides the cancel button.
-         * Setting to `"always"` shows the cancel button regardless
-         * of focus state.
-         */
-        this.showCancelButton = 'never';
-        /**
-         * If `true`, enable spellcheck on the input.
-         */
-        this.spellcheck = false;
-        /**
-         * Set the type of the input.
-         */
-        this.type = 'search';
-        /**
-         * the value of the searchbar.
-         */
-        this.value = '';
-        /**
-         * Clears the input field and triggers the control change.
-         */
-        this.onClearInput = (ev) => {
-            this.ionClear.emit();
-            if (ev) {
-                ev.preventDefault();
-                ev.stopPropagation();
-            }
-            // setTimeout() fixes https://github.com/ionic-team/ionic/issues/7527
-            // wait for 4 frames
-            setTimeout(() => {
-                const value = this.getValue();
-                if (value !== '') {
-                    this.value = '';
-                    this.ionInput.emit();
-                }
-            }, 16 * 4);
-        };
-        /**
-         * Clears the input field and tells the input to blur since
-         * the clearInput function doesn't want the input to blur
-         * then calls the custom cancel function if the user passed one in.
-         */
-        this.onCancelSearchbar = (ev) => {
-            if (ev) {
-                ev.preventDefault();
-                ev.stopPropagation();
-            }
-            this.ionCancel.emit();
-            this.onClearInput();
-            if (this.nativeInput) {
-                this.nativeInput.blur();
-            }
-        };
-        /**
-         * Update the Searchbar input value when the input changes
-         */
-        this.onInput = (ev) => {
-            const input = ev.target;
-            if (input) {
-                this.value = input.value;
-            }
-            this.ionInput.emit(ev);
-        };
-        /**
-         * Sets the Searchbar to not focused and checks if it should align left
-         * based on whether there is a value in the searchbar or not.
-         */
-        this.onBlur = () => {
-            this.focused = false;
-            this.ionBlur.emit();
-            this.positionElements();
-        };
-        /**
-         * Sets the Searchbar to focused and active on input focus.
-         */
-        this.onFocus = () => {
-            this.focused = true;
-            this.ionFocus.emit();
-            this.positionElements();
-        };
-        this.ionInput = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionInput", 7);
-        this.ionChange = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionChange", 7);
-        this.ionCancel = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionCancel", 7);
-        this.ionClear = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionClear", 7);
-        this.ionBlur = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionBlur", 7);
-        this.ionFocus = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionFocus", 7);
-        this.ionStyle = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionStyle", 7);
     }
-    debounceChanged() {
-        this.ionChange = Object(_helpers_46f4a262_js__WEBPACK_IMPORTED_MODULE_2__["d"])(this.ionChange, this.debounce);
-    }
-    valueChanged() {
-        const inputEl = this.nativeInput;
-        const value = this.getValue();
-        if (inputEl && inputEl.value !== value) {
-            inputEl.value = value;
-        }
-        this.ionChange.emit({ value });
-    }
-    showCancelButtonChanged() {
-        requestAnimationFrame(() => {
-            this.positionElements();
-            this.el.forceUpdate();
-        });
-    }
-    connectedCallback() {
-        this.emitStyle();
-    }
-    componentDidLoad() {
-        if (this.showCancelButton === 'false' || this.showCancelButton === false) {
-            console.warn('The boolean values of showCancelButton are deprecated. Please use "never" instead of "false".');
-        }
-        if (this.showCancelButton === '' || this.showCancelButton === 'true' || this.showCancelButton === true) {
-            console.warn('The boolean values of showCancelButton are deprecated. Please use "focus" instead of "true".');
-        }
-        this.positionElements();
-        this.debounceChanged();
-        setTimeout(() => {
-            this.noAnimate = false;
-        }, 300);
-    }
-    emitStyle() {
-        this.ionStyle.emit({
-            'searchbar': true
-        });
-    }
-    /**
-     * Sets focus on the specified `ion-searchbar`. Use this method instead of the global
-     * `input.focus()`.
-     */
-    async setFocus() {
-        if (this.nativeInput) {
-            this.nativeInput.focus();
-        }
-    }
-    /**
-     * Returns the native `<input>` element used under the hood.
-     */
-    getInputElement() {
-        return Promise.resolve(this.nativeInput);
-    }
-    /**
-     * Positions the input search icon, placeholder, and the cancel button
-     * based on the input value and if it is focused. (ios only)
-     */
-    positionElements() {
-        const value = this.getValue();
-        const prevAlignLeft = this.shouldAlignLeft;
-        const mode = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this);
-        const shouldAlignLeft = (!this.animated || value.trim() !== '' || !!this.focused);
-        this.shouldAlignLeft = shouldAlignLeft;
-        if (mode !== 'ios') {
-            return;
-        }
-        if (prevAlignLeft !== shouldAlignLeft) {
-            this.positionPlaceholder();
-        }
-        if (this.animated) {
-            this.positionCancelButton();
-        }
-    }
-    /**
-     * Positions the input placeholder
-     */
-    positionPlaceholder() {
-        const inputEl = this.nativeInput;
-        if (!inputEl) {
-            return;
-        }
-        const isRTL = document.dir === 'rtl';
-        const iconEl = (this.el.shadowRoot || this.el).querySelector('.searchbar-search-icon');
-        if (this.shouldAlignLeft) {
-            inputEl.removeAttribute('style');
-            iconEl.removeAttribute('style');
-        }
-        else {
-            // Create a dummy span to get the placeholder width
-            const doc = document;
-            const tempSpan = doc.createElement('span');
-            tempSpan.innerHTML = Object(_index_3476b023_js__WEBPACK_IMPORTED_MODULE_4__["s"])(this.placeholder) || '';
-            doc.body.appendChild(tempSpan);
-            // Get the width of the span then remove it
-            const textWidth = tempSpan.offsetWidth;
-            tempSpan.remove();
-            // Calculate the input padding
-            const inputLeft = 'calc(50% - ' + (textWidth / 2) + 'px)';
-            // Calculate the icon margin
-            const iconLeft = 'calc(50% - ' + ((textWidth / 2) + 30) + 'px)';
-            // Set the input padding start and icon margin start
-            if (isRTL) {
-                inputEl.style.paddingRight = inputLeft;
-                iconEl.style.marginRight = iconLeft;
-            }
-            else {
-                inputEl.style.paddingLeft = inputLeft;
-                iconEl.style.marginLeft = iconLeft;
-            }
-        }
-    }
-    /**
-     * Show the iOS Cancel button on focus, hide it offscreen otherwise
-     */
-    positionCancelButton() {
-        const isRTL = document.dir === 'rtl';
-        const cancelButton = (this.el.shadowRoot || this.el).querySelector('.searchbar-cancel-button');
-        const shouldShowCancel = this.shouldShowCancelButton();
-        if (cancelButton && shouldShowCancel !== this.isCancelVisible) {
-            const cancelStyle = cancelButton.style;
-            this.isCancelVisible = shouldShowCancel;
-            if (shouldShowCancel) {
-                if (isRTL) {
-                    cancelStyle.marginLeft = '0';
-                }
-                else {
-                    cancelStyle.marginRight = '0';
-                }
-            }
-            else {
-                const offset = cancelButton.offsetWidth;
-                if (offset > 0) {
-                    if (isRTL) {
-                        cancelStyle.marginLeft = -offset + 'px';
-                    }
-                    else {
-                        cancelStyle.marginRight = -offset + 'px';
-                    }
-                }
-            }
-        }
-    }
-    getValue() {
-        return this.value || '';
-    }
-    hasValue() {
-        return this.getValue() !== '';
-    }
-    /**
-     * Determines whether or not the cancel button should be visible onscreen.
-     * Cancel button should be shown if one of two conditions applies:
-     * 1. `showCancelButton` is set to `always`.
-     * 2. `showCancelButton` is set to `focus`, and the searchbar has been focused.
-     */
-    shouldShowCancelButton() {
-        if (isCancelButtonSetToNever(this.showCancelButton) ||
-            (isCancelButtonSetToFocus(this.showCancelButton) && !this.focused)) {
-            return false;
-        }
-        return true;
+    onClick(ev) {
+        ev.preventDefault();
+        ev.stopImmediatePropagation();
     }
     render() {
-        const animated = this.animated && _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_1__["b"].getBoolean('animated', true);
+        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["H"], { class: Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this) }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-icon", { name: "reorder", lazy: false, class: "reorder-icon" }))));
+    }
+    static get style() { return ":host([slot]){display:none;line-height:0;z-index:100}.reorder-icon{display:block;font-size:22px;font-size:31px;opacity:.3}"; }
+};
+
+const ReorderGroup = class {
+    constructor(hostRef) {
+        Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+        this.lastToIndex = -1;
+        this.cachedHeights = [];
+        this.scrollElTop = 0;
+        this.scrollElBottom = 0;
+        this.scrollElInitial = 0;
+        this.containerTop = 0;
+        this.containerBottom = 0;
+        this.state = 0 /* Idle */;
+        /**
+         * If `true`, the reorder will be hidden.
+         */
+        this.disabled = true;
+        this.ionItemReorder = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionItemReorder", 7);
+    }
+    disabledChanged() {
+        if (this.gesture) {
+            this.gesture.setDisabled(this.disabled);
+        }
+    }
+    async connectedCallback() {
+        const contentEl = this.el.closest('ion-content');
+        if (contentEl) {
+            this.scrollEl = await contentEl.getScrollElement();
+        }
+        this.gesture = (await Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-624eea58.js */ "./node_modules/@ionic/core/dist/esm/index-624eea58.js"))).createGesture({
+            el: this.el,
+            gestureName: 'reorder',
+            gesturePriority: 110,
+            threshold: 0,
+            direction: 'y',
+            passive: false,
+            canStart: detail => this.canStart(detail),
+            onStart: ev => this.onStart(ev),
+            onMove: ev => this.onMove(ev),
+            onEnd: () => this.onEnd(),
+        });
+        this.disabledChanged();
+    }
+    disconnectedCallback() {
+        this.onEnd();
+        if (this.gesture) {
+            this.gesture.destroy();
+            this.gesture = undefined;
+        }
+    }
+    /**
+     * Completes the reorder operation. Must be called by the `ionItemReorder` event.
+     *
+     * If a list of items is passed, the list will be reordered and returned in the
+     * proper order.
+     *
+     * If no parameters are passed or if `true` is passed in, the reorder will complete
+     * and the item will remain in the position it was dragged to. If `false` is passed,
+     * the reorder will complete and the item will bounce back to its original position.
+     *
+     * @param listOrReorder A list of items to be sorted and returned in the new order or a
+     * boolean of whether or not the reorder should reposition the item.
+     */
+    complete(listOrReorder) {
+        return Promise.resolve(this.completeSync(listOrReorder));
+    }
+    canStart(ev) {
+        if (this.selectedItemEl || this.state !== 0 /* Idle */) {
+            return false;
+        }
+        const target = ev.event.target;
+        const reorderEl = target.closest('ion-reorder');
+        if (!reorderEl) {
+            return false;
+        }
+        const item = findReorderItem(reorderEl, this.el);
+        if (!item) {
+            return false;
+        }
+        ev.data = item;
+        return true;
+    }
+    onStart(ev) {
+        ev.event.preventDefault();
+        const item = this.selectedItemEl = ev.data;
+        const heights = this.cachedHeights;
+        heights.length = 0;
+        const el = this.el;
+        const children = el.children;
+        if (!children || children.length === 0) {
+            return;
+        }
+        let sum = 0;
+        for (let i = 0; i < children.length; i++) {
+            const child = children[i];
+            sum += child.offsetHeight;
+            heights.push(sum);
+            child.$ionIndex = i;
+        }
+        const box = el.getBoundingClientRect();
+        this.containerTop = box.top;
+        this.containerBottom = box.bottom;
+        if (this.scrollEl) {
+            const scrollBox = this.scrollEl.getBoundingClientRect();
+            this.scrollElInitial = this.scrollEl.scrollTop;
+            this.scrollElTop = scrollBox.top + AUTO_SCROLL_MARGIN;
+            this.scrollElBottom = scrollBox.bottom - AUTO_SCROLL_MARGIN;
+        }
+        else {
+            this.scrollElInitial = 0;
+            this.scrollElTop = 0;
+            this.scrollElBottom = 0;
+        }
+        this.lastToIndex = indexForItem(item);
+        this.selectedItemHeight = item.offsetHeight;
+        this.state = 1 /* Active */;
+        item.classList.add(ITEM_REORDER_SELECTED);
+        Object(_haptic_c8f1473e_js__WEBPACK_IMPORTED_MODULE_2__["a"])();
+    }
+    onMove(ev) {
+        const selectedItem = this.selectedItemEl;
+        if (!selectedItem) {
+            return;
+        }
+        // Scroll if we reach the scroll margins
+        const scroll = this.autoscroll(ev.currentY);
+        // // Get coordinate
+        const top = this.containerTop - scroll;
+        const bottom = this.containerBottom - scroll;
+        const currentY = Math.max(top, Math.min(ev.currentY, bottom));
+        const deltaY = scroll + currentY - ev.startY;
+        const normalizedY = currentY - top;
+        const toIndex = this.itemIndexForTop(normalizedY);
+        if (toIndex !== this.lastToIndex) {
+            const fromIndex = indexForItem(selectedItem);
+            this.lastToIndex = toIndex;
+            Object(_haptic_c8f1473e_js__WEBPACK_IMPORTED_MODULE_2__["b"])();
+            this.reorderMove(fromIndex, toIndex);
+        }
+        // Update selected item position
+        selectedItem.style.transform = `translateY(${deltaY}px)`;
+    }
+    onEnd() {
+        const selectedItemEl = this.selectedItemEl;
+        this.state = 2 /* Complete */;
+        if (!selectedItemEl) {
+            this.state = 0 /* Idle */;
+            return;
+        }
+        const toIndex = this.lastToIndex;
+        const fromIndex = indexForItem(selectedItemEl);
+        if (toIndex === fromIndex) {
+            this.completeSync();
+        }
+        else {
+            this.ionItemReorder.emit({
+                from: fromIndex,
+                to: toIndex,
+                complete: this.completeSync.bind(this)
+            });
+        }
+        Object(_haptic_c8f1473e_js__WEBPACK_IMPORTED_MODULE_2__["c"])();
+    }
+    completeSync(listOrReorder) {
+        const selectedItemEl = this.selectedItemEl;
+        if (selectedItemEl && this.state === 2 /* Complete */) {
+            const children = this.el.children;
+            const len = children.length;
+            const toIndex = this.lastToIndex;
+            const fromIndex = indexForItem(selectedItemEl);
+            if (toIndex !== fromIndex && (!listOrReorder || listOrReorder === true)) {
+                const ref = (fromIndex < toIndex)
+                    ? children[toIndex + 1]
+                    : children[toIndex];
+                this.el.insertBefore(selectedItemEl, ref);
+            }
+            if (Array.isArray(listOrReorder)) {
+                listOrReorder = reorderArray(listOrReorder, fromIndex, toIndex);
+            }
+            for (let i = 0; i < len; i++) {
+                children[i].style['transform'] = '';
+            }
+            selectedItemEl.style.transition = '';
+            selectedItemEl.classList.remove(ITEM_REORDER_SELECTED);
+            this.selectedItemEl = undefined;
+            this.state = 0 /* Idle */;
+        }
+        return listOrReorder;
+    }
+    itemIndexForTop(deltaY) {
+        const heights = this.cachedHeights;
+        let i = 0;
+        // TODO: since heights is a sorted array of integers, we can do
+        // speed up the search using binary search. Remember that linear-search is still
+        // faster than binary-search for small arrays (<64) due CPU branch misprediction.
+        for (i = 0; i < heights.length; i++) {
+            if (heights[i] > deltaY) {
+                break;
+            }
+        }
+        return i;
+    }
+    /********* DOM WRITE ********* */
+    reorderMove(fromIndex, toIndex) {
+        const itemHeight = this.selectedItemHeight;
+        const children = this.el.children;
+        for (let i = 0; i < children.length; i++) {
+            const style = children[i].style;
+            let value = '';
+            if (i > fromIndex && i <= toIndex) {
+                value = `translateY(${-itemHeight}px)`;
+            }
+            else if (i < fromIndex && i >= toIndex) {
+                value = `translateY(${itemHeight}px)`;
+            }
+            style['transform'] = value;
+        }
+    }
+    autoscroll(posY) {
+        if (!this.scrollEl) {
+            return 0;
+        }
+        let amount = 0;
+        if (posY < this.scrollElTop) {
+            amount = -SCROLL_JUMP;
+        }
+        else if (posY > this.scrollElBottom) {
+            amount = SCROLL_JUMP;
+        }
+        if (amount !== 0) {
+            this.scrollEl.scrollBy(0, amount);
+        }
+        return this.scrollEl.scrollTop - this.scrollElInitial;
+    }
+    render() {
         const mode = Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this);
-        const clearIcon = this.clearIcon || (mode === 'ios' ? 'ios-close-circle' : 'md-close');
-        const searchIcon = this.searchIcon;
-        const cancelButton = !isCancelButtonSetToNever(this.showCancelButton) && (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", { "aria-label": "cancel", type: "button", tabIndex: mode === 'ios' && !this.shouldShowCancelButton() ? -1 : undefined, onMouseDown: this.onCancelSearchbar, onTouchStart: this.onCancelSearchbar, class: "searchbar-cancel-button" }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", null, mode === 'md'
-            ? Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-icon", { "aria-hidden": "true", mode: mode, icon: this.cancelButtonIcon, lazy: false })
-            : this.cancelButtonText)));
-        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["H"], { role: "search", "aria-disabled": this.disabled ? 'true' : null, class: Object.assign(Object.assign({}, Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_3__["c"])(this.color)), { [mode]: true, 'searchbar-animated': animated, 'searchbar-disabled': this.disabled, 'searchbar-no-animate': animated && this.noAnimate, 'searchbar-has-value': this.hasValue(), 'searchbar-left-aligned': this.shouldAlignLeft, 'searchbar-has-focus': this.focused, 'searchbar-should-show-cancel': this.shouldShowCancelButton() }) }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "searchbar-input-container" }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("input", { "aria-label": "search text", disabled: this.disabled, ref: el => this.nativeInput = el, class: "searchbar-input", inputMode: this.inputmode, onInput: this.onInput, onBlur: this.onBlur, onFocus: this.onFocus, placeholder: this.placeholder, type: this.type, value: this.getValue(), autoComplete: this.autocomplete, autoCorrect: this.autocorrect, spellCheck: this.spellcheck }), mode === 'md' && cancelButton, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-icon", { mode: mode, icon: searchIcon, lazy: false, class: "searchbar-search-icon" }), Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", { "aria-label": "reset", type: "button", "no-blur": true, class: "searchbar-clear-button", onMouseDown: this.onClearInput, onTouchStart: this.onClearInput }, Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-icon", { "aria-hidden": "true", mode: mode, icon: clearIcon, lazy: false, class: "searchbar-clear-icon" }))), mode === 'ios' && cancelButton));
+        return (Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["H"], { class: {
+                [mode]: true,
+                'reorder-enabled': !this.disabled,
+                'reorder-list-active': this.state !== 0 /* Idle */,
+            } }));
     }
     get el() { return Object(_core_ca0488fc_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this); }
     static get watchers() { return {
-        "debounce": ["debounceChanged"],
-        "value": ["valueChanged"],
-        "showCancelButton": ["showCancelButtonChanged"]
+        "disabled": ["disabledChanged"]
     }; }
-    static get style() { return ".sc-ion-searchbar-ios-h{--placeholder-color:initial;--placeholder-font-style:initial;--placeholder-font-weight:initial;--placeholder-opacity:.5;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:-ms-flexbox;display:flex;position:relative;-ms-flex-align:center;align-items:center;width:100%;color:var(--color);font-family:var(--ion-font-family,inherit);-webkit-box-sizing:border-box;box-sizing:border-box}.ion-color.sc-ion-searchbar-ios-h{color:var(--ion-color-contrast)}.ion-color.sc-ion-searchbar-ios-h .searchbar-input.sc-ion-searchbar-ios{background:var(--ion-color-base)}.ion-color.sc-ion-searchbar-ios-h .searchbar-cancel-button.sc-ion-searchbar-ios, .ion-color.sc-ion-searchbar-ios-h .searchbar-clear-button.sc-ion-searchbar-ios, .ion-color.sc-ion-searchbar-ios-h .searchbar-search-icon.sc-ion-searchbar-ios{color:inherit}.searchbar-search-icon.sc-ion-searchbar-ios{color:var(--icon-color);pointer-events:none}.searchbar-input-container.sc-ion-searchbar-ios{display:block;position:relative;-ms-flex-negative:1;flex-shrink:1;width:100%}.searchbar-input.sc-ion-searchbar-ios{font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;text-decoration:inherit;text-overflow:inherit;text-transform:inherit;text-align:inherit;white-space:inherit;color:inherit;-webkit-box-sizing:border-box;box-sizing:border-box;display:block;width:100%;border:0;outline:none;background:var(--background);font-family:inherit;-webkit-appearance:none;-moz-appearance:none;appearance:none}.searchbar-input.sc-ion-searchbar-ios::-webkit-input-placeholder{color:var(--placeholder-color);font-family:inherit;font-style:var(--placeholder-font-style);font-weight:var(--placeholder-font-weight);opacity:var(--placeholder-opacity)}.searchbar-input.sc-ion-searchbar-ios::-moz-placeholder{color:var(--placeholder-color);font-family:inherit;font-style:var(--placeholder-font-style);font-weight:var(--placeholder-font-weight);opacity:var(--placeholder-opacity)}.searchbar-input.sc-ion-searchbar-ios:-ms-input-placeholder{color:var(--placeholder-color);font-family:inherit;font-style:var(--placeholder-font-style);font-weight:var(--placeholder-font-weight);opacity:var(--placeholder-opacity)}.searchbar-input.sc-ion-searchbar-ios::-ms-input-placeholder{color:var(--placeholder-color);font-family:inherit;font-style:var(--placeholder-font-style);font-weight:var(--placeholder-font-weight);opacity:var(--placeholder-opacity)}.searchbar-input.sc-ion-searchbar-ios::placeholder{color:var(--placeholder-color);font-family:inherit;font-style:var(--placeholder-font-style);font-weight:var(--placeholder-font-weight);opacity:var(--placeholder-opacity)}.searchbar-input.sc-ion-searchbar-ios::-ms-clear, .searchbar-input.sc-ion-searchbar-ios::-webkit-search-cancel-button{display:none}.searchbar-cancel-button.sc-ion-searchbar-ios{margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;display:none;height:100%;border:0;outline:none;color:var(--cancel-button-color);cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none}.searchbar-cancel-button.sc-ion-searchbar-ios > div.sc-ion-searchbar-ios{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;width:100%;height:100%}.searchbar-clear-button.sc-ion-searchbar-ios{margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding-left:0;padding-right:0;padding-top:0;padding-bottom:0;display:none;min-height:0;outline:none;color:var(--clear-button-color);-webkit-appearance:none;-moz-appearance:none;appearance:none}.searchbar-has-value.searchbar-has-focus.sc-ion-searchbar-ios-h .searchbar-clear-button.sc-ion-searchbar-ios{display:block}.searchbar-disabled.sc-ion-searchbar-ios-h{cursor:default;opacity:.4;pointer-events:none}.sc-ion-searchbar-ios-h{--clear-button-color:var(--ion-color-step-600,#666);--cancel-button-color:var(--ion-color-primary,#3880ff);--color:var(--ion-text-color,#000);--icon-color:var(--ion-color-step-600,#666);--background:rgba(var(--ion-text-color-rgb,0,0,0),0.07);padding-left:12px;padding-right:12px;padding-top:12px;padding-bottom:12px;height:60px;contain:strict}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.sc-ion-searchbar-ios-h{padding-left:unset;padding-right:unset;-webkit-padding-start:12px;padding-inline-start:12px;-webkit-padding-end:12px;padding-inline-end:12px}}.searchbar-input-container.sc-ion-searchbar-ios{height:36px;contain:strict}.searchbar-search-icon.sc-ion-searchbar-ios{margin-left:calc(50% - 60px);left:5px;top:0;position:absolute;width:22px;height:100%;contain:strict}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.searchbar-search-icon.sc-ion-searchbar-ios{margin-left:unset;-webkit-margin-start:calc(50% - 60px);margin-inline-start:calc(50% - 60px)}}[dir=rtl].sc-ion-searchbar-ios-h .searchbar-search-icon.sc-ion-searchbar-ios, [dir=rtl] .sc-ion-searchbar-ios-h .searchbar-search-icon.sc-ion-searchbar-ios, [dir=rtl].sc-ion-searchbar-ios .searchbar-search-icon.sc-ion-searchbar-ios{left:unset;right:unset;right:5px}.searchbar-input.sc-ion-searchbar-ios{padding-left:28px;padding-right:28px;padding-top:0;padding-bottom:0;border-radius:10px;height:100%;font-size:17px;font-weight:400;contain:strict}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.searchbar-input.sc-ion-searchbar-ios{padding-left:unset;padding-right:unset;-webkit-padding-start:28px;padding-inline-start:28px;-webkit-padding-end:28px;padding-inline-end:28px}}.searchbar-clear-button.sc-ion-searchbar-ios{right:0;top:0;background-position:50%;position:absolute;width:30px;height:100%;border:0;background-color:transparent}[dir=rtl].sc-ion-searchbar-ios-h .searchbar-clear-button.sc-ion-searchbar-ios, [dir=rtl] .sc-ion-searchbar-ios-h .searchbar-clear-button.sc-ion-searchbar-ios, [dir=rtl].sc-ion-searchbar-ios .searchbar-clear-button.sc-ion-searchbar-ios{left:unset;right:unset;left:0}.searchbar-clear-icon.sc-ion-searchbar-ios{width:18px;height:100%}.searchbar-cancel-button.sc-ion-searchbar-ios{padding-left:8px;padding-right:0;padding-top:0;padding-bottom:0;-ms-flex-negative:0;flex-shrink:0;background-color:transparent;font-size:16px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.searchbar-cancel-button.sc-ion-searchbar-ios{padding-left:unset;padding-right:unset;-webkit-padding-start:8px;padding-inline-start:8px;-webkit-padding-end:0;padding-inline-end:0}}.searchbar-left-aligned.sc-ion-searchbar-ios-h .searchbar-search-icon.sc-ion-searchbar-ios{margin-left:0}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.searchbar-left-aligned.sc-ion-searchbar-ios-h .searchbar-search-icon.sc-ion-searchbar-ios{margin-left:unset;-webkit-margin-start:0;margin-inline-start:0}}.searchbar-left-aligned.sc-ion-searchbar-ios-h .searchbar-input.sc-ion-searchbar-ios{padding-left:30px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.searchbar-left-aligned.sc-ion-searchbar-ios-h .searchbar-input.sc-ion-searchbar-ios{padding-left:unset;-webkit-padding-start:30px;padding-inline-start:30px}}.searchbar-animated.sc-ion-searchbar-ios-h .searchbar-cancel-button.sc-ion-searchbar-ios, .searchbar-has-focus.sc-ion-searchbar-ios-h .searchbar-cancel-button.sc-ion-searchbar-ios, .searchbar-should-show-cancel.sc-ion-searchbar-ios-h .searchbar-cancel-button.sc-ion-searchbar-ios{display:block}.searchbar-animated.sc-ion-searchbar-ios-h .searchbar-input.sc-ion-searchbar-ios, .searchbar-animated.sc-ion-searchbar-ios-h .searchbar-search-icon.sc-ion-searchbar-ios{-webkit-transition:all .3s ease;transition:all .3s ease}.searchbar-animated.searchbar-has-focus.sc-ion-searchbar-ios-h .searchbar-cancel-button.sc-ion-searchbar-ios, .searchbar-animated.searchbar-should-show-cancel.sc-ion-searchbar-ios-h .searchbar-cancel-button.sc-ion-searchbar-ios{opacity:1;pointer-events:auto}.searchbar-animated.sc-ion-searchbar-ios-h .searchbar-cancel-button.sc-ion-searchbar-ios{margin-right:-100%;-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-transition:all .3s ease;transition:all .3s ease;opacity:0;pointer-events:none}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.searchbar-animated.sc-ion-searchbar-ios-h .searchbar-cancel-button.sc-ion-searchbar-ios{margin-right:unset;-webkit-margin-end:-100%;margin-inline-end:-100%}}.searchbar-no-animate.sc-ion-searchbar-ios-h .searchbar-cancel-button.sc-ion-searchbar-ios, .searchbar-no-animate.sc-ion-searchbar-ios-h .searchbar-input.sc-ion-searchbar-ios, .searchbar-no-animate.sc-ion-searchbar-ios-h .searchbar-search-icon.sc-ion-searchbar-ios{-webkit-transition-duration:0ms;transition-duration:0ms}.ion-color.sc-ion-searchbar-ios-h .searchbar-cancel-button.sc-ion-searchbar-ios{color:var(--ion-color-base)}\@media (any-hover:hover){.ion-color.sc-ion-searchbar-ios-h .searchbar-cancel-button.sc-ion-searchbar-ios:hover{color:var(--ion-color-tint)}}ion-toolbar.sc-ion-searchbar-ios-h, ion-toolbar .sc-ion-searchbar-ios-h{padding-top:1px;padding-bottom:15px;height:52px}ion-toolbar.ion-color.sc-ion-searchbar-ios-h:not(.ion-color), ion-toolbar.ion-color .sc-ion-searchbar-ios-h:not(.ion-color){color:inherit}ion-toolbar.ion-color.sc-ion-searchbar-ios-h:not(.ion-color) .searchbar-cancel-button.sc-ion-searchbar-ios, ion-toolbar.ion-color .sc-ion-searchbar-ios-h:not(.ion-color) .searchbar-cancel-button.sc-ion-searchbar-ios{color:currentColor}ion-toolbar.ion-color.sc-ion-searchbar-ios-h .searchbar-search-icon.sc-ion-searchbar-ios, ion-toolbar.ion-color .sc-ion-searchbar-ios-h .searchbar-search-icon.sc-ion-searchbar-ios{color:currentColor;opacity:.5}ion-toolbar.ion-color.sc-ion-searchbar-ios-h:not(.ion-color) .searchbar-input.sc-ion-searchbar-ios, ion-toolbar.ion-color .sc-ion-searchbar-ios-h:not(.ion-color) .searchbar-input.sc-ion-searchbar-ios{background:rgba(var(--ion-color-contrast-rgb),.07);color:currentColor}ion-toolbar.ion-color.sc-ion-searchbar-ios-h:not(.ion-color) .searchbar-clear-button.sc-ion-searchbar-ios, ion-toolbar.ion-color .sc-ion-searchbar-ios-h:not(.ion-color) .searchbar-clear-button.sc-ion-searchbar-ios{color:currentColor;opacity:.5}"; }
+    static get style() { return ".reorder-list-active>*{-webkit-transition:-webkit-transform .3s;transition:-webkit-transform .3s;transition:transform .3s;transition:transform .3s,-webkit-transform .3s;will-change:transform}.reorder-enabled{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.reorder-enabled ion-reorder{display:block;cursor:-webkit-grab;cursor:grab;pointer-events:all;-ms-touch-action:none;touch-action:none}.reorder-selected,.reorder-selected ion-reorder{cursor:-webkit-grabbing;cursor:grabbing}.reorder-selected{position:relative;-webkit-transition:none!important;transition:none!important;-webkit-box-shadow:0 0 10px rgba(0,0,0,.4);box-shadow:0 0 10px rgba(0,0,0,.4);opacity:.8;z-index:100}.reorder-visible ion-reorder .reorder-icon{-webkit-transform:translateZ(0);transform:translateZ(0)}"; }
 };
-/**
- * Check if the cancel button should never be shown.
- *
- * TODO: Remove this when the `true` and `false`
- * options are removed.
- */
-const isCancelButtonSetToNever = (showCancelButton) => {
-    return (showCancelButton === 'never' ||
-        showCancelButton === 'false' ||
-        showCancelButton === false);
+const indexForItem = (element) => {
+    return element['$ionIndex'];
 };
-/**
- * Check if the cancel button should be shown on focus.
- *
- * TODO: Remove this when the `true` and `false`
- * options are removed.
- */
-const isCancelButtonSetToFocus = (showCancelButton) => {
-    return (showCancelButton === 'focus' ||
-        showCancelButton === 'true' ||
-        showCancelButton === true ||
-        showCancelButton === '');
+const findReorderItem = (node, container) => {
+    let parent;
+    while (node) {
+        parent = node.parentElement;
+        if (parent === container) {
+            return node;
+        }
+        node = parent;
+    }
+    return undefined;
+};
+const AUTO_SCROLL_MARGIN = 60;
+const SCROLL_JUMP = 10;
+const ITEM_REORDER_SELECTED = 'reorder-selected';
+const reorderArray = (array, from, to) => {
+    const element = array[from];
+    array.splice(from, 1);
+    array.splice(to, 0, element);
+    return array.slice();
 };
 
 
