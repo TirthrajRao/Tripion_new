@@ -4,10 +4,74 @@
 <ion-content>
   <div class="all_content destination-content p-0">
     <div>
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#occasion">Occasion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#atmospere">Atmosphere</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#climate">Climate</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#terrain">Terrain</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#interests">Interests</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link map-tab" data-toggle="tab" href="#map">Map</a>
+        </li>
+      </ul>
+      <!-- <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#occasion">Occasion</a></li>
+        <li><a data-toggle="tab" href="#atmospere">Atmosphere</a></li>
+        <li><a data-toggle="tab" href="#climate">Climate</a></li>
+        <li><a data-toggle="tab" href="#terrain">Terrain</a></li>
+        <li><a data-toggle="tab" href="#interests">Interests</a></li>
+        <li><a data-toggle="tab" href="#map" class="map-tab">Map</a></li>
+      </ul> -->
 
-      <div class="tab-list">
+      <!-- <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+          <h3>HOME</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua.</p>
+        </div>
+        <div id="menu1" class="tab-pane fade">
+          <h3>Menu 1</h3>
+          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          </p>
+        </div>
+        <div id="menu2" class="tab-pane fade">
+          <h3>Menu 2</h3>
+          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+            aperiam.</p>
+        </div>
+        <div id="menu3" class="tab-pane fade">
+          <h3>Menu 3</h3>
+          <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        </div>
+      </div> -->
 
-        <ul class="nav nav-tabs card-header-tabs demo-class" id="bologna-list" role="tablist">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- <div class="tab-list"> -->
+
+      <!-- <ul class="nav nav-tabs card-header-tabs demo-class" id="bologna-list" role="tablist">
           <li class="nav-item ">
             <a class="nav-link active" href="#occasion" role="tab" aria-controls="occasion"
               aria-selected="true">Occasion</a>
@@ -29,12 +93,33 @@
           <li class="nav-item ">
             <a class="nav-link map-tab" href="#map" role="tab" aria-controls="map" aria-selected="false">Map</a>
           </li>
-        </ul>
+        </ul> -->
 
-        <div class="tab-content">
-          <!-- Occian Tab -->
-          <div class="tab-pane active" id="occasion" role="tabpanel">
-            <div class="center">
+      <div class="tab-content">
+        <!-- Occian Tab -->
+        <div class="container tab-pane fade show active" id="occasion">
+          <div class="swiper-container mt-4">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" *ngFor="let img of occasionOption ;let i =index">
+                <div class="card">
+                  <div class="content p-2">
+                    <p class="option-title">{{img.name}}</p>
+                    <p class="option-dec">{{img.des}}</p>
+                  </div>
+                  <div class="img-div p-1">
+                    <img [src]="img.url">
+                  </div>
+                  <div class="like-icon active-{{i}}" (click)="selectOccianOption(img,i)">
+                    <i class="fas fa-star" *ngIf="img.isSelectIcon"></i>
+                    <i class="far fa-star" *ngIf="!img.isSelectIcon"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+          </div>
+          <!-- <div class="center">
               <div *ngFor="let img of occasionOption ;let i =index" class="center-slide">
                 <div class="card">
                   <div class="content p-2">
@@ -50,134 +135,133 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </div> -->
+        </div>
 
-          <!-- Atmospere Tab -->
-          <div class="tab-pane" id="atmospere" role="tabpanel" aria-labelledby="history-tab">
-            <div class="center">
-              <div *ngFor="let img of atmosphereOption ;let i =index" class="center-slide">
-                <div class="card">
-                  <div class="content p-2">
-                    <p>{{img.name}}</p>
-                    <span>{{img.des}}</span>
-                  </div>
-                  <div class="img-div p-1">
-                    <img [src]="img.url">
-                  </div>
-                  <div class="like-icon active-atm-{{i}}" (click)="selectAtmospereOption(img,i)">
-                    <i class="fas fa-star" *ngIf="img.isSelectIcon"></i>
-                    <i class="far fa-star" *ngIf="!img.isSelectIcon"></i>
-                  </div>
+        <!-- Atmospere Tab -->
+        <div class="container tab-pane fade" id="atmospere">
+          <div class="center">
+            <div *ngFor="let img of atmosphereOption ;let i =index" class="center-slide">
+              <div class="card">
+                <div class="content p-2">
+                  <p>{{img.name}}</p>
+                  <span>{{img.des}}</span>
+                </div>
+                <div class="img-div p-1">
+                  <img [src]="img.url">
+                </div>
+                <div class="like-icon active-atm-{{i}}" (click)="selectAtmospereOption(img,i)">
+                  <i class="fas fa-star" *ngIf="img.isSelectIcon"></i>
+                  <i class="far fa-star" *ngIf="!img.isSelectIcon"></i>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- Climate Tab -->
-          <div class="tab-pane" id="climate" role="tabpanel" aria-labelledby="deals-tab">
-            <div class="center">
-              <div *ngFor="let img of climateOption ;let i =index" class="center-slide">
-                <div class="card">
-                  <div class="content p-2">
-                    <p>{{img.name}}</p>
-                    <span>{{img.des}}</span>
-                  </div>
-                  <div class="img-div p-1">
-                    <img [src]="img.url">
-                  </div>
-                  <div class="like-icon active-cli-{{i}}" (click)="selectClimateOption(img,i)">
-                    <i class="fas fa-star" *ngIf="img.isSelectIcon"></i>
-                    <i class="far fa-star" *ngIf="!img.isSelectIcon"></i>
-                  </div>
+        <!-- Climate Tab -->
+        <div class="container tab-pane fade" id="climate">
+          <div class="center">
+            <div *ngFor="let img of climateOption ;let i =index" class="center-slide">
+              <div class="card">
+                <div class="content p-2">
+                  <p>{{img.name}}</p>
+                  <span>{{img.des}}</span>
+                </div>
+                <div class="img-div p-1">
+                  <img [src]="img.url">
+                </div>
+                <div class="like-icon active-cli-{{i}}" (click)="selectClimateOption(img,i)">
+                  <i class="fas fa-star" *ngIf="img.isSelectIcon"></i>
+                  <i class="far fa-star" *ngIf="!img.isSelectIcon"></i>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- Terrain Tab -->
-          <div class="tab-pane" id="terrain" role="tabpanel" aria-labelledby="deals-tab">
-            <div class="center">
-              <div *ngFor="let img of terrainOption ;let i =index" class="center-slide">
-                <div class="card">
-                  <div class="content p-2">
-                    <p>{{img.name}}</p>
-                    <span>{{img.des}}</span>
-                  </div>
-                  <div class="img-div p-1">
-                    <img [src]="img.url">
-                  </div>
-                  <div class="like-icon active-ter-{{i}}" (click)="selectTerrainOption(img,i)">
-                    <i class="fas fa-star" *ngIf="img.isSelectIcon"></i>
-                    <i class="far fa-star" *ngIf="!img.isSelectIcon"></i>
-                  </div>
+        <!-- Terrain Tab -->
+        <div class="container tab-pane fade" id="terrain">
+          <div class="center">
+            <div *ngFor="let img of terrainOption ;let i =index" class="center-slide">
+              <div class="card">
+                <div class="content p-2">
+                  <p>{{img.name}}</p>
+                  <span>{{img.des}}</span>
+                </div>
+                <div class="img-div p-1">
+                  <img [src]="img.url">
+                </div>
+                <div class="like-icon active-ter-{{i}}" (click)="selectTerrainOption(img,i)">
+                  <i class="fas fa-star" *ngIf="img.isSelectIcon"></i>
+                  <i class="far fa-star" *ngIf="!img.isSelectIcon"></i>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- Interest Tab -->
-          <div class="tab-pane" id="interests" role="tabpanel" aria-labelledby="deals-tab">
-            <div class="center">
-              <div *ngFor="let img of intrestOption ;let i =index" class="center-slide">
-                <div class="card">
-                  <div class="content p-2">
-                    <p>{{img.name}}</p>
-                    <span>{{img.des}}</span>
-                  </div>
-                  <div class="img-div p-1">
-                    <img [src]="img.url">
-                  </div>
-                  <div class="like-icon active-int-{{i}}" (click)="selectInterestOption(img,i)">
-                    <i class="fas fa-star" *ngIf="img.isSelectIcon"></i>
-                    <i class="far fa-star" *ngIf="!img.isSelectIcon"></i>
-                  </div>
+        <!-- Interest Tab -->
+        <div class="container tab-pane fade" id="interests">
+          <div class="center">
+            <div *ngFor="let img of intrestOption ;let i =index" class="center-slide">
+              <div class="card">
+                <div class="content p-2">
+                  <p>{{img.name}}</p>
+                  <span>{{img.des}}</span>
+                </div>
+                <div class="img-div p-1">
+                  <img [src]="img.url">
+                </div>
+                <div class="like-icon active-int-{{i}}" (click)="selectInterestOption(img,i)">
+                  <i class="fas fa-star" *ngIf="img.isSelectIcon"></i>
+                  <i class="far fa-star" *ngIf="!img.isSelectIcon"></i>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- map -->
-          <div class="tab-pane" id="map" role="tabpanel" aria-labelledby="deals-tab">
-            <article class="page-content mt-5" id="demo-page-continents">
-              <!-- SECTION DEMO -->
-              <section id="section-demo">
-                <!-- MAP -->
-                <div id="display-map" class="display-demo-map">
-                  <!-- CSSMap - Continents -->
-                  <div id="map-continents">
-                    <ul class="continents">
-                      <li class="c1" data-interest="Africa"><a href="#africa">Africa</a></li>
-                      <li class="c2" data-interest="Asia"><a href="#asia">Asia</a></li>
-                      <li class="c3" data-interest="Australia"><a href="#australia">Australia</a></li>
-                      <li class="c4" data-interest="Europe"><a href="#europe">Europe</a></li>
-                      <li class="c5" data-interest="North America"><a href="#north-america">North America</a></li>
-                      <li class="c6" data-interest="South America"><a href="#south-america">South America</a></li>
-                    </ul>
-                  </div>
+        <!-- map -->
+        <div class="container tab-pane fade" id="map">
+          <article class="page-content mt-5" id="demo-page-continents">
+            <!-- SECTION DEMO -->
+            <section id="section-demo">
+              <!-- MAP -->
+              <div id="display-map" class="display-demo-map">
+                <!-- CSSMap - Continents -->
+                <div id="map-continents">
+                  <ul class="continents">
+                    <li class="c1" data-interest="Africa"><a href="#africa">Africa</a></li>
+                    <li class="c2" data-interest="Asia"><a href="#asia">Asia</a></li>
+                    <li class="c3" data-interest="Australia"><a href="#australia">Oceania</a></li>
+                    <li class="c4" data-interest="Europe"><a href="#europe">Europe</a></li>
+                    <li class="c5" data-interest="North America"><a href="#north-america">North America</a></li>
+                    <li class="c6" data-interest="South America"><a href="#south-america">South America</a></li>
+                  </ul>
                 </div>
-              </section>
-            </article>
-            <div *ngIf="continentsList.length">
-              <div *ngFor="let continent of continentsList" class="mt-5">
-                <div class="place-section ">
-                  <div>
-                    <img src='assets/images/location.png'>
-                  </div>
-                  <div>
-                    <p class="text-white">
-                      Intersting places in <br>
-                      <span>{{continent.name}}</span>
-                    </p>
-                  </div>
+              </div>
+            </section>
+          </article>
+          <div *ngIf="continentsList.length">
+            <div *ngFor="let continent of continentsList" class="mt-5">
+              <div class="place-section ">
+                <div>
+                  <img src='assets/images/location.png'>
                 </div>
                 <div>
-                  <div class="map-slider">
-                    <div *ngFor="let img of continent.images;let i=index" class="center-slide">
-                      <span data-id="{{img.name}}"></span>
-                      <div style="position: relative;">
-                        <img [src]="img.url">
-                      </div>
+                  <p class="text-white">
+                    Intersting places in <br>
+                    <span>{{continent.name}}</span>
+                  </p>
+                </div>
+              </div>
+              <div>
+                <div class="gallery">
+                  <div class="gallery-cell" *ngFor="let img of continent.images;let i=index">
+                    <p data-id="" class="text-white">{{img.name}}</p>
+                    <div style="position: relative;">
+                      <img [src]="img.url">
                     </div>
                   </div>
                 </div>
@@ -186,6 +270,7 @@
           </div>
         </div>
       </div>
+      <!-- </div> -->
     </div>
 
     <div class="next_btn" (click)="nextForm()">

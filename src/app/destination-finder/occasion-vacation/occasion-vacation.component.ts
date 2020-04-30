@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import * as _ from 'lodash';
+import Swiper from 'swiper';
 declare const $: any;
 
 @Component({
@@ -22,79 +23,79 @@ export class OccasionVacationComponent implements OnInit {
   occasionOption = [
     {
       name: 'Marriage Proposal',
-      url: 'assets/images/occian/1.jpeg',
+      url: 'assets/images/occian/1.jpg',
       isSelectIcon: false,
       des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Bachelor/Bachelorette Party',
-      url: 'assets/images/occian/2.jpeg',
+      url: 'assets/images/occian/2.jpg',
       isSelectIcon: false,
       des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Honeymoon',
-      url: 'assets/images/occian/3.jpeg',
+      url: 'assets/images/occian/3.jpg',
       isSelectIcon: false,
       des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Family Reunion',
-      url: 'assets/images/occian/4.jpeg',
+      url: 'assets/images/occian/4.jpg',
       isSelectIcon: false,
       des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Aniversary',
-      url: 'assets/images/occian/5.jpeg',
+      url: 'assets/images/occian/5.jpg',
       isSelectIcon: false,
       des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Guys Getaway (mancation)',
-      url: 'assets/images/occian/6.jpeg',
+      url: 'assets/images/occian/6.jpg',
       isSelectIcon: false,
       des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Girlfriends Getaway',
-      url: 'assets/images/occian/7.jpeg',
+      url: 'assets/images/occian/7.jpg',
       isSelectIcon: false,
       des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Business Appraisal',
-      url: 'assets/images/occian/8.jpeg',
+      url: 'assets/images/occian/8.jpg',
       isSelectIcon: false,
       des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Babymoon',
-      url: 'assets/images/occian/9.jpeg',
+      url: 'assets/images/occian/9.jpg',
       isSelectIcon: false,
       des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Annual Holidays',
-      url: 'assets/images/occian/10.jpeg',
+      url: 'assets/images/occian/10.jpg',
       isSelectIcon: false,
       des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Festival Holidays',
-      url: 'assets/images/occian/11.jpeg',
+      url: 'assets/images/occian/11.png',
       isSelectIcon: false,
       des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'School/College Friends Reunion',
-      url: 'assets/images/occian/12.jpeg',
+      url: 'assets/images/occian/12.jpg',
       isSelectIcon: false,
       des: 'It is a long established fact that a reader will be distracted by the readable content.'
     },
     {
       name: 'Incentive Celebration',
-      url: 'assets/images/occian/13.jpeg',
+      url: 'assets/images/occian/13.jpg',
       isSelectIcon: false,
       des: 'It is a long established fact that a reader will be distracted by the readable content.'
     }
@@ -421,6 +422,26 @@ export class OccasionVacationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    setTimeout(()=>{
+      var swiper = new Swiper('.swiper-container', {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        loop:true,
+        speed :100,
+        coverflowEffect: {
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows : true,
+        },
+       
+      });
+    },1)
+   
+
 
     setTimeout(() => {
       this.createOccasionSlider();
@@ -430,12 +451,19 @@ export class OccasionVacationComponent implements OnInit {
       e.preventDefault()
       $(this).tab('show')
     })
-    $('ul#bologna-list li a').click( ()=> {
+    $('ul#bologna-list li a').click(() => {
       $('.center').slick('refresh');
     });
-
-    $('.map-tab').click(()=>{
-      this.createMap();
+    $('ul.nav.nav-tabs li a').click(() => {
+      setTimeout(() => {
+        $('.center').slick('refresh');
+      }, 1);
+    });
+    $('.map-tab').click(() => {
+      console.log("click map tab");
+      setTimeout(() => {
+        this.createMap();
+      }, 300);
       this.continentsList = [];
     })
 
@@ -449,7 +477,7 @@ export class OccasionVacationComponent implements OnInit {
       'multipleClick': {
         'enable': true,
         'hideSearchLink': true,
-        'clicksLimit': 3,
+        'clicksLimit': 2,
         'clicksLimitAlert': "You can select only %d region! || regions!"
       },
       onClick: (listItem) => {
@@ -478,7 +506,7 @@ export class OccasionVacationComponent implements OnInit {
             images: this.Africa
           });
 
-        } else if (name == 'Australia') {
+        } else if (name == 'Oceania') {
           this.continentsList.push({
             name: listItem[0].textContent,
             images: this.Australia
@@ -506,13 +534,23 @@ export class OccasionVacationComponent implements OnInit {
   }
 
   createMapSlider() {
-    $('.map-slider').not('.slick-initialized').slick({
-      centerMode: true,
-      centerPadding: '100px',
-      slidesToShow: 1,
-      speed: 100,
-      slidesToScroll: 4,
+    $('.gallery').flickity({
+      // options
+      // cellAlign: 'left',
+      // contain: true
+      "freeScroll": true,
+      "wrapAround": true,
+      contain: true,
+      prevNextButtons: false,
+      pageDots: false
     });
+    // $('.map-slider').not('.slick-initialized').slick({
+    //   centerMode: true,
+    //   centerPadding: '100px',
+    //   slidesToShow: 1,
+    //   speed: 100,
+    //   slidesToScroll: 4,
+    // });
   }
 
   createOccasionSlider() {

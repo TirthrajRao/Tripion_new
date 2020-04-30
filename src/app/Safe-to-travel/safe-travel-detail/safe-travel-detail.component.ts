@@ -31,7 +31,6 @@ export class SafeTravelDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("img")
   }
 
   /**
