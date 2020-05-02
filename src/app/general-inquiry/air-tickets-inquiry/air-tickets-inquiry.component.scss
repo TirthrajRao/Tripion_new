@@ -1,43 +1,42 @@
-$purple: #0575E6;
-$blue  : #021B79;
-$green : #2FE57C;
+$purple: #0575e6;
+$blue: #021b79;
+$green: #2fe57c;
 $button_color: #003574;
 
 // content css start here
 .services_detail {
     .visa_text {
         font-weight: 600;
-        font-size  : 20px;
-        color      : #fff;
+        font-size: 20px;
+        color: #fff;
         line-height: 42px;
     }
 }
 
 .error_msg {
-    color      : red;
-    font-size  : 13px;
+    color: red;
+    font-size: 13px;
     line-height: 22px;
-    margin-top : 10px;
+    margin-top: 10px;
 }
-div.plist{
-    color: #7F8DAB !important;
-  
+div.plist {
+    color: #7f8dab !important;
 }
-.passengers-details{
+.passengers-details {
     width: 100%;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding-bottom: 7px;
     border-bottom: 1px solid #7f8dab6e;
     margin-top: 7px;
-    ion-input{
+    ion-input {
         color: black;
-    --padding-start: 18px;
+        --padding-start: 18px;
     }
 }
-.icon-button{
-    border: 2px solid #d2d6dd;  
+.icon-button {
+    border: 2px solid #d2d6dd;
     border-radius: 15px;
     padding: 1px 5px;
     width: 80px;
@@ -47,33 +46,49 @@ div.plist{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    i{
+    i {
         font-size: 12px;
-       opacity:0.6
+        opacity: 0.6;
     }
 }
-.general_details_header{
+.general_details_header {
     display: flex;
-    p{
+    p {
         margin: auto 5px;
     }
-    img{
+    img {
         height: 40px;
+    }
+    a {
+        position: absolute;
+        right: 20px;
+        i {
+            font-size: 17px;
+            color: black;
+            line-height: 42px;
+        }
     }
 }
 .select_plan_check {
     margin-top: 3px;
-    width     : 100%;
+    width: 100%;
 
     ion-checkbox {
         vertical-align: middle;
-        --border-color: #7F8DAB;
+        --border-color: #7f8dab;
     }
 
     ion-label {
         vertical-align: middle;
-        font-size     : 14px !important;
-        color         : #7F8DAB;
-        font-weight   : 500;
+        font-size: 14px !important;
+        color: #7f8dab;
+        font-weight: 500;
     }
+}
+[data-toggle="collapse"] .fa:before {
+    content: "\f139";
+}
+
+[data-toggle="collapse"].collapsed .fa:before {
+    content: "\f13a";
 }

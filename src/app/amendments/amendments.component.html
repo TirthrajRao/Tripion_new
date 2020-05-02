@@ -55,27 +55,7 @@
                         </div>
 
                         <div *ngIf="msg.message.message_type == 'audio'">
-                            <!-- <div class="row">
-                                <div class="col-2 paly-icon">
-                                  
-                                    <ion-icon name="play" (click)="togglePlayer(false);playAudio(msg.message.msg.url)" *ngIf="!isPlaying"></ion-icon>
-                                 
-                                    <ion-icon name="pause" (click)="togglePlayer(true)" *ngIf="isPlaying"></ion-icon>
-                                   
-                                </div>
-                                <div class="col-10 pl-0">
-                                    <ion-range #range (touchend)="seek()" (mouseup)="seek()">
-                                    </ion-range>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-2">
-                                </div>
-                                <div class="col-10 pl-0 duration">
-                                    <p>00:02</p>
-                                </div>
-                            </div> -->
+                       
                             <audio controls style="width: 67vw;">
                                 <source src="{{msg.message.msg.url}}" type="audio/mpeg">
                             </audio>

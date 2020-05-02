@@ -55,9 +55,11 @@ $green: #2FE57C;
 
 .no-request {
     position: absolute;
-    top: 35%;
+    top: 25%;
     left: 0;
     right: 0;
+    font-size: 15px;
+    padding: 0 6px 0 14px;
 }
 
 ion-refresher-content {

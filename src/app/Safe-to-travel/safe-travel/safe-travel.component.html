@@ -16,14 +16,18 @@
                 <p *ngIf="!travelres.safe_to_response" class="des-status mt-2">Pending</p>
 
                 <i *ngIf="!travelres.safe_to_response" class="fa fa-ellipsis-h status-icon"></i>
-                <img class="status-icon" *ngIf="travelres.safe_to_response"
-                    src="assets/images/success.png">
+                <img class="status-icon" *ngIf="travelres.safe_to_response" src="assets/images/success.png">
             </div>
         </div>
     </div>
     <div *ngIf="!loading && !safeToTravelRes.length">
-        <span class="text-white text-center no-request">Click the below button to request
-            for Safe to Travel</span>
+        <!-- <span class="text-white text-center no-request">Click the below button to request
+            for Safe to Travel</span> -->
+        <span class="text-white no-request">
+            A Highly Recommended service that curates the safety of the destination in a personalized report with the
+            vital safety protocols & laws to be followed. Personalizing the whole concept with consulting with the local
+            Tourism Authorities & Travel Professionals sparing you from the perils of voyaging in the new world!
+        </span>
     </div>
     <div class="add_button">
         <a href="javascript:void(0);" routerLink='/home/safe-to-travel'>

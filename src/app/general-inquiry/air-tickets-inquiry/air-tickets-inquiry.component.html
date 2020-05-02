@@ -120,43 +120,27 @@
                         <p>Flight Tier Prefernece</p>
                     </div>
                     <div class="general_details_body">
-                       
-                            <div class="select_plan_check">
-                                <ion-checkbox checked="false" (ionChange)="selectTier($event)"
-                                    value="Economys"> </ion-checkbox>
-                                <ion-label class="ml-3">Economys</ion-label>
-                            </div>
-                            <div class="select_plan_check">
-                                <ion-checkbox checked="false" (ionChange)="selectTier($event)"
-                                    value="Business Class"> </ion-checkbox>
-                                <ion-label class="ml-3">Business Class</ion-label>
-                            </div>
-                            <div class="select_plan_check">
-                                <ion-checkbox checked="false" (ionChange)="selectTier($event)"
-                                    value="First Class"> </ion-checkbox>
-                                <ion-label class="ml-3">First Class</ion-label>
-                            </div>
-                            <div class="select_plan_check">
-                                <ion-checkbox checked="false" (ionChange)="selectTier($event)"
-                                    value="Premium Economy"> </ion-checkbox>
-                                <ion-label class="ml-3">Premium Economy</ion-label>
-                            </div>
-                            <!-- <div class="col-6">
-                                <input type="radio" class="mr-2" id="Tire1" value="Economy"
-                                    formControlName="flightTire_preference">
-                                <label for="Tire1">Economy</label>
-                            </div>
-                            <div class="col-6">
-                                <input type="radio" class="mr-2" id="Tire2" value="Business Class"
-                                    formControlName="flightTire_preference">
-                                <label for="Tire2">Business Class</label>
-                            </div>
-                            <div class="col-12">
-                                <input type="radio" class="mr-2" id="Tire3" value="First Class"
-                                    formControlName="flightTire_preference">
-                                <label for="Tire3">First Class</label>
-                            </div> -->
-                        
+
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectTier($event)" value="Economys">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Economys</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectTier($event)" value="Business Class">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Business Class</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectTier($event)" value="First Class">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">First Class</ion-label>
+                        </div>
+                        <div class="select_plan_check">
+                            <ion-checkbox checked="false" (ionChange)="selectTier($event)" value="Premium Economy">
+                            </ion-checkbox>
+                            <ion-label class="ml-3">Premium Economy</ion-label>
+                        </div>
                     </div>
                 </div>
 
@@ -164,6 +148,14 @@
                     <div class="general_details_header">
                         <img src="assets/images/flight-tire.png">
                         <p>Flight Seat Preference</p>
+                        <a class="toggle-section collapsed collapsed" data-toggle="collapse" data-target="#flight-seat"
+                            aria-expanded="false" aria-controls="flight-seat"> <i class="fa" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="collapse multi-collapse mb-2" id="flight-seat">
+                        <div class="card card-body">
+                            The Seat preference might be chargeable by the airline and will be notified prior to
+                            confirming the ticket.
+                        </div>
                     </div>
                     <div class="general_details_body">
                         <div class="row">
@@ -196,7 +188,8 @@
                             </ion-item>
                         </div>
                         <div *ngIf="submitted && f.flightSeat_preferences.errors" class="invalid-feedback">
-                            <div *ngIf="f.flightSeat_preferences.errors.required">Choose one Flight Seat Preference</div>
+                            <div *ngIf="f.flightSeat_preferences.errors.required">Choose one Flight Seat Preference
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -252,11 +245,20 @@
                         </div>
                     </div>
                 </div>
-                <div class="general_details">
+                <div class="general_details colapse-icon">
                     <div class="general_details_header">
                         <img src="assets/images/flight-tire.png">
                         <p>Seat Belt Extender</p>
+                        <a class="toggle-section collapsed collapsed" data-toggle="collapse" data-target="#seat-belt"
+                            aria-expanded="false" aria-controls="seat-belt"> <i class="fa" aria-hidden="true"></i></a>
                     </div>
+                    <div class="collapse multi-collapse mb-2" id="seat-belt">
+                        <div class="card card-body">
+                            This option is requested to the airline by us but the confirmation can’t be given & you can
+                            always ask for one onboard without any pre-requests.
+                        </div>
+                    </div>
+
                     <div class="general_details_body">
                         <div class="row">
                             <div class="col-6">
@@ -282,13 +284,13 @@
 
                         <div class="row">
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="Wheelchair1" formControlName="wheelChair_assistance"
-                                    value="Yes">
+                                <input type="radio" class="mr-2" id="Wheelchair1"
+                                    formControlName="wheelChair_assistance" value="Yes">
                                 <label for="Wheelchair1">Yes</label>
                             </div>
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="Wheelchair2" formControlName="wheelChair_assistance"
-                                    value="No">
+                                <input type="radio" class="mr-2" id="Wheelchair2"
+                                    formControlName="wheelChair_assistance" value="No">
                                 <label for="Wheelchair2">No</label>
                             </div>
                         </div>

@@ -10,6 +10,15 @@
                 <div class="general_details">
                     <div class="general_details_header">
                         <p>City Cards </p>
+                        <a class="toggle-section collapsed collapsed" data-toggle="collapse" data-target="#city-card"
+                            aria-expanded="false" aria-controls="city-card"> <i class="fa" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="collapse multi-collapse mb-2" id="city-card">
+                        <div class="card card-body">
+                            City cards offer great value and convenience. They are fast becoming the modern way to see
+                            the best a city has to offer. Most city cards provide visitors great advantages like Free
+                            entry, Free Public Transport, Priority Access, Extra Benefits all in one price.
+                        </div>
                     </div>
                     <div class="general_details_body">
                         <div class="row mt-2">
@@ -77,28 +86,28 @@
                     </div>
                     <div class="general_details_body">
                         <div class="select_plan_check">
-                            <ion-checkbox checked="false" (ionChange)="selectTransferType($event)"
-                                value="Train"> </ion-checkbox>
+                            <ion-checkbox checked="false" (ionChange)="selectTransferType($event)" value="Train">
+                            </ion-checkbox>
                             <ion-label class="ml-3">Train</ion-label>
                         </div>
                         <div class="select_plan_check">
-                            <ion-checkbox checked="false" (ionChange)="selectTransferType($event)"
-                                value="Air"> </ion-checkbox>
+                            <ion-checkbox checked="false" (ionChange)="selectTransferType($event)" value="Air">
+                            </ion-checkbox>
                             <ion-label class="ml-3">Air</ion-label>
                         </div>
                         <div class="select_plan_check">
-                            <ion-checkbox checked="false" (ionChange)="selectTransferType($event)"
-                                value="Chauffer"> </ion-checkbox>
+                            <ion-checkbox checked="false" (ionChange)="selectTransferType($event)" value="Chauffer">
+                            </ion-checkbox>
                             <ion-label class="ml-3">Chauffer</ion-label>
                         </div>
                         <div class="select_plan_check">
-                            <ion-checkbox checked="false" (ionChange)="selectTransferType($event)"
-                                value="Self Drive"> </ion-checkbox>
+                            <ion-checkbox checked="false" (ionChange)="selectTransferType($event)" value="Self Drive">
+                            </ion-checkbox>
                             <ion-label class="ml-3">Self Drive </ion-label>
                         </div>
                         <div class="select_plan_check">
-                            <ion-checkbox checked="false" (ionChange)="selectTransferType($event)"
-                                value="Cruise"> </ion-checkbox>
+                            <ion-checkbox checked="false" (ionChange)="selectTransferType($event)" value="Cruise">
+                            </ion-checkbox>
                             <ion-label class="ml-3">Cruise</ion-label>
                         </div>
                     </div>
@@ -112,7 +121,7 @@
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Meal</ion-label>
-                                <ion-select formControlName="meal" >
+                                <ion-select formControlName="meal">
                                     <ion-select-option value="Yes">Yes</ion-select-option>
                                     <ion-select-option value="No">No</ion-select-option>
                                     <!-- <ion-select-option value="Breakfast">Breakfast</ion-select-option>

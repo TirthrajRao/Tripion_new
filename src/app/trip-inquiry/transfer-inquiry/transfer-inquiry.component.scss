@@ -1,40 +1,56 @@
-$purple      : #0575E6;
-$blue        : #021B79;
-$green       : #2FE57C;
+$purple: #0575e6;
+$blue: #021b79;
+$green: #2fe57c;
 $button_color: #003574;
 
 // content css start here
 .services_detail {
     .visa_text {
         font-weight: 600;
-        font-size  : 20px;
-        color      : #fff;
+        font-size: 20px;
+        color: #fff;
         line-height: 42px;
     }
 }
 
 .select_plan_check {
     margin-top: 3px;
-    width     : 100%;
+    width: 100%;
 
     ion-checkbox {
         vertical-align: middle;
-        --border-color: #7F8DAB;
+        --border-color: #7f8dab;
     }
 
     ion-label {
         vertical-align: middle;
-        font-size     : 14px !important;
-        color         : #7F8DAB;
-        font-weight   : 500;
+        font-size: 14px !important;
+        color: #7f8dab;
+        font-weight: 500;
     }
 }
-.general_details_header{
+.general_details_header {
     display: flex;
-    p{
+    p {
         margin: auto 5px;
     }
-    img{
+    img {
         height: 40px;
     }
+    a {
+        position: absolute;
+        right: 20px;
+        i {
+            font-size: 17px;
+            color: black;
+            line-height: 30px;
+        }
+    }
+}
+[data-toggle="collapse"] .fa:before {
+    content: "\f139";
+}
+
+[data-toggle="collapse"].collapsed .fa:before {
+    content: "\f13a";
 }

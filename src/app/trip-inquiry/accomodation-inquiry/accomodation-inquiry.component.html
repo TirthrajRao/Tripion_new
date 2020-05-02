@@ -60,8 +60,8 @@
                         </div>
                         <ion-item *ngIf="acomodationArray.includes('Amenities Specific Accommodation')">
                             <ion-label position="floating">Any Special Requirement</ion-label>
-                            <ion-input type="text"
-                                formControlName="amenities_specific_accommodation_detail"></ion-input>
+                            <ion-input type="text" formControlName="amenities_specific_accommodation_detail">
+                            </ion-input>
                         </ion-item>
                     </div>
                 </div>
@@ -302,7 +302,19 @@
                 </div>
 
                 <div class="add_room_btn text-center">
-                    <button type="submit" (click)="addRoom()"><i class="fas fa-plus-circle"></i>Add Room</button>
+                    <button type="submit"><span (click)="addRoom()">
+                        <!-- <i class="fas fa-plus-circle"></i> -->
+                        Add Room</span>
+                        <a class="toggle-section collapsed collapsed" data-toggle="collapse" data-target="#add-room"
+                            aria-expanded="false" aria-controls="add-room"> <i class="fa float-right" aria-hidden="true"></i></a>
+                    </button>
+                    <div class="collapse multi-collapse mb-2 mt-2" id="add-room">
+                        <div class="card card-body">
+                            This Button serves the purpose of room occupancy preference for your accommodation
+                            throughout the travel & will be honoured with utmost flexibility possible depending upon
+                            availability in the establishment.
+                        </div>
+                    </div>
                 </div>
                 <div *ngIf="submitted && f.rooms.errors" class="invalid-feedback">
                     <div *ngIf="f.rooms.errors.required">Room is required</div>

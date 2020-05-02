@@ -17,7 +17,7 @@ $button_color: #003574;
     padding: 5px 0px;
 
     button {
-        width           : 60%;
+        width           : 100%;
         outline         : none;
         font-size       : 16px;
         line-height     : 30px;
@@ -90,10 +90,7 @@ div.plist{
 	background-color: #343a40 !important;
 	color: white;
 }
-* {
-	 
-	 
-}
+
  body {
 	 display: flex;
 	 justify-content: center;
@@ -194,4 +191,11 @@ background: linear-gradient(to bottom, #FFB88C, #DE6262);
         color         : #7F8DAB;
         font-weight   : 500;
     }
+}
+[data-toggle="collapse"] .fa:before {
+    content: "\f139";
+}
+
+[data-toggle="collapse"].collapsed .fa:before {
+    content: "\f13a";
 }
