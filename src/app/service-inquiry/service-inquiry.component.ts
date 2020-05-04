@@ -44,17 +44,17 @@ export class ServiceInquiryComponent implements OnInit {
     let services = []
     services.push(...this.tripServices, ...this.otherServices)
     console.log("this.tripService", services, this.tripServices)
-    if (services.length)
-      if (services.length < 3) {
-        $('.error_alert_box3').fadeIn().addClass('animate');
-        $('.error_alert_box3').click(function () {
-          $(this).hide().removeClass('animate');
-        });
-        $(' .error_alert_box3 .alert_box_content').click(function (event) {
-          event.stopPropagation();
-        });
-        return;
-      }
+    // if (services.length)
+    //   if (services.length < 3) {
+    //     $('.error_alert_box3').fadeIn().addClass('animate');
+    //     $('.error_alert_box3').click(function () {
+    //       $(this).hide().removeClass('animate');
+    //     });
+    //     $(' .error_alert_box3 .alert_box_content').click(function (event) {
+    //       event.stopPropagation();
+    //     });
+    //     return;
+    //   }
 
     this.checkBoxValue = this.generalServices.concat(this.tripServices);
     this.selectedForm = services.concat(this.generalServices);

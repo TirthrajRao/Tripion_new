@@ -28,33 +28,7 @@
                                 <div *ngIf="f.pssport_number.errors.required">Passport Number is required</div>
                             </div>
                         </div>
-                        <!-- <div>
-                            <ion-item>
-                                <ion-label position="floating">Date of Birth</ion-label>
-                                <ion-datetime formControlName="dob"></ion-datetime>
-                            </ion-item>
-                            <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
-                                <div *ngIf="f.dob.errors.required">Birthdate is required</div>
-                            </div>
-                        </div> -->
-                        <!-- <div>
-                            <ion-item>
-                                <ion-label position="floating">Place of Birth</ion-label>
-                                <ion-input type="text" formControlName="place_of_birth"></ion-input>
-                            </ion-item>
-                            <div *ngIf="submitted && f.place_of_birth.errors" class="invalid-feedback">
-                                <div *ngIf="f.place_of_birth.errors.required">Place Of Birth is required</div>
-                            </div>
-                        </div> -->
-                        <!-- <div>
-                            <ion-item>
-                                <ion-label position="floating">Address in Passport</ion-label>
-                                <ion-input type="text" formControlName="address_in_passport"></ion-input>
-                            </ion-item>
-                            <div *ngIf="submitted && f.address_in_passport.errors" class="invalid-feedback">
-                                <div *ngIf="f.address_in_passport.errors.required">Passport Address is required</div>
-                            </div>
-                        </div> -->
+                       
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Duration of Travel</ion-label>
@@ -87,16 +61,7 @@
                             </ion-item>
 
                         </div>
-                        <!-- <div>
-                            <ion-item>
-                                <ion-label position="floating">Passport Valid Until </ion-label>
-                                <ion-datetime formControlName="passport_valid_date" min="{{curruntDate}}" max="{{nextYear}}">
-                                </ion-datetime>
-                            </ion-item>
-                            <div *ngIf="submitted && f.passport_valid_date.errors" class="invalid-feedback">
-                                <div *ngIf="f.passport_valid_date.errors.required">passport Valid Date is required</div>
-                            </div>
-                        </div> -->
+                       
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Intended date of Departure</ion-label>
@@ -119,8 +84,14 @@
                                 <div *ngIf="f.intende_date.errors.required">Intended Date is required</div>
                             </div>
                         </div>
+                        <!-- <div>
+                            <ion-item>
+                                <ion-label position="floating">Number Of People</ion-label>
+                              <ion-input type="number" formControlName="number_of_people"></ion-input>
+                            </ion-item>
+                        </div> -->
 
-                        <p>Date and Duration Status</p>
+                        <p class="mt-1">Date and Duration Status</p>
                         <div class="row">
                             <div class="col-6">
                                 <input type="radio" class="mr-2" id="date1" value="Flexible"
@@ -133,29 +104,29 @@
                                 <label for="date2">Fixed</label>
                             </div>
                         </div>
-                        <p>Group Travel (If more than 10)</p>
+                        <!-- <p>Group Travel (If more than 10)</p>
                         <div class="row">
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="travel1" value="Yes"
-                                    formControlName="group_travel" [(ngModel)]="groupTraveel">
+                                <input type="radio" class="mr-2" id="travel1" value="Yes" formControlName="group_travel"
+                                    [(ngModel)]="groupTraveel">
                                 <label for="travel1">Yes</label>
                             </div>
                             <div class="col-6">
-                                <input type="radio" class="mr-2" id="travel2" value="No"
-                                    formControlName="group_travel" [(ngModel)]="groupTraveel">
+                                <input type="radio" class="mr-2" id="travel2" value="No" formControlName="group_travel"
+                                    [(ngModel)]="groupTraveel">
                                 <label for="travel2">No</label>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
-                   
+
                 </div>
-                <div *ngIf="groupTraveel == 'Yes'" class="mt-2">
+                <div  class="mt-2">
                     <div class="general_details">
                         <div class="general_details_header">
                             <img src="assets/images/passanger.png">
                             <p>Passengers</p>
                         </div>
-                        <div class="general_details_body" formGroupName="group_travel_detail">
+                        <div class="general_details_body" formGroupName="number_of_people">
                             <div class="passengers-details">
                                 <div class="plist">Infants (2 Years)</div>
                                 <div class="icon-button">
@@ -197,7 +168,7 @@
                             </div>
                             <div class="passengers-details">
                                 <div class="plist">Senior Citizens (Above 65 Years)</div>
-                                <div class="icon-button" >
+                                <div class="icon-button">
                                     <div class="icons">
                                         <i class="fa fa-minus" aria-hidden="true" (click)="decrement('senior')"></i>
                                         <span>
@@ -227,9 +198,9 @@
                                 margin-top: 2px;">
                                 <p>{{seniorPassenger}}</p>
                             </div>
-    
+
                         </div>
-                    </div>      
+                    </div>
                 </div>
                 <div class="next_btn">
                     <button type="submit" (click)="nextForm(generalDetailsForm.value)" [disabled]="isDisable"><span

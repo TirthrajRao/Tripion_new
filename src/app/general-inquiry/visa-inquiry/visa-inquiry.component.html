@@ -68,12 +68,20 @@
                         </div>
                         <div *ngIf="previous_rejections == 'Yes'">
                             <ion-item>
-                                <ion-label position="floating">Destination, Duration of Journey</ion-label>
-                                <ion-input type="text" formControlName="previous_rejections_details"></ion-input>
+                                <ion-label position="floating">Country</ion-label>
+                                <ion-input type="text" formControlName="previous_rejections_country"></ion-input>
                             </ion-item>
-                            <div *ngIf="submitted && f.previous_rejections_details.errors" class="invalid-feedback">
-                                <div *ngIf="f.previous_rejections_details.errors.required">Rejection Details is required</div>
-                            </div>
+                            <!-- <div *ngIf="submitted && f.previous_rejections_details.errors" class="invalid-feedback">
+                                <div *ngIf="f.previous_rejections_details.errors.required">Contry name is required</div>
+                            </div> -->
+                            <!-- <ion-item>
+                                <ion-label position="floating">From</ion-label>
+                                <ion-datetime  formControlName="previous_rejections_from_date" max="{{curruntDate}}"></ion-datetime>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label position="floating" >To</ion-label>
+                                <ion-datetime formControlName="previous_rejections_to_date" min="{{visaForm.value.previous_rejections_from_date}}"></ion-datetime>
+                            </ion-item>     -->
                         </div>
                     </div>
                 </div>
@@ -92,12 +100,27 @@
                             </div>
                         </div>
                         <div *ngIf="international_travel == 'Yes'">
+
                             <ion-item>
+                                <ion-label position="floating">Country</ion-label>
+                                <ion-input type="text" formControlName="previous_travel_country"></ion-input>
+                            </ion-item>
+                           
+                            <ion-item>
+                                <ion-label position="floating">From</ion-label>
+                                <ion-datetime  formControlName="previous_travel_from_date" max="{{curruntDate}}"></ion-datetime>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label position="floating" >To</ion-label>
+                                <ion-datetime formControlName="previous_travel_to_date" min="{{visaForm.value.previous_travel_from_date}}"></ion-datetime>
+                            </ion-item>    
+
+                            <!-- <ion-item>
                                 <ion-input type="text" placeholder="France - 12 days, USA - 18 days." formControlName="international_travel_details"></ion-input>
                             </ion-item>
                             <div *ngIf="submitted && f.international_travel_details.errors" class="invalid-feedback">
                                 <div *ngIf="f.international_travel_details.errors.required">Travel Details is required</div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -128,7 +151,7 @@
                     </div>
                 </div>
             </div>
-            <div class="general_details">
+            <!-- <div class="general_details">
                 <div class="general_details_header">
                     <p>Number of Applicants</p>
                 </div>
@@ -144,7 +167,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="next_btn" *ngIf="formUrl.length">
                 <button type="submit" (click)="nextForm(visaForm.value)">Next<i class="fas fa-arrow-right"></i></button>
             </div>

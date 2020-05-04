@@ -7,7 +7,7 @@
         <form [formGroup]="airTickitForm">
             <div class="services_detail">
                 <p class="ml-3 visa_text">Air Tickets</p>
-                <div class="general_details">
+                <!-- <div class="general_details">
                     <div class="general_details_header">
                         <img src="assets/images/passanger.png">
                         <p>Passengers</p>
@@ -86,7 +86,7 @@
                         </div>
 
                     </div>
-                </div>
+                </div> -->
 
                 <div class="general_details">
                     <div class="general_details_header">
@@ -94,21 +94,21 @@
                         <p>Journey Type</p>
                     </div>
                     <div class="general_details_body">
-                        <div class="row">
+                        <div class="row option-img">
                             <div class="col-6">
                                 <input type="radio" class="mr-2" id="Journey1" formControlName="journey_type"
                                     value="Round Trip">
-                                <label for="Journey1">Round Trip</label>
+                                <label for="Journey1"><img src="assets/images/round.png">Round Trip</label>
                             </div>
                             <div class="col-6">
                                 <input type="radio" class="mr-2" id="Journey2" value="One Way"
                                     formControlName="journey_type">
-                                <label for="Journey2">One Way</label>
+                                <label for="Journey2"><img src="assets/images/single.png">One Way</label>
                             </div>
                             <div class="col-6">
                                 <input type="radio" class="mr-2" id="Journey3" value="Multi City"
                                     formControlName="journey_type">
-                                <label for="Journey3">Multi City</label>
+                                <label for="Journey3"><img src="assets/images/multi.jpeg">Multi City</label>
                             </div>
                         </div>
                     </div>
@@ -122,9 +122,9 @@
                     <div class="general_details_body">
 
                         <div class="select_plan_check">
-                            <ion-checkbox checked="false" (ionChange)="selectTier($event)" value="Economys">
+                            <ion-checkbox checked="false" (ionChange)="selectTier($event)" value="Economies">
                             </ion-checkbox>
-                            <ion-label class="ml-3">Economys</ion-label>
+                            <ion-label class="ml-3">Economies</ion-label>
                         </div>
                         <div class="select_plan_check">
                             <ion-checkbox checked="false" (ionChange)="selectTier($event)" value="Business Class">
@@ -139,7 +139,7 @@
                         <div class="select_plan_check">
                             <ion-checkbox checked="false" (ionChange)="selectTier($event)" value="Premium Economy">
                             </ion-checkbox>
-                            <ion-label class="ml-3">Premium Economy</ion-label>
+                            <ion-label class="ml-3">Premium Economies Class</ion-label>
                         </div>
                     </div>
                 </div>

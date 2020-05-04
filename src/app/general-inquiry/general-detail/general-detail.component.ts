@@ -58,8 +58,9 @@ export class GeneralDetailComponent implements OnInit {
       departure_date: new FormControl(''),
       intende_date: new FormControl(''),
       duration_status: new FormControl('Flexible'),
-      group_travel: new FormControl('No'),
-      group_travel_detail: new FormGroup({
+      // group_travel: new FormControl('No'),
+      // number_of_people:new FormControl(''),
+      number_of_people: new FormGroup({
         'infants': new FormControl(''),
         'children': new FormControl(''),
         'adults': new FormControl(''),
@@ -216,23 +217,23 @@ export class GeneralDetailComponent implements OnInit {
 
   //Decrement passangers count
   decrement(type) {
-    console.log("type in dec", type, this.generalDetailsForm.controls.group_travel_detail.value);
+    console.log("type in dec", type, this.generalDetailsForm.controls.number_of_people.value);
     if (type == "infants") {
       if (this.infantsPassenger)
         this.infantsPassenger--;
-      this.generalDetailsForm.controls.group_travel_detail.value.infants = this.infantsPassenger;
+      this.generalDetailsForm.controls.number_of_people.value.infants = this.infantsPassenger;
     } else if (type == "children") {
       if (this.childrenPassenger)
         this.childrenPassenger--;
-      this.generalDetailsForm.controls.group_travel_detail.value.children = this.childrenPassenger;
+      this.generalDetailsForm.controls.number_of_people.value.children = this.childrenPassenger;
     } else if (type == 'adults') {
       if (this.adultsPassenger)
         this.adultsPassenger--;
-      this.generalDetailsForm.controls.group_travel_detail.value.adults = this.adultsPassenger;
+      this.generalDetailsForm.controls.number_of_people.value.adults = this.adultsPassenger;
     } else if (type == 'senior') {
       if (this.seniorPassenger)
         this.seniorPassenger--;
-      this.generalDetailsForm.controls.group_travel_detail.value.senior_citizens = this.seniorPassenger;
+      this.generalDetailsForm.controls.number_of_people.value.senior_citizens = this.seniorPassenger;
     }
   }
 
@@ -241,16 +242,16 @@ export class GeneralDetailComponent implements OnInit {
     console.log("type in inc", type)
     if (type == "infants") {
       this.infantsPassenger++;
-      this.generalDetailsForm.controls.group_travel_detail.value.infants = this.infantsPassenger;
+      this.generalDetailsForm.controls.number_of_people.value.infants = this.infantsPassenger;
     } else if (type == "children") {
       this.childrenPassenger++;
-      this.generalDetailsForm.controls.group_travel_detail.value.children = this.childrenPassenger;
+      this.generalDetailsForm.controls.number_of_people.value.children = this.childrenPassenger;
     } else if (type == 'adults') {
       this.adultsPassenger++;
-      this.generalDetailsForm.controls.group_travel_detail.value.adults = this.adultsPassenger;
+      this.generalDetailsForm.controls.number_of_people.value.adults = this.adultsPassenger;
     } else if (type == 'senior') {
       this.seniorPassenger++;
-      this.generalDetailsForm.controls.group_travel_detail.value.senior_citizens = this.seniorPassenger;
+      this.generalDetailsForm.controls.number_of_people.value.senior_citizens = this.seniorPassenger;
     }
   }
 

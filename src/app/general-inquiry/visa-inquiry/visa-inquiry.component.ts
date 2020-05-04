@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TripService } from 'src/app/services/trip.service';
+import * as moment from 'moment';
 declare const $: any
 @Component({
   selector: 'app-visa-inquiry',
@@ -36,11 +37,14 @@ export class VisaInquiryComponent implements OnInit {
       visa_type: new FormControl('Business'),
       previous_rejections: new FormControl('Yes'),
       previous_rejections_details: new FormControl(''),
+      previous_rejections_country:new FormControl(''),
       international_travel: new FormControl('Yes'),
-      international_travel_details: new FormControl(''),
+      // international_travel_details: new FormControl(''),
+      previous_travel_country: new FormControl(''),
+      previous_travel_from_date: new FormControl(''),
+      previous_travel_to_date: new FormControl(''),
       sponsor: new FormControl('Yes'),
       sponsor_detail: new FormControl(''),
-      applicants: new FormControl('')
     })
   }
 
@@ -55,6 +59,10 @@ export class VisaInquiryComponent implements OnInit {
    * @param {Object} data 
    */
   nextForm(data) {
+    if (data.previous_travel_from_date)
+      data.previous_travel_from_date = data.previous_travel_from_date.split("T")[0];
+    if (data.previous_travel_to_date)
+      data.previous_travel_to_date = data.previous_travel_to_date.split("T")[0];
     console.log("data in next forrm", data)
     if (data.previous_rejections == 'No')
       this.visaForm.controls.previous_rejections_details.setValue('No');
@@ -70,8 +78,8 @@ export class VisaInquiryComponent implements OnInit {
     this.checkLocalStorageData();
     console.log("data", data)
     this.storeFormData(data);
-    this.visaForm.controls.previous_rejections_details.setValue('');
-    this.visaForm.controls.international_travel_details.setValue('');
+    // this.visaForm.controls.previous_rejections_details.setValue('');
+    // this.visaForm.controls.international_travel_details.setValue('');
     this.visaForm.controls.sponsor_detail.setValue('');
     this.route.navigate(['/home/' + this.formUrl[0]])
   }

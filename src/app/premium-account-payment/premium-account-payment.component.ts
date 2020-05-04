@@ -31,7 +31,7 @@ export class PremiumAccountPaymentComponent implements OnInit {
         this.noOfPlan = this.router.getCurrentNavigation().extras.state.noOfPlan;
         this.destinationFormData = this.router.getCurrentNavigation().extras.state.formData;
         this.destinationId = this.router.getCurrentNavigation().extras.state.destinationId;
-        this.destinationFormData = JSON.parse(this.destinationFormData)
+        // this.destinationFormData = JSON.parse(this.destinationFormData)
         console.log("in payment page", this.amount, this.type, this.destinationFormData)
       }
     });
@@ -70,14 +70,22 @@ export class PremiumAccountPaymentComponent implements OnInit {
         localStorage.removeItem('selectedFormCategory');
       })
     } else {
-      const formData = [];
-      formData.push(this.destinationFormData)
+      const data= {
+        'other-details': this.destinationFormData
+      }
       obj = {
         id: this.currentUser.id,
         destination_id: this.destinationId,
-        form_data:formData
-
+        form_data: JSON.stringify(data)
       }
+      // const formData = [];
+      // formData.push(this.destinationFormData)
+      // obj = {
+      //   id: this.currentUser.id,
+      //   destination_id: this.destinationId,
+      //   form_data:formData
+
+      // }
       console.log(obj);
       this.loading = true;
       this.isDisable = true;

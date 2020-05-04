@@ -694,7 +694,6 @@ export class OccasionVacationComponent implements OnInit {
   }
 
   selectOccianOption(data, index) {
-
     _.forEach(this.occasionOption, (option, i) => {
       if ($('.active-' + i).hasClass('animate-icon')) {
         console.log("has class")

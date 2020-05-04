@@ -214,8 +214,12 @@
                             </ion-select>
                         </ion-item>
                         <div class="select_plan_check mt-2">
-                            <ion-checkbox checked="false" formControlName="suggest_rental"> </ion-checkbox>
-                            <ion-label class="ml-3">Suggest Rental</ion-label>
+                            <ion-item>
+                                <ion-label position="floating">Suggest Rental</ion-label>
+                                <ion-input type="text" formControlName="suggest_rental"></ion-input>
+                            </ion-item>
+                            <!-- <ion-label class="ml-3">Suggest Rental</ion-label>
+                            <ion-checkbox checked="false" formControlName="suggest_rental"> </ion-checkbox> -->
                         </div>
                     </div>
                 </div>

@@ -66,12 +66,26 @@
                     </div>
                 </div>
                 <div class="general_details">
+                    <div class="general_details_header">
+                        <img src="assets/images/rental.png">
+                        <p>Room Category Preference</p>
+                    </div>
                     <div class="general_details_body">
                         <div>
-                            <div>
-                                <ion-item>
-                                    <ion-label position="floating">Room Category Preference</ion-label>
-                                    <ion-select formControlName="room_category_preference">
+                            <div class="category-slider">
+                                <!-- <ion-item> -->
+                                <ion-slides class="mt-2">
+                                    <ion-slide *ngFor="let category of roomCategory;let i=index;">
+                                        <span class="category-label">{{category.name}}</span>
+                                        <img src="{{category.url}}" [ngStyle]="{'margin-top':i==1?'45px':''}">
+                                        <div class="like-icon active-{{i}}"
+                                            (click)="selectRoomCategory(category,i)">
+                                            <i class="fas fa-star" *ngIf="category.isSelectIcon"></i>
+                                            <i class="far fa-star" *ngIf="!category.isSelectIcon"></i>
+                                        </div>
+                                    </ion-slide>
+                                </ion-slides>
+                                <!-- <ion-select formControlName="room_category_preference">
                                         <ion-select-option value="Basic (Standard) Room">Basic (Standard) Room
                                         </ion-select-option>
                                         <ion-select-option value="Room With a View(Beach,City,Valley,Garden,Pool)">Room
@@ -81,21 +95,18 @@
                                         <ion-select-option value="Cottages">Cottages</ion-select-option>
                                         <ion-select-option value="Balcony">Balcony</ion-select-option>
                                         <ion-select-option value="Penthouse">Penthouse</ion-select-option>
-                                        <!-- <ion-select-option value="Queen Room">Queen Room</ion-select-option>
-                                        <ion-select-option value="Single Room">Single Room</ion-select-option>
-                                        <ion-select-option value="Double Room">Double Room</ion-select-option>
-                                        <ion-select-option value="Quad Room">Quad Room</ion-select-option>
-                                        <ion-select-option value="King Room">King Room</ion-select-option>
-                                        <ion-select-option value="Twin Room">Twin Room</ion-select-option>
-                                        <ion-select-option value="Triple Room">Triple Room</ion-select-option>
-                                        <ion-select-option value="Studio Room">Studio Room</ion-select-option> -->
-                                    </ion-select>
-                                </ion-item>
+                                    </ion-select> -->
+                                <!-- </ion-item> -->
                             </div>
                             <div *ngIf="submitted && f.room_category_preference.errors" class="invalid-feedback">
                                 <div *ngIf="f.room_category_preference.errors.required">Select Accomodation Type</div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="general_details">
+                    <div class="general_details_body">
+
                         <!-- <div class="row"> -->
                         <div class="smoke-icon mt-2">
                             <p>Smoking Room</p>
@@ -129,14 +140,7 @@
                                 <label for="Accessible2">No</label>
                             </div>
                         </div>
-                        <!-- </div> -->
-                        <!-- <div>
-                            <ion-item>
-                                <ion-label position="floating">Any Special Requirement</ion-label>
-                                <ion-input type="text" formControlName="special_request"></ion-input>
-                            </ion-item>
-                          
-                        </div> -->
+
                     </div>
                 </div>
 
@@ -203,38 +207,7 @@
                             <ion-label class="ml-3">Jain ( Only where available )</ion-label>
                         </div>
 
-                        <!-- <div class="row">
-                            <div class="col-12">
-                                <input type="radio" class="mr-2" id="Culinary1" formControlName="culinary_preferrence"
-                                    value="Vegetarian">
-                                <label for="Culinary1">Vegetarian</label>
-                            </div>
-                            <div class="col-12">
-                                <input type="radio" class="mr-2" id="Culinary2" formControlName="culinary_preferrence"
-                                    value="Vegan">
-                                <label for="Culinary2">Vegan</label>
-                            </div>
-                            <div class="col-12">
-                                <input type="radio" class="mr-2" id="Culinary3" formControlName="culinary_preferrence"
-                                    value="Gluten & Lactose Free">
-                                <label for="Culinary3">Gluten & Lactose Free</label>
-                            </div>
-                            <div class="col-12">
-                                <input type="radio" class="mr-2" id="Culinary4" formControlName="culinary_preferrence"
-                                    value="Non Veg">
-                                <label for="Culinary4">Non Veg</label>
-                            </div>
-                            <div class="col-12">
-                                <input type="radio" class="mr-2" id="Culinary5" formControlName="culinary_preferrence"
-                                    value="Jain ( Only where available )">
-                                <label for="Culinary5">Jain ( Only where available )</label>
-                            </div>
-                            <div class="col-12">
-                                <input type="radio" class="mr-2" id="Culinary6" formControlName="culinary_preferrence"
-                                    value="Other">
-                                <label for="Culinary6">Other</label>
-                            </div>
-                        </div> -->
+
                         <ion-item>
                             <ion-label position="floating">Any Special Requirement</ion-label>
                             <ion-input type="text" formControlName="culinary_special_request"></ion-input>
@@ -282,19 +255,33 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="passengers-details">
+                                <div class="plist">Extra Bed</div>
+                                <div class="icon-button">
+                                    <div class="icons">
+                                        <i class="fa fa-minus" aria-hidden="true" (click)="decrement('bed',i)"></i>
+                                        <span>{{room.extra_bed}}</span>
+                                        <i class="fa fa-plus" aria-hidden="true" (click)="increment('bed',i)"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-4 text-center pl-4">
+                            <div class="col-3 text-center pl-4">
                                 <img src="assets/images/infants.png" style="height: 35px;">
                                 <p>{{room.infants}}</p>
                             </div>
-                            <div class="col-4 text-center">
+                            <div class="col-3 text-center">
                                 <img src="assets/images/children.svg" style="height: 46px;margin-top:-4px;">
                                 <p style="margin-top: -7px;">{{room.children}}</p>
                             </div>
-                            <div class="col-4 text-center">
+                            <div class="col-3 text-center">
                                 <img src="assets/images/adults.png" style="height: 33px;margin-top: 4px;">
                                 <p>{{room.adults}}</p>
+                            </div>
+                            <div class="col-3 text-center">
+                                <img src="assets/images/buildings.png" style="height: 33px;margin-top: 4px;">
+                                <p>{{room.extra_bed}}</p>
                             </div>
 
                         </div>
@@ -303,10 +290,11 @@
 
                 <div class="add_room_btn text-center">
                     <button type="submit"><span (click)="addRoom()">
-                        <!-- <i class="fas fa-plus-circle"></i> -->
-                        Add Room</span>
+                            <!-- <i class="fas fa-plus-circle"></i> -->
+                            Add Room</span>
                         <a class="toggle-section collapsed collapsed" data-toggle="collapse" data-target="#add-room"
-                            aria-expanded="false" aria-controls="add-room"> <i class="fa float-right" aria-hidden="true"></i></a>
+                            aria-expanded="false" aria-controls="add-room"> <i class="fa float-right"
+                                aria-hidden="true"></i></a>
                     </button>
                     <div class="collapse multi-collapse mb-2 mt-2" id="add-room">
                         <div class="card card-body">

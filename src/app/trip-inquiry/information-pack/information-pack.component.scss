@@ -1,13 +1,15 @@
-
 .general_details_header {
     display: flex;
     p {
         margin: auto 5px;
     }
     img {
-        height: 40px;
-        margin-top: 7px;
-        margin-right: 5px;
+        height: 30px;
+        margin: 9px 7px 0 0;
+    }
+    i{
+        color: black;
+        line-height: 2;
     }
 }
 .total_cost {
@@ -18,21 +20,28 @@
         margin-top: 10px;
     }
 }
-.fa-check{
+.fa-check {
     background: white;
     padding: 9px;
     border-radius: 50%;
     font-size: 11px;
-    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.1)!important;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1) !important;
     // color: #4c4c4c;
     color: #7f8dab;
     margin-right: 10px;
 }
-.information-list{
-   span{
-    color: #7f8dab;
-   }
-    .list-info{
+.information-list {
+    span {
+        color: #7f8dab;
+    }
+    .list-info {
         line-height: 30px;
     }
+}
+[data-toggle="collapse"] .fa:before {
+    content: "\f139";
+}
+
+[data-toggle="collapse"].collapsed .fa:before {
+    content: "\f13a";
 }

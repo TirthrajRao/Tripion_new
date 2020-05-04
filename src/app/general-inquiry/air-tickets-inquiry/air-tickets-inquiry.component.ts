@@ -14,10 +14,10 @@ export class AirTicketsInquiryComponent implements OnInit {
   airTickitForm: FormGroup;
   submitted: boolean = false;
   isSelected: any;
-  infantsPassenger: any = 0;
-  childrenPassenger: any = 0;
-  adultsPassenger: any = 0;
-  seniorPassenger: any = 0;
+  // infantsPassenger: any = 0;
+  // childrenPassenger: any = 0;
+  // adultsPassenger: any = 0;
+  // seniorPassenger: any = 0;
   flightTireArray:any = [];
 
   constructor(public route: Router, public _tripService: TripService) {
@@ -39,10 +39,10 @@ export class AirTicketsInquiryComponent implements OnInit {
       // wheelChair_assistance: new FormControl('Yes')
 
 
-      infants_passenger: new FormControl('0'),
-      children_passenger: new FormControl('0'),
-      adults_passenger: new FormControl('0'),
-      senior_passenger: new FormControl('0'),
+      // infants_passenger: new FormControl('0'),
+      // children_passenger: new FormControl('0'),
+      // adults_passenger: new FormControl('0'),
+      // senior_passenger: new FormControl('0'),
       journey_type: new FormControl('Round Trip'),
       flightTire_preference: new FormControl(''),
       flightSeat_preferences: new FormControl('Aisle'),
@@ -83,44 +83,44 @@ export class AirTicketsInquiryComponent implements OnInit {
   }
 
   //Decrement passangers count
-  decrement(type) {
-    console.log("type in dec", type);
-    if (type == "infants") {
-      if (this.infantsPassenger)
-        this.infantsPassenger--;
-      this.airTickitForm.controls.infants_passenger.setValue(this.infantsPassenger)
-    } else if (type == "children") {
-      if (this.childrenPassenger)
-        this.childrenPassenger--;
-      this.airTickitForm.controls.children_passenger.setValue(this.childrenPassenger)
-    } else if (type == 'adults') {
-      if (this.adultsPassenger)
-        this.adultsPassenger--;
-      this.airTickitForm.controls.adults_passenger.setValue(this.adultsPassenger)
-    } else if (type == 'senior') {
-      if (this.seniorPassenger)
-        this.seniorPassenger--;
-      this.airTickitForm.controls.senior_passenger.setValue(this.seniorPassenger)
-    }
-  }
+  // decrement(type) {
+  //   console.log("type in dec", type);
+  //   if (type == "infants") {
+  //     if (this.infantsPassenger)
+  //       this.infantsPassenger--;
+  //     this.airTickitForm.controls.infants_passenger.setValue(this.infantsPassenger)
+  //   } else if (type == "children") {
+  //     if (this.childrenPassenger)
+  //       this.childrenPassenger--;
+  //     this.airTickitForm.controls.children_passenger.setValue(this.childrenPassenger)
+  //   } else if (type == 'adults') {
+  //     if (this.adultsPassenger)
+  //       this.adultsPassenger--;
+  //     this.airTickitForm.controls.adults_passenger.setValue(this.adultsPassenger)
+  //   } else if (type == 'senior') {
+  //     if (this.seniorPassenger)
+  //       this.seniorPassenger--;
+  //     this.airTickitForm.controls.senior_passenger.setValue(this.seniorPassenger)
+  //   }
+  // }
 
-  //Increment passangers count
-  increment(type) {
-    console.log("type in inc", type)
-    if (type == "infants") {
-      this.infantsPassenger++;
-      this.airTickitForm.controls.infants_passenger.setValue(this.infantsPassenger)
-    } else if (type == "children") {
-      this.childrenPassenger++;
-      this.airTickitForm.controls.children_passenger.setValue(this.childrenPassenger)
-    } else if (type == 'adults') {
-      this.adultsPassenger++;
-      this.airTickitForm.controls.adults_passenger.setValue(this.adultsPassenger)
-    } else if (type == 'senior') {
-      this.seniorPassenger++;
-      this.airTickitForm.controls.senior_passenger.setValue(this.seniorPassenger)
-    }
-  }
+  // //Increment passangers count
+  // increment(type) {
+  //   console.log("type in inc", type)
+  //   if (type == "infants") {
+  //     this.infantsPassenger++;
+  //     this.airTickitForm.controls.infants_passenger.setValue(this.infantsPassenger)
+  //   } else if (type == "children") {
+  //     this.childrenPassenger++;
+  //     this.airTickitForm.controls.children_passenger.setValue(this.childrenPassenger)
+  //   } else if (type == 'adults') {
+  //     this.adultsPassenger++;
+  //     this.airTickitForm.controls.adults_passenger.setValue(this.adultsPassenger)
+  //   } else if (type == 'senior') {
+  //     this.seniorPassenger++;
+  //     this.airTickitForm.controls.senior_passenger.setValue(this.seniorPassenger)
+  //   }
+  // }
 
 
   /**

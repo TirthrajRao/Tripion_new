@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { TripService } from 'src/app/services/trip.service';
+import * as _ from 'lodash';
 declare const $: any;
 @Component({
   selector: 'app-accomodation-inquiry',
@@ -16,6 +17,47 @@ export class AccomodationInquiryComponent implements OnInit {
   culinaryArray: any = [];
   acomodationArray: any = [];
   room: any;
+  slideOpts = {
+    initialSlide: 1,
+    speed: 100
+  };
+  roomCategory = [
+    {
+      url:'assets/images/accomodation/1.jpeg',
+      name:'Basic (Standard) Room',
+      isSelected:false
+    },
+    {
+      url:'assets/images/accomodation/2.jpeg',
+      name:'Room With a View(Beach,City,Valley,Garden,Pool)',
+      isSelected:false
+    },
+    {
+      url:'assets/images/accomodation/3.jpeg',
+      name:'Suit',
+      isSelected:false
+    },
+    {
+      url:'assets/images/accomodation/4.jpeg',
+      name:'Villa',
+      isSelected:false
+    },
+    {
+      url:'assets/images/accomodation/5.jpeg',
+      name:'Cottages',
+      isSelected:false
+    },
+    {
+      url:'assets/images/accomodation/6.jpeg',
+      name:'Balcony',
+      isSelected:false
+    },
+    {
+      url:'assets/images/accomodation/7.jpeg',
+      name:'Penthouse',
+      isSelected:false
+    }
+  ]
 
 
   // formData = JSON.parse(localStorage.getItem('form_data'));
@@ -88,7 +130,8 @@ export class AccomodationInquiryComponent implements OnInit {
     this.room.push(this.fb.group({
       infants: '0',
       children: '0',
-      adults: '0'
+      adults: '0',
+      extra_bed:'0'
     }));
   }
 
@@ -112,6 +155,9 @@ export class AccomodationInquiryComponent implements OnInit {
     } else if (type == 'adults') {
       if (this.accomodationForm.value.rooms[index].adults > 0)
         this.accomodationForm.value.rooms[index].adults--;
+    }else if(type =="bed"){
+      if (this.accomodationForm.value.rooms[index].extra_bed > 0)
+      this.accomodationForm.value.rooms[index].extra_bed--;
     }
   }
 
@@ -122,6 +168,8 @@ export class AccomodationInquiryComponent implements OnInit {
       this.accomodationForm.value.rooms[index].children++
     } else if (type == 'adults') {
       this.accomodationForm.value.rooms[index].adults++
+    }else if (type == 'bed') {
+      this.accomodationForm.value.rooms[index].extra_bed++
     }
   }
 
@@ -180,5 +228,31 @@ export class AccomodationInquiryComponent implements OnInit {
     }
     console.log(this.acomodationArray);
     this.accomodationForm.controls.accomodation_type.setValue(this.acomodationArray);
+  }
+
+
+  selectRoomCategory(data, index) {
+    _.forEach(this.roomCategory, (option, i) => {
+      if ($('.active-' + i).hasClass('animate-icon')) {
+        console.log("has class")
+        $('.active-' + i).removeClass('animate-icon');
+      }
+      if (option.name == data.name) {
+        option.isSelectIcon = !option.isSelectIcon;
+        if (option.isSelectIcon) {
+          console.log("in if")
+          this.accomodationForm.controls.room_category_preference.setValue(data.name);
+          $('.active-' + index).removeClass('unselect-icon');
+          $('.active-' + index).addClass('animate-icon');
+        } else {
+          $('.active-' + index).removeClass('animate-icon');
+          $('.active-' + index).addClass('unselect-icon');
+          this.accomodationForm.controls.room_category_preference.setValue('');
+        }
+      } else {
+        option.isSelectIcon = false;
+      }
+    })
+    console.log("occian of the vacation", this.accomodationForm.value.room_category_preference);
   }
 }

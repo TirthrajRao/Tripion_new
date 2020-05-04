@@ -12,7 +12,7 @@
             <div class="country_name" (click)="getDetails(travelres)" *ngIf="travelres.safe_to_travel">
                 <p class="des-title">{{travelres.safe_to_travel}}</p>
 
-                <p *ngIf="travelres.safe_to_response" class="des-status mt-2">Answered</p>
+                <p *ngIf="travelres.safe_to_response" class="des-status mt-2">Completed</p>
                 <p *ngIf="!travelres.safe_to_response" class="des-status mt-2">Pending</p>
 
                 <i *ngIf="!travelres.safe_to_response" class="fa fa-ellipsis-h status-icon"></i>
