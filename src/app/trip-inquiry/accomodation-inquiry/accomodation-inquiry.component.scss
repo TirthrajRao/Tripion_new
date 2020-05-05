@@ -35,10 +35,17 @@ $button_color: #003574;
 	}
 }
 .smoke-icon {
-	display: flex;
+	// display: flex;
+	// position: relative;
 	img {
 		height: 28px;
 		margin-left: 10px;
+	}
+	a{
+		position: absolute;
+		right: 0px;
+		top: 8px;
+		color: #7f8dab
 	}
 }
 .general_details_header {

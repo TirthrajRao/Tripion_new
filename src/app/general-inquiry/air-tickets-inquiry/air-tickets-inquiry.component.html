@@ -108,7 +108,8 @@
                             <div class="col-6">
                                 <input type="radio" class="mr-2" id="Journey3" value="Multi City"
                                     formControlName="journey_type">
-                                <label for="Journey3"><img src="assets/images/multi.jpeg">Multi City</label>
+                                <label for="Journey3"><img src="assets/images/multi.png" style="height: 25px;">Multi
+                                    City</label>
                             </div>
                         </div>
                     </div>
@@ -124,7 +125,7 @@
                         <div class="select_plan_check">
                             <ion-checkbox checked="false" (ionChange)="selectTier($event)" value="Economies">
                             </ion-checkbox>
-                            <ion-label class="ml-3">Economies</ion-label>
+                            <ion-label class="ml-3">Economy</ion-label>
                         </div>
                         <div class="select_plan_check">
                             <ion-checkbox checked="false" (ionChange)="selectTier($event)" value="Business Class">
@@ -139,7 +140,7 @@
                         <div class="select_plan_check">
                             <ion-checkbox checked="false" (ionChange)="selectTier($event)" value="Premium Economy">
                             </ion-checkbox>
-                            <ion-label class="ml-3">Premium Economies Class</ion-label>
+                            <ion-label class="ml-3">Premium Economy Class</ion-label>
                         </div>
                     </div>
                 </div>
@@ -253,13 +254,18 @@
                             aria-expanded="false" aria-controls="seat-belt"> <i class="fa" aria-hidden="true"></i></a>
                     </div>
                     <div class="collapse multi-collapse mb-2" id="seat-belt">
+                        <div class="select_plan_check mt-2 mb-2">
+                            <ion-checkbox value="Yes" checked="false" (ionChange)="selectSeatBelt($event)"
+                                class="ml-4"></ion-checkbox>
+                            <ion-label class="ml-3">Select Seat belt Extender</ion-label>
+                        </div>
                         <div class="card card-body">
                             This option is requested to the airline by us but the confirmation can’t be given & you can
                             always ask for one onboard without any pre-requests.
                         </div>
                     </div>
 
-                    <div class="general_details_body">
+                    <!-- <div class="general_details_body">
                         <div class="row">
                             <div class="col-6">
                                 <input type="radio" class="mr-2" id="seatbelt1" formControlName="seat_belt_extender"
@@ -272,15 +278,24 @@
                                 <label for="seatbelt2">No</label>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="general_details">
                     <div class="general_details_header">
                         <img src="assets/images/wheelchair.png">
                         <p>Wheel Chair Assistance</p>
+                        <a class="toggle-section collapsed collapsed" data-toggle="collapse" data-target="#wheel-chair"
+                        aria-expanded="false" aria-controls="wheel-chair"> <i class="fa" aria-hidden="true"></i></a>
                     </div>
-                    <div class="general_details_body">
+                    <div class="collapse multi-collapse" id="wheel-chair">
+                        <div class="select_plan_check mt-2 mb-2 pb-3">
+                            <ion-checkbox value="Yes" checked="false" (ionChange)="selectWheelChair($event)"
+                                class="ml-4"></ion-checkbox>
+                            <ion-label class="ml-3">Select Wheel Chair Assistance</ion-label>
+                        </div>
+                    </div>
+                    <!-- <div class="general_details_body">
 
                         <div class="row">
                             <div class="col-6">
@@ -294,7 +309,7 @@
                                 <label for="Wheelchair2">No</label>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="general_details" *ngIf="isSelected == 'true'">

@@ -23,39 +23,39 @@ export class AccomodationInquiryComponent implements OnInit {
   };
   roomCategory = [
     {
-      url:'assets/images/accomodation/1.jpeg',
-      name:'Basic (Standard) Room',
-      isSelected:false
+      url: 'assets/images/accomodation/1.jpeg',
+      name: 'Basic (Standard) Room',
+      isSelected: false
     },
     {
-      url:'assets/images/accomodation/2.jpeg',
-      name:'Room With a View(Beach,City,Valley,Garden,Pool)',
-      isSelected:false
+      url: 'assets/images/accomodation/2.jpeg',
+      name: 'Room With a View(Beach,City,Valley,Garden,Pool)',
+      isSelected: false
     },
     {
-      url:'assets/images/accomodation/3.jpeg',
-      name:'Suit',
-      isSelected:false
+      url: 'assets/images/accomodation/3.jpeg',
+      name: 'Suit',
+      isSelected: false
     },
     {
-      url:'assets/images/accomodation/4.jpeg',
-      name:'Villa',
-      isSelected:false
+      url: 'assets/images/accomodation/4.jpeg',
+      name: 'Villa',
+      isSelected: false
     },
     {
-      url:'assets/images/accomodation/5.jpeg',
-      name:'Cottages',
-      isSelected:false
+      url: 'assets/images/accomodation/5.jpeg',
+      name: 'Cottages',
+      isSelected: false
     },
     {
-      url:'assets/images/accomodation/6.jpeg',
-      name:'Balcony',
-      isSelected:false
+      url: 'assets/images/accomodation/6.jpeg',
+      name: 'Balcony',
+      isSelected: false
     },
     {
-      url:'assets/images/accomodation/7.jpeg',
-      name:'Penthouse',
-      isSelected:false
+      url: 'assets/images/accomodation/7.jpeg',
+      name: 'Penthouse',
+      isSelected: false
     }
   ]
 
@@ -81,8 +81,8 @@ export class AccomodationInquiryComponent implements OnInit {
       location_specific_accommodation_detail: new FormControl(''),
       amenities_specific_accommodation_detail: new FormControl(''),
       room_category_preference: new FormControl(''),
-      smoking_room: new FormControl('No'),
-      wheelchair_accessible: new FormControl('No'),
+      smoking_room: new FormControl(''),
+      wheelchair_accessible: new FormControl(''),
       special_request: new FormControl(''),
       meal_plan: new FormControl('CP ( Continental Plan ) - Only Breakfast'),
       culinary_preferrence: new FormControl('Vegetarian'),
@@ -131,7 +131,7 @@ export class AccomodationInquiryComponent implements OnInit {
       infants: '0',
       children: '0',
       adults: '0',
-      extra_bed:'0'
+      extra_bed: '0'
     }));
   }
 
@@ -155,9 +155,9 @@ export class AccomodationInquiryComponent implements OnInit {
     } else if (type == 'adults') {
       if (this.accomodationForm.value.rooms[index].adults > 0)
         this.accomodationForm.value.rooms[index].adults--;
-    }else if(type =="bed"){
+    } else if (type == "bed") {
       if (this.accomodationForm.value.rooms[index].extra_bed > 0)
-      this.accomodationForm.value.rooms[index].extra_bed--;
+        this.accomodationForm.value.rooms[index].extra_bed--;
     }
   }
 
@@ -168,7 +168,7 @@ export class AccomodationInquiryComponent implements OnInit {
       this.accomodationForm.value.rooms[index].children++
     } else if (type == 'adults') {
       this.accomodationForm.value.rooms[index].adults++
-    }else if (type == 'bed') {
+    } else if (type == 'bed') {
       this.accomodationForm.value.rooms[index].extra_bed++
     }
   }
@@ -254,5 +254,29 @@ export class AccomodationInquiryComponent implements OnInit {
       }
     })
     console.log("occian of the vacation", this.accomodationForm.value.room_category_preference);
+  }
+
+  /**
+   * set Wheelchair asistance value
+   */
+  selectSmokingRomm(e) {
+    console.log(e.detail)
+    if (e.detail.checked) {
+      this.accomodationForm.controls.smoking_room.setValue(e.detail.value)
+    } else {
+      this.accomodationForm.controls.smoking_room.setValue('No')
+    }
+  }
+
+  /**
+   * set Wheelchair asistance value
+   */
+  selectWheelChair(e) {
+    console.log(e.detail)
+    if (e.detail.checked) {
+      this.accomodationForm.controls.wheelchair_accessible.setValue(e.detail.value)
+    } else {
+      this.accomodationForm.controls.wheelchair_accessible.setValue('No')
+    }
   }
 }

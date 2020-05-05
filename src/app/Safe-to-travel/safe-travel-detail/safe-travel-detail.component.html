@@ -3,32 +3,49 @@
 </ion-header>
 
 <ion-content>
-    <div class="benefits_content safet-to-travel-detail">
+    <div class="benefits_content ">
         <div class="card">
             <div class="card_header w-100">
                 <p>Details</p>
             </div>
-            <div class="card_body">
+            <div class="card_body safet-to-travel-detail">
                 <div [innerHtml]="details.detail"></div>
             </div>
         </div>
-        <div class="mt-2" *ngIf="details.pdfUrl.id">
-            <div (click)="previewImage(details.pdfUrl.image_url)"  *ngIf="details.pdfUrl.image_extension == 'jpg' || details.pdfUrl.image_extension == 'jpeg' || details.pdfUrl.image_extension == 'png'" >
+        <div class=" mt-2 plan_images" *ngIf="images.length">
+            <div class="plan_images_slide" *ngFor="let img of images">
+                <img [src]="img.image_url" onError="src = 'assets/images/placeholder.png'">
+            </div>
+        </div>
+        <div class="attachment-list" *ngIf="documents.length">
+            <p class="text-white ml-2 mb-2">Attachments</p>
+            <div *ngFor="let doc of documents" class="holds-the-iframe">
+              <iframe style="height:230px;cursor: pointer;padding: 5px;" class="w-100"
+                [src]="'https://docs.google.com/viewerng/viewer?url=' + doc.image_url +'&embedded=true' | safe:'resourceUrl'"
+                frameborder="0">
+              </iframe>
+            </div>
+          </div>
+        <div class="mt-2" >
+            <!-- <div (click)="previewImage(details.pdfUrl.image_url)"  *ngIf="details.pdfUrl.image_extension == 'jpg' || details.pdfUrl.image_extension == 'jpeg' || details.pdfUrl.image_extension == 'png'" >
                 <ion-img src="{{details.pdfUrl.image_url || 'assets/images/placeholder.png'}}" (ionError)="onErrorImage()" (ionImgWillLoad)="ionImgWillLoad()" (ionImgDidLoad)="ionImgDidLoad()" [hidden]="!imgLoaded">
                 </ion-img>
                 <ion-spinner [hidden]="imgLoaded"></ion-spinner>
-            </div>
-            <div class="mt-3 text-center text-white view_pdf" *ngIf="details.pdfUrl.image_extension != 'jpg' && details.pdfUrl.image_extension != 'jpeg' && details.pdfUrl.image_extension != 'png'">
+            </div> -->
+
+            <!-- <div class="mt-3 text-center text-white view_pdf"
+                *ngIf="details.pdfUrl.image_extension != 'jpg' && details.pdfUrl.image_extension != 'jpeg' && details.pdfUrl.image_extension != 'png'">
                 <i class="fa fa-file-pdf pr-2"></i>
                 <span>{{details.pdfUrl.image_name}}</span>
-                 <div class="holds-the-iframe"> <iframe style="height:230px;cursor: pointer;" class="w-100" [src]='pathToPreview | safe:"resourceUrl"' frameborder="0">
-                </iframe></div>
-            </div>
+                <div class="holds-the-iframe"> <iframe style="height:230px;cursor: pointer;" class="w-100"
+                        [src]='pathToPreview | safe:"resourceUrl"' frameborder="0">
+                    </iframe></div>
+            </div> -->
         </div>
-        <div class="download_report" *ngIf="details.pdfUrl.id">
+        <div class="download_report" *ngIf="details.pdfUrl.length">
             <button type="submit" (click)="downloadPdf(details.pdfUrl.image_name,details.pdfUrl.mime_type)">
                 <i class="fas fa-cloud-download-alt"></i>
-               <span>Download</span>  
+                <span>Download</span>
             </button>
         </div>
     </div>

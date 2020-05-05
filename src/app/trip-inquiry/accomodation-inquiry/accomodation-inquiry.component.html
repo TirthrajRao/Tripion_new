@@ -78,8 +78,7 @@
                                     <ion-slide *ngFor="let category of roomCategory;let i=index;">
                                         <span class="category-label">{{category.name}}</span>
                                         <img src="{{category.url}}" [ngStyle]="{'margin-top':i==1?'45px':''}">
-                                        <div class="like-icon active-{{i}}"
-                                            (click)="selectRoomCategory(category,i)">
+                                        <div class="like-icon active-{{i}}" (click)="selectRoomCategory(category,i)">
                                             <i class="fas fa-star" *ngIf="category.isSelectIcon"></i>
                                             <i class="far fa-star" *ngIf="!category.isSelectIcon"></i>
                                         </div>
@@ -108,11 +107,24 @@
                     <div class="general_details_body">
 
                         <!-- <div class="row"> -->
-                        <div class="smoke-icon mt-2">
-                            <p>Smoking Room</p>
+                        <div class="smoke-icon select_plan_check  mt-2">
+                            <ion-checkbox value="Yes" checked="false" (ionChange)="selectSmokingRomm($event)"
+                               ></ion-checkbox>
+                            <ion-label class="ml-3">Smoking Room</ion-label>
+                            <!-- <p>Smoking Room</p> -->
                             <img src="assets/images/smok.png">
+                            <!-- <a class="toggle-section collapsed collapsed" data-toggle="collapse" data-target="#smoking-room"
+                            aria-expanded="false" aria-controls="smoking-room"> <i class="fa float-right"
+                                aria-hidden="true"></i></a> -->
                         </div>
-                        <div class="row">
+                        <!-- <div class="collapse multi-collapse card" id="smoking-room">
+                            <div class="select_plan_check mt-2 mb-2 pb-3">
+                                <ion-checkbox value="Yes" checked="false" (ionChange)="selectWheelChair($event)"
+                                    class="ml-4"></ion-checkbox>
+                                <ion-label class="ml-3">Select Wheel Chair Assistance</ion-label>
+                            </div>
+                        </div> -->
+                        <!-- <div class="row">
                             <div class="col-6">
                                 <input type="radio" class="mr-2" id="Smoking1" formControlName="smoking_room"
                                     value="Yes">
@@ -123,12 +135,15 @@
                                     value="No">
                                 <label for="Smoking2">No</label>
                             </div>
-                        </div>
-                        <div class="smoke-icon">
-                            <p>Wheelchair Accessible</p>
+                        </div> -->
+                        <div class="smoke-icon select_plan_check">
+                            <ion-checkbox value="Yes" checked="false" (ionChange)="selectWheelChair($event)"
+                            ></ion-checkbox>
+                         <ion-label class="ml-3">Wheelchair Accessible</ion-label>
+                            <!-- <p>Wheelchair Accessible</p> -->
                             <img src="assets/images/wheelchair1.png">
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-6">
                                 <input type="radio" class="mr-2" id="Accessible1"
                                     formControlName="wheelchair_accessible" value="Yes">
@@ -139,7 +154,7 @@
                                     formControlName="wheelchair_accessible" value="No">
                                 <label for="Accessible2">No</label>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
                 </div>

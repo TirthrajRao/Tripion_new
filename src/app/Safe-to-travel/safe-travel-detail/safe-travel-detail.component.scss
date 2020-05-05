@@ -83,3 +83,26 @@ ion-refresher-content {
 .holds-the-iframe {
   background:url('../../../assets/images/pdfloader.gif') center center no-repeat;
 }
+.plan_images_slide {
+    height: 250px;
+    background: url("../../../assets/images/imgloader.gif") center center no-repeat;
+    background-size: 50px 50px;
+    img {
+        max-width: 100%;
+        min-width: 100%;
+        min-height: 100%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+    
+}
+::ng-deep .slick-dots li.slick-active button:before{
+    color: white;
+}
+::ng-deep .plan_images .slick-dots li button:before {
+    font-size: 40px;
+}
+
+::ng-deep .plan_images .slick-dots li {
+    margin: 0;
+}

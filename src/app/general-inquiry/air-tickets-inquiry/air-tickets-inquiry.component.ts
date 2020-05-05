@@ -18,7 +18,7 @@ export class AirTicketsInquiryComponent implements OnInit {
   // childrenPassenger: any = 0;
   // adultsPassenger: any = 0;
   // seniorPassenger: any = 0;
-  flightTireArray:any = [];
+  flightTireArray: any = [];
 
   constructor(public route: Router, public _tripService: TripService) {
 
@@ -48,8 +48,8 @@ export class AirTicketsInquiryComponent implements OnInit {
       flightSeat_preferences: new FormControl('Aisle'),
       in_flight_meal: new FormControl(''),
       airline_preference: new FormControl(''),
-      seat_belt_extender: new FormControl('Yes'),
-      wheelChair_assistance: new FormControl('Yes')
+      seat_belt_extender: new FormControl(''),
+      wheelChair_assistance: new FormControl('')
     })
 
   }
@@ -156,7 +156,7 @@ export class AirTicketsInquiryComponent implements OnInit {
   /**
    * Set flight tire preferences
    */
-  selectTier(e){
+  selectTier(e) {
     if (!this.flightTireArray.includes(e.detail.value)) {
       this.flightTireArray.push(e.detail.value);
     } else {
@@ -165,5 +165,29 @@ export class AirTicketsInquiryComponent implements OnInit {
     }
     console.log(this.flightTireArray);
     this.airTickitForm.controls.flightTire_preference.setValue(this.flightTireArray);
+  }
+
+  /**
+   * set seat belt extender value
+   */
+  selectSeatBelt(e) {
+    console.log(e.detail)
+    if (e.detail.checked) {
+      this.airTickitForm.controls.seat_belt_extender.setValue(e.detail.value)
+    } else {
+      this.airTickitForm.controls.seat_belt_extender.setValue('No')
+    }
+  }
+
+   /**
+   * set Wheelchair asistance value
+   */
+  selectWheelChair(e) {
+    console.log(e.detail)
+    if (e.detail.checked) {
+      this.airTickitForm.controls.wheelChair_assistance.setValue(e.detail.value)
+    } else {
+      this.airTickitForm.controls.wheelChair_assistance.setValue('No')
+    }
   }
 }

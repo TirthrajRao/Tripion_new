@@ -5,6 +5,7 @@ import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 import { ToastService } from '../../services/toast.service';
 import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
+declare const $: any;
 @Component({
   selector: 'app-safe-travel-detail',
   templateUrl: './safe-travel-detail.component.html',
@@ -18,6 +19,8 @@ export class SafeTravelDetailComponent implements OnInit {
   pathToPreview: any;
   imgLoaded: Boolean = true;
   imgLoading: Boolean = true;
+  images: any = [];
+  documents: any = [];
   constructor(
     public route: ActivatedRoute,
     public router: Router,
@@ -40,13 +43,21 @@ export class SafeTravelDetailComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.details = this.router.getCurrentNavigation().extras.state;
-        this.pathToPreview = "https://docs.google.com/viewerng/viewer?url=" + this.details.pdfUrl.image_url + "&embedded=true"
+        console.log("in payment page", this.details, this.details.pdfUrl)
+        this.details.pdfUrl.map((image) => {
+          if (image.mime_type.includes('image')) {
+            this.images.push(image)
+          } else {
+            this.documents.push(image)
+          }
+        })
+        setTimeout(() => {
+          this.createSlider();
+        }, 1)
+        // this.pathToPreview = "https://docs.google.com/viewerng/viewer?url=" + this.details.pdfUrl.image_url + "&embedded=true"
         console.log("in payment page", this.details)
       }
     });
-  }
-  func() {
-    console.log("calll")
   }
 
   /**
@@ -96,8 +107,8 @@ export class SafeTravelDetailComponent implements OnInit {
   /**
      * Image pop up
    * @param {URL} img 
-   */ 
-  previewImage(img) { 
+   */
+  previewImage(img) {
     console.log(img)
     this.photoViewer.show(img)
   }
@@ -118,7 +129,20 @@ export class SafeTravelDetailComponent implements OnInit {
   }
   ionImgDidLoad() {
     console.log("image loaded");
-    this.imgLoaded = true;  
+    this.imgLoaded = true;
     this.imgLoading = false;
+  }
+
+  /**
+   * Create Slider
+   */
+  createSlider() {
+    $('.plan_images').slick({
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      dots: true,
+      speed: 100
+    });
   }
 }

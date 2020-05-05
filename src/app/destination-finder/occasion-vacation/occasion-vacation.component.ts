@@ -21,6 +21,7 @@ export class OccasionVacationComponent implements OnInit {
   interests: any = [];
   travel: any = [];
   loading: Boolean = false;
+  sliderLoading: Boolean = true;
   continentsList: any = [];
 
   occasionOption = [
@@ -354,56 +355,68 @@ export class OccasionVacationComponent implements OnInit {
   NorthAmerica = [
     {
       url: 'assets/images/download.jpeg',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
     {
       url: 'assets/images/e.png',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
     {
       url: 'assets/images/download.jpeg',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
     {
       url: 'assets/images/e.png',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     }
   ];
   Asia = [
     {
       url: 'https://images.unsplash.com/photo-1494548162494-384bba4ab999?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
     {
       url: 'https://s.ftcdn.net/v2013/pics/all/curated/RKyaEDwp8J7JKeZWQPuOVWvkUjGQfpCx_cover_580.jpg?r=1a0fc22192d0c808b8bb2b9bcfbf4a45b1793687',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
     {
       url: 'assets/images/download.jpeg',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
     {
       url: 'assets/images/e.png',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
 
   ];
   SouthAmerica = [
     {
       url: 'https://s.ftcdn.net/v2013/pics/all/curated/RKyaEDwp8J7JKeZWQPuOVWvkUjGQfpCx_cover_580.jpg?r=1a0fc22192d0c808b8bb2b9bcfbf4a45b1793687',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
     {
       url: 'assets/images/download.jpeg',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
     {
       url: 'assets/images/e.png',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
     {
       url: 'assets/images/download.jpeg',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
 
   ];
@@ -411,57 +424,91 @@ export class OccasionVacationComponent implements OnInit {
 
     {
       url: 'assets/images/download.jpeg',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
     {
       url: 'https://s.ftcdn.net/v2013/pics/all/curated/RKyaEDwp8J7JKeZWQPuOVWvkUjGQfpCx_cover_580.jpg?r=1a0fc22192d0c808b8bb2b9bcfbf4a45b1793687',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
     {
       url: 'assets/images/e.png',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
     {
       url: 'assets/images/download.jpeg',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
   ];
   Australia = [
     {
       url: 'https://images.unsplash.com/photo-1494548162494-384bba4ab999?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
     {
       url: 'https://s.ftcdn.net/v2013/pics/all/curated/RKyaEDwp8J7JKeZWQPuOVWvkUjGQfpCx_cover_580.jpg?r=1a0fc22192d0c808b8bb2b9bcfbf4a45b1793687',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
     {
       url: 'assets/images/download.jpeg',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
     {
       url: 'assets/images/e.png',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
   ];
   Europe = [
     {
       url: 'https://images.unsplash.com/photo-1494548162494-384bba4ab999?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
     {
       url: 'https://s.ftcdn.net/v2013/pics/all/curated/RKyaEDwp8J7JKeZWQPuOVWvkUjGQfpCx_cover_580.jpg?r=1a0fc22192d0c808b8bb2b9bcfbf4a45b1793687',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
     {
       url: 'assets/images/download.jpeg',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
     {
       url: 'assets/images/e.png',
-      name: 'Cap Town'
+      name: 'Cap Town',
+      isSelectIcon: false
     },
   ];
+  India = [
+    {
+      url: 'https://images.unsplash.com/photo-1494548162494-384bba4ab999?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
+      name: 'Cap Town',
+      isSelectIcon: false
+    },
+    {
+      url: 'https://s.ftcdn.net/v2013/pics/all/curated/RKyaEDwp8J7JKeZWQPuOVWvkUjGQfpCx_cover_580.jpg?r=1a0fc22192d0c808b8bb2b9bcfbf4a45b1793687',
+      name: 'Cap Town',
+      isSelectIcon: false
+    },
+    {
+      url: 'assets/images/download.jpeg',
+      name: 'Cap Town',
+      isSelectIcon: false
+    },
+    {
+      url: 'assets/images/e.png',
+      name: 'Cap Town',
+      isSelectIcon: false
+    },
+  ]
 
 
   constructor(
@@ -471,31 +518,55 @@ export class OccasionVacationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // this.sliderLoading = true;
+    // setTimeout(() => {
+    //   this.sliderLoading = false;
+    // }, 1);
     setTimeout(() => {
       this.createSlider();
     }, 1)
-  
+
     $('.atm-slide').click(() => {
+      this.sliderLoading = true;
+      setTimeout(() => {
+        this.sliderLoading = false;
+      }, 179);
       setTimeout(() => {
         this.createAtmSlider();
       }, 180)
     })
     $('.cli-slide').click(() => {
+      this.sliderLoading = true;
+      setTimeout(() => {
+        this.sliderLoading = false;
+      }, 179);
       setTimeout(() => {
         this.cretaeCliSlider();
       }, 180)
     })
     $('.ter-slide').click(() => {
+      this.sliderLoading = true;
+      setTimeout(() => {
+        this.sliderLoading = false;
+      }, 179);
       setTimeout(() => {
         this.createTerSlider();
       }, 180)
     })
     $('.inr-slide').click(() => {
+      this.sliderLoading = true;
+      setTimeout(() => {
+        this.sliderLoading = false;
+      }, 179);
       setTimeout(() => {
         this.createInrSlider();
       }, 180)
     })
     $('.tra-slide').click(() => {
+      this.sliderLoading = true;
+      setTimeout(() => {
+        this.sliderLoading = false;
+      }, 179);
       setTimeout(() => {
         this.createTravelSlider();
       }, 180)
@@ -648,6 +719,10 @@ export class OccasionVacationComponent implements OnInit {
             name: listItem[0].textContent,
             images: this.Asia
           });
+          this.continentsList.push({
+            name: 'India',
+            images: this.India
+          })
 
         } else if (name == 'Africa') {
           this.continentsList.push({
@@ -675,6 +750,13 @@ export class OccasionVacationComponent implements OnInit {
       },
       onSecondClick: (listItem) => {
         console.log(listItem[0].textContent);
+        if (listItem[0].textContent == 'Asia') {
+          this.continentsList.map((item, index) => {
+            if (item.name == 'India') {
+              this.continentsList.splice(index, 1)
+            }
+          })
+        }
         this.continentsList = this.continentsList.filter(function (el) { return el.name != listItem[0].textContent; });
         // this.continentsList.splice(this.continentsList.indexOf(listItem[0].textContent), 1);
         console.log(this.continentsList)
@@ -758,9 +840,9 @@ export class OccasionVacationComponent implements OnInit {
         } else {
           $('.active-cli-' + index).removeClass('animate-icon');
           $('.active-cli-' + index).addClass('unselect-icon');
-          this.climate.splice(this.climate.indexOf(data.name),1);
+          this.climate.splice(this.climate.indexOf(data.name), 1);
         }
-      } 
+      }
     })
     console.log("climate", this.climate);
   }
@@ -780,7 +862,7 @@ export class OccasionVacationComponent implements OnInit {
         } else {
           $('.active-ter-' + index).removeClass('animate-icon');
           $('.active-ter-' + index).addClass('unselect-icon');
-          this.terrain.splice(this.terrain.indexOf(data.name),1);
+          this.terrain.splice(this.terrain.indexOf(data.name), 1);
         }
       }
     })
@@ -802,9 +884,9 @@ export class OccasionVacationComponent implements OnInit {
         } else {
           $('.active-int-' + index).removeClass('animate-icon');
           $('.active-int-' + index).addClass('unselect-icon');
-          this.interests.splice(this.interests.indexOf(data.name),1);
+          this.interests.splice(this.interests.indexOf(data.name), 1);
         }
-      } 
+      }
     })
     console.log("interest", this.interests);
   }
@@ -824,13 +906,15 @@ export class OccasionVacationComponent implements OnInit {
         } else {
           $('.active-tra-' + index).removeClass('animate-icon');
           $('.active-tra-' + index).addClass('unselect-icon');
-          this.travel.splice(this.travel.indexOf(data.name),1);
+          this.travel.splice(this.travel.indexOf(data.name), 1);
         }
-      } 
+      }
     })
     console.log("travel", this.travel);
   }
-
+  selectMapPlaces(data, index) {
+    console.log(data, index)
+  }
   nextForm() {
     const selectedContinent = []
     this.continentsList.map((continent) => {
@@ -844,16 +928,16 @@ export class OccasionVacationComponent implements OnInit {
       interests: this.interests.toString(),
       additional_travel_experience: this.travel.toString(),
       map: selectedContinent.toString(),
-      id:this.currentUser.id
+      id: this.currentUser.id
     }
     console.log("object", obj);
     this.loading = true;
-    this._tripService.addDestinationReq(obj).subscribe((res:any)=>{
-      console.log("res",res);
+    this._tripService.addDestinationReq(obj).subscribe((res: any) => {
+      console.log("res", res);
       this.router.navigate(['/home/destination-finder'])
       this.loading = false;
-    },err=>{
-      console.log("err",err);
+    }, err => {
+      console.log("err", err);
       this.loading = false;
       this.appComponant.errorAlert(err.error.message)
     })
