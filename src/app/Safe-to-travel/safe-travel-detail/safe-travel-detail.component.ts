@@ -19,8 +19,6 @@ export class SafeTravelDetailComponent implements OnInit {
   pathToPreview: any;
   imgLoaded: Boolean = true;
   imgLoading: Boolean = true;
-  images: any = [];
-  documents: any = [];
   constructor(
     public route: ActivatedRoute,
     public router: Router,
@@ -43,18 +41,17 @@ export class SafeTravelDetailComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.details = this.router.getCurrentNavigation().extras.state;
-        console.log("in payment page", this.details, this.details.pdfUrl)
-        this.details.pdfUrl.map((image) => {
-          if (image.mime_type.includes('image')) {
-            this.images.push(image)
-          } else {
-            this.documents.push(image)
-          }
-        })
-        setTimeout(() => {
-          this.createSlider();
-        }, 1)
-        // this.pathToPreview = "https://docs.google.com/viewerng/viewer?url=" + this.details.pdfUrl.image_url + "&embedded=true"
+        // this.details.pdfUrl.map((image) => {
+        //   if (image.mime_type.includes('image')) {
+        //     this.images.push(image)
+        //   } else {
+        //     this.documents.push(image)
+        //   }
+        // })
+        // setTimeout(() => {
+        //   this.createSlider();
+        // }, 1)
+        this.pathToPreview = "https://docs.google.com/viewerng/viewer?url=" + this.details.pdfUrl.image_url + "&embedded=true"
         console.log("in payment page", this.details)
       }
     });
