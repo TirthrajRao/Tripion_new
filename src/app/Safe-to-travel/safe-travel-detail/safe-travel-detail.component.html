@@ -36,16 +36,17 @@
                 <ion-spinner [hidden]="imgLoaded"></ion-spinner>
             </div>
 
-            <div class="mt-3 text-center text-white view_pdf"
+            <div class="mt-3 text-white view_pdf"
                 *ngIf="details.pdfUrl.image_extension != 'jpg' && details.pdfUrl.image_extension != 'jpeg' && details.pdfUrl.image_extension != 'png'">
-                <i class="fa fa-file-pdf pr-2"></i>
-                <span>{{details.pdfUrl.image_name}}</span>
+               <p>Attachment</p>
+                <!-- <i class="fa fa-file-pdf pr-2"></i> -->
+                <!-- <span>{{details.pdfUrl.image_name}}</span> -->
                 <div class="holds-the-iframe"> <iframe style="height:230px;cursor: pointer;" class="w-100"
                         [src]='pathToPreview | safe:"resourceUrl"' frameborder="0">
                     </iframe></div>
             </div>
         </div>
-        <div class="download_report" *ngIf="details.pdfUrl.length">
+        <div class="download_report" *ngIf="details.pdfUrl.id">
             <button type="submit" (click)="downloadPdf(details.pdfUrl.image_name,details.pdfUrl.mime_type)">
                 <i class="fas fa-cloud-download-alt"></i>
                 <span>Download</span>

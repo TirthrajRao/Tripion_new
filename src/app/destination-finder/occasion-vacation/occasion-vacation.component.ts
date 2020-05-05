@@ -913,7 +913,8 @@ export class OccasionVacationComponent implements OnInit {
     console.log("travel", this.travel);
   }
   selectMapPlaces(data, index) {
-    console.log(data, index)
+    console.log(data, index);
+    alert("==============")
   }
   nextForm() {
     const selectedContinent = []
