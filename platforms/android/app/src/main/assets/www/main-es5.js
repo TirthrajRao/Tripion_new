@@ -601,7 +601,7 @@ var AppComponent = /** @class */ (function () {
         this.hide = true;
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         if (this._userService.currentUserValue) {
-            this.router.navigate(['/home']);
+            // this.router.navigate(['/home']);
         }
         //Exit app
         this.platform.backButton.subscribe(function () {

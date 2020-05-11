@@ -98,14 +98,14 @@ export class TripPlaningDetailComponent implements OnInit {
 
 
   /**
-  * Doenload report
+  * Doenload attachments
   */
-  downloadPdf(url, name, mimeType, ext) {
+  downloadPdf(url, name, mimeType) {
     console.log("===enter====", name)
     const ROOT_DIRECTORY = 'file:///sdcard//';
     const downloadFolderName = 'Download/';
-    this.file.checkFile(ROOT_DIRECTORY + downloadFolderName, name + '.' + ext).then((isExist) => {
-      this.openFile(ROOT_DIRECTORY + downloadFolderName + name + '.' + ext, mimeType);
+    this.file.checkFile(ROOT_DIRECTORY + downloadFolderName, name ).then((isExist) => {
+      this.openFile(ROOT_DIRECTORY + downloadFolderName + name , mimeType);
     }).catch((notexist) => {
       console.log("nonexist")
       //create dir
@@ -113,7 +113,7 @@ export class TripPlaningDetailComponent implements OnInit {
         .then((entries) => {
           //Download file
           this._toastService.presentToast("Downloading.....", 'success')
-          this.fileTransfer.download(url, ROOT_DIRECTORY + downloadFolderName + '/' + name + '.' + ext).then((entry) => {
+          this.fileTransfer.download(url, ROOT_DIRECTORY + downloadFolderName + '/' + name ).then((entry) => {
             console.log('download complete: ' + entry.toURL());
             this.openFile(entry.nativeURL, mimeType);
           }, (error) => {
