@@ -7,8 +7,6 @@ import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 import { AppComponent } from '../../app.component';
 
-// import html2canvas from 'html2canvas';
-
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import { Platform } from '@ionic/angular';
@@ -17,7 +15,6 @@ import { Base64 } from '@ionic-native/base64/ngx';
 import * as  htmlToPdfmake from 'html-to-pdfmake';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 declare var $: any;
-declare const html2canvas: any;
 
 @Component({
   selector: 'app-plan-option-detail',
@@ -214,18 +211,21 @@ export class PlanOptionDetailComponent implements OnInit {
         },
         'html-li':{
           color: '#434a5e',
+        },
+        img:{
+          margin:[0,0,0,10]
         }
       }
     }
-    // for (var i = 0; i < this.planDetail.images.length; i++) {
-    //   docDefinition.content.push({
-    //     columns: [
-    //       {
-    //         image: await this.getBase64ImageFromURL( this.planDetail.images[i].image_url),
-    //         height: 150, width: 150, style: 'img'
-    //       }], columnGap: 10
-    //   });
-    // }
+    for (var i = 0; i < this.planDetail.images.length; i++) {
+      docDefinition.content.push({
+        columns: [
+          {
+            image: this.planDetail.images[i].image_base,
+            height: 150, width: 150, style: 'img'
+          }], columnGap: 10
+      });
+    }
     // docDefinition.content.push(html)
     docDefinition.content.unshift(
       {
