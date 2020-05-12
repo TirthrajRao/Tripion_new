@@ -85,6 +85,11 @@ $button_color: #003574;
             }
         }
     }
+    .btn:hover{
+        color: white;
+        outline: none;
+        box-shadow: none;
+    }
 }
 
 ion-refresher-content {

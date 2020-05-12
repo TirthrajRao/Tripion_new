@@ -125,6 +125,11 @@ $button_color: #003574;
             color: #fff700;
         }
     }
+    .btn:hover{
+        color: white;
+        outline: none;
+        box-shadow: none;
+    }
 }
 
 .edit_btn {
@@ -146,6 +151,11 @@ $button_color: #003574;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
+    .btn:hover{
+        color: white;
+        outline: none;
+        box-shadow: none;
+    }
 }
 
 .reset-password-link {

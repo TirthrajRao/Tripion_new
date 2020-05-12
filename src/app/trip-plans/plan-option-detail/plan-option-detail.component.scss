@@ -28,7 +28,7 @@ $blue: #021b79;
             font-size: 18px;
             padding: 18px 3px;
         }
-        p {
+        p ,div{
             padding: 0px 12px 20px 12px;
             font-size: 15px;
             color: #434a5e;
@@ -42,6 +42,7 @@ $blue: #021b79;
     height: 250px;
     background: url("../../../assets/images/imgloader.gif") center center no-repeat;
     background-size: 50px 50px;
+    outline: none;
     img {
         max-width: 100%;
         min-width: 100%;

@@ -131,6 +131,11 @@ ion-content {
             margin-right: 15px;
         }
     }
+    .btn:hover{
+        color: white;
+        outline: none;
+        box-shadow: none;
+    }
 }
 .payment-list {
     span {
