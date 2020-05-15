@@ -176,6 +176,27 @@ export class PlanOptionDetailComponent implements OnInit {
     const included = htmlToPdfmake(this.planDetail.inclueded);
     const excluded = htmlToPdfmake(this.planDetail.excluded);
     const estimate = htmlToPdfmake(this.planDetail.estimate);
+    const imgArr = [];
+    function buildTableBody(data) {
+      var body = [];
+          var dataRow = [];
+  
+          data.forEach(function(column) {
+              dataRow.push({image:column.image_base,style: 'img', height: 100, width: 100,});
+          })
+          body.push(dataRow);
+      return body;
+  }
+  
+  function table(data) {
+      return {
+        layout:'noBorders',
+          table: {
+              headerRows: 1,
+              body: buildTableBody(data)
+          }
+      };
+  }
 
     var docDefinition = {
 
@@ -209,24 +230,15 @@ export class PlanOptionDetailComponent implements OnInit {
           color: '#434a5e',
           margin: [10, 5, 0, 0]
         },
-        'html-li':{
+        'html-li': {
           color: '#434a5e',
         },
-        img:{
-          margin:[0,0,0,10]
+        img: {
+          margin: [0, 0, 0, 10]
         }
       }
     }
-    for (var i = 0; i < this.planDetail.images.length; i++) {
-      docDefinition.content.push({
-        columns: [
-          {
-            image: this.planDetail.images[i].image_base,
-            height: 150, width: 150, style: 'img'
-          }], columnGap: 10
-      });
-    }
-    // docDefinition.content.push(html)
+
     docDefinition.content.unshift(
       {
         layout: 'noBorders',
@@ -269,6 +281,7 @@ export class PlanOptionDetailComponent implements OnInit {
       estimate,
 
       { text: 'Attachment', style: 'subheader' },
+      table(this.planDetail.images),
 
     );
 
@@ -276,7 +289,7 @@ export class PlanOptionDetailComponent implements OnInit {
     console.log(this.pdfObj);
 
     console.log("download pdf");
-    if (this.plt.is('android')) {
+    // if (this.plt.is('android')) {
       console.log("in if");
       this.pdfObj.getBuffer((buffer) => {
         var blob = new Blob([buffer], { type: 'application/pdf' });
@@ -288,12 +301,12 @@ export class PlanOptionDetailComponent implements OnInit {
           this.fileOpener.open(fileEntry.nativeURL, 'application/pdf');
         })
       });
-    } else {
-      console.log("in else");
-      this.loading = false;
-      this.isDisable = false;
-      this.pdfObj.download();
-    }
+    // } else {
+    //   console.log("in else");
+    //   this.loading = false;
+    //   this.isDisable = false;
+    //   this.pdfObj.download();
+    // }
 
   }
 

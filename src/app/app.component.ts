@@ -45,7 +45,7 @@ export class AppComponent {
   ) {
 
     if (this._userService.currentUserValue) {
-      // this.router.navigate(['/home']);
+      this.router.navigate(['/home']);
     }
 
     //Exit app

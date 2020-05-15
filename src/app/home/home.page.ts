@@ -81,7 +81,7 @@ export class HomePage {
     var listLength = $(".menu_content").find(".menu_list").length;
     $(".menu_content .menu_list").css({ 'line-height': (menuHeight / listLength) + 'px' });
     this.currentUserData =  JSON.parse(localStorage.getItem('currentUser'));
-    console.log("curruntuser data",this.currentUserData)
+    // console.log("curruntuser data",this.currentUserData)
     this.userName = this.currentUserData.user_name;
     this.profilePic = this.currentUserData.profile_pic
     this.event.subscribe("userName", (data) => {
