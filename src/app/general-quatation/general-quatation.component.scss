@@ -1,0 +1,44 @@
+.plan_option_content {
+    // padding: 0px 10px;   
+    position: relative;
+    z-index: 11;
+    margin-bottom: 5px;
+    .card {
+        border: none;
+        cursor: pointer;
+        h6 {
+            color: #434A5E;
+            font-size: 17px;
+            padding: 18px 15px;
+            font-weight: 500;
+            border-bottom: 1px solid #C7CBD6;
+            @media(max-height: 750px) {
+                padding: 12px 10px;
+            }
+            @media(max-height: 600px) {
+                font-size: 16px;
+                padding: 10px 10px;
+            }
+        }
+        h3 {
+            color: #434A5E;
+            font-size: 18px;
+            padding: 18px 0px;
+        }
+        p {
+            padding: 0px 12px 20px 12px;
+            font-size: 15px;
+            color: #434A5E;
+            line-height: 23px;
+        }
+    }
+}
+
+img{
+  height: auto !important;
+}
+
+ion-refresher-content {
+    background-color: #0575E6;
+    --color: white !important;
+}

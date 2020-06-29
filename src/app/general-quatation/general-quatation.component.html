@@ -1,0 +1,30 @@
+<ion-header>
+  <app-header [cname]="'Quotations'"></app-header>
+</ion-header>
+
+<ion-content class="quotation">
+  <!-- <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content refreshingSpinner="circular" pullingIcon="null">
+      </ion-refresher-content>
+  </ion-refresher> -->
+  <div class="all_content" *ngIf="quotations.length">
+      <div class="plan_option_content" *ngFor="let quotation of quotations">
+          <div class="card plan_option_heading  w-100 ">
+              <h6 [innerHtml]="quotation.inquiry_name"></h6>
+              <!-- <h3 class="text-center" [innerHtml]="quotation.inquiry_name"></h3> -->
+              <span class="font-weight-bold ml-2" *ngIf="quotation.quotation">Quotation :</span>
+              <div class="quotation-content p-3" [innerHtml]="quotation.quotation"  *ngIf="quotation.quotation"></div>
+          </div>
+      </div>
+  </div>
+  <div *ngIf="loading">
+      <div id="loader-wrapper">
+          <div class="heartbeatloader">
+              <ion-img class="svgdraw" src="assets/images/loader.gif"></ion-img>
+          </div>
+      </div>
+  </div>
+  <div *ngIf="!loading && !quotations.length">
+      <span class="text-white text-center no-request">We are working on it,<br>will revert soon!!</span>
+  </div>
+</ion-content>

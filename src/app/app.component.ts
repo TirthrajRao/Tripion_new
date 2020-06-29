@@ -82,6 +82,7 @@ export class AppComponent {
    */
   getNotification() {
     this.getToken();
+    this.fcm.clearAllNotifications();
     this.fcm.onTokenRefresh().subscribe(token => {
       console.log("reresh token", token);
     });

@@ -215,4 +215,12 @@ export class TripService {
   addDestinationOtherFormData(data){
     return this.http.post(config.baseApiUrl + 'add-destination-form', data);
   }
+
+  /**
+   * Get General quotation
+   * @param {object} data 
+   */
+  getGeneralQuotation(data){
+    return this.http.post(config.baseApiUrl + 'get-all-quotation', data);
+  }
 }

@@ -48,6 +48,11 @@ export class HomePage {
         iconSrc: 'assets/images/4.png'
       },
       {
+        title:'General Quotation',
+        url: '/home/general-quatation',
+        iconSrc: 'assets/images/quote.png'
+      },
+      {
         title: 'Notifications',
         url: '/home/notification',
         iconSrc: 'assets/images/5.png'
