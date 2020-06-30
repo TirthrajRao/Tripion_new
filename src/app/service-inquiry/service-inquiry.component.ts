@@ -44,18 +44,6 @@ export class ServiceInquiryComponent implements OnInit {
     let services = []
     services.push(...this.tripServices, ...this.otherServices)
     console.log("this.tripService", services, this.tripServices)
-    // if (services.length)
-    //   if (services.length < 3) {
-    //     $('.error_alert_box3').fadeIn().addClass('animate');
-    //     $('.error_alert_box3').click(function () {
-    //       $(this).hide().removeClass('animate');
-    //     });
-    //     $(' .error_alert_box3 .alert_box_content').click(function (event) {
-    //       event.stopPropagation();
-    //     });
-    //     return;
-    //   }
-
     this.checkBoxValue = this.generalServices.concat(this.tripServices);
     this.selectedForm = services.concat(this.generalServices);
     this.checkBoxValue = _.uniq(this.checkBoxValue);
@@ -176,6 +164,7 @@ export class ServiceInquiryComponent implements OnInit {
     console.log("tripServices", this.tripServices);
   }
 
+
   /**
    * Select General Service
    * @param {object} data 
@@ -191,6 +180,7 @@ export class ServiceInquiryComponent implements OnInit {
     }
     console.log("generalServices", this.generalServices);
   }
+
 
   /**
    * Select other Service
@@ -208,18 +198,20 @@ export class ServiceInquiryComponent implements OnInit {
     console.log("otherServices", this.otherServices);
   }
 
+
   /**
    * Check only air tickit form selected
    */
   checkSelectedForm() {
     const formValue = JSON.parse(localStorage.getItem('formId'));
-    if (formValue.length == 1) {
-      if (formValue[0] == 'air-tickets') {
+    console.log("form Value",formValue)
+    if (formValue.length == 3) {
+      if (formValue[1] == 'air-tickets' || formValue[1] == 'visa') {
         console.log("in if")
-        localStorage.setItem("selectOnlyAirTickits", 'true')
+        localStorage.setItem("selectVisaOrAirTicket", 'true')
       }
     } else {
-      localStorage.setItem("selectOnlyAirTickits", 'false')
+      localStorage.setItem("selectVisaOrAirTicket", 'false');
     }
   }
 }

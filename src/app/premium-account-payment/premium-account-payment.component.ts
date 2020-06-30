@@ -80,14 +80,6 @@ export class PremiumAccountPaymentComponent implements OnInit {
         destination_id: this.destinationId,
         form_data: JSON.stringify(array)
       }
-      // const formData = [];
-      // formData.push(this.destinationFormData)
-      // obj = {
-      //   id: this.currentUser.id,
-      //   destination_id: this.destinationId,
-      //   form_data:formData
-
-      // }
       console.log(obj);
       this.loading = true;
       this.isDisable = true;

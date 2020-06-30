@@ -25,6 +25,9 @@ export class OtherDetailsInquiryComponent implements OnInit {
   isDisable: Boolean = false;
   userData;
   loading: Boolean = false;
+  isFreeQuotation = localStorage.getItem('isFreeQuotation');
+  isVisaOrAirTicketSelected = localStorage.getItem('selectVisaOrAirTicket');
+
   constructor(
     public route: Router,
     public _tripService: TripService,
@@ -44,6 +47,7 @@ export class OtherDetailsInquiryComponent implements OnInit {
       budget_preference: new FormControl(''),
       budget_amount: new FormControl(''),
       payment_mode: new FormControl(''),
+      free_quotation: new FormControl('')
       // number_of_plans: new FormControl('')
     })
     // this.getUserDetail();
@@ -193,4 +197,84 @@ export class OtherDetailsInquiryComponent implements OnInit {
     }
   }
 
+  /**
+   * Submit Form
+   * @param {object} data 
+   */
+  submitForm(data) {
+    console.log("in submit form", data);
+    if (this.formUrl[0] == 'other-details') {
+      this.formUrl.splice(0, 1);
+      localStorage.setItem('formId', JSON.stringify(this.formUrl));
+    }
+    this.submitted = true;
+    console.log(data);
+    this.submitted = true;
+    if (this.otherDetailsForm.invalid) {
+      return;
+    }
+    this.checkLocalStorageData();
+    if (!this.currentUser.email) {
+      alert('Please add your email in your Profile');
+      return;
+    } else {
+      console.log(this.formData);
+      const object = {
+        "other_detail": data
+      }
+      this._tripService.storeFormData(object)
+      let formData = JSON.parse(localStorage.getItem('form_data'))
+      console.log("form data", JSON.parse(localStorage.getItem('form_data')));
+      console.log("selected form", JSON.parse(localStorage.getItem('selectedForm')))
+      let formObject = {};
+      _.forEach(JSON.parse(localStorage.getItem('selectedForm')), (form, index) => {
+        formObject[index + 1] = form
+      })
+      const selectedForms = {
+        "selected_forms": formObject
+      }
+      console.log("formobject", formObject, selectedForms);
+      let localStorageFormData = JSON.parse(localStorage.getItem('form_data'))
+      let result, index;
+      localStorageFormData.some((o, i) => {
+        console.log(i, o);
+        if (o.selected_forms) {
+          result = true
+          index = i;
+        }
+      })
+      console.log("result====>", result, index);
+      if (!result) {
+        console.log("not result")
+        formData.unshift(selectedForms);
+      }
+      localStorage.setItem('form_data', JSON.stringify(formData));
+      console.log(this.formData);
+      const obj = {
+        id: this.currentUser.id,
+        email: this.currentUser.email,
+        form_category: this.selectedFormCategory.toString(),
+        form_data: localStorage.getItem('form_data')
+      }
+      console.log(obj);
+      this.isDisable = true;
+      this.loading = true;
+      this._tripService.addInquiry(obj).subscribe((res: any) => {
+        this.isDisable = false;
+        this.loading = false;
+        console.log("inquiry form res", res);
+        localStorage.removeItem('form_data');
+        localStorage.removeItem('selectedFormCategory');
+        this.appComponent.sucessAlert("We got your money!!", "WoW")
+        this.route.navigate(['/home']);
+      }, (err) => {
+        this.appComponent.errorAlert(err.error.message);
+        this.isDisable = false;
+        this.loading = false;
+        console.log(err);
+        localStorage.removeItem('form_data');
+        localStorage.removeItem('selectedFormCategory');
+      })
+    }
+  }
 }

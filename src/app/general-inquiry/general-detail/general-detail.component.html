@@ -28,11 +28,12 @@
                                 <div *ngIf="f.pssport_number.errors.required">Passport Number is required</div>
                             </div>
                         </div>
-                       
+
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Duration of Travel</ion-label>
-                                <ion-input type="text" formControlName="duration" placeholder="1 month and 1 day"></ion-input>
+                                <ion-input type="text" formControlName="duration" placeholder="1 month and 1 day">
+                                </ion-input>
                             </ion-item>
                             <div *ngIf="submitted && f.duration.errors" class="invalid-feedback">
                                 <div *ngIf="f.duration.errors.required">Duration Of Travel is required</div>
@@ -61,7 +62,7 @@
                             </ion-item>
 
                         </div>
-                       
+
                         <div>
                             <ion-item>
                                 <ion-label position="floating">Intended date of Departure</ion-label>
@@ -84,12 +85,7 @@
                                 <div *ngIf="f.intende_date.errors.required">Intended Date is required</div>
                             </div>
                         </div>
-                        <!-- <div>
-                            <ion-item>
-                                <ion-label position="floating">Number Of People</ion-label>
-                              <ion-input type="number" formControlName="number_of_people"></ion-input>
-                            </ion-item>
-                        </div> -->
+
 
                         <p class="mt-1">Date and Duration Status</p>
                         <div class="row">
@@ -120,7 +116,7 @@
                     </div>
 
                 </div>
-                <div  class="mt-2">
+                <div class="mt-2">
                     <div class="general_details">
                         <div class="general_details_header">
                             <img src="assets/images/passanger.png">
@@ -202,6 +198,7 @@
                         </div>
                     </div>
                 </div>
+             
                 <div class="next_btn">
                     <button type="submit" (click)="nextForm(generalDetailsForm.value)" [disabled]="isDisable"><span
                             *ngIf="formUrl.length">Next</span><span *ngIf="!formUrl.length">Submit</span><i

@@ -14,7 +14,8 @@
                     </div>
                     <div class="general_details_body">
                         <div class="select_plan_check">
-                            <ion-checkbox checked="false" (ionChange)="selectCommunicationMode($event)" value="Whatsapp">
+                            <ion-checkbox checked="false" (ionChange)="selectCommunicationMode($event)"
+                                value="Whatsapp">
                             </ion-checkbox>
                             <ion-label class="ml-3">Whatsapp</ion-label>
                         </div>
@@ -29,7 +30,8 @@
                             <ion-label class="ml-3">Mail</ion-label>
                         </div>
                         <div class="select_plan_check">
-                            <ion-checkbox checked="false" (ionChange)="selectCommunicationMode($event)" value="Visit Us">
+                            <ion-checkbox checked="false" (ionChange)="selectCommunicationMode($event)"
+                                value="Visit Us">
                             </ion-checkbox>
                             <ion-label class="ml-3">Visit Us</ion-label>
                         </div>
@@ -113,12 +115,30 @@
                         </div>
                     </div>
                 </div>
-              
+                <div class="mt-2" *ngIf="isVisaOrAirTicketSelected == 'true'">
+                    <div class="general_details">
+                        <!-- <div class="general_details_header">
+                            <p>General Details</p>
+                        </div> -->
+                        <div class="general_details_body" style="display: grid;">
+
+                            <input type="radio" class="mr-2" id="quotation" value="Yes"
+                                formControlName="free_quotation">
+                            <label for="quotation">Get Free Quotation</label>
+                            <input type="radio" class="mr-2" id="info-pack" value="No" formControlName="free_quotation">
+                            <label for="info-pack">Information Pack</label>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="next_btn" >
-                <button type="submit" (click)="nextForm(otherDetailsForm.value)">Next<i
-                        class="fas fa-arrow-right"></i></button>
+            <div class="next_btn">
+                <button type="submit"
+                    (click)="otherDetailsForm.value.free_quotation =='Yes'?submitForm(otherDetailsForm.value):nextForm(otherDetailsForm.value)">{{otherDetailsForm.value.free_quotation =='Yes'?'Submit':'Next'}}<i
+                        *ngIf="otherDetailsForm.value.free_quotation !='Yes'" class="fas fa-arrow-right"></i></button>
             </div>
+
         </form>
     </div>
     <div *ngIf="loading">
